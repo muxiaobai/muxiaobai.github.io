@@ -1,0 +1,881 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Shell," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="技术笔记" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/img/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="bash变量、系统变量、参数信息、运算符">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linux 基础Shell脚本">
+<meta property="og:url" content="https://muxiaobai.github.io/2016/07/09/Linux-基础Shell脚本/index.html">
+<meta property="og:site_name" content="技术笔记">
+<meta property="og:description" content="bash变量、系统变量、参数信息、运算符">
+<meta property="og:image" content="https://muxiaobai.github.io/2016/07/09/Linux-基础Shell脚本/201607101216.PNG">
+<meta property="og:image" content="https://muxiaobai.github.io/2016/07/09/Linux-基础Shell脚本/201607101227.PNG">
+<meta property="og:image" content="https://muxiaobai.github.io/2016/07/09/Linux-基础Shell脚本/201607101231.PNG">
+<meta property="og:image" content="https://muxiaobai.github.io/2016/07/09/Linux-基础Shell脚本/201607101243.PNG">
+<meta property="og:updated_time" content="2016-08-31T12:24:36.326Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Linux 基础Shell脚本">
+<meta name="twitter:description" content="bash变量、系统变量、参数信息、运算符">
+<meta name="twitter:image" content="https://muxiaobai.github.io/2016/07/09/Linux-基础Shell脚本/201607101216.PNG">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"hide"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: 'Author'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="https://muxiaobai.github.io/2016/07/09/Linux-基础Shell脚本/"/>
+
+  <title> Linux 基础Shell脚本 | 技术笔记 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-80276841-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?G4mEksdCPH";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">技术笔记</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">有输入,有输出</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Startseite
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Kategorien
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            Über
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archiv
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
+            
+            公益404
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            Suche
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Linux 基础Shell脚本
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">Veröffentlicht am</span>
+            <time itemprop="dateCreated" datetime="2016-07-09T19:38:00+00:00" content="2016-07-09">
+              2016-07-09
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">in</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Linux/" itemprop="url" rel="index">
+                    <span itemprop="name">Linux</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/07/09/Linux-基础Shell脚本/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/07/09/Linux-基础Shell脚本/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="bin-bash"><a href="#bin-bash" class="headerlink" title="#!/bin/bash"></a><code>#!/bin/bash</code></h1><h2 id="Bash&#x53D8;&#x91CF;"><a href="#Bash&#x53D8;&#x91CF;" class="headerlink" title="Bash&#x53D8;&#x91CF;"></a>Bash&#x53D8;&#x91CF;</h2><h4 id="&#x7528;&#x6237;&#x81EA;&#x5B9A;&#x4E49;&#x53D8;&#x91CF;"><a href="#&#x7528;&#x6237;&#x81EA;&#x5B9A;&#x4E49;&#x53D8;&#x91CF;" class="headerlink" title="&#x7528;&#x6237;&#x81EA;&#x5B9A;&#x4E49;&#x53D8;&#x91CF;"></a>&#x7528;&#x6237;&#x81EA;&#x5B9A;&#x4E49;&#x53D8;&#x91CF;</h4><p><code>&#x53D8;&#x91CF;&#x540D;=&#x53D8;&#x91CF;&#x503C;</code> &#x9ED8;&#x8BA4;&#x53D8;&#x91CF;&#x503C;&#x4E3A;&#x5B57;&#x7B26;&#x4E32;</p>
+<p><code>echo $&#x53D8;&#x91CF;&#x540D;</code></p>
+<p>&#x53D8;&#x91CF;&#x53E0;&#x52A0;  x=&#x201D;$x&#x201D;other | x=${x}other</p>
+<p><code>set</code>&#xFF1A;&#x67E5;&#x8BE2;&#x6240;&#x6709;&#x53D8;&#x91CF;</p>
+<p><code>set -u</code> &#x7136;&#x540E;&#x8C03;&#x7528;&#x672A;&#x58F0;&#x660E;&#x7684;&#x53D8;&#x91CF;&#x4F1A;&#x62A5;&#x9519;</p>
+<p><code>unset &#x53D8;&#x91CF;&#x540D;</code>&#xFF1A;&#x5220;&#x9664;&#x53D8;&#x91CF;</p>
+<p><code>exoprt</code> &#x53D8;&#x6210;&#x7CFB;&#x7EDF;&#x53D8;&#x91CF;(&#x5B9E;&#x8D28;&#x4E0A;&#x662F;<code>declare</code>)</p>
+<p><code>env</code>:&#x53EA;&#x80FD;&#x770B;&#x5230;&#x73AF;&#x5883;&#x53D8;&#x91CF;<br><a id="more"></a></p>
+<h4 id="&#x5E38;&#x89C1;&#x7CFB;&#x7EDF;&#x53D8;&#x91CF;"><a href="#&#x5E38;&#x89C1;&#x7CFB;&#x7EDF;&#x53D8;&#x91CF;" class="headerlink" title="&#x5E38;&#x89C1;&#x7CFB;&#x7EDF;&#x53D8;&#x91CF;"></a>&#x5E38;&#x89C1;&#x7CFB;&#x7EDF;&#x53D8;&#x91CF;</h4><p>HOSTNAME SHELL SSH USER  HOME MAIL TERM</p>
+<p>PATH</p>
+<p><code>locale</code> &#x652F;&#x6301;&#x7684;&#x8BED;&#x7CFB; LANG&#x7CFB;&#x7EDF;&#x4E3B;&#x8BED;&#x7CFB; LC_ALL</p>
+<p>&#x4E0B;&#x6B21;&#x5F00;&#x673A;&#x7684;&#x9ED8;&#x8BA4;&#x8BED;&#x7CFB;:/etc/sysconfig/i18n</p>
+<p>PS1 &#x547D;&#x4EE4;&#x63D0;&#x793A;&#x7B26;&#x53D8;&#x91CF;</p>
+<h4 id="&#x4F4D;&#x7F6E;&#x53C2;&#x6570;&#x53D8;&#x91CF;"><a href="#&#x4F4D;&#x7F6E;&#x53C2;&#x6570;&#x53D8;&#x91CF;" class="headerlink" title="&#x4F4D;&#x7F6E;&#x53C2;&#x6570;&#x53D8;&#x91CF;"></a>&#x4F4D;&#x7F6E;&#x53C2;&#x6570;&#x53D8;&#x91CF;</h4><p>$n </p>
+<p>$0 &#x547D;&#x4EE4;&#x672C;&#x8EAB;</p>
+<p>$1-9 ${10} &#x53C2;&#x6570;</p>
+<p>$*  &#x6240;&#x6709;&#x4F20;&#x5165;&#x7684;&#x53C2;&#x6570;&#x662F;&#x4E00;&#x4E2A;&#x6574;&#x4F53;</p>
+<p>$@   &#x6240;&#x6709;&#x4F20;&#x5165;&#x7684;&#x53C2;&#x6570;&#x662F;&#x72EC;&#x7ACB;&#x7684;&#xFF0C;&#x6709;&#x51E0;&#x4E2A;&#x53C2;&#x6570;&#xFF0C;&#x5FAA;&#x73AF;&#x51E0;&#x6B21;</p>
+<p>$#  &#x8FD4;&#x56DE;&#x4F20;&#x5165;&#x53C2;&#x6570;&#x7684;&#x4E2A;&#x6570;</p>
+<hr>
+<p><code>read</code> &#x63A5;&#x53D7;&#x952E;&#x76D8;&#x8F93;&#x5165;(&#x4EA4;&#x4E92;)</p>
+<h5 id="p-&#x8F93;&#x5165;"><a href="#p-&#x8F93;&#x5165;" class="headerlink" title="-p &#x8F93;&#x5165;"></a>-p &#x8F93;&#x5165;</h5><h5 id="t-&#x7B49;&#x5F85;&#x65F6;&#x95F4;"><a href="#t-&#x7B49;&#x5F85;&#x65F6;&#x95F4;" class="headerlink" title="-t &#x7B49;&#x5F85;&#x65F6;&#x95F4;"></a>-t &#x7B49;&#x5F85;&#x65F6;&#x95F4;</h5><h5 id="s-&#x9690;&#x85CF;"><a href="#s-&#x9690;&#x85CF;" class="headerlink" title="-s &#x9690;&#x85CF;"></a>-s &#x9690;&#x85CF;</h5><h5 id="n-&#x6307;&#x5B9A;&#x8F93;&#x5165;&#x7684;&#x5B57;&#x8282;&#x6570;"><a href="#n-&#x6307;&#x5B9A;&#x8F93;&#x5165;&#x7684;&#x5B57;&#x8282;&#x6570;" class="headerlink" title="-n &#x6307;&#x5B9A;&#x8F93;&#x5165;&#x7684;&#x5B57;&#x8282;&#x6570;"></a>-n &#x6307;&#x5B9A;&#x8F93;&#x5165;&#x7684;&#x5B57;&#x8282;&#x6570;</h5><hr>
+<h4 id="&#x9884;&#x5B9A;&#x4E49;&#x53D8;&#x91CF;"><a href="#&#x9884;&#x5B9A;&#x4E49;&#x53D8;&#x91CF;" class="headerlink" title="&#x9884;&#x5B9A;&#x4E49;&#x53D8;&#x91CF;"></a>&#x9884;&#x5B9A;&#x4E49;&#x53D8;&#x91CF;</h4><p>$? &#x8FD4;&#x56DE;&#x4E0A;&#x4E00;&#x6761;&#x547D;&#x4EE4;&#x7684;&#x6267;&#x884C;&#x72B6;&#x6001;</p>
+<p>&#x6B63;&#x786E;&#x6267;&#x884C; &#x8FD4;&#x56DE;0 | &#x6267;&#x884C;&#x9519;&#x8BEF; &#x8FD4;&#x56DE;2 | &#x547D;&#x4EE4;&#x627E;&#x4E0D;&#x5230; &#x8FD4;&#x56DE;127</p>
+<p>$$ &#x8FD4;&#x56DE;&#x5F53;&#x524D;&#x8FDB;&#x7A0B;&#x7684;PID&#x53F7;</p>
+<p>$! &#x8FD4;&#x56DE;&#x540E;&#x53F0;&#x8FD0;&#x884C;&#x7684;&#x6700;&#x540E;&#x4E00;&#x4E2A;&#x8FDB;&#x7A0B;&#x7684;PID&#x53F7;</p>
+<h2 id="Shell&#x8FD0;&#x7B97;&#x7B26;"><a href="#Shell&#x8FD0;&#x7B97;&#x7B26;" class="headerlink" title="Shell&#x8FD0;&#x7B97;&#x7B26;"></a>Shell&#x8FD0;&#x7B97;&#x7B26;</h2><blockquote>
+<p>&#x5F31;&#x7C7B;&#x578B;&#xFF0C;&#x7C7B;&#x4F3C;javascript</p>
+</blockquote>
+<p><code>declare</code> [+/-] [i/a/]</p>
+<p><img src="/2016/07/09/Linux-&#x57FA;&#x7840;Shell&#x811A;&#x672C;/201607101216.PNG" alt="&#x53D8;&#x91CF;&#x53C2;&#x6570;"></p>
+<p><code>expr</code> <code>let</code></p>
+<h5 id="&#x8FD0;&#x7B97;&#x5F0F;-&#x8FD0;&#x7B97;&#x5F0F;"><a href="#&#x8FD0;&#x7B97;&#x5F0F;-&#x8FD0;&#x7B97;&#x5F0F;" class="headerlink" title="$((&#x8FD0;&#x7B97;&#x5F0F;)) $[&#x8FD0;&#x7B97;&#x5F0F;]"></a>$((&#x8FD0;&#x7B97;&#x5F0F;)) $[&#x8FD0;&#x7B97;&#x5F0F;]</h5><p><img src="/2016/07/09/Linux-&#x57FA;&#x7840;Shell&#x811A;&#x672C;/201607101227.PNG" alt="&#x53D8;&#x91CF;&#x53C2;&#x6570;"></p>
+<h5 id="&#x53D8;&#x91CF;&#x6D4B;&#x8BD5;"><a href="#&#x53D8;&#x91CF;&#x6D4B;&#x8BD5;" class="headerlink" title="&#x53D8;&#x91CF;&#x6D4B;&#x8BD5;"></a>&#x53D8;&#x91CF;&#x6D4B;&#x8BD5;</h5><p><img src="/2016/07/09/Linux-&#x57FA;&#x7840;Shell&#x811A;&#x672C;/201607101231.PNG" alt="&#x53D8;&#x91CF;&#x53C2;&#x6570;"></p>
+<h2 id="&#x73AF;&#x5883;&#x53D8;&#x91CF;&#x914D;&#x7F6E;&#x6587;&#x4EF6;"><a href="#&#x73AF;&#x5883;&#x53D8;&#x91CF;&#x914D;&#x7F6E;&#x6587;&#x4EF6;" class="headerlink" title="&#x73AF;&#x5883;&#x53D8;&#x91CF;&#x914D;&#x7F6E;&#x6587;&#x4EF6;"></a>&#x73AF;&#x5883;&#x53D8;&#x91CF;&#x914D;&#x7F6E;&#x6587;&#x4EF6;</h2><p>&#x91CD;&#x65B0;&#x52A0;&#x8F7D;&#x914D;&#x7F6E;&#x6587;&#x4EF6;: <code>source &#x914D;&#x7F6E;&#x6587;&#x4EF6;</code>  <code>. &#x914D;&#x7F6E;&#x6587;&#x4EF6;</code></p>
+<p>&#x6B63;&#x5E38;&#x767B;&#x9646;&#x8FC7;&#x7A0B;&#xFF0C;&#x4E3B;&#x8981;&#x7684;&#x6587;&#x4EF6;:</p>
+<p>/etc/profile</p>
+<p>/etc/profile.d/*.sh</p>
+<p>~/.bash_profile</p>
+<p>~/.bashrc</p>
+<p>/etc/bashrc</p>
+<p>&#x52A0;&#x8F7D;&#x6587;&#x4EF6;&#x987A;&#x5E8F;&gt;&gt;[login&#x800C;&#x4E0D;&#x662F;&#x5F00;&#x673A;]</p>
+<p><img src="/2016/07/09/Linux-&#x57FA;&#x7840;Shell&#x811A;&#x672C;/201607101243.PNG" alt="&#x53D8;&#x91CF;&#x53C2;&#x6570;"></p>
+<p>&#x6CE8;&#x9500;</p>
+<p>~/.bash_logout</p>
+<p>&#x5386;&#x53F2;&#x547D;&#x4EE4;</p>
+<p>~/.bash_history</p>
+<h2 id="&#x6B63;&#x5219;&#x8868;&#x8FBE;&#x5F0F;"><a href="#&#x6B63;&#x5219;&#x8868;&#x8FBE;&#x5F0F;" class="headerlink" title="&#x6B63;&#x5219;&#x8868;&#x8FBE;&#x5F0F;"></a>&#x6B63;&#x5219;&#x8868;&#x8FBE;&#x5F0F;</h2><h2 id="&#x6D41;&#x7A0B;&#x63A7;&#x5236;&#x8BED;&#x53E5;"><a href="#&#x6D41;&#x7A0B;&#x63A7;&#x5236;&#x8BED;&#x53E5;" class="headerlink" title="&#x6D41;&#x7A0B;&#x63A7;&#x5236;&#x8BED;&#x53E5;"></a>&#x6D41;&#x7A0B;&#x63A7;&#x5236;&#x8BED;&#x53E5;</h2>
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Shell/" rel="tag">#Shell</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/07/07/Linux-基础命令总结2/" rel="next" title="Linux 基础命令总结2">
+                <i class="fa fa-chevron-left"></i> Linux 基础命令总结2
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/07/19/Sublime-下运行Java文件/" rel="prev" title="Sublime 下运行Java文件">
+                Sublime 下运行Java文件 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- Go to www.addthis.com/dashboard to customize your tools -->
+<script type = "text/javascript" src = "//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-577a08f17286c0c0" async = "async" ></script>
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/07/09/Linux-基础Shell脚本/"
+           data-title="Linux 基础Shell脚本" data-url="https://muxiaobai.github.io/2016/07/09/Linux-基础Shell脚本/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Inhaltsverzeichnis
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Übersicht
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/img/avatars.jpg"
+               alt="Mu Xiaobai(慕小白)" />
+          <p class="site-author-name" itemprop="name">Mu Xiaobai(慕小白)</p>
+          <p class="site-description motion-element" itemprop="description">记录日常工作中遇到的技术问题</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">17</span>
+              <span class="site-state-item-name">Artikel</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-name">Kategorien</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">38</span>
+                <span class="site-state-item-name">Tags</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#bin-bash"><span class="nav-number">1.</span> <span class="nav-text">#!/bin/bash</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Bash变量"><span class="nav-number">1.1.</span> <span class="nav-text">Bash变量</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#用户自定义变量"><span class="nav-number">1.1.0.1.</span> <span class="nav-text">用户自定义变量</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#常见系统变量"><span class="nav-number">1.1.0.2.</span> <span class="nav-text">常见系统变量</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#位置参数变量"><span class="nav-number">1.1.0.3.</span> <span class="nav-text">位置参数变量</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#p-输入"><span class="nav-number">1.1.0.3.1.</span> <span class="nav-text">-p 输入</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#t-等待时间"><span class="nav-number">1.1.0.3.2.</span> <span class="nav-text">-t 等待时间</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#s-隐藏"><span class="nav-number">1.1.0.3.3.</span> <span class="nav-text">-s 隐藏</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#n-指定输入的字节数"><span class="nav-number">1.1.0.3.4.</span> <span class="nav-text">-n 指定输入的字节数</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#预定义变量"><span class="nav-number">1.1.0.4.</span> <span class="nav-text">预定义变量</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Shell运算符"><span class="nav-number">1.2.</span> <span class="nav-text">Shell运算符</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#运算式-运算式"><span class="nav-number">1.2.0.0.1.</span> <span class="nav-text">$((运算式)) $[运算式]</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#变量测试"><span class="nav-number">1.2.0.0.2.</span> <span class="nav-text">变量测试</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#环境变量配置文件"><span class="nav-number">1.3.</span> <span class="nav-text">环境变量配置文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#正则表达式"><span class="nav-number">1.4.</span> <span class="nav-text">正则表达式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#流程控制语句"><span class="nav-number">1.5.</span> <span class="nav-text">流程控制语句</span></a></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Mu Xiaobai(慕小白)</span>
+</div>
+
+<div class="powered-by">
+  Erstellt mit  <a class="theme-link" href="http://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"muxiaobai"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+       search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+    'use strict';
+    $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+            // get the contents from search data
+            isfetched = true;
+            $('.popup').detach().appendTo('.header-inner');
+            var datas = $( "entry", xmlResponse ).map(function() {
+                return {
+                    title: $( "title", this ).text(),
+                    content: $("content",this).text(),
+                    url: $( "url" , this).text()
+                };
+            }).get();
+            var $input = document.getElementById(search_id);
+            var $resultContent = document.getElementById(content_id);
+            $input.addEventListener('input', function(){
+                var matchcounts = 0;
+                var str='<ul class=\"search-result-list\">';
+                var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                $resultContent.innerHTML = "";
+                if (this.value.trim().length > 1) {
+                // perform local searching
+                datas.forEach(function(data) {
+                    var isMatch = true;
+                    var content_index = [];
+                    var data_title = data.title.trim().toLowerCase();
+                    var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                    var data_url = data.url;
+                    var index_title = -1;
+                    var index_content = -1;
+                    var first_occur = -1;
+                    // only match artiles with not empty titles and contents
+                    if(data_title != '' && data_content != '') {
+                        keywords.forEach(function(keyword, i) {
+                            index_title = data_title.indexOf(keyword);
+                            index_content = data_content.indexOf(keyword);
+                            if( index_title < 0 && index_content < 0 ){
+                                isMatch = false;
+                            } else {
+                                if (index_content < 0) {
+                                    index_content = 0;
+                                }
+                                if (i == 0) {
+                                    first_occur = index_content;
+                                }
+                            }
+                        });
+                    }
+                    // show search results
+                    if (isMatch) {
+                        matchcounts += 1;
+                        str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                        var content = data.content.trim().replace(/<[^>]+>/g,"");
+                        if (first_occur >= 0) {
+                            // cut out 100 characters
+                            var start = first_occur - 20;
+                            var end = first_occur + 80;
+                            if(start < 0){
+                                start = 0;
+                            }
+                            if(start == 0){
+                                end = 50;
+                            }
+                            if(end > content.length){
+                                end = content.length;
+                            }
+                            var match_content = content.substring(start, end);
+                            // highlight all keywords
+                            keywords.forEach(function(keyword){
+                                var regS = new RegExp(keyword, "gi");
+                                match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                            });
+
+                            str += "<p class=\"search-result\">" + match_content +"...</p>"
+                        }
+                        str += "</li>";
+                    }
+                })};
+                str += "</ul>";
+                if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+                if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+                $resultContent.innerHTML = str;
+            });
+            proceedsearch();
+        }
+    });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+  
+
+  
+
+  
+
+</body>
+</html>

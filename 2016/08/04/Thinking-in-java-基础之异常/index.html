@@ -1,0 +1,898 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Throwable,Error,Exception," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="技术笔记" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/img/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="总结java中的异常，错误，Java的基础理念是：结构不佳的代码不能运行。发现错误的理想时机是在编译阶段！">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Thinking in java 基础之异常">
+<meta property="og:url" content="https://muxiaobai.github.io/2016/08/04/Thinking-in-java-基础之异常/index.html">
+<meta property="og:site_name" content="技术笔记">
+<meta property="og:description" content="总结java中的异常，错误，Java的基础理念是：结构不佳的代码不能运行。发现错误的理想时机是在编译阶段！">
+<meta property="og:image" content="https://muxiaobai.github.io/2016/08/04/Thinking-in-java-基础之异常/201608031722.jpg">
+<meta property="og:image" content="https://muxiaobai.github.io/2016/08/04/Thinking-in-java-基础之异常/201608091509Throwable.PNG">
+<meta property="og:image" content="https://muxiaobai.github.io/2016/08/04/Thinking-in-java-基础之异常/201608091504Error.PNG">
+<meta property="og:image" content="https://muxiaobai.github.io/2016/08/04/Thinking-in-java-基础之异常/201608091505Exception.PNG">
+<meta property="og:image" content="https://muxiaobai.github.io/2016/08/04/Thinking-in-java-基础之异常/201608091505IOException.PNG">
+<meta property="og:image" content="https://muxiaobai.github.io/2016/08/04/Thinking-in-java-基础之异常/201608091506RuntimeException.PNG">
+<meta property="og:updated_time" content="2016-08-31T12:24:37.758Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Thinking in java 基础之异常">
+<meta name="twitter:description" content="总结java中的异常，错误，Java的基础理念是：结构不佳的代码不能运行。发现错误的理想时机是在编译阶段！">
+<meta name="twitter:image" content="https://muxiaobai.github.io/2016/08/04/Thinking-in-java-基础之异常/201608031722.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"hide"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: 'Author'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="https://muxiaobai.github.io/2016/08/04/Thinking-in-java-基础之异常/"/>
+
+  <title> Thinking in java 基础之异常 | 技术笔记 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-80276841-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?G4mEksdCPH";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">技术笔记</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">有输入,有输出</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Startseite
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Kategorien
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            Über
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archiv
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
+            
+            公益404
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            Suche
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Thinking in java 基础之异常
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">Veröffentlicht am</span>
+            <time itemprop="dateCreated" datetime="2016-08-04T12:45:14+00:00" content="2016-08-04">
+              2016-08-04
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">in</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/java/" itemprop="url" rel="index">
+                    <span itemprop="name">java</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/08/04/Thinking-in-java-基础之异常/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/04/Thinking-in-java-基础之异常/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="Thinking-in-java-&#x57FA;&#x7840;&#x4E4B;&#x5F02;&#x5E38;"><a href="#Thinking-in-java-&#x57FA;&#x7840;&#x4E4B;&#x5F02;&#x5E38;" class="headerlink" title="Thinking in java &#x57FA;&#x7840;&#x4E4B;&#x5F02;&#x5E38;"></a>Thinking in java &#x57FA;&#x7840;&#x4E4B;&#x5F02;&#x5E38;</h2><p>&#x7C7B;&#x56FE;&#x5982;&#x4E0B;</p>
+<p><img src="/2016/08/04/Thinking-in-java-&#x57FA;&#x7840;&#x4E4B;&#x5F02;&#x5E38;/201608031722.jpg" alt="&#x5F02;&#x5E38;&#x7C7B;&#x56FE;"></p>
+<h4 id="&#x5F02;&#x5E38;&#x6982;&#x5FF5;"><a href="#&#x5F02;&#x5E38;&#x6982;&#x5FF5;" class="headerlink" title="&#x5F02;&#x5E38;&#x6982;&#x5FF5;"></a>&#x5F02;&#x5E38;&#x6982;&#x5FF5;</h4><p>checked &#x5F02;&#x5E38;&#x7684;&#x4E00;&#x4E2A;&#x95EE;&#x9898;&#x662F;&#xFF0C;&#x6709;&#x65F6;&#x5019;&#x4E0D;&#x5141;&#x8BB8;&#x629B;&#x51FA;&#x8FD9;&#x6837;&#x7684;&#x5F02;&#x5E38;&#x3002;&#x7279;&#x522B;&#x662F;&#xFF0C;&#x5982;&#x679C;&#x8981;&#x8986;&#x76D6;&#x8D85;&#x7C7B;&#x4E2D;&#x58F0;&#x660E;&#x7684;&#x65B9;&#x6CD5;&#xFF0C;&#x6216;&#x8005;&#x5B9E;&#x73B0;&#x63A5;&#x53E3;&#x4E2D;&#x58F0;&#x660E;&#x7684;&#x65B9;&#x6CD5;&#xFF0C;&#x800C;&#x90A3;&#x4E2A;&#x65B9;&#x6CD5;&#x6CA1;&#x6709;&#x58F0;&#x660E;&#x4EFB;&#x4F55; checked &#x5F02;&#x5E38;&#xFF0C;&#x90A3;&#x4E48;&#x65B0;&#x7684;&#x5B9E;&#x73B0;&#x4E5F;&#x4E0D;&#x80FD;&#x58F0;&#x660E; checked &#x5F02;&#x5E38;&#x3002;&#x56E0;&#x6B64;&#x5FC5;&#x987B;&#x9884;&#x5148;&#x5904;&#x7406;&#x5F02;&#x5E38;&#x3002;<br>Error&#x6211;&#x4EEC;&#x4E0D;&#x7528;&#x5904;&#x7406;&#x3002;</p>
+<p>VirtualMachineError&#x5728;&#x7A0B;&#x5E8F;&#x4E2D;&#x662F;&#x4E0D;&#x80FD;&#x5904;&#x7406;&#x7684;&#xFF0C;&#x8FD9;&#x4E2A;&#x4E00;&#x822C;&#x5C5E;&#x4E8E;&#x865A;&#x62DF;&#x673A;&#x7684;&#x95EE;&#x9898;&#xFF0C;&#x5185;&#x5B58;&#x6EA2;&#x51FA;&#x548C;&#x6808;&#x6EA2;&#x51FA;&#x3002;(OOM) </p>
+<p>Exception&#x4E2D;&#x7684;IOException&#x5FC5;&#x987B;try catch&#xFF0C;&#x8FD9;&#x79CD;&#x6587;&#x4EF6;&#x8D44;&#x6E90;&#x662F;&#x5FC5;&#x987B;&#x8981;&#x6355;&#x6349;&#x7684;&#xFF0C;&#x6587;&#x4EF6;&#x8981;&#x5728;finally&#x4E2D;&#x8FDB;&#x884C;&#x5173;&#x95ED;&#x3002;</p>
+<p>Exception&#x4E2D;&#x7684;RuntimeException &#x53EF;&#x4EE5;&#x4E0D;&#x5FC5;try&#xFF0C;&#x8FD8;&#x53EF;&#x4EE5;&#x7EE7;&#x7EED;throws&#xFF0C;&#x8BA9;&#x4F7F;&#x7528;&#x8005;&#x5904;&#x7406;&#x3002;</p>
+<p>&#x4E0B;&#x9762;&#x6765;&#x770B;&#x770B;&#x6E90;&#x7801;</p>
+<p><img src="/2016/08/04/Thinking-in-java-&#x57FA;&#x7840;&#x4E4B;&#x5F02;&#x5E38;/201608091509Throwable.PNG" alt="&#x5F02;&#x5E38;Throwable&#x7C7B;"></p>
+<p><img src="/2016/08/04/Thinking-in-java-&#x57FA;&#x7840;&#x4E4B;&#x5F02;&#x5E38;/201608091504Error.PNG" alt="&#x5F02;&#x5E38;Error&#x7C7B;"><br><img src="/2016/08/04/Thinking-in-java-&#x57FA;&#x7840;&#x4E4B;&#x5F02;&#x5E38;/201608091505Exception.PNG" alt="&#x5F02;&#x5E38;Exception&#x7C7B;"><br><img src="/2016/08/04/Thinking-in-java-&#x57FA;&#x7840;&#x4E4B;&#x5F02;&#x5E38;/201608091505IOException.PNG" alt="&#x5F02;&#x5E38;IOException&#x7C7B;"><br><img src="/2016/08/04/Thinking-in-java-&#x57FA;&#x7840;&#x4E4B;&#x5F02;&#x5E38;/201608091506RuntimeException.PNG" alt="&#x5F02;&#x5E38;RuntimeException&#x7C7B;"></p>
+<p>&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x770B;&#x5230;&#x9664;&#x4E86;Throwable&#x4E4B;&#x5916;&#x7684;&#x7C7B;&#xFF0C;&#x90FD;&#x662F;&#x53EA;&#x6709;&#x6784;&#x9020;&#x65B9;&#x6CD5;&#xFF0C;&#x800C;&#x4E14;&#x6211;&#x4EEC;&#x4ECE;&#x7C7B;&#x7684;&#x540D;&#x5B57;&#x5C31;&#x80FD;&#x770B;&#x51FA;&#x5177;&#x4F53;&#x662F;&#x4EC0;&#x4E48;&#x5F02;&#x5E38;&#x3002;</p>
+<h4 id="&#x4E3A;&#x4EC0;&#x4E48;&#x8981;&#x7528;try-&#x6216;&#x8005;-throws"><a href="#&#x4E3A;&#x4EC0;&#x4E48;&#x8981;&#x7528;try-&#x6216;&#x8005;-throws" class="headerlink" title="&#x4E3A;&#x4EC0;&#x4E48;&#x8981;&#x7528;try &#x6216;&#x8005; throws"></a>&#x4E3A;&#x4EC0;&#x4E48;&#x8981;&#x7528;try &#x6216;&#x8005; throws</h4><p>try&#x662F;&#x4E3A;&#x4E86;&#x6355;&#x6349;&#x5F02;&#x5E38;&#xFF0C;&#x800C;&#x65B9;&#x6CD5;&#x4E2D;throws&#x662F;&#x4E3A;&#x4E86;&#x628A;&#x65B9;&#x6CD5;&#x629B;&#x51FA;&#x53BB;&#x3002;</p>
+<p>&#x4E0B;&#x9762;&#x6211;&#x4EEC;&#x6765;&#x770B;&#x4F8B;&#x5B50;:</p>
+<p>&#x4F8B;1</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">public class ExceptionTest {</div><div class="line">	public static void main(String[] args) throws Exception {</div><div class="line">		ExceptionTest exceptionTest=new ExceptionTest();</div><div class="line">		System.out.println(&quot;======================&quot;);</div><div class="line">		System.out.println(exceptionTest.va());</div><div class="line">		System.out.println(&quot;&#x629B;&#x51FA;&#x5F02;&#x5E38;&#x540E;&#xFF0C;&#x540E;&#x9762;&#x4EE3;&#x7801;&#x4ECD;&#x53EF;&#x4EE5;&#x6267;&#x884C;&quot;);</div><div class="line">		</div><div class="line">	}</div><div class="line">	public Integer va() throws Exception{</div><div class="line">		Integer ret = 0;</div><div class="line">		ret=1/0;</div><div class="line">		System.out.println(&quot;&#x4E0A;&#x9762;&#x6709;&#x5F02;&#x5E38;&#xFF0C;&#x540E;&#x9762;......&quot;);</div><div class="line">		return ret;</div><div class="line">	}</div><div class="line">}</div></pre></td></tr></table></figure>
+<p>&#x7ED3;&#x679C;&#xFF1A;</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">======================</div><div class="line">java.lang.ArithmeticException: / by zero</div><div class="line">	at Exception.ExceptionTest.va(ExceptionTest.java:21)</div><div class="line">	at Exception.ExceptionTest.main(ExceptionTest.java:15)</div></pre></td></tr></table></figure>
+<p>val()&#x65B9;&#x6CD5;&#x4E2D;ret=1/0;&#x4F1A;&#x629B;&#x51FA;&#x5F02;&#x5E38;&#x3002;</p>
+<p>&#x4F8B;1&#x4E2D;main&#x65B9;&#x6CD5;&#x4E2D;&#x4F7F;&#x7528;throws&#x628A;&#x5F02;&#x5E38;&#x629B;&#x51FA;&#x53BB;&#xFF0C;&#x800C;main&#x65B9;&#x6CD5;&#x7ED3;&#x675F;&#x4E4B;&#x540E;&#xFF0C;&#x7A0B;&#x5E8F;&#x5C31;&#x8FD0;&#x884C;&#x5B8C;&#x4E86;&#xFF0C;&#x4F46;&#x662F;Exception&#x600E;&#x4E48;&#x529E;&#x5462;&#xFF1F;&#x53EA;&#x597D;&#x5728;&#x63A7;&#x5236;&#x53F0;&#x6253;&#x5370;&#x51FA;Exception&#x4E86;&#xFF0C;&#x540C;&#x65F6;&#xFF0C;&#x7A0B;&#x5E8F;&#x5728;&#x4EA7;&#x751F;&#x5F02;&#x5E38;&#x7684;&#x5730;&#x65B9;&#xFF0C;&#x7A0B;&#x5E8F;&#x5C31;&#x7ED3;&#x675F;&#x4E86;&#x3002;&#x56E0;&#x6B64;<em>System.out.println(&#x201C;&#x629B;&#x51FA;&#x5F02;&#x5E38;&#x540E;&#xFF0C;&#x540E;&#x9762;&#x4EE3;&#x7801;&#x4ECD;&#x53EF;&#x4EE5;&#x6267;&#x884C;&#x201D;);</em>&#x662F;&#x4E0D;&#x4F1A;&#x6267;&#x884C;&#x7684;&#x3002;&#x5373;&#x4F7F;&#x5728;val(),&#x65B9;&#x6CD5;&#x4E2D;<em>System.out.println(&#x201C;&#x4E0A;&#x9762;&#x6709;&#x5F02;&#x5E38;&#xFF0C;&#x540E;&#x9762;&#x2026;&#x2026;&#x201D;);</em>&#x4E5F;&#x662F;&#x4E0D;&#x4F1A;&#x6267;&#x884C;&#x7684;&#xFF0C;&#x56E0;&#x4E3A;<em>ret=1/0;</em>&#x5DF2;&#x7ECF;&#x8BA9;&#x7A0B;&#x5E8F;&#x629B;&#x51FA;&#x4E86;&#x5F02;&#x5E38;&#x3002; &#x800C;&#x4E0B;&#x9762;&#x7684;&#x4F8B;&#x5B50;&#x5C31;&#x4E0D;&#x4E00;&#x6837;&#x4E86;&#x3002;</p>
+<p>&#x4F8B;2</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">public class ExceptionTest {</div><div class="line">	public static void main(String[] args) {</div><div class="line">		ExceptionTest exceptionTest=new ExceptionTest();</div><div class="line">		System.out.println(&quot;======================&quot;);</div><div class="line">		try {</div><div class="line">			System.out.println(exceptionTest.va());</div><div class="line">		} catch (Exception e) {</div><div class="line">			// TODO Auto-generated catch block</div><div class="line">			e.printStackTrace();</div><div class="line">		}</div><div class="line">		System.out.println(&quot;&#x629B;&#x51FA;&#x5F02;&#x5E38;&#x540E;&#xFF0C;&#x540E;&#x9762;&#x4EE3;&#x7801;&#x4ECD;&#x53EF;&#x4EE5;&#x6267;&#x884C;&quot;);</div><div class="line">		</div><div class="line">	}</div><div class="line">	public Integer va() throws Exception{</div><div class="line">		Integer ret = 0;</div><div class="line">		ret=1/0;</div><div class="line">		System.out.println(&quot;&#x4E0A;&#x9762;&#x6709;&#x5F02;&#x5E38;&#xFF0C;&#x540E;&#x9762;......&quot;);</div><div class="line">		return ret;</div><div class="line">	}</div><div class="line">	</div><div class="line">}</div></pre></td></tr></table></figure>
+<p>&#x7ED3;&#x679C;&#xFF1A;</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">======================</div><div class="line">java.lang.ArithmeticException: / by zero</div><div class="line">	at Exception.ExceptionTest.va(ExceptionTest.java:26)</div><div class="line">	at Exception.ExceptionTest.main(ExceptionTest.java:16)</div><div class="line">&#x629B;&#x51FA;&#x5F02;&#x5E38;&#x540E;&#xFF0C;&#x540E;&#x9762;&#x4EE3;&#x7801;&#x4ECD;&#x53EF;&#x4EE5;&#x6267;&#x884C;</div></pre></td></tr></table></figure>
+<p>&#x5728;&#x8FD9;&#x4E2A;main&#x4E2D;&#x4F7F;&#x7528;try catch &#x6765;&#x6355;&#x6349;&#x5F02;&#x5E38;&#xFF0C;&#x800C;&#x5F02;&#x5E38;&#x6355;&#x6349;&#x540E;&#xFF0C;&#x540E;&#x9762;&#x7684;&#x4EE3;&#x7801;&#x7EE7;&#x7EED;&#x6267;&#x884C;&#xFF0C;&#x56E0;&#x6B64;<em>System.out.println(&#x201C;&#x629B;&#x51FA;&#x5F02;&#x5E38;&#x540E;&#xFF0C;&#x540E;&#x9762;&#x4EE3;&#x7801;&#x4ECD;&#x53EF;&#x4EE5;&#x6267;&#x884C;&#x201D;);</em>&#x53EF;&#x4EE5;&#x6267;&#x884C;&#xFF0C;&#x5C31;&#x6253;&#x5370;&#x51FA;&#x4FE1;&#x606F;&#x4E86;&#x3002;&#x4F46;&#x662F;&#x540C;&#x6837;val()&#x65B9;&#x6CD5;&#x4E2D;&#x7684;<em>System.out.println(&#x201C;&#x4E0A;&#x9762;&#x6709;&#x5F02;&#x5E38;&#xFF0C;&#x540E;&#x9762;&#x2026;&#x2026;&#x201D;);</em>&#x662F;&#x4E0D;&#x4F1A;&#x6267;&#x884C;&#x7684;&#x3002;</p>
+<p>####&#x5F02;&#x5E38;&#x5206;&#x7C7B;</p>
+<p>&#x7531;&#x4E0A;&#x56FE;&#x53EF;&#x4EE5;&#x770B;&#x51FA;Error&#x548C;Exception&#x662F;Throwable&#x7684;&#x5B50;&#x7C7B;</p>
+<h4 id="&#x5173;&#x952E;&#x5B57;-try-catch-finally-throw-throws-&#x6839;&#x636E;&#x5173;&#x952E;&#x8BCD;&#x6765;&#x89E3;&#x91CA;&#x5F02;&#x5E38;"><a href="#&#x5173;&#x952E;&#x5B57;-try-catch-finally-throw-throws-&#x6839;&#x636E;&#x5173;&#x952E;&#x8BCD;&#x6765;&#x89E3;&#x91CA;&#x5F02;&#x5E38;" class="headerlink" title="&#x5173;&#x952E;&#x5B57; try catch finally throw throws &#x6839;&#x636E;&#x5173;&#x952E;&#x8BCD;&#x6765;&#x89E3;&#x91CA;&#x5F02;&#x5E38;"></a>&#x5173;&#x952E;&#x5B57; try catch finally throw throws &#x6839;&#x636E;&#x5173;&#x952E;&#x8BCD;&#x6765;&#x89E3;&#x91CA;&#x5F02;&#x5E38;</h4><p>try catch finally &#x662F;&#x4E00;&#x7EC4;</p>
+<p>throw&#x662F;&#x53EF;&#x4EE5;&#x81EA;&#x5DF1;&#x629B;&#x51FA;&#x4E00;&#x4E2A;&#x5F02;&#x5E38;&#x5BF9;&#x8C61;</p>
+<p>throws&#x662F;&#x58F0;&#x660E;&#x4E00;&#x4E2A;&#x5F02;&#x5E38;&#x53EF;&#x80FD;&#x88AB;&#x629B;&#x51FA;&#xFF0C;&#x8BA9;&#x8C03;&#x7528;&#x8005;&#x5904;&#x7406;</p>
+<h5 id="try-&#x6355;&#x83B7;&#x5F02;&#x5E38;-catch-&#x5904;&#x7406;&#x5F02;&#x5E38;-finally-&#x6709;&#x6CA1;&#x6709;&#x5F02;&#x5E38;&#x90FD;&#x6267;&#x884C;"><a href="#try-&#x6355;&#x83B7;&#x5F02;&#x5E38;-catch-&#x5904;&#x7406;&#x5F02;&#x5E38;-finally-&#x6709;&#x6CA1;&#x6709;&#x5F02;&#x5E38;&#x90FD;&#x6267;&#x884C;" class="headerlink" title="try &#x6355;&#x83B7;&#x5F02;&#x5E38; catch &#x5904;&#x7406;&#x5F02;&#x5E38; finally &#x6709;&#x6CA1;&#x6709;&#x5F02;&#x5E38;&#x90FD;&#x6267;&#x884C;"></a>try &#x6355;&#x83B7;&#x5F02;&#x5E38; catch &#x5904;&#x7406;&#x5F02;&#x5E38; finally &#x6709;&#x6CA1;&#x6709;&#x5F02;&#x5E38;&#x90FD;&#x6267;&#x884C;</h5><p>&#x4F8B;3</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">public class ExceptionTest {</div><div class="line">	public static void main(String[] args) {</div><div class="line">		ExceptionTest exceptionTest=new ExceptionTest();</div><div class="line">		System.out.println(exceptionTest.value());</div><div class="line">	}</div><div class="line">	public Integer value(){</div><div class="line">		Integer ret = 0;</div><div class="line">		try {</div><div class="line">			ret=1/0;</div><div class="line">		} catch (Exception e) {</div><div class="line">			ret = 1;</div><div class="line">			System.out.println(&quot;catch:&quot;+ret);</div><div class="line">			return ret;</div><div class="line">		} finally {</div><div class="line">			ret = 2;</div><div class="line">			System.out.println(&quot;finally:&quot;+ret);</div><div class="line">		}</div><div class="line">		return ret;</div><div class="line">	}</div><div class="line">}</div></pre></td></tr></table></figure>
+<p>&#x7ED3;&#x679C;&#xFF1A;</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">catch:1</div><div class="line">finally:2</div><div class="line">1</div></pre></td></tr></table></figure>
+<p>&#x4F8B;4</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">public class ExceptionTest {</div><div class="line">	public static void main(String[] args) {</div><div class="line">		ExceptionTest exceptionTest=new ExceptionTest();</div><div class="line">		System.out.println(exceptionTest.value());</div><div class="line">	}</div><div class="line">	public Integer value(){</div><div class="line">		Integer ret = 0;</div><div class="line">		try {</div><div class="line">			ret=1/1;</div><div class="line">		} catch (Exception e) {</div><div class="line">			ret = 3;</div><div class="line">			System.out.println(&quot;catch:&quot;+ret);</div><div class="line">			return ret;</div><div class="line">		} finally {</div><div class="line">			ret = 2;</div><div class="line">			System.out.println(&quot;finally:&quot;+ret);</div><div class="line">		}</div><div class="line">		return ret;</div><div class="line">	}</div><div class="line">}</div></pre></td></tr></table></figure>
+<p>&#x7ED3;&#x679C;&#xFF1A;</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">finally:2</div><div class="line">2</div></pre></td></tr></table></figure>
+<p>&#x4F8B;3&#x4F8B;4&#x8FD9;&#x4E24;&#x4E2A;&#x4F8B;&#x5B50;&#x4E2D;&#xFF0C;&#x5C31;&#x80FD;&#x53D1;&#x73B0;finally&#x662F;&#x4E0D;&#x8BBA;&#x5728;try{}&#x4E2D;&#x6709;&#x6CA1;&#x6709;&#x5F02;&#x5E38;&#xFF0C;finally{}&#x662F;&#x5FC5;&#x987B;&#x8981;&#x6267;&#x884C;&#x7684;&#xFF0C;&#x800C;catch(){}&#x4E2D;&#x5462;&#xFF0C;&#x5728;try{}&#x4E2D;&#x6709;&#x5F02;&#x5E38;&#xFF0C;catch(){}&#x5C31;&#x4F1A;&#x6355;&#x6349;&#x5230;&#x3002;</p>
+<p>&#x4E0B;&#x9762;&#x770B;&#x4E00;&#x4E0B;catch&#x7684;&#x987A;&#x5E8F;</p>
+<p>&#x4F8B;5:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line">public class ExceptionTest2 {</div><div class="line">	public static void main(String[] args) {</div><div class="line">		ExceptionTest2 exceptionTest=new ExceptionTest2();</div><div class="line">		System.out.println(exceptionTest.value());</div><div class="line">	}</div><div class="line">	public Integer value(){</div><div class="line">		Integer ret = 0;</div><div class="line">		try {</div><div class="line">			System.out.println(&quot;try:&quot;+ret);</div><div class="line">			ret=1/0;</div><div class="line">			return ret;</div><div class="line">		}catch(ArithmeticException e){</div><div class="line">			System.out.println(&quot;ArithmeticException catch:&quot;+ret);</div><div class="line">			//e.printStackTrace();</div><div class="line">		}catch(NullPointerException e){</div><div class="line">			System.out.println(&quot;NullPointer catch:&quot;+ret);</div><div class="line">			e.printStackTrace();</div><div class="line">		} </div><div class="line">		catch (Exception e) {</div><div class="line">			System.out.println(&quot;Exception catch:&quot;+ret);</div><div class="line">			e.printStackTrace();</div><div class="line">			ret =3;</div><div class="line">		} finally {</div><div class="line">			ret = 2;</div><div class="line">			System.out.println(&quot;finally:&quot;+ret);</div><div class="line">			//return ret;</div><div class="line">		}</div><div class="line">		return ret;</div><div class="line">	}</div><div class="line">}</div></pre></td></tr></table></figure>
+<p>&#x7ED3;&#x679C;:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">try:0</div><div class="line">ArithmeticException catch:0</div><div class="line">finally:2</div><div class="line">2</div></pre></td></tr></table></figure>
+<p>&#x5982;&#x679C;&#x628A;Exception&#x653E;&#x5728;&#x7B2C;&#x4E00;&#x4E2A;catch&#x7684;&#x8BDD;&#xFF0C;&#x5C31;&#x4F1A;&#x5904;&#x9519;&#x8BEF;&#xFF0C;&#x7F16;&#x8BD1;&#x51FA;&#x9519;</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">Compiling ExceptionTest2.java.......</div><div class="line">		}catch(ArithmeticException e){</div><div class="line">		 ^</div><div class="line">		}catch(NullPointerException e){</div><div class="line">		 ^</div><div class="line">		}catch (Exception e) {</div><div class="line">		 ^</div><div class="line">[Finished in 0.5s]</div></pre></td></tr></table></figure>
+<h5 id="throw-&#x629B;&#x51FA;&#x4E00;&#x4E2A;&#x5F02;&#x5E38;&#x5BF9;&#x8C61;"><a href="#throw-&#x629B;&#x51FA;&#x4E00;&#x4E2A;&#x5F02;&#x5E38;&#x5BF9;&#x8C61;" class="headerlink" title="throw &#x629B;&#x51FA;&#x4E00;&#x4E2A;&#x5F02;&#x5E38;&#x5BF9;&#x8C61;"></a>throw &#x629B;&#x51FA;&#x4E00;&#x4E2A;&#x5F02;&#x5E38;&#x5BF9;&#x8C61;</h5><p>&#x4F8B;6&#xFF1A;</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line">public class ExceptionCatchTest {</div><div class="line">	public static void main(String[] args) throws Exception {</div><div class="line">		ExceptionCatchTest exceptionTest=new ExceptionCatchTest();</div><div class="line">		System.out.println(exceptionTest.value());</div><div class="line">	}</div><div class="line">	public Integer value() throws Exception{</div><div class="line">		Integer ret = 0;</div><div class="line">		try {</div><div class="line">			ret=1/0;</div><div class="line">			throw new Exception();</div><div class="line">		}catch(ArithmeticException e){</div><div class="line">			System.out.println(&quot;ArithmeticException catch:&quot;+ret);</div><div class="line">			throw new Exception();</div><div class="line">		}catch (Exception e) {</div><div class="line">			ret = 3;</div><div class="line">			e.printStackTrace();</div><div class="line">			System.out.println(&quot;catch:&quot;+ret);</div><div class="line">			return ret;</div><div class="line">		} finally {</div><div class="line">			ret = 2;</div><div class="line">			System.out.println(&quot;finally:&quot;+ret);</div><div class="line">		}</div><div class="line">		return ret;</div><div class="line">	}</div><div class="line">}</div></pre></td></tr></table></figure>
+<p>&#x7ED3;&#x679C;&#xFF1A;<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">ArithmeticException catch:0</div><div class="line">finally:2</div><div class="line">Exception in thread &quot;main&quot; java.lang.Exception</div><div class="line">	at Exception.ExceptionCatchTest.value(ExceptionCatchTest.java:23)</div><div class="line">	at Exception.ExceptionCatchTest.main(ExceptionCatchTest.java:13)</div></pre></td></tr></table></figure></p>
+<p>&#x4F8B;6&#x4E0A;&#x9762;&#x5728;catch&#x5185;&#x90E8;&#x53C8;&#x629B;&#x51FA;(throw)&#x4E86;&#x4E00;&#x4E2A; new Exception()&#xFF1B;&#x540C;&#x65F6;&#x5728;&#x65B9;&#x6CD5;&#x4E2D;&#x5C31;&#x4F1A;&#x628A;Exception&#x629B;&#x51FA;&#x5230;&#x8C03;&#x7528;&#x8005;&#x5904;&#x7406;&#x3002;&#x4ECE;&#x800C;&#x628A;Exception&#x629B;&#x7ED9;main()&#x65B9;&#x6CD5;&#x5904;&#x7406;&#xFF0C;&#x5982;&#x679C;main&#x65B9;&#x6CD5;&#x4E2D;&#x6CA1;&#x6709; throws Exception&#x7684;&#x8BDD;&#xFF0C;&#x5C31;&#x9700;&#x8981;&#x5BF9;<em>exceptionTest.value()</em>&#x8FDB;&#x884C;try catch &#x5426;&#x5219;&#x7F16;&#x8BD1;&#x5C31;&#x4F1A;&#x51FA;&#x9519;&#x3002;</p>
+<h5 id="throws-&#x58F0;&#x660E;&#x4E00;&#x4E2A;&#x5F02;&#x5E38;&#x53EF;&#x80FD;&#x88AB;&#x629B;&#x51FA;"><a href="#throws-&#x58F0;&#x660E;&#x4E00;&#x4E2A;&#x5F02;&#x5E38;&#x53EF;&#x80FD;&#x88AB;&#x629B;&#x51FA;" class="headerlink" title="throws &#x58F0;&#x660E;&#x4E00;&#x4E2A;&#x5F02;&#x5E38;&#x53EF;&#x80FD;&#x88AB;&#x629B;&#x51FA;"></a>throws &#x58F0;&#x660E;&#x4E00;&#x4E2A;&#x5F02;&#x5E38;&#x53EF;&#x80FD;&#x88AB;&#x629B;&#x51FA;</h5><p>&#x4F8B;7&#xFF1A;</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line">public class ExceptionCatchTest {</div><div class="line">	public static void main(String[] args)  {</div><div class="line">		ExceptionCatchTest exceptionTest=new ExceptionCatchTest();</div><div class="line">		System.out.println(exceptionTest.value());</div><div class="line">	}</div><div class="line">	public Integer value() throws Exception{</div><div class="line">		Integer ret = 0;</div><div class="line">		try {</div><div class="line">			ret=1/0;</div><div class="line">			throw new Exception();</div><div class="line">		}catch(ArithmeticException e){</div><div class="line">			System.out.println(&quot;ArithmeticException catch:&quot;+ret);</div><div class="line">		}catch (Exception e) {</div><div class="line">			ret = 3;</div><div class="line">			e.printStackTrace();</div><div class="line">			System.out.println(&quot;catch:&quot;+ret);</div><div class="line">			return ret;</div><div class="line">		} finally {</div><div class="line">			ret = 2;</div><div class="line">			System.out.println(&quot;finally:&quot;+ret);</div><div class="line">		}</div><div class="line">		return ret;</div><div class="line">	}</div><div class="line">}</div></pre></td></tr></table></figure>
+<p>&#x4F8B;7&#x4E0A;&#x9762;&#x4E5F;&#x8BF4;&#x660E;&#x4E86;throws &#x5173;&#x952E;&#x5B57;&#x7684;&#x7528;&#x6CD5;&#xFF0C;&#x629B;&#x51FA;Exception&#xFF0C;&#x7ED9;&#x8C03;&#x7528;&#x8005;&#x5904;&#x7406;&#x5F02;&#x5E38;&#x3002;&#x56E0;&#x6B64;&#xFF0C;&#x5728;main()&#x65B9;&#x6CD5;&#x4E2D;&#xFF0C;&#x5982;&#x679C;main&#x65B9;&#x6CD5;&#x4E2D;&#x6CA1;&#x6709; throws Exception&#x7684;&#x8BDD;&#xFF0C;&#x5C31;&#x9700;&#x8981;&#x5BF9;<em>exceptionTest.value()</em>&#x8FDB;&#x884C;try catch &#x5426;&#x5219;&#x7F16;&#x8BD1;&#x5C31;&#x4F1A;&#x51FA;&#x9519;&#x3002;</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">try {</div><div class="line">			System.out.println(exceptionTest.value());</div><div class="line">		} catch (Exception e) {</div><div class="line">			// TODO Auto-generated catch block</div><div class="line">			e.printStackTrace();</div><div class="line">		}</div></pre></td></tr></table></figure>
+<h4 id="&#x6700;&#x540E;&#x8981;&#x8BF4;&#x4E00;&#x4E0B;&#x6267;&#x884C;&#x5F02;&#x5E38;&#x7684;&#x987A;&#x5E8F;"><a href="#&#x6700;&#x540E;&#x8981;&#x8BF4;&#x4E00;&#x4E0B;&#x6267;&#x884C;&#x5F02;&#x5E38;&#x7684;&#x987A;&#x5E8F;" class="headerlink" title="&#x6700;&#x540E;&#x8981;&#x8BF4;&#x4E00;&#x4E0B;&#x6267;&#x884C;&#x5F02;&#x5E38;&#x7684;&#x987A;&#x5E8F;"></a>&#x6700;&#x540E;&#x8981;&#x8BF4;&#x4E00;&#x4E0B;&#x6267;&#x884C;&#x5F02;&#x5E38;&#x7684;&#x987A;&#x5E8F;</h4><p>&#x4F8B;8<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">public class ExceptionCatchTest {</div><div class="line">	public static void main(String[] args)  {</div><div class="line">		ExceptionCatchTest exceptionTest=new ExceptionCatchTest();</div><div class="line">			System.out.println(exceptionTest.value());</div><div class="line">	}</div><div class="line">	public Integer value() {</div><div class="line">		Integer ret = 0;</div><div class="line">		try {</div><div class="line">			ret=1/0;</div><div class="line">			return ret;</div><div class="line">		}catch (Exception e) {</div><div class="line">			ret = 3;</div><div class="line">			System.out.println(&quot;catch:&quot;+ret);</div><div class="line">			return ret;</div><div class="line">		} finally {</div><div class="line">			ret = 2;</div><div class="line">			System.out.println(&quot;finally:&quot;+ret);</div><div class="line">		}</div><div class="line">	}</div><div class="line">}</div></pre></td></tr></table></figure></p>
+<p>&#x7ED3;&#x679C;&#xFF1A;<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">catch:3</div><div class="line">finally:2</div><div class="line">3</div></pre></td></tr></table></figure></p>
+<p>&#x5728;try&#x4E2D;&#x6267;&#x884C;&#xFF0C;&#x5982;&#x679C;&#x6709;&#x5F02;&#x5E38;try&#x4E2D;&#x7684;return&#x4E0D;&#x4F1A;&#x8FD4;&#x56DE;&#xFF0C;&#x4F1A;&#x5230;catch&#x4E2D;&#xFF0C;&#x5982;&#x679C;&#x5728;catch&#x4E2D;&#x6709;return&#x7684;&#x8BDD;&#xFF0C;&#x5F53;&#x6267;&#x884C;&#x5230;&#x8FD9;&#x91CC;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x4F1A;&#x63D0;&#x524D;&#x6267;&#x884C;finally&#xFF0C;&#x7136;&#x540E;&#x624D;&#x4F1A;&#x6267;&#x884C;catch&#x4E2D;&#x7684;return&#x3002;</p>
+<p>&#x4F8B;9&#xFF1A;<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">public class ExceptionCatchTest {</div><div class="line">	public static void main(String[] args)  {</div><div class="line">		ExceptionCatchTest exceptionTest=new ExceptionCatchTest();</div><div class="line">			System.out.println(exceptionTest.value());</div><div class="line">	}</div><div class="line">	public Integer value() {</div><div class="line">		Integer ret = 0;</div><div class="line">		try {</div><div class="line">			//ret=1/0;</div><div class="line">			return ret;</div><div class="line">		}catch (Exception e) {</div><div class="line">			ret = 3;</div><div class="line">			System.out.println(&quot;catch:&quot;+ret);</div><div class="line">			return ret;</div><div class="line">		} finally {</div><div class="line">			ret = 2;</div><div class="line">			System.out.println(&quot;finally:&quot;+ret);</div><div class="line">		}</div><div class="line">	}</div><div class="line">}</div></pre></td></tr></table></figure></p>
+<p>&#x7ED3;&#x679C;:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">finally:2</div><div class="line">0</div></pre></td></tr></table></figure></p>
+<p>&#x5982;&#x679C;try&#x4E2D;&#x7684;&#x4EE3;&#x7801;&#x6B63;&#x5E38;&#xFF0C;&#x4E0D;&#x4F1A;&#x4EA7;&#x751F;&#x5F02;&#x5E38;&#x7684;&#x8BDD;&#xFF0C;&#x4F1A;&#x5728;try&#x4E2D;&#x6267;&#x884C;&#x5230;return&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x4F18;&#x5148;&#x6267;&#x884C;finally&#xFF0C;&#x5982;&#x679C;&#x5728;finally&#x6709;return&#x7684;&#x8BDD;&#xFF0C;&#x76F4;&#x63A5;&#x8FD4;&#x56DE;&#xFF0C;&#x6CA1;&#x6709;&#x7684;&#x8BDD;&#xFF0C;&#x5C31;&#x4F1A;&#x8FD4;&#x56DE;&#x5230;try&#x5185;&#x7684;return&#x3002;</p>
+<h4 id="&#x5230;&#x6B64;&#xFF0C;&#x5C31;&#x57FA;&#x672C;&#x4E0A;&#x7ED3;&#x675F;&#x4E86;&#xFF0C;&#x5F02;&#x5E38;&#x7684;&#x4EE3;&#x7801;&#x5F88;&#x7B80;&#x5355;&#xFF0C;&#x8BF4;&#x8D77;&#x6765;&#x4E5F;&#x5F88;&#x5BB9;&#x6613;&#xFF0C;&#x4F46;&#x662F;&#x8981;&#x7528;&#x597D;&#x5F02;&#x5E38;&#x7C7B;&#x8FD8;&#x662F;&#x9700;&#x8981;&#x6DF1;&#x5EA6;&#x7406;&#x89E3;&#x7684;&#x3002;&#x4E0D;&#x8FC7;&#x5462;&#xFF0C;&#x5F53;&#x4F60;&#x7528;&#x597D;&#x540E;&#xFF0C;&#x8FD9;&#x5757;&#x5C31;&#x6CA1;&#x4EC0;&#x4E48;&#x95EE;&#x9898;&#x4E86;&#x3002;"><a href="#&#x5230;&#x6B64;&#xFF0C;&#x5C31;&#x57FA;&#x672C;&#x4E0A;&#x7ED3;&#x675F;&#x4E86;&#xFF0C;&#x5F02;&#x5E38;&#x7684;&#x4EE3;&#x7801;&#x5F88;&#x7B80;&#x5355;&#xFF0C;&#x8BF4;&#x8D77;&#x6765;&#x4E5F;&#x5F88;&#x5BB9;&#x6613;&#xFF0C;&#x4F46;&#x662F;&#x8981;&#x7528;&#x597D;&#x5F02;&#x5E38;&#x7C7B;&#x8FD8;&#x662F;&#x9700;&#x8981;&#x6DF1;&#x5EA6;&#x7406;&#x89E3;&#x7684;&#x3002;&#x4E0D;&#x8FC7;&#x5462;&#xFF0C;&#x5F53;&#x4F60;&#x7528;&#x597D;&#x540E;&#xFF0C;&#x8FD9;&#x5757;&#x5C31;&#x6CA1;&#x4EC0;&#x4E48;&#x95EE;&#x9898;&#x4E86;&#x3002;" class="headerlink" title="&#x5230;&#x6B64;&#xFF0C;&#x5C31;&#x57FA;&#x672C;&#x4E0A;&#x7ED3;&#x675F;&#x4E86;&#xFF0C;&#x5F02;&#x5E38;&#x7684;&#x4EE3;&#x7801;&#x5F88;&#x7B80;&#x5355;&#xFF0C;&#x8BF4;&#x8D77;&#x6765;&#x4E5F;&#x5F88;&#x5BB9;&#x6613;&#xFF0C;&#x4F46;&#x662F;&#x8981;&#x7528;&#x597D;&#x5F02;&#x5E38;&#x7C7B;&#x8FD8;&#x662F;&#x9700;&#x8981;&#x6DF1;&#x5EA6;&#x7406;&#x89E3;&#x7684;&#x3002;&#x4E0D;&#x8FC7;&#x5462;&#xFF0C;&#x5F53;&#x4F60;&#x7528;&#x597D;&#x540E;&#xFF0C;&#x8FD9;&#x5757;&#x5C31;&#x6CA1;&#x4EC0;&#x4E48;&#x95EE;&#x9898;&#x4E86;&#x3002;"></a>&#x5230;&#x6B64;&#xFF0C;&#x5C31;&#x57FA;&#x672C;&#x4E0A;&#x7ED3;&#x675F;&#x4E86;&#xFF0C;&#x5F02;&#x5E38;&#x7684;&#x4EE3;&#x7801;&#x5F88;&#x7B80;&#x5355;&#xFF0C;&#x8BF4;&#x8D77;&#x6765;&#x4E5F;&#x5F88;&#x5BB9;&#x6613;&#xFF0C;&#x4F46;&#x662F;&#x8981;&#x7528;&#x597D;&#x5F02;&#x5E38;&#x7C7B;&#x8FD8;&#x662F;&#x9700;&#x8981;&#x6DF1;&#x5EA6;&#x7406;&#x89E3;&#x7684;&#x3002;&#x4E0D;&#x8FC7;&#x5462;&#xFF0C;&#x5F53;&#x4F60;&#x7528;&#x597D;&#x540E;&#xFF0C;&#x8FD9;&#x5757;&#x5C31;&#x6CA1;&#x4EC0;&#x4E48;&#x95EE;&#x9898;&#x4E86;&#x3002;</h4>
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Throwable/" rel="tag">#Throwable</a>
+          
+            <a href="/tags/Error/" rel="tag">#Error</a>
+          
+            <a href="/tags/Exception/" rel="tag">#Exception</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/08/03/Spring中的Session生命周期/" rel="next" title="Spring中的Session生命周期">
+                <i class="fa fa-chevron-left"></i> Spring中的Session生命周期
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/08/20/HTML5-API-新特性/" rel="prev" title="HTML5 API 新特性">
+                HTML5 API 新特性 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- Go to www.addthis.com/dashboard to customize your tools -->
+<script type = "text/javascript" src = "//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-577a08f17286c0c0" async = "async" ></script>
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/08/04/Thinking-in-java-基础之异常/"
+           data-title="Thinking in java 基础之异常" data-url="https://muxiaobai.github.io/2016/08/04/Thinking-in-java-基础之异常/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Inhaltsverzeichnis
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Übersicht
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/img/avatars.jpg"
+               alt="Mu Xiaobai(慕小白)" />
+          <p class="site-author-name" itemprop="name">Mu Xiaobai(慕小白)</p>
+          <p class="site-description motion-element" itemprop="description">记录日常工作中遇到的技术问题</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">17</span>
+              <span class="site-state-item-name">Artikel</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-name">Kategorien</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">38</span>
+                <span class="site-state-item-name">Tags</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Thinking-in-java-基础之异常"><span class="nav-number">1.</span> <span class="nav-text">Thinking in java 基础之异常</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#异常概念"><span class="nav-number">1.0.1.</span> <span class="nav-text">异常概念</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#为什么要用try-或者-throws"><span class="nav-number">1.0.2.</span> <span class="nav-text">为什么要用try 或者 throws</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#关键字-try-catch-finally-throw-throws-根据关键词来解释异常"><span class="nav-number">1.0.3.</span> <span class="nav-text">关键字 try catch finally throw throws 根据关键词来解释异常</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#try-捕获异常-catch-处理异常-finally-有没有异常都执行"><span class="nav-number">1.0.3.1.</span> <span class="nav-text">try 捕获异常 catch 处理异常 finally 有没有异常都执行</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#throw-抛出一个异常对象"><span class="nav-number">1.0.3.2.</span> <span class="nav-text">throw 抛出一个异常对象</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#throws-声明一个异常可能被抛出"><span class="nav-number">1.0.3.3.</span> <span class="nav-text">throws 声明一个异常可能被抛出</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#最后要说一下执行异常的顺序"><span class="nav-number">1.0.4.</span> <span class="nav-text">最后要说一下执行异常的顺序</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#到此，就基本上结束了，异常的代码很简单，说起来也很容易，但是要用好异常类还是需要深度理解的。不过呢，当你用好后，这块就没什么问题了。"><span class="nav-number">1.0.5.</span> <span class="nav-text">到此，就基本上结束了，异常的代码很简单，说起来也很容易，但是要用好异常类还是需要深度理解的。不过呢，当你用好后，这块就没什么问题了。</span></a></li></ol></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Mu Xiaobai(慕小白)</span>
+</div>
+
+<div class="powered-by">
+  Erstellt mit  <a class="theme-link" href="http://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"muxiaobai"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+       search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+    'use strict';
+    $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+            // get the contents from search data
+            isfetched = true;
+            $('.popup').detach().appendTo('.header-inner');
+            var datas = $( "entry", xmlResponse ).map(function() {
+                return {
+                    title: $( "title", this ).text(),
+                    content: $("content",this).text(),
+                    url: $( "url" , this).text()
+                };
+            }).get();
+            var $input = document.getElementById(search_id);
+            var $resultContent = document.getElementById(content_id);
+            $input.addEventListener('input', function(){
+                var matchcounts = 0;
+                var str='<ul class=\"search-result-list\">';
+                var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                $resultContent.innerHTML = "";
+                if (this.value.trim().length > 1) {
+                // perform local searching
+                datas.forEach(function(data) {
+                    var isMatch = true;
+                    var content_index = [];
+                    var data_title = data.title.trim().toLowerCase();
+                    var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                    var data_url = data.url;
+                    var index_title = -1;
+                    var index_content = -1;
+                    var first_occur = -1;
+                    // only match artiles with not empty titles and contents
+                    if(data_title != '' && data_content != '') {
+                        keywords.forEach(function(keyword, i) {
+                            index_title = data_title.indexOf(keyword);
+                            index_content = data_content.indexOf(keyword);
+                            if( index_title < 0 && index_content < 0 ){
+                                isMatch = false;
+                            } else {
+                                if (index_content < 0) {
+                                    index_content = 0;
+                                }
+                                if (i == 0) {
+                                    first_occur = index_content;
+                                }
+                            }
+                        });
+                    }
+                    // show search results
+                    if (isMatch) {
+                        matchcounts += 1;
+                        str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                        var content = data.content.trim().replace(/<[^>]+>/g,"");
+                        if (first_occur >= 0) {
+                            // cut out 100 characters
+                            var start = first_occur - 20;
+                            var end = first_occur + 80;
+                            if(start < 0){
+                                start = 0;
+                            }
+                            if(start == 0){
+                                end = 50;
+                            }
+                            if(end > content.length){
+                                end = content.length;
+                            }
+                            var match_content = content.substring(start, end);
+                            // highlight all keywords
+                            keywords.forEach(function(keyword){
+                                var regS = new RegExp(keyword, "gi");
+                                match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                            });
+
+                            str += "<p class=\"search-result\">" + match_content +"...</p>"
+                        }
+                        str += "</li>";
+                    }
+                })};
+                str += "</ul>";
+                if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+                if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+                $resultContent.innerHTML = str;
+            });
+            proceedsearch();
+        }
+    });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+  
+
+  
+
+  
+
+</body>
+</html>

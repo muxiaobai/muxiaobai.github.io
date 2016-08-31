@@ -1,0 +1,891 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Session,Hibernate,Spring," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="技术笔记" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/img/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="Hibernate的Session生命周期，以及Session在Spring中的使用，事务的Session范围">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Spring中的Session生命周期">
+<meta property="og:url" content="https://muxiaobai.github.io/2016/08/03/Spring中的Session生命周期/index.html">
+<meta property="og:site_name" content="技术笔记">
+<meta property="og:description" content="Hibernate的Session生命周期，以及Session在Spring中的使用，事务的Session范围">
+<meta property="og:image" content="https://muxiaobai.github.io/2016/08/03/Spring中的Session生命周期/201608051337CurrentSessionContext.PNG">
+<meta property="og:image" content="https://muxiaobai.github.io/2016/08/03/Spring中的Session生命周期/201608051345SpringSessionContext.PNG">
+<meta property="og:image" content="https://muxiaobai.github.io/2016/08/03/Spring中的Session生命周期/201608051437LocalSessionFactoryBean.PNG">
+<meta property="og:image" content="https://muxiaobai.github.io/2016/08/03/Spring中的Session生命周期/201608051454LocalSessionFactoryBuilder.PNG">
+<meta property="og:image" content="https://muxiaobai.github.io/2016/08/03/Spring中的Session生命周期/201608051457AvailableSettings.PNG">
+<meta property="og:updated_time" content="2016-08-31T12:24:36.998Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Spring中的Session生命周期">
+<meta name="twitter:description" content="Hibernate的Session生命周期，以及Session在Spring中的使用，事务的Session范围">
+<meta name="twitter:image" content="https://muxiaobai.github.io/2016/08/03/Spring中的Session生命周期/201608051337CurrentSessionContext.PNG">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"hide"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: 'Author'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="https://muxiaobai.github.io/2016/08/03/Spring中的Session生命周期/"/>
+
+  <title> Spring中的Session生命周期 | 技术笔记 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-80276841-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?G4mEksdCPH";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">技术笔记</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">有输入,有输出</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Startseite
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Kategorien
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            Über
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archiv
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
+            
+            公益404
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            Suche
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Spring中的Session生命周期
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">Veröffentlicht am</span>
+            <time itemprop="dateCreated" datetime="2016-08-03T14:44:24+00:00" content="2016-08-03">
+              2016-08-03
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">in</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/java/" itemprop="url" rel="index">
+                    <span itemprop="name">java</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/08/03/Spring中的Session生命周期/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/03/Spring中的Session生命周期/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="Session&#x662F;Hiberante&#x4E2D;SessionFactory&#x521B;&#x5EFA;&#x7684;Session&#xFF0C;&#x548C;Cookie&#x3001;Session&#x662F;&#x4E24;&#x4E2A;&#x4E1C;&#x897F;&#x3002;"><a href="#Session&#x662F;Hiberante&#x4E2D;SessionFactory&#x521B;&#x5EFA;&#x7684;Session&#xFF0C;&#x548C;Cookie&#x3001;Session&#x662F;&#x4E24;&#x4E2A;&#x4E1C;&#x897F;&#x3002;" class="headerlink" title="Session&#x662F;Hiberante&#x4E2D;SessionFactory&#x521B;&#x5EFA;&#x7684;Session&#xFF0C;&#x548C;Cookie&#x3001;Session&#x662F;&#x4E24;&#x4E2A;&#x4E1C;&#x897F;&#x3002;"></a>Session&#x662F;Hiberante&#x4E2D;SessionFactory&#x521B;&#x5EFA;&#x7684;Session&#xFF0C;&#x548C;Cookie&#x3001;Session&#x662F;&#x4E24;&#x4E2A;&#x4E1C;&#x897F;&#x3002;</h2><h2 id="&#x4E8B;&#x52A1;"><a href="#&#x4E8B;&#x52A1;" class="headerlink" title="&#x4E8B;&#x52A1;"></a>&#x4E8B;&#x52A1;</h2><h4 id="&#x4E8B;&#x52A1;&#x76F8;&#x5173;&#x7684;&#x7279;&#x6027;&#x5C31;&#x4E0D;&#x8BF4;&#x4E86;&#x3002;ACID"><a href="#&#x4E8B;&#x52A1;&#x76F8;&#x5173;&#x7684;&#x7279;&#x6027;&#x5C31;&#x4E0D;&#x8BF4;&#x4E86;&#x3002;ACID" class="headerlink" title="&#x4E8B;&#x52A1;&#x76F8;&#x5173;&#x7684;&#x7279;&#x6027;&#x5C31;&#x4E0D;&#x8BF4;&#x4E86;&#x3002;ACID"></a>&#x4E8B;&#x52A1;&#x76F8;&#x5173;&#x7684;&#x7279;&#x6027;&#x5C31;&#x4E0D;&#x8BF4;&#x4E86;&#x3002;ACID</h4><h4 id="&#x4E8B;&#x52A1;&#x5FC5;&#x987B;&#x5728;Session&#x4E2D;&#x3002;"><a href="#&#x4E8B;&#x52A1;&#x5FC5;&#x987B;&#x5728;Session&#x4E2D;&#x3002;" class="headerlink" title="&#x4E8B;&#x52A1;&#x5FC5;&#x987B;&#x5728;Session&#x4E2D;&#x3002;"></a>&#x4E8B;&#x52A1;&#x5FC5;&#x987B;&#x5728;Session&#x4E2D;&#x3002;</h4><p>Hibernate&#x4E8B;&#x4F8B;</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">// &#x5B9E;&#x4F8B;&#x5316;Configuration&#xFF0C;</div><div class="line">Configuration conf = new Configuration()</div><div class="line">// &#x4E0D;&#x5E26;&#x53C2;&#x6570;&#x7684;configure()&#x65B9;&#x6CD5;&#x9ED8;&#x8BA4;&#x52A0;&#x8F7D;hibernate.cfg.xml&#x6587;&#x4EF6;&#xFF0C;</div><div class="line">// &#x5982;&#x679C;&#x4F20;&#x5165;abc.xml&#x4F5C;&#x4E3A;&#x53C2;&#x6570;&#xFF0C;&#x5219;&#x4E0D;&#x518D;&#x52A0;&#x8F7D;hibernate.cfg.xml&#xFF0C;&#x6539;&#x4E3A;&#x52A0;&#x8F7D;abc.xml</div><div class="line">	.configure();</div><div class="line">ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder()</div><div class="line">	.applySettings(conf.getProperties()).build();</div><div class="line">// &#x4EE5;Configuration&#x5B9E;&#x4F8B;&#x521B;&#x5EFA;SessionFactory&#x5B9E;&#x4F8B;</div><div class="line">SessionFactory sf = conf.buildSessionFactory(serviceRegistry);</div><div class="line">// &#x521B;&#x5EFA;Session</div><div class="line">Session sess = sf.openSession();</div><div class="line">// &#x5F00;&#x59CB;&#x4E8B;&#x52A1;</div><div class="line">Transaction tx = sess.beginTransaction();</div><div class="line">User n = new User();</div><div class="line">n.setName(&quot;muxiaobai&quot;);</div><div class="line">n.setPassword(&quot;sosiiillliii&quot;);</div><div class="line">// &#x4FDD;&#x5B58;&#x6D88;&#x606F;</div><div class="line">sess.save(n);</div><div class="line">// &#x63D0;&#x4EA4;&#x4E8B;&#x52A1;</div><div class="line">tx.commit();</div><div class="line">// &#x5173;&#x95ED;Session</div><div class="line">sess.close();</div><div class="line">sf.close();</div></pre></td></tr></table></figure>
+<p>&#x63D0;&#x4EA4;Transaction&#x7684;&#x65F6;&#x5019;&#xFF0C;Session&#x8FD8;&#x5F00;&#x542F;&#x7740;&#xFF0C;save()&#x65B9;&#x6CD5;&#x867D;&#x7136;&#x4F7F;&#x7528;&#x7684;&#x662F;Session&#x5BF9;&#x8C61;&#x3002;&#x4F46;&#x662F;&#x5728;&#x63D0;&#x4EA4;&#x4E8B;&#x52A1;&#x4E4B;&#x524D;&#xFF0C;Session&#x662F;&#x4E0D;&#x80FD;&#x5173;&#x95ED;&#x7684;&#x3002;</p>
+<p>applicationContext.xml&#x6587;&#x4EF6;&#x4E2D;(Spring&#x6587;&#x4EF6;)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">&lt;bean id=&quot;transactionManager&quot;</div><div class="line">		class=&quot;org.springframework.orm.hibernate5.HibernateTransactionManager&quot;</div><div class="line">		p:sessionFactory-ref=&quot;sessionFactory&quot; /&gt;</div><div class="line"></div><div class="line">	&lt;!-- &#x914D;&#x7F6E;&#x4E8B;&#x52A1;&#x589E;&#x5F3A;&#x5904;&#x7406;Bean,&#x6307;&#x5B9A;&#x4E8B;&#x52A1;&#x7BA1;&#x7406;&#x5668; --&gt;</div><div class="line">	&lt;tx:advice id=&quot;txAdvice&quot; transaction-manager=&quot;transactionManager&quot;&gt;</div><div class="line">		&lt;tx:attributes&gt;</div><div class="line">			&lt;tx:method name=&quot;get*&quot; read-only=&quot;true&quot; propagation=&quot;REQUIRED&quot; /&gt;</div><div class="line">			&lt;tx:method name=&quot;find*&quot; read-only=&quot;true&quot;  propagation=&quot;REQUIRED&quot;/&gt;</div><div class="line">			&lt;tx:method name=&quot;*&quot; isolation=&quot;DEFAULT&quot; propagation=&quot;REQUIRED&quot;/&gt;</div><div class="line">		&lt;/tx:attributes&gt;</div><div class="line">	&lt;/tx:advice&gt;</div><div class="line">	&lt;aop:config&gt;</div><div class="line">		&lt;aop:pointcut id=&quot;Pointcut&quot; expression=&quot;execution(* *.*.Service.*.*.*(..))&quot; /&gt;</div><div class="line">		&lt;aop:advisor advice-ref=&quot;txAdvice&quot; pointcut-ref=&quot;Pointcut&quot; /&gt;</div><div class="line">	&lt;/aop:config&gt;</div></pre></td></tr></table></figure>
+<p>&#x5148;&#x660E;&#x767D;&#x4E00;&#x70B9;&#xFF1A;&#x4E8B;&#x52A1;&#x662F;&#x5207;&#x5728;Service&#x4E2D;&#x7684;&#x65B9;&#x6CD5;&#xFF0C;&#x4E3A;&#x4EC0;&#x4E48;&#x5462;&#xFF1F;Service&#x4E2D;&#x7684;&#x65B9;&#x6CD5;&#x662F;&#x4E00;&#x4E2A;&#x5B8C;&#x6574;&#x4E1A;&#x52A1;&#x64CD;&#x4F5C;&#xFF0C;&#x7136;&#x540E;&#x88AB;Action&#x6216;&#x8005;Servlet&#x8C03;&#x7528;&#x3002;<br>&#x4E8B;&#x52A1;&#x4E3A;&#x4E86;&#x4FDD;&#x8BC1;&#x4E00;&#x4E2A;&#x4E1A;&#x52A1;&#x573A;&#x666F;&#x7684;&#x6570;&#x636E;&#x4E00;&#x81F4;&#x6027;&#xFF0C;&#x6240;&#x4EE5;&#x8981;&#x5207;&#x5728;Service&#x4E2D;&#x3002;</p>
+<p>&#x7528;&#x5316;&#x5B66;&#x4E2D;&#x7684;&#x539F;&#x5B50;&#x5206;&#x5B50;&#x6765;&#x89E3;&#x91CA;&#x5C31;&#x662F;&#xFF1A;Dao&#x5C5E;&#x4E8E;&#x539F;&#x5B50;&#x6027;&#x64CD;&#x4F5C;&#xFF0C;Service&#x5C5E;&#x4E8E;&#x5206;&#x5B50;&#x6027;&#x64CD;&#x4F5C;&#x3002;&#x5C31;&#x50CF;&#x4F60;&#x559D;&#x6C34;&#x4E00;&#x6837;&#xFF0C;&#x5438;&#x6536;&#x7684;&#x662F;&#x6C34;&#x5206;&#x5B50;&#x800C;&#x4E0D;&#x662F;&#x539F;&#x5B50;&#xFF1F;&#x4F60;&#x559D;&#x7684;&#x662F;&#x6C22;&#x539F;&#x5B50;&#x3001;&#x6C27;&#x539F;&#x5B50;&#x3002;&#x8FD8;&#x662F;&#x559D;&#x5F97;&#x6C34;&#x5206;&#x5B50;&#x3002;(&#x8FD9;&#x4E2A;&#x5730;&#x65B9;&#x539F;&#x5B50;&#x5E76;&#x4E0D;&#x662F;&#x5BF9;&#x5E94;&#x4E8B;&#x52A1;&#x7684;&#x539F;&#x5B50;&#x6027;&#xFF0C;&#x8981;&#x6B63;&#x786E;&#x7406;&#x89E3;&#x539F;&#x5B50;&#x6027;)&#x3002;</p>
+<p>&#x4E00;&#x822C;&#x60C5;&#x51B5;&#x4E0B;&#x8FD0;&#x7528;Spring&#x7684;AOP&#x6765;&#x914D;&#x7F6E;&#x4E8B;&#x52A1;&#xFF0C;&#x4F46;&#x662F;&#x6B64;&#x65F6;&#x7684;&#x5C31;&#x7275;&#x626F;&#x5230;&#x53C2;&#x6570;&#x201D;hibernate.current_session_context_class&#x201D;&#x4E86;&#xFF0C;&#x5230;&#x4E0B;&#x9762;&#x518D;&#x8BF4;&#x3002;</p>
+<h2 id="Hibernate&#x7684;Session&#x5728;Spring&#x4E2D;&#x7684;&#x5E38;&#x89C1;&#x914D;&#x7F6E;"><a href="#Hibernate&#x7684;Session&#x5728;Spring&#x4E2D;&#x7684;&#x5E38;&#x89C1;&#x914D;&#x7F6E;" class="headerlink" title="Hibernate&#x7684;Session&#x5728;Spring&#x4E2D;&#x7684;&#x5E38;&#x89C1;&#x914D;&#x7F6E;"></a>Hibernate&#x7684;Session&#x5728;Spring&#x4E2D;&#x7684;&#x5E38;&#x89C1;&#x914D;&#x7F6E;</h2><h4 id="Hibernate&#x7684;Session&#x7684;&#x5173;&#x95ED;&#x4E0E;&#x5F00;&#x542F;&#x95EE;&#x9898;"><a href="#Hibernate&#x7684;Session&#x7684;&#x5173;&#x95ED;&#x4E0E;&#x5F00;&#x542F;&#x95EE;&#x9898;" class="headerlink" title="Hibernate&#x7684;Session&#x7684;&#x5173;&#x95ED;&#x4E0E;&#x5F00;&#x542F;&#x95EE;&#x9898;"></a>Hibernate&#x7684;Session&#x7684;&#x5173;&#x95ED;&#x4E0E;&#x5F00;&#x542F;&#x95EE;&#x9898;</h4><p>&#x5982;&#x679C;&#x6CA1;&#x6709;Spring,Hibernate&#x4F1A;&#x8BA9;&#x6211;&#x4EEC;&#x624B;&#x52A8;&#x7BA1;&#x7406;Session&#xFF0C;<br>&#x5F00;&#x542F;:<strong>Session sess = sf.openSession();</strong> &#x5173;&#x95ED;&#xFF1A;<strong>sess.close();</strong>&#x8FD9;&#x662F;&#x6BD4;&#x8F83;&#x597D;&#x7684;&#xFF0C;&#x4F46;&#x662F;&#x4EBA;&#x561B;&#xFF0C;&#x603B;&#x662F;&#x61D2;&#x561B;&#xFF0C;&#x6240;&#x4EE5;&#x5C31;&#x7ED9;Spring&#x7BA1;&#x7406;&#x4E86;&#xFF0C;&#x7136;&#x540E;&#x5462;,&#x6211;&#x4EEC;&#x5C31;&#x4E0D;&#x60F3;&#x7BA1;&#x5B83;&#x4E86;&#xFF0C;Spring&#x5C31;&#x628A;Session&#x7ED9;&#x4E0B;&#x9762;&#x8FD9;&#x4E2A;&#x53C2;&#x6570;&#x4E86;&#x201D;hibernate.current_session_context_class&#x201D;,&#x7136;&#x540E;&#x4F7F;&#x7528;&#x8005;&#x5C31;&#x53EA;&#x7528;<strong>this.sessionFactory.getCurrentSession();</strong>&#x6765;&#x83B7;&#x53D6;Session&#xFF0C;&#x4E5F;&#x4E0D;&#x7528;&#x5904;&#x7406;&#x5173;&#x95ED;&#x4E86;&#xFF0C;Spring&#x5904;&#x7406;&#x4E86;&#x3002;</p>
+<p>&#x5C31;&#x5982;&#x6CA1;&#x6709;Hibernate&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x6211;&#x4EEC;&#x4F7F;&#x7528;JDBC&#xFF0C;JDBC&#x4F1A;&#x7528;&#x8005;/&#x80FD;&#x7528;&#x597D;&#x8005;&#xFF0C;&#x5B9E;&#x9645;&#x4E0A;&#x6BD4;Hibernate&#x7684;&#x6027;&#x80FD;&#x597D;&#x5F88;&#x591A;&#xFF0C;&#x4F46;&#x662F;&#xFF0C;&#x5F00;&#x53D1;&#x6548;&#x7387;&#xFF0C;&#x5F00;&#x53D1;&#x65F6;&#x95F4;&#x5C31;&#x6BD4;&#x8F83;&#x6162;&#x4E86;&#x3002;&#x53E6;&#x4E00;&#x4E2A;&#x539F;&#x56E0;&#xFF0C;&#x4EBA;&#x561B;&#xFF0C;&#x603B;&#x662F;&#x61D2;&#x561B;&#xFF0C;&#x5C31;&#x4F7F;&#x7528;&#x6846;&#x67B6;&#x6765;&#x5DE5;&#x4F5C;&#xFF0C;&#x5B9E;&#x9645;&#x4E0A;&#x5728;&#x5927;&#x91CF;&#x6570;&#x636E;&#x7684;&#x6DFB;&#x52A0;/&#x66F4;&#x65B0;&#x4E0A;&#xFF0C;&#x8FD8;&#x662F;&#x4F7F;&#x7528;JDBC&#x66F4;&#x597D;&#x4E00;&#x70B9;&#x3002;&#x4F7F;&#x7528;&#x4E86;Hibernate&#x540E;&#xFF0C;&#x5C31;&#x4E0D;&#x7528;&#x7BA1;&#x8FDE;&#x63A5;<strong>Connection</strong>&#x4E86;&#xFF0C;&#x800C;&#x4E14;&#x8FD8;&#x4F7F;&#x7528;&#x4E86;&#x8FDE;&#x63A5;&#x6C60;&#xFF0C;<strong>C3P0</strong>&#xFF0C;&#x6240;&#x4EE5;&#x4E00;&#x822C;&#x5F00;&#x53D1;&#x8005;&#xFF08;&#x6216;&#x8005;&#x9AD8;&#x6548;&#x5F00;&#x53D1;&#x8005;&#xFF09;&#x4F7F;&#x7528;&#x6846;&#x67B6;&#x6765;&#x5DE5;&#x4F5C;&#xFF0C;&#x8FD9;&#x4E5F;&#x662F;&#x5DE5;&#x4F5C;&#x7684;&#x9700;&#x8981;&#xFF0C;&#x65F6;&#x95F4;&#xFF0C;&#x6548;&#x7387;&#x95EE;&#x9898;&#x3002;&#x8BF4;&#x591A;&#x4E86;&#x3002;</p>
+<h4 id="hibernate-current-session-context-class"><a href="#hibernate-current-session-context-class" class="headerlink" title="hibernate.current_session_context_class"></a>hibernate.current_session_context_class</h4><p>&#x91CD;&#x70B9;&#x6765;&#x4E86;&#xFF0C;Spring&#x5230;&#x5E95;&#x662F;&#x600E;&#x6837;&#x63A7;&#x5236;Hibernate Session&#x7684;&#x751F;&#x547D;&#x5468;&#x671F;&#x6216;&#x8005;&#x53EB;&#x8303;&#x56F4;&#x7684;&#xFF1F;</p>
+<p>applicationContext.xml&#x6587;&#x4EF6;&#x4E2D;</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">&lt;prop key=&quot;hibernate.current_session_context_class&quot;&gt;org.springframework.orm.hibernate5.SpringSessionContext&lt;/prop&gt;</div><div class="line">#hibernate.current_session_context_class=thread/jta/managed/org.springframework.orm.hibernate5.SpringSessionContext</div></pre></td></tr></table></figure>
+<p>hibernate.current_session_context_class&#x89E3;&#x91CA;&#xFF1A;<br><img src="/2016/08/03/Spring&#x4E2D;&#x7684;Session&#x751F;&#x547D;&#x5468;&#x671F;/201608051337CurrentSessionContext.PNG" alt="hibernate&#x9ED8;&#x8BA4;&#x7684;&#x4E09;&#x79CD;session&#x4E0A;&#x4E0B;&#x6587;"><br>&#x53EF;&#x4EE5;&#x770B;&#x5230;Hibernate&#x4E0B;&#xFF0C;CurrentSessionContext&#x4E0B;&#x9762;&#x6709;&#x4E09;&#x79CD;&#x4E0A;&#x4E0B;&#x6587;&#x7684;&#x5B9E;&#x73B0;&#xFF0C;     JTASessionContext&#x3001;ThreadLocalSessionContext &#x3001;ManagedSessionContext&#x3002;</p>
+<ul>
+<li><p>org.hibernate.context.JTASessionContext - &#x5F53;&#x524D;session&#x6839;&#x636E;JTA&#x6765;&#x8DDF;&#x8E2A;&#x548C;&#x754C;&#x5B9A;&#x3002;&#x8FD9;&#x548C;&#x4EE5;&#x524D;&#x7684;&#x4EC5;&#x652F;&#x6301;JTA&#x7684;&#x65B9;&#x6CD5;&#x662F;&#x5B8C;&#x5168;&#x4E00;&#x6837;&#x7684;&#x3002;</p>
+</li>
+<li><p>org.hibernate.context.ThreadLocalSessionContext - &#x5F53;&#x524D;session&#x901A;&#x8FC7;&#x5F53;&#x524D;&#x6267;&#x884C;&#x7684;&#x7EBF;&#x7A0B;&#x6765;&#x8DDF;&#x8E2A;&#x548C;&#x754C;&#x5B9A;&#x3002; </p>
+</li>
+<li><p>org.hibernate.context.ManagedSessionContext - &#x5F53;&#x524D;session&#x901A;&#x8FC7;&#x5F53;&#x524D;&#x6267;&#x884C;&#x7684;&#x7EBF;&#x7A0B;&#x6765;&#x8DDF;&#x8E2A;&#x548C;&#x754C;&#x5B9A;&#xFF0C;&#x4F46;&#x662F;&#x9700;&#x8981;&#x9759;&#x6001;&#x65B9;&#x6CD5;&#x6765;&#x7ED1;&#x5B9A;&#x548C;&#x53D6;&#x6D88;&#x7ED1;&#x5B9A;Session&#x3002; </p>
+</li>
+</ul>
+<p>&#x56E0;&#x6B64;&#x88AB;Spring&#x7BA1;&#x7406;&#x7684;Session&#x4E2D;&#x4E5F;&#x6709;&#x8FD9;&#x4E09;&#x79CD;Context&#x4E0A;&#x4E0B;&#x6587;&#x3002;&#x540C;&#x65F6;Spring&#x4E5F;&#x5B9E;&#x73B0;&#x4E86;CurrentSessionContext&#xFF0C;&#x89C1;&#x4E0B;&#x56FE;&#xFF1A;</p>
+<p><img src="/2016/08/03/Spring&#x4E2D;&#x7684;Session&#x751F;&#x547D;&#x5468;&#x671F;/201608051345SpringSessionContext.PNG" alt="Spring&#x5BF9;CurrentSessionContext&#x7684;&#x5B9E;&#x73B0;&#x7C7B;SpringSessionContext"><br>&#x8981;&#x5728;&#x914D;&#x7F6E;&#x6587;&#x4EF6;&#x91CC;&#x8FDB;&#x884C;&#x5982;&#x4E0B;&#x8BBE;&#x7F6E;&#xFF1A;</p>
+<p>&#x5982;&#x679C;&#x4F7F;&#x7528;&#x7684;&#x662F;&#x672C;&#x5730;&#x4E8B;&#x52A1;&#xFF08;jdbc&#x4E8B;&#x52A1;&#xFF09;</p>
+<p><property name="hibernate.current_session_context_class" \="">thread</property></p>
+<p>&#x5982;&#x679C;&#x4F7F;&#x7528;&#x7684;&#x662F;&#x5168;&#x5C40;&#x4E8B;&#x52A1;&#xFF08;jta&#x4E8B;&#x52A1;&#xFF09;</p>
+<p><property name="hibernate.current_session_context_class" \="">jta </property></p>
+<p>hibernate.current_session_context_class &#x914D;&#x7F6E;&#x53C2;&#x6570;&#x5B9A;&#x4E49;&#x4E86;&#x5E94;&#x8BE5;&#x91C7;&#x7528;&#x54EA;&#x4E2A;org.hibernate.context.CurrentSessionContext&#x5B9E;&#x73B0;&#x3002;&#x6CE8;&#x610F;&#xFF0C;&#x4E3A;&#x4E86;&#x5411;&#x4E0B;&#x517C;&#x5BB9;&#xFF0C;&#x5982;&#x679C;&#x672A; &#x914D;&#x7F6E;&#x6B64;&#x53C2;&#x6570;&#xFF0C;&#x4F46;&#x662F;&#x5B58;&#x5728;org.hibernate.transaction.TransactionManagerLookup&#x7684;&#x914D; &#x7F6E;&#xFF0C;Hibernate&#x4F1A;&#x91C7;&#x7528;org.hibernate.context.JTASessionContext&#x3002;&#x4E00;&#x822C;&#x800C;&#x8A00;&#xFF0C;&#x6B64;&#x53C2;&#x6570;&#x7684;&#x503C;&#x6307;&#x660E;&#x4E86;&#x8981;&#x4F7F;&#x7528;&#x7684;&#x5B9E; &#x73B0;&#x7C7B;&#x7684;&#x5168;&#x540D;&#xFF0C;&#x4F46;&#x90A3;&#x4E24;&#x4E2A;&#x5185;&#x7F6E;&#x7684;&#x5B9E;&#x73B0;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;&#x7B80;&#x5199;&#xFF0C;&#x5373;&#x201D;jta&#x201D;&#x548C;&#x201D;thread&#x201D;&#x3002;</p>
+<p>&#x9644;&#x4E0A;&#x4E24;&#x7BC7;&#x5F88;&#x597D;&#x7684;&#x89E3;&#x91CA;&#x3002;<br><a href="http://www.blogjava.net/wangxinsh55/archive/2012/10/16/389664.html" target="_blank" rel="external">hibernate.current_session_context_class&#x5C5E;&#x6027;&#x914D;&#x7F6E;</a><br><a href="http://blog.csdn.net/baple/article/details/39957499" target="_blank" rel="external">hibernate&#x7684;current_session_context_class&#x914D;&#x7F6E;</a></p>
+<p>&#x4E0B;&#x9762;&#x6765;&#x770B;&#x770B;Spring&#x7684;SessionFactory&#x662F;&#x600E;&#x4E48;&#x83B7;&#x53D6;Session&#x7684;&#x3002;</p>
+<p>&#x6211;&#x4EEC;&#x5728;&#x4F7F;&#x7528;session&#x7684;&#x65F6;&#x5019;&#x5927;&#x90FD;&#x662F;&#x8FD9;&#x6837;&#x5F97;&#x5230;&#x7684;&#x5427;&#x3002;</p>
+<p>applicationContext.xml</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">&lt;bean id=&quot;sessionFactory&quot;</div><div class="line">	class=&quot;org.springframework.orm.hibernate5.LocalSessionFactoryBean&quot;</div><div class="line">	p:dataSource-ref=&quot;dataSource&quot;&gt;</div><div class="line">		&lt;property name=&quot;hibernateProperties&quot;&gt;</div><div class="line">		&lt;props&gt;</div><div class="line">			&lt;prop key=&quot;hibernate.current_session_context_class&quot;&gt;${hibernate.current_session_context_class}&lt;/prop&gt;</div><div class="line">		&lt;/props&gt;</div><div class="line">	&lt;/property&gt;</div><div class="line">&lt;/bean&gt;</div></pre></td></tr></table></figure>
+<p>&#x5148;&#x6765;&#x627E;&#x201D;hibernate.current_session_context_class&#x201D;,&#x5728;&#x4EC0;&#x4E48;&#x5730;&#x65B9;&#x88AB;&#x6CE8;&#x5165;&#xFF0C;bean&#x662F;SessionFactory&#xFF0C;class&#x662F;<strong>org.springframework.orm.hibernate5.LocalSessionFactoryBean</strong>&#x6211;&#x4EEC;&#x53D1;&#x73B0;&#x5176;&#x4E2D;&#x5E76;&#x6CA1;&#x6709;&#x4F46;&#x662F;&#x6211;&#x4EEC;&#x627E;&#x5230;&#x4E86;&#x8FD9;&#x4E2A;<strong>buildSessionFactory(LocalSessionFactoryBuilder sfb)</strong>&#x5176;&#x4E2D;&#x4F20;&#x9012;&#x7684;&#x53C2;&#x6570;LocalSessionFactoryBuilder<br><img src="/2016/08/03/Spring&#x4E2D;&#x7684;Session&#x751F;&#x547D;&#x5468;&#x671F;/201608051437LocalSessionFactoryBean.PNG" alt="Spring&#x4E2D;SessionFactory&#x7684;&#x5B9E;&#x73B0;&#x7C7B;LocalSessionFactoryBean"><br><img src="/2016/08/03/Spring&#x4E2D;&#x7684;Session&#x751F;&#x547D;&#x5468;&#x671F;/201608051454LocalSessionFactoryBuilder.PNG" alt="LocalSessionFactoryBuilder"><br>&#x7136;&#x540E;&#x5C31;&#x5F00;&#x5FC3;&#x4E86;&#xFF0C;&#x770B;&#x5230;&#x719F;&#x6089;&#x7684;&#x4E1C;&#x897F;&#x4E86;&#xFF0C;<strong>Environment.CURRENT_SESSION_CONTEXT_CLASS</strong>.&#x6700;&#x7EC8;&#x5728;AvailableSettings&#x4E2D;&#x627E;&#x5230;CURRENT_SESSION_CONTEXT_CLASS.<br><img src="/2016/08/03/Spring&#x4E2D;&#x7684;Session&#x751F;&#x547D;&#x5468;&#x671F;/201608051457AvailableSettings.PNG" alt="CURRENT_SESSION_CONTEXT_CLASS"><br>&#x800C;&#x56DE;&#x8FC7;&#x5934;&#x6765;&#x770B;<strong>Environment.CURRENT_SESSION_CONTEXT_CLASS</strong>&#x7684;&#x503C;&#x662F;&#xFF1A;SpringSessionContext.class.getName()&#xFF0C;&#x5982;&#x679C;&#x6211;&#x4EEC;&#x6CA1;&#x6709;&#x5199;&#x8FD9;&#x4E2A;&#x5C5E;&#x6027;&#x7684;&#x8BDD;&#xFF0C;&#x9ED8;&#x8BA4;&#x5C31;&#x662F;SpringSessionContext&#x3002;</p>
+<p>applicationContext.xml&#x6587;&#x4EF6;&#x4E2D;</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">&lt;bean id=&quot;baseDaoImpl&quot; abstract=&quot;true&quot;  lazy-init=&quot;true&quot; p:sessionFactory-ref=&quot;sessionFactory&quot; /&gt;</div><div class="line">&lt;bean id=&quot;userDaoImpl&quot; class=&quot;DaoImpl.UserDaoImpl&quot; parent=&quot;baseDaoImpl&quot; /&gt;</div></pre></td></tr></table></figure>
+<p>BaseDaoImpl&#x4E2D;&#x4F1A;&#x53D6;&#x5F97;</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">/**</div><div class="line"> * &#x4F9D;&#x8D56;&#x6CE8;&#x5165;SessionFactory&#x6240;&#x9700;&#x7684;setter&#x65B9;&#x6CD5;</div><div class="line"> * </div><div class="line"> * @param sessionFactory</div><div class="line"> */</div><div class="line">public void setSessionFactory(SessionFactory sessionFactory) {</div><div class="line">		this.sessionFactory = sessionFactory;</div><div class="line">}</div><div class="line"></div><div class="line">/**</div><div class="line"> * &#x53D6;&#x5F97;Session.</div><div class="line"> * </div><div class="line"> * @return CurrentSession</div><div class="line"> */</div><div class="line">public Session getSession() {</div><div class="line">	  return this.sessionFactory.getCurrentSession();</div><div class="line">}</div></pre></td></tr></table></figure>
+<p>&#x7136;&#x540E;&#x5C31;&#x7528; <strong>getCurrentSession</strong> &#x5F97;&#x5230;Session&#x5E76;&#x5BF9;&#x5E94;&#x76F8;&#x5E94;&#x7684;&#x4E0A;&#x4E0B;&#x6587;&#x3002;</p>
+<p>&#x4F46;&#x662F;<strong>this.sessionFactory.getCurrentSession();</strong>&#x8FD9;&#x4E2A;&#x65B9;&#x6CD5;&#x5F97;&#x5230;&#x7684;session&#xFF0C;&#x4F1A;&#x968F;&#x7740;get&#x5F00;&#x542F;,&#x968F;&#x7740;&#x4E8B;&#x52A1;&#x7684;&#x63D0;&#x4EA4;&#x800C;&#x5173;&#x95ED;&#x3002;</p>
+<p>&#x56E0;&#x6B64;&#x5728;SSH&#x4E2D;&#x5C31;&#x51FA;&#x73B0;&#x5E38;&#x89C1;&#x7684;&#x95EE;&#x9898;&#xFF0C;&#x5982;&#x4E0B;&#xFF1A;</p>
+<h4 id="&#x5E38;&#x89C1;&#x7684;&#x51E0;&#x79CD;&#x95EE;&#x9898;"><a href="#&#x5E38;&#x89C1;&#x7684;&#x51E0;&#x79CD;&#x95EE;&#x9898;" class="headerlink" title="&#x5E38;&#x89C1;&#x7684;&#x51E0;&#x79CD;&#x95EE;&#x9898;"></a>&#x5E38;&#x89C1;&#x7684;&#x51E0;&#x79CD;&#x95EE;&#x9898;</h4><h5 id="AOP&#x4E8B;&#x52A1;&#x4E2D;Session&#x7684;&#x751F;&#x547D;&#x5468;&#x671F;"><a href="#AOP&#x4E8B;&#x52A1;&#x4E2D;Session&#x7684;&#x751F;&#x547D;&#x5468;&#x671F;" class="headerlink" title="AOP&#x4E8B;&#x52A1;&#x4E2D;Session&#x7684;&#x751F;&#x547D;&#x5468;&#x671F;"></a>AOP&#x4E8B;&#x52A1;&#x4E2D;Session&#x7684;&#x751F;&#x547D;&#x5468;&#x671F;</h5><p>&#x6B63;&#x5E38;&#x60C5;&#x51B5;&#x4E0B;&#xFF0C;&#x4E8B;&#x52A1;&#x63D0;&#x4EA4;&#xFF0C;Session&#x5173;&#x95ED;&#x3002;</p>
+<h5 id="&#x201C;org-hibernate-LazyInitializationException-could-not-initialize-proxy-no-Session&#x201D;&#x95EE;&#x9898;"><a href="#&#x201C;org-hibernate-LazyInitializationException-could-not-initialize-proxy-no-Session&#x201D;&#x95EE;&#x9898;" class="headerlink" title="&#x201C;org.hibernate.LazyInitializationException: could not initialize proxy - no Session&#x201D;&#x95EE;&#x9898;"></a>&#x201C;org.hibernate.LazyInitializationException: could not initialize proxy - no Session&#x201D;&#x95EE;&#x9898;</h5><h5 id="&#x201C;org-hibernate-LazyInitializationException-failed-to-lazily-initialize-a-collection-of-role-Model-User-no-session-or-session-was-closed&#x201D;"><a href="#&#x201C;org-hibernate-LazyInitializationException-failed-to-lazily-initialize-a-collection-of-role-Model-User-no-session-or-session-was-closed&#x201D;" class="headerlink" title="&#x201C;org.hibernate.LazyInitializationException: failed to lazily initialize a collection of role: Model.User, no session or session was closed&#x201D;"></a>&#x201C;org.hibernate.LazyInitializationException: failed to lazily initialize a collection of role: Model.User, no session or session was closed&#x201D;</h5><p>&#x4EE5;&#x4E0A;&#x4E24;&#x79CD;&#x9519;&#x8BEF;&#x5C5E;&#x4E8E;&#x540C;&#x4E00;&#x7C7B;&#xFF0C;no Session</p>
+<p>&#x89E3;&#x91CA;&#x4E00;&#x4E0B;&#xFF1A;&#x56E0;&#x4E3A;Session&#x4F1A;&#x968F;&#x7740;&#x4E8B;&#x52A1;&#x7684;&#x63D0;&#x4EA4;&#x800C;&#x5173;&#x95ED;&#xFF0C;&#x4F46;&#x662F;&#x5185;&#x5B58;&#x4E2D;&#x7684;&#x5BF9;&#x8C61;&#x5E76;&#x6CA1;&#x6709;&#x4F60;&#x8981;&#x8BBF;&#x95EE;&#x7684;&#x5C5E;&#x6027;&#xFF0C;&#x5728;&#x4F60;&#x8981;&#x8BBF;&#x95EE;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x5C31;&#x4F1A;&#x51FA;&#x73B0;no Session &#x6216;&#x8005;Session closed&#x7B49;&#x95EE;&#x9898;&#x3002;<br>&#x4F46;&#x662F;&#xFF0C;&#x6211;&#x4EEC;&#x4E0D;&#x53EF;&#x80FD;&#x628A;&#x4E8B;&#x52A1;&#x7684;&#x8303;&#x56F4;&#x6269;&#x5927;&#xFF0C;&#x56E0;&#x6B64;&#x5C31;&#x60F3;&#x7740;&#x4E0D;&#x8BA9;session&#x5173;&#x95ED;&#x3002;&#x5728;&#x7F51;&#x4E0A;&#x627E;&#x5230;&#x4E86;&#x8FD9;&#x4E2A;openSessionInViewFilter&#x3002;&#x8BE6;&#x89E3;&#x5728;&#x4E0B;&#x9762;&#x3002;</p>
+<h5 id="&#x201C;save-is-not-valid-without-active-transaction&#x201D;-&#x95EE;&#x9898;"><a href="#&#x201C;save-is-not-valid-without-active-transaction&#x201D;-&#x95EE;&#x9898;" class="headerlink" title="&#x201C;save is not valid without active transaction&#x201D; &#x95EE;&#x9898;"></a>&#x201C;save is not valid without active transaction&#x201D; &#x95EE;&#x9898;</h5><p>&#x6B63;&#x5E38;&#x60C5;&#x51B5;&#x4E0B;Hibernate&#x6CA1;&#x6709;&#x95EE;&#x9898;&#xFF0C;&#x5173;&#x952E;&#x662F;&#x6574;&#x5408;Spring&#x540E;&#xFF0C;&#x914D;&#x7F6E;AOP&#xFF0C;&#x5207;&#x9762;&#x5728;Service&#xFF0C;&#x6D4B;&#x8BD5;Dao&#x7684;&#x65F6;&#x5019;&#x5C31;&#x51FA;&#x95EE;&#x9898;&#x4E86;&#xFF0C;&#x8FD9;&#x4E2A;&#x76EE;&#x524D;&#x4E3A;&#x6B62;&#x6CA1;&#x6709;&#x53D1;&#x73B0;&#x597D;&#x7684;&#x89E3;&#x51B3;&#x529E;&#x6CD5;&#xFF0C;&#x6211;&#x662F;&#x5728;&#x5F00;&#x53D1;&#x7684;&#x65F6;&#x5019;Dao&#x4E5F;&#x914D;&#x7F6E;&#x4E8B;&#x52A1;&#xFF0C;&#x751F;&#x4EA7;&#x73AF;&#x5883;&#x4E0B;&#x53BB;&#x6389;Dao&#x4E8B;&#x52A1;&#x3002;</p>
+<h4 id="OpenSessionInViewFilter"><a href="#OpenSessionInViewFilter" class="headerlink" title="OpenSessionInViewFilter"></a>OpenSessionInViewFilter</h4><p>&#x4E3A;&#x4E86;&#x5EF6;&#x957F;Session&#x7684;&#x751F;&#x547D;&#x5468;&#x671F;&#xFF0C;Spring&#x4E2D;&#x5F15;&#x5165;OpenSessionInviewFilter&#x3002;</p>
+<p>&#x5728;web.xml&#x6587;&#x4EF6;&#x4E2D;&#x6DFB;&#x52A0;&#x5982;&#x4E0B;&#x4EE3;&#x7801;</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">&lt;filter&gt;</div><div class="line">    &lt;filter-name&gt;openSessionInViewFilter&lt;/filter-name&gt;</div><div class="line">    &lt;filter-class&gt;org.springframework.orm.hibernate5.support.OpenSessionInViewFilter&lt;/filter-class&gt;</div><div class="line">    &lt;init-param&gt;</div><div class="line">      &lt;param-name&gt;singleSession&lt;/param-name&gt;</div><div class="line">      &lt;param-value&gt;true&lt;/param-value&gt;</div><div class="line">    &lt;/init-param&gt;</div><div class="line">    &lt;init-param&gt;</div><div class="line">      &lt;param-name&gt;sessionFactoryBean&lt;/param-name&gt;</div><div class="line">      &lt;param-value&gt;sessionFactory&lt;/param-value&gt;</div><div class="line">    &lt;/init-param&gt;</div><div class="line">  &lt;/filter&gt;</div><div class="line">  &lt;filter-mapping&gt;</div><div class="line">    &lt;filter-name&gt;openSessionInViewFilter&lt;/filter-name&gt;</div><div class="line">    &lt;url-pattern&gt;/*&lt;/url-pattern&gt;</div><div class="line">  &lt;/filter-mapping&gt;</div></pre></td></tr></table></figure>
+<p>OpenSessionInViewFilter&#x662F;Spring&#x63D0;&#x4F9B;&#x7684;&#x4E00;&#x4E2A;&#x9488;&#x5BF9;Hibernate&#x7684;&#x4E00;&#x4E2A;&#x652F;&#x6301;&#x7C7B;&#xFF0C;&#x5176;&#x4E3B;&#x8981;&#x610F;&#x601D;&#x662F;&#x5728;&#x53D1;&#x8D77;&#x4E00;&#x4E2A;&#x9875;&#x9762;&#x8BF7;&#x6C42;&#x65F6;&#x6253;&#x5F00;Hibernate&#x7684;Session&#xFF0C;&#x4E00;&#x76F4;&#x4FDD;&#x6301;&#x8FD9;&#x4E2A;Session&#xFF0C;&#x76F4;&#x5230;&#x8FD9;&#x4E2A;&#x8BF7;&#x6C42;&#x7ED3;&#x675F;&#xFF0C;&#x5177;&#x4F53;&#x662F;&#x901A;&#x8FC7;&#x4E00;&#x4E2A;Filter&#x6765;&#x5B9E;&#x73B0;&#x7684;&#x3002;</p>
+<p>&#x7531;&#x4E8E;Hibernate&#x5F15;&#x5165;&#x4E86;Lazy Load&#x7279;&#x6027;&#xFF0C;&#x4F7F;&#x5F97;&#x8131;&#x79BB;Hibernate&#x7684;Session&#x5468;&#x671F;&#x7684;&#x5BF9;&#x8C61;&#x5982;&#x679C;&#x518D;&#x60F3;&#x901A;&#x8FC7;getter&#x65B9;&#x6CD5;&#x53D6;&#x5230;&#x5176;&#x5173;&#x8054;&#x5BF9;&#x8C61;&#x7684;&#x503C;&#xFF0C;Hibernate&#x4F1A;&#x629B;&#x51FA;&#x4E00;&#x4E2A;LazyLoad&#x7684;Exception&#x3002;&#x6240;&#x4EE5;&#x4E3A;&#x4E86;&#x89E3;&#x51B3;&#x8FD9;&#x4E2A;&#x95EE;&#x9898;&#xFF0C;Spring&#x5F15;&#x5165;&#x4E86;&#x8FD9;&#x4E2A;Filter&#xFF0C;&#x4F7F;&#x5F97;Hibernate&#x7684;Session&#x7684;&#x751F;&#x547D;&#x5468;&#x671F;&#x53D8;&#x957F;&#x3002;&#x8FD9;&#x6837;&#x4E0D;&#x8BBA;&#x662F;Servlet&#x3001;JSP&#x8FD8;&#x662F;Action&#x90FD;&#x53EF;&#x4EE5;&#x83B7;&#x53D6;Session&#x3002;</p>
+<p><a href="http://blog.csdn.net/a5489888/article/details/9015375" target="_blank" rel="external">&#x89E3;&#x51B3;Hibernate&#x7684;Session&#x7684;&#x5173;&#x95ED;&#x4E0E;&#x5F00;&#x542F;&#x95EE;&#x9898;</a><br><a href="http://blog.csdn.net/ggibenben1314/article/details/46289411" target="_blank" rel="external">OpenSessionInViewFilter&#x7684;&#x4F5C;&#x7528;&#x53CA;&#x539F;&#x7406;</a></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Session/" rel="tag">#Session</a>
+          
+            <a href="/tags/Hibernate/" rel="tag">#Hibernate</a>
+          
+            <a href="/tags/Spring/" rel="tag">#Spring</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/07/20/前后台数据交互方式总结/" rel="next" title="前后台数据交互方式总结">
+                <i class="fa fa-chevron-left"></i> 前后台数据交互方式总结
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/08/04/Thinking-in-java-基础之异常/" rel="prev" title="Thinking in java 基础之异常">
+                Thinking in java 基础之异常 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- Go to www.addthis.com/dashboard to customize your tools -->
+<script type = "text/javascript" src = "//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-577a08f17286c0c0" async = "async" ></script>
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/08/03/Spring中的Session生命周期/"
+           data-title="Spring中的Session生命周期" data-url="https://muxiaobai.github.io/2016/08/03/Spring中的Session生命周期/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Inhaltsverzeichnis
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Übersicht
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/img/avatars.jpg"
+               alt="Mu Xiaobai(慕小白)" />
+          <p class="site-author-name" itemprop="name">Mu Xiaobai(慕小白)</p>
+          <p class="site-description motion-element" itemprop="description">记录日常工作中遇到的技术问题</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">17</span>
+              <span class="site-state-item-name">Artikel</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-name">Kategorien</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">38</span>
+                <span class="site-state-item-name">Tags</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Session是Hiberante中SessionFactory创建的Session，和Cookie、Session是两个东西。"><span class="nav-number">1.</span> <span class="nav-text">Session是Hiberante中SessionFactory创建的Session，和Cookie、Session是两个东西。</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#事务"><span class="nav-number">2.</span> <span class="nav-text">事务</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#事务相关的特性就不说了。ACID"><span class="nav-number">2.0.1.</span> <span class="nav-text">事务相关的特性就不说了。ACID</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#事务必须在Session中。"><span class="nav-number">2.0.2.</span> <span class="nav-text">事务必须在Session中。</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Hibernate的Session在Spring中的常见配置"><span class="nav-number">3.</span> <span class="nav-text">Hibernate的Session在Spring中的常见配置</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Hibernate的Session的关闭与开启问题"><span class="nav-number">3.0.1.</span> <span class="nav-text">Hibernate的Session的关闭与开启问题</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#hibernate-current-session-context-class"><span class="nav-number">3.0.2.</span> <span class="nav-text">hibernate.current_session_context_class</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#常见的几种问题"><span class="nav-number">3.0.3.</span> <span class="nav-text">常见的几种问题</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#AOP事务中Session的生命周期"><span class="nav-number">3.0.3.1.</span> <span class="nav-text">AOP事务中Session的生命周期</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#“org-hibernate-LazyInitializationException-could-not-initialize-proxy-no-Session”问题"><span class="nav-number">3.0.3.2.</span> <span class="nav-text">“org.hibernate.LazyInitializationException: could not initialize proxy - no Session”问题</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#“org-hibernate-LazyInitializationException-failed-to-lazily-initialize-a-collection-of-role-Model-User-no-session-or-session-was-closed”"><span class="nav-number">3.0.3.3.</span> <span class="nav-text">“org.hibernate.LazyInitializationException: failed to lazily initialize a collection of role: Model.User, no session or session was closed”</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#“save-is-not-valid-without-active-transaction”-问题"><span class="nav-number">3.0.3.4.</span> <span class="nav-text">“save is not valid without active transaction” 问题</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#OpenSessionInViewFilter"><span class="nav-number">3.0.4.</span> <span class="nav-text">OpenSessionInViewFilter</span></a></li></ol></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Mu Xiaobai(慕小白)</span>
+</div>
+
+<div class="powered-by">
+  Erstellt mit  <a class="theme-link" href="http://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"muxiaobai"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+       search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+    'use strict';
+    $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+            // get the contents from search data
+            isfetched = true;
+            $('.popup').detach().appendTo('.header-inner');
+            var datas = $( "entry", xmlResponse ).map(function() {
+                return {
+                    title: $( "title", this ).text(),
+                    content: $("content",this).text(),
+                    url: $( "url" , this).text()
+                };
+            }).get();
+            var $input = document.getElementById(search_id);
+            var $resultContent = document.getElementById(content_id);
+            $input.addEventListener('input', function(){
+                var matchcounts = 0;
+                var str='<ul class=\"search-result-list\">';
+                var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                $resultContent.innerHTML = "";
+                if (this.value.trim().length > 1) {
+                // perform local searching
+                datas.forEach(function(data) {
+                    var isMatch = true;
+                    var content_index = [];
+                    var data_title = data.title.trim().toLowerCase();
+                    var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                    var data_url = data.url;
+                    var index_title = -1;
+                    var index_content = -1;
+                    var first_occur = -1;
+                    // only match artiles with not empty titles and contents
+                    if(data_title != '' && data_content != '') {
+                        keywords.forEach(function(keyword, i) {
+                            index_title = data_title.indexOf(keyword);
+                            index_content = data_content.indexOf(keyword);
+                            if( index_title < 0 && index_content < 0 ){
+                                isMatch = false;
+                            } else {
+                                if (index_content < 0) {
+                                    index_content = 0;
+                                }
+                                if (i == 0) {
+                                    first_occur = index_content;
+                                }
+                            }
+                        });
+                    }
+                    // show search results
+                    if (isMatch) {
+                        matchcounts += 1;
+                        str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                        var content = data.content.trim().replace(/<[^>]+>/g,"");
+                        if (first_occur >= 0) {
+                            // cut out 100 characters
+                            var start = first_occur - 20;
+                            var end = first_occur + 80;
+                            if(start < 0){
+                                start = 0;
+                            }
+                            if(start == 0){
+                                end = 50;
+                            }
+                            if(end > content.length){
+                                end = content.length;
+                            }
+                            var match_content = content.substring(start, end);
+                            // highlight all keywords
+                            keywords.forEach(function(keyword){
+                                var regS = new RegExp(keyword, "gi");
+                                match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                            });
+
+                            str += "<p class=\"search-result\">" + match_content +"...</p>"
+                        }
+                        str += "</li>";
+                    }
+                })};
+                str += "</ul>";
+                if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+                if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+                $resultContent.innerHTML = str;
+            });
+            proceedsearch();
+        }
+    });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+  
+
+  
+
+  
+
+</body>
+</html>

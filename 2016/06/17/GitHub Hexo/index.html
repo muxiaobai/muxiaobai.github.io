@@ -1,0 +1,869 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Github,Hexo," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="技术笔记" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/img/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="&amp;#x6709;&amp;#x4E86;Hexo&amp;#x540E;&amp;#xFF0C;&amp;#x6211;&amp;#x7684;&amp;#x6587;&amp;#x7AE0;&amp;#x5C31;&amp;#x51C6;&amp;#x5907;&amp;#x5168;&amp;#x90E8;&amp;#x8FC1;&amp;#x79FB;&amp;#x81F3;Github&amp;#x4E86;&amp;#x3002;1.&amp;#x672C;&amp;#x673A;&amp;#x642D;&amp;#x5EFA;&amp;#x4F7F;&amp;#x7">
+<meta property="og:type" content="article">
+<meta property="og:title" content="GitHub + Hexo 构建我的博客">
+<meta property="og:url" content="https://muxiaobai.github.io/2016/06/17/GitHub Hexo/index.html">
+<meta property="og:site_name" content="技术笔记">
+<meta property="og:description" content="&amp;#x6709;&amp;#x4E86;Hexo&amp;#x540E;&amp;#xFF0C;&amp;#x6211;&amp;#x7684;&amp;#x6587;&amp;#x7AE0;&amp;#x5C31;&amp;#x51C6;&amp;#x5907;&amp;#x5168;&amp;#x90E8;&amp;#x8FC1;&amp;#x79FB;&amp;#x81F3;Github&amp;#x4E86;&amp;#x3002;1.&amp;#x672C;&amp;#x673A;&amp;#x642D;&amp;#x5EFA;&amp;#x4F7F;&amp;#x7">
+<meta property="og:updated_time" content="2016-08-31T12:24:35.146Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="GitHub + Hexo 构建我的博客">
+<meta name="twitter:description" content="&amp;#x6709;&amp;#x4E86;Hexo&amp;#x540E;&amp;#xFF0C;&amp;#x6211;&amp;#x7684;&amp;#x6587;&amp;#x7AE0;&amp;#x5C31;&amp;#x51C6;&amp;#x5907;&amp;#x5168;&amp;#x90E8;&amp;#x8FC1;&amp;#x79FB;&amp;#x81F3;Github&amp;#x4E86;&amp;#x3002;1.&amp;#x672C;&amp;#x673A;&amp;#x642D;&amp;#x5EFA;&amp;#x4F7F;&amp;#x7">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"hide"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: 'Author'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="https://muxiaobai.github.io/2016/06/17/GitHub Hexo/"/>
+
+  <title> GitHub + Hexo 构建我的博客 | 技术笔记 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-80276841-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?G4mEksdCPH";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">技术笔记</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">有输入,有输出</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Startseite
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Kategorien
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            Über
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archiv
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
+            
+            公益404
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            Suche
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                GitHub + Hexo 构建我的博客
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">Veröffentlicht am</span>
+            <time itemprop="dateCreated" datetime="2016-06-17T14:57:31+00:00" content="2016-06-17">
+              2016-06-17
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">in</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/搭建网站/" itemprop="url" rel="index">
+                    <span itemprop="name">搭建网站</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/06/17/GitHub Hexo/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/06/17/GitHub Hexo/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="&#x6709;&#x4E86;Hexo&#x540E;&#xFF0C;&#x6211;&#x7684;&#x6587;&#x7AE0;&#x5C31;&#x51C6;&#x5907;&#x5168;&#x90E8;&#x8FC1;&#x79FB;&#x81F3;Github&#x4E86;&#x3002;"><a href="#&#x6709;&#x4E86;Hexo&#x540E;&#xFF0C;&#x6211;&#x7684;&#x6587;&#x7AE0;&#x5C31;&#x51C6;&#x5907;&#x5168;&#x90E8;&#x8FC1;&#x79FB;&#x81F3;Github&#x4E86;&#x3002;" class="headerlink" title="&#x6709;&#x4E86;Hexo&#x540E;&#xFF0C;&#x6211;&#x7684;&#x6587;&#x7AE0;&#x5C31;&#x51C6;&#x5907;&#x5168;&#x90E8;&#x8FC1;&#x79FB;&#x81F3;Github&#x4E86;&#x3002;"></a>&#x6709;&#x4E86;Hexo&#x540E;&#xFF0C;&#x6211;&#x7684;&#x6587;&#x7AE0;&#x5C31;&#x51C6;&#x5907;&#x5168;&#x90E8;&#x8FC1;&#x79FB;&#x81F3;Github&#x4E86;&#x3002;</h1><h2 id="1-&#x672C;&#x673A;&#x642D;&#x5EFA;"><a href="#1-&#x672C;&#x673A;&#x642D;&#x5EFA;" class="headerlink" title="1.&#x672C;&#x673A;&#x642D;&#x5EFA;"></a>1.&#x672C;&#x673A;&#x642D;&#x5EFA;</h2><h3 id="&#x4F7F;&#x7528;&#x73AF;&#x5883;"><a href="#&#x4F7F;&#x7528;&#x73AF;&#x5883;" class="headerlink" title="&#x4F7F;&#x7528;&#x73AF;&#x5883;"></a>&#x4F7F;&#x7528;&#x73AF;&#x5883;</h3><p> git node npm</p>
+<p> Github&#x8D26;&#x6237; username.github.io &#x4ED3;&#x5E93;</p>
+<h3 id="&#x5B89;&#x88C5;Hexo"><a href="#&#x5B89;&#x88C5;Hexo" class="headerlink" title="&#x5B89;&#x88C5;Hexo"></a>&#x5B89;&#x88C5;Hexo</h3><p>  Hexo&#x5B89;&#x88C5;&#xFF0C;&#x8981;&#x7528;&#x5168;&#x5C40;&#x5B89;&#x88C5;&#xFF0C;&#x52A0;-g&#x53C2;&#x6570;&#x3002;</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">zhang@admin MINGW64 ~</div><div class="line">$ npm install &#x2013;g hexo</div></pre></td></tr></table></figure>
+<a id="more"></a>
+<h5 id="&#x67E5;&#x770B;hexo&#x7684;&#x7248;&#x672C;"><a href="#&#x67E5;&#x770B;hexo&#x7684;&#x7248;&#x672C;" class="headerlink" title="&#x67E5;&#x770B;hexo&#x7684;&#x7248;&#x672C;"></a>&#x67E5;&#x770B;hexo&#x7684;&#x7248;&#x672C;</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">zhang@admin MINGW64 ~</div><div class="line">$ hexo -v</div><div class="line">hexo-cli: 1.0.2</div><div class="line">os: Windows_NT 6.3.9600 win32 x64</div><div class="line">http_parser: 2.5.2</div><div class="line">node: 4.4.5</div><div class="line">v8: 4.5.103.35</div><div class="line">uv: 1.8.0</div><div class="line">zlib: 1.2.8</div><div class="line">ares: 1.10.1-DEV</div><div class="line">icu: 56.1</div><div class="line">modules: 46</div><div class="line">openssl: 1.0.2h</div></pre></td></tr></table></figure>
+<p>hexo &#x5E2E;&#x52A9;&#x547D;&#x4EE4;</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line">zhang@admin MINGW64 ~</div><div class="line">$ hexo help</div><div class="line">Usage: hexo &lt;command&gt;</div><div class="line"></div><div class="line">Commands:</div><div class="line">  clean     Removed generated files and cache.</div><div class="line">  config    Get or set configurations.</div><div class="line">  deploy    Deploy your website.</div><div class="line">  generate  Generate static files.</div><div class="line">  help      Get help on a command.</div><div class="line">  init      Create a new Hexo folder.</div><div class="line">  list      List the information of the site</div><div class="line">  migrate   Migrate your site from other system to Hexo.</div><div class="line">  new       Create a new post.</div><div class="line">  publish   Moves a draft post from _drafts to _posts folder.</div><div class="line">  render    Render files with renderer plugins.</div><div class="line">  server    Start the server.</div><div class="line">  version   Display version information.</div><div class="line"></div><div class="line">Global Options:</div><div class="line">  --config  Specify config file instead of using _config.yml</div><div class="line">  --cwd     Specify the CWD</div><div class="line">  --debug   Display all verbose messages in the terminal</div><div class="line">  --draft   Display draft posts</div><div class="line">  --safe    Disable all plugins and scripts</div><div class="line">  --silent  Hide output on console</div><div class="line"></div><div class="line">For more help, you can use &apos;hexo help [command]&apos; for the detailed information</div><div class="line">or you can check the docs: http://hexo.io/docs/</div></pre></td></tr></table></figure>
+<p>&#x547D;&#x4EE4;&#x884C;&#x89E3;&#x91CA;&#xFF1A;</p>
+<ul>
+<li>help &#x67E5;&#x770B;&#x5E2E;&#x52A9;&#x4FE1;&#x606F;</li>
+<li>init &#x521B;&#x5EFA;&#x4E00;&#x4E2A;hexo&#x9879;&#x76EE;</li>
+<li>migrate &#x4ECE;&#x5176;&#x4ED6;&#x7CFB;&#x7EDF;&#x5411;hexo&#x8FC1;&#x79FB;</li>
+<li>version &#x67E5;&#x770B;hexo&#x7684;&#x7248;&#x672C;</li>
+<li>&#x2013;config&#x53C2;&#x6570;&#xFF0C;&#x6307;&#x5B9A;&#x914D;&#x7F6E;&#x6587;&#x4EF6;&#xFF0C;&#x4EE3;&#x66FF;&#x9ED8;&#x8BA4;&#x7684;_config.yml</li>
+<li>&#x2013;debug&#x53C2;&#x6570;&#xFF0C;&#x8C03;&#x8BD5;&#x6A21;&#x5F0F;&#xFF0C;&#x8F93;&#x51FA;&#x6240;&#x6709;&#x65E5;&#x5FD7;&#x4FE1;&#x606F;</li>
+<li>&#x2013;safe&#x53C2;&#x6570;&#xFF0C;&#x5B89;&#x5168;&#x6A21;&#x5F0F;&#xFF0C;&#x7981;&#x7528;&#x6240;&#x6709;&#x7684;&#x63D2;&#x4EF6;&#x548C;&#x811A;&#x672C;</li>
+<li>&#x2013;silent&#x53C2;&#x6570;&#xFF0C;&#x65E0;&#x65E5;&#x5FD7;&#x8F93;&#x51FA;&#x6A21;&#x5F0F;</li>
+</ul>
+<h3 id="&#x5B89;&#x88C5;&#x597D;&#x540E;&#xFF0C;&#x6211;&#x4EEC;&#x5C31;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;Hexo&#x521B;&#x5EFA;&#x9879;&#x76EE;&#x4E86;&#x3002;"><a href="#&#x5B89;&#x88C5;&#x597D;&#x540E;&#xFF0C;&#x6211;&#x4EEC;&#x5C31;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;Hexo&#x521B;&#x5EFA;&#x9879;&#x76EE;&#x4E86;&#x3002;" class="headerlink" title="&#x5B89;&#x88C5;&#x597D;&#x540E;&#xFF0C;&#x6211;&#x4EEC;&#x5C31;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;Hexo&#x521B;&#x5EFA;&#x9879;&#x76EE;&#x4E86;&#x3002;"></a>&#x5B89;&#x88C5;&#x597D;&#x540E;&#xFF0C;&#x6211;&#x4EEC;&#x5C31;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;Hexo&#x521B;&#x5EFA;&#x9879;&#x76EE;&#x4E86;&#x3002;</h3><h5 id="&#x65B0;&#x5EFA;&#x6587;&#x4EF6;&#x5939;Hexo"><a href="#&#x65B0;&#x5EFA;&#x6587;&#x4EF6;&#x5939;Hexo" class="headerlink" title="&#x65B0;&#x5EFA;&#x6587;&#x4EF6;&#x5939;Hexo"></a>&#x65B0;&#x5EFA;&#x6587;&#x4EF6;&#x5939;Hexo</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">zhang@admin MINGW64 ~</div><div class="line">$ mkdir Hexo</div><div class="line">$ cd Hexo</div></pre></td></tr></table></figure>
+<h5 id="&#x521D;&#x59CB;&#x5316;&#x8FDB;&#x5165;&#x76EE;&#x5F55;&#x3002;"><a href="#&#x521D;&#x59CB;&#x5316;&#x8FDB;&#x5165;&#x76EE;&#x5F55;&#x3002;" class="headerlink" title="&#x521D;&#x59CB;&#x5316;&#x8FDB;&#x5165;&#x76EE;&#x5F55;&#x3002;"></a>&#x521D;&#x59CB;&#x5316;&#x8FDB;&#x5165;&#x76EE;&#x5F55;&#x3002;</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">zhang@admin MINGW64 ~/Hexo</div><div class="line">$ hexo init</div><div class="line">INFO  Cloning hexo-starter to D:\hexo</div><div class="line">INFO  Start blogging with Hexo!</div></pre></td></tr></table></figure>
+<h5 id="&#x542F;&#x52A8;&#x670D;&#x52A1;"><a href="#&#x542F;&#x52A8;&#x670D;&#x52A1;" class="headerlink" title="&#x542F;&#x52A8;&#x670D;&#x52A1;"></a>&#x542F;&#x52A8;&#x670D;&#x52A1;</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">zhang@admin MINGW64 ~/Hexo</div><div class="line">$ hexo server</div><div class="line">INFO  Start processing</div><div class="line">INFO  Hexo is running at http://localhost:4000/. Press Ctrl+C to stop.</div></pre></td></tr></table></figure>
+<p>&#x8FD9;&#x65F6;&#x7AEF;&#x53E3;4000&#x88AB;&#x6253;&#x5F00;&#x4E86;&#xFF0C;&#x6211;&#x4EEC;&#x80FD;&#x8FC7;&#x6D4F;&#x89C8;&#x5668;&#x6253;&#x5F00;&#x5730;&#x5740;&#xFF0C;<a href="http://localhost:4000/" target="_blank" rel="external">http://localhost:4000/</a> &#x3002;<br>&#x4F60;&#x53EF;&#x4EE5;&#x6309;Ctrl+C &#x505C;&#x6B62;Server&#x3002;</p>
+<h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">zhang@admin MINGW64 ~/Hexo</div><div class="line">$ hexo new &apos;My&apos;</div><div class="line">INFO  Created: ~\Hexo\source\_posts\My.md</div></pre></td></tr></table></figure>
+<p>&#x5237;&#x65B0;<a href="http://localhost:4000/&#xFF0C;&#x53EF;&#x4EE5;&#x53D1;&#x73B0;&#x5DF2;&#x751F;&#x6210;&#x4E86;&#x4E00;&#x7BC7;&#x65B0;&#x6587;&#x7AE0;" target="_blank" rel="external">http://localhost:4000/&#xFF0C;&#x53EF;&#x4EE5;&#x53D1;&#x73B0;&#x5DF2;&#x751F;&#x6210;&#x4E86;&#x4E00;&#x7BC7;&#x65B0;&#x6587;&#x7AE0;</a> &#x201C;My&#x201D;&#x3002;</p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><h5 id="&#x6267;&#x884C;hexo-generate&#x4E0B;&#x9762;&#x7684;&#x547D;&#x4EE4;&#xFF0C;&#x5C06;markdown&#x6587;&#x4EF6;&#x751F;&#x6210;&#x9759;&#x6001;&#x7F51;&#x9875;&#x3002;"><a href="#&#x6267;&#x884C;hexo-generate&#x4E0B;&#x9762;&#x7684;&#x547D;&#x4EE4;&#xFF0C;&#x5C06;markdown&#x6587;&#x4EF6;&#x751F;&#x6210;&#x9759;&#x6001;&#x7F51;&#x9875;&#x3002;" class="headerlink" title="&#x6267;&#x884C;hexo generate&#x4E0B;&#x9762;&#x7684;&#x547D;&#x4EE4;&#xFF0C;&#x5C06;markdown&#x6587;&#x4EF6;&#x751F;&#x6210;&#x9759;&#x6001;&#x7F51;&#x9875;&#x3002;"></a>&#x6267;&#x884C;<code>hexo generate</code>&#x4E0B;&#x9762;&#x7684;&#x547D;&#x4EE4;&#xFF0C;&#x5C06;markdown&#x6587;&#x4EF6;&#x751F;&#x6210;&#x9759;&#x6001;&#x7F51;&#x9875;&#x3002;</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">zhang@admin MINGW64 ~/Hexo</div><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
+<p>&#x8BE5;&#x547D;&#x4EE4;&#x6267;&#x884C;&#x5B8C;&#x540E;&#xFF0C;&#x4F1A;&#x5728; C:\Users\zhang\Hexo\public &#x76EE;&#x5F55;&#x4E0B;&#x751F;&#x6210;&#x4E00;&#x7CFB;&#x5217;html&#xFF0C;css&#x7B49;&#x6587;&#x4EF6;&#x3002;</p>
+<p>&#x5230;&#x6B64;&#x5DF2;&#x7ECF;&#x642D;&#x5EFA;&#x4E00;&#x4E2A;&#x4E2A;&#x4EBA;&#x535A;&#x5BA2;&#xFF0C;&#x4F46;&#x662F;&#x7F51;&#x7AD9;&#x90FD;&#x662F;&#x7ED9;&#x522B;&#x4EBA;&#x770B;&#x7684;&#xFF0C;&#x56E0;&#x6B64;&#x9700;&#x8981;&#x53D1;&#x5E03;&#xFF0C;&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x501F;&#x7528;Github&#x6765;&#x90E8;&#x7F72;&#x6211;&#x4EEC;&#x7684;&#x7F51;&#x7AD9;&#x3002;</p>
+<h2 id="2-&#x90E8;&#x7F72;&#x5230;Github"><a href="#2-&#x90E8;&#x7F72;&#x5230;Github" class="headerlink" title="2.&#x90E8;&#x7F72;&#x5230;Github"></a>2.&#x90E8;&#x7F72;&#x5230;Github</h2><h5 id="&#x4FEE;&#x6539;&#x914D;&#x7F6E;&#x6587;&#x4EF6;"><a href="#&#x4FEE;&#x6539;&#x914D;&#x7F6E;&#x6587;&#x4EF6;" class="headerlink" title="&#x4FEE;&#x6539;&#x914D;&#x7F6E;&#x6587;&#x4EF6;"></a>&#x4FEE;&#x6539;&#x914D;&#x7F6E;&#x6587;&#x4EF6;</h5><p>&#x90E8;&#x7F72;&#x5230;Github&#x524D;&#x9700;&#x8981;&#x914D;&#x7F6E;_config.yml&#x6587;&#x4EF6;&#xFF0C;&#x9996;&#x5148;&#x627E;&#x5230;&#x4E0B;&#x9762;&#x7684;&#x5185;&#x5BB9;</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"># Deployment</div><div class="line">## Docs: https://hexo.io/docs/deployment.html</div><div class="line">deploy:</div><div class="line">  type: git</div></pre></td></tr></table></figure>
+<p>&#x7136;&#x540E;&#x5C06;&#x5B83;&#x4EEC;&#x4FEE;&#x6539;&#x4E3A;<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"># Deployment</div><div class="line">## Docs: https://hexo.io/docs/deployment.html</div><div class="line">deploy:</div><div class="line">  type: git</div><div class="line">  repository: https://github.com/muxiaobai/muxiaobai.github.io.git</div><div class="line">  branch: master</div></pre></td></tr></table></figure></p>
+<h5 id="&#x6267;&#x884C;hexo-deploy&#x53D1;&#x5E03;&#x7F51;&#x7AD9;"><a href="#&#x6267;&#x884C;hexo-deploy&#x53D1;&#x5E03;&#x7F51;&#x7AD9;" class="headerlink" title="&#x6267;&#x884C;hexo deploy&#x53D1;&#x5E03;&#x7F51;&#x7AD9;"></a>&#x6267;&#x884C;<code>hexo deploy</code>&#x53D1;&#x5E03;&#x7F51;&#x7AD9;</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">zhang@admin MINGW64 ~/Hexo</div><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
+<p>NOTE1:</p>
+<p>Repository&#xFF1A;<br>SSH&#x5F62;&#x5F0F;&#x7684;url&#xFF08;git@github.com:muxiaobai/muxiaobai.github.io.git &#xFF09;&#xFF0C;<br>&#x5728;SSH&#x4E0B;&#xFF0C;&#x4E0A;&#x4F20;&#x9519;&#x8BEF;&#xFF0C;&#x4E8E;&#x662F;&#x5C31;&#x7528;&#x4E86;HTTPS&#x5F62;&#x5F0F;</p>
+<p>HTTPS&#x5F62;&#x5F0F;&#x7684;url&#xFF08;<a href="https://github.com/muxiaobai/muxiaobai.github.io.git" target="_blank" rel="external">https://github.com/muxiaobai/muxiaobai.github.io.git</a> &#xFF09;&#xFF0C;<br>&#x4F1A;&#x8BA9;&#x4F60;&#x8F93;&#x5165;&#x7528;&#x6237;&#x540D;,&#x5BC6;&#x7801;.</p>
+<p>NOTE2&#xFF1A;</p>
+<p>&#x5982;&#x679C;&#x4F60;&#x662F;&#x4E3A;&#x4E00;&#x4E2A;&#x9879;&#x76EE;&#x5236;&#x4F5C;&#x7F51;&#x7AD9;&#xFF0C;&#x90A3;&#x4E48;&#x9700;&#x8981;&#x628A;branch&#x8BBE;&#x7F6E;&#x4E3A;gh-pages&#x3002;</p>
+<h3 id="&#x6D4B;&#x8BD5;"><a href="#&#x6D4B;&#x8BD5;" class="headerlink" title="&#x6D4B;&#x8BD5;"></a>&#x6D4B;&#x8BD5;</h3><p>&#x5F53;&#x90E8;&#x7F72;&#x5B8C;&#x6210;&#x540E;&#xFF0C;&#x5728;&#x6D4F;&#x89C8;&#x5668;&#x4E2D;&#x6253;&#x5F00;<a href="https://muxiaobai.github.io/&#xFF08;https://muxiaobai.github.io/&#xFF09;">https://muxiaobai.github.io/&#xFF08;https://muxiaobai.github.io/&#xFF09;</a> &#xFF0C;&#x6B63;&#x5E38;&#x663E;&#x793A;&#x7F51;&#x9875;&#xFF0C;&#x8868;&#x660E;&#x90E8;&#x7F72;&#x6210;&#x529F;&#x3002;</p>
+<h3 id="&#x603B;&#x7ED3;&#xFF1A;&#x90E8;&#x7F72;&#x6B65;&#x9AA4;"><a href="#&#x603B;&#x7ED3;&#xFF1A;&#x90E8;&#x7F72;&#x6B65;&#x9AA4;" class="headerlink" title="&#x603B;&#x7ED3;&#xFF1A;&#x90E8;&#x7F72;&#x6B65;&#x9AA4;"></a>&#x603B;&#x7ED3;&#xFF1A;&#x90E8;&#x7F72;&#x6B65;&#x9AA4;</h3><p>&#x6BCF;&#x6B21;&#x90E8;&#x7F72;&#x7684;&#x6B65;&#x9AA4;&#xFF0C;&#x53EF;&#x6309;&#x4EE5;&#x4E0B;&#x4E09;&#x6B65;&#x6765;&#x8FDB;&#x884C;&#x3002;</p>
+<p>hexo clean</p>
+<p>hexo generate</p>
+<p>hexo deploy</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Github/" rel="tag">#Github</a>
+          
+            <a href="/tags/Hexo/" rel="tag">#Hexo</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/06/19/Linux-下安装SVN服务器/" rel="prev" title="Linux 下安装SVN服务器">
+                Linux 下安装SVN服务器 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- Go to www.addthis.com/dashboard to customize your tools -->
+<script type = "text/javascript" src = "//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-577a08f17286c0c0" async = "async" ></script>
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/06/17/GitHub Hexo/"
+           data-title="GitHub + Hexo 构建我的博客" data-url="https://muxiaobai.github.io/2016/06/17/GitHub Hexo/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Inhaltsverzeichnis
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Übersicht
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/img/avatars.jpg"
+               alt="Mu Xiaobai(慕小白)" />
+          <p class="site-author-name" itemprop="name">Mu Xiaobai(慕小白)</p>
+          <p class="site-description motion-element" itemprop="description">记录日常工作中遇到的技术问题</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">17</span>
+              <span class="site-state-item-name">Artikel</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-name">Kategorien</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">38</span>
+                <span class="site-state-item-name">Tags</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#有了Hexo后，我的文章就准备全部迁移至Github了。"><span class="nav-number">1.</span> <span class="nav-text">有了Hexo后，我的文章就准备全部迁移至Github了。</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-本机搭建"><span class="nav-number">1.1.</span> <span class="nav-text">1.本机搭建</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#使用环境"><span class="nav-number">1.1.1.</span> <span class="nav-text">使用环境</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安装Hexo"><span class="nav-number">1.1.2.</span> <span class="nav-text">安装Hexo</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#查看hexo的版本"><span class="nav-number">1.1.2.0.1.</span> <span class="nav-text">查看hexo的版本</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安装好后，我们就可以使用Hexo创建项目了。"><span class="nav-number">1.1.3.</span> <span class="nav-text">安装好后，我们就可以使用Hexo创建项目了。</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#新建文件夹Hexo"><span class="nav-number">1.1.3.0.1.</span> <span class="nav-text">新建文件夹Hexo</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#初始化进入目录。"><span class="nav-number">1.1.3.0.2.</span> <span class="nav-text">初始化进入目录。</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#启动服务"><span class="nav-number">1.1.3.0.3.</span> <span class="nav-text">启动服务</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Create-a-new-post"><span class="nav-number">1.1.4.</span> <span class="nav-text">Create a new post</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Generate-static-files"><span class="nav-number">1.1.5.</span> <span class="nav-text">Generate static files</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#执行hexo-generate下面的命令，将markdown文件生成静态网页。"><span class="nav-number">1.1.5.0.1.</span> <span class="nav-text">执行hexo generate下面的命令，将markdown文件生成静态网页。</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-部署到Github"><span class="nav-number">1.2.</span> <span class="nav-text">2.部署到Github</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#修改配置文件"><span class="nav-number">1.2.0.0.1.</span> <span class="nav-text">修改配置文件</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#执行hexo-deploy发布网站"><span class="nav-number">1.2.0.0.2.</span> <span class="nav-text">执行hexo deploy发布网站</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#测试"><span class="nav-number">1.2.1.</span> <span class="nav-text">测试</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#总结：部署步骤"><span class="nav-number">1.2.2.</span> <span class="nav-text">总结：部署步骤</span></a></li></ol></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Mu Xiaobai(慕小白)</span>
+</div>
+
+<div class="powered-by">
+  Erstellt mit  <a class="theme-link" href="http://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"muxiaobai"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+       search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+    'use strict';
+    $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+            // get the contents from search data
+            isfetched = true;
+            $('.popup').detach().appendTo('.header-inner');
+            var datas = $( "entry", xmlResponse ).map(function() {
+                return {
+                    title: $( "title", this ).text(),
+                    content: $("content",this).text(),
+                    url: $( "url" , this).text()
+                };
+            }).get();
+            var $input = document.getElementById(search_id);
+            var $resultContent = document.getElementById(content_id);
+            $input.addEventListener('input', function(){
+                var matchcounts = 0;
+                var str='<ul class=\"search-result-list\">';
+                var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                $resultContent.innerHTML = "";
+                if (this.value.trim().length > 1) {
+                // perform local searching
+                datas.forEach(function(data) {
+                    var isMatch = true;
+                    var content_index = [];
+                    var data_title = data.title.trim().toLowerCase();
+                    var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                    var data_url = data.url;
+                    var index_title = -1;
+                    var index_content = -1;
+                    var first_occur = -1;
+                    // only match artiles with not empty titles and contents
+                    if(data_title != '' && data_content != '') {
+                        keywords.forEach(function(keyword, i) {
+                            index_title = data_title.indexOf(keyword);
+                            index_content = data_content.indexOf(keyword);
+                            if( index_title < 0 && index_content < 0 ){
+                                isMatch = false;
+                            } else {
+                                if (index_content < 0) {
+                                    index_content = 0;
+                                }
+                                if (i == 0) {
+                                    first_occur = index_content;
+                                }
+                            }
+                        });
+                    }
+                    // show search results
+                    if (isMatch) {
+                        matchcounts += 1;
+                        str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                        var content = data.content.trim().replace(/<[^>]+>/g,"");
+                        if (first_occur >= 0) {
+                            // cut out 100 characters
+                            var start = first_occur - 20;
+                            var end = first_occur + 80;
+                            if(start < 0){
+                                start = 0;
+                            }
+                            if(start == 0){
+                                end = 50;
+                            }
+                            if(end > content.length){
+                                end = content.length;
+                            }
+                            var match_content = content.substring(start, end);
+                            // highlight all keywords
+                            keywords.forEach(function(keyword){
+                                var regS = new RegExp(keyword, "gi");
+                                match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                            });
+
+                            str += "<p class=\"search-result\">" + match_content +"...</p>"
+                        }
+                        str += "</li>";
+                    }
+                })};
+                str += "</ul>";
+                if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+                if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+                $resultContent.innerHTML = str;
+            });
+            proceedsearch();
+        }
+    });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+  
+
+  
+
+  
+
+</body>
+</html>

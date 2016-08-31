@@ -1,0 +1,912 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="基础命令,file,directory,tar," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="技术笔记" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/img/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="文件、文件内容、目录、压缩打包、帮助">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linux 基础命令总结">
+<meta property="og:url" content="https://muxiaobai.github.io/2016/06/27/Linux-基础命令总结/index.html">
+<meta property="og:site_name" content="技术笔记">
+<meta property="og:description" content="文件、文件内容、目录、压缩打包、帮助">
+<meta property="og:updated_time" content="2016-08-31T12:24:36.610Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Linux 基础命令总结">
+<meta name="twitter:description" content="文件、文件内容、目录、压缩打包、帮助">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"hide"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: 'Author'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="https://muxiaobai.github.io/2016/06/27/Linux-基础命令总结/"/>
+
+  <title> Linux 基础命令总结 | 技术笔记 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-80276841-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?G4mEksdCPH";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">技术笔记</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">有输入,有输出</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Startseite
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Kategorien
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            Über
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archiv
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
+            
+            公益404
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            Suche
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Linux 基础命令总结
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">Veröffentlicht am</span>
+            <time itemprop="dateCreated" datetime="2016-06-27T20:47:05+00:00" content="2016-06-27">
+              2016-06-27
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">in</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Linux/" itemprop="url" rel="index">
+                    <span itemprop="name">Linux</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/06/27/Linux-基础命令总结/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/06/27/Linux-基础命令总结/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="&#x76EE;&#x5F55;-&#x6587;&#x4EF6;&#x5939;directory-&#x6587;&#x4EF6;-file-&#x76F8;&#x5173;"><a href="#&#x76EE;&#x5F55;-&#x6587;&#x4EF6;&#x5939;directory-&#x6587;&#x4EF6;-file-&#x76F8;&#x5173;" class="headerlink" title="&#x76EE;&#x5F55;(&#x6587;&#x4EF6;&#x5939;directory)/&#x6587;&#x4EF6;(file)&#x76F8;&#x5173;"></a>&#x76EE;&#x5F55;(&#x6587;&#x4EF6;&#x5939;directory)/&#x6587;&#x4EF6;(file)&#x76F8;&#x5173;</h2><p><code>ls</code>: &#x5217;&#x51FA;&#x6240;&#x6709;&#x5185;&#x5BB9;(list)</p>
+<p><code>touch</code>: &#x65B0;&#x5EFA;(&#x5B9E;&#x9645;&#x4E0A;&#x662F;&#x89E6;&#x6478;&#x4E00;&#x4E0B;,&#x4F1A;&#x66F4;&#x6539;&#x6587;&#x4EF6;&#x65F6;&#x95F4;&#x6233;)</p>
+<p><code>cp</code>: &#x590D;&#x5236;&#x6587;&#x4EF6;(Copy)</p>
+<p><code>mv</code>: &#x91CD;&#x547D;&#x540D;&#x6587;&#x4EF6;(Move,&#x79FB;&#x52A8;&#x5230;&#x5F53;&#x524D;&#x6587;&#x4EF6;&#x5939;&#x4E0B;&#xFF0C;&#x5373;&#x91CD;&#x547D;&#x540D;)</p>
+<p><code>rm</code>: &#x5220;&#x9664;&#x6587;&#x4EF6;(Remove)</p>
+<p><code>ln</code>: &#x521B;&#x5EFA;&#x6587;&#x4EF6;&#x94FE;&#x63A5;(link)</p>
+<h5 id="r-&#x9012;&#x5F52;"><a href="#r-&#x9012;&#x5F52;" class="headerlink" title="-r: &#x9012;&#x5F52;"></a>-r: &#x9012;&#x5F52;</h5><h5 id="f-&#x5F3A;&#x5236;-&#x4E0D;&#x8BE2;&#x95EE;&#x8986;&#x76D6;&#x6216;&#x5220;&#x9664;"><a href="#f-&#x5F3A;&#x5236;-&#x4E0D;&#x8BE2;&#x95EE;&#x8986;&#x76D6;&#x6216;&#x5220;&#x9664;" class="headerlink" title="-f: &#x5F3A;&#x5236;(&#x4E0D;&#x8BE2;&#x95EE;&#x8986;&#x76D6;&#x6216;&#x5220;&#x9664;)"></a>-f: &#x5F3A;&#x5236;(&#x4E0D;&#x8BE2;&#x95EE;&#x8986;&#x76D6;&#x6216;&#x5220;&#x9664;)</h5><a id="more"></a>
+<p><code>cd</code>:  &#x5207;&#x6362;&#x76EE;&#x5F55;(Change directory)</p>
+<p><code>mkdir</code>: &#x65B0;&#x5EFA;&#x76EE;&#x5F55;(Make directory)</p>
+<p><code>rmdir</code>: &#x5220;&#x9664;&#x76EE;&#x5F55;(Remove directory) (<code>rm -r</code>: &#x5F3A;&#x5236;&#x5220;&#x9664;&#x975E;&#x7A7A;&#x76EE;&#x5F55;)(<code>rm -rf</code>)</p>
+<h5 id="p-&#x9012;&#x5F52;&#x521B;&#x5EFA;-&#x5220;&#x9664;&#x975E;&#x7A7A;&#x76EE;&#x5F55;"><a href="#p-&#x9012;&#x5F52;&#x521B;&#x5EFA;-&#x5220;&#x9664;&#x975E;&#x7A7A;&#x76EE;&#x5F55;" class="headerlink" title="-p: &#x9012;&#x5F52;&#x521B;&#x5EFA;/&#x5220;&#x9664;&#x975E;&#x7A7A;&#x76EE;&#x5F55;"></a>-p: &#x9012;&#x5F52;&#x521B;&#x5EFA;/&#x5220;&#x9664;&#x975E;&#x7A7A;&#x76EE;&#x5F55;</h5><p><code>pwd</code>: &#x663E;&#x793A;&#x5F53;&#x524D;&#x5DE5;&#x4F5C;&#x76EE;&#x5F55;&#x7684;&#x7EDD;&#x5BF9;&#x8DEF;&#x5F84;(Print work directory)</p>
+<p><code>basename</code>: &#x663E;&#x793A;&#x6587;&#x4EF6;&#x540D;</p>
+<p><code>dirname</code>: &#x663E;&#x793A;&#x8DEF;&#x5F84;</p>
+<h2 id="&#x6587;&#x4EF6;&#x5185;&#x5BB9;&#x76F8;&#x5173;"><a href="#&#x6587;&#x4EF6;&#x5185;&#x5BB9;&#x76F8;&#x5173;" class="headerlink" title="&#x6587;&#x4EF6;&#x5185;&#x5BB9;&#x76F8;&#x5173;"></a>&#x6587;&#x4EF6;&#x5185;&#x5BB9;&#x76F8;&#x5173;</h2><h4 id="&#x67E5;&#x770B;&#x5185;&#x5BB9;"><a href="#&#x67E5;&#x770B;&#x5185;&#x5BB9;" class="headerlink" title="&#x67E5;&#x770B;&#x5185;&#x5BB9;"></a>&#x67E5;&#x770B;&#x5185;&#x5BB9;</h4><p><code>cat</code>: &#x67E5;&#x770B;&#x5185;&#x5BB9;(Catenate)</p>
+<p><code>less</code>: &#x5206;&#x9875;&#x6EE1;&#x5C4F;&#x663E;&#x793A; (less is more)</p>
+<p><code>more</code>: &#x548C;less&#x529F;&#x80FD;&#x76F8;&#x4F3C;&#xFF0C;&#x4F46;&#x662F;&#x6CA1;&#x6709;less&#x5F3A;&#x5927;</p>
+<p><code>head</code>: &#x663E;&#x793A;&#x6587;&#x4EF6;&#x524D;10&#x884C;(-N/-nN &#x53C2;&#x6570;N&#x4E3A;&#x8981;&#x663E;&#x793A;&#x7684;&#x884C;&#x53F7;)</p>
+<p><code>tail</code>: &#x663E;&#x793A;&#x6587;&#x4EF6;&#x5C3E;10&#x884C;(-N/-nN &#x53C2;&#x6570;N&#x4E3A;&#x8981;&#x663E;&#x793A;&#x7684;&#x884C;&#x53F7;)</p>
+<p><code>nl</code>: <code>cat -n</code>&#x7684;&#x52A0;&#x5F3A;&#x7248;(Number of Lines)</p>
+<p><code>strings/od/xxd/</code>: &#x4E8C;&#x8FDB;&#x5236;&#x6587;&#x4EF6;</p>
+<p><code>acroread/gv/</code>: pdf&#x6587;&#x4EF6;&#x548C;PostScript&#x6587;&#x4EF6;(Adobe Reader/Adobe PostScript/Ghostview)(&#x5927;&#x90E8;&#x5206;&#x4E0D;&#x652F;&#x6301;)</p>
+<p><code>xdvi</code>: (TeX&#x6587;&#x672C;&#x5904;&#x7406;&#x5668;&#x8F93;&#x51FA;&#x4E8C;&#x8FDB;&#x5236;&#x6587;&#x4EF6;)(&#x5927;&#x90E8;&#x5206;&#x4E0D;&#x652F;&#x6301;)</p>
+<h5 id="n-N-&#x884C;"><a href="#n-N-&#x884C;" class="headerlink" title="-n/N:&#x884C;"></a>-n/N:&#x884C;</h5><h5 id="h-H-&#x5E2E;&#x52A9;"><a href="#h-H-&#x5E2E;&#x52A9;" class="headerlink" title="-h/H:&#x5E2E;&#x52A9;"></a>-h/H:&#x5E2E;&#x52A9;</h5><h4 id="&#x6587;&#x4EF6;&#x5C5E;&#x6027;&#x76F8;&#x5173;"><a href="#&#x6587;&#x4EF6;&#x5C5E;&#x6027;&#x76F8;&#x5173;" class="headerlink" title="&#x6587;&#x4EF6;&#x5C5E;&#x6027;&#x76F8;&#x5173;"></a>&#x6587;&#x4EF6;&#x5C5E;&#x6027;&#x76F8;&#x5173;</h4><p><code>stat</code>: &#x6587;&#x4EF6;&#x5C5E;&#x6027;(status)</p>
+<p><code>file</code>: &#x6587;&#x4EF6;&#x7C7B;&#x578B;</p>
+<p><code>du</code>: &#x6587;&#x4EF6;&#x5360;&#x7528;&#x7684;&#x78C1;&#x76D8;&#x7A7A;&#x95F4;(disk usage,&#x78C1;&#x76D8;&#x4F7F;&#x7528;&#x60C5;&#x51B5;)</p>
+<p><code>chmod</code> <code>chown</code> <code>chgrp</code>: &#x6539;&#x53D8;&#x6743;&#x9650;(Change mode/owner/group)</p>
+<h5 id="R-&#x9012;&#x5F52;"><a href="#R-&#x9012;&#x5F52;" class="headerlink" title="-R &#x9012;&#x5F52;"></a>-R &#x9012;&#x5F52;</h5><p><code>chattr</code>: &#x6539;&#x53D8;&#x6587;&#x4EF6;&#x5C5E;&#x6027;(Change file attributes)</p>
+<p><code>lsattr</code>: &#x663E;&#x793A;<code>chattr</code>&#x6539;&#x53D8;&#x7684;&#x5C5E;&#x6027;(List file attributes)</p>
+<h4 id="&#x6587;&#x4EF6;&#x7684;&#x6587;&#x672C;&#x6027;&#x64CD;&#x4F5C;"><a href="#&#x6587;&#x4EF6;&#x7684;&#x6587;&#x672C;&#x6027;&#x64CD;&#x4F5C;" class="headerlink" title="&#x6587;&#x4EF6;&#x7684;&#x6587;&#x672C;&#x6027;&#x64CD;&#x4F5C;"></a>&#x6587;&#x4EF6;&#x7684;&#x6587;&#x672C;&#x6027;&#x64CD;&#x4F5C;</h4><p><code>sort</code>: &#x6392;&#x5E8F;</p>
+<p><code>wc</code>: &#x7EDF;&#x8BA1;(Word Count)(&#x884C;  &#x8BCD;  &#x5B57;&#x8282;)</p>
+<p><code>grep</code> <code>egrep</code> <code>fgrep</code>: &#x5339;&#x914D;&#x6B63;&#x5219;/&#x6269;&#x5C55;&#x6B63;&#x5219;/&#x6587;&#x672C;</p>
+<p><code>cut</code>: &#x63D0;&#x53D6;&#x7279;&#x5B9A;&#x5217;</p>
+<p><code>paste</code>: &#x5408;&#x5E76;</p>
+<p><code>uniq</code>: &#x67E5;&#x627E;&#x91CD;&#x590D;&#x6587;&#x672C;(unique)</p>
+<p><code>tee</code>:  (T&#x5F62;&#x6C34;&#x7BA1;&#x63A5;&#x53E3;)</p>
+<p><code>tr</code>: &#x66FF;&#x6362;(Traslate)</p>
+<p><code>printf</code>&#xFF1A;</p>
+<h4 id="&#x9AD8;&#x7EA7;"><a href="#&#x9AD8;&#x7EA7;" class="headerlink" title="&#x9AD8;&#x7EA7;"></a>&#x9AD8;&#x7EA7;</h4><p><code>awk</code> <code>gawk</code>: </p>
+<p><code>sed</code>: </p>
+<p><code>m4</code>: </p>
+<p><code>gcc</code>: gcc/g++&#x7A0B;&#x5E8F;,&#x8BED;&#x8A00;C&#x3001;C++</p>
+<p><code>perl</code>: perl&#x7A0B;&#x5E8F;,&#x8BED;&#x8A00;Perl</p>
+<p><code>python</code>: python&#x7A0B;&#x5E8F;,&#x8BED;&#x8A00;Python</p>
+<p><code>java</code>: javac&#x7A0B;&#x5E8F;,&#x8BED;&#x8A00;java</p>
+<p><code>mono</code>: mono&#x7A0B;&#x5E8F;,&#x8BED;&#x8A00;.NET</p>
+<p><code>php</code>: php&#x7A0B;&#x5E8F;,&#x8BED;&#x8A00;PHP</p>
+<p><code>ruby</code>: ruby&#x7A0B;&#x5E8F;,&#x8BED;&#x8A00;Ruby</p>
+<h4 id="&#x5F52;&#x6863;-&#x6253;&#x5305;&#x3001;&#x538B;&#x7F29;-&#x76F8;&#x5173;-&#x4E00;&#x822C;&#x60C5;&#x51B5;&#x4E0B;-&#x7528;tar"><a href="#&#x5F52;&#x6863;-&#x6253;&#x5305;&#x3001;&#x538B;&#x7F29;-&#x76F8;&#x5173;-&#x4E00;&#x822C;&#x60C5;&#x51B5;&#x4E0B;-&#x7528;tar" class="headerlink" title="&#x5F52;&#x6863;(&#x6253;&#x5305;&#x3001;&#x538B;&#x7F29;)&#x76F8;&#x5173;(&#x4E00;&#x822C;&#x60C5;&#x51B5;&#x4E0B;,&#x7528;tar)"></a>&#x5F52;&#x6863;(&#x6253;&#x5305;&#x3001;&#x538B;&#x7F29;)&#x76F8;&#x5173;(&#x4E00;&#x822C;&#x60C5;&#x51B5;&#x4E0B;,&#x7528;<code>tar</code>)</h4><p><code>tar</code>: &#x6253;&#x5305;(tape Archive)<code>tar -cf</code>&#x4EE3;&#x66FF;(.tar)</p>
+<hr>
+<h5 id="c-&#x521B;&#x5EFA;&#x5F52;&#x6863;&#x6587;&#x4EF6;-Create"><a href="#c-&#x521B;&#x5EFA;&#x5F52;&#x6863;&#x6587;&#x4EF6;-Create" class="headerlink" title="-c &#x521B;&#x5EFA;&#x5F52;&#x6863;&#x6587;&#x4EF6;(Create)"></a>-c &#x521B;&#x5EFA;&#x5F52;&#x6863;&#x6587;&#x4EF6;(Create)</h5><h5 id="t-&#x5217;&#x51FA;&#x6587;&#x4EF6;"><a href="#t-&#x5217;&#x51FA;&#x6587;&#x4EF6;" class="headerlink" title="-t &#x5217;&#x51FA;&#x6587;&#x4EF6;()"></a>-t &#x5217;&#x51FA;&#x6587;&#x4EF6;()</h5><h5 id="x-&#x89E3;&#x538B;"><a href="#x-&#x89E3;&#x538B;" class="headerlink" title="-x &#x89E3;&#x538B;()"></a>-x &#x89E3;&#x538B;()</h5><h5 id="r-&#x5728;&#x5DF2;&#x6709;&#x7684;&#x5F52;&#x6863;&#x6587;&#x4EF6;&#x540E;&#x6DFB;&#x52A0;&#x65B0;&#x7684;&#x6587;&#x4EF6;"><a href="#r-&#x5728;&#x5DF2;&#x6709;&#x7684;&#x5F52;&#x6863;&#x6587;&#x4EF6;&#x540E;&#x6DFB;&#x52A0;&#x65B0;&#x7684;&#x6587;&#x4EF6;" class="headerlink" title="-r &#x5728;&#x5DF2;&#x6709;&#x7684;&#x5F52;&#x6863;&#x6587;&#x4EF6;&#x540E;&#x6DFB;&#x52A0;&#x65B0;&#x7684;&#x6587;&#x4EF6;"></a>-r &#x5728;&#x5DF2;&#x6709;&#x7684;&#x5F52;&#x6863;&#x6587;&#x4EF6;&#x540E;&#x6DFB;&#x52A0;&#x65B0;&#x7684;&#x6587;&#x4EF6;</h5><h5 id="u-&#x5728;&#x5DF2;&#x6709;&#x7684;&#x5F52;&#x6863;&#x6587;&#x4EF6;&#x540E;&#x6DFB;&#x52A0;&#x65B0;&#x7684;&#x6587;&#x4EF6;&#x6216;&#x8005;&#x4FEE;&#x6539;&#x539F;&#x6709;&#x5F52;&#x6863;&#x6587;&#x4EF6;"><a href="#u-&#x5728;&#x5DF2;&#x6709;&#x7684;&#x5F52;&#x6863;&#x6587;&#x4EF6;&#x540E;&#x6DFB;&#x52A0;&#x65B0;&#x7684;&#x6587;&#x4EF6;&#x6216;&#x8005;&#x4FEE;&#x6539;&#x539F;&#x6709;&#x5F52;&#x6863;&#x6587;&#x4EF6;" class="headerlink" title="-u &#x5728;&#x5DF2;&#x6709;&#x7684;&#x5F52;&#x6863;&#x6587;&#x4EF6;&#x540E;&#x6DFB;&#x52A0;&#x65B0;&#x7684;&#x6587;&#x4EF6;&#x6216;&#x8005;&#x4FEE;&#x6539;&#x539F;&#x6709;&#x5F52;&#x6863;&#x6587;&#x4EF6;"></a>-u &#x5728;&#x5DF2;&#x6709;&#x7684;&#x5F52;&#x6863;&#x6587;&#x4EF6;&#x540E;&#x6DFB;&#x52A0;&#x65B0;&#x7684;&#x6587;&#x4EF6;&#x6216;&#x8005;&#x4FEE;&#x6539;&#x539F;&#x6709;&#x5F52;&#x6863;&#x6587;&#x4EF6;</h5><hr>
+<h5 id="z-gzip"><a href="#z-gzip" class="headerlink" title="-z (gzip)"></a>-z (gzip)</h5><h5 id="j-bzip2"><a href="#j-bzip2" class="headerlink" title="-j (bzip2)"></a>-j (bzip2)</h5><h5 id="Z-Unix&#x4F20;&#x7EDF;&#x683C;&#x5F0F;compress"><a href="#Z-Unix&#x4F20;&#x7EDF;&#x683C;&#x5F0F;compress" class="headerlink" title="-Z (Unix&#x4F20;&#x7EDF;&#x683C;&#x5F0F;compress)"></a>-Z (Unix&#x4F20;&#x7EDF;&#x683C;&#x5F0F;compress)</h5><hr>
+<h5 id="v-&#x6253;&#x5370;&#x8BE6;&#x7EC6;&#x4FE1;&#x606F;-View"><a href="#v-&#x6253;&#x5370;&#x8BE6;&#x7EC6;&#x4FE1;&#x606F;-View" class="headerlink" title="-v &#x6253;&#x5370;&#x8BE6;&#x7EC6;&#x4FE1;&#x606F;(View)"></a>-v &#x6253;&#x5370;&#x8BE6;&#x7EC6;&#x4FE1;&#x606F;(View)</h5><h5 id="f-&#x4ECE;&#x6587;&#x4EF6;&#x4E0B;&#x6253;&#x5305;-File"><a href="#f-&#x4ECE;&#x6587;&#x4EF6;&#x4E0B;&#x6253;&#x5305;-File" class="headerlink" title="-f &#x4ECE;&#x6587;&#x4EF6;&#x4E0B;&#x6253;&#x5305;(File)"></a>-f &#x4ECE;&#x6587;&#x4EF6;&#x4E0B;&#x6253;&#x5305;(File)</h5><hr>
+<p><code>zip</code>: Windows Zip&#x683C;&#x5F0F;&#x538B;&#x7F29;(.zip)(.tar.zip)</p>
+<p><code>gzip</code>: GNU Zip&#x683C;&#x5F0F;&#x538B;&#x7F29;(.gz)(.tar.gz),<code>tar -czf</code>&#x4EE3;&#x66FF;</p>
+<p><code>bzip2</code>: BZip&#x683C;&#x5F0F;&#x538B;&#x7F29;(.bz2)(.tar.bz2),<code>tar -cjf</code>&#x4EE3;&#x66FF;</p>
+<p><code>compress</code>: Unix&#x4F20;&#x7EDF;&#x683C;&#x5F0F;&#x538B;&#x7F29;(.Z)(.tar.Z),<code>tar -cZf</code>&#x4EE3;&#x66FF;</p>
+<p><code>unzip</code>: </p>
+<p><code>gunzip</code>: <code>tar -xzf</code>&#x4EE3;&#x66FF;</p>
+<p><code>bunzip2</code>: <code>tar -xjf</code>&#x4EE3;&#x66FF;</p>
+<p><code>uncompress</code>: <code>tar -xZf</code>&#x4EE3;&#x66FF;</p>
+<p><code>zcat</code>: (&#x652F;&#x6301;gzip Unix&#x4F20;&#x7EDF;&#x683C;&#x5F0F;)</p>
+<p><code>bzcat</code>: (&#x652F;&#x6301;BZip&#x683C;&#x5F0F;)</p>
+<p><code>metamail</code>: (MIME&#x683C;&#x5F0F;)</p>
+<p><code>rpm2cpio</code>:rpm&#x5305;&#x4E2D;&#x62BD;&#x53D6;&#x6587;&#x4EF6;</p>
+<blockquote>
+<p>&#x6CE8;&#x610F;:&#x6253;&#x5305;&#x548C;&#x538B;&#x7F29;&#x662F;&#x4E24;&#x4E2A;&#x6B65;&#x9AA4;&#x3002;</p>
+</blockquote>
+<h4 id="&#x67E5;&#x627E;&#x6587;&#x4EF6;"><a href="#&#x67E5;&#x627E;&#x6587;&#x4EF6;" class="headerlink" title="&#x67E5;&#x627E;&#x6587;&#x4EF6;"></a>&#x67E5;&#x627E;&#x6587;&#x4EF6;</h4><p><code>find</code>: &#x5728;&#x5F53;&#x524D;&#x76EE;&#x5F55;&#x6811;&#x4E2D;&#x67E5;&#x627E;&#x6587;&#x4EF6;</p>
+<p><code>whereis</code>: &#x67E5;&#x627E;&#x6587;&#x4EF6;&#x6216;&#x8005;&#x547D;&#x4EE4;&#x7684;&#x6E90;&#x6587;&#x4EF6;&#x5728;&#x54EA;&#x91CC;</p>
+<p><code>type</code>: &#x67E5;&#x627E;shell&#x547D;&#x4EE4;&#x7684;&#x7C7B;&#x578B;(bash shell&#x5185;&#x90E8;&#x547D;&#x4EE4;)</p>
+<p><code>which</code>: &#x67E5;&#x627E;shell&#x547D;&#x4EE4;&#x6240;&#x5728;&#x7684;&#x4F4D;&#x7F6E;</p>
+<p><code>locate</code>: &#x521B;&#x5EFA;&#x7D22;&#x5F15; &#x641C;&#x7D22;/var/lib/mlocate/mlocate.db</p>
+<h4 id="&#x4FEE;&#x6539;&#x5185;&#x5BB9;"><a href="#&#x4FEE;&#x6539;&#x5185;&#x5BB9;" class="headerlink" title="&#x4FEE;&#x6539;&#x5185;&#x5BB9;"></a>&#x4FEE;&#x6539;&#x5185;&#x5BB9;</h4><p><code>vi/vim</code>: Vi(Vim)(&#x5176;&#x4ED6;&#x7F16;&#x8F91;&#x5668;Emacs,soffice,abiword,gnumeric)</p>
+<p><code>vimtutor</code>: Vim&#x5E2E;&#x52A9;</p>
+<h2 id="&#x5E2E;&#x52A9;"><a href="#&#x5E2E;&#x52A9;" class="headerlink" title="&#x5E2E;&#x52A9;"></a>&#x5E2E;&#x52A9;</h2><p><code>man</code>: (manual)</p>
+<p><code>help</code>:</p>
+<p><code>info</code>: </p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/基础命令/" rel="tag">#基础命令</a>
+          
+            <a href="/tags/file/" rel="tag">#file</a>
+          
+            <a href="/tags/directory/" rel="tag">#directory</a>
+          
+            <a href="/tags/tar/" rel="tag">#tar</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/06/25/Thinking-in-java-基础之集合框架/" rel="next" title="Thinking in java 基础之集合框架">
+                <i class="fa fa-chevron-left"></i> Thinking in java 基础之集合框架
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/06/27/Linux下各目录的默认含义/" rel="prev" title="Linux下各目录的默认含义">
+                Linux下各目录的默认含义 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- Go to www.addthis.com/dashboard to customize your tools -->
+<script type = "text/javascript" src = "//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-577a08f17286c0c0" async = "async" ></script>
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/06/27/Linux-基础命令总结/"
+           data-title="Linux 基础命令总结" data-url="https://muxiaobai.github.io/2016/06/27/Linux-基础命令总结/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Inhaltsverzeichnis
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Übersicht
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/img/avatars.jpg"
+               alt="Mu Xiaobai(慕小白)" />
+          <p class="site-author-name" itemprop="name">Mu Xiaobai(慕小白)</p>
+          <p class="site-description motion-element" itemprop="description">记录日常工作中遇到的技术问题</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">17</span>
+              <span class="site-state-item-name">Artikel</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-name">Kategorien</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">38</span>
+                <span class="site-state-item-name">Tags</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#目录-文件夹directory-文件-file-相关"><span class="nav-number">1.</span> <span class="nav-text">目录(文件夹directory)/文件(file)相关</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#r-递归"><span class="nav-number">1.0.0.1.</span> <span class="nav-text">-r: 递归</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#f-强制-不询问覆盖或删除"><span class="nav-number">1.0.0.2.</span> <span class="nav-text">-f: 强制(不询问覆盖或删除)</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#p-递归创建-删除非空目录"><span class="nav-number">1.0.0.3.</span> <span class="nav-text">-p: 递归创建/删除非空目录</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#文件内容相关"><span class="nav-number">2.</span> <span class="nav-text">文件内容相关</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#查看内容"><span class="nav-number">2.0.1.</span> <span class="nav-text">查看内容</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#n-N-行"><span class="nav-number">2.0.1.1.</span> <span class="nav-text">-n/N:行</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#h-H-帮助"><span class="nav-number">2.0.1.2.</span> <span class="nav-text">-h/H:帮助</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#文件属性相关"><span class="nav-number">2.0.2.</span> <span class="nav-text">文件属性相关</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#R-递归"><span class="nav-number">2.0.2.1.</span> <span class="nav-text">-R 递归</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#文件的文本性操作"><span class="nav-number">2.0.3.</span> <span class="nav-text">文件的文本性操作</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#高级"><span class="nav-number">2.0.4.</span> <span class="nav-text">高级</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#归档-打包、压缩-相关-一般情况下-用tar"><span class="nav-number">2.0.5.</span> <span class="nav-text">归档(打包、压缩)相关(一般情况下,用tar)</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#c-创建归档文件-Create"><span class="nav-number">2.0.5.1.</span> <span class="nav-text">-c 创建归档文件(Create)</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#t-列出文件"><span class="nav-number">2.0.5.2.</span> <span class="nav-text">-t 列出文件()</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#x-解压"><span class="nav-number">2.0.5.3.</span> <span class="nav-text">-x 解压()</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#r-在已有的归档文件后添加新的文件"><span class="nav-number">2.0.5.4.</span> <span class="nav-text">-r 在已有的归档文件后添加新的文件</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#u-在已有的归档文件后添加新的文件或者修改原有归档文件"><span class="nav-number">2.0.5.5.</span> <span class="nav-text">-u 在已有的归档文件后添加新的文件或者修改原有归档文件</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#z-gzip"><span class="nav-number">2.0.5.6.</span> <span class="nav-text">-z (gzip)</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#j-bzip2"><span class="nav-number">2.0.5.7.</span> <span class="nav-text">-j (bzip2)</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Z-Unix传统格式compress"><span class="nav-number">2.0.5.8.</span> <span class="nav-text">-Z (Unix传统格式compress)</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#v-打印详细信息-View"><span class="nav-number">2.0.5.9.</span> <span class="nav-text">-v 打印详细信息(View)</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#f-从文件下打包-File"><span class="nav-number">2.0.5.10.</span> <span class="nav-text">-f 从文件下打包(File)</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#查找文件"><span class="nav-number">2.0.6.</span> <span class="nav-text">查找文件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#修改内容"><span class="nav-number">2.0.7.</span> <span class="nav-text">修改内容</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#帮助"><span class="nav-number">3.</span> <span class="nav-text">帮助</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Mu Xiaobai(慕小白)</span>
+</div>
+
+<div class="powered-by">
+  Erstellt mit  <a class="theme-link" href="http://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"muxiaobai"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+       search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+    'use strict';
+    $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+            // get the contents from search data
+            isfetched = true;
+            $('.popup').detach().appendTo('.header-inner');
+            var datas = $( "entry", xmlResponse ).map(function() {
+                return {
+                    title: $( "title", this ).text(),
+                    content: $("content",this).text(),
+                    url: $( "url" , this).text()
+                };
+            }).get();
+            var $input = document.getElementById(search_id);
+            var $resultContent = document.getElementById(content_id);
+            $input.addEventListener('input', function(){
+                var matchcounts = 0;
+                var str='<ul class=\"search-result-list\">';
+                var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                $resultContent.innerHTML = "";
+                if (this.value.trim().length > 1) {
+                // perform local searching
+                datas.forEach(function(data) {
+                    var isMatch = true;
+                    var content_index = [];
+                    var data_title = data.title.trim().toLowerCase();
+                    var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                    var data_url = data.url;
+                    var index_title = -1;
+                    var index_content = -1;
+                    var first_occur = -1;
+                    // only match artiles with not empty titles and contents
+                    if(data_title != '' && data_content != '') {
+                        keywords.forEach(function(keyword, i) {
+                            index_title = data_title.indexOf(keyword);
+                            index_content = data_content.indexOf(keyword);
+                            if( index_title < 0 && index_content < 0 ){
+                                isMatch = false;
+                            } else {
+                                if (index_content < 0) {
+                                    index_content = 0;
+                                }
+                                if (i == 0) {
+                                    first_occur = index_content;
+                                }
+                            }
+                        });
+                    }
+                    // show search results
+                    if (isMatch) {
+                        matchcounts += 1;
+                        str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                        var content = data.content.trim().replace(/<[^>]+>/g,"");
+                        if (first_occur >= 0) {
+                            // cut out 100 characters
+                            var start = first_occur - 20;
+                            var end = first_occur + 80;
+                            if(start < 0){
+                                start = 0;
+                            }
+                            if(start == 0){
+                                end = 50;
+                            }
+                            if(end > content.length){
+                                end = content.length;
+                            }
+                            var match_content = content.substring(start, end);
+                            // highlight all keywords
+                            keywords.forEach(function(keyword){
+                                var regS = new RegExp(keyword, "gi");
+                                match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                            });
+
+                            str += "<p class=\"search-result\">" + match_content +"...</p>"
+                        }
+                        str += "</li>";
+                    }
+                })};
+                str += "</ul>";
+                if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+                if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+                $resultContent.innerHTML = str;
+            });
+            proceedsearch();
+        }
+    });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+  
+
+  
+
+  
+
+</body>
+</html>
