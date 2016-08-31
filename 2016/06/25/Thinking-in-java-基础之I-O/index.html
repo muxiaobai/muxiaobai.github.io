@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Thinking in java 基础之I/O | 技术笔记</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="主要总结java.io包中的类结构作用！">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Thinking in java 基础之I/O">
+<meta property="og:url" content="https://muxiaobai.github.io/2016/06/25/Thinking-in-java-基础之I-O/index.html">
+<meta property="og:site_name" content="技术笔记">
+<meta property="og:description" content="主要总结java.io包中的类结构作用！">
+<meta property="og:image" content="https://muxiaobai.github.io/2016/06/25/Thinking-in-java-基础之I-O/201606250959.jpg">
+<meta property="og:image" content="https://muxiaobai.github.io/2016/06/25/Thinking-in-java-基础之I-O/20160625095901.png">
+<meta property="og:updated_time" content="2016-08-31T12:24:37.174Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Thinking in java 基础之I/O">
+<meta name="twitter:description" content="主要总结java.io包中的类结构作用！">
+<meta name="twitter:image" content="https://muxiaobai.github.io/2016/06/25/Thinking-in-java-基础之I-O/201606250959.jpg">
+  
+    <link rel="alternate" href="/atom.xml" title="技术笔记" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">技术笔记</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">有输入,有输出</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://muxiaobai.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-Thinking-in-java-基础之I-O" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/06/25/Thinking-in-java-基础之I-O/" class="article-date">
+  <time datetime="2016-06-25T09:57:56.000Z" itemprop="datePublished">2016-06-25</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/java/">java</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Thinking in java 基础之I/O
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="Thinking-in-java&#x57FA;&#x7840;&#x4E4B;-I-O"><a href="#Thinking-in-java&#x57FA;&#x7840;&#x4E4B;-I-O" class="headerlink" title="Thinking in java&#x57FA;&#x7840;&#x4E4B; I/O"></a>Thinking in java&#x57FA;&#x7840;&#x4E4B; I/O</h2><h4 id="&#x9996;&#x5148;&#x7ED9;&#x56FE;&#x4E86;&#x89E3;&#x5927;&#x6982;&#x5185;&#x5BB9;&#xFF0C;&#x5F53;&#x4F60;&#x5FD8;&#x8BB0;&#x4E00;&#x4E9B;&#x7C7B;&#x7684;&#x7EE7;&#x627F;&#x5173;&#x7CFB;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x53EF;&#x4EE5;&#x56DE;&#x8FC7;&#x5934;&#x6765;&#x770B;&#x4E00;&#x773C;"><a href="#&#x9996;&#x5148;&#x7ED9;&#x56FE;&#x4E86;&#x89E3;&#x5927;&#x6982;&#x5185;&#x5BB9;&#xFF0C;&#x5F53;&#x4F60;&#x5FD8;&#x8BB0;&#x4E00;&#x4E9B;&#x7C7B;&#x7684;&#x7EE7;&#x627F;&#x5173;&#x7CFB;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x53EF;&#x4EE5;&#x56DE;&#x8FC7;&#x5934;&#x6765;&#x770B;&#x4E00;&#x773C;" class="headerlink" title="&#x9996;&#x5148;&#x7ED9;&#x56FE;&#x4E86;&#x89E3;&#x5927;&#x6982;&#x5185;&#x5BB9;&#xFF0C;&#x5F53;&#x4F60;&#x5FD8;&#x8BB0;&#x4E00;&#x4E9B;&#x7C7B;&#x7684;&#x7EE7;&#x627F;&#x5173;&#x7CFB;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x53EF;&#x4EE5;&#x56DE;&#x8FC7;&#x5934;&#x6765;&#x770B;&#x4E00;&#x773C;"></a>&#x9996;&#x5148;&#x7ED9;&#x56FE;&#x4E86;&#x89E3;&#x5927;&#x6982;&#x5185;&#x5BB9;&#xFF0C;&#x5F53;&#x4F60;&#x5FD8;&#x8BB0;&#x4E00;&#x4E9B;&#x7C7B;&#x7684;&#x7EE7;&#x627F;&#x5173;&#x7CFB;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x53EF;&#x4EE5;&#x56DE;&#x8FC7;&#x5934;&#x6765;&#x770B;&#x4E00;&#x773C;</h4><p><img src="/2016/06/25/Thinking-in-java-&#x57FA;&#x7840;&#x4E4B;I-O/201606250959.jpg" alt="I/O&#x7C7B;&#x56FE;"><br><a id="more"></a><br>java&#x6240;&#x6709;&#x7684;IO&#x64CD;&#x4F5C;&#x90FD;&#x5728;java.io&#x5305;&#x4E4B;&#x4E2D;&#x8FDB;&#x884C;&#x5B9A;&#x4E49;&#xFF0C;&#x800C;&#x4E14;&#x6574;&#x4E2A;java.io&#x5305;&#x5B9E;&#x9645;&#x4E0A;&#x5C31;&#x662F;&#x4E94;&#x4E2A;&#x7C7B;&#x548C;&#x4E00;&#x4E2A;&#x63A5;&#x53E3;&#xFF1A;</p>
+<p> &#x2022; &#x4E94;&#x4E2A;&#x7C7B;&#xFF1A;File&#x3001;InputStream&#x3001;OutputStream&#x3001;Reader&#x3001;Wirter</p>
+<p> &#x2022; &#x4E00;&#x4E2A;&#x63A5;&#x53E3;&#xFF1A;Serializable</p>
+<hr>
+<h3 id="&#x7B80;&#x4ECB;&#x5B57;&#x7B26;&#x6D41;&#x548C;&#x5B57;&#x8282;&#x6D41;&#xFF0C;&#x8F93;&#x5165;&#x6D41;&#x548C;&#x8F93;&#x51FA;&#x6D41;"><a href="#&#x7B80;&#x4ECB;&#x5B57;&#x7B26;&#x6D41;&#x548C;&#x5B57;&#x8282;&#x6D41;&#xFF0C;&#x8F93;&#x5165;&#x6D41;&#x548C;&#x8F93;&#x51FA;&#x6D41;" class="headerlink" title="&#x7B80;&#x4ECB;&#x5B57;&#x7B26;&#x6D41;&#x548C;&#x5B57;&#x8282;&#x6D41;&#xFF0C;&#x8F93;&#x5165;&#x6D41;&#x548C;&#x8F93;&#x51FA;&#x6D41;"></a>&#x7B80;&#x4ECB;&#x5B57;&#x7B26;&#x6D41;&#x548C;&#x5B57;&#x8282;&#x6D41;&#xFF0C;&#x8F93;&#x5165;&#x6D41;&#x548C;&#x8F93;&#x51FA;&#x6D41;</h3><p>JDK&#x6240;&#x63D0;&#x4F9B;&#x7684;&#x6240;&#x6709;&#x6D41;&#x7C7B;&#x4F4D;&#x4E8E;java.io&#x5305;&#x4E2D;&#xFF0C;&#x90FD;&#x5206;&#x522B;&#x7EE7;&#x627F;&#x81EA;&#x4EE5;&#x4E0B;&#x56DB;&#x79CD;&#x62BD;&#x8C61;&#x6D41;&#x7C7B;&#x3002;</p>
+<ul>
+<li>InputStream&#xFF1A;&#x7EE7;&#x627F;&#x81EA;InputStream&#x7684;&#x6D41;&#x90FD;&#x662F;&#x7528;&#x4E8E;&#x5411;&#x7A0B;&#x5E8F;&#x4E2D;&#x8F93;&#x5165;&#x6570;&#x636E;&#x7684;&#xFF0C;&#x4E14;&#x6570;&#x636E;&#x5355;&#x4F4D;&#x90FD;&#x662F;&#x5B57;&#x8282;&#xFF08;8&#x4F4D;&#xFF09;&#x3002;</li>
+</ul>
+<ul>
+<li><p>OutputStream&#xFF1A;&#x7EE7;&#x627F;&#x81EA;OutputStream&#x7684;&#x6D41;&#x90FD;&#x662F;&#x7A0B;&#x5E8F;&#x7528;&#x4E8E;&#x5411;&#x5916;&#x8F93;&#x51FA;&#x6570;&#x636E;&#x7684;&#xFF0C;&#x4E14;&#x6570;&#x636E;&#x5355;&#x4F4D;&#x90FD;&#x662F;&#x5B57;&#x8282;&#xFF08;8&#x4F4D;&#xFF09;&#x3002;</p>
+</li>
+<li><p>Reader&#xFF1A;&#x7EE7;&#x627F;&#x81EA;Reader&#x7684;&#x6D41;&#x90FD;&#x662F;&#x7528;&#x4E8E;&#x5411;&#x7A0B;&#x5E8F;&#x4E2D;&#x8F93;&#x5165;&#x6570;&#x636E;&#x7684;&#xFF0C;&#x4E14;&#x6570;&#x636E;&#x5355;&#x4F4D;&#x90FD;&#x662F;&#x5B57;&#x7B26;&#xFF08;16&#x4F4D;&#xFF09;&#x3002;</p>
+</li>
+<li><p>Writer&#xFF1A;&#x7EE7;&#x627F;&#x81EA;Writer&#x7684;&#x6D41;&#x90FD;&#x662F;&#x7A0B;&#x5E8F;&#x7528;&#x4E8E;&#x5411;&#x5916;&#x8F93;&#x51FA;&#x6570;&#x636E;&#x7684;&#xFF0C;&#x4E14;&#x6570;&#x636E;&#x5355;&#x4F4D;&#x90FD;&#x662F;&#x5B57;&#x7B26;&#xFF08;16&#x4F4D;&#xFF09;&#x3002;</p>
+</li>
+</ul>
+<p>&#x3010;&#x8F93;&#x5165;&#x548C;&#x8F93;&#x51FA;&#x3011;&#x662F;&#x76F8;&#x5BF9;&#x4E8E;&#x3010;&#x7A0B;&#x5E8F;&#x3011;&#x800C;&#x8A00;&#x7684;&#x3002;&#x4EE5;main()&#x4E3A;&#x4F8B;&#xFF0C;main()&#x5C31;&#x76F8;&#x5F53;&#x4E8E;&#x7A0B;&#x5E8F;&#xFF0C;&#x5F53;&#x4F7F;&#x7528;&#x8F93;&#x5165;(InputStream/Reader&#x8F93;&#x5165;&#x5BF9;&#x5E94;&#x7A0B;&#x5E8F;&#x5C31;&#x662F;&#x8BFB;&#x53D6;&#x6570;&#x636E;&#xFF0C;&#x5F53;&#x7136;&#x662F;Reader)&#x65F6;&#xFF0C;&#x662F;&#x4ECE;&#x5916;&#x754C;&#x8BFB;&#x53D6;&#x6570;&#x636E;&#x5230;main()&#x4E2D;&#xFF0C;&#x3010;&#x4E3E;&#x4F8B;&#x4EE3;&#x7801;&#x3011;&#x3002;&#x800C;&#x8F93;&#x51FA;&#x5219;&#x662F;&#xFF0C;&#x7A0B;&#x5E8F;&#x4EA7;&#x751F;&#x7684;&#x7ED3;&#x679C;&#x8F93;&#x51FA;(OutputStream/Writer&#x8F93;&#x51FA;&#x5C31;&#x662F;&#x5199;&#x51FA;&#xFF0C;&#x5BF9;&#x5E94;Writer)&#xFF0C;&#x53EF;&#x4EE5;&#x8F93;&#x51FA;&#x5230;&#x663E;&#x793A;&#x5C4F;&#xFF0C;&#x63A7;&#x5236;&#x53F0;&#xFF0C;&#x6587;&#x4EF6;&#x7CFB;&#x7EDF;&#x7B49;&#x3002;<br>&#x3010;&#x5B57;&#x8282;&#x6D41;&#x548C;&#x5B57;&#x7B26;&#x6D41;&#x3011;&#x5927;&#x90E8;&#x5206;&#x6587;&#x4EF6;&#xFF08;&#x56FE;&#x7247;&#xFF0C;&#x89C6;&#x9891;&#xFF0C;&#x97F3;&#x4E50;&#x7B49;&#xFF09;&#x90FD;&#x662F;&#x4F7F;&#x7528;&#x5B57;&#x8282;&#x5B58;&#x653E;&#x7684;&#x6570;&#x636E;&#xFF0C;&#x56E0;&#x6B64;&#xFF0C;&#x5B57;&#x8282;&#x4E5F;&#x662F;&#x7528;&#x7684;&#x5341;&#x5206;&#x5E7F;&#x6CDB;&#x7684;&#xFF0C;&#x4F46;&#x662F;&#x5B57;&#x8282;&#x5728;&#x5904;&#x7406;&#x4E2D;&#x6587;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x5C31;&#x6CA1;&#x6709;&#x5B57;&#x7B26;&#x6D41;&#x5177;&#x6709;&#x4F18;&#x52BF;&#xFF0C;&#x56E0;&#x4E3A;&#x4E2D;&#x6587;&#x5B57;&#x5BF9;&#x5E94;&#x4E24;&#x4E2A;&#x5B57;&#x8282;&#xFF0C;&#x800C;&#x5B57;&#x7B26;&#x4E5F;&#x5BF9;&#x5E94;&#x4E24;&#x4E2A;&#x5B57;&#x8282;&#xFF0C;&#x521A;&#x597D;&#x80FD;&#x5BF9;&#x5E94;&#x4E0A;&#xFF0C;&#x56E0;&#x6B64;&#xFF0C;&#x5982;&#x679C;&#x6709;&#x4E2D;&#x6587;&#x5904;&#x7406;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x4F18;&#x5148;&#x8003;&#x8651;&#x4F7F;&#x7528;&#x5B57;&#x7B26;&#x6D41;&#x3002;<br>&#x4E3B;&#x8981;&#x7684;&#x533A;&#x522B;&#xFF1A;<br>&#x5B57;&#x8282;&#x6D41;&#x6CA1;&#x6709;&#x4F7F;&#x7528;&#x5230;&#x7F13;&#x51B2;&#x533A;&#xFF0C;&#x800C;&#x5B57;&#x7B26;&#x6D41;&#x4F7F;&#x7528;&#x4E86;&#xFF1B;<br>&#x5904;&#x7406;&#x5404;&#x79CD;&#x6570;&#x636E;&#x90FD;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;&#x5B57;&#x8282;&#x6D41;&#x5B8C;&#x6210;&#xFF0C;&#x800C;&#x5728;&#x5904;&#x7406;&#x4E2D;&#x6587;&#x7684;&#x65F6;&#x5019;&#x4F7F;&#x7528;&#x5B57;&#x7B26;&#x6D41;&#x4F1A;&#x66F4;&#x597D;&#x3002;<br>&#x5B57;&#x8282;&#x6D41;&#x548C;&#x5B57;&#x7B26;&#x6D41;&#x7684;&#x8F6C;&#x6362;&#xFF1A;&#xFF08;&#x4E0A;&#x4EE3;&#x7801;&#xFF09;</p>
+<p>&#x5C06;&#x5B57;&#x8282;&#x8F93;&#x51FA;&#x6D41;&#x53D8;&#x4E3A;&#x5B57;&#x7B26;&#x8F93;&#x51FA;&#x6D41; OutputStream&#x2192; Writer &#xFF1A;&#x7528;OutputStreamWriter&#xFF1B;<br>&#x5C06;&#x5B57;&#x8282;&#x8F93;&#x5165;&#x6D41;&#x53D8;&#x4E3A;&#x5B57;&#x7B26;&#x8F93;&#x5165;&#x6D41;InputStream &#x2192; Reader&#xFF1A;&#x7528; InputStreamReader&#x3002;</p>
+<h3 id="&#x6587;&#x4EF6;&#x64CD;&#x4F5C;-&#x6587;&#x4EF6;&#x7CFB;&#x7EDF;&#xFF08;File&#xFF09;&#xFF08;&#x8BFB;&#x6587;&#x4EF6;&#xFF0C;&#x5199;&#x6587;&#x4EF6;-&#x4E0A;&#x4EE3;&#x7801;&#xFF09;"><a href="#&#x6587;&#x4EF6;&#x64CD;&#x4F5C;-&#x6587;&#x4EF6;&#x7CFB;&#x7EDF;&#xFF08;File&#xFF09;&#xFF08;&#x8BFB;&#x6587;&#x4EF6;&#xFF0C;&#x5199;&#x6587;&#x4EF6;-&#x4E0A;&#x4EE3;&#x7801;&#xFF09;" class="headerlink" title="&#x6587;&#x4EF6;&#x64CD;&#x4F5C;/&#x6587;&#x4EF6;&#x7CFB;&#x7EDF;&#xFF08;File&#xFF09;&#xFF08;&#x8BFB;&#x6587;&#x4EF6;&#xFF0C;&#x5199;&#x6587;&#x4EF6; &#x4E0A;&#x4EE3;&#x7801;&#xFF09;"></a>&#x6587;&#x4EF6;&#x64CD;&#x4F5C;/&#x6587;&#x4EF6;&#x7CFB;&#x7EDF;&#xFF08;File&#xFF09;&#xFF08;&#x8BFB;&#x6587;&#x4EF6;&#xFF0C;&#x5199;&#x6587;&#x4EF6; &#x4E0A;&#x4EE3;&#x7801;&#xFF09;</h3><p>&#x5728;&#x6574;&#x4E2A;java.io&#x5305;&#x4E4B;&#x4E2D;&#xFF0C;File&#x7C7B;&#x662F;&#x552F;&#x4E00;&#x7684;&#x4E00;&#x4E2A;&#x4E0E;&#x6587;&#x4EF6;&#x672C;&#x8EAB;&#x64CD;&#x4F5C;&#x6709;&#x5173;&#x7684;&#x7C7B;&#xFF0C;&#x6240;&#x8C13;&#x7684;&#x6587;&#x4EF6;&#x672C;&#x8EAB;&#x6307;&#x7684;&#x662F;&#xFF1A;&#x6587;&#x4EF6;&#x7684;&#x521B;&#x5EFA;&#x3001;&#x5220;&#x9664;&#x3001;&#x91CD;&#x547D;&#x540D;&#x3001;&#x53D6;&#x5F97;&#x6587;&#x4EF6;&#x5927;&#x5C0F;&#x3001;&#x4FEE;&#x6539;&#x65E5;&#x671F;&#x3002;&#x4F46;&#x662F;&#x4E0D;&#x5305;&#x62EC;&#x6587;&#x4EF6;&#x5185;&#x5BB9;&#xFF0C;&#x5207;&#x8BB0;&#x3002;<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">package IO;</div><div class="line">import java.io.File;</div><div class="line">public class FileDemo {</div><div class="line">    public static void main(String[] args) {</div><div class="line">        String dirname = &quot;E:&quot;+File.separator+&quot;Demo&quot;;</div><div class="line">          File f1 = new File(dirname);</div><div class="line">          if (f1.isDirectory()) {</div><div class="line">             System.out.println( &quot;Directory of &quot; + dirname);</div><div class="line">             String s[] = f1.list();</div><div class="line">             for (int i=0; i &lt; s.length; i++) {</div><div class="line">                File f = new File(dirname + &quot;/&quot; + s[i]);</div><div class="line">                if (f.isDirectory()) {</div><div class="line">                   System.out.println(s[i] + &quot; is a directory&quot;);</div><div class="line">                } else {</div><div class="line">                   System.out.println(s[i] + &quot; is a file&quot;);</div><div class="line">                }</div><div class="line">             }</div><div class="line">          } else {</div><div class="line">             System.out.println(dirname + &quot; is not a directory&quot;);</div><div class="line">        }</div><div class="line">    }</div><div class="line">}</div></pre></td></tr></table></figure></p>
+<p>Directory of E:\Demo</p>
+<p>AndroidDemo is a directory</p>
+<p>eclipseDemo is a directory</p>
+<p>GitHubDemo is a directory</p>
+<p>&#x6211;&#x7684;&#x7535;&#x8111;&#x3010;E&#xFF1A;/Demo&#x3011;&#x4E0B;&#x9762;&#x6709;&#x4E09;&#x4E2A;&#x6587;&#x4EF6;&#x76EE;&#x5F55;&#xFF0C;&#x6240;&#x4EE5;&#x663E;&#x793A;&#x4E3A;directory&#x3002;&#x4E0B;&#x9762;&#x7ED9;&#x51FA;File&#x7C7B;&#x7684;&#x65B9;&#x6CD5;File&#x65B9;&#x6CD5;</p>
+<p><img src="/2016/06/25/Thinking-in-java-&#x57FA;&#x7840;&#x4E4B;I-O/20160625095901.png" alt="I/O&#x7C7B;&#x56FE;"></p>
+<h4 id="&#x6587;&#x4EF6;&#x8BFB;&#x53D6;&#x548C;&#x6587;&#x4EF6;&#x8F93;&#x51FA;"><a href="#&#x6587;&#x4EF6;&#x8BFB;&#x53D6;&#x548C;&#x6587;&#x4EF6;&#x8F93;&#x51FA;" class="headerlink" title="&#x6587;&#x4EF6;&#x8BFB;&#x53D6;&#x548C;&#x6587;&#x4EF6;&#x8F93;&#x51FA;"></a>&#x6587;&#x4EF6;&#x8BFB;&#x53D6;&#x548C;&#x6587;&#x4EF6;&#x8F93;&#x51FA;</h4><ul>
+<li><p>&#x6587;&#x4EF6;&#x8F93;&#x51FA;</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">FileOutputStream</div><div class="line"></div><div class="line">package IO;</div><div class="line">import java.io.File;</div><div class="line">import java.io.FileOutputStream;</div><div class="line">import java.io.IOException;</div><div class="line">import java.io.OutputStream;</div><div class="line"></div><div class="line">public class FileOutputStreamDemo {</div><div class="line">public static void main(String[] args) throws IOException {</div><div class="line">File file = new File(&quot;E:&quot; + File.separator + &quot;hellodemo&quot;</div><div class="line"></div><div class="line">File.separator + &quot;test.txt&quot;); // &#x5B9A;&#x4E49;&#x6587;&#x4EF6;&#x8DEF;&#x5F84;</div><div class="line">if (!file.getParentFile().exists()) { // &#x7236;&#x8DEF;&#x5F84;&#x4E0D;&#x5B58;&#x5728;</div><div class="line">file.getParentFile().mkdirs(); // &#x521B;&#x5EFA;&#x7236;&#x8DEF;&#x5F84;</div><div class="line">}</div><div class="line">OutputStream output = new FileOutputStream(file); // &#x901A;&#x8FC7;&#x5B50;&#x7C7B;&#x5B9E;&#x4F8B;&#x5316;&#x7236;&#x7C7B;</div><div class="line">String outputdata = &quot;Hello World&quot;;// &#x8981;&#x8F93;&#x51FA;&#x7684;&#x6570;&#x636E;</div><div class="line">output.write(outputdata.getBytes()); // &#x8F93;&#x51FA;&#x6570;&#x636E;&#xFF0C;&#x8981;&#x5C06;&#x6570;&#x636E;&#x53D8;&#x4E3A;&#x5B57;&#x8282;&#x6570;&#x7EC4;&#x8F93;&#x51FA;</div><div class="line">output.close(); // &#x5173;&#x95ED;&#x8D44;&#x6E90;</div><div class="line">}</div><div class="line">}</div></pre></td></tr></table></figure>
+</li>
+<li><p>FileWriter</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">package IO;</div><div class="line"></div><div class="line">import java.io.File;</div><div class="line">import java.io.FileWriter;</div><div class="line">import java.io.IOException;</div><div class="line">import java.io.Writer;</div><div class="line"></div><div class="line">public class FileWriterDemo {</div><div class="line">public static void main(String[] args) throws IOException {</div><div class="line">File file = new File(&quot;E:&quot; + File.separator + &quot;hellodemo&quot;</div><div class="line"></div><div class="line">File.separator + &quot;test.txt&quot;); // &#x5B9A;&#x4E49;&#x6587;&#x4EF6;&#x8DEF;&#x5F84;</div><div class="line">if (!file.getParentFile().exists()) {</div><div class="line">file.getParentFile().mkdirs();// &#x521B;&#x5EFA;&#x7236;&#x76EE;&#x5F55;</div><div class="line">}</div><div class="line">Writer out = new FileWriter(file);</div><div class="line">String data = &quot;Hello World&quot;;</div><div class="line">out.write(data) ; // &#x76F4;&#x63A5;&#x8F93;&#x51FA;&#x5B57;&#x7B26;&#x4E32;</div><div class="line">out.close() ;</div><div class="line"></div><div class="line">}</div><div class="line">}</div></pre></td></tr></table></figure>
+</li>
+<li><p>&#x6587;&#x4EF6;&#x8F93;&#x5165;</p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div></pre></td><td class="code"><pre><div class="line"> - FileInputStream</div><div class="line">package IO;</div><div class="line"></div><div class="line">import java.io.File;</div><div class="line">import java.io.FileInputStream;</div><div class="line">import java.io.IOException;</div><div class="line">import java.io.InputStream;</div><div class="line"></div><div class="line">public class FileInputStreamDemo {</div><div class="line">public static void main(String[] args) throws IOException {</div><div class="line">File file = new File(&quot;E:&quot; + File.separator + &quot;hellodemo&quot;</div><div class="line"></div><div class="line">File.separator + &quot;test.txt&quot;); // &#x5B9A;&#x4E49;&#x6587;&#x4EF6;&#x8DEF;&#x5F84;</div><div class="line">if (file.exists()) { // &#x6587;&#x4EF6;&#x5B58;&#x5728;&#x5219;&#x53EF;&#x4EE5;&#x8BFB;&#x53D6;</div><div class="line">InputStream input = new FileInputStream(file) ;</div><div class="line">byte data[] = new byte[1024]; // &#x5047;&#x8BBE;&#x8981;&#x8BFB;&#x7684;&#x957F;&#x5EA6;&#x662F;1024</div><div class="line">int foot = 0; // &#x64CD;&#x4F5C;data&#x6570;&#x7EC4;&#x7684;&#x811A;&#x6807;</div><div class="line">int temp = 0;</div><div class="line">// &#x7B2C;&#x4E00;&#x6B65;&#xFF1A;temp = input.read()&#xFF0C;&#x8BFB;&#x53D6;&#x4E00;&#x4E2A;&#x5355;&#x4E2A;&#x5B57;&#x8282;&#xFF0C;&#x5E76;&#x4E14;&#x5C06;&#x5185;&#x5BB9;&#x7ED9;temp&#x53D8;&#x91CF;</div><div class="line">// &#x7B2C;&#x4E8C;&#x6B65;&#xFF1A;temp != -1&#xFF0C;&#x5C06;&#x63A5;&#x6536;&#x5230;&#x7684;temp&#x7684;&#x6570;&#x503C;&#x5224;&#x65AD;&#x662F;&#x5426;&#x4E3A;-1&#xFF0C;</div><div class="line">//&#x5982;&#x679C;&#x4E3A;-1&#x5219;&#x8868;&#x793A;&#x9000;&#x51FA;&#x5FAA;&#x73AF;&#xFF0C;&#x5982;&#x679C;&#x4E0D;&#x662F;&#xFF0C;&#x5219;&#x4FDD;&#x5B58;&#x6570;&#x636E;</div><div class="line">while ((temp = input.read()) != -1) {</div><div class="line">data[foot++] = (byte) temp; // &#x4FDD;&#x5B58;&#x8BFB;&#x53D6;&#x8FDB;&#x6765;&#x7684;&#x5355;&#x4E2A;&#x5B57;&#x8282;</div><div class="line">}</div><div class="line">input.close();</div><div class="line">System.out.println(&quot;&#x6570;&#x636E;:&#x3010;&quot; + new String(data, 0, foot) + &quot;&#x3011;&quot;);</div><div class="line">}else{</div><div class="line">System.out.println(&quot;&#x6587;&#x4EF6;&#x4E0D;&#x5B58;&#x5728;&quot;);</div><div class="line">}</div><div class="line"></div><div class="line">}</div><div class="line">}</div></pre></td></tr></table></figure>
+<ul>
+<li>FileReader</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">package IO;</div><div class="line">import java.io.File;</div><div class="line">import java.io.FileReader;</div><div class="line">import java.io.Reader;</div><div class="line">public class FileReaderDemo {</div><div class="line">public static void main(String[] args) throws Exception {</div><div class="line">File file = new File(&quot;E:&quot; + File.separator + &quot;hellodemo&quot;</div><div class="line"></div><div class="line">File.separator + &quot;test.txt&quot;); // &#x5B9A;&#x4E49;&#x6587;&#x4EF6;&#x8DEF;&#x5F84;</div><div class="line">if (file.exists()) {</div><div class="line">Reader in = new FileReader(file); // &#x5B57;&#x7B26;&#x8F93;&#x5165;&#x6D41;</div><div class="line">char data[] = new char[1024]; // &#x5F00;&#x8F9F;&#x6570;&#x7EC4;</div><div class="line">int len = in.read(data); // &#x8BFB;&#x53D6;&#x6570;&#x636E;</div><div class="line">System.out.println(&quot;&#x6570;&#x636E;:&#x3010;&quot; + new String(data, 0, len) + &quot;&#x3011;&quot;);</div><div class="line">in.close() ;</div><div class="line">}else{</div><div class="line">System.out.println(&quot;&#x6587;&#x4EF6;&#x4E0D;&#x5B58;&#x5728;&quot;);</div><div class="line">}</div><div class="line">}</div><div class="line">}</div></pre></td></tr></table></figure>
+<p> &#x5728;&#x5DE5;&#x4F5C;&#x4E2D;,IO&#x7684;&#x8BFB;&#x53D6;&#x548C;&#x8F93;&#x51FA;&#x662F;&#x5728;&#x6240;&#x96BE;&#x514D;&#x7684;&#x3002;</p>
+<blockquote>
+<p>&#x4E00;&#x5B9A;&#x8981;&#x597D;&#x597D;&#x638C;&#x63E1;&#x3002;</p>
+</blockquote>
+<h3 id="&#x6253;&#x5370;&#x6D41;&#xFF08;&#x8F93;&#x51FA;&#xFF09;&#xFF08;PrintWriter&#x5B57;&#x7B26;&#xFF09;&#xFF08;PrintStream&#x5B57;&#x8282;&#xFF09;"><a href="#&#x6253;&#x5370;&#x6D41;&#xFF08;&#x8F93;&#x51FA;&#xFF09;&#xFF08;PrintWriter&#x5B57;&#x7B26;&#xFF09;&#xFF08;PrintStream&#x5B57;&#x8282;&#xFF09;" class="headerlink" title="&#x6253;&#x5370;&#x6D41;&#xFF08;&#x8F93;&#x51FA;&#xFF09;&#xFF08;PrintWriter&#x5B57;&#x7B26;&#xFF09;&#xFF08;PrintStream&#x5B57;&#x8282;&#xFF09;"></a>&#x6253;&#x5370;&#x6D41;&#xFF08;&#x8F93;&#x51FA;&#xFF09;&#xFF08;PrintWriter&#x5B57;&#x7B26;&#xFF09;&#xFF08;PrintStream&#x5B57;&#x8282;&#xFF09;</h3><p>System&#xFF08;&#x8F93;&#x51FA;err/out&#x53EF;&#x4EE5;&#x4F7F;&#x7528;PrintStream&#x7684; print&#xFF08;&#xFF09;&#x7B49;&#x65B9;&#x6CD5;  &#xFF0C;&#x8F93;&#x5165;in&#x53EF;&#x4EE5;&#x4F7F;&#x7528;InputStream&#x7684;read()&#x7B49;&#x65B9;&#x6CD5;&#xFF09;</p>
+<p>&#x2014;&#x2014;&#x2014;System.out &#x2192;PrintStream </p>
+<p>&#x2014;&#x2014;&#x2014;System.err &#x2192;PrintStream  </p>
+<p>&#x2014;&#x2014;&#x2014;System.in &#x2192;InputStream &#xFF08;&#x7ED3;&#x5408;Scanner&#x4F7F;&#x7528;&#xFF09;</p>
+<blockquote>
+<p>out/err/in&#x7531;&#x7CFB;&#x7EDF;&#x8FDB;&#x884C;&#x521D;&#x59CB;&#x5316;&#x3010;static&#x3011;&#x53EF;&#x4EE5;&#x76F4;&#x63A5;&#x4F7F;&#x7528;&#x3002;</p>
+</blockquote>
+<h3 id="&#x5E8F;&#x5217;&#x5316;&#xFF08;Serializable&#xFF09;"><a href="#&#x5E8F;&#x5217;&#x5316;&#xFF08;Serializable&#xFF09;" class="headerlink" title="&#x5E8F;&#x5217;&#x5316;&#xFF08;Serializable&#xFF09;"></a>&#x5E8F;&#x5217;&#x5316;&#xFF08;Serializable&#xFF09;</h3><p>&#x4F5C;&#x7528; &#xFF1A;&#x5BF9;&#x8C61;&#x5E8F;&#x5217;&#x5316;&#x6307;&#x7684;&#x662F;&#x53EF;&#x4EE5;&#x5C06;&#x5185;&#x5B58;&#x4E2D;&#x7684;&#x5BF9;&#x8C61;&#x6570;&#x636E;&#xFF08;&#x5BF9;&#x8C61;&#x5C5E;&#x6027;&#xFF09;&#xFF0C;&#x8FDB;&#x884C;&#x4E8C;&#x8FDB;&#x5236;&#x6570;&#x636E;&#x4FDD;&#x5B58;&#xFF0C;&#x6216;&#x8005;&#x4F20;&#x8F93;&#x7684;&#x4E00;&#x79CD;&#x64CD;&#x4F5C;&#xFF0C;&#x800C;&#x5982;&#x679C;&#x8981;&#x60F3;&#x5B8C;&#x6210;&#x8FD9;&#x6837;&#x7684;&#x4E8C;&#x8FDB;&#x5236;&#x64CD;&#x4F5C;&#xFF0C;&#x90A3;&#x4E48;&#x5BF9;&#x8C61;&#x6240;&#x5728;&#x7684;&#x7C7B;&#x5C31;&#x5FC5;&#x987B;&#x5B9E;java.io.Serializable&#x63A5;&#x53E3;&#x3002;</p>
+<p>&#x9700;&#x8981;&#x7684;&#x4E24;&#x4E2A;IO&#x7C7B;ObjectInputStream&#xFF08;&#x53CD;&#x5E8F;&#x5217;&#x5316;&#xFF09;&#x3001;ObjectOutputStream&#xFF08;&#x5E8F;&#x5217;&#x5316;&#xFF09;</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div></pre></td><td class="code"><pre><div class="line">package IO;</div><div class="line"></div><div class="line">import java.io.File;</div><div class="line">import java.io.FileInputStream;</div><div class="line">import java.io.FileNotFoundException;</div><div class="line">import java.io.FileOutputStream;</div><div class="line">import java.io.IOException;</div><div class="line">import java.io.ObjectInputStream;</div><div class="line">import java.io.ObjectOutputStream;</div><div class="line">import java.io.Serializable;</div><div class="line">import sun.print.resources.serviceui;</div><div class="line"></div><div class="line">@SuppressWarnings(&quot;serial&quot;)</div><div class="line">class Book implements Serializable{</div><div class="line">    private String title;</div><div class="line">    private Double price;</div><div class="line">    private  transient String content;//&#x77AC;&#x65F6; &#x4E0D;&#x4F1A;&#x88AB;&#x5E8F;&#x5217;&#x5316;</div><div class="line">    public void setTitle(String title) {</div><div class="line">        this.title = title;</div><div class="line">    }</div><div class="line">    public String getTitle() {</div><div class="line">        return title;</div><div class="line">    }</div><div class="line">    public void setPrice(Double price) {</div><div class="line">        this.price = price;</div><div class="line">    }</div><div class="line">    public Double getPrice() {</div><div class="line">        return price;</div><div class="line">    }</div><div class="line">    public void setContent(String content) {</div><div class="line">        this.content = content;</div><div class="line">    }</div><div class="line">    public String getContent() {</div><div class="line">        return content;</div><div class="line">    }</div><div class="line">    @Override</div><div class="line">    public String toString() {</div><div class="line">        return &quot;Book [title=&quot; + title + &quot;, price=&quot; + price + &quot;, content=&quot; + content + &quot;]&quot;;</div><div class="line">    }</div><div class="line"></div><div class="line">}</div><div class="line">public class SerializableDemo {</div><div class="line">    public static void main(String[] args) throws IOException, ClassNotFoundException {</div><div class="line">        ser();</div><div class="line">        //dser();</div><div class="line"></div><div class="line">    }</div><div class="line">    /*</div><div class="line">     *  &#x5E8F;&#x5217;&#x5316;</div><div class="line">     */</div><div class="line">    public static void ser() throws FileNotFoundException, IOException{</div><div class="line">         Book book = new Book();</div><div class="line">         book.setPrice(12.8);</div><div class="line">         book.setTitle(&quot;admin&quot;);</div><div class="line">        ObjectOutputStream oos = new ObjectOutputStream(</div><div class="line">                new FileOutputStream(new File(&quot;E:&quot; + File.separator + &quot;person.ser&quot;)));</div><div class="line">        oos.writeObject(book); </div><div class="line">        oos.close();</div><div class="line">    }</div><div class="line">    /*</div><div class="line">     * &#x53CD;&#x5E8F;&#x5217;&#x5316;</div><div class="line">     */</div><div class="line">    public  static void dser() throws FileNotFoundException, IOException, ClassNotFoundException{</div><div class="line">          ObjectInputStream ois = new ObjectInputStream(new FileInputStream(</div><div class="line">                    new File(&quot;E:&quot; + File.separator + &quot;person.ser&quot;)));</div><div class="line">            Book per = (Book) ois.readObject();  </div><div class="line">            ois.close();</div><div class="line">            System.out.println(per);</div><div class="line">    }</div><div class="line">}</div></pre></td></tr></table></figure>
+<blockquote>
+<p>transient  &#x5173;&#x952E;&#x5B57;&#x4FEE;&#x9970;&#x7684;&#x5C5E;&#x6027;&#x4E0D;&#x4F1A;&#x88AB;&#x5E8F;&#x5217;&#x5316;</p>
+</blockquote>
+<h3 id="I-O&#x7684;&#x8BBE;&#x8BA1;&#x6A21;&#x5F0F;&#xFF08;&#x88C5;&#x9970;&#x8005;&#x6A21;&#x5F0F;-Decorator-Pattern&#xFF09;"><a href="#I-O&#x7684;&#x8BBE;&#x8BA1;&#x6A21;&#x5F0F;&#xFF08;&#x88C5;&#x9970;&#x8005;&#x6A21;&#x5F0F;-Decorator-Pattern&#xFF09;" class="headerlink" title="I/O&#x7684;&#x8BBE;&#x8BA1;&#x6A21;&#x5F0F;&#xFF08;&#x88C5;&#x9970;&#x8005;&#x6A21;&#x5F0F; Decorator Pattern&#xFF09;"></a>I/O&#x7684;&#x8BBE;&#x8BA1;&#x6A21;&#x5F0F;&#xFF08;&#x88C5;&#x9970;&#x8005;&#x6A21;&#x5F0F; Decorator Pattern&#xFF09;</h3><blockquote>
+<p>&#x7528;&#x4E00;&#x53E5;&#x8BDD;&#x8868;&#x8FF0;&#xFF1A;&#x52A8;&#x6001;&#x5730;&#x5C06;&#x8D23;&#x4EFB;&#x9644;&#x52A0;&#x5230;&#x5BF9;&#x8C61;&#x4E0A;&#x3002;</p>
+</blockquote>
+<p>&#x662F;&#x7528;Decorator&#x53BB;&#x88C5;&#x9970;Component&#x3001;&#x56E0;&#x4E3A;&#x5B9E;&#x73B0;&#x4E86;&#x540C;&#x4E00;&#x63A5;&#x53E3;&#x6216;&#x8005;&#x62BD;&#x8C61;&#x7C7B;&#x3001;Decorator&#x540C;&#x6837;&#x53EF;&#x4EE5;&#x88C5;&#x9970;Decorator&#xFF01;&#x901A;&#x8FC7;&#x8FD9;&#x79CD;&#x6A21;&#x5F0F;&#x6211;&#x4EEC;&#x4E5F;&#x53EF;&#x4EE5;&#x770B;&#x51FA;&#x4E00;&#x4E2A;&#x8BBE;&#x8BA1;&#x6A21;&#x5F0F;&#x7684;&#x8BBE;&#x8BA1;&#x539F;&#x5219;&#xFF1A;</p>
+<blockquote>
+<p>Classes should be open for extension, but closed for modification!</p>
+</blockquote>
+<p>Decorator Pattern&#xFF1A;Attaches additional responsibility to anobject dynamically. Decorators provide a flexible alternative to subclassingfor extending functionality.</p>
+<p>&#x53EF;&#x4EE5;&#x53C2;&#x8003;<br><a href="http://blog.csdn.net/crave_shy/article/details/21223029" target="_blank" rel="external">&#x88C5;&#x9970;&#x8005;&#x8BBE;&#x8BA1;&#x6A21;&#x5F0F;</a></p>
+<h3 id="&#x53C2;&#x8003;&#x6587;&#x732E;"><a href="#&#x53C2;&#x8003;&#x6587;&#x732E;" class="headerlink" title="&#x53C2;&#x8003;&#x6587;&#x732E;"></a>&#x53C2;&#x8003;&#x6587;&#x732E;</h3><p><a href="http://study.163.com/course/courseMain.htm?courseId=1455026" target="_blank" rel="external">&#x7F51;&#x6613;&#x4E91;&#x8BFE;&#x5802;&#x674E;&#x5174;&#x534E;java8</a>  <a href="http://study.163.com/course/introduction.htm?courseId=342010#/courseDetail" target="_blank" rel="external">&#x9A6C;&#x58EB;&#x5175;java</a> &#x300A;Thinking in Java&#x300B;&#x300A;Head First Design Patterns&#x300B;</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://muxiaobai.github.io/2016/06/25/Thinking-in-java-基础之I-O/" data-id="cisivlptg000ssfsx4japvfuf" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/File/">File</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/I-O/">I/O</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2016/06/25/Thinking-in-java-基础之集合框架/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Thinking in java 基础之集合框架
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/06/19/Linux-下安装SVN服务器/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Linux 下安装SVN服务器</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/HTML/">HTML</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/服务器/">服务器</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Sublime/">Sublime</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/">java</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/搭建网站/">搭建网站</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/数据交互/">数据交互</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/资源/">资源</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/API/">API</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Cache/">Cache</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Canvas/">Canvas</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Collection/">Collection</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Error/">Error</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Exception/">Exception</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/File/">File</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Github/">Github</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hibernate/">Hibernate</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/I-O/">I/O</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Iterator/">Iterator</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/List/">List</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Map/">Map</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Session/">Session</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Set/">Set</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Shell/">Shell</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Spring/">Spring</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Storage/">Storage</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Struts/">Struts</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Sublime/">Sublime</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Throwable/">Throwable</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/directory/">directory</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/file/">file</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/svn/">svn</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tar/">tar</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/前端/">前端</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/后端/">后端</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/基础命令/">基础命令</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/插件/">插件</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/目录/">目录</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/系统/">系统</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/编辑器/">编辑器</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/网站/">网站</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/软件/">软件</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/API/" style="font-size: 10px;">API</a> <a href="/tags/Cache/" style="font-size: 10px;">Cache</a> <a href="/tags/Canvas/" style="font-size: 10px;">Canvas</a> <a href="/tags/Collection/" style="font-size: 10px;">Collection</a> <a href="/tags/Error/" style="font-size: 10px;">Error</a> <a href="/tags/Exception/" style="font-size: 10px;">Exception</a> <a href="/tags/File/" style="font-size: 10px;">File</a> <a href="/tags/Github/" style="font-size: 10px;">Github</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/Hibernate/" style="font-size: 10px;">Hibernate</a> <a href="/tags/I-O/" style="font-size: 10px;">I/O</a> <a href="/tags/Iterator/" style="font-size: 10px;">Iterator</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/List/" style="font-size: 10px;">List</a> <a href="/tags/Map/" style="font-size: 10px;">Map</a> <a href="/tags/Session/" style="font-size: 10px;">Session</a> <a href="/tags/Set/" style="font-size: 10px;">Set</a> <a href="/tags/Shell/" style="font-size: 10px;">Shell</a> <a href="/tags/Spring/" style="font-size: 10px;">Spring</a> <a href="/tags/Storage/" style="font-size: 10px;">Storage</a> <a href="/tags/Struts/" style="font-size: 10px;">Struts</a> <a href="/tags/Sublime/" style="font-size: 10px;">Sublime</a> <a href="/tags/Throwable/" style="font-size: 10px;">Throwable</a> <a href="/tags/directory/" style="font-size: 10px;">directory</a> <a href="/tags/file/" style="font-size: 10px;">file</a> <a href="/tags/svn/" style="font-size: 10px;">svn</a> <a href="/tags/tar/" style="font-size: 10px;">tar</a> <a href="/tags/前端/" style="font-size: 10px;">前端</a> <a href="/tags/后端/" style="font-size: 10px;">后端</a> <a href="/tags/基础命令/" style="font-size: 20px;">基础命令</a> <a href="/tags/插件/" style="font-size: 10px;">插件</a> <a href="/tags/目录/" style="font-size: 10px;">目录</a> <a href="/tags/系统/" style="font-size: 10px;">系统</a> <a href="/tags/编辑器/" style="font-size: 10px;">编辑器</a> <a href="/tags/网站/" style="font-size: 10px;">网站</a> <a href="/tags/软件/" style="font-size: 10px;">软件</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">八月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">七月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">六月 2016</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2016/08/31/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/2016/08/20/HTML5-API-新特性/">HTML5 API 新特性</a>
+          </li>
+        
+          <li>
+            <a href="/2016/08/04/Thinking-in-java-基础之异常/">Thinking in java 基础之异常</a>
+          </li>
+        
+          <li>
+            <a href="/2016/08/03/Spring中的Session生命周期/">Spring中的Session生命周期</a>
+          </li>
+        
+          <li>
+            <a href="/2016/07/20/前后台数据交互方式总结/">前后台数据交互方式总结</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2016 Mu Xiaobai(慕小白)<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

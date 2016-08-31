@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>GitHub + Hexo 构建我的博客 | 技术笔记</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="&amp;#x6709;&amp;#x4E86;Hexo&amp;#x540E;&amp;#xFF0C;&amp;#x6211;&amp;#x7684;&amp;#x6587;&amp;#x7AE0;&amp;#x5C31;&amp;#x51C6;&amp;#x5907;&amp;#x5168;&amp;#x90E8;&amp;#x8FC1;&amp;#x79FB;&amp;#x81F3;Github&amp;#x4E86;&amp;#x3002;1.&amp;#x672C;&amp;#x673A;&amp;#x642D;&amp;#x5EFA;&amp;#x4F7F;&amp;#x7">
+<meta property="og:type" content="article">
+<meta property="og:title" content="GitHub + Hexo 构建我的博客">
+<meta property="og:url" content="https://muxiaobai.github.io/2016/06/17/GitHub Hexo/index.html">
+<meta property="og:site_name" content="技术笔记">
+<meta property="og:description" content="&amp;#x6709;&amp;#x4E86;Hexo&amp;#x540E;&amp;#xFF0C;&amp;#x6211;&amp;#x7684;&amp;#x6587;&amp;#x7AE0;&amp;#x5C31;&amp;#x51C6;&amp;#x5907;&amp;#x5168;&amp;#x90E8;&amp;#x8FC1;&amp;#x79FB;&amp;#x81F3;Github&amp;#x4E86;&amp;#x3002;1.&amp;#x672C;&amp;#x673A;&amp;#x642D;&amp;#x5EFA;&amp;#x4F7F;&amp;#x7">
+<meta property="og:updated_time" content="2016-08-31T12:24:35.146Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="GitHub + Hexo 构建我的博客">
+<meta name="twitter:description" content="&amp;#x6709;&amp;#x4E86;Hexo&amp;#x540E;&amp;#xFF0C;&amp;#x6211;&amp;#x7684;&amp;#x6587;&amp;#x7AE0;&amp;#x5C31;&amp;#x51C6;&amp;#x5907;&amp;#x5168;&amp;#x90E8;&amp;#x8FC1;&amp;#x79FB;&amp;#x81F3;Github&amp;#x4E86;&amp;#x3002;1.&amp;#x672C;&amp;#x673A;&amp;#x642D;&amp;#x5EFA;&amp;#x4F7F;&amp;#x7">
+  
+    <link rel="alternate" href="/atom.xml" title="技术笔记" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">技术笔记</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">有输入,有输出</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://muxiaobai.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-GitHub Hexo" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/06/17/GitHub Hexo/" class="article-date">
+  <time datetime="2016-06-17T14:57:31.000Z" itemprop="datePublished">2016-06-17</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/搭建网站/">搭建网站</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      GitHub + Hexo 构建我的博客
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="&#x6709;&#x4E86;Hexo&#x540E;&#xFF0C;&#x6211;&#x7684;&#x6587;&#x7AE0;&#x5C31;&#x51C6;&#x5907;&#x5168;&#x90E8;&#x8FC1;&#x79FB;&#x81F3;Github&#x4E86;&#x3002;"><a href="#&#x6709;&#x4E86;Hexo&#x540E;&#xFF0C;&#x6211;&#x7684;&#x6587;&#x7AE0;&#x5C31;&#x51C6;&#x5907;&#x5168;&#x90E8;&#x8FC1;&#x79FB;&#x81F3;Github&#x4E86;&#x3002;" class="headerlink" title="&#x6709;&#x4E86;Hexo&#x540E;&#xFF0C;&#x6211;&#x7684;&#x6587;&#x7AE0;&#x5C31;&#x51C6;&#x5907;&#x5168;&#x90E8;&#x8FC1;&#x79FB;&#x81F3;Github&#x4E86;&#x3002;"></a>&#x6709;&#x4E86;Hexo&#x540E;&#xFF0C;&#x6211;&#x7684;&#x6587;&#x7AE0;&#x5C31;&#x51C6;&#x5907;&#x5168;&#x90E8;&#x8FC1;&#x79FB;&#x81F3;Github&#x4E86;&#x3002;</h1><h2 id="1-&#x672C;&#x673A;&#x642D;&#x5EFA;"><a href="#1-&#x672C;&#x673A;&#x642D;&#x5EFA;" class="headerlink" title="1.&#x672C;&#x673A;&#x642D;&#x5EFA;"></a>1.&#x672C;&#x673A;&#x642D;&#x5EFA;</h2><h3 id="&#x4F7F;&#x7528;&#x73AF;&#x5883;"><a href="#&#x4F7F;&#x7528;&#x73AF;&#x5883;" class="headerlink" title="&#x4F7F;&#x7528;&#x73AF;&#x5883;"></a>&#x4F7F;&#x7528;&#x73AF;&#x5883;</h3><p> git node npm</p>
+<p> Github&#x8D26;&#x6237; username.github.io &#x4ED3;&#x5E93;</p>
+<h3 id="&#x5B89;&#x88C5;Hexo"><a href="#&#x5B89;&#x88C5;Hexo" class="headerlink" title="&#x5B89;&#x88C5;Hexo"></a>&#x5B89;&#x88C5;Hexo</h3><p>  Hexo&#x5B89;&#x88C5;&#xFF0C;&#x8981;&#x7528;&#x5168;&#x5C40;&#x5B89;&#x88C5;&#xFF0C;&#x52A0;-g&#x53C2;&#x6570;&#x3002;</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">zhang@admin MINGW64 ~</div><div class="line">$ npm install &#x2013;g hexo</div></pre></td></tr></table></figure>
+<a id="more"></a>
+<h5 id="&#x67E5;&#x770B;hexo&#x7684;&#x7248;&#x672C;"><a href="#&#x67E5;&#x770B;hexo&#x7684;&#x7248;&#x672C;" class="headerlink" title="&#x67E5;&#x770B;hexo&#x7684;&#x7248;&#x672C;"></a>&#x67E5;&#x770B;hexo&#x7684;&#x7248;&#x672C;</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">zhang@admin MINGW64 ~</div><div class="line">$ hexo -v</div><div class="line">hexo-cli: 1.0.2</div><div class="line">os: Windows_NT 6.3.9600 win32 x64</div><div class="line">http_parser: 2.5.2</div><div class="line">node: 4.4.5</div><div class="line">v8: 4.5.103.35</div><div class="line">uv: 1.8.0</div><div class="line">zlib: 1.2.8</div><div class="line">ares: 1.10.1-DEV</div><div class="line">icu: 56.1</div><div class="line">modules: 46</div><div class="line">openssl: 1.0.2h</div></pre></td></tr></table></figure>
+<p>hexo &#x5E2E;&#x52A9;&#x547D;&#x4EE4;</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line">zhang@admin MINGW64 ~</div><div class="line">$ hexo help</div><div class="line">Usage: hexo &lt;command&gt;</div><div class="line"></div><div class="line">Commands:</div><div class="line">  clean     Removed generated files and cache.</div><div class="line">  config    Get or set configurations.</div><div class="line">  deploy    Deploy your website.</div><div class="line">  generate  Generate static files.</div><div class="line">  help      Get help on a command.</div><div class="line">  init      Create a new Hexo folder.</div><div class="line">  list      List the information of the site</div><div class="line">  migrate   Migrate your site from other system to Hexo.</div><div class="line">  new       Create a new post.</div><div class="line">  publish   Moves a draft post from _drafts to _posts folder.</div><div class="line">  render    Render files with renderer plugins.</div><div class="line">  server    Start the server.</div><div class="line">  version   Display version information.</div><div class="line"></div><div class="line">Global Options:</div><div class="line">  --config  Specify config file instead of using _config.yml</div><div class="line">  --cwd     Specify the CWD</div><div class="line">  --debug   Display all verbose messages in the terminal</div><div class="line">  --draft   Display draft posts</div><div class="line">  --safe    Disable all plugins and scripts</div><div class="line">  --silent  Hide output on console</div><div class="line"></div><div class="line">For more help, you can use &apos;hexo help [command]&apos; for the detailed information</div><div class="line">or you can check the docs: http://hexo.io/docs/</div></pre></td></tr></table></figure>
+<p>&#x547D;&#x4EE4;&#x884C;&#x89E3;&#x91CA;&#xFF1A;</p>
+<ul>
+<li>help &#x67E5;&#x770B;&#x5E2E;&#x52A9;&#x4FE1;&#x606F;</li>
+<li>init &#x521B;&#x5EFA;&#x4E00;&#x4E2A;hexo&#x9879;&#x76EE;</li>
+<li>migrate &#x4ECE;&#x5176;&#x4ED6;&#x7CFB;&#x7EDF;&#x5411;hexo&#x8FC1;&#x79FB;</li>
+<li>version &#x67E5;&#x770B;hexo&#x7684;&#x7248;&#x672C;</li>
+<li>&#x2013;config&#x53C2;&#x6570;&#xFF0C;&#x6307;&#x5B9A;&#x914D;&#x7F6E;&#x6587;&#x4EF6;&#xFF0C;&#x4EE3;&#x66FF;&#x9ED8;&#x8BA4;&#x7684;_config.yml</li>
+<li>&#x2013;debug&#x53C2;&#x6570;&#xFF0C;&#x8C03;&#x8BD5;&#x6A21;&#x5F0F;&#xFF0C;&#x8F93;&#x51FA;&#x6240;&#x6709;&#x65E5;&#x5FD7;&#x4FE1;&#x606F;</li>
+<li>&#x2013;safe&#x53C2;&#x6570;&#xFF0C;&#x5B89;&#x5168;&#x6A21;&#x5F0F;&#xFF0C;&#x7981;&#x7528;&#x6240;&#x6709;&#x7684;&#x63D2;&#x4EF6;&#x548C;&#x811A;&#x672C;</li>
+<li>&#x2013;silent&#x53C2;&#x6570;&#xFF0C;&#x65E0;&#x65E5;&#x5FD7;&#x8F93;&#x51FA;&#x6A21;&#x5F0F;</li>
+</ul>
+<h3 id="&#x5B89;&#x88C5;&#x597D;&#x540E;&#xFF0C;&#x6211;&#x4EEC;&#x5C31;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;Hexo&#x521B;&#x5EFA;&#x9879;&#x76EE;&#x4E86;&#x3002;"><a href="#&#x5B89;&#x88C5;&#x597D;&#x540E;&#xFF0C;&#x6211;&#x4EEC;&#x5C31;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;Hexo&#x521B;&#x5EFA;&#x9879;&#x76EE;&#x4E86;&#x3002;" class="headerlink" title="&#x5B89;&#x88C5;&#x597D;&#x540E;&#xFF0C;&#x6211;&#x4EEC;&#x5C31;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;Hexo&#x521B;&#x5EFA;&#x9879;&#x76EE;&#x4E86;&#x3002;"></a>&#x5B89;&#x88C5;&#x597D;&#x540E;&#xFF0C;&#x6211;&#x4EEC;&#x5C31;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;Hexo&#x521B;&#x5EFA;&#x9879;&#x76EE;&#x4E86;&#x3002;</h3><h5 id="&#x65B0;&#x5EFA;&#x6587;&#x4EF6;&#x5939;Hexo"><a href="#&#x65B0;&#x5EFA;&#x6587;&#x4EF6;&#x5939;Hexo" class="headerlink" title="&#x65B0;&#x5EFA;&#x6587;&#x4EF6;&#x5939;Hexo"></a>&#x65B0;&#x5EFA;&#x6587;&#x4EF6;&#x5939;Hexo</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">zhang@admin MINGW64 ~</div><div class="line">$ mkdir Hexo</div><div class="line">$ cd Hexo</div></pre></td></tr></table></figure>
+<h5 id="&#x521D;&#x59CB;&#x5316;&#x8FDB;&#x5165;&#x76EE;&#x5F55;&#x3002;"><a href="#&#x521D;&#x59CB;&#x5316;&#x8FDB;&#x5165;&#x76EE;&#x5F55;&#x3002;" class="headerlink" title="&#x521D;&#x59CB;&#x5316;&#x8FDB;&#x5165;&#x76EE;&#x5F55;&#x3002;"></a>&#x521D;&#x59CB;&#x5316;&#x8FDB;&#x5165;&#x76EE;&#x5F55;&#x3002;</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">zhang@admin MINGW64 ~/Hexo</div><div class="line">$ hexo init</div><div class="line">INFO  Cloning hexo-starter to D:\hexo</div><div class="line">INFO  Start blogging with Hexo!</div></pre></td></tr></table></figure>
+<h5 id="&#x542F;&#x52A8;&#x670D;&#x52A1;"><a href="#&#x542F;&#x52A8;&#x670D;&#x52A1;" class="headerlink" title="&#x542F;&#x52A8;&#x670D;&#x52A1;"></a>&#x542F;&#x52A8;&#x670D;&#x52A1;</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">zhang@admin MINGW64 ~/Hexo</div><div class="line">$ hexo server</div><div class="line">INFO  Start processing</div><div class="line">INFO  Hexo is running at http://localhost:4000/. Press Ctrl+C to stop.</div></pre></td></tr></table></figure>
+<p>&#x8FD9;&#x65F6;&#x7AEF;&#x53E3;4000&#x88AB;&#x6253;&#x5F00;&#x4E86;&#xFF0C;&#x6211;&#x4EEC;&#x80FD;&#x8FC7;&#x6D4F;&#x89C8;&#x5668;&#x6253;&#x5F00;&#x5730;&#x5740;&#xFF0C;<a href="http://localhost:4000/" target="_blank" rel="external">http://localhost:4000/</a> &#x3002;<br>&#x4F60;&#x53EF;&#x4EE5;&#x6309;Ctrl+C &#x505C;&#x6B62;Server&#x3002;</p>
+<h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">zhang@admin MINGW64 ~/Hexo</div><div class="line">$ hexo new &apos;My&apos;</div><div class="line">INFO  Created: ~\Hexo\source\_posts\My.md</div></pre></td></tr></table></figure>
+<p>&#x5237;&#x65B0;<a href="http://localhost:4000/&#xFF0C;&#x53EF;&#x4EE5;&#x53D1;&#x73B0;&#x5DF2;&#x751F;&#x6210;&#x4E86;&#x4E00;&#x7BC7;&#x65B0;&#x6587;&#x7AE0;" target="_blank" rel="external">http://localhost:4000/&#xFF0C;&#x53EF;&#x4EE5;&#x53D1;&#x73B0;&#x5DF2;&#x751F;&#x6210;&#x4E86;&#x4E00;&#x7BC7;&#x65B0;&#x6587;&#x7AE0;</a> &#x201C;My&#x201D;&#x3002;</p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><h5 id="&#x6267;&#x884C;hexo-generate&#x4E0B;&#x9762;&#x7684;&#x547D;&#x4EE4;&#xFF0C;&#x5C06;markdown&#x6587;&#x4EF6;&#x751F;&#x6210;&#x9759;&#x6001;&#x7F51;&#x9875;&#x3002;"><a href="#&#x6267;&#x884C;hexo-generate&#x4E0B;&#x9762;&#x7684;&#x547D;&#x4EE4;&#xFF0C;&#x5C06;markdown&#x6587;&#x4EF6;&#x751F;&#x6210;&#x9759;&#x6001;&#x7F51;&#x9875;&#x3002;" class="headerlink" title="&#x6267;&#x884C;hexo generate&#x4E0B;&#x9762;&#x7684;&#x547D;&#x4EE4;&#xFF0C;&#x5C06;markdown&#x6587;&#x4EF6;&#x751F;&#x6210;&#x9759;&#x6001;&#x7F51;&#x9875;&#x3002;"></a>&#x6267;&#x884C;<code>hexo generate</code>&#x4E0B;&#x9762;&#x7684;&#x547D;&#x4EE4;&#xFF0C;&#x5C06;markdown&#x6587;&#x4EF6;&#x751F;&#x6210;&#x9759;&#x6001;&#x7F51;&#x9875;&#x3002;</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">zhang@admin MINGW64 ~/Hexo</div><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
+<p>&#x8BE5;&#x547D;&#x4EE4;&#x6267;&#x884C;&#x5B8C;&#x540E;&#xFF0C;&#x4F1A;&#x5728; C:\Users\zhang\Hexo\public &#x76EE;&#x5F55;&#x4E0B;&#x751F;&#x6210;&#x4E00;&#x7CFB;&#x5217;html&#xFF0C;css&#x7B49;&#x6587;&#x4EF6;&#x3002;</p>
+<p>&#x5230;&#x6B64;&#x5DF2;&#x7ECF;&#x642D;&#x5EFA;&#x4E00;&#x4E2A;&#x4E2A;&#x4EBA;&#x535A;&#x5BA2;&#xFF0C;&#x4F46;&#x662F;&#x7F51;&#x7AD9;&#x90FD;&#x662F;&#x7ED9;&#x522B;&#x4EBA;&#x770B;&#x7684;&#xFF0C;&#x56E0;&#x6B64;&#x9700;&#x8981;&#x53D1;&#x5E03;&#xFF0C;&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x501F;&#x7528;Github&#x6765;&#x90E8;&#x7F72;&#x6211;&#x4EEC;&#x7684;&#x7F51;&#x7AD9;&#x3002;</p>
+<h2 id="2-&#x90E8;&#x7F72;&#x5230;Github"><a href="#2-&#x90E8;&#x7F72;&#x5230;Github" class="headerlink" title="2.&#x90E8;&#x7F72;&#x5230;Github"></a>2.&#x90E8;&#x7F72;&#x5230;Github</h2><h5 id="&#x4FEE;&#x6539;&#x914D;&#x7F6E;&#x6587;&#x4EF6;"><a href="#&#x4FEE;&#x6539;&#x914D;&#x7F6E;&#x6587;&#x4EF6;" class="headerlink" title="&#x4FEE;&#x6539;&#x914D;&#x7F6E;&#x6587;&#x4EF6;"></a>&#x4FEE;&#x6539;&#x914D;&#x7F6E;&#x6587;&#x4EF6;</h5><p>&#x90E8;&#x7F72;&#x5230;Github&#x524D;&#x9700;&#x8981;&#x914D;&#x7F6E;_config.yml&#x6587;&#x4EF6;&#xFF0C;&#x9996;&#x5148;&#x627E;&#x5230;&#x4E0B;&#x9762;&#x7684;&#x5185;&#x5BB9;</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"># Deployment</div><div class="line">## Docs: https://hexo.io/docs/deployment.html</div><div class="line">deploy:</div><div class="line">  type: git</div></pre></td></tr></table></figure>
+<p>&#x7136;&#x540E;&#x5C06;&#x5B83;&#x4EEC;&#x4FEE;&#x6539;&#x4E3A;<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"># Deployment</div><div class="line">## Docs: https://hexo.io/docs/deployment.html</div><div class="line">deploy:</div><div class="line">  type: git</div><div class="line">  repository: https://github.com/muxiaobai/muxiaobai.github.io.git</div><div class="line">  branch: master</div></pre></td></tr></table></figure></p>
+<h5 id="&#x6267;&#x884C;hexo-deploy&#x53D1;&#x5E03;&#x7F51;&#x7AD9;"><a href="#&#x6267;&#x884C;hexo-deploy&#x53D1;&#x5E03;&#x7F51;&#x7AD9;" class="headerlink" title="&#x6267;&#x884C;hexo deploy&#x53D1;&#x5E03;&#x7F51;&#x7AD9;"></a>&#x6267;&#x884C;<code>hexo deploy</code>&#x53D1;&#x5E03;&#x7F51;&#x7AD9;</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">zhang@admin MINGW64 ~/Hexo</div><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
+<p>NOTE1:</p>
+<p>Repository&#xFF1A;<br>SSH&#x5F62;&#x5F0F;&#x7684;url&#xFF08;git@github.com:muxiaobai/muxiaobai.github.io.git &#xFF09;&#xFF0C;<br>&#x5728;SSH&#x4E0B;&#xFF0C;&#x4E0A;&#x4F20;&#x9519;&#x8BEF;&#xFF0C;&#x4E8E;&#x662F;&#x5C31;&#x7528;&#x4E86;HTTPS&#x5F62;&#x5F0F;</p>
+<p>HTTPS&#x5F62;&#x5F0F;&#x7684;url&#xFF08;<a href="https://github.com/muxiaobai/muxiaobai.github.io.git" target="_blank" rel="external">https://github.com/muxiaobai/muxiaobai.github.io.git</a> &#xFF09;&#xFF0C;<br>&#x4F1A;&#x8BA9;&#x4F60;&#x8F93;&#x5165;&#x7528;&#x6237;&#x540D;,&#x5BC6;&#x7801;.</p>
+<p>NOTE2&#xFF1A;</p>
+<p>&#x5982;&#x679C;&#x4F60;&#x662F;&#x4E3A;&#x4E00;&#x4E2A;&#x9879;&#x76EE;&#x5236;&#x4F5C;&#x7F51;&#x7AD9;&#xFF0C;&#x90A3;&#x4E48;&#x9700;&#x8981;&#x628A;branch&#x8BBE;&#x7F6E;&#x4E3A;gh-pages&#x3002;</p>
+<h3 id="&#x6D4B;&#x8BD5;"><a href="#&#x6D4B;&#x8BD5;" class="headerlink" title="&#x6D4B;&#x8BD5;"></a>&#x6D4B;&#x8BD5;</h3><p>&#x5F53;&#x90E8;&#x7F72;&#x5B8C;&#x6210;&#x540E;&#xFF0C;&#x5728;&#x6D4F;&#x89C8;&#x5668;&#x4E2D;&#x6253;&#x5F00;<a href="https://muxiaobai.github.io/&#xFF08;https://muxiaobai.github.io/&#xFF09;">https://muxiaobai.github.io/&#xFF08;https://muxiaobai.github.io/&#xFF09;</a> &#xFF0C;&#x6B63;&#x5E38;&#x663E;&#x793A;&#x7F51;&#x9875;&#xFF0C;&#x8868;&#x660E;&#x90E8;&#x7F72;&#x6210;&#x529F;&#x3002;</p>
+<h3 id="&#x603B;&#x7ED3;&#xFF1A;&#x90E8;&#x7F72;&#x6B65;&#x9AA4;"><a href="#&#x603B;&#x7ED3;&#xFF1A;&#x90E8;&#x7F72;&#x6B65;&#x9AA4;" class="headerlink" title="&#x603B;&#x7ED3;&#xFF1A;&#x90E8;&#x7F72;&#x6B65;&#x9AA4;"></a>&#x603B;&#x7ED3;&#xFF1A;&#x90E8;&#x7F72;&#x6B65;&#x9AA4;</h3><p>&#x6BCF;&#x6B21;&#x90E8;&#x7F72;&#x7684;&#x6B65;&#x9AA4;&#xFF0C;&#x53EF;&#x6309;&#x4EE5;&#x4E0B;&#x4E09;&#x6B65;&#x6765;&#x8FDB;&#x884C;&#x3002;</p>
+<p>hexo clean</p>
+<p>hexo generate</p>
+<p>hexo deploy</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://muxiaobai.github.io/2016/06/17/GitHub Hexo/" data-id="cisivlpqp0002sfsx9xfol45a" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Github/">Github</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Hexo/">Hexo</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2016/06/19/Linux-下安装SVN服务器/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Linux 下安装SVN服务器
+        
+      </div>
+    </a>
+  
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/HTML/">HTML</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/服务器/">服务器</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Sublime/">Sublime</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/">java</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/搭建网站/">搭建网站</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/数据交互/">数据交互</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/资源/">资源</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/API/">API</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Cache/">Cache</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Canvas/">Canvas</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Collection/">Collection</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Error/">Error</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Exception/">Exception</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/File/">File</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Github/">Github</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hibernate/">Hibernate</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/I-O/">I/O</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Iterator/">Iterator</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/List/">List</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Map/">Map</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Session/">Session</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Set/">Set</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Shell/">Shell</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Spring/">Spring</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Storage/">Storage</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Struts/">Struts</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Sublime/">Sublime</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Throwable/">Throwable</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/directory/">directory</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/file/">file</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/svn/">svn</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tar/">tar</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/前端/">前端</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/后端/">后端</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/基础命令/">基础命令</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/插件/">插件</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/目录/">目录</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/系统/">系统</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/编辑器/">编辑器</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/网站/">网站</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/软件/">软件</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/API/" style="font-size: 10px;">API</a> <a href="/tags/Cache/" style="font-size: 10px;">Cache</a> <a href="/tags/Canvas/" style="font-size: 10px;">Canvas</a> <a href="/tags/Collection/" style="font-size: 10px;">Collection</a> <a href="/tags/Error/" style="font-size: 10px;">Error</a> <a href="/tags/Exception/" style="font-size: 10px;">Exception</a> <a href="/tags/File/" style="font-size: 10px;">File</a> <a href="/tags/Github/" style="font-size: 10px;">Github</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/Hibernate/" style="font-size: 10px;">Hibernate</a> <a href="/tags/I-O/" style="font-size: 10px;">I/O</a> <a href="/tags/Iterator/" style="font-size: 10px;">Iterator</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/List/" style="font-size: 10px;">List</a> <a href="/tags/Map/" style="font-size: 10px;">Map</a> <a href="/tags/Session/" style="font-size: 10px;">Session</a> <a href="/tags/Set/" style="font-size: 10px;">Set</a> <a href="/tags/Shell/" style="font-size: 10px;">Shell</a> <a href="/tags/Spring/" style="font-size: 10px;">Spring</a> <a href="/tags/Storage/" style="font-size: 10px;">Storage</a> <a href="/tags/Struts/" style="font-size: 10px;">Struts</a> <a href="/tags/Sublime/" style="font-size: 10px;">Sublime</a> <a href="/tags/Throwable/" style="font-size: 10px;">Throwable</a> <a href="/tags/directory/" style="font-size: 10px;">directory</a> <a href="/tags/file/" style="font-size: 10px;">file</a> <a href="/tags/svn/" style="font-size: 10px;">svn</a> <a href="/tags/tar/" style="font-size: 10px;">tar</a> <a href="/tags/前端/" style="font-size: 10px;">前端</a> <a href="/tags/后端/" style="font-size: 10px;">后端</a> <a href="/tags/基础命令/" style="font-size: 20px;">基础命令</a> <a href="/tags/插件/" style="font-size: 10px;">插件</a> <a href="/tags/目录/" style="font-size: 10px;">目录</a> <a href="/tags/系统/" style="font-size: 10px;">系统</a> <a href="/tags/编辑器/" style="font-size: 10px;">编辑器</a> <a href="/tags/网站/" style="font-size: 10px;">网站</a> <a href="/tags/软件/" style="font-size: 10px;">软件</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">八月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">七月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">六月 2016</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2016/08/31/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/2016/08/20/HTML5-API-新特性/">HTML5 API 新特性</a>
+          </li>
+        
+          <li>
+            <a href="/2016/08/04/Thinking-in-java-基础之异常/">Thinking in java 基础之异常</a>
+          </li>
+        
+          <li>
+            <a href="/2016/08/03/Spring中的Session生命周期/">Spring中的Session生命周期</a>
+          </li>
+        
+          <li>
+            <a href="/2016/07/20/前后台数据交互方式总结/">前后台数据交互方式总结</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2016 Mu Xiaobai(慕小白)<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

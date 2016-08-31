@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Linux 基础Shell脚本 | 技术笔记</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="bash变量、系统变量、参数信息、运算符">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linux 基础Shell脚本">
+<meta property="og:url" content="https://muxiaobai.github.io/2016/07/09/Linux-基础Shell脚本/index.html">
+<meta property="og:site_name" content="技术笔记">
+<meta property="og:description" content="bash变量、系统变量、参数信息、运算符">
+<meta property="og:image" content="https://muxiaobai.github.io/2016/07/09/Linux-基础Shell脚本/201607101216.PNG">
+<meta property="og:image" content="https://muxiaobai.github.io/2016/07/09/Linux-基础Shell脚本/201607101227.PNG">
+<meta property="og:image" content="https://muxiaobai.github.io/2016/07/09/Linux-基础Shell脚本/201607101231.PNG">
+<meta property="og:image" content="https://muxiaobai.github.io/2016/07/09/Linux-基础Shell脚本/201607101243.PNG">
+<meta property="og:updated_time" content="2016-08-31T12:24:36.326Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Linux 基础Shell脚本">
+<meta name="twitter:description" content="bash变量、系统变量、参数信息、运算符">
+<meta name="twitter:image" content="https://muxiaobai.github.io/2016/07/09/Linux-基础Shell脚本/201607101216.PNG">
+  
+    <link rel="alternate" href="/atom.xml" title="技术笔记" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">技术笔记</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">有输入,有输出</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://muxiaobai.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-Linux-基础Shell脚本" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/07/09/Linux-基础Shell脚本/" class="article-date">
+  <time datetime="2016-07-09T19:38:00.000Z" itemprop="datePublished">2016-07-09</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Linux/">Linux</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Linux 基础Shell脚本
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="bin-bash"><a href="#bin-bash" class="headerlink" title="#!/bin/bash"></a><code>#!/bin/bash</code></h1><h2 id="Bash&#x53D8;&#x91CF;"><a href="#Bash&#x53D8;&#x91CF;" class="headerlink" title="Bash&#x53D8;&#x91CF;"></a>Bash&#x53D8;&#x91CF;</h2><h4 id="&#x7528;&#x6237;&#x81EA;&#x5B9A;&#x4E49;&#x53D8;&#x91CF;"><a href="#&#x7528;&#x6237;&#x81EA;&#x5B9A;&#x4E49;&#x53D8;&#x91CF;" class="headerlink" title="&#x7528;&#x6237;&#x81EA;&#x5B9A;&#x4E49;&#x53D8;&#x91CF;"></a>&#x7528;&#x6237;&#x81EA;&#x5B9A;&#x4E49;&#x53D8;&#x91CF;</h4><p><code>&#x53D8;&#x91CF;&#x540D;=&#x53D8;&#x91CF;&#x503C;</code> &#x9ED8;&#x8BA4;&#x53D8;&#x91CF;&#x503C;&#x4E3A;&#x5B57;&#x7B26;&#x4E32;</p>
+<p><code>echo $&#x53D8;&#x91CF;&#x540D;</code></p>
+<p>&#x53D8;&#x91CF;&#x53E0;&#x52A0;  x=&#x201D;$x&#x201D;other | x=${x}other</p>
+<p><code>set</code>&#xFF1A;&#x67E5;&#x8BE2;&#x6240;&#x6709;&#x53D8;&#x91CF;</p>
+<p><code>set -u</code> &#x7136;&#x540E;&#x8C03;&#x7528;&#x672A;&#x58F0;&#x660E;&#x7684;&#x53D8;&#x91CF;&#x4F1A;&#x62A5;&#x9519;</p>
+<p><code>unset &#x53D8;&#x91CF;&#x540D;</code>&#xFF1A;&#x5220;&#x9664;&#x53D8;&#x91CF;</p>
+<p><code>exoprt</code> &#x53D8;&#x6210;&#x7CFB;&#x7EDF;&#x53D8;&#x91CF;(&#x5B9E;&#x8D28;&#x4E0A;&#x662F;<code>declare</code>)</p>
+<p><code>env</code>:&#x53EA;&#x80FD;&#x770B;&#x5230;&#x73AF;&#x5883;&#x53D8;&#x91CF;<br><a id="more"></a></p>
+<h4 id="&#x5E38;&#x89C1;&#x7CFB;&#x7EDF;&#x53D8;&#x91CF;"><a href="#&#x5E38;&#x89C1;&#x7CFB;&#x7EDF;&#x53D8;&#x91CF;" class="headerlink" title="&#x5E38;&#x89C1;&#x7CFB;&#x7EDF;&#x53D8;&#x91CF;"></a>&#x5E38;&#x89C1;&#x7CFB;&#x7EDF;&#x53D8;&#x91CF;</h4><p>HOSTNAME SHELL SSH USER  HOME MAIL TERM</p>
+<p>PATH</p>
+<p><code>locale</code> &#x652F;&#x6301;&#x7684;&#x8BED;&#x7CFB; LANG&#x7CFB;&#x7EDF;&#x4E3B;&#x8BED;&#x7CFB; LC_ALL</p>
+<p>&#x4E0B;&#x6B21;&#x5F00;&#x673A;&#x7684;&#x9ED8;&#x8BA4;&#x8BED;&#x7CFB;:/etc/sysconfig/i18n</p>
+<p>PS1 &#x547D;&#x4EE4;&#x63D0;&#x793A;&#x7B26;&#x53D8;&#x91CF;</p>
+<h4 id="&#x4F4D;&#x7F6E;&#x53C2;&#x6570;&#x53D8;&#x91CF;"><a href="#&#x4F4D;&#x7F6E;&#x53C2;&#x6570;&#x53D8;&#x91CF;" class="headerlink" title="&#x4F4D;&#x7F6E;&#x53C2;&#x6570;&#x53D8;&#x91CF;"></a>&#x4F4D;&#x7F6E;&#x53C2;&#x6570;&#x53D8;&#x91CF;</h4><p>$n </p>
+<p>$0 &#x547D;&#x4EE4;&#x672C;&#x8EAB;</p>
+<p>$1-9 ${10} &#x53C2;&#x6570;</p>
+<p>$*  &#x6240;&#x6709;&#x4F20;&#x5165;&#x7684;&#x53C2;&#x6570;&#x662F;&#x4E00;&#x4E2A;&#x6574;&#x4F53;</p>
+<p>$@   &#x6240;&#x6709;&#x4F20;&#x5165;&#x7684;&#x53C2;&#x6570;&#x662F;&#x72EC;&#x7ACB;&#x7684;&#xFF0C;&#x6709;&#x51E0;&#x4E2A;&#x53C2;&#x6570;&#xFF0C;&#x5FAA;&#x73AF;&#x51E0;&#x6B21;</p>
+<p>$#  &#x8FD4;&#x56DE;&#x4F20;&#x5165;&#x53C2;&#x6570;&#x7684;&#x4E2A;&#x6570;</p>
+<hr>
+<p><code>read</code> &#x63A5;&#x53D7;&#x952E;&#x76D8;&#x8F93;&#x5165;(&#x4EA4;&#x4E92;)</p>
+<h5 id="p-&#x8F93;&#x5165;"><a href="#p-&#x8F93;&#x5165;" class="headerlink" title="-p &#x8F93;&#x5165;"></a>-p &#x8F93;&#x5165;</h5><h5 id="t-&#x7B49;&#x5F85;&#x65F6;&#x95F4;"><a href="#t-&#x7B49;&#x5F85;&#x65F6;&#x95F4;" class="headerlink" title="-t &#x7B49;&#x5F85;&#x65F6;&#x95F4;"></a>-t &#x7B49;&#x5F85;&#x65F6;&#x95F4;</h5><h5 id="s-&#x9690;&#x85CF;"><a href="#s-&#x9690;&#x85CF;" class="headerlink" title="-s &#x9690;&#x85CF;"></a>-s &#x9690;&#x85CF;</h5><h5 id="n-&#x6307;&#x5B9A;&#x8F93;&#x5165;&#x7684;&#x5B57;&#x8282;&#x6570;"><a href="#n-&#x6307;&#x5B9A;&#x8F93;&#x5165;&#x7684;&#x5B57;&#x8282;&#x6570;" class="headerlink" title="-n &#x6307;&#x5B9A;&#x8F93;&#x5165;&#x7684;&#x5B57;&#x8282;&#x6570;"></a>-n &#x6307;&#x5B9A;&#x8F93;&#x5165;&#x7684;&#x5B57;&#x8282;&#x6570;</h5><hr>
+<h4 id="&#x9884;&#x5B9A;&#x4E49;&#x53D8;&#x91CF;"><a href="#&#x9884;&#x5B9A;&#x4E49;&#x53D8;&#x91CF;" class="headerlink" title="&#x9884;&#x5B9A;&#x4E49;&#x53D8;&#x91CF;"></a>&#x9884;&#x5B9A;&#x4E49;&#x53D8;&#x91CF;</h4><p>$? &#x8FD4;&#x56DE;&#x4E0A;&#x4E00;&#x6761;&#x547D;&#x4EE4;&#x7684;&#x6267;&#x884C;&#x72B6;&#x6001;</p>
+<p>&#x6B63;&#x786E;&#x6267;&#x884C; &#x8FD4;&#x56DE;0 | &#x6267;&#x884C;&#x9519;&#x8BEF; &#x8FD4;&#x56DE;2 | &#x547D;&#x4EE4;&#x627E;&#x4E0D;&#x5230; &#x8FD4;&#x56DE;127</p>
+<p>$$ &#x8FD4;&#x56DE;&#x5F53;&#x524D;&#x8FDB;&#x7A0B;&#x7684;PID&#x53F7;</p>
+<p>$! &#x8FD4;&#x56DE;&#x540E;&#x53F0;&#x8FD0;&#x884C;&#x7684;&#x6700;&#x540E;&#x4E00;&#x4E2A;&#x8FDB;&#x7A0B;&#x7684;PID&#x53F7;</p>
+<h2 id="Shell&#x8FD0;&#x7B97;&#x7B26;"><a href="#Shell&#x8FD0;&#x7B97;&#x7B26;" class="headerlink" title="Shell&#x8FD0;&#x7B97;&#x7B26;"></a>Shell&#x8FD0;&#x7B97;&#x7B26;</h2><blockquote>
+<p>&#x5F31;&#x7C7B;&#x578B;&#xFF0C;&#x7C7B;&#x4F3C;javascript</p>
+</blockquote>
+<p><code>declare</code> [+/-] [i/a/]</p>
+<p><img src="/2016/07/09/Linux-&#x57FA;&#x7840;Shell&#x811A;&#x672C;/201607101216.PNG" alt="&#x53D8;&#x91CF;&#x53C2;&#x6570;"></p>
+<p><code>expr</code> <code>let</code></p>
+<h5 id="&#x8FD0;&#x7B97;&#x5F0F;-&#x8FD0;&#x7B97;&#x5F0F;"><a href="#&#x8FD0;&#x7B97;&#x5F0F;-&#x8FD0;&#x7B97;&#x5F0F;" class="headerlink" title="$((&#x8FD0;&#x7B97;&#x5F0F;)) $[&#x8FD0;&#x7B97;&#x5F0F;]"></a>$((&#x8FD0;&#x7B97;&#x5F0F;)) $[&#x8FD0;&#x7B97;&#x5F0F;]</h5><p><img src="/2016/07/09/Linux-&#x57FA;&#x7840;Shell&#x811A;&#x672C;/201607101227.PNG" alt="&#x53D8;&#x91CF;&#x53C2;&#x6570;"></p>
+<h5 id="&#x53D8;&#x91CF;&#x6D4B;&#x8BD5;"><a href="#&#x53D8;&#x91CF;&#x6D4B;&#x8BD5;" class="headerlink" title="&#x53D8;&#x91CF;&#x6D4B;&#x8BD5;"></a>&#x53D8;&#x91CF;&#x6D4B;&#x8BD5;</h5><p><img src="/2016/07/09/Linux-&#x57FA;&#x7840;Shell&#x811A;&#x672C;/201607101231.PNG" alt="&#x53D8;&#x91CF;&#x53C2;&#x6570;"></p>
+<h2 id="&#x73AF;&#x5883;&#x53D8;&#x91CF;&#x914D;&#x7F6E;&#x6587;&#x4EF6;"><a href="#&#x73AF;&#x5883;&#x53D8;&#x91CF;&#x914D;&#x7F6E;&#x6587;&#x4EF6;" class="headerlink" title="&#x73AF;&#x5883;&#x53D8;&#x91CF;&#x914D;&#x7F6E;&#x6587;&#x4EF6;"></a>&#x73AF;&#x5883;&#x53D8;&#x91CF;&#x914D;&#x7F6E;&#x6587;&#x4EF6;</h2><p>&#x91CD;&#x65B0;&#x52A0;&#x8F7D;&#x914D;&#x7F6E;&#x6587;&#x4EF6;: <code>source &#x914D;&#x7F6E;&#x6587;&#x4EF6;</code>  <code>. &#x914D;&#x7F6E;&#x6587;&#x4EF6;</code></p>
+<p>&#x6B63;&#x5E38;&#x767B;&#x9646;&#x8FC7;&#x7A0B;&#xFF0C;&#x4E3B;&#x8981;&#x7684;&#x6587;&#x4EF6;:</p>
+<p>/etc/profile</p>
+<p>/etc/profile.d/*.sh</p>
+<p>~/.bash_profile</p>
+<p>~/.bashrc</p>
+<p>/etc/bashrc</p>
+<p>&#x52A0;&#x8F7D;&#x6587;&#x4EF6;&#x987A;&#x5E8F;&gt;&gt;[login&#x800C;&#x4E0D;&#x662F;&#x5F00;&#x673A;]</p>
+<p><img src="/2016/07/09/Linux-&#x57FA;&#x7840;Shell&#x811A;&#x672C;/201607101243.PNG" alt="&#x53D8;&#x91CF;&#x53C2;&#x6570;"></p>
+<p>&#x6CE8;&#x9500;</p>
+<p>~/.bash_logout</p>
+<p>&#x5386;&#x53F2;&#x547D;&#x4EE4;</p>
+<p>~/.bash_history</p>
+<h2 id="&#x6B63;&#x5219;&#x8868;&#x8FBE;&#x5F0F;"><a href="#&#x6B63;&#x5219;&#x8868;&#x8FBE;&#x5F0F;" class="headerlink" title="&#x6B63;&#x5219;&#x8868;&#x8FBE;&#x5F0F;"></a>&#x6B63;&#x5219;&#x8868;&#x8FBE;&#x5F0F;</h2><h2 id="&#x6D41;&#x7A0B;&#x63A7;&#x5236;&#x8BED;&#x53E5;"><a href="#&#x6D41;&#x7A0B;&#x63A7;&#x5236;&#x8BED;&#x53E5;" class="headerlink" title="&#x6D41;&#x7A0B;&#x63A7;&#x5236;&#x8BED;&#x53E5;"></a>&#x6D41;&#x7A0B;&#x63A7;&#x5236;&#x8BED;&#x53E5;</h2>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://muxiaobai.github.io/2016/07/09/Linux-基础Shell脚本/" data-id="cisivlpry000asfsxtbdrllia" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Shell/">Shell</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2016/07/19/Sublime-下运行Java文件/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Sublime 下运行Java文件
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/07/07/Linux-基础命令总结2/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Linux 基础命令总结2</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/HTML/">HTML</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/服务器/">服务器</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Sublime/">Sublime</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/">java</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/搭建网站/">搭建网站</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/数据交互/">数据交互</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/资源/">资源</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/API/">API</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Cache/">Cache</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Canvas/">Canvas</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Collection/">Collection</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Error/">Error</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Exception/">Exception</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/File/">File</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Github/">Github</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hibernate/">Hibernate</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/I-O/">I/O</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Iterator/">Iterator</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/List/">List</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Map/">Map</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Session/">Session</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Set/">Set</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Shell/">Shell</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Spring/">Spring</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Storage/">Storage</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Struts/">Struts</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Sublime/">Sublime</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Throwable/">Throwable</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/directory/">directory</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/file/">file</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/svn/">svn</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tar/">tar</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/前端/">前端</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/后端/">后端</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/基础命令/">基础命令</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/插件/">插件</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/目录/">目录</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/系统/">系统</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/编辑器/">编辑器</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/网站/">网站</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/软件/">软件</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/API/" style="font-size: 10px;">API</a> <a href="/tags/Cache/" style="font-size: 10px;">Cache</a> <a href="/tags/Canvas/" style="font-size: 10px;">Canvas</a> <a href="/tags/Collection/" style="font-size: 10px;">Collection</a> <a href="/tags/Error/" style="font-size: 10px;">Error</a> <a href="/tags/Exception/" style="font-size: 10px;">Exception</a> <a href="/tags/File/" style="font-size: 10px;">File</a> <a href="/tags/Github/" style="font-size: 10px;">Github</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/Hibernate/" style="font-size: 10px;">Hibernate</a> <a href="/tags/I-O/" style="font-size: 10px;">I/O</a> <a href="/tags/Iterator/" style="font-size: 10px;">Iterator</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/List/" style="font-size: 10px;">List</a> <a href="/tags/Map/" style="font-size: 10px;">Map</a> <a href="/tags/Session/" style="font-size: 10px;">Session</a> <a href="/tags/Set/" style="font-size: 10px;">Set</a> <a href="/tags/Shell/" style="font-size: 10px;">Shell</a> <a href="/tags/Spring/" style="font-size: 10px;">Spring</a> <a href="/tags/Storage/" style="font-size: 10px;">Storage</a> <a href="/tags/Struts/" style="font-size: 10px;">Struts</a> <a href="/tags/Sublime/" style="font-size: 10px;">Sublime</a> <a href="/tags/Throwable/" style="font-size: 10px;">Throwable</a> <a href="/tags/directory/" style="font-size: 10px;">directory</a> <a href="/tags/file/" style="font-size: 10px;">file</a> <a href="/tags/svn/" style="font-size: 10px;">svn</a> <a href="/tags/tar/" style="font-size: 10px;">tar</a> <a href="/tags/前端/" style="font-size: 10px;">前端</a> <a href="/tags/后端/" style="font-size: 10px;">后端</a> <a href="/tags/基础命令/" style="font-size: 20px;">基础命令</a> <a href="/tags/插件/" style="font-size: 10px;">插件</a> <a href="/tags/目录/" style="font-size: 10px;">目录</a> <a href="/tags/系统/" style="font-size: 10px;">系统</a> <a href="/tags/编辑器/" style="font-size: 10px;">编辑器</a> <a href="/tags/网站/" style="font-size: 10px;">网站</a> <a href="/tags/软件/" style="font-size: 10px;">软件</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">八月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">七月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">六月 2016</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2016/08/31/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/2016/08/20/HTML5-API-新特性/">HTML5 API 新特性</a>
+          </li>
+        
+          <li>
+            <a href="/2016/08/04/Thinking-in-java-基础之异常/">Thinking in java 基础之异常</a>
+          </li>
+        
+          <li>
+            <a href="/2016/08/03/Spring中的Session生命周期/">Spring中的Session生命周期</a>
+          </li>
+        
+          <li>
+            <a href="/2016/07/20/前后台数据交互方式总结/">前后台数据交互方式总结</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2016 Mu Xiaobai(慕小白)<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>
