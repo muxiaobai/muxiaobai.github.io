@@ -3,6 +3,44 @@
 
 
     
+  <url>
+    <loc>https://muxiaobai.github.io/2016/09/13/hello-world/</loc>
+    <lastmod>2016-09-13T05:08:46.238Z</lastmod>
+    <data>
+        <display>
+        <title>Hello World</title>
+        <pubTime>2016-09-13T05:08:46.238Z</pubTime>
+        
+         
+           
+             
+              <breadCrumb title="搭建网站" url="https://muxiaobai.github.io/categories/%E6%90%AD%E5%BB%BA%E7%BD%91%E7%AB%99/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://muxiaobai.github.io/2016/09/13/%E6%A8%A1%E4%BB%BFjQuery%E5%88%9B%E5%BB%BA%E8%87%AA%E5%B7%B1%E7%9A%84js%E5%B7%A5%E5%85%B7/</loc>
+    <lastmod>2016-09-13T05:08:34.090Z</lastmod>
+    <data>
+        <display>
+        <title>模仿jQuery创建自己的js工具</title>
+        <pubTime>2016-09-13T05:02:46.000Z</pubTime>
+        
+        <tag>jQuery实践</tag>
+         
+         
+           
+             
+              <breadCrumb title="jQuery" url="https://muxiaobai.github.io/categories/jQuery/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
     
     
     
@@ -343,24 +381,6 @@
            
              
               <breadCrumb title="HTML" url="https://muxiaobai.github.io/categories/HTML/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>https://muxiaobai.github.io/2016/08/31/hello-world/</loc>
-    <lastmod>2016-08-31T12:24:35.146Z</lastmod>
-    <data>
-        <display>
-        <title>Hello World</title>
-        <pubTime>2016-08-31T12:24:35.146Z</pubTime>
-        
-         
-           
-             
-              <breadCrumb title="搭建网站" url="https://muxiaobai.github.io/categories/%E6%90%AD%E5%BB%BA%E7%BD%91%E7%AB%99/"/>
           
         </display>
     </data>
