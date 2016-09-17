@@ -166,7 +166,43 @@
 <p>&#x201C;&#x6C49;&#x201D;<br>Unicode&#x7F16;&#x7801;&#x662F;0x6C49&#x3002;(0110 1100 0100 1001) 0x6C49&#x5728;0x0800-0xFFFF&#x4E4B;&#x95F4;&#xFF0C;<br>&#x4F7F;&#x7528;&#x7528;3&#x5B57;&#x8282;&#x6A21;&#x677F;&#x4E86;&#xFF1A;1110xxxx 10xxxxxx 10xxxxxx&#x3002;<br>&#x7528;&#x8FD9;&#x4E2A;&#x6BD4;&#x7279;&#x6D41;&#x4F9D;&#x6B21;&#x4EE3;&#x66FF;&#x6A21;&#x677F;&#x4E2D;&#x7684;x&#xFF0C;&#x5F97;&#x5230;&#xFF1A;11100110 10110001 10001001&#xFF0C;&#x5373;E6 B1 89&#x3002;</p>
 <p>&#x201C;&#x5F20;&#x201D;<br>Unicode&#x7F16;&#x7801;&#xFF1A;0x5F20 &#xFF08;0101 1111 0010 0000&#xFF09;0x5F20&#x5728;0x0800-0xFFFF&#x4E4B;&#x95F4;<br>&#x4F9D;&#x636E;&#x4E0A;&#x8868;&#xFF0C;UTF-8&#x9700;&#x8981;&#x4E09;&#x4E2A;&#x5B57;&#x8282; &#x5373;&#x201C;1110xxxx 10xxxxxx 10xxxxxx&#x201D;&#x3002;<br>&#x7528;Unicode&#x7801;&#x586B;&#x8865;&#x6A21;&#x677F;&#x5F97;&#x5230;&#xFF1A; 11100101 10111100 10100000 &#x5341;&#x516D;&#x8FDB;&#x5236;&#x5373; E5 BC A0 </p>
 <p>Unicode&#x89C4;&#x8303;&#x4E2D;&#x5B9A;&#x4E49;&#xFF0C;&#x6BCF;&#x4E00;&#x4E2A;&#x6587;&#x4EF6;&#x7684;&#x6700;&#x524D;&#x9762;&#x5206;&#x522B;&#x52A0;&#x5165;&#x4E00;&#x4E2A;&#x8868;&#x793A;&#x7F16;&#x7801;&#x987A;&#x5E8F;&#x7684;&#x5B57;&#x7B26;&#xFF0C;&#x8FD9;&#x4E2A;&#x5B57;&#x7B26;&#x7684;&#x540D;&#x5B57;&#x53EB;&#x505A;&#x201D;&#x96F6;&#x5BBD;&#x5EA6;&#x975E;&#x6362;&#x884C;&#x7A7A;&#x683C;&#x201D;&#xFF08;ZERO WIDTH NO-BREAK SPACE&#xFF09;&#xFF0C;&#x7528;FEFF&#x8868;&#x793A;&#x3002;&#x8FD9;&#x6B63;&#x597D;&#x662F;&#x4E24;&#x4E2A;&#x5B57;&#x8282;&#xFF0C;&#x800C;&#x4E14;FF&#x6BD4;FE&#x5927;1&#x3002;<br>&#x5982;&#x679C;&#x4E00;&#x4E2A;&#x6587;&#x672C;&#x6587;&#x4EF6;&#x7684;&#x5934;&#x4E24;&#x4E2A;&#x5B57;&#x8282;&#x662F;FE FF&#xFF0C;&#x5C31;&#x8868;&#x793A;&#x8BE5;&#x6587;&#x4EF6;&#x91C7;&#x7528;&#x5927;&#x5934;&#x65B9;&#x5F0F;&#xFF1B;&#x5982;&#x679C;&#x5934;&#x4E24;&#x4E2A;&#x5B57;&#x8282;&#x662F;FF FE&#xFF0C;&#x5C31;&#x8868;&#x793A;&#x8BE5;&#x6587;&#x4EF6;&#x91C7;&#x7528;&#x5C0F;&#x5934;&#x65B9;&#x5F0F;&#x3002;</p>
-<p>&#x9700;&#x8981;&#x5224;&#x65AD;&#x6587;&#x672C;&#x5F00;&#x5934;&#x7684;&#x6807;&#x5FD7;,&#x4E0B;&#x9762;&#x662F;&#x6240;&#x6709;&#x7F16;&#x7801;&#x5BF9;&#x5E94;&#x7684;&#x5F00;&#x5934;&#x6807;&#x5FD7;<br>|&#x6587;&#x4EF6;&#x5934;|&#x7F16;&#x7801;|&#x5927;&#x5C0F;&#x5934;|<br>|&#x2014;&#x2014;|:&#x2014;&#x2013;|&#x2014;-|<br>|EF BB BF&#x3000;&#x3000;&#x3000; |UTF-8         |    &#x6CA1;&#x6709;&#x533A;&#x522B;    |<br>|FF FE&#x3000;&#x3000;&#x3000;&#x3000;&#x3000;|UTF-16/UCS-2, |little endian   |<br>|FE FF&#x3000;&#x3000;&#x3000;&#x3000;&#x3000;|UTF-16/UCS-2, |big endian      |<br>|FF FE 00 00&#x3000;&#x3000;|UTF-32/UCS-4, |little endian.  |<br>|00 00 FE FF&#x3000;&#x3000;|UTF-32/UCS-4, |big-endian      |</p>
+<p>&#x9700;&#x8981;&#x5224;&#x65AD;&#x6587;&#x672C;&#x5F00;&#x5934;&#x7684;&#x6807;&#x5FD7;,&#x4E0B;&#x9762;&#x662F;&#x6240;&#x6709;&#x7F16;&#x7801;&#x5BF9;&#x5E94;&#x7684;&#x5F00;&#x5934;&#x6807;&#x5FD7;</p>
+<table>
+<thead>
+<tr>
+<th>&#x6587;&#x4EF6;&#x5934;</th>
+<th style="text-align:left">&#x7F16;&#x7801;</th>
+<th>&#x5927;&#x5C0F;&#x5934;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>EF BB BF&#x3000;&#x3000;&#x3000;</td>
+<td style="text-align:left">UTF-8</td>
+<td>&#x6CA1;&#x6709;&#x533A;&#x522B;</td>
+</tr>
+<tr>
+<td>FF FE&#x3000;&#x3000;&#x3000;&#x3000;&#x3000;</td>
+<td style="text-align:left">UTF-16/UCS-2,</td>
+<td>little endian</td>
+</tr>
+<tr>
+<td>FE FF&#x3000;&#x3000;&#x3000;&#x3000;&#x3000;</td>
+<td style="text-align:left">UTF-16/UCS-2,</td>
+<td>big endian</td>
+</tr>
+<tr>
+<td>FF FE 00 00&#x3000;&#x3000;</td>
+<td style="text-align:left">UTF-32/UCS-4,</td>
+<td>little endian.</td>
+</tr>
+<tr>
+<td>00 00 FE FF&#x3000;&#x3000;</td>
+<td style="text-align:left">UTF-32/UCS-4,</td>
+<td>big-endian</td>
+</tr>
+</tbody>
+</table>
 <p>&#x8BE6;&#x89C1;<a href="http://www.unicode.org/faq/utf_bom.html" target="_blank" rel="external">Q: When a BOM is used, is it only in 16-bit Unicode text?</a></p>
 <blockquote>
 <p>&#x7B2C;&#x4E00;&#x4E2A;&#x5B57;&#x8282;&#x5728;&#x524D;&#xFF0C;&#x5C31;&#x662F;&#x5927;&#x5934;&#x65B9;&#x5F0F;&#xFF0C;&#x7B2C;&#x4E8C;&#x4E2A;&#x5B57;&#x8282;&#x5728;&#x524D;&#x5C31;&#x662F;&#x5C0F;&#x5934;&#x65B9;&#x5F0F;&#x3002;</p>
