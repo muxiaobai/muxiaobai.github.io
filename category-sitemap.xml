@@ -64,7 +64,14 @@
 
     <url>
         <loc>https://muxiaobai.github.io/categories/jQuery/</loc>
-        <lastmod>2016-09-13T05:22:46.486Z</lastmod>
+        <lastmod>2016-09-13T05:25:17.122Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://muxiaobai.github.io/categories/%E5%89%8D%E7%AB%AF/</loc>
+        <lastmod>2016-09-17T03:51:23.790Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>

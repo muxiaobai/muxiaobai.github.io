@@ -255,7 +255,21 @@
 
     <url>
         <loc>https://muxiaobai.github.io/tags/jQuery%E5%AE%9E%E8%B7%B5/</loc>
-        <lastmod>2016-09-13T05:22:46.486Z</lastmod>
+        <lastmod>2016-09-13T05:25:17.122Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://muxiaobai.github.io/tags/javascript/</loc>
+        <lastmod>2016-09-17T03:51:23.790Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://muxiaobai.github.io/tags/%E7%BC%96%E7%A0%81/</loc>
+        <lastmod>2016-09-17T03:51:23.790Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
