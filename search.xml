@@ -205,7 +205,7 @@
 </table>
 <p>&#x8BE6;&#x89C1;<a href="http://www.unicode.org/faq/utf_bom.html" target="_blank" rel="external">Q: When a BOM is used, is it only in 16-bit Unicode text?</a></p>
 <blockquote>
-<p>&#x7B2C;&#x4E00;&#x4E2A;&#x5B57;&#x8282;&#x5728;&#x524D;&#xFF0C;&#x5C31;&#x662F;&#x5927;&#x5934;&#x65B9;&#x5F0F;&#xFF0C;&#x7B2C;&#x4E8C;&#x4E2A;&#x5B57;&#x8282;&#x5728;&#x524D;&#x5C31;&#x662F;&#x5C0F;&#x5934;&#x65B9;&#x5F0F;&#x3002;</p>
+<p>&#x7B2C;&#x4E00;&#x4E2A;&#x5B57;&#x8282;&#x5728;&#x524D;&#xFF0C;&#x5C31;&#x662F;&#x5C0F;&#x5934;&#x65B9;&#x5F0F;&#xFF0C;&#x7B2C;&#x4E8C;&#x4E2A;&#x5B57;&#x8282;&#x5728;&#x524D;&#x5C31;&#x662F;&#x5927;&#x5934;&#x65B9;&#x5F0F;&#x3002;</p>
 </blockquote>
 <ul>
 <li>Unicode&#xFF1A;&#x7F16;&#x7801;&#x662F;&#x56DB;&#x4E2A;&#x5B57;&#x8282;&#x201D;FF FE 6C 49&#x201D;&#xFF0C;&#x5176;&#x4E2D;&#x201D;FF FE&#x201D;&#x8868;&#x660E;&#x662F;&#x5C0F;&#x5934;&#x65B9;&#x5F0F;&#x5B58;&#x50A8;&#xFF0C;&#x771F;&#x6B63;&#x7684;&#x7F16;&#x7801;&#x662F;6C49&#x3002;</li>

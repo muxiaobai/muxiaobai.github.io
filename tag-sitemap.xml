@@ -86,6 +86,13 @@
     </url>
 
     <url>
+        <loc>https://muxiaobai.github.io/tags/%E7%9B%AE%E5%BD%95/</loc>
+        <lastmod>2016-08-31T12:24:36.610Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
         <loc>https://muxiaobai.github.io/tags/file/</loc>
         <lastmod>2016-08-31T12:24:36.610Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -101,13 +108,6 @@
 
     <url>
         <loc>https://muxiaobai.github.io/tags/tar/</loc>
-        <lastmod>2016-08-31T12:24:36.610Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://muxiaobai.github.io/tags/%E7%9B%AE%E5%BD%95/</loc>
         <lastmod>2016-08-31T12:24:36.610Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
@@ -262,14 +262,14 @@
 
     <url>
         <loc>https://muxiaobai.github.io/tags/javascript/</loc>
-        <lastmod>2016-09-17T03:52:57.330Z</lastmod>
+        <lastmod>2016-09-17T03:56:19.246Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
         <loc>https://muxiaobai.github.io/tags/%E7%BC%96%E7%A0%81/</loc>
-        <lastmod>2016-09-17T03:52:57.330Z</lastmod>
+        <lastmod>2016-09-17T03:56:19.246Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
