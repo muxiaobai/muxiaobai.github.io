@@ -233,20 +233,6 @@
     </url>
 
     <url>
-        <loc>https://muxiaobai.github.io/tags/%E7%BD%91%E7%AB%99/</loc>
-        <lastmod>2016-08-31T12:24:38.122Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://muxiaobai.github.io/tags/%E6%8F%92%E4%BB%B6/</loc>
-        <lastmod>2016-08-31T12:24:38.122Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
         <loc>https://muxiaobai.github.io/tags/%E8%BD%AF%E4%BB%B6/</loc>
         <lastmod>2016-08-31T12:24:38.270Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -262,7 +248,7 @@
 
     <url>
         <loc>https://muxiaobai.github.io/tags/%E7%BC%96%E7%A0%81/</loc>
-        <lastmod>2016-09-19T02:58:35.003Z</lastmod>
+        <lastmod>2016-09-19T03:49:25.316Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
@@ -277,6 +263,41 @@
     <url>
         <loc>https://muxiaobai.github.io/tags/Object/</loc>
         <lastmod>2016-09-20T04:52:11.853Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://muxiaobai.github.io/tags/%E7%BD%91%E7%AB%99/</loc>
+        <lastmod>2016-09-21T07:54:26.077Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://muxiaobai.github.io/tags/%E6%8F%92%E4%BB%B6/</loc>
+        <lastmod>2016-09-21T07:54:26.077Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://muxiaobai.github.io/tags/Socket/</loc>
+        <lastmod>2016-09-24T06:49:54.441Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://muxiaobai.github.io/tags/Thread/</loc>
+        <lastmod>2016-09-24T11:59:27.071Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://muxiaobai.github.io/tags/Concurrent/</loc>
+        <lastmod>2016-09-24T11:59:27.071Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>

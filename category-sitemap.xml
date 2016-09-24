@@ -42,20 +42,6 @@
     </url>
 
     <url>
-        <loc>https://muxiaobai.github.io/categories/java/</loc>
-        <lastmod>2016-08-31T12:24:37.958Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://muxiaobai.github.io/categories/%E8%B5%84%E6%BA%90/</loc>
-        <lastmod>2016-08-31T12:24:38.270Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
         <loc>https://muxiaobai.github.io/categories/%E6%90%AD%E5%BB%BA%E7%BD%91%E7%AB%99/</loc>
         <lastmod>2016-09-13T05:08:46.238Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -72,6 +58,20 @@
     <url>
         <loc>https://muxiaobai.github.io/categories/%E5%89%8D%E7%AB%AF/</loc>
         <lastmod>2016-09-20T04:52:11.853Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://muxiaobai.github.io/categories/%E8%B5%84%E6%BA%90/</loc>
+        <lastmod>2016-09-21T07:54:26.077Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://muxiaobai.github.io/categories/java/</loc>
+        <lastmod>2016-09-24T11:59:27.071Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
