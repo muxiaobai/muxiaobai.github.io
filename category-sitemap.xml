@@ -42,13 +42,6 @@
     </url>
 
     <url>
-        <loc>https://muxiaobai.github.io/categories/%E6%90%AD%E5%BB%BA%E7%BD%91%E7%AB%99/</loc>
-        <lastmod>2016-09-13T05:08:46.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
         <loc>https://muxiaobai.github.io/categories/jQuery/</loc>
         <lastmod>2016-09-13T05:25:17.000Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -77,15 +70,29 @@
     </url>
 
     <url>
+        <loc>https://muxiaobai.github.io/categories/%E6%90%AD%E5%BB%BA%E7%BD%91%E7%AB%99/</loc>
+        <lastmod>2016-12-17T07:32:26.844Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
         <loc>https://muxiaobai.github.io/categories/%E8%B5%84%E6%BA%90/</loc>
-        <lastmod>2016-12-17T07:04:58.286Z</lastmod>
+        <lastmod>2016-12-20T08:55:48.623Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
         <loc>https://muxiaobai.github.io/categories/%E5%89%8D%E7%AB%AF/</loc>
-        <lastmod>2016-12-17T07:31:36.572Z</lastmod>
+        <lastmod>2016-12-27T09:53:43.974Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://muxiaobai.github.io/categories/%E5%89%8D%E7%AB%AF/CSS/</loc>
+        <lastmod>2016-12-27T09:53:43.974Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
