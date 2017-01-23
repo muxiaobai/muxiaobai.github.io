@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+
+    <!--[if lt IE 9]>
+        <style>body {display: none; background: none !important} </style>
+        <meta http-equiv="Refresh" Content="0; url=//outdatedbrowser.com/" />
+    <![endif]-->
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="format-detection" content="telephone=no" />
+<meta name="author" content="Mu Xiaobai(慕小白)" />
+
+
+
+<meta name="description" content="2016年已经过去，总结一下。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="2016年个人总结">
+<meta property="og:url" content="https://muxiaobai.github.io/2017/01/23/2016年个人总结/index.html">
+<meta property="og:site_name" content="技术笔记">
+<meta property="og:description" content="2016年已经过去，总结一下。">
+<meta property="og:updated_time" content="2017-01-23T10:05:40.616Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="2016年个人总结">
+<meta name="twitter:description" content="2016年已经过去，总结一下。">
+
+<link rel="apple-touch-icon" href= "/apple-touch-icon.png">
+
+
+    <link rel="alternative" href="/atom.xml" title="技术笔记" type="application/atom+xml">
+
+
+
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+
+
+    <link href="//cdn.bootcss.com/animate.css/3.5.1/animate.min.css" rel="stylesheet">
+
+
+
+    <link href="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet">
+
+
+
+    <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+    <link href="//cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-minimal.css" rel="stylesheet">
+
+
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+<link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+
+
+<title>2016年个人总结 | 技术笔记</title>
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+
+<script>
+    var yiliaConfig = {
+        fancybox: true,
+        animate: true,
+        isHome: false,
+        isPost: true,
+        isArchive: false,
+        isTag: false,
+        isCategory: false,
+        open_in_new: true,
+        fancybox_js: "//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.js",
+        scrollreveal: "//cdn.bootcss.com/scrollReveal.js/3.1.4/scrollreveal.min.js",
+        search: true
+    }
+</script>
+
+
+    <script>
+        yiliaConfig.jquery_ui = [true, "//cdn.bootcss.com/jqueryui/1.10.4/jquery-ui.min.js", "//cdn.bootcss.com/jqueryui/1.10.4/css/jquery-ui.min.css"];
+    </script>
+
+
+
+    <script> yiliaConfig.rootUrl = "\/";</script>
+
+
+
+    <script src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-577a08f17286c0c0"></script>
+
+
+
+    <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "//hm.baidu.com/hm.js?9d6c9084c010ea425bd063ef91167131";
+            var s = document.getElementsByTagName("script")[0]; 
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+
+
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <a href="/" class="profilepic">
+            <img src="/img/avatars.jpg" class="animated zoomIn">
+        </a>
+        <hgroup>
+          <h1 class="header-author"><a href="/">Mu Xiaobai(慕小白)</a></h1>
+        </hgroup>
+
+        
+        <p class="header-subtitle">有输入,有输出</p>
+        
+
+        
+            <form id="search-form">
+            <input type="text" id="local-search-input" name="q" results="0" placeholder="search..." class="search form-control" autocomplete="off" autocorrect="off" searchonload="false" />
+            <i class="fa fa-times" onclick="resetSearch()"></i>
+            </form>
+            <div id="local-search-result"></div>
+            <p class='no-result'>No results found <i class='fa fa-spinner fa-pulse'></i></p>
+        
+
+
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        <div class="icon-wrap icon-link hide" data-idx="2">
+                            <div class="loopback_l"></div>
+                            <div class="loopback_r"></div>
+                        </div>
+                        
+                        
+                    </div>
+                    
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>菜单</li>
+                        <li>标签</li>
+                        
+                        <li>友情链接</li>
+                        
+                        
+                    </ul>
+                </div>
+            </div>
+        
+
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a href="/">主页</a></li>
+                        
+                            <li><a href="/archives/">所有文章</a></li>
+                        
+                            <li><a href="/categories/">分类</a></li>
+                        
+                            <li><a href="/tags/">标签云</a></li>
+                        
+                            <li><a href="/about/">关于我</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" target="_blank" href="mailto:zpf12345678910@gmail.com" title="Email"></a>
+                            
+                                <a class="fa 新浪微博" target="_blank" href="http://weibo.com/u/1751073805" title="新浪微博"></a>
+                            
+                                <a class="fa GitHub" target="_blank" href="https://github.com/muxiaobai" title="GitHub"></a>
+                            
+                                <a class="fa RSS" target="_blank" href="/atom.xml" title="RSS"></a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/2016/">2016</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/API/">API</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS/">CSS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Cache/">Cache</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Canvas/">Canvas</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Collection/">Collection</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Concurrent/">Concurrent</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Error/">Error</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Exception/">Exception</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/File/">File</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Github/">Github</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hibernate/">Hibernate</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/I-O/">I/O</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Iterator/">Iterator</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/List/">List</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Map/">Map</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Object/">Object</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Session/">Session</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Set/">Set</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Shell/">Shell</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Socket/">Socket</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Spring/">Spring</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Storage/">Storage</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Struts/">Struts</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Sublime/">Sublime</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Thread/">Thread</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Throwable/">Throwable</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/directory/">directory</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/file/">file</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jQuery实践/">jQuery实践</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">javascript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/svn/">svn</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tar/">tar</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/前端/">前端</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/后端/">后端</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/基础命令/">基础命令</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/定位/">定位</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/常用代码/">常用代码</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/排序/">排序</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/插件/">插件</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/目录/">目录</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/系统/">系统</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/编码/">编码</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/编辑器/">编辑器</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/网站/">网站</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/行高/">行高</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/软件/">软件</a></li></ul>
+                    </div>
+                </section>
+                
+                
+                
+                <section class="switch-part switch-part3">
+                    <div id="js-friends">
+                    
+                      <a target="_blank" class="main-nav-link switch-friends-link" href="https://hexo.io">Hexo</a>
+                    
+                      <a target="_blank" class="main-nav-link switch-friends-link" href="https://pages.github.com/">GitHub</a>
+                    
+                      <a target="_blank" class="main-nav-link switch-friends-link" href="http://moxfive.xyz/">MOxFIVE</a>
+                    
+                    </div>
+                </section>
+                
+
+                
+            </div>
+        </div>
+    </header>                
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">Mu Xiaobai(慕小白)</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                <img src="/img/avatars.jpg" class="animated zoomIn">
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="回到主页">Mu Xiaobai(慕小白)</a></h1>
+            </hgroup>
+            
+            <p class="header-subtitle">有输入,有输出</p>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/">主页</a></li>
+                
+                    <li><a href="/archives/">所有文章</a></li>
+                
+                    <li><a href="/categories/">分类</a></li>
+                
+                    <li><a href="/tags/">标签云</a></li>
+                
+                    <li><a href="/about/">关于我</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" target="_blank" href="mailto:zpf12345678910@gmail.com" title="Email"></a>
+                            
+                                <a class="fa 新浪微博" target="_blank" href="http://weibo.com/u/1751073805" title="新浪微博"></a>
+                            
+                                <a class="fa GitHub" target="_blank" href="https://github.com/muxiaobai" title="GitHub"></a>
+                            
+                                <a class="fa RSS" target="_blank" href="/atom.xml" title="RSS"></a>
+                            
+                        </ul>
+            </nav>
+        </header>                
+    </div>
+    <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
+</nav>
+      <div class="body-wrap"><article id="post-2016年个人总结" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2017/01/23/2016年个人总结/" class="article-date">
+      <time datetime="2017-01-23T06:27:27.000Z" itemprop="datePublished">2017-01-23</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      2016年个人总结
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/总结/">总结</a>
+    </div>
+
+
+        
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/2016/">2016</a></li></ul>
+    </div>
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <h2 id="&#x9996;&#x5148;&#x68B3;&#x7406;&#x4E00;&#x4E0B;&#x53BB;&#x5E74;&#x7684;&#x5DE5;&#x4F5C;"><a href="#&#x9996;&#x5148;&#x68B3;&#x7406;&#x4E00;&#x4E0B;&#x53BB;&#x5E74;&#x7684;&#x5DE5;&#x4F5C;" class="headerlink" title="&#x9996;&#x5148;&#x68B3;&#x7406;&#x4E00;&#x4E0B;&#x53BB;&#x5E74;&#x7684;&#x5DE5;&#x4F5C;"></a>&#x9996;&#x5148;&#x68B3;&#x7406;&#x4E00;&#x4E0B;&#x53BB;&#x5E74;&#x7684;&#x5DE5;&#x4F5C;</h2><h4 id="&#x4ECE;&#x65F6;&#x95F4;&#x4E0A;"><a href="#&#x4ECE;&#x65F6;&#x95F4;&#x4E0A;" class="headerlink" title="&#x4ECE;&#x65F6;&#x95F4;&#x4E0A;"></a>&#x4ECE;&#x65F6;&#x95F4;&#x4E0A;</h4><p>&#x8FC7;&#x5B8C;&#x5BD2;&#x5047;&#xFF0C;&#x57FA;&#x672C;&#x4E5F;&#x5BA3;&#x544A;&#x7B2C;&#x4E00;&#x4E2A;&#x9879;&#x76EE;&#x5931;&#x8D25;&#x4E86;&#xFF0C;&#x4E0D;&#x4E86;&#x4E86;&#x4E4B;&#x3002;&#x771F;&#x5FC3;&#x5BF9;&#x4E0D;&#x8D77;&#x8001;&#x5E08;&#x7684;&#x8F9B;&#x52E4;&#x6307;&#x5BFC;&#xFF0C;&#x540E;&#x9762;&#x518D;&#x8BF4;&#x7ECF;&#x5386;&#x4F53;&#x4F1A;&#x3002;&#x7D27;&#x63A5;&#x7740;&#x5F00;&#x59CB;&#x4E86;&#x7B2C;&#x4E8C;&#x4E2A;&#x9879;&#x76EE;&#xFF0C;&#x4ECE;4&#x6708;&#x4E2D;&#x65EC;&#x5230;9&#x6708;&#x4E2D;&#x65EC;&#x5DE6;&#x53F3;&#xFF0C;&#x4E94;&#x5230;&#x516D;&#x4E2A;&#x6708;&#xFF0C;&#x5927;&#x5BB6;&#x90FD;&#x5F88;&#x4E0A;&#x5FC3;&#xFF0C;&#x60F3;&#x505A;&#x597D;&#x4E00;&#x4E2A;&#xFF0C;&#x6765;&#x8BC1;&#x660E;&#x4E00;&#x4E0B;&#x81EA;&#x5DF1;&#x7684;&#x80FD;&#x529B;&#xFF0C;&#x4E5F;&#x662F;&#x4E3A;&#x4E4B;&#x540E;&#x627E;&#x5DE5;&#x4F5C;&#x7684;&#x65F6;&#x5019;&#x53EF;&#x4EE5;&#x62FF;&#x51FA;&#x4E00;&#x4E2A;&#x5B8C;&#x6574;&#x7684;&#x9879;&#x76EE;&#xFF0C;&#x53EF;&#x60DC;&#x554A;&#xFF0C;&#x53EF;&#x60DC;&#x3002;&#x7B2C;&#x4E8C;&#x4E2A;&#x9879;&#x76EE;&#x5230;&#x6691;&#x5047;&#x7ED3;&#x675F;&#xFF0C;&#x8001;&#x677F;&#x4E5F;&#x662F;&#x4F53;&#x4F1A;&#x5230;&#x4E86;&#x6211;&#x4EEC;&#x7684;&#x8FDB;&#x5EA6;&#xFF0C;&#x800C;&#x4E14;&#x5230;&#x5341;&#x6708;&#x4EFD;&#x5927;&#x5BB6;&#x90FD;&#x5F00;&#x59CB;&#x627E;&#x5DE5;&#x4F5C;&#x4E86;&#xFF0C;&#x51C6;&#x5907;&#x4E00;&#x4E9B;&#x8003;&#x7814;&#x4FDD;&#x7814;&#x7684;&#x6750;&#x6599;&#x7B49;&#x7B49;&#xFF0C;&#x5C31;&#x628A;&#x8FD9;&#x4E2A;&#x9879;&#x76EE;&#x505C;&#x4E0B;&#x6765;&#x4E86;&#x3002;&#x5728;&#x6B64;&#x540C;&#x65F6;&#x4E5F;&#x5F00;&#x59CB;&#x4E86;&#x52A0;&#x5165;&#x4E86;&#x627E;&#x5DE5;&#x4F5C;&#x7684;&#x5927;&#x519B;&#x3002;&#x5230;&#x5341;&#x4E00;&#x6708;&#x5E95;&#xFF0C;&#x6765;&#x5230;&#x6DF1;&#x5733;&#xFF0C;&#x5F00;&#x59CB;&#x65B0;&#x7684;&#x7ECF;&#x5386;&#xFF0C;&#x6765;&#x6DF1;&#x5733;&#x8FD8;&#x662F;&#x5E0C;&#x671B;&#x4E00;&#x4E2A;&#x4EBA;&#x4E5F;&#x53EF;&#x4EE5;&#x6765;&#xFF0C;&#x4E4B;&#x540E;&#x518D;&#x8BF4;&#x3002;&#x7136;&#x540E;&#x5C31;&#x5230;2017&#x5E74;1&#x6708;23&#x53F7;&#x4E86;&#xFF0C;&#x6253;&#x5DE5;&#x6B63;&#x5F0F;&#x4E24;&#x4E2A;&#x6708;&#x3002;&#x540E;&#x5929;&#x5C31;&#x51C6;&#x5907;&#x56DE;&#x5BB6;&#xFF0C;&#x8FC7;&#x5927;&#x5E74;&#x3002;</p>
+<h4 id="&#x4ECE;&#x7A7A;&#x95F4;&#x4E0A;"><a href="#&#x4ECE;&#x7A7A;&#x95F4;&#x4E0A;" class="headerlink" title="&#x4ECE;&#x7A7A;&#x95F4;&#x4E0A;"></a>&#x4ECE;&#x7A7A;&#x95F4;&#x4E0A;</h4><p>&#x53BB;&#x5E74;&#x6765;&#x5230;&#x8FC7;&#x4EE5;&#x4E0B;&#x57CE;&#x5E02;&#xFF1A;&#x5F90;&#x5DDE; &#x6B66;&#x6C49; &#x67A3;&#x5E84; &#x5408;&#x80A5; &#x897F;&#x5B89; &#x5357;&#x9633; &#x4E1C;&#x839E; &#x6DF1;&#x5733; &#x60E0;&#x5DDE; &#x5E7F;&#x5DDE; </p>
+<p>&#x6211;&#x89C9;&#x5F97;&#x8BF4;&#x7A7A;&#x95F4;&#x4E0A;&#x7684;&#x7ECF;&#x5386;&#x5C55;&#x73B0;&#x4E00;&#x4E2A;&#x4EBA;&#x7684;&#x7ECF;&#x5386;&#xFF0C;&#x5F85;&#x5728;&#x4E00;&#x4E2A;&#x5730;&#x65B9;&#xFF0C;&#x6211;&#x89C9;&#x5F97;&#x4E0D;&#x662F;&#x6211;&#x7684;&#x98CE;&#x683C;&#xFF0C;&#x867D;&#x7136;&#x8BF4;&#xFF0C;&#x67D0;&#x4E9B;&#x5730;&#x65B9;&#x4E5F;&#x662F;&#x873B;&#x8713;&#x70B9;&#x6C34;&#x4E00;&#x6837;&#xFF0C;&#x4F46;&#x662F;&#x90FD;&#x6709;&#x56DE;&#x5FC6;&#x3002;&#x5148;&#x8BF4;&#x5F90;&#x5DDE;&#xFF0C;&#x6211;&#x5927;&#x5F90;&#x5DDE;&#xFF0C;&#x5C31;&#x4E0D;&#x591A;&#x4ECB;&#x7ECD;&#x4E86;&#xFF0C;&#x5386;&#x53F2;&#x6587;&#x5316;&#x540D;&#x57CE;&#xFF0C;&#x5927;&#x5B66;&#x5DF2;&#x7ECF;&#x5728;&#x6B64;&#x4E09;&#x5E74;&#x4E86;&#xFF0C;&#x8BF4;&#x771F;&#x7684;&#xFF0C;&#x73B0;&#x5728;&#x5199;&#x56DE;&#x5FC6;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x8FD8;&#x662F;&#x633A;&#x6000;&#x5FF5;&#x7684;&#x3002;&#x5199;&#x4E0A;&#x5F90;&#x5DDE;&#x7684;&#x53E6;&#x4E00;&#x4E2A;&#x539F;&#x56E0;&#xFF0C;&#x662F;&#x4ECA;&#x5E74;&#x56FD;&#x5E86;&#x4E4B;&#x540E;&#xFF0C;&#x5E26;&#x7236;&#x6BCD;&#x6765;&#x5F90;&#x5DDE;&#x8F6C;&#x4E86;&#x4E00;&#x5708;&#xFF0C;&#x8FD9;&#x53EF;&#x80FD;&#x662F;&#x4ECA;&#x5E74;&#x6700;&#x5F00;&#x5FC3;&#x7684;&#x65F6;&#x5149;&#x5427;&#x3002;&#x4E00;&#x5171;&#x62CD;&#x4E86;300&#x591A;&#x5F20;</p>
+<p>&#x6B66;&#x6C49; &#x53C2;&#x52A0;&#x4E91;&#x6816;&#x5927;&#x4F1A;&#xFF0C;&#x7B2C;&#x4E00;&#x6B21;&#x53C2;&#x52A0;&#x8FD9;&#x4E48;&#x9AD8;&#x89C4;&#x683C;&#x7684;&#x4F1A;&#x8BAE;&#xFF0C;</p>
+<p>&#x67A3;&#x5E84; &#x8FD9;&#x4E5F;&#x662F;&#x4E00;&#x4E2A;&#x548C;&#x5F90;&#x5DDE;&#x7C7B;&#x4F3C;&#x7684;&#x57CE;&#x5E02;&#xFF0C;&#x6211;&#x53BB;&#x7684;&#x51C6;&#x786E;&#x7684;&#x8BF4;&#x662F;&#x4E0B;&#x9762;&#x7684;&#x4E00;&#x4E2A;&#x533A;&#x2014;&#x2013;&#x53F0;&#x513F;&#x5E84;&#xFF0C;&#x665A;&#x4E0A;&#x6E38;&#x53F0;&#x513F;&#x5E84;&#xFF0C;&#x90A3;&#x666F;&#x8C61;&#x3002;</p>
+<p>&#x5408;&#x80A5; &#x9762;&#x8BD5;&#xFF0C;&#x9996;&#x6B21;&#x63A5;&#x89E6;&#x90A3;&#x4E48;&#x597D;&#x7684;&#x516C;&#x53F8;&#xFF0C;&#x9762;&#x8BD5;&#x90FD;&#x5728;&#x9152;&#x5E97;&#x91CC;&#x9762;&#xFF0C;&#x5C31;&#x597D;&#x50CF;&#x201C;&#x7EA6;&#x4F1A;&#x201D;&#xFF0C;&#x4ED6;&#x4EEC;&#x4ECE;&#x676D;&#x5DDE;&#x5230;&#x5408;&#x80A5;&#xFF0C;&#x6211;&#x4E3A;&#x4E86;&#x8D74;&#x7EA6;&#xFF0C;&#x4E5F;&#x884C;&#x5F90;&#x5DDE;&#x5230;&#x4E86;&#x5408;&#x80A5;&#xFF0C;&#x4F46;&#x662F;&#x53CC;&#x65B9;&#x597D;&#x611F;&#x4E0D;&#x4F73;&#xFF0C;&#x7EA6;&#x8C08;&#x5931;&#x8D25;&#xFF0C;&#x5C31;&#x51C6;&#x5907;&#x627E;&#x4E0B;&#x4E00;&#x4E2A;&#x4E86;&#xFF0C;&#x4E0D;&#x8FC7;&#x5462;&#x6B21;&#x9762;&#x8BD5;&#xFF0C;&#x4E4B;&#x540E;&#xFF0C;&#x6211;&#x4E5F;&#x77E5;&#x9053;&#x4E86;&#x81EA;&#x5DF1;&#x7684;&#x6C34;&#x5E73;&#xFF0C;&#x5C31;&#x50CF;&#x6C34;&#x58F6;&#x91CC;&#x9762;&#x7684;&#x6C34;&#xFF0C;&#x4E0D;&#x5012;&#x51FA;&#x6765;&#x600E;&#x4E48;&#x77E5;&#x9053;&#x4F60;&#x6709;&#x591A;&#x5C11;&#x8D27;&#xFF0C;&#x62FF;&#x51FA;&#x6765;&#x6D4B;&#x4E00;&#x6D4B;&#xFF0C;&#x770B;&#x4E00;&#x770B;&#x7A76;&#x7ADF;&#xFF0C;&#x5C31;&#x66F4;&#x597D;&#x7684;&#x8861;&#x91CF;&#x51FA;&#x6765;&#x6C34;&#x5E73;&#x3002;&#x5408;&#x80A5;&#x4E5F;&#x662F;&#xFF0C;&#x6211;&#x4E4B;&#x524D;&#x8F6C;&#x8F66;&#x7ECF;&#x5E38;&#x8D70;&#x7684;&#x8DEF;&#x7EBF;&#xFF0C;&#x5408;&#x80A5;&#x7684;&#x5305;&#x5B5D;&#x8083;&#x516C;&#xFF0C;&#x4E00;&#x5171;</p>
+<p>&#x897F;&#x5B89;&#xFF0C;&#x627E;&#x5DE5;&#x4F5C;&#x7684;&#x57CE;&#x5E02;&#xFF0C;&#x4E00;&#x5171;&#x53BB;&#x4E86;&#x4E24;&#x6B21;&#x897F;&#x5B89;&#xFF0C;&#x56E0;&#x4E3A;&#x4E4B;&#x524D;&#x53C8;&#x4ECE;&#x897F;&#x5B89;&#x8F6C;&#x8FC7;&#x8F66;&#xFF0C;&#x53C8;&#x79BB;&#x5BB6;&#x5F88;&#x8FD1;&#xFF0C;&#x65E0;&#x5F62;&#x4E2D;&#x5C31;&#x589E;&#x52A0;&#x4E86;&#x5F88;&#x591A;&#x597D;&#x611F;&#xFF0C;&#x8FD9;&#x4E2A;&#x57CE;&#x5E02;&#x771F;&#x7684;&#x5F88;&#x539A;&#x91CD;&#xFF0C;&#x5F88;&#x7B26;&#x5408;&#x6211;&#x7684;&#x6C14;&#x8D28;&#xFF0C;&#x81EA;&#x5927;&#x4E86;&#xFF0C;&#x7279;&#x522B;&#x662F;&#x6765;&#x5230;&#x6DF1;&#x5733;&#x4E4B;&#x540E;&#xFF0C;&#x66F4;&#x52A0;&#x7684;&#x89C9;&#x5F97;&#x897F;&#x5B89;&#x5C31;&#x662F;&#x201C;&#x5BB6;&#x201D;&#xFF0C;&#x4E00;&#x6837;&#xFF0C;&#x5F53;&#x521D;&#x554A;&#xFF01;&#xFF01;&#xFF01;</p>
+<p>&#x5357;&#x9633;&#xFF0C;&#x4E0D;&#x7528;&#x591A;&#x8BF4;&#x4E86;&#xFF0C;2016&#x5728;&#x5BB6;&#x5446;&#x7684;&#x65F6;&#x95F4;&#x4E0D;&#x957F;&#xFF0C;&#x4F46;&#x662F;&#x56DE;&#x53BB;&#x7684;&#x6B21;&#x6570;&#x633A;&#x591A;&#x7684;&#xFF0C;&#x4ECE;&#x5BD2;&#x5047;&#xFF0C;&#x5230;&#x4E94;&#x4E00;&#xFF0C;&#x6691;&#x5047;&#xFF0C;&#x5341;&#x4E00;&#xFF0C;&#x57FA;&#x672C;&#x4E0A;&#x603B;&#x6CA1;&#x4E8B;&#x5C31;&#x56DE;&#x5BB6;&#x8F6C;&#x4E00;&#x5708;&#xFF0C;&#x5F53;&#x521D;&#x53BB;&#x5F90;&#x5DDE;&#xFF0C;&#x771F;&#x7684;&#x79BB;&#x5BB6;&#x4E0D;&#x8FDC;&#xFF0C;&#x771F;&#x7684;&#x771F;&#x7684;&#x3002;&#x73B0;&#x5728;&#x56DE;&#x8D9F;&#x5BB6;&#xFF0C;&#x633A;&#x96BE;&#x5F97;&#xFF0C;&#x6000;&#x5FF5;&#x3002;</p>
+<p>&#x4E1C;&#x839E;&#xFF0C;&#x4E3A;&#x4EC0;&#x4E48;&#x628A;&#x5B83;&#x5217;&#x51FA;&#x6765;&#x5462;&#xFF0C;&#x4E00;&#x4E2A;&#x5B66;&#x751F;&#xFF0C;&#x7B2C;&#x4E00;&#x6B21;&#x53D8;&#x6210;&#x4E00;&#x4E2A;&#x6253;&#x5DE5;&#x4ED4;&#xFF0C;&#x5230;&#x7684;&#x7B2C;&#x4E00;&#x7AD9;&#x5C31;&#x662F;&#x4E1C;&#x839E;&#xFF0C;&#x4ECE;&#x4E00;&#x4E0B;&#x706B;&#x8F66;&#x5C31;&#x80FD;&#x4F53;&#x4F1A;&#x5230;&#x5357;&#x65B9;&#x7684;&#x201C;&#x70ED;&#x60C5;&#x201D;&#xFF0C;&#x5E78;&#x597D;&#xFF0C;&#x6211;&#x5728;&#x706B;&#x8F66;&#x4E0A;&#x5C31;&#x6362;&#x4E0B;&#x4E86;&#x7FBD;&#x7ED2;&#x670D;&#xFF0C;&#x7A7F;&#x4E0A;&#x77ED;&#x8896;&#xFF0C;&#x4E00;&#x8EAB;&#x590F;&#x5929;&#x7684;&#x88C5;&#x675F;&#x3002;&#x4E4B;&#x540E;&#x53C8;&#x5230;&#x4E1C;&#x839E;&#x662F;&#x661F;&#x671F;&#x5929;&#x65E0;&#x804A;&#x548C;&#x9676;&#x5C0F;&#x9676;&#x4E00;&#x8D77;&#x53BB;&#x4E86;&#x864E;&#x95E8;&#xFF0C;&#x51FA;&#x95E8;&#x8D70;&#x8D70;&#xFF0C;&#x89C1;&#x8BC6;&#x4E0D;&#x5C0F;&#x3002;&#x8FD8;&#x6709;&#x4E00;&#x4EF6;&#x548C;&#x4E1C;&#x839E;&#x6709;&#x5173;&#x7684;&#x662F;&#x65B0;&#x5E74;&#x7684;&#x7B2C;&#x4E00;&#x4E2A;&#x670B;&#x53CB;&#x5C31;&#x662F;&#x4E1C;&#x839E;&#x7684;&#x3002;</p>
+<p>&#x6DF1;&#x5733;&#xFF0C;&#x8FD9;&#x4E2A;&#x7231;&#x6068;&#x4EA4;&#x52A0;&#x7684;&#x57CE;&#x5E02;&#xFF0C;&#x5230;&#x73B0;&#x5728;&#x4E3A;&#x6B62;&#xFF0C;&#x6DF1;&#x5733;&#x80FD;&#x4E00;&#x4E2A;&#x4EBA;&#x8F6C;&#x7684;&#x5730;&#x65B9;&#xFF0C;&#x5E94;&#x8BE5;&#x662F;&#x90FD;&#x53BB;&#x4E86;&#xFF0C;&#x4ECE;&#x6885;&#x6797;&#x5F00;&#x59CB;&#xFF0C;&#x4E5F;&#x662F;&#x4F4F;&#x7684;&#x5730;&#x65B9;&#xFF0C;&#x5858;&#x6717;&#x5C71;&#xFF0C;&#x6885;&#x6797;&#x6C34;&#x5E93;&#xFF0C;&#x5230;&#x83B2;&#x82B1;&#x5C71;&#xFF0C;&#x5E02;&#x6C11;&#x4E2D;&#x5FC3;&#xFF0C;&#x5145;&#x5206;&#x5229;&#x7528;&#x4E0B;&#x73ED;&#x65F6;&#x95F4;&#x95F2;&#x901B;&#x7684;&#x7ED3;&#x679C;&#xFF0C;&#x5F88;&#x4EAB;&#x53D7;&#xFF0C;&#x7136;&#x540E;&#x662F;&#x7EA2;&#x6811;&#x6797;&#xFF0C;&#x9A91;&#x884C;&#xFF0C;&#x8FD8;&#x4E0D;&#x8981;&#x8138;&#x7684;&#x53BB;&#x4E86;&#x4E24;&#x6B21;&#x3002;&#x8FD8;&#x53BB;&#x540E;&#x6D77;&#x8DE8;&#x6D77;&#x5927;&#x6865;&#xFF0C;&#x8FD1;&#x8DDD;&#x79BB;&#x770B;&#x4E86;&#x4E00;&#x4E9B;&#x6CA1;&#x89C1;&#x8FC7;&#x7684;&#x6C7D;&#x8F66;&#xFF0C;&#x548C;&#x8F66;&#x724C;&#xFF0C;&#x8FD8;&#x5403;&#x4E86;&#x4E00;&#x7897;&#x9762;&#x2014;-&#x4EAC;&#x57CE;&#x5FA1;&#x9762;&#x5802;&#x3002;&#x68A7;&#x6850;&#x5C71;&#xFF0C;&#x770B;&#x5230;&#x4E86;&#x76D0;&#x7530;&#x6E2F;&#xFF0C;&#x9999;&#x6E2F;&#x3002;&#x54E6;&#xFF0C;&#x8FD8;&#x6709;&#x5927;&#x6885;&#x6C99;&#x5C0F;&#x6885;&#x6C99;&#xFF0C;&#x8FD9;&#x5728;&#x4E09;&#x5E74;&#x524D;&#x6765;&#x6DF1;&#x5733;&#x7684;&#x65F6;&#x5019;&#x5C31;&#x5230;&#x4E86;&#xFF0C;&#x90A3;&#x4E5F;&#x662F;&#x7B2C;&#x4E00;&#x6B21;&#x770B;&#x5230;&#x5927;&#x6D77;&#xFF0C;&#x8FD9;&#x6B21;&#x53C8;&#x770B;&#x4E86;&#x8F83;&#x573A;&#x5C3E;&#xFF0C;&#x6D77;&#x662F;&#x4E00;&#x4E2A;&#x8BA9;&#x4EBA;&#x7740;&#x8FF7;&#x7684;&#x5730;&#x65B9;&#x3002;&#x5F88;&#x559C;&#x6B22;&#x53BB;&#x5B89;&#x6392;&#x65F6;&#x95F4;&#xFF0C;&#x8BA1;&#x5212;&#x7740;&#x521A;&#x597D;&#x5230;&#xFF0C;&#x7B97;&#x597D;&#x5730;&#x94C1;&#x4EC0;&#x4E48;&#x65F6;&#x5019;&#x5230;&#xFF0C;&#x5230;&#x54EA;&#x91CC;&#x8F6C;&#x8F66;&#x6700;&#x5FEB;&#x6700;&#x65B9;&#x4FBF;&#xFF0C;&#x5462;&#x6BB5;&#x65F6;&#x95F4;&#x771F;&#x662F;&#x6CA1;&#x8C01;&#x7684;&#x4E86;&#x3002;&#x751F;&#x6D3B;&#x4E0A;&#x57FA;&#x672C;&#x5C31;&#x8FD9;&#x4E9B;&#x4E86;&#x3002;&#x7136;&#x540E;&#x5DE5;&#x4F5C;&#xFF0C;&#x771F;&#x7684;&#x559C;&#x6B22;&#x7F16;&#x7A0B;&#xFF0C;&#x6709;&#x6311;&#x6218;&#x7684;&#x7F16;&#x7A0B;&#xFF0C;&#x800C;&#x4E0D;&#x662F;&#x91CD;&#x590D;&#xFF0C;&#x968F;&#x4FBF;&#x73A9;&#x3002;&#x8FD9;&#x4E24;&#x6708;&#x5C31;&#x7528;&#x4E86;&#x4E00;&#x4E2A;&#x4E1C;&#x897F;MQ&#xFF0C;&#x5176;&#x4ED6;&#x7684;&#xFF0C;&#x81EA;&#x5DF1;&#x611F;&#x89C9;&#x6536;&#x83B7;&#x5F88;&#x5C0F;&#xFF0C;&#x5176;&#x4ED6;&#x7EC6;&#x8282;&#x5728;&#x4F53;&#x4F1A;&#x4E2D;&#x8BF4;&#x3002;&#x8FD8;&#x6709;&#x5728;&#x6DF1;&#x5733;&#x770B;&#x4E86;&#x7F57;&#x80D6;&#x7684;&#x8DE8;&#x5E74;&#x6F14;&#x8BB2;&#xFF0C;&#x8FD8;&#x6709;&#x5728;&#x8FD9;&#x4E0A;&#x9762;&#x8BA4;&#x8BC6;&#x7684;&#x65B0;&#x5E74;&#x670B;&#x53CB;&#xFF0C;&#x5927;&#x8001;&#x8FDC;&#x7684;&#x4ECE;&#x4E1C;&#x839E;&#x8DD1;&#x8FC7;&#x6765;&#xFF0C;&#x771F;&#x7684;&#x662F;&#x633A;&#x8BA9;&#x4EBA;&#x4F69;&#x670D;&#x7684;&#xFF0C;&#x6211;&#x76F8;&#x4FE1;&#x8FD8;&#x6709;&#x5F88;&#x591A;&#x66F4;&#x8FDC;&#x7684;&#x670B;&#x53CB;&#xFF0C;&#x6211;&#x4EEC;&#x4E00;&#x8D77;&#x5EA6;&#x8FC7;&#x5462;&#x4E2A;&#x591C;&#x665A;&#x3002;&#x9664;&#x4E86;&#x5DE5;&#x4F5C;&#x65B9;&#x9762;&#xFF0C;&#x6DF1;&#x5733;&#x7684;&#x4EA4;&#x901A;&#x8FD8;&#x4E0D;&#x9519;&#xFF0C;&#x5317;&#x8FB9;&#x4E00;&#x4E2A;&#x5317;&#x73AF;&#x5927;&#x9053;&#xFF0C;&#x5357;&#x8FB9;&#x4E00;&#x4E2A;&#x6EE8;&#x6D77;&#x5927;&#x9053;,&#x4E2D;&#x95F4;&#x968F;&#x4FBF;&#x73A9;&#xFF0C;&#x6700;&#x70E6;&#x4EBA;&#x7684;&#x662F;&#x6DF1;&#x5733;&#x7684;&#x8DE8;&#x4E3B;&#x5E72;&#x9053;&#xFF0C;&#x5F88;&#x591A;&#x90FD;&#x662F;&#x4EBA;&#x884C;&#x5929;&#x6865;&#xFF0C;&#x8BA9;&#x4EBA;&#x5F88;&#x662F;&#x9EBB;&#x70E6;&#xFF0C;&#x4E00;&#x70B9;&#x90FD;&#x4E0D;&#x6CE8;&#x610F;&#x884C;&#x4EBA;&#x7684;&#x611F;&#x53D7;&#xFF0C;&#x8FD9;&#x70B9;&#xFF0C;very bad&#xFF01;&#xFF01; &#x6DF1;&#x5733;&#x7684;&#x53E6;&#x5916;&#x4E00;&#x4E2A;&#x7279;&#x70B9;&#x5C31;&#x662F;&#x65B0;&#x9C9C;&#x4E8B;&#x7269;&#x7684;&#x53D1;&#x6E90;&#x5730;&#xFF0C;&#x8FD9;&#x4E5F;&#x8BA9;&#x6211;&#x77E5;&#x9053;&#x4E86;&#xFF0C;&#x4E4B;&#x524D;&#x603B;&#x662F;&#x6709;&#x4EC0;&#x4E48;&#x4E00;&#x4E9B;&#x8BD5;&#x70B9;&#xFF0C;&#x4EC0;&#x4E48;&#x7684;&#xFF0C;&#x603B;&#x662F;&#x5728;&#x5317;&#x4E0A;&#x5E7F;&#x6DF1;&#x5927;&#x57CE;&#x5E02;&#xFF0C;&#x56E0;&#x4E3A;&#x8FD9;&#x4E9B;&#x57CE;&#x5E02;&#xFF0C;&#x603B;&#x662F;&#x53EF;&#x4EE5;&#x5F88;&#x5FEB;&#x7684;&#x63A5;&#x53D7;&#x8FD9;&#x4E9B;&#x65B0;&#x9C9C;&#x4E8B;&#x7269;&#xFF0C;&#x800C;&#x4E14;&#x4F1A;&#x5F88;&#x597D;&#x7684;&#x53BB;&#x6539;&#x6389;&#x4E00;&#x4E9B;&#x4E0D;&#x9002;&#x7528;&#x7684;&#x3002;&#x50CF;&#x5171;&#x4EAB;&#x5355;&#x8F66;&#xFF0C;&#x6211;&#x5728;&#x8FD9;&#x91CC;&#x5DF2;&#x7ECF;&#x9A91;&#x8FC7;&#x65E0;&#x6570;&#x6B21;&#xFF0C;&#x4F46;&#x662F;&#x548C;&#x5BB6;&#x4EBA;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x8FD8;&#x662F;&#x4E00;&#x4E2A;&#x5F88;&#x96BE;&#x89E3;&#x91CA;&#x7684;&#x4E00;&#x4E2A;&#x6982;&#x5FF5;&#xFF0C;&#x4F46;&#x662F;&#x548C;&#x540C;&#x5B66;&#x8BF4;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x5219;&#x5F88;&#x597D;&#x89E3;&#x91CA;&#xFF0C;&#x6709;&#x7684;&#x65F6;&#x5019;&#x601D;&#x60F3;&#x6559;&#x5316;&#x7A0B;&#x5EA6;&#x633A;&#x4E25;&#x91CD;&#x7684;&#x3002;&#x54CE;&#x8981;&#x8BF4;&#x5565;&#x5B50;&#x6765;&#x7684;&#xFF0C;&#x672C;&#x610F;&#x662F;&#x5927;&#x57CE;&#x5E02;&#x548C;&#x5C0F;&#x57CE;&#x5E02;&#x4E4B;&#x95F4;&#x7684;&#x5DEE;&#x8DDD;&#x5927;&#x3002;&#x8BA9;&#x6211;&#x89E3;&#x91CA;&#x7684;&#x592A;&#x504F;&#x79BB;&#x4E3B;&#x9898;&#x3002;</p>
+<p>&#x60E0;&#x5DDE;&#xFF0C;&#x5C0F;&#x800C;&#x7F8E;&#x7684;&#x57CE;&#x5E02;&#xFF0C;&#x6765;&#x4E24;&#x6B21;&#x60E0;&#x5DDE;&#x4E86;&#xFF0C;&#x5927;&#x4E00;&#x5927;&#x4E8C;&#xFF0C;&#x672C;&#x6765;&#x60F3;&#x7740;&#x4EE5;&#x540E;&#xFF0C;&#x5F88;&#x5C0F;&#x673A;&#x4F1A;&#x6765;&#x4E86;&#xFF0C;&#x5927;&#x4E09;&#x8FD9;&#x521A;&#x8FC7;&#xFF0C;&#x5927;&#x56DB;&#x5C31;&#x53C8;&#x6765;&#x4E86;&#xFF0C;&#x4EBA;&#x751F;&#x6709;&#x7684;&#x65F6;&#x5019;&#x5C31;&#x662F;&#x8FD9;&#x4E48;&#x8BA9;&#x4EBA;&#x4EA4;&#x9519;&#x3002;&#x4ECE;&#x6DF1;&#x5733;&#x8FD9;&#x8FB9;&#x5230;&#x60E0;&#x5DDE;&#xFF0C;&#x6C7D;&#x8F66;&#x4E24;&#x4E2A;&#x534A;&#x5C0F;&#x65F6;&#xFF0C;&#x771F;&#x7684;&#x662F;&#x633A;&#x8FD1;&#x7684;&#xFF0C;&#x53E6;&#x4E00;&#x4E2A;&#x8981;&#x8BF4;&#x7684;&#x5C31;&#x662F;&#x8FD9;&#x8FB9;&#x7684;&#x4EA4;&#x901A;&#xFF0C;&#x5B9E;&#x5728;&#x662F;&#x592A;&#x65B9;&#x4FBF;&#x4E86;&#xFF0C;&#x201C;&#x5C0F;&#x7684;&#x58EB;&#x201D;&#xFF0C;&#x5927;&#x7684;&#x58EB;&#xFF0C;&#x516C;&#x4EA4;&#xFF0C;&#x5730;&#x94C1;&#xFF0C;&#x57CE;&#x9645;&#x94C1;&#x8DEF;&#xFF0C;&#x9AD8;&#x94C1;&#xFF0C;&#x4F60;&#x80FD;&#x60F3;&#x8C61;&#xFF0C;&#x4ECE;&#x57CE;&#x5E02;&#x7684;&#x4E00;&#x5317;&#x8FB9;&#x505A;&#x4E2A;&#x706B;&#x8F66;&#x5230;&#x57CE;&#x5E02;&#x7684;&#x5357;&#x6BB5;&#x5417;&#xFF1F;&#x8FD9;&#x79CD;&#x4E8B;&#x60C5;&#x6211;&#x5DF2;&#x7ECF;&#x5E72;&#x8FC7;&#x4E0D;&#x5C11;&#x6B21;&#x4E86;&#x3002;&#x5F53;&#x7136;&#x4E86;&#xFF0C;&#x8FD9;&#x53EA;&#x6709;&#x5728;&#x76F8;&#x5F53;&#x53D1;&#x8FBE;&#x7684;&#x7ECF;&#x6D4E;&#x533A;&#x57DF;&#x624D;&#x4F1A;&#x6709;&#x7684;&#x5427;&#x3002;&#x957F;&#x4E09;&#x89D2;&#xFF0C;&#x73E0;&#x4E09;&#x89D2;&#xFF0C;&#x73AF;&#x6E24;&#x6D77;&#xFF0C;&#x8BF4;&#x771F;&#x7684;&#xFF0C;&#x8FD8;&#x4E0D;&#x9519;&#xFF0C;&#x8FD9;&#x70B9;&#x5E94;&#x8BE5;&#x653E;&#x5728;&#x6DF1;&#x5733;&#x5462;&#x4E2A;&#x7A7A;&#x95F4;&#x8BF4;&#x7684;&#x5427;&#x3002;&#x65E2;&#x7136;&#x5230;&#x60E0;&#x5DDE;&#x8FD9;&#x4E2A;&#x7A7A;&#x95F4;&#x4E86;&#xFF0C;&#x5C31;&#x653E;&#x8FD9;&#x91CC;&#x5427;&#x3002;</p>
+<p>&#x5E7F;&#x5DDE; &#x53BB;&#x5E7F;&#x5DDE;&#x5230;&#x4E86;&#x767D;&#x4E91;&#x673A;&#x573A;&#xFF0C;&#x8FD9;&#x624D;&#x662F;&#x91CD;&#x70B9;&#xFF0C;&#x8C01;&#x77E5;&#x9053;&#x4EE5;&#x540E;&#x98DE;&#x673A;&#x548C;&#x6211;&#x8FD8;&#x6709;&#x6CA1;&#x6709;&#x7F18;&#x5206;&#xFF0C;&#x8FD9;&#x662F;&#x7B2C;&#x4E00;&#x6B21;&#x5230;&#x98DE;&#x673A;&#x573A;&#xFF0C;&#x771F;&#x7684;&#x662F;&#x592A;&#x8C6A;&#x534E;&#x4E86;&#xFF0C;&#x6211;&#x8FD9;&#x4ECE;&#x5C0F;&#x5730;&#x65B9;&#x6765;&#x7684;&#xFF0C;&#x53EA;&#x8981;&#x4E0D;&#x88AB;&#x5413;&#x5446;&#x5C31;&#x5DF2;&#x7ECF;&#x662F;&#x4E07;&#x5E78;&#x7684;&#x4E86;&#x3002;&#x5305;&#x62EC;&#x5230;&#x4EC0;&#x4E48;&#x9152;&#x5E97;&#xFF0C;&#x597D;&#x9AD8;&#x7AEF;&#xFF0C;&#x597D;&#x5927;&#x6C14;&#x3002;&#x53E6;&#x5916;&#x4ECE;&#x5E7F;&#x5DDE;&#x5357;&#x5230;&#x767D;&#x4E91;&#xFF0C;&#x4E24;&#x4E2A;&#x5C0F;&#x65F6;&#x7684;&#x5730;&#x94C1;&#xFF0C;&#x4F60;&#x80FD;&#x60F3;&#x8C61;&#x8FD9;&#x4E2A;&#x57CE;&#x5E02;&#x6709;&#x591A;&#x5927;&#x5417;&#xFF1F;</p>
+<p>&#x4F53;&#x4F1A;</p>
+<p>&#x4EA4;&#x6D41;&#x7684;&#x91CD;&#x8981;&#x6027;&#xFF0C;&#x4E0D;&#x4EC5;&#x4EC5;&#x662F;&#x5403;&#x996D;&#xFF0C;&#x53C2;&#x52A0;&#x4F1A;&#x8BAE;&#xFF0C;&#x91CD;&#x8981;&#x7684;&#x662F;&#x8BA4;&#x8BC6;&#x4EBA;&#x3002;<br>&#x62A5;&#x9500;&#xFF0C;<br>&#x5DE5;&#x4F5C;&#x6536;&#x83B7;<br>&#x81EA;&#x6211;&#x8868;&#x8FBE;&#x80FD;&#x529B;&#xFF0C;&#x8BF4;&#x7684;&#x548C;&#x522B;&#x4EBA;&#x7406;&#x89E3;&#x7684;&#x504F;&#x5DEE;&#x592A;&#x5927;&#x3002;<br>    &#x611F;&#x89C9;&#x81EA;&#x5DF1;<br>&#x660E;&#x5E74;&#x8BA1;&#x5212;</p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+    <div class="copyright">
+        <p><span>本文标题:</span><a href="/2017/01/23/2016年个人总结/">2016年个人总结</a></p>
+        <p><span>文章作者:</span><a href="/" title="回到主页">Mu Xiaobai(慕小白)</a></p>
+        <p><span>发布时间:</span>2017-01-23, 06:27:27</p>
+        <p><span>最后更新:</span>2017-01-23, 10:05:40</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/2017/01/23/2016年个人总结/" title="2016年个人总结">https://muxiaobai.github.io/2017/01/23/2016年个人总结/</a>
+            <span class="copy-path" data-clipboard-text="原文: https://muxiaobai.github.io/2017/01/23/2016年个人总结/　　作者: Mu Xiaobai(慕小白)" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
+        </p>
+    </div>
+
+
+
+    <nav id="article-nav">
+        
+        
+            <div id="article-nav-older" class="article-nav-title">
+                <a href="/2017/01/16/hello-world/">
+                    Hello World
+                </a>
+            </div>
+        
+    </nav>
+
+  
+</article>
+
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#首先梳理一下去年的工作"><span class="toc-number">1.</span> <span class="toc-text">首先梳理一下去年的工作</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#从时间上"><span class="toc-number">1.0.1.</span> <span class="toc-text">从时间上</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#从空间上"><span class="toc-number">1.0.2.</span> <span class="toc-text">从空间上</span></a></li></ol></li></ol></li></ol>
+</div>
+<style>
+    .left-col .switch-btn,
+    .left-col .switch-area {
+        display: none;
+    }
+</style>
+
+<input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+
+<script>
+    yiliaConfig.toc = ["隐藏目录", "显示目录", !!"false"];
+</script>
+
+
+
+    
+<div class="share">
+    
+
+    
+        <div class="addthis_sharing_toolbox"></div>
+    
+</div>
+
+
+
+
+
+
+
+    
+      <div class="duoshuo" id="comments">
+    <div id="comment-box" ></div>
+    <div class="ds-thread" id="ds-thread" data-thread-key="2017/01/23/2016年个人总结/" data-title="2016年个人总结" data-url="https://muxiaobai.github.io/2017/01/23/2016年个人总结/"></div>
+    <script>
+        var duoshuoQuery = {short_name:"muxiaobai"};
+        var loadComment = function(){
+            var d = document, s = d.createElement('script');
+            s.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+            s.async = true; s.charset = 'UTF-8';
+            (d.head || d.body).appendChild(s);
+        }
+
+        
+    </script>
+    
+    <script> loadComment(); </script>
+
+</div>
+    
+
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
+        
+
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+
+        
+            <a href="/2017/01/16/hello-world/" title="下一篇: Hello World">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2017/01/23/2016年个人总结/">2016年个人总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/16/hello-world/">Hello World</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/27/CSS-定位布局/">CSS 定位布局</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/17/等待-等待-等待/">等待,等待,等待...</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/29/常见排序算法总结/">常见排序算法总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/24/Thinking-in-java-基础之网络Socket/">Thinkin in java 基础之网络Socket</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/19/由ES6中的Proxy和Reflect再了解Object/">由ES6中的Proxy和Reflect再了解Object</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/16/从ES6中学习编码/">从ES6中学习编码</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/13/模仿jQuery创建自己的js工具/">模仿jQuery创建自己的js工具</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/08/20/HTML5-API-新特性/">HTML5 API 新特性</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/08/09/Thinking-in-java-基础之线程和并发/">Thinking in java 基础之线程和并发</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/08/04/Thinking-in-java-基础之异常/">Thinking in java 基础之异常</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/08/03/Spring中的Session生命周期/">Spring中的Session生命周期</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/20/前后台数据交互方式总结/">前后台数据交互方式总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/19/JavaEE-资源路径问题/">JavaEE 资源路径问题</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/19/Sublime-下运行Java文件/">Sublime 下运行Java文件</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/09/Linux-基础Shell脚本/">Linux 基础Shell脚本</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/07/Linux-基础命令总结2/">Linux 基础命令总结2</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/01/好软件-靠机遇/">好软件,靠机遇</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/06/29/好网站-天天记/">好网站,天天记</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/06/27/Linux下各目录的默认含义/">Linux下各目录的默认含义</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/06/27/Linux-基础命令总结/">Linux 基础命令总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/06/25/Thinking-in-java-基础之集合框架/">Thinking in java 基础之集合框架</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/06/25/Thinking-in-java-基础之I-O/">Thinking in java 基础之I/O</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/06/19/Linux-下安装SVN服务器/">Linux 下安装SVN服务器</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/06/17/GitHub Hexo/">GitHub + Hexo 构建我的博客</a></li></ul>
+
+
+
+
+    <script>
+        
+    </script>
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                <i class="fa fa-copyright"></i> 
+                2016-2017 Mu Xiaobai(慕小白)
+            </div>
+            <div class="footer-right">
+                <a href="http://hexo.io/" target="_blank" title="快速、简洁且高效的博客框架">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="简而不减 Hexo 双栏博客主题  v3.5">Yelee</a> by MOxFIVE <i class="fa fa-heart animated infinite pulse"></i>
+            </div>
+        </div>
+        
+            <div class="visit">
+                
+                    <span id="busuanzi_container_site_pv" style='display:none'>
+                        <span id="site-visit" >本站到访数: 
+                            <span id="busuanzi_value_site_uv"></span>
+                        </span>
+                    </span>
+                
+                
+                    <span>, </span>
+                
+                
+                    <span id="busuanzi_container_page_pv" style='display:none'>
+                        <span id="page-visit">本页阅读量: 
+                            <span id="busuanzi_value_page_pv"></span>
+                        </span>
+                    </span>
+                
+            </div>
+        
+    </div>
+</footer>
+    </div>
+    
+<script data-main="/js/main.js" src="//cdn.bootcss.com/require.js/2.2.0/require.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            var iPad = window.navigator.userAgent.indexOf('iPad');
+            if (iPad > -1 || $(".left-col").css("display") === "none") {
+                var bgColorList = ["#9db3f4", "#414141", "#e5a859", "#f5dfc6", "#c084a0", "#847e72", "#cd8390", "#996731"];
+                var bgColor = Math.ceil(Math.random() * (bgColorList.length - 1));
+                $("body").css({"background-color": bgColorList[bgColor], "background-size": "cover"});
+            }
+            else {
+                var backgroundnum = 5;
+                var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+                $("body").css({"background": backgroundimg, "background-attachment": "fixed", "background-size": "cover"});
+            }
+        })
+    </script>
+
+
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-80276841-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+
+<div class="scroll" id="scroll">
+    <a href="#" title="返回顶部"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments" onclick="load$hide();" title="查看评论"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer" title="转到底部"><i class="fa fa-arrow-down"></i></a>
+</div>
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+  </div>
+</body>
+</html>
