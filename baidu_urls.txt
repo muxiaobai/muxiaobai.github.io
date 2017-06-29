@@ -1,5 +1,5 @@
+https://muxiaobai.github.io/2017/06/29/毕业设计心得/
 https://muxiaobai.github.io/2017/01/23/2016年个人总结/
-https://muxiaobai.github.io/2017/01/16/hello-world/
 https://muxiaobai.github.io/2016/12/27/CSS-定位布局/
 https://muxiaobai.github.io/2016/12/17/等待-等待-等待/
 https://muxiaobai.github.io/2016/09/29/常见排序算法总结/
@@ -18,6 +18,7 @@ https://muxiaobai.github.io/2016/07/09/Linux-基础Shell脚本/
 https://muxiaobai.github.io/2016/07/07/Linux-基础命令总结2/
 https://muxiaobai.github.io/2016/07/01/好软件-靠机遇/
 https://muxiaobai.github.io/2016/06/29/好网站-天天记/
+https://muxiaobai.github.io/2016/06/29/hello-world/
 https://muxiaobai.github.io/2016/06/27/Linux下各目录的默认含义/
 https://muxiaobai.github.io/2016/06/27/Linux-基础命令总结/
 https://muxiaobai.github.io/2016/06/25/Thinking-in-java-基础之集合框架/
