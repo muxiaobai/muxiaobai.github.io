@@ -1,3 +1,4 @@
+https://muxiaobai.github.io/2017/07/19/Linux-下的java安装、变更以及升级问题/
 https://muxiaobai.github.io/2017/06/29/毕业设计心得/
 https://muxiaobai.github.io/2017/01/23/2016年个人总结/
 https://muxiaobai.github.io/2016/12/27/CSS-定位布局/
