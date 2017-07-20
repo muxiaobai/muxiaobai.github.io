@@ -99,14 +99,21 @@
 
     <url>
         <loc>https://muxiaobai.github.io/categories/Linux/</loc>
-        <lastmod>2017-07-20T04:56:27.479Z</lastmod>
+        <lastmod>2017-07-20T04:59:41.483Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
         <loc>https://muxiaobai.github.io/categories/Linux/java/</loc>
-        <lastmod>2017-07-20T04:56:27.479Z</lastmod>
+        <lastmod>2017-07-20T04:59:41.483Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://muxiaobai.github.io/categories/Linux/java/hadoop/</loc>
+        <lastmod>2017-07-20T04:59:41.483Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
