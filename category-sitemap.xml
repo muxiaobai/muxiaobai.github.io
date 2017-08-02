@@ -42,13 +42,6 @@
     </url>
 
     <url>
-        <loc>https://muxiaobai.github.io/categories/java/</loc>
-        <lastmod>2016-09-24T12:04:36.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
         <loc>https://muxiaobai.github.io/categories/%E8%B5%84%E6%BA%90/</loc>
         <lastmod>2016-12-20T08:55:48.000Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -114,6 +107,20 @@
     <url>
         <loc>https://muxiaobai.github.io/categories/Linux/java/hadoop/</loc>
         <lastmod>2017-07-20T04:59:41.483Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://muxiaobai.github.io/categories/hadoop/</loc>
+        <lastmod>2017-07-20T07:24:41.019Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://muxiaobai.github.io/categories/java/</loc>
+        <lastmod>2017-08-02T09:34:42.915Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>

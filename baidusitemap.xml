@@ -4,6 +4,44 @@
 
     
   <url>
+    <loc>https://muxiaobai.github.io/2017/08/02/Javamelody-%E5%B7%A5%E5%85%B7/</loc>
+    <lastmod>2017-08-02T09:34:42.915Z</lastmod>
+    <data>
+        <display>
+        <title>Javamelody 工具</title>
+        <pubTime>2017-08-02T09:05:00.000Z</pubTime>
+        
+        <tag>工具</tag>
+         
+         
+           
+             
+              <breadCrumb title="java" url="https://muxiaobai.github.io/categories/java/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://muxiaobai.github.io/2017/07/20/hadoop-Sqoop-Hive%E7%AD%89%E7%9A%84%E5%AE%89%E8%A3%85/</loc>
+    <lastmod>2017-07-20T07:24:41.019Z</lastmod>
+    <data>
+        <display>
+        <title>hadoop-Sqoop-Hive等的安装</title>
+        <pubTime>2017-07-20T06:38:48.000Z</pubTime>
+        
+         
+           
+             
+              <breadCrumb title="hadoop" url="https://muxiaobai.github.io/categories/hadoop/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>https://muxiaobai.github.io/2017/07/19/Linux-%E4%B8%8B%E7%9A%84java%E5%AE%89%E8%A3%85%E3%80%81%E5%8F%98%E6%9B%B4%E4%BB%A5%E5%8F%8A%E5%8D%87%E7%BA%A7%E9%97%AE%E9%A2%98/</loc>
     <lastmod>2017-07-20T04:59:41.483Z</lastmod>
     <data>
@@ -335,27 +373,21 @@
 
     
   <url>
-    <loc>https://muxiaobai.github.io/2016/06/25/Thinking-in-java-%E5%9F%BA%E7%A1%80%E4%B9%8B%E9%9B%86%E5%90%88%E6%A1%86%E6%9E%B6/</loc>
+    <loc>https://muxiaobai.github.io/2016/07/19/Sublime-%E4%B8%8B%E8%BF%90%E8%A1%8CJava%E6%96%87%E4%BB%B6/</loc>
     <lastmod>2016-08-31T12:24:37.000Z</lastmod>
     <data>
         <display>
-        <title>Thinking in java 基础之集合框架</title>
-        <pubTime>2016-06-25T10:30:54.000Z</pubTime>
+        <title>Sublime 下运行Java文件</title>
+        <pubTime>2016-07-19T14:57:09.000Z</pubTime>
         
-        <tag>List</tag>
+        <tag>Sublime</tag>
          
-        <tag>Set</tag>
-         
-        <tag>Map</tag>
-         
-        <tag>Collection</tag>
-         
-        <tag>Iterator</tag>
+        <tag>编辑器</tag>
          
          
            
              
-              <breadCrumb title="java" url="https://muxiaobai.github.io/categories/java/"/>
+              <breadCrumb title="Sublime" url="https://muxiaobai.github.io/categories/Sublime/"/>
           
         </display>
     </data>
@@ -407,61 +439,27 @@
 
     
   <url>
-    <loc>https://muxiaobai.github.io/2016/07/19/Sublime-%E4%B8%8B%E8%BF%90%E8%A1%8CJava%E6%96%87%E4%BB%B6/</loc>
+    <loc>https://muxiaobai.github.io/2016/06/25/Thinking-in-java-%E5%9F%BA%E7%A1%80%E4%B9%8B%E9%9B%86%E5%90%88%E6%A1%86%E6%9E%B6/</loc>
     <lastmod>2016-08-31T12:24:37.000Z</lastmod>
     <data>
         <display>
-        <title>Sublime 下运行Java文件</title>
-        <pubTime>2016-07-19T14:57:09.000Z</pubTime>
+        <title>Thinking in java 基础之集合框架</title>
+        <pubTime>2016-06-25T10:30:54.000Z</pubTime>
         
-        <tag>Sublime</tag>
+        <tag>List</tag>
          
-        <tag>编辑器</tag>
+        <tag>Set</tag>
+         
+        <tag>Map</tag>
+         
+        <tag>Collection</tag>
+         
+        <tag>Iterator</tag>
          
          
            
              
-              <breadCrumb title="Sublime" url="https://muxiaobai.github.io/categories/Sublime/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>https://muxiaobai.github.io/2016/07/09/Linux-%E5%9F%BA%E7%A1%80Shell%E8%84%9A%E6%9C%AC/</loc>
-    <lastmod>2016-08-31T12:24:36.000Z</lastmod>
-    <data>
-        <display>
-        <title>Linux 基础Shell脚本</title>
-        <pubTime>2016-07-09T19:38:00.000Z</pubTime>
-        
-        <tag>Shell</tag>
-         
-         
-           
-             
-              <breadCrumb title="Linux" url="https://muxiaobai.github.io/categories/Linux/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>https://muxiaobai.github.io/2016/06/27/Linux%E4%B8%8B%E5%90%84%E7%9B%AE%E5%BD%95%E7%9A%84%E9%BB%98%E8%AE%A4%E5%90%AB%E4%B9%89/</loc>
-    <lastmod>2016-08-31T12:24:36.000Z</lastmod>
-    <data>
-        <display>
-        <title>Linux下各目录的默认含义</title>
-        <pubTime>2016-06-27T21:09:58.000Z</pubTime>
-        
-        <tag>目录</tag>
-         
-         
-           
-             
-              <breadCrumb title="Linux" url="https://muxiaobai.github.io/categories/Linux/"/>
+              <breadCrumb title="java" url="https://muxiaobai.github.io/categories/java/"/>
           
         </display>
     </data>
@@ -493,31 +491,6 @@
 
     
   <url>
-    <loc>https://muxiaobai.github.io/2016/06/19/Linux-%E4%B8%8B%E5%AE%89%E8%A3%85SVN%E6%9C%8D%E5%8A%A1%E5%99%A8/</loc>
-    <lastmod>2016-08-31T12:24:36.000Z</lastmod>
-    <data>
-        <display>
-        <title>Linux 下安装SVN服务器</title>
-        <pubTime>2016-06-19T21:32:20.000Z</pubTime>
-        
-        <tag>svn</tag>
-         
-        <tag>Linux</tag>
-         
-         
-           
-             
-              <breadCrumb title="Linux" url="https://muxiaobai.github.io/categories/Linux/"/>
-          
-             
-              <breadCrumb title="服务器" url="https://muxiaobai.github.io/categories/Linux/%E6%9C%8D%E5%8A%A1%E5%99%A8/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>https://muxiaobai.github.io/2016/07/07/Linux-%E5%9F%BA%E7%A1%80%E5%91%BD%E4%BB%A4%E6%80%BB%E7%BB%932/</loc>
     <lastmod>2016-08-31T12:24:36.000Z</lastmod>
     <data>
@@ -528,6 +501,26 @@
         <tag>基础命令</tag>
          
         <tag>系统</tag>
+         
+         
+           
+             
+              <breadCrumb title="Linux" url="https://muxiaobai.github.io/categories/Linux/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://muxiaobai.github.io/2016/07/09/Linux-%E5%9F%BA%E7%A1%80Shell%E8%84%9A%E6%9C%AC/</loc>
+    <lastmod>2016-08-31T12:24:36.000Z</lastmod>
+    <data>
+        <display>
+        <title>Linux 基础Shell脚本</title>
+        <pubTime>2016-07-09T19:38:00.000Z</pubTime>
+        
+        <tag>Shell</tag>
          
          
            
@@ -566,25 +559,44 @@
 
     
   <url>
-    <loc>https://muxiaobai.github.io/2016/08/20/HTML5-API-%E6%96%B0%E7%89%B9%E6%80%A7/</loc>
-    <lastmod>2016-08-31T12:24:35.000Z</lastmod>
+    <loc>https://muxiaobai.github.io/2016/06/19/Linux-%E4%B8%8B%E5%AE%89%E8%A3%85SVN%E6%9C%8D%E5%8A%A1%E5%99%A8/</loc>
+    <lastmod>2016-08-31T12:24:36.000Z</lastmod>
     <data>
         <display>
-        <title>HTML5 API 新特性</title>
-        <pubTime>2016-08-20T15:32:41.000Z</pubTime>
+        <title>Linux 下安装SVN服务器</title>
+        <pubTime>2016-06-19T21:32:20.000Z</pubTime>
         
-        <tag>API</tag>
+        <tag>svn</tag>
          
-        <tag>Canvas</tag>
-         
-        <tag>Storage</tag>
-         
-        <tag>Cache</tag>
+        <tag>Linux</tag>
          
          
            
              
-              <breadCrumb title="HTML" url="https://muxiaobai.github.io/categories/HTML/"/>
+              <breadCrumb title="Linux" url="https://muxiaobai.github.io/categories/Linux/"/>
+          
+             
+              <breadCrumb title="服务器" url="https://muxiaobai.github.io/categories/Linux/%E6%9C%8D%E5%8A%A1%E5%99%A8/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://muxiaobai.github.io/2016/06/27/Linux%E4%B8%8B%E5%90%84%E7%9B%AE%E5%BD%95%E7%9A%84%E9%BB%98%E8%AE%A4%E5%90%AB%E4%B9%89/</loc>
+    <lastmod>2016-08-31T12:24:36.000Z</lastmod>
+    <data>
+        <display>
+        <title>Linux下各目录的默认含义</title>
+        <pubTime>2016-06-27T21:09:58.000Z</pubTime>
+        
+        <tag>目录</tag>
+         
+         
+           
+             
+              <breadCrumb title="Linux" url="https://muxiaobai.github.io/categories/Linux/"/>
           
         </display>
     </data>
@@ -605,6 +617,32 @@
            
              
               <breadCrumb title="java" url="https://muxiaobai.github.io/categories/java/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://muxiaobai.github.io/2016/08/20/HTML5-API-%E6%96%B0%E7%89%B9%E6%80%A7/</loc>
+    <lastmod>2016-08-31T12:24:35.000Z</lastmod>
+    <data>
+        <display>
+        <title>HTML5 API 新特性</title>
+        <pubTime>2016-08-20T15:32:41.000Z</pubTime>
+        
+        <tag>API</tag>
+         
+        <tag>Canvas</tag>
+         
+        <tag>Storage</tag>
+         
+        <tag>Cache</tag>
+         
+         
+           
+             
+              <breadCrumb title="HTML" url="https://muxiaobai.github.io/categories/HTML/"/>
           
         </display>
     </data>
