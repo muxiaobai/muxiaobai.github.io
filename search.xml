@@ -15,7 +15,7 @@
 <p>&#x73B0;&#x5728;&#x5C31;&#x53EF;&#x4EE5;&#x542F;&#x52A8;&#x5E94;&#x7528;&#x670D;&#x52A1;&#x5668;&#x6253;&#x5F00;&#x7F51;&#x5740;&#x67E5;&#x770B;&#x76D1;&#x63A7;&#x6548;&#x679C;&#x4E86;&#x3002;&#x7F51;&#x5740;&#xFF1A;<code>http://&lt;host&gt;/&lt;context&gt;/monitoring</code></p>
 <p><host>&#x662F;web&#x5E94;&#x7528;&#x670D;&#x52A1;&#x5668;&#x7684;&#x90E8;&#x7F72;IP&#xFF0C;&#x901A;&#x5E38;&#x662F;localhost:8080 &#x6216;&#x8005;127.0.0.1:8080&#x5177;&#x4F53;&#x770B;&#x4F60;&#x81EA;&#x5DF1;&#x7684;&#x5E94;&#x7528;&#x670D;&#x52A1;&#x5668;</host></p>
 <p><context>&#x662F;&#x4F60;&#x7684;web&#x5E94;&#x7528;&#x7684;&#x540D;&#x5B57;&#x3002;</context></p>
-<p><img src="/2017/08/02/Javamelody-&#x5DE5;&#x5177;/Javamylody-&#x5DE5;&#x5177;/20170802.PNG" alt="&#x6548;&#x679C;"></p>
+<p><img src="/2017/08/02/Javamelody-&#x5DE5;&#x5177;/20170802.PNG" alt="&#x6548;&#x679C;"></p>
 <p><a href="https://github.com/javamelody/javamelody" target="_blank" rel="external">javamylody github </a></p>
 ]]></content>
     </entry>
