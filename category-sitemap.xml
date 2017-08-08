@@ -92,35 +92,49 @@
 
     <url>
         <loc>https://muxiaobai.github.io/categories/Linux/</loc>
-        <lastmod>2017-07-20T04:59:41.483Z</lastmod>
+        <lastmod>2017-07-20T04:59:41.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
         <loc>https://muxiaobai.github.io/categories/Linux/java/</loc>
-        <lastmod>2017-07-20T04:59:41.483Z</lastmod>
+        <lastmod>2017-07-20T04:59:41.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
         <loc>https://muxiaobai.github.io/categories/Linux/java/hadoop/</loc>
-        <lastmod>2017-07-20T04:59:41.483Z</lastmod>
+        <lastmod>2017-07-20T04:59:41.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
         <loc>https://muxiaobai.github.io/categories/hadoop/</loc>
-        <lastmod>2017-07-20T07:24:41.019Z</lastmod>
+        <lastmod>2017-07-20T07:24:41.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
         <loc>https://muxiaobai.github.io/categories/java/</loc>
-        <lastmod>2017-08-02T09:38:07.962Z</lastmod>
+        <lastmod>2017-08-08T08:50:14.470Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://muxiaobai.github.io/categories/java/n/</loc>
+        <lastmod>2017-08-08T08:50:14.470Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://muxiaobai.github.io/categories/javascript/</loc>
+        <lastmod>2017-08-08T12:58:50.101Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
