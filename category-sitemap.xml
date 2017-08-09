@@ -49,13 +49,6 @@
     </url>
 
     <url>
-        <loc>https://muxiaobai.github.io/categories/%E5%89%8D%E7%AB%AF/CSS/</loc>
-        <lastmod>2016-12-28T07:22:58.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
         <loc>https://muxiaobai.github.io/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/</loc>
         <lastmod>2017-03-01T03:59:34.000Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -65,13 +58,6 @@
     <url>
         <loc>https://muxiaobai.github.io/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E7%AE%97%E6%B3%95/</loc>
         <lastmod>2017-03-01T03:59:34.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://muxiaobai.github.io/categories/%E5%89%8D%E7%AB%AF/</loc>
-        <lastmod>2017-06-29T07:45:56.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
@@ -134,7 +120,21 @@
 
     <url>
         <loc>https://muxiaobai.github.io/categories/javascript/</loc>
-        <lastmod>2017-08-08T12:58:50.101Z</lastmod>
+        <lastmod>2017-08-09T06:08:33.543Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://muxiaobai.github.io/categories/%E5%89%8D%E7%AB%AF/</loc>
+        <lastmod>2017-08-09T06:39:03.735Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://muxiaobai.github.io/categories/%E5%89%8D%E7%AB%AF/CSS/</loc>
+        <lastmod>2017-08-09T06:39:03.735Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
