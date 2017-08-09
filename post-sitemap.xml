@@ -8,7 +8,7 @@
 
     <url>
         <loc>https://muxiaobai.github.io/2017/08/08/javascript%E5%86%8D%E5%AD%A6%E4%B9%A0%E4%B9%8BDOM/</loc>
-        <lastmod>2017-08-09T11:43:07.360Z</lastmod>
+        <lastmod>2017-08-09T12:00:16.184Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
@@ -151,7 +151,7 @@
     </url>
 
     <url>
-        <loc>https://muxiaobai.github.io/2016/08/04/Thinking-in-java-%E5%9F%BA%E7%A1%80%E4%B9%8B%E5%BC%82%E5%B8%B8/</loc>
+        <loc>https://muxiaobai.github.io/2016/06/25/Thinking-in-java-%E5%9F%BA%E7%A1%80%E4%B9%8BI-O/</loc>
         <lastmod>2016-08-31T12:24:37.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -167,7 +167,7 @@
     </url>
 
     <url>
-        <loc>https://muxiaobai.github.io/2016/06/25/Thinking-in-java-%E5%9F%BA%E7%A1%80%E4%B9%8BI-O/</loc>
+        <loc>https://muxiaobai.github.io/2016/08/04/Thinking-in-java-%E5%9F%BA%E7%A1%80%E4%B9%8B%E5%BC%82%E5%B8%B8/</loc>
         <lastmod>2016-08-31T12:24:37.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -183,23 +183,15 @@
     </url>
 
     <url>
-        <loc>https://muxiaobai.github.io/2016/06/19/Linux-%E4%B8%8B%E5%AE%89%E8%A3%85SVN%E6%9C%8D%E5%8A%A1%E5%99%A8/</loc>
-        <lastmod>2016-08-31T12:24:36.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>https://muxiaobai.github.io/2016/07/09/Linux-%E5%9F%BA%E7%A1%80Shell%E8%84%9A%E6%9C%AC/</loc>
-        <lastmod>2016-08-31T12:24:36.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
         <loc>https://muxiaobai.github.io/2016/06/27/Linux-%E5%9F%BA%E7%A1%80%E5%91%BD%E4%BB%A4%E6%80%BB%E7%BB%93/</loc>
+        <lastmod>2016-08-31T12:24:36.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://muxiaobai.github.io/2016/06/19/Linux-%E4%B8%8B%E5%AE%89%E8%A3%85SVN%E6%9C%8D%E5%8A%A1%E5%99%A8/</loc>
         <lastmod>2016-08-31T12:24:36.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -224,6 +216,14 @@
 
     <url>
         <loc>https://muxiaobai.github.io/2016/08/03/Spring%E4%B8%AD%E7%9A%84Session%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/</loc>
+        <lastmod>2016-08-31T12:24:36.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://muxiaobai.github.io/2016/07/09/Linux-%E5%9F%BA%E7%A1%80Shell%E8%84%9A%E6%9C%AC/</loc>
         <lastmod>2016-08-31T12:24:36.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
