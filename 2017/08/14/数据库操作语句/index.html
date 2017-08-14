@@ -15,16 +15,16 @@
 
 
 
-<meta name="description" content="顺着上一篇DOM结束，本来是CSS，但自己对事件了解的很少，就先看Event了">
+<meta name="description" content="写一些常用的SQL语句">
 <meta property="og:type" content="article">
-<meta property="og:title" content="javascript再学习之Event">
-<meta property="og:url" content="https://muxiaobai.github.io/2017/08/09/javascript再学习之Event/index.html">
+<meta property="og:title" content="数据库操作语句">
+<meta property="og:url" content="https://muxiaobai.github.io/2017/08/14/数据库操作语句/index.html">
 <meta property="og:site_name" content="技术笔记">
-<meta property="og:description" content="顺着上一篇DOM结束，本来是CSS，但自己对事件了解的很少，就先看Event了">
-<meta property="og:updated_time" content="2017-08-12T08:51:30.480Z">
+<meta property="og:description" content="写一些常用的SQL语句">
+<meta property="og:updated_time" content="2017-08-14T03:28:20.866Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="javascript再学习之Event">
-<meta name="twitter:description" content="顺着上一篇DOM结束，本来是CSS，但自己对事件了解的很少，就先看Event了">
+<meta name="twitter:title" content="数据库操作语句">
+<meta name="twitter:description" content="写一些常用的SQL语句">
 
 <link rel="apple-touch-icon" href= "/apple-touch-icon.png">
 
@@ -56,7 +56,7 @@
 <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
 
 
-<title>javascript再学习之Event | 技术笔记</title>
+<title>数据库操作语句 | 技术笔记</title>
 
 <script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
 <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
@@ -279,11 +279,11 @@
     </div>
     <link class="menu-list" tags="Tags" friends="Friends" about="About Me"/>
 </nav>
-      <div class="body-wrap"><article id="post-javascript再学习之Event" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-数据库操作语句" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2017/08/09/javascript再学习之Event/" class="article-date">
-      <time datetime="2017-08-09T12:03:00.000Z" itemprop="datePublished">2017-08-09</time>
+      <a href="/2017/08/14/数据库操作语句/" class="article-date">
+      <time datetime="2017-08-14T03:22:28.000Z" itemprop="datePublished">2017-08-14</time>
 </a>
     </div>
   
@@ -296,7 +296,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      javascript再学习之Event
+      数据库操作语句
     </h1>
   
 
@@ -305,13 +305,13 @@
       <div class="article-info article-info-post">
         
     <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/javascript/">javascript</a>
+    <a class="article-category-link" href="/categories/SQL/">SQL</a>
     </div>
 
 
         
     <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端/">前端</a></li></ul>
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/常用代码/">常用代码</a></li></ul>
     </div>
 
         <div class="clearfix"></div>
@@ -321,16 +321,18 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <h2 id="Event"><a href="#Event" class="headerlink" title="Event"></a>Event</h2><p>addEventListener/attachEvent</p>
-<p>removeEventListener/detachEvent</p>
-<p>&#x901A;&#x8FC7;addEventListener()&#x6DFB;&#x52A0;&#x7684;&#x4E8B;&#x4EF6;&#x5904;&#x7406;&#x7A0B;&#x5E8F;&#x53EA;&#x80FD;&#x4F7F;&#x7528;removeEventListener()&#x6765;&#x79FB;&#x9664;&#xFF1B;<br>&#x79FB;&#x9664;&#x65F6;&#x4F20;&#x5165;&#x7684;&#x53C2;&#x6570;&#x4E0E;&#x6DFB;&#x52A0;&#x5904;&#x7406;&#x7A0B;&#x5E8F;&#x65F6;&#x4F7F;&#x7528;&#x7684;&#x53C2;&#x6570;&#x76F8;&#x540C;&#x3002;&#x8FD9;&#x4E5F;&#x610F;&#x5473;&#x7740;&#x901A;&#x8FC7;addEventListener()&#x6DFB;&#x52A0;&#x7684;&#x533F;&#x540D;&#x51FD;&#x6570;&#x65E0;&#x6CD5;&#x79FB;&#x9664;<br>&#x5E03;&#x5C14;&#x503C;&#x53C2;&#x6570;&#x662F;true&#xFF0C;&#x8868;&#x793A;&#x5728;&#x6355;&#x83B7;&#x9636;&#x6BB5;&#x8C03;&#x7528;&#x4E8B;&#x4EF6;&#x5904;&#x7406;&#x7A0B;&#x5E8F;&#xFF1B;&#x5982;&#x679C;&#x662F;false&#xFF0C;&#x8868;&#x793A;&#x5728;&#x5192;&#x6CE1;&#x9636;&#x6BB5;&#x8C03;&#x7528;&#x4E8B;&#x4EF6;&#x5904;&#x7406;&#x7A0B;&#x5E8F;&#x3002;<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">document.body.addEventListener(&apos;touchmove&apos;, function (event) {</div><div class="line">    event.preventDefault();</div><div class="line">},false);</div><div class="line">document.body.removeEventListener(&apos;touchmove&apos;, function (event) {</div><div class="line">    event.preventDefault();</div><div class="line">},false);</div><div class="line">&#x8FD9;&#x6837;&#x662F;&#x4E0D;&#x80FD;&#x79FB;&#x9664;&#x7684;&#xFF0C;&#x56E0;&#x4E3A;&#x7B2C;&#x4E8C;&#x4E2A;&#x51FD;&#x6570;&#x662F;&#x4E00;&#x4E2A;&#x65B0;&#x7684;&#x7A7A;&#x95F4;&#x51FD;&#x6570;&#xFF0C;&#x65E2;&#x662F;&#x5199;&#x7684;&#x6837;&#x5B50;&#x548C;&#x7B2C;&#x4E00;&#x4E2A;&#x4E00;&#x6837;&#x3002;</div></pre></td></tr></table></figure></p>
-<p>&#x4E00;&#xFF1A;&#x76F8;&#x540C;&#x4E8B;&#x4EF6;&#x7ED1;&#x5B9A;&#x548C;&#x89E3;&#x9664;&#xFF0C;&#x9700;&#x8981;&#x4F7F;&#x7528;&#x5171;&#x7528;&#x51FD;&#x6570;&#xFF1B;</p>
-<p>&#x4E8C;&#xFF1A;&#x5171;&#x7528;&#x51FD;&#x6570;&#x4E0D;&#x80FD;&#x5E26;&#x53C2;&#x6570;&#xFF1B;</p>
-<h3 id="&#x6355;&#x83B7;&#x4E0E;&#x5192;&#x6CE1;"><a href="#&#x6355;&#x83B7;&#x4E0E;&#x5192;&#x6CE1;" class="headerlink" title="&#x6355;&#x83B7;&#x4E0E;&#x5192;&#x6CE1;"></a>&#x6355;&#x83B7;&#x4E0E;&#x5192;&#x6CE1;</h3><p>Event&#x539F;&#x7406;</p>
-<p>&#x4E00;&#x3001;&#x4E8B;&#x4EF6;&#x6355;&#x83B7;&#x9636;&#x6BB5;<br>&#x4E8C;&#x3001;&#x4E8B;&#x4EF6;&#x76EE;&#x6807;&#x9636;&#x6BB5;<br>&#x4E09;&#x3001;&#x4E8B;&#x4EF6;&#x8D77;&#x6CE1;&#x9636;&#x6BB5;</p>
-<p>jQuery</p>
-<p>&#x5728;&#x7ED1;&#x5B9A;&#x7684;&#x65F6;&#x5019;&#x505A;&#x4E86;&#x5305;&#x88C5;&#x5904;&#x7406;<br>&#x5728;&#x6267;&#x884C;&#x7684;&#x65F6;&#x5019;&#x6709;&#x8FC7;&#x6EE4;&#x5668;&#x5904;&#x7406;</p>
-<p><a href="http://blog.csdn.net/bingkingboy/article/details/50160221" target="_blank" rel="external"> JS&#x6DFB;&#x52A0;&#x4E8B;&#x4EF6;&#x548C;&#x89E3;&#x7ED1;&#x4E8B;&#x4EF6;&#xFF1A;addEventListener()&#x4E0E;removeEventListener()</a><br><a href="http://blog.csdn.net/itpinpai/article/details/50915771" target="_blank" rel="external">addEventListener()&#x3001;attachEvent()&#x548C;removeEventListener()&#x3001;detachEvent()&#x7684;&#x533A;&#x522B;&#xFF1F;</a></p>
+        <h4 id="Oracle&#x7684;dblink"><a href="#Oracle&#x7684;dblink" class="headerlink" title="Oracle&#x7684;dblink"></a>Oracle&#x7684;dblink</h4><p>//00933&#x95EE;&#x9898;&#x4E00;&#x5B9A;&#x8981;&#x68C0;&#x67E5;&#x81EA;&#x5DF1;&#x7684;SQL&#x8BED;&#x53E5;&#x7684;&#x8BED;&#x6CD5; select * from user_sys_privs;//&#x67E5;&#x627E;&#x5F53;&#x524D;&#x7528;&#x6237;&#x7684;&#x6743;&#x9650;&#x662F;&#x5426;&#x5177;&#x6709;dblink&#x7684;create&#x6743;&#x9650; grant create public database link,create database link to &#x201C;account&#x201D;; //&#x5206;&#x914D;&#x6743;&#x9650;</p>
+<p>select name,value from v$parameter where name=&#x2019;service_names&#x2019; //&#x67E5;&#x8BE2;&#x670D;&#x52A1;&#x540D; select <em> from global_name;<br>select owner,object_name from dba_objects where object_type=&#x2019;DATABASE LINK&#x2019;;//&#x67E5;&#x8BE2;&#x5DF2;&#x6709;&#x7684;dblink select </em> from dba_db_links;</p>
+<p>//&#x4E24;&#x4E2A;&#x521B;&#x5EFA; &#x6CE8;&#x610F;&#x5F15;&#x53F7;&#x95EE;&#x9898; create database link dblinktest connect to sstzjs_zjk identified by &#x201C;12345678&#x201D; using &#x2018;19.131.106.252:1521/oracle&#x2019;; create public database link sstzjs_zjk.us.oracle.com connect to sstzjs_zjk IDENTIFIED BY &#x201C;12345678&#x201D; using &#x2018;(DESCRIPTION =(ADDRESS_LIST =(ADDRESS = (PROTOCOL = TCP)(HOST = 19.131.106.252)(PORT = 1521)))(CONNECT_DATA =(SERVICE_NAME = ORCL)))&#x2019;;</p>
+<p>create public database link zrhs_link using &#x2018;19.131.106.252:1521/oracle&#x2019;; &#x5728;&#x4E0D;&#x6307;&#x5B9A;&#x7528;&#x6237;&#x540D;&#x548C;&#x53E3;&#x4EE4;&#x7684;&#x60C5;&#x51B5;&#x4E0B;&#xFF0C;ORACLE&#x4F7F;&#x7528;&#x5F53;&#x524D;&#x7684;&#x7528;&#x6237;&#x540D;&#x548C;&#x53E3;&#x4EE4;&#x767B;&#x5F55;&#x5230;&#x8FDC;&#x7A0B;&#x6570;&#x636E;&#x5E93;&#x3002; SELECT * FROM INS_BUSINESS_INFO@ZRHS_LINK</p>
+<p>DROP PUBLIC DATABASE LINK SSTZJS_ZJK.US.ORACLE.COM; //&#x5220;&#x9664;dblink</p>
+<h4 id="&#x89E6;&#x53D1;&#x5668;"><a href="#&#x89E6;&#x53D1;&#x5668;" class="headerlink" title="&#x89E6;&#x53D1;&#x5668;"></a>&#x89E6;&#x53D1;&#x5668;</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">CREATE OR REPLACE TRIGGER  T_INS_BUSINESSINFO_UPDATE    --T_INS_BUSINESSINFO_UPDATE &#x8868;&#x793A;&#x89E6;&#x53D1;&#x5668;&#x7684;&#x540D;&#x5B57;</div><div class="line">AFTER update OF  CASEEXCHANGE       --CASEEXCHANGE  &#x66F4;&#x65B0;&#x54EA;&#x4E2A;&#x5B57;&#x6BB5;</div><div class="line">ON T_INS_BUSINESSINFO  -- T_INS_BUSINESSINFO&#x89E6;&#x53D1;&#x7684;&#x8868;</div><div class="line">FOR EACH ROW -- &#x4EE3;&#x8868;&#x884C;&#x7EA7;&#x89E6;&#x53D1;&#x5668;</div><div class="line">BEGIN</div><div class="line"> UPDATE INS_BUSINESS_INFO@SSTZJS_ZJK.US.ORACLE.COM h SET h.EXCHANGESTATUS=&apos;5&apos; </div><div class="line"> WHERE h.bsnumcopy = :new.bsnum and :new.CASEEXCHANGE =&apos;3&apos; AND h.EXCHANGESTATUS = &apos;2&apos;;--&#x6536;&#x5230;&#x6750;&#x6599;&#x56DE;&#x9000;</div><div class="line"> UPDATE INS_BUSINESS_INFO@SSTZJS_ZJK.US.ORACLE.COM h SET h.EXCHANGESTATUS=&apos;8&apos; </div><div class="line"> WHERE h.bsnumcopy = :new.bsnum and :new.CASEEXCHANGE =&apos;4&apos; AND h.EXCHANGESTATUS = &apos;7&apos;;--&#x5DF2;&#x7ECF;&#x9886;&#x8BC1;&#x8C03;&#x6574;</div><div class="line"></div><div class="line"> --DBMS_OUTPUT.PUT_LINE(&apos;&#x65E7;&#x7684;flongnumber&#x503C;&#x662F;&apos;||:old.FLONGNUMBER ||&apos;&#x3001;&#x65B0;&#x7684;flongnumber&#x503C;&#x662F;&apos;||:new.FLONGNUMBER); --  &#x8F93;&#x51FA;&#x503C;</div><div class="line"></div><div class="line">END;</div></pre></td></tr></table></figure>
+<p>&#x4E2D;&#x95F4;&#x7528;&#x5230;&#x4E86;dblink @ &#x591A;&#x7528;&#x7528;&#x5C31;&#x53EF;&#x4EE5;&#x5566;&#x8FD8;&#x662F;&#x633A;&#x7B80;&#x5355;&#x7684;&#xFF0C;&#x5C31;&#x662F;&#x4E0D;&#x77E5;&#x9053;&#x6548;&#x7387;&#x600E;&#x4E48;&#x6837;</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">--DROP TRIGGER TR_ORG_UPDATE;</div><div class="line">select * from all_triggers  where table_name=&apos;T_INS_BUSINESSINFO&apos;;   </div><div class="line">--UPDATE INS_BUSINESS_INFO@SSTZJS_ZJK.US.ORACLE.COM h SET h.EXCHANGESTATUS=&apos;2&apos; WHERE h.bsnumcopy =&apos;1708111553000610N&apos;  -- :new.bsnum and :new.CASEEXCHANGE =&apos;3&apos;;</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div></pre></td><td class="code"><pre><div class="line">CREATE OR REPLACE TRIGGER TG_NAME</div><div class="line"></div><div class="line">&#x3000;&#x3000;BEFORE | AFTER</div><div class="line"></div><div class="line">&#x3000;&#x3000;INSERT OR DELETE OR UPDATE [OF COL1,COL2,...]</div><div class="line"></div><div class="line">&#x3000;&#x3000;ON &#x8868;&#x540D;</div><div class="line"></div><div class="line">&#x3000;&#x3000;[FOR EACH ROW]</div><div class="line"></div><div class="line">&#x3000;&#x3000;[WHEN &#x6761;&#x4EF6;]</div><div class="line"></div><div class="line">&#x3000;&#x3000;DECLARE</div><div class="line"></div><div class="line">&#x3000;&#x3000;...</div><div class="line"></div><div class="line">&#x3000;&#x3000;BEGIN</div><div class="line"></div><div class="line">&#x3000;&#x3000;....</div><div class="line"></div><div class="line">&#x3000;&#x3000;EXCEPTION</div><div class="line"></div><div class="line">&#x3000;&#x3000;...</div><div class="line"></div><div class="line">&#x3000;&#x3000;END;</div><div class="line">&#x6CE8;: A) FOR EACH ROW &#x4EE3;&#x8868;&#x884C;&#x7EA7;&#x89E6;&#x53D1;&#x5668;.</div><div class="line"></div><div class="line">&#x3000;&#x3000;B) WHEN: &#x53EA;&#x6709;&#x7B26;&#x5408;&#x8BE5;&#x6761;&#x4EF6;&#x7684;&#x65F6;&#x5019;&#x624D;&#x8FDB;&#x884C;&#x89E6;&#x53D1;.</div><div class="line"></div><div class="line">&#x3000;&#x3000;C) &#x53EF;&#x4EE5;&#x901A;&#x8FC7;INSERTING,DELETING,UPDATING&#x6765;&#x8BC6;&#x522B;INSERT,DELETE,UPDATE&#x64CD;&#x4F5C;.</div><div class="line"></div><div class="line">&#x3000;&#x3000;D) &#x7528;:new &#x548C;:old(&#x79F0;&#x4E3A;&#x4F2A;&#x8BB0;&#x5F55;)&#x6765;&#x8BBF;&#x95EE;&#x6570;&#x636E;&#x53D8;&#x66F4;&#x524D;&#x540E;&#x7684;&#x503C;&#x3002;</div><div class="line"></div><div class="line">&#x3000;&#x3000;:NEW :INSERT,UPDATE&#x4E4B;&#x540E;&#x7684;&#x6570;&#x636E;.</div><div class="line"></div><div class="line">&#x3000;&#x3000;:OLD :DELETE,UDPATE&#x4E4B;&#x524D;&#x7684;&#x6570;&#x636E;.</div><div class="line"></div><div class="line">&#x3000;&#x3000;:old.&#x5B57;&#x6BB5;&#x540D;&#x6216;:new.&#x5B57;&#x6BB5;&#x540D;</div><div class="line"></div><div class="line">&#x3000;&#x3000;E) &#x89E6;&#x53D1;&#x5668;&#x4E2D;&#x7684;&#x64CD;&#x4F5C;&#x4E0E;&#x89E6;&#x53D1;&#x4E8B;&#x4EF6;(INSERT,UPDATE,DELETE)&#x4E00;&#x8D77;&#x8FDB;&#x884C;COMMIT&#x548C;ROLLBACK;</div><div class="line"></div><div class="line">&#x3000;&#x3000;REM &#x521B;&#x5EFA;&#x5305;&#x542B;&#x63D2;&#x5165;&#x3001;&#x5220;&#x9664;&#x3001;&#x4FEE;&#x6539;&#x591A;&#x79CD;&#x89E6;&#x53D1;&#x4E8B;&#x4EF6;&#x7684;&#x89E6;&#x53D1;&#x5668;DML_LOG&#xFF0C;&#x5BF9;EMP&#x8868;&#x7684;&#x64CD;&#x4F5C;&#x8FDB;&#x884C;&#x8BB0;&#x5F55;&#x3002;</div></pre></td></tr></table></figure>
+<h4 id="mysql-&#x521B;&#x5EFA;&#x7528;&#x6237;-&#x548C;&#x6388;&#x6743;"><a href="#mysql-&#x521B;&#x5EFA;&#x7528;&#x6237;-&#x548C;&#x6388;&#x6743;" class="headerlink" title="mysql &#x521B;&#x5EFA;&#x7528;&#x6237; &#x548C;&#x6388;&#x6743;"></a>mysql &#x521B;&#x5EFA;&#x7528;&#x6237; &#x548C;&#x6388;&#x6743;</h4><p>CREATE USER &#x2018;username&#x2019;@&#x2019;%&#x2019; IDENTIFIED BY &#x2018;password&#x2019;;<br>GRANT ALL PRIVILEGES ON <em>.</em> TO &#x2018;username&#x2019;@&#x2019;%&#x2019; WITH GRANT OPTION;<br>&#x67E5;&#x8BE2;&#x7528;&#x6237;<br> SELECT DISTINCT CONCAT(&#x2018;User: &#x2018;&#x2019;&#x2019;,user,&#x2019;&#x2019;&#x2019;@&#x2019;&#x2019;&#x2019;,host,&#x2019;&#x2019;&#x2019;;&#x2019;) AS query FROM mysql.user;</p>
+<h4 id="Oracle"><a href="#Oracle" class="headerlink" title="Oracle"></a>Oracle</h4><p>&#x62FC;&#x63A5;&#xFF1A;wm_concat (FDSXMC || &#x2018;&amp;&amp;&#x2019;) </p>
+<p>&#x5BFC;&#x5165;&#x6570;&#x636E;&#x5E93;<br>imp sanshui20170425/12345678@ORCL file=D:\sanshui\20170314&#x4E09;&#x6C34;\SS-20170424\SS-20170424.dmp FULL=y<br>&#x521B;&#x5EFA;&#x8868;&#x7A7A;&#x95F4;<br>create tablespace WEBSITE<br>datafile &#x2018;D:\app\zhang\product\11.1.0\db_1\SPACE_TBSPACE.dbf&#x2019;<br>size 1500M<br>autoextend on next 5M maxsize 3000M;</p>
 
       
     </div>
@@ -339,13 +341,13 @@
   
     
     <div class="copyright">
-        <p><span>Title:</span><a href="/2017/08/09/javascript再学习之Event/">javascript再学习之Event</a></p>
+        <p><span>Title:</span><a href="/2017/08/14/数据库操作语句/">数据库操作语句</a></p>
         <p><span>Author:</span><a href="/" title="Back to Homepage">Mu Xiaobai(慕小白)</a></p>
-        <p><span>Created:</span>2017-08-09, 12:03:00</p>
-        <p><span>Updated:</span>2017-08-12, 08:51:30</p>
+        <p><span>Created:</span>2017-08-14, 03:22:28</p>
+        <p><span>Updated:</span>2017-08-14, 03:28:20</p>
         <p>
-            <span>Full URL:</span><a class="post-url" href="/2017/08/09/javascript再学习之Event/" title="javascript再学习之Event">https://muxiaobai.github.io/2017/08/09/javascript再学习之Event/</a>
-            <span class="copy-path" data-clipboard-text="From https://muxiaobai.github.io/2017/08/09/javascript再学习之Event/　　By Mu Xiaobai(慕小白)" title="Copy Article&#39;s Link &amp; Author"><i class="fa fa-clipboard"></i></span>
+            <span>Full URL:</span><a class="post-url" href="/2017/08/14/数据库操作语句/" title="数据库操作语句">https://muxiaobai.github.io/2017/08/14/数据库操作语句/</a>
+            <span class="copy-path" data-clipboard-text="From https://muxiaobai.github.io/2017/08/14/数据库操作语句/　　By Mu Xiaobai(慕小白)" title="Copy Article&#39;s Link &amp; Author"><i class="fa fa-clipboard"></i></span>
             <script> var clipboard = new Clipboard('.copy-path'); </script>
         </p>
         <p>
@@ -357,16 +359,10 @@
 
     <nav id="article-nav">
         
-            <div id="article-nav-newer" class="article-nav-title">
-                <a href="/2017/08/14/数据库操作语句/">
-                    数据库操作语句
-                </a>
-            </div>
-        
         
             <div id="article-nav-older" class="article-nav-title">
-                <a href="/2017/08/08/javascript再学习之DOM/">
-                    javascript再学习之DOM
+                <a href="/2017/08/09/javascript再学习之Event/">
+                    javascript再学习之Event
                 </a>
             </div>
         
@@ -377,7 +373,7 @@
 
     <div id="toc" class="toc-article">
     <strong class="toc-title">Contents</strong>
-    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Event"><span class="toc-number">1.</span> <span class="toc-text">Event</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#捕获与冒泡"><span class="toc-number">1.1.</span> <span class="toc-text">捕获与冒泡</span></a></li></ol></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#Oracle的dblink"><span class="toc-number">1.</span> <span class="toc-text">Oracle的dblink</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#触发器"><span class="toc-number">2.</span> <span class="toc-text">触发器</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#mysql-创建用户-和授权"><span class="toc-number">3.</span> <span class="toc-text">mysql 创建用户 和授权</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Oracle"><span class="toc-number">4.</span> <span class="toc-text">Oracle</span></a></li></ol>
 </div>
 <style>
     .left-col .switch-btn,
@@ -412,7 +408,7 @@
     
       <div class="duoshuo" id="comments">
     <div id="comment-box" ></div>
-    <div class="ds-thread" id="ds-thread" data-thread-key="2017/08/09/javascript再学习之Event/" data-title="javascript再学习之Event" data-url="https://muxiaobai.github.io/2017/08/09/javascript再学习之Event/"></div>
+    <div class="ds-thread" id="ds-thread" data-thread-key="2017/08/14/数据库操作语句/" data-title="数据库操作语句" data-url="https://muxiaobai.github.io/2017/08/14/数据库操作语句/"></div>
     <script>
         var duoshuoQuery = {short_name:"muxiaobai"};
         var loadComment = function(){
@@ -435,15 +431,13 @@
 
     <div class="scroll" id="post-nav-button">
         
-            <a href="/2017/08/14/数据库操作语句/" title="Pre: 数据库操作语句">
-                <i class="fa fa-angle-left"></i>
-            </a>
+            <a href="/" title="Back to Homepage"><i class="fa fa-home"></i></a>
         
 
         <a title="Mini Archives"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
 
         
-            <a href="/2017/08/08/javascript再学习之DOM/" title="Next: javascript再学习之DOM">
+            <a href="/2017/08/09/javascript再学习之Event/" title="Next: javascript再学习之Event">
                 <i class="fa fa-angle-right"></i>
             </a>
         
