@@ -105,13 +105,6 @@
     </url>
 
     <url>
-        <loc>https://muxiaobai.github.io/categories/java/</loc>
-        <lastmod>2017-08-08T08:50:14.470Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
         <loc>https://muxiaobai.github.io/categories/java/n/</loc>
         <lastmod>2017-08-08T08:50:14.470Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -134,14 +127,21 @@
 
     <url>
         <loc>https://muxiaobai.github.io/categories/javascript/</loc>
-        <lastmod>2017-08-12T08:51:30.480Z</lastmod>
+        <lastmod>2017-08-30T03:31:53.342Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
         <loc>https://muxiaobai.github.io/categories/SQL/</loc>
-        <lastmod>2017-08-29T13:48:56.739Z</lastmod>
+        <lastmod>2017-08-30T03:32:54.910Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://muxiaobai.github.io/categories/java/</loc>
+        <lastmod>2017-09-02T09:01:22.483Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
