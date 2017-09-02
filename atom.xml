@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://muxiaobai.github.io/"/>
-  <updated>2017-09-02T10:39:29.671Z</updated>
+  <updated>2017-09-02T10:43:49.755Z</updated>
   <id>https://muxiaobai.github.io/</id>
   
   <author>
@@ -20,9 +20,9 @@
     <link href="https://muxiaobai.github.io/2017/08/29/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3JVM%E4%B9%8B%E6%80%A7%E8%83%BD%E8%B0%83%E4%BC%98/"/>
     <id>https://muxiaobai.github.io/2017/08/29/深入理解JVM之性能调优/</id>
     <published>2017-08-29T13:58:04.000Z</published>
-    <updated>2017-09-02T10:39:29.671Z</updated>
+    <updated>2017-09-02T10:43:49.755Z</updated>
     
-    <content type="html"><![CDATA[<p>&#x5148;&#x653E;&#x4E00;&#x4E0B;&#x6211;&#x5728;&#x6155;&#x8BFE;&#x7F51;&#x4E0A;&#x7684;&#x4E09;&#x7BC7;&#x5173;&#x4E8E;JVM&#x7684;&#x4E00;&#x4E9B;&#x624B;&#x8BB0;<br><a href="http://www.imooc.com/article/6143" target="_blank" rel="external">&#x6DF1;&#x5165;&#x7406;&#x89E3;JVM&#x4E4B;&#x57FA;&#x672C;&#x6784;&#x67B6;</a><br><a href="http://www.imooc.com/article/6319" target="_blank" rel="external">&#x6DF1;&#x5165;&#x7406;&#x89E3;JVM&#x4E4B;&#x5BF9;&#x8C61;&#x751F;&#x547D;&#x5468;&#x671F;</a><br><a href="http://www.imooc.com/article/6461" target="_blank" rel="external">&#x6DF1;&#x5165;&#x7406;&#x89E3;JVM&#x4E4B;&#x7C7B;&#x52A0;&#x8F7D;</a><br>&#x672C;&#x6B21; <a href="http://www.cnblogs.com/redcreen/archive/2011/05/04/2037057.html" target="_blank" rel="external">JVM&#x53C2;&#x6570;</a><br><a href="http://www.cnblogs.com/redcreen/archive/2011/05/09/2040977.html" target="_blank" rel="external">&#x76D1;&#x6D4B;&#x5DE5;&#x5177;</a><br>jconsole &#x548C;jvisualvm<br><a id="more"></a></p>
+    <content type="html"><![CDATA[<p>&#x5148;&#x653E;&#x4E00;&#x4E0B;&#x6211;&#x5728;&#x6155;&#x8BFE;&#x7F51;&#x4E0A;&#x7684;&#x4E09;&#x7BC7;&#x5173;&#x4E8E;JVM&#x7684;&#x4E00;&#x4E9B;&#x624B;&#x8BB0;<br><a href="http://www.imooc.com/article/6143" target="_blank" rel="external">&#x6DF1;&#x5165;&#x7406;&#x89E3;JVM&#x4E4B;&#x57FA;&#x672C;&#x6784;&#x67B6;</a><br><a href="http://www.imooc.com/article/6319" target="_blank" rel="external">&#x6DF1;&#x5165;&#x7406;&#x89E3;JVM&#x4E4B;&#x5BF9;&#x8C61;&#x751F;&#x547D;&#x5468;&#x671F;</a><br><a href="http://www.imooc.com/article/6461" target="_blank" rel="external">&#x6DF1;&#x5165;&#x7406;&#x89E3;JVM&#x4E4B;&#x7C7B;&#x52A0;&#x8F7D;</a><br>&#x672C;&#x6B21; <a href="http://www.cnblogs.com/redcreen/archive/2011/05/04/2037057.html" target="_blank" rel="external">JVM&#x53C2;&#x6570;</a><br><a href="http://www.cnblogs.com/redcreen/archive/2011/05/09/2040977.html" target="_blank" rel="external">&#x76D1;&#x6D4B;&#x5DE5;&#x5177;</a><br>jconsole &#x548C;jvisualvm  &#x8FD8;&#x6709;&#x5C31;&#x662F;web&#x76D1;&#x6D4B;&#x5DE5;&#x5177;Javamelody.jar<a href="https://muxiaobai.github.io/2017/08/02/Javamelody-%E5%B7%A5%E5%85%B7/">Javamelody</a><br><a id="more"></a></p>
 <h4 id="&#x4FEE;&#x6539;tomcat-&#x7684;java-opts"><a href="#&#x4FEE;&#x6539;tomcat-&#x7684;java-opts" class="headerlink" title="&#x4FEE;&#x6539;tomcat &#x7684;java_opts"></a>&#x4FEE;&#x6539;tomcat &#x7684;java_opts</h4><p>&#x5728;Catalina.bat &#x4E2D;&#x6DFB;&#x52A0; <code>set JAVA_OPTS=-Xms512m -Xmx1024m -XX:NewSize=512m -XX:MaxNewSize=512m</code><br><code>set JAVA_OPTS=-Xms512m -Xmx1024m -XX:NewSize=768m -XX:MaxNewSize=768m -XX:+PrintGCDetails -Xloggc:..\logs\gc.log -XX:+PrintGCTimeStamps</code></p>
 <h4 id="&#x5404;&#x4E2A;&#x53C2;&#x6570;&#x7684;&#x542B;&#x4E49;"><a href="#&#x5404;&#x4E2A;&#x53C2;&#x6570;&#x7684;&#x542B;&#x4E49;" class="headerlink" title="&#x5404;&#x4E2A;&#x53C2;&#x6570;&#x7684;&#x542B;&#x4E49;"></a>&#x5404;&#x4E2A;&#x53C2;&#x6570;&#x7684;&#x542B;&#x4E49;</h4><p><a href="http://www.cnblogs.com/redcreen/archive/2011/05/04/2037057.html" target="_blank" rel="external">JVM&#x53C2;&#x6570;</a></p>
 <table>
