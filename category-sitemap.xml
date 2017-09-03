@@ -140,8 +140,15 @@
     </url>
 
     <url>
+        <loc>https://muxiaobai.github.io/categories/deploy/</loc>
+        <lastmod>2017-09-02T11:01:07.939Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
         <loc>https://muxiaobai.github.io/categories/java/</loc>
-        <lastmod>2017-09-02T10:43:49.755Z</lastmod>
+        <lastmod>2017-09-02T14:43:29.694Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
