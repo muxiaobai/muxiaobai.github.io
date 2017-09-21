@@ -49,20 +49,6 @@
     </url>
 
     <url>
-        <loc>https://muxiaobai.github.io/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/</loc>
-        <lastmod>2017-03-01T03:59:34.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://muxiaobai.github.io/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E7%AE%97%E6%B3%95/</loc>
-        <lastmod>2017-03-01T03:59:34.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
         <loc>https://muxiaobai.github.io/categories/%E6%80%BB%E7%BB%93/</loc>
         <lastmod>2017-06-29T07:46:15.000Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -72,13 +58,6 @@
     <url>
         <loc>https://muxiaobai.github.io/categories/%E6%90%AD%E5%BB%BA%E7%BD%91%E7%AB%99/</loc>
         <lastmod>2017-06-29T07:48:32.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://muxiaobai.github.io/categories/Linux/</loc>
-        <lastmod>2017-07-20T04:59:41.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
@@ -133,22 +112,43 @@
     </url>
 
     <url>
-        <loc>https://muxiaobai.github.io/categories/SQL/</loc>
-        <lastmod>2017-08-30T03:32:54.910Z</lastmod>
+        <loc>https://muxiaobai.github.io/categories/deploy/</loc>
+        <lastmod>2017-09-05T00:55:45.490Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
-        <loc>https://muxiaobai.github.io/categories/deploy/</loc>
-        <lastmod>2017-09-02T11:01:07.939Z</lastmod>
+        <loc>https://muxiaobai.github.io/categories/SQL/</loc>
+        <lastmod>2017-09-06T12:20:17.755Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
         <loc>https://muxiaobai.github.io/categories/java/</loc>
-        <lastmod>2017-09-02T14:43:29.694Z</lastmod>
+        <lastmod>2017-09-12T06:24:48.717Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://muxiaobai.github.io/categories/Linux/</loc>
+        <lastmod>2017-09-17T00:45:49.597Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://muxiaobai.github.io/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/</loc>
+        <lastmod>2017-09-19T07:10:41.490Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://muxiaobai.github.io/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E7%AE%97%E6%B3%95/</loc>
+        <lastmod>2017-09-19T07:10:41.490Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
