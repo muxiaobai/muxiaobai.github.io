@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://muxiaobai.github.io/"/>
-  <updated>2017-10-23T06:59:04.090Z</updated>
+  <updated>2017-11-02T12:14:18.479Z</updated>
   <id>https://muxiaobai.github.io/</id>
   
   <author>
@@ -20,16 +20,19 @@
     <link href="https://muxiaobai.github.io/2017/10/23/%E5%89%8D%E7%AB%AF%E5%B0%8Ftips/"/>
     <id>https://muxiaobai.github.io/2017/10/23/前端小tips/</id>
     <published>2017-10-23T06:19:32.000Z</published>
-    <updated>2017-10-23T06:59:04.090Z</updated>
+    <updated>2017-11-02T12:14:18.479Z</updated>
     
     <content type="html"><![CDATA[<p>button&#x9ED8;&#x8BA4;&#x7684;type &#x662F;submit<br>textarea&#x56FA;&#x5B9A;&#xFF0C;&#x4E0D;&#x53EF;&#x62D6;&#x62FD;&#xFF1A; textarea{ resize:none;}</p>
-<p><a href="http://garlicjs.org/#download" target="_blank" rel="external">http://garlicjs.org/#download</a> &#x53EF;&#x4EE5;form&#x7F13;&#x5B58;&#xFF0C;&#x731C;&#x6D4B;&#x5E94;&#x8BE5;&#x662F;&#x4F7F;&#x7528;localStorage</p>
-<p>entity&#x4E2D;&#xFF1A;&#x6CE8;&#x89E3;&#x914D;&#x7F6E;&#x6587;&#x4EF6;&#x5199;&#x6709;schema<br>jQuery&#x517C;&#x5BB9;&#x6027;</p>
+<p><a href="http://garlicjs.org/#download" target="_blank" rel="external">http://garlicjs.org/#download</a> &#x53EF;&#x4EE5;form&#x7F13;&#x5B58;&#xFF0C;&#x731C;&#x6D4B;&#x5E94;&#x8BE5;&#x662F;&#x4F7F;&#x7528;localStorage<br><img src="/2017/10/23/&#x524D;&#x7AEF;&#x5C0F;tips/P71102-200420.jpg" alt="garlicjs"></p>
+<p>entity&#x4E2D;&#xFF1A;&#x6CE8;&#x89E3;&#x914D;&#x7F6E;&#x6587;&#x4EF6;&#x5199;&#x6709;schema  </p>
+<p>jQuery&#x517C;&#x5BB9;&#x6027;</p>
 <p>IE jQuery&#x7684;&#x652F;&#x6301;&#x7A0B;&#x5EA6;</p>
 <p>jquery&#x5728;IE&#x4E0B;append&#x7B49;&#x9700;&#x8981;&#x628A;string&#x8F6C;&#x6362;&#x6210;jquery&#x5BF9;&#x8C61; appen($(str))<br>&#x64CD;&#x4F5C;&#x83B7;&#x53D6;html&#x6216;&#x8005;text&#x65F6;&#x4E5F;&#x8981;&#x662F;jquery&#x5BF9;&#x8C61;&#x4E0D;&#x80FD;&#x4F7F;xmlDOM<br><a href="http://www.jb51.net/Special/354.htm" target="_blank" rel="external">http://www.jb51.net/Special/354.htm</a> JQuery&#x64CD;&#x4F5C;xml</p>
 <p>IE9&#x4E0B;&#x4F7F;&#x7528;append&#x662F;&#x600E;&#x4E48;&#x56DE;&#x4E8B;&#xFF1F;<br>append($(&#x201C;file&#x201D;,xml));<br>$(window.frameElement)&#x83B7;&#x53D6;&#x5F53;&#x671F;&#x7684;iframe<br>readonly&#x53EA;&#x8BFB;<br>&#x5BF9;&#x8C61;&#x95EE;&#x9898;innerHTML&#x5C5E;&#x4E8E;js&#x539F;&#x751F;&#x7684;&#x3002;DOM XMLDOM &#x7B49;&#x7A76;&#x7ADF;&#x662F;&#x4EC0;&#x4E48;&#xFF1F;</p>
-<p>&#x5378;&#x8F7D;IE<br><a href="http://www.jb51.net/softjc/148524.html" target="_blank" rel="external">http://www.jb51.net/softjc/148524.html</a></p>
-<p>javascript&#x5185;&#x5B58;<br><a href="http://web.jobbole.com/82625/" target="_blank" rel="external">http://web.jobbole.com/82625/</a></p>
+<p><a href="http://www.jb51.net/softjc/148524.html" target="_blank" rel="external">&#x5378;&#x8F7D;IE</a></p>
+<p><a href="http://web.jobbole.com/82625/" target="_blank" rel="external">javascript&#x5185;&#x5B58;</a></p>
+<p><a href="http://blog.csdn.net/justjavac/article/details/19473199" target="_blank" rel="external">&#x4E3A;&#x4EC0;&#x4E48; [&#x201C;1&#x201D;, &#x201C;2&#x201D;, &#x201C;3&#x201D;].map(parseInt) &#x8FD4;&#x56DE; [1,NaN,NaN]&#xFF1F;</a><br>parseInt(String,radix)string&#x53EF;&#x4EE5;&#x8F6C;&#x6362;&#x6210;&#x6570;&#x5B57;&#xFF0C;radix &#x5728;2-36&#x4E4B;&#x95F4;&#xFF0C;<br>map &#x4F1A;&#x7ED9;callback&#x4F20;&#x4E09;&#x4E2A;&#x53C2;&#x6570;&#xFF08;element&#xFF0C;index&#xFF0C;arr&#xFF09;&#x800C;index&#x521A;&#x597D;&#x7ED9;&#x4E86;parseInt&#x7684;radix</p>
+<p>[++[[]][+[]]+[+[]] = 10](<a href="http://justjavac.com/javascript/2012/05/24/can-you-explain-why-10.html" target="_blank" rel="external">http://justjavac.com/javascript/2012/05/24/can-you-explain-why-10.html</a>)</p>
 ]]></content>
     
     <summary type="html">
