@@ -93,6 +93,13 @@
     </url>
 
     <url>
+        <loc>https://muxiaobai.github.io/tags/%E7%9B%AE%E5%BD%95/</loc>
+        <lastmod>2016-08-31T12:24:36.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
         <loc>https://muxiaobai.github.io/tags/Session/</loc>
         <lastmod>2016-08-31T12:24:36.000Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -108,13 +115,6 @@
 
     <url>
         <loc>https://muxiaobai.github.io/tags/Spring/</loc>
-        <lastmod>2016-08-31T12:24:36.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://muxiaobai.github.io/tags/%E7%9B%AE%E5%BD%95/</loc>
         <lastmod>2016-08-31T12:24:36.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
@@ -360,14 +360,14 @@
 
     <url>
         <loc>https://muxiaobai.github.io/tags/tomcat/</loc>
-        <lastmod>2017-11-01T06:11:16.789Z</lastmod>
+        <lastmod>2017-11-02T02:54:51.810Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
         <loc>https://muxiaobai.github.io/tags/jvm/</loc>
-        <lastmod>2017-11-01T06:11:16.789Z</lastmod>
+        <lastmod>2017-11-02T02:54:51.810Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
