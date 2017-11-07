@@ -8,7 +8,15 @@
 
     <url>
         <loc>https://muxiaobai.github.io/2017/08/29/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3JVM%E4%B9%8B%E6%80%A7%E8%83%BD%E8%B0%83%E4%BC%98/</loc>
-        <lastmod>2017-11-06T09:51:30.470Z</lastmod>
+        <lastmod>2017-11-07T13:15:52.635Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://muxiaobai.github.io/2016/06/27/Linux-%E5%9F%BA%E7%A1%80%E5%91%BD%E4%BB%A4%E6%80%BB%E7%BB%93/</loc>
+        <lastmod>2017-11-06T12:25:30.977Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
@@ -17,14 +25,6 @@
     <url>
         <loc>https://muxiaobai.github.io/2016/07/07/Linux-%E5%9F%BA%E7%A1%80%E5%91%BD%E4%BB%A4%E6%80%BB%E7%BB%932/</loc>
         <lastmod>2017-11-06T03:42:58.924Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>https://muxiaobai.github.io/2016/06/27/Linux-%E5%9F%BA%E7%A1%80%E5%91%BD%E4%BB%A4%E6%80%BB%E7%BB%93/</loc>
-        <lastmod>2017-11-06T03:40:23.680Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
@@ -215,7 +215,7 @@
     </url>
 
     <url>
-        <loc>https://muxiaobai.github.io/2016/08/04/Thinking-in-java-%E5%9F%BA%E7%A1%80%E4%B9%8B%E5%BC%82%E5%B8%B8/</loc>
+        <loc>https://muxiaobai.github.io/2016/06/25/Thinking-in-java-%E5%9F%BA%E7%A1%80%E4%B9%8BI-O/</loc>
         <lastmod>2016-08-31T12:24:37.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -223,7 +223,7 @@
     </url>
 
     <url>
-        <loc>https://muxiaobai.github.io/2016/06/25/Thinking-in-java-%E5%9F%BA%E7%A1%80%E4%B9%8BI-O/</loc>
+        <loc>https://muxiaobai.github.io/2016/08/04/Thinking-in-java-%E5%9F%BA%E7%A1%80%E4%B9%8B%E5%BC%82%E5%B8%B8/</loc>
         <lastmod>2016-08-31T12:24:37.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -263,6 +263,14 @@
     </url>
 
     <url>
+        <loc>https://muxiaobai.github.io/2016/08/03/Spring%E4%B8%AD%E7%9A%84Session%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/</loc>
+        <lastmod>2016-08-31T12:24:36.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
         <loc>https://muxiaobai.github.io/2016/06/27/Linux%E4%B8%8B%E5%90%84%E7%9B%AE%E5%BD%95%E7%9A%84%E9%BB%98%E8%AE%A4%E5%90%AB%E4%B9%89/</loc>
         <lastmod>2016-08-31T12:24:36.000Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -271,8 +279,8 @@
     </url>
 
     <url>
-        <loc>https://muxiaobai.github.io/2016/08/03/Spring%E4%B8%AD%E7%9A%84Session%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/</loc>
-        <lastmod>2016-08-31T12:24:36.000Z</lastmod>
+        <loc>https://muxiaobai.github.io/2016/07/19/JavaEE-%E8%B5%84%E6%BA%90%E8%B7%AF%E5%BE%84%E9%97%AE%E9%A2%98/</loc>
+        <lastmod>2016-08-31T12:24:35.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
@@ -288,14 +296,6 @@
 
     <url>
         <loc>https://muxiaobai.github.io/2016/08/20/HTML5-API-%E6%96%B0%E7%89%B9%E6%80%A7/</loc>
-        <lastmod>2016-08-31T12:24:35.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>https://muxiaobai.github.io/2016/07/19/JavaEE-%E8%B5%84%E6%BA%90%E8%B7%AF%E5%BE%84%E9%97%AE%E9%A2%98/</loc>
         <lastmod>2016-08-31T12:24:35.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
