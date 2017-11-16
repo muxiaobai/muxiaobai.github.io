@@ -23,7 +23,7 @@
 <meta property="og:description" content="JVM参数调优以及日志展示">
 <meta property="og:image" content="https://muxiaobai.github.io/2017/08/29/深入理解JVM之性能调优/jvm-parameter.png">
 <meta property="og:image" content="https://muxiaobai.github.io/2017/08/29/深入理解JVM之性能调优/堆内存.png">
-<meta property="og:updated_time" content="2017-11-07T13:15:52.635Z">
+<meta property="og:updated_time" content="2017-11-16T06:50:59.740Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="深入理解JVM之性能调优">
 <meta name="twitter:description" content="JVM参数调优以及日志展示">
@@ -158,10 +158,10 @@
                 <div class="tips-box hide">
                     <div class="tips-arrow"></div>
                     <ul class="tips-inner">
-                        <li>Menu</li>
-                        <li>Tags</li>
+                        <li>菜单</li>
+                        <li>标签</li>
                         
-                        <li>Friends</li>
+                        <li>友情链接</li>
                         
                         
                     </ul>
@@ -280,7 +280,7 @@
             </nav>
         </header>                
     </div>
-    <link class="menu-list" tags="Tags" friends="Friends" about="About Me"/>
+    <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
 </nav>
       <div class="body-wrap"><article id="post-深入理解JVM之性能调优" class="article article-type-post" itemscope itemprop="blogPost">
   
@@ -418,6 +418,7 @@
 </tbody>
 </table>
 <p>&#x2606;-XX:+UseParNewGC -XX:+UseConcMarkSweepGC &#x4F7F;&#x7528;ParNew &#x548C; CMS<br>-XX:CMSInitiatingOccupancyFraction=80 &#x5373;&#x8001;&#x5E74;&#x4EE3;&#x6EE1;80%&#x65F6;&#x89E6;&#x53D1;CMS(full gc)&#xFF0C;&#x8C03;&#x9AD8;&#x5219;full gc&#x76F8;&#x5BF9;&#x51CF;&#x5C11;&#xFF0C;&#x8C03;&#x4F4E;&#x5219;full gc&#x5904;&#x7406;&#x5F97;&#x6BD4;&#x8F83;&#x5FEB;&#xFF1B;<br>-XX:+UseCMSCompactAtFullCollection &#x6216; -XX:CMSFullGCsBeforeCompaction=5 &#x5373;full gc&#x524D;&#x6216;&#x540E;&#x505A;&#x788E;&#x7247;&#x6574;&#x7406;&#x3002;</p>
+<p>&#x6BCF;&#x6B21;full gc&#x4E4B;&#x540E;&#xFF0C;&#x8FDB;&#x884C;&#x538B;&#x7F29; -XX:CMSFullGCsBeforeCompaction=0</p>
 <p>CMS&#x7684;&#x4E24;&#x4E2A;&#x6311;&#x6218;&#xFF1A;</p>
 <ol>
 <li><p>&#x5806;&#x788E;&#x7247;<br>CMS&#x6536;&#x96C6;&#x5668;&#x9ED8;&#x8BA4;&#x5E76;&#x6CA1;&#x6709;&#x4EFB;&#x4F55;&#x788E;&#x7247;&#x6574;&#x7406;&#x7684;&#x673A;&#x5236;&#x3002;&#x6240;&#x4EE5;&#x53EF;&#x80FD;&#x4F1A;&#x51FA;&#x73B0;&#x8FD9;&#x6837;&#x7684;&#x60C5;&#x5F62;&#xFF1A;<br>&#x5373;&#x4F7F;&#x603B;&#x7684;&#x5806;&#x5927;&#x5C0F;&#x8FDC;&#x6CA1;&#x6709;&#x8017;&#x5C3D;&#x4F46;&#x5374;&#x4E0D;&#x80FD;&#x5206;&#x914D;&#x5BF9;&#x8C61;&#xFF0C;&#x4EC5;&#x4EC5;&#x662F;&#x56E0;&#x4E3A;&#x6CA1;&#x6709;&#x8DB3;&#x591F;&#x8FDE;&#x7EED;&#x7684;&#x7A7A;&#x95F4;&#x5B8C;&#x5168;&#x5BB9;&#x7EB3;&#x5BF9;&#x8C61;&#x3002;<br>&#x5F53;&#x8FD9;&#x79CD;&#x4E8B;&#x53D1;&#x751F;&#x540E;&#xFF0C;JVM&#x4F1A;&#x89E6;&#x53D1;Full GC</p>
@@ -561,7 +562,7 @@
 </tr>
 </tbody>
 </table>
-<h4 id="tomcat&#x4E0B;&#x7684;&#x51E0;&#x4E2A;&#x65E5;&#x5FD7;"><a href="#tomcat&#x4E0B;&#x7684;&#x51E0;&#x4E2A;&#x65E5;&#x5FD7;" class="headerlink" title="tomcat&#x4E0B;&#x7684;&#x51E0;&#x4E2A;&#x65E5;&#x5FD7;"></a>tomcat&#x4E0B;&#x7684;&#x51E0;&#x4E2A;&#x65E5;&#x5FD7;</h4><p>gc&#x65E5;&#x5FD7; &#x914D;&#x7F6E;Catalina.bat JAVA_OPTS<br> -XX:+PrintGCDetails -Xloggc:..\logs\gc.log -XX:+PrintGCTimeStamps</p>
+<h4 id="tomcat&#x4E0B;&#x7684;&#x51E0;&#x4E2A;&#x65E5;&#x5FD7;"><a href="#tomcat&#x4E0B;&#x7684;&#x51E0;&#x4E2A;&#x65E5;&#x5FD7;" class="headerlink" title="tomcat&#x4E0B;&#x7684;&#x51E0;&#x4E2A;&#x65E5;&#x5FD7;"></a>tomcat&#x4E0B;&#x7684;&#x51E0;&#x4E2A;&#x65E5;&#x5FD7;</h4><p>gc&#x65E5;&#x5FD7; &#x914D;&#x7F6E;Catalina.bat JAVA_OPTS<br>-XX:+PrintGCDetails -Xloggc:..\logs\gc.log -XX:+PrintGCDateStamps -XX:+PrintTenuringDistribution -XX:+PrintHeapAtGC</p>
 <h5 id="&#x6839;&#x636E;gc-log&#x5206;&#x6790;&#x6536;&#x96C6;&#x5668;"><a href="#&#x6839;&#x636E;gc-log&#x5206;&#x6790;&#x6536;&#x96C6;&#x5668;" class="headerlink" title="&#x6839;&#x636E;gc log&#x5206;&#x6790;&#x6536;&#x96C6;&#x5668;"></a>&#x6839;&#x636E;gc log&#x5206;&#x6790;&#x6536;&#x96C6;&#x5668;</h5><p><a href="http://blog.csdn.net/doc_sgl/article/details/46594123" target="_blank" rel="external">&#x65E5;&#x5FD7;&#x542B;&#x4E49;&#x53CA;&#x5206;&#x6790;</a><br>&#x9ED8;&#x8BA4;&#x7684;&#x5783;&#x573E;&#x6536;&#x96C6;&#x5668; PS Scavenge &#x548C;PS MarkSweep  &#x5BF9;&#x5E94; PS Eden &#x548C;PS Old<br><code>-XX:+UseParallelGC</code><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">Java HotSpot(TM) 64-Bit Server VM (25.111-b14) for windows-amd64 JRE (1.8.0_111-b14), built on Sep 22 2016 19:24:05 by &quot;java_re&quot; with MS VC++ 10.0 (VS2010)</div><div class="line">Memory: 4k page, physical 8299408k(1668496k free), swap 16596956k(4817128k free)</div><div class="line">CommandLine flags: -XX:InitialHeapSize=1073741824 -XX:MaxHeapSize=1073741824 -XX:MaxNewSize=536870912 -XX:NewSize=536870912 -XX:+PrintGC -XX:+PrintGCDetails -XX:+PrintGCTimeStamps -XX:+UseCompressedClassPointers -XX:+UseCompressedOops -XX:-UseLargePagesIndividualAllocation -XX:+UseParallelGC </div><div class="line">3.009: [GC (Allocation Failure) [PSYoungGen: 393216K-&gt;44906K(458752K)] 393216K-&gt;44994K(983040K), 0.0299992 secs] [Times: user=0.09 sys=0.02, real=0.03 secs] </div><div class="line">4.184: [GC (Metadata GC Threshold) [PSYoungGen: 438122K-&gt;52440K(458752K)] 438210K-&gt;52536K(983040K), 0.0307814 secs] [Times: user=0.09 sys=0.00, real=0.03 secs] </div><div class="line">4.215: [Full GC (Metadata GC Threshold) [PSYoungGen: 52440K-&gt;0K(458752K)] [ParOldGen: 96K-&gt;50332K(524288K)] 52536K-&gt;50332K(983040K), [Metaspace: 20805K-&gt;20805K(1069056K)], 0.0588943 secs] [Times: user=0.19 sys=0.03, real=0.06 secs] </div><div class="line">5.833: [GC (Metadata GC Threshold) [PSYoungGen: 223304K-&gt;16405K(458752K)] 273636K-&gt;66746K(983040K), 0.0090804 secs] [Times: user=0.00 sys=0.03, real=0.01 secs] </div><div class="line">5.842: [Full GC (Metadata GC Threshold) [PSYoungGen: 16405K-&gt;0K(458752K)] [ParOldGen: 50340K-&gt;35102K(524288K)] 66746K-&gt;35102K(983040K), [Metaspace: 34776K-&gt;34776K(1081344K)], 0.0372804 secs] [Times: user=0.09 sys=0.00, real=0.04 secs]</div></pre></td></tr></table></figure></p>
 <p>&#x8BF4;&#x660E; &#x8FDB;&#x884C;&#x4E86;&#x4E09;&#x6B21; Minor GC(Metadata GC Threshold)&#x548C;&#x4E8C;&#x6B21;Full GC (Metadata GC Threshold)&#xFF0C;PSYoungGen &#x548C;ParOldGen Metaspace&#x4E09;&#x4E2A;&#x533A;&#x57DF;&#x8FDB;&#x884C;garbage&#x56DE;&#x6536;&#xFF0C;</p>
 <p>-XX:+UseParNewGC  -XX:+UseConcMarkSweepGC&#x5BF9;&#x5E94;  ParNew Eden &#x548C; CMS Old<br>&#x53C2;&#x6570;&#xFF1A;<code>-XX:+UseConcMarkSweepGC -XX:+UseParNewGC</code> </p>
@@ -571,7 +572,7 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">Desired survivor size 40239104 bytes, new threshold 6 (max 6)</div><div class="line">- age   1:   38395784 bytes,   38395784 total</div><div class="line">: 697938K-&gt;46713K(707840K), 0.0827063 secs] 697938K-&gt;62235K(969984K), 0.0828384 secs] [Times: user=0.26 sys=0.00, real=0.08 secs] </div><div class="line">2017-11-06T17:47:26.663+0800: 2084.592: [GC (Allocation Failure) 2017-11-06T17:47:26.663+0800: 2084.592: [ParNew</div><div class="line">Desired survivor size 40239104 bytes, new threshold 6 (max 6)</div><div class="line">- age   1:    7222536 bytes,    7222536 total</div><div class="line">- age   2:   12782736 bytes,   20005272 total</div><div class="line">: 675961K-&gt;26286K(707840K), 0.0380878 secs] 691483K-&gt;41807K(969984K), 0.0382007 secs] [Times: user=0.06 sys=0.00, real=0.04 secs]</div></pre></td></tr></table></figure>
 <p>&#x7ECF;&#x5E38;&#x6027;&#x7684; &#x201C;premature promotion&#x201D;&#xFF0C; &#x6700;&#x603B;&#x4F1A;&#x5BFC;&#x81F4;&#x5927;&#x91CF;&#x77ED;&#x671F;&#x5BF9;&#x8C61;&#x88AB;&#x63D0;&#x5347;&#x5230;&#x8001;&#x5E74;&#x4EE3;&#xFF0C; &#x6700;&#x7EC8;&#x5BFC;&#x81F4;&#x8001;&#x5E74;&#x4EE3;&#x7A7A;&#x95F4;&#x4E0D;&#x8DB3;&#xFF0C; &#x5F15;&#x53D1;&#x53E6;&#x4E00;&#x4E2A; JVM &#x5185;&#x5B58;&#x95EE;&#x9898; &#x201C;promotion failure&#x201D;&#xFF08;&#x63D0;&#x5347;&#x5931;&#x8D25;&#xFF1A; &#x5373;&#x8001;&#x5E74;&#x4EE3;&#x7A7A;&#x95F4;&#x4E0D;&#x8DB3;&#x4EE5;&#x5BB9;&#x4E43; Minor GC &#x4E2D;&#x63D0;&#x5347;&#x4E0A;&#x6765;&#x7684;&#x5BF9;&#x8C61;&#xFF09;</p>
 <p>&#x9608;&#x503C; 6</p>
-<p> -XX:+PrintHeapAtGC &#x6253;&#x5370;GC&#x524D;&#x540E;&#x7684;&#x5806;&#x6808;&#x4FE1;&#x606F;<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">{Heap before GC invocations=0 (full 0):</div><div class="line"> par new generation   total 707840K, used 629248K [0x00000000c0000000, 0x00000000f0000000, 0x00000000f0000000)</div><div class="line">  eden space 629248K, 100% used [0x00000000c0000000, 0x00000000e6680000, 0x00000000e6680000)</div><div class="line">  from space 78592K,   0% used [0x00000000e6680000, 0x00000000e6680000, 0x00000000eb340000)</div><div class="line">  to   space 78592K,   0% used [0x00000000eb340000, 0x00000000eb340000, 0x00000000f0000000)</div><div class="line"> concurrent mark-sweep generation total 262144K, used 0K [0x00000000f0000000, 0x0000000100000000, 0x0000000100000000)</div><div class="line"> Metaspace       used 15947K, capacity 16294K, committed 16512K, reserved 1064960K</div><div class="line">  class space    used 1780K, capacity 1877K, committed 1920K, reserved 1048576K</div><div class="line">2017-11-07T21:14:24.642+0800: 12.757: [GC (Allocation Failure) 2017-11-07T21:14:24.642+0800: 12.757: [ParNew</div><div class="line">Desired survivor size 40239104 bytes, new threshold 1 (max 6)</div><div class="line">- age   1:   73044040 bytes,   73044040 total</div><div class="line">: 629248K-&gt;71474K(707840K), 0.0671453 secs] 629248K-&gt;71474K(969984K), 0.0672460 secs] [Times: user=0.14 sys=0.05, real=0.07 secs] </div><div class="line">Heap after GC invocations=1 (full 0):</div><div class="line"> par new generation   total 707840K, used 71474K [0x00000000c0000000, 0x00000000f0000000, 0x00000000f0000000)</div><div class="line">  eden space 629248K,   0% used [0x00000000c0000000, 0x00000000c0000000, 0x00000000e6680000)</div><div class="line">  from space 78592K,  90% used [0x00000000eb340000, 0x00000000ef90ca70, 0x00000000f0000000)</div><div class="line">  to   space 78592K,   0% used [0x00000000e6680000, 0x00000000e6680000, 0x00000000eb340000)</div><div class="line"> concurrent mark-sweep generation total 262144K, used 0K [0x00000000f0000000, 0x0000000100000000, 0x0000000100000000)</div><div class="line"> Metaspace       used 15947K, capacity 16294K, committed 16512K, reserved 1064960K</div><div class="line">  class space    used 1780K, capacity 1877K, committed 1920K, reserved 1048576K</div><div class="line">}</div></pre></td></tr></table></figure></p>
+<p>-XX:+PrintHeapAtGC &#x6253;&#x5370;GC&#x524D;&#x540E;&#x7684;&#x5806;&#x6808;&#x4FE1;&#x606F;<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">{Heap before GC invocations=0 (full 0):</div><div class="line"> par new generation   total 707840K, used 629248K [0x00000000c0000000, 0x00000000f0000000, 0x00000000f0000000)</div><div class="line">  eden space 629248K, 100% used [0x00000000c0000000, 0x00000000e6680000, 0x00000000e6680000)</div><div class="line">  from space 78592K,   0% used [0x00000000e6680000, 0x00000000e6680000, 0x00000000eb340000)</div><div class="line">  to   space 78592K,   0% used [0x00000000eb340000, 0x00000000eb340000, 0x00000000f0000000)</div><div class="line"> concurrent mark-sweep generation total 262144K, used 0K [0x00000000f0000000, 0x0000000100000000, 0x0000000100000000)</div><div class="line"> Metaspace       used 15947K, capacity 16294K, committed 16512K, reserved 1064960K</div><div class="line">  class space    used 1780K, capacity 1877K, committed 1920K, reserved 1048576K</div><div class="line">2017-11-07T21:14:24.642+0800: 12.757: [GC (Allocation Failure) 2017-11-07T21:14:24.642+0800: 12.757: [ParNew</div><div class="line">Desired survivor size 40239104 bytes, new threshold 1 (max 6)</div><div class="line">- age   1:   73044040 bytes,   73044040 total</div><div class="line">: 629248K-&gt;71474K(707840K), 0.0671453 secs] 629248K-&gt;71474K(969984K), 0.0672460 secs] [Times: user=0.14 sys=0.05, real=0.07 secs] </div><div class="line">Heap after GC invocations=1 (full 0):</div><div class="line"> par new generation   total 707840K, used 71474K [0x00000000c0000000, 0x00000000f0000000, 0x00000000f0000000)</div><div class="line">  eden space 629248K,   0% used [0x00000000c0000000, 0x00000000c0000000, 0x00000000e6680000)</div><div class="line">  from space 78592K,  90% used [0x00000000eb340000, 0x00000000ef90ca70, 0x00000000f0000000)</div><div class="line">  to   space 78592K,   0% used [0x00000000e6680000, 0x00000000e6680000, 0x00000000eb340000)</div><div class="line"> concurrent mark-sweep generation total 262144K, used 0K [0x00000000f0000000, 0x0000000100000000, 0x0000000100000000)</div><div class="line"> Metaspace       used 15947K, capacity 16294K, committed 16512K, reserved 1064960K</div><div class="line">  class space    used 1780K, capacity 1877K, committed 1920K, reserved 1048576K</div><div class="line">}</div></pre></td></tr></table></figure></p>
 <p>catalina host-manage manager localhost&#x65E5;&#x5FD7; &#x914D;&#x7F6E;Catalina.bat JAVA_OPTS<br>-Djava.util.logging.manager=org.apache.juli.ClassLoaderLogManager -Djava.util.logging.config.file=&#x201D;..\conf\logging.properties&#x201D;<br>&#x5BF9;&#x5E94;&#x4E0B;&#x9762;&#x51E0;&#x4E2A;<br>localhost.2012-07-05.txt<br>catalina.2012-07-05.txt<br>manager.2012-07-05.txt<br>host-manager.2012-07-05.txt</p>
 <p>&#x8BBF;&#x95EE;&#x65E5;&#x5FD7;access_log &#x914D;&#x7F6E;server.xml Host&#x8282;&#x70B9;&#x5185;&#x90E8;&#x6DFB;&#x52A0;&#x7684;Valve<br><code>&lt;Valve className=&quot;org.apache.catalina.valves.AccessLogValve&quot; directory=&quot;logs/tomcat&quot;  prefix=&quot;localhost_access_log.&quot; suffix=&quot;.txt&quot; pattern=&quot;common&quot; resolveHosts=&quot;false&quot;/&gt;</code></p>
 <p>app&#x65E5;&#x5FD7;<br>log4j &#x5E94;&#x7528;&#x5185;&#x90E8;&#x7684;log</p>
@@ -583,17 +584,17 @@
   
     
     <div class="copyright">
-        <p><span>Title:</span><a href="/2017/08/29/深入理解JVM之性能调优/">深入理解JVM之性能调优</a></p>
-        <p><span>Author:</span><a href="/" title="Back to Homepage">Mu Xiaobai(慕小白)</a></p>
-        <p><span>Created:</span>2017-08-29, 13:58:04</p>
-        <p><span>Updated:</span>2017-11-07, 13:15:52</p>
+        <p><span>本文标题:</span><a href="/2017/08/29/深入理解JVM之性能调优/">深入理解JVM之性能调优</a></p>
+        <p><span>文章作者:</span><a href="/" title="回到主页">Mu Xiaobai(慕小白)</a></p>
+        <p><span>发布时间:</span>2017-08-29, 13:58:04</p>
+        <p><span>最后更新:</span>2017-11-16, 06:50:59</p>
         <p>
-            <span>Full URL:</span><a class="post-url" href="/2017/08/29/深入理解JVM之性能调优/" title="深入理解JVM之性能调优">https://muxiaobai.github.io/2017/08/29/深入理解JVM之性能调优/</a>
-            <span class="copy-path" data-clipboard-text="From https://muxiaobai.github.io/2017/08/29/深入理解JVM之性能调优/　　By Mu Xiaobai(慕小白)" title="Copy Article&#39;s Link &amp; Author"><i class="fa fa-clipboard"></i></span>
+            <span>原始链接:</span><a class="post-url" href="/2017/08/29/深入理解JVM之性能调优/" title="深入理解JVM之性能调优">https://muxiaobai.github.io/2017/08/29/深入理解JVM之性能调优/</a>
+            <span class="copy-path" data-clipboard-text="原文: https://muxiaobai.github.io/2017/08/29/深入理解JVM之性能调优/　　作者: Mu Xiaobai(慕小白)" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
             <script> var clipboard = new Clipboard('.copy-path'); </script>
         </p>
         <p>
-            <span>License:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"CC BY-NC-SA 4.0"</a> Keep Link &amp; Author if Distribute.
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
         </p>
     </div>
 
@@ -620,7 +621,7 @@
 </article>
 
     <div id="toc" class="toc-article">
-    <strong class="toc-title">Contents</strong>
+    <strong class="toc-title">文章目录</strong>
     <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#修改tomcat-的java-opts"><span class="toc-number">1.</span> <span class="toc-text">修改tomcat 的java_opts</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#各个参数的含义"><span class="toc-number">2.</span> <span class="toc-text">各个参数的含义</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#tomcat下的几个日志"><span class="toc-number">3.</span> <span class="toc-text">tomcat下的几个日志</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#根据gc-log分析收集器"><span class="toc-number">3.1.</span> <span class="toc-text">根据gc log分析收集器</span></a></li></ol></li></ol>
 </div>
 <style>
@@ -630,10 +631,10 @@
     }
 </style>
 
-<input type="button" id="tocButton" value="Hide"  title="Show or Hide Table of Contents">
+<input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
 
 <script>
-    yiliaConfig.toc = ["Hide", "Show", !!"false"];
+    yiliaConfig.toc = ["隐藏目录", "显示目录", !!"false"];
 </script>
 
 
@@ -679,15 +680,15 @@
 
     <div class="scroll" id="post-nav-button">
         
-            <a href="/2017/09/02/应用部署之nginx负载/" title="Pre: 应用部署之nginx负载">
+            <a href="/2017/09/02/应用部署之nginx负载/" title="上一篇: 应用部署之nginx负载">
                 <i class="fa fa-angle-left"></i>
             </a>
         
 
-        <a title="Mini Archives"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
 
         
-            <a href="/2017/08/14/数据库操作语句/" title="Next: 数据库操作语句">
+            <a href="/2017/08/14/数据库操作语句/" title="下一篇: 数据库操作语句">
                 <i class="fa fa-angle-right"></i>
             </a>
         
@@ -710,14 +711,14 @@
                 2016-2017 Mu Xiaobai(慕小白)
             </div>
             <div class="footer-right">
-                <a href="http://hexo.io/" target="_blank" title="A fast, simple &amp; powerful blog framework">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="Another simple and elegant theme for Hexo  v3.5">Yelee</a> by MOxFIVE <i class="fa fa-heart animated infinite pulse"></i>
+                <a href="http://hexo.io/" target="_blank" title="快速、简洁且高效的博客框架">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="简而不减 Hexo 双栏博客主题  v3.5">Yelee</a> by MOxFIVE <i class="fa fa-heart animated infinite pulse"></i>
             </div>
         </div>
         
             <div class="visit">
                 
                     <span id="busuanzi_container_site_pv" style='display:none'>
-                        <span id="site-visit" >Site Visitors: 
+                        <span id="site-visit" >本站到访数: 
                             <span id="busuanzi_value_site_uv"></span>
                         </span>
                     </span>
@@ -727,7 +728,7 @@
                 
                 
                     <span id="busuanzi_container_page_pv" style='display:none'>
-                        <span id="page-visit">Page Hits: 
+                        <span id="page-visit">本页阅读量: 
                             <span id="busuanzi_value_page_pv"></span>
                         </span>
                     </span>
@@ -782,9 +783,9 @@ ga('send', 'pageview');
 
 
 <div class="scroll" id="scroll">
-    <a href="#" title="Back to Top"><i class="fa fa-arrow-up"></i></a>
-    <a href="#comments" onclick="load$hide();" title="Comments"><i class="fa fa-comments-o"></i></a>
-    <a href="#footer" title="Go to Bottom"><i class="fa fa-arrow-down"></i></a>
+    <a href="#" title="返回顶部"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments" onclick="load$hide();" title="查看评论"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer" title="转到底部"><i class="fa fa-arrow-down"></i></a>
 </div>
 <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
 </script>
