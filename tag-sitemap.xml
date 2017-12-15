@@ -16,13 +16,6 @@
     </url>
 
     <url>
-        <loc>https://muxiaobai.github.io/tags/Struts/</loc>
-        <lastmod>2016-08-31T12:24:35.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
         <loc>https://muxiaobai.github.io/tags/API/</loc>
         <lastmod>2016-08-31T12:24:35.000Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -51,8 +44,8 @@
     </url>
 
     <url>
-        <loc>https://muxiaobai.github.io/tags/Shell/</loc>
-        <lastmod>2016-08-31T12:24:36.000Z</lastmod>
+        <loc>https://muxiaobai.github.io/tags/Struts/</loc>
+        <lastmod>2016-08-31T12:24:35.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
@@ -66,6 +59,13 @@
 
     <url>
         <loc>https://muxiaobai.github.io/tags/Linux/</loc>
+        <lastmod>2016-08-31T12:24:36.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://muxiaobai.github.io/tags/Shell/</loc>
         <lastmod>2016-08-31T12:24:36.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
@@ -360,14 +360,14 @@
 
     <url>
         <loc>https://muxiaobai.github.io/tags/tomcat/</loc>
-        <lastmod>2017-12-15T02:59:47.566Z</lastmod>
+        <lastmod>2017-12-15T03:01:58.622Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
         <loc>https://muxiaobai.github.io/tags/jvm/</loc>
-        <lastmod>2017-12-15T02:59:47.566Z</lastmod>
+        <lastmod>2017-12-15T03:01:58.622Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
