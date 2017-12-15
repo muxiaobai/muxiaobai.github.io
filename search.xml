@@ -249,22 +249,7 @@
 </tbody>
 </table>
 <p>&#x5176;&#x4ED6;&#x529F;&#x80FD;&#xFF0C;&#x65B9;&#x4FBF;&#x4E4B;&#x540E;&#x67E5;&#x627E;&#x95EE;&#x9898;</p>
-<table>
-<thead>
-<tr>
-<th style="text-align:center">&#x53C2;&#x6570;&#x540D;&#x79F0;</th>
-<th style="text-align:center">&#x542B;&#x4E49;</th>
-<th style="text-align:center">&#x9ED8;&#x8BA4;&#x503C;</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">-XX:+HeapDumpOnOutOfMemoryError</td>
-<td style="text-align:center">&#x5728;OutOfMenory&#x7684;&#x65F6;&#x5019;&#x81EA;&#x52A8;&#x521B;&#x5EFA;Heapdump,&#x6CE8;&#xFF1A;&#x5176;&#x4E2D;&#x4E0D;&#x8BBE;-XX:HeapDumpPath&#x65F6;&#xFF0C;dump&#x51FA;&#x7684;&#x6587;&#x4EF6;&#x5728;/tomcat_home/bin&#x76EE;&#x5F55;&#x4E0B;</td>
-<td style="text-align:center">-XX:HeapDumpPath=D:/heapdump,&#x6587;&#x7AE0;&#x6700;&#x540E;&#x8FD8;&#x6709;&#x624B;&#x52A8;&#x751F;&#x6210;jmap</td>
-</tr>
-</tbody>
-</table>
+<p><code>-XX:+HeapDumpOnOutOfMemoryError</code>&#x5728;OutOfMenory&#x7684;&#x65F6;&#x5019;&#x81EA;&#x52A8;&#x521B;&#x5EFA;Heapdump,&#x6CE8;&#xFF1A;&#x5176;&#x4E2D;&#x4E0D;&#x8BBE;-XX:HeapDumpPath&#x65F6;&#xFF0C;dump&#x51FA;&#x7684;&#x6587;&#x4EF6;&#x5728;/tomcat_home/bin&#x76EE;&#x5F55;&#x4E0B;|-XX:HeapDumpPath=D:/heapdump,&#x6587;&#x7AE0;&#x6700;&#x540E;&#x8FD8;&#x6709;&#x624B;&#x52A8;&#x751F;&#x6210;jmap|</p>
 <p>&#x4E3A;&#x4E86;&#x5206;&#x6790;&#x53EF;&#x4EE5;&#x5C06;gc&#x65E5;&#x5FD7;&#x641E;&#x51FA;&#x6765;</p>
 <table>
 <thead>
