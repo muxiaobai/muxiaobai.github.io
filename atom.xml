@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://muxiaobai.github.io/"/>
-  <updated>2017-12-22T03:27:09.407Z</updated>
+  <updated>2017-12-22T03:29:04.955Z</updated>
   <id>https://muxiaobai.github.io/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="https://muxiaobai.github.io/2017/12/22/javascript%E5%86%8D%E5%AD%A6%E4%B9%A0%E4%B9%8Bprototype/"/>
     <id>https://muxiaobai.github.io/2017/12/22/javascript再学习之prototype/</id>
     <published>2017-12-22T02:38:06.000Z</published>
-    <updated>2017-12-22T03:27:09.407Z</updated>
+    <updated>2017-12-22T03:29:04.955Z</updated>
     
     <content type="html"><![CDATA[<h2 id="Function&#x4E2D;"><a href="#Function&#x4E2D;" class="headerlink" title="Function&#x4E2D;"></a>Function&#x4E2D;</h2><p>  &#x6709;prototype &#x548C;<strong>proto</strong></p>
 <h4 id="&#x7B2C;&#x4E00;&#x79CD;&#x60C5;&#x51B5;-&#x5BF9;&#x8C61;&#x4E2D;&#x6709;say"><a href="#&#x7B2C;&#x4E00;&#x79CD;&#x60C5;&#x51B5;-&#x5BF9;&#x8C61;&#x4E2D;&#x6709;say" class="headerlink" title="&#x7B2C;&#x4E00;&#x79CD;&#x60C5;&#x51B5; &#x5BF9;&#x8C61;&#x4E2D;&#x6709;say"></a>&#x7B2C;&#x4E00;&#x79CD;&#x60C5;&#x51B5; &#x5BF9;&#x8C61;&#x4E2D;&#x6709;say</h4><p><img src="/2017/12/22/javascript&#x518D;&#x5B66;&#x4E60;&#x4E4B;prototype/person.png" alt="&#x5BF9;&#x8C61;"><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">function Person(){</div><div class="line">	  this.say = function(){</div><div class="line">	    console.log(&quot;Hello&quot;);</div><div class="line">	  };</div><div class="line">	}</div><div class="line">	var person = new Person();</div><div class="line">	person.say(); //hello</div><div class="line">	debugger;</div></pre></td></tr></table></figure></p>
@@ -39,7 +39,7 @@
 <p>&#x8FD9;&#x91CC;&#x5B9E;&#x9645;&#x4E0A;Person&#x5DF2;&#x7ECF;&#x4F5C;&#x4E3A;&#x4E86;Function&#x7684;&#x4E00;&#x4E2A;&#x5B9E;&#x4F8B;&#xFF0C;&#x5BF9;&#x5E94;&#x5230;Person&#x4E0A;&#x6765;&#x8BF4;&#xFF0C;&#x5BF9;&#x8C61;&#x7684;<strong>proto</strong>&#x548C;&#x6784;&#x9020;&#x65B9;&#x6CD5;&#x7684;prototype &#x662F;&#x76F8;&#x7B49;&#x7684;</p>
 <p>&#x5373; person.<strong>proto</strong> === Person.prototype</p>
 <h2 id="Object&#x4E2D;"><a href="#Object&#x4E2D;" class="headerlink" title="Object&#x4E2D;"></a>Object&#x4E2D;</h2><p>&#x53EA;&#x6709; <strong>proto</strong></p>
-<p>&#x5982;&#x679C;&#x4F5C;&#x4E3A;&#x4E00;&#x4E2A;&#x5355;&#x7EAF;&#x7684;&#x5BF9;&#x8C61;&#x6765;&#x8BF4;&#xFF0C;&#x662F;&#x53EA;&#x6709;<strong>proto</strong></p>
+<p>&#x5982;&#x679C;&#x4F5C;&#x4E3A;&#x4E00;&#x4E2A;&#x5355;&#x7EAF;&#x7684;&#x5BF9;&#x8C61;&#x6765;&#x8BF4;&#xFF0C;&#x662F;&#x53EA;&#x6709;__proto__</p>
 <p>&#x6240;&#x4EE5;&#x5BF9;&#x4E8E;Object&#x6765;&#x8BF4;&#xFF0C;&#x5B9E;&#x9645;&#x4E0A;&#x662F;Function&#x7684;&#x4E00;&#x4E2A;&#x5B9E;&#x4F8B; &#xFF0C;&#x90A3;&#x4E48;  Object.<strong>proto</strong> === Function.prototype;</p>
 <p>&#x540C;&#x65F6;Object &#x4E5F;&#x662F;&#x4E00;&#x4E2A;&#x65B9;&#x6CD5;,&#x4EFB;&#x4F55;&#x4E00;&#x4E2A; var a ={},&#x8FD9;&#x6837;&#x7684;&#x8BDD;&#xFF0C;a.<strong>proto</strong> === Object.prototype;</p>
 <p>&#x65B9;&#x6CD5;&#x7684;prototype &#x662F;&#x5BF9;&#x8C61;&#x5427;&#xFF0C;&#x90A3;&#x4E48;Function.prototype&#x5C31;&#x6709; <strong>proto</strong>, &#x6240;&#x4EE5;&#x4E0B;&#x9762;&#x4E00;&#x4E2A;&#x5C31;&#x8BF4;&#x7684;&#x901A;&#x4E86;,</p>
