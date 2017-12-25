@@ -21,7 +21,7 @@
 <meta property="og:url" content="https://muxiaobai.github.io/2017/08/14/数据库操作语句/index.html">
 <meta property="og:site_name" content="技术笔记">
 <meta property="og:description" content="写一些常用的SQL语句">
-<meta property="og:updated_time" content="2017-12-15T03:13:17.000Z">
+<meta property="og:updated_time" content="2017-12-25T11:41:11.382Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="数据库操作语句">
 <meta name="twitter:description" content="写一些常用的SQL语句">
@@ -334,7 +334,7 @@
 <p>create public database link zrhs_link using &#x2018;19.131.106.252:1521/oracle&#x2019;;<br>&#x5728;&#x4E0D;&#x6307;&#x5B9A;&#x7528;&#x6237;&#x540D;&#x548C;&#x53E3;&#x4EE4;&#x7684;&#x60C5;&#x51B5;&#x4E0B;&#xFF0C;ORACLE&#x4F7F;&#x7528;&#x5F53;&#x524D;&#x7684;&#x7528;&#x6237;&#x540D;&#x548C;&#x53E3;&#x4EE4;&#x767B;&#x5F55;&#x5230;&#x8FDC;&#x7A0B;&#x6570;&#x636E;&#x5E93;&#x3002;<br>SELECT * FROM INS_BUSINESS_INFO@ZRHS_LINK</p>
 <p>DROP PUBLIC DATABASE LINK SSTZJS_ZJK.US.ORACLE.COM; //&#x5220;&#x9664;dblink</p>
 <h4 id="Oracle"><a href="#Oracle" class="headerlink" title="Oracle"></a>Oracle</h4><p>&#x62FC;&#x63A5;&#xFF1A;wm_concat (FDSXMC || &#x2018;&amp;&amp;&#x2019;) </p>
-<p>&#x5BFC;&#x5165;&#x6570;&#x636E;&#x5E93;<br>imp sanshui20170425/12345678@ORCL file=D:\sanshui\20170314&#x4E09;&#x6C34;\SS-20170424\SS-20170424.dmp FULL=y<br>&#x521B;&#x5EFA;&#x8868;&#x7A7A;&#x95F4;<br>create tablespace WEBSITE<br>datafile &#x2018;D:\app\zhang\product\11.1.0\db_1\SPACE_TBSPACE.dbf&#x2019;<br>size 1500M<br>autoextend on next 5M maxsize 3000M;</p>
+<p>&#x5BFC;&#x5165;&#x6570;&#x636E;&#x5E93;<br>imp sanshui20170425/12345678@ip/ORCL file=D:\sanshui\20170314\SS-20170424\SS-20170424.dmp FULL=y<br>&#x521B;&#x5EFA;&#x8868;&#x7A7A;&#x95F4;<br>create tablespace WEBSITE<br>datafile &#x2018;D:\app\zhang\product\11.1.0\db_1\SPACE_TBSPACE.dbf&#x2019;<br>size 1500M<br>autoextend on next 5M maxsize 3000M;</p>
 <p>select t.*,t.rowid from INS_BUSINESS_INFO t<br>&#x6709;&#x4E2A;&#x5F88;&#x597D;&#x7528;&#x7684;rownum  &#x548C; count(1)</p>
 <h4 id="&#x6027;&#x80FD;&#x95EE;&#x9898;"><a href="#&#x6027;&#x80FD;&#x95EE;&#x9898;" class="headerlink" title="&#x6027;&#x80FD;&#x95EE;&#x9898;"></a>&#x6027;&#x80FD;&#x95EE;&#x9898;</h4><h5 id="&#x8868;&#x7A7A;&#x95F4;"><a href="#&#x8868;&#x7A7A;&#x95F4;" class="headerlink" title="&#x8868;&#x7A7A;&#x95F4;"></a>&#x8868;&#x7A7A;&#x95F4;</h5><p>SELECT a.tablespace_name &#x201C;&#x8868;&#x7A7A;&#x95F4;&#x540D;&#x201D;,<br>a.bytes / 1024 / 1024 &#x201C;&#x8868;&#x7A7A;&#x95F4;&#x5927;&#x5C0F;(M)&#x201D;,<br>(a.bytes - b.bytes) / 1024 / 1024 &#x201C;&#x5DF2;&#x4F7F;&#x7528;&#x7A7A;&#x95F4;(M)&#x201D;,<br>b.bytes / 1024 / 1024 &#x201C;&#x7A7A;&#x95F2;&#x7A7A;&#x95F4;(M)&#x201D;,<br>round(((a.bytes - b.bytes) / a.bytes) * 100, 2) &#x201C;&#x4F7F;&#x7528;&#x6BD4;&#x201D;<br>FROM (SELECT tablespace_name, sum(bytes) bytes<br>FROM dba_data_files<br>GROUP BY tablespace_name) a,<br>(SELECT tablespace_name, sum(bytes) bytes, max(bytes) largest<br>FROM dba_free_space<br>GROUP BY tablespace_name) b<br>WHERE a.tablespace_name = b.tablespace_name<br>ORDER BY ((a.bytes - b.bytes) / a.bytes) DESC;</p>
 <p>select dbf.tablespace_name,<br>dbf.totalspace &#x201C;&#x603B;&#x91CF;(M)&#x201D;,<br>dbf.totalblocks as &#x603B;&#x5757;&#x6570;,<br>dfs.freespace &#x201C;&#x5269;&#x4F59;&#x603B;&#x91CF;(M)&#x201D;,<br>dfs.freeblocks &#x201C;&#x5269;&#x4F59;&#x5757;&#x6570;&#x201D;,<br>(dfs.freespace / dbf.totalspace) * 100 &#x201C;&#x7A7A;&#x95F2;&#x6BD4;&#x4F8B;&#x201D;<br>from (select t.tablespace_name,<br>sum(t.bytes) / 1024 / 1024 totalspace,<br>sum(t.blocks) totalblocks<br>from dba_data_files t<br>group by t.tablespace_name) dbf,<br>(select tt.tablespace_name,<br>sum(tt.bytes) / 1024 / 1024 freespace,<br>sum(tt.blocks) freeblocks<br>from dba_free_space tt<br>group by tt.tablespace_name) dfs<br>where trim(dbf.tablespace_name) = trim(dfs.tablespace_name);</p>
@@ -370,7 +370,7 @@
         <p><span>本文标题:</span><a href="/2017/08/14/数据库操作语句/">数据库操作语句</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">Mu Xiaobai(慕小白)</a></p>
         <p><span>发布时间:</span>2017-08-14, 03:22:28</p>
-        <p><span>最后更新:</span>2017-12-15, 03:13:17</p>
+        <p><span>最后更新:</span>2017-12-25, 11:41:11</p>
         <p>
             <span>原始链接:</span><a class="post-url" href="/2017/08/14/数据库操作语句/" title="数据库操作语句">https://muxiaobai.github.io/2017/08/14/数据库操作语句/</a>
             <span class="copy-path" data-clipboard-text="原文: https://muxiaobai.github.io/2017/08/14/数据库操作语句/　　作者: Mu Xiaobai(慕小白)" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
