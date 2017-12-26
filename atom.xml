@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://muxiaobai.github.io/"/>
-  <updated>2017-12-22T03:31:33.536Z</updated>
+  <updated>2017-12-26T07:14:11.566Z</updated>
   <id>https://muxiaobai.github.io/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="https://muxiaobai.github.io/2017/12/22/javascript%E5%86%8D%E5%AD%A6%E4%B9%A0%E4%B9%8Bprototype/"/>
     <id>https://muxiaobai.github.io/2017/12/22/javascript再学习之prototype/</id>
     <published>2017-12-22T02:38:06.000Z</published>
-    <updated>2017-12-22T03:31:33.536Z</updated>
+    <updated>2017-12-26T07:14:11.566Z</updated>
     
     <content type="html"><![CDATA[<h2 id="Function&#x4E2D;"><a href="#Function&#x4E2D;" class="headerlink" title="Function&#x4E2D;"></a>Function&#x4E2D;</h2><p>  &#x6709;prototype &#x548C;__proto__</p>
 <h4 id="&#x7B2C;&#x4E00;&#x79CD;&#x60C5;&#x51B5;-&#x5BF9;&#x8C61;&#x4E2D;&#x6709;say"><a href="#&#x7B2C;&#x4E00;&#x79CD;&#x60C5;&#x51B5;-&#x5BF9;&#x8C61;&#x4E2D;&#x6709;say" class="headerlink" title="&#x7B2C;&#x4E00;&#x79CD;&#x60C5;&#x51B5; &#x5BF9;&#x8C61;&#x4E2D;&#x6709;say"></a>&#x7B2C;&#x4E00;&#x79CD;&#x60C5;&#x51B5; &#x5BF9;&#x8C61;&#x4E2D;&#x6709;say</h4><p><img src="/2017/12/22/javascript&#x518D;&#x5B66;&#x4E60;&#x4E4B;prototype/person.png" alt="&#x5BF9;&#x8C61;"><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">function Person(){</div><div class="line">	  this.say = function(){</div><div class="line">	    console.log(&quot;Hello&quot;);</div><div class="line">	  };</div><div class="line">	}</div><div class="line">	var person = new Person();</div><div class="line">	person.say(); //hello</div><div class="line">	debugger;</div></pre></td></tr></table></figure></p>
@@ -47,6 +47,7 @@
 <p>&#x90A3;&#x4E48;Object.prototype &#x662F;&#x5BF9;&#x8C61;,&#x90A3;&#x4E48;&#x5B83;&#x7684;__proto__&#x662F;&#x4EC0;&#x4E48;&#x5462;&#xFF1F; null</p>
 <p>&#x4E0B;&#x9762;&#x8FD9;&#x4E2A;&#x600E;&#x4E48;&#x89E3;&#x91CA;&#xFF1F;</p>
 <p>Function.__proto__ === Function.prototype </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div><div class="line">var A = function(){}; // A&#x662F;&#x4E00;&#x4E2A;&#x65B9;&#x6CD5;&#xFF0C;&#x5F53;&#x7136;&#x4E5F;&#x662F;&#x4E2A;&#x5BF9;&#x8C61;  </div><div class="line">var a = new A(); // a&#x662F;&#x4E00;&#x4E2A;&#x7531;A&#x521B;&#x9020;&#x51FA;&#x7684;&#x5BF9;&#x8C61;&#xFF0C;&#x4E0D;&#x662F;&#x65B9;&#x6CD5;  </div><div class="line"></div><div class="line">//&#x770B;&#x4E00;&#x770B;&#x5BF9;&#x8C61;&#x975E;&#x65B9;&#x6CD5;&#x7684;&#x884C;&#x4E3A;</div><div class="line">console.log(a.__proto__); //object  </div><div class="line">console.log(a.prototype); //undefined, &#x5BF9;&#x8C61;&#x6CA1;&#x6709; </div><div class="line"></div><div class="line">//&#x770B;&#x4E00;&#x770B;&#x65B9;&#x6CD5;&#x7684;&#x884C;&#x4E3A;&#xFF0C;&#x65B9;&#x6CD5;&#x4E5F;&#x662F;&#x5BF9;&#x8C61;&#x54E6;</div><div class="line"></div><div class="line">console.log(A.__proto__); //function  </div><div class="line">console.log(A.prototype); //object  </div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line">console.log(a.__proto__ === A.prototype); //true  </div><div class="line">console.log(a.prototype === undefined); //true</div><div class="line"></div><div class="line">console.log(A.__proto__ === Function.prototype); //true  </div><div class="line">console.log(A.prototype === a.__proto__); //true  </div><div class="line"></div><div class="line">//&#x5148;&#x770B;a&#x8FD9;&#x6761;&#x94FE;</div><div class="line">console.log(a.__proto__.__proto__ === A.prototype.__proto__); //true  </div><div class="line">console.log(a.__proto__.__proto__ === Object.prototype);//true  </div><div class="line">console.log(a.__proto__.__proto__.__proto__ === Object.prototype.__proto__);//true  </div><div class="line">console.log(a.__proto__.__proto__.__proto__ === null);//true</div><div class="line"></div><div class="line"></div><div class="line">//&#x518D;&#x770B;&#x770B;A&#x8FD9;&#x6761;&#x6761;&#x94FE;</div><div class="line">console.log(A.__proto__.__proto__ === Function.prototype.__proto__);//true  </div><div class="line">console.log(A.__proto__.__proto__ === Object.prototype);//true  </div><div class="line">console.log(A.__proto__.__proto__.__proto__ === Object.prototype.__proto__);//true  </div><div class="line">console.log(A.__proto__.__proto__.__proto__ === null);//true</div></pre></td></tr></table></figure>
 <p><img src="/2017/12/22/javascript&#x518D;&#x5B66;&#x4E60;&#x4E4B;prototype/xproto-2.png" alt="prototype"></p>
 <p>&#x53C2;&#x8003; <a href="http://varnull.cn/cong-\_\_proto\_\_-prototype-shuo-qi/" target="_blank" rel="external">&#x4ECE; __proto__ prototype &#x8BF4;&#x8D77;</a></p>
 ]]></content>
@@ -103,7 +104,7 @@
     <link href="https://muxiaobai.github.io/2017/10/23/%E5%89%8D%E7%AB%AF%E5%B0%8Ftips/"/>
     <id>https://muxiaobai.github.io/2017/10/23/前端小tips/</id>
     <published>2017-10-23T06:19:32.000Z</published>
-    <updated>2017-12-21T08:47:28.433Z</updated>
+    <updated>2017-12-26T02:23:06.001Z</updated>
     
     <content type="html"><![CDATA[<p>button&#x9ED8;&#x8BA4;&#x7684;type &#x662F;submit<br>textarea&#x56FA;&#x5B9A;&#xFF0C;&#x4E0D;&#x53EF;&#x62D6;&#x62FD;&#xFF1A; textarea{ resize:none;}</p>
 <p><a href="http://garlicjs.org/#download" target="_blank" rel="external">http://garlicjs.org/#download</a> &#x53EF;&#x4EE5;form&#x7F13;&#x5B58;&#xFF0C;&#x731C;&#x6D4B;&#x5E94;&#x8BE5;&#x662F;&#x4F7F;&#x7528;localStorage<br><img src="/2017/10/23/&#x524D;&#x7AEF;&#x5C0F;tips/P71102-200420.jpg" alt="garlicjs"></p>
@@ -119,6 +120,7 @@
 <p>&#x7A7A;&#x683C;&#x4F1A;&#x53D8;&#x6210; %20</p>
 <p>PWA &amp; AMP</p>
 <p>PWA(Progressive Web App)  &#x6E10;&#x8FDB;&#x5F0F;&#x7F51;&#x9875;&#x5E94;&#x7528;<br>AMP(Accelerated Mobile Pages) &#x52A0;&#x901F;&#x79FB;&#x52A8;&#x7F51;&#x9875;</p>
+<p>&#x7CFB;&#x7EDF;&#x95EE;&#x9898;,window7<br>&#x6807;&#x51C6;&#x8D26;&#x6237;&#x4E0A;&#x7F51;</p>
 <p>entity&#x4E2D;&#xFF1A;&#x6CE8;&#x89E3;&#x914D;&#x7F6E;&#x6587;&#x4EF6;&#x5199;&#x6709;schema  </p>
 <p>&#x751F;&#x6210;sshkey  <code>ssh-keygen -t rsa -C &quot;xxxxxx@yy.com&quot;</code></p>
 ]]></content>
@@ -789,11 +791,11 @@
       <category term="总结" scheme="https://muxiaobai.github.io/categories/%E6%80%BB%E7%BB%93/"/>
     
     
-      <category term="系统" scheme="https://muxiaobai.github.io/tags/%E7%B3%BB%E7%BB%9F/"/>
-    
       <category term="前端" scheme="https://muxiaobai.github.io/tags/%E5%89%8D%E7%AB%AF/"/>
     
       <category term="后端" scheme="https://muxiaobai.github.io/tags/%E5%90%8E%E7%AB%AF/"/>
+    
+      <category term="系统" scheme="https://muxiaobai.github.io/tags/%E7%B3%BB%E7%BB%9F/"/>
     
   </entry>
   
