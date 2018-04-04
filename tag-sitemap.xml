@@ -2,6 +2,20 @@
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
     <url>
+        <loc>https://muxiaobai.github.io/tags/Github/</loc>
+        <lastmod>2016-08-31T12:24:35.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://muxiaobai.github.io/tags/Hexo/</loc>
+        <lastmod>2016-08-31T12:24:35.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
         <loc>https://muxiaobai.github.io/tags/API/</loc>
         <lastmod>2016-08-31T12:24:35.000Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -31,20 +45,6 @@
 
     <url>
         <loc>https://muxiaobai.github.io/tags/Struts/</loc>
-        <lastmod>2016-08-31T12:24:35.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://muxiaobai.github.io/tags/Github/</loc>
-        <lastmod>2016-08-31T12:24:35.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://muxiaobai.github.io/tags/Hexo/</loc>
         <lastmod>2016-08-31T12:24:35.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
@@ -289,34 +289,6 @@
     </url>
 
     <url>
-        <loc>https://muxiaobai.github.io/tags/%E5%9F%BA%E7%A1%80%E5%91%BD%E4%BB%A4/</loc>
-        <lastmod>2017-11-06T12:25:30.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://muxiaobai.github.io/tags/file/</loc>
-        <lastmod>2017-11-06T12:25:30.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://muxiaobai.github.io/tags/directory/</loc>
-        <lastmod>2017-11-06T12:25:30.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://muxiaobai.github.io/tags/tar/</loc>
-        <lastmod>2017-11-06T12:25:30.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
         <loc>https://muxiaobai.github.io/tags/tomcat/</loc>
         <lastmod>2017-12-15T03:04:56.000Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -382,6 +354,34 @@
     <url>
         <loc>https://muxiaobai.github.io/tags/Linux/</loc>
         <lastmod>2018-04-04T07:33:42.912Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://muxiaobai.github.io/tags/%E5%9F%BA%E7%A1%80%E5%91%BD%E4%BB%A4/</loc>
+        <lastmod>2018-04-04T07:59:43.347Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://muxiaobai.github.io/tags/file/</loc>
+        <lastmod>2018-04-04T07:59:43.347Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://muxiaobai.github.io/tags/directory/</loc>
+        <lastmod>2018-04-04T07:59:43.347Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://muxiaobai.github.io/tags/tar/</loc>
+        <lastmod>2018-04-04T07:59:43.347Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
