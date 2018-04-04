@@ -15,10 +15,22 @@
 <p>&#x5F15;&#x5BFC;&#x95EE;&#x9898; &#x4F7F;&#x7528;EasyBCD&#x4FEE;&#x6539;</p>
 <p>UltraISO EasyBCD &#x767E;&#x5EA6;&#x6709;&#x8D44;&#x6E90;&#x4E0B;&#x8F7D;</p>
 <h2 id="&#x5B89;&#x88C5;&#x4E4B;&#x540E;&#xFF0C;"><a href="#&#x5B89;&#x88C5;&#x4E4B;&#x540E;&#xFF0C;" class="headerlink" title="&#x5B89;&#x88C5;&#x4E4B;&#x540E;&#xFF0C;"></a>&#x5B89;&#x88C5;&#x4E4B;&#x540E;&#xFF0C;</h2><p>&#x8D44;&#x6E90;&#x5728;</p>
-<p>&#x8FDB;&#x5165;&#x7CFB;&#x7EDF;&#x9700;&#x8981;&#x4FEE;&#x6539; java python  pip  &#x9ED8;&#x8BA4;&#x8DEF;&#x5F84;oracle jdk 8+  python 3 </p>
-<p>&#x4E4B;&#x540E;&#x5B89;&#x88C5; &#x4E2D;&#x6587;&#x952E;&#x76D8;  yum install&#x201D;@Chinese support&#x201D;</p>
-<p>teamviewer eclipse MAS hadoop anaconda</p>
-<p>python &#x5E93; g++ numpy pands matplotlib sklearn tensroflow </p>
+<p>&#x8FDB;&#x5165;&#x7CFB;&#x7EDF;&#x9700;&#x8981;&#x4FEE;&#x6539; java python  pip  &#x9ED8;&#x8BA4;&#x8DEF;&#x5F84;oracle jdk 8+  python3 </p>
+<p>&#x4E4B;&#x540E;&#x5B89;&#x88C5; &#x4E2D;&#x6587;&#x952E;&#x76D8;  yum install&#x201D;@Chinese support&#x201D;<br>&#x4E2D;&#x6587;  <a href="https://blog.csdn.net/sunxiaopengsun/article/details/53965643" target="_blank" rel="external">https://blog.csdn.net/sunxiaopengsun/article/details/53965643</a></p>
+<p>teamviewer eclipse MARS  hadoop  anaconda</p>
+<p>python &#x5E93; g++ numpy pands matplotlib sklearn xgboost tensroflow </p>
+<p>bash Anaconda-2.1.0-Linux-x86_64.sh</p>
+<h4 id="&#x73AF;&#x5883;&#x53D8;&#x91CF;"><a href="#&#x73AF;&#x5883;&#x53D8;&#x91CF;" class="headerlink" title="&#x73AF;&#x5883;&#x53D8;&#x91CF;"></a>&#x73AF;&#x5883;&#x53D8;&#x91CF;</h4><p>&#x89E3;&#x538B;&#x7F29;&#x4E4B;&#x540E;&#x73AF;&#x5883;&#x53D8;&#x91CF;</p>
+<p><code>vim .bashrc</code></p>
+<p>export ANACONDA_HOME=/root/anaconda3<br>export PYTHON_HOME=/root/install/Python-3.6.5<br>export JDK_HOME=/root/install/jdk1.8.0_161<br>export CLASSPATH=.;$JDK_HOME/lib<br>export PATH=/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/bin:/sbin;/root/bin<br>export PATH=$PYTHON_HOME:$ANACONDA_HOME/bin:$JDK_HOME/bin:$PATH</p>
+<p><code>source .bashrc</code></p>
+<h4 id="&#x4FEE;&#x6539;jupyter"><a href="#&#x4FEE;&#x6539;jupyter" class="headerlink" title="&#x4FEE;&#x6539;jupyter"></a>&#x4FEE;&#x6539;jupyter</h4><p><a href="https://www.cnblogs.com/dpf-learn/p/7941960.html" target="_blank" rel="external">jupyter &#x9ED8;&#x8BA4;&#x914D;&#x7F6E;</a><br>&#x8FD0;&#x884C;<br><code>jupyter notebook --generate-config --allow-root</code></p>
+<p>&#x4FEE;&#x6539;&#xFF1A; /root/.jupyter/jupyter_notebook_config.py  </p>
+<p>vim .jupyter/jupyter_notebook_config.py </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">62 #c.NotebookApp.allow_root = False  </div><div class="line">&#x53BB;&#x6389;62&#x884C;&#x7684;&#x6CE8;&#x91CA;&#xFF0C;&#x5E76;&#x4FEE;&#x6539;&#x6210;True&#x5373;&#x53EF;&#x89E3;&#x51B3;root&#x6743;&#x9650;&#x8FD0;&#x884C;&#x7684;&#x95EE;&#x9898;&#x3002;  </div><div class="line">163 #c.NotebookApp.ip = &apos;localhost&apos;  </div><div class="line">&#x53BB;&#x6389;&#x6CE8;&#x91CA;&#xFF0C;&#x5E76;&#x628A;localhost&#x6539;&#x6210;0.0.0.0&#xFF0C;&#x8FD9;&#x6837;&#x5C31;&#x53EF;&#x4EE5;&#x5916;&#x90E8;&#x8BBF;&#x95EE;&#x4E86;&#xFF0C;&#x9ED8;&#x8BA4;&#x53EA;&#x6709;&#x5728;&#x672C;&#x673A;&#x53EF;&#x4EE5;&#x8BBF;&#x95EE;&#x7684;&#xFF1B;  </div><div class="line">163 c.NotebookApp.ip = &apos;0.0.0.0&apos;  </div><div class="line"></div><div class="line">c.NotebookApp.base_project_url = &apos;/root/jupyter&apos;</div><div class="line"></div><div class="line">203 #c.NotebookApp.notebook_dir = &apos;/root/jupyter&apos;  </div><div class="line">&#x6539;&#x6210;&#x5982;&#x4E0B;&#xFF0C;&#x8FD9;&#x6837;&#x5C31;&#x4F1A;&#x9ED8;&#x8BA4;&#x628A;notebook&#x4E0A;&#x521B;&#x5EFA;&#x7684;&#x6587;&#x4EF6;&#x4FDD;&#x5B58;&#x5230;&#x6307;&#x5B9A;&#x76EE;&#x5F55;&#x4E0B;&#xFF1B;&#x9700;&#x8981;&#x4E8B;&#x5148;&#x521B;&#x5EFA;&#x3002;   </div><div class="line">203 c.NotebookApp.notebook_dir = u&apos;/opt/jupyter&apos;</div></pre></td></tr></table></figure>
+<h4 id="tensorflow"><a href="#tensorflow" class="headerlink" title="tensorflow"></a>tensorflow</h4><p><a href="https://www.cnblogs.com/willnote/p/6746499.html" target="_blank" rel="external">conda &#x5B89;&#x88C5;tensorflow</a></p>
+<p><code>anaconda search -t conda tensorflow</code><br><code>anaconda show anaconda/tensorflow-base</code>&#x5BF9;&#x5E94;&#x7248;&#x672C;<br><code>conda install --channel https://conda.anaconda.org/anaconda tensorflow-base</code> &#x5BF9;&#x5E94;https</p>
+<h4 id="xgboost"><a href="#xgboost" class="headerlink" title="xgboost"></a>xgboost</h4><p><code>conda install xgboost</code></p>
 ]]></content>
     </entry>
     
