@@ -21,7 +21,7 @@
 <meta property="og:url" content="https://muxiaobai.github.io/2017/08/14/数据库操作语句/index.html">
 <meta property="og:site_name" content="技术笔记">
 <meta property="og:description" content="写一些常用的SQL语句">
-<meta property="og:updated_time" content="2018-03-02T07:03:55.000Z">
+<meta property="og:updated_time" content="2018-04-13T06:41:10.124Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="数据库操作语句">
 <meta name="twitter:description" content="写一些常用的SQL语句">
@@ -327,6 +327,10 @@
 <p>&#x6743;&#x9650;<br>Data Control Language (DCL) &#x6570;&#x636E;&#x63A7;&#x5236;&#x8BED;&#x8A00;(DCL) (for database) grant revoke</p>
 <h4 id="mysql-&#x521B;&#x5EFA;&#x7528;&#x6237;-&#x548C;&#x6388;&#x6743;"><a href="#mysql-&#x521B;&#x5EFA;&#x7528;&#x6237;-&#x548C;&#x6388;&#x6743;" class="headerlink" title="mysql &#x521B;&#x5EFA;&#x7528;&#x6237; &#x548C;&#x6388;&#x6743;"></a>mysql &#x521B;&#x5EFA;&#x7528;&#x6237; &#x548C;&#x6388;&#x6743;</h4><p>CREATE USER &#x2018;username&#x2019;@&#x2019;%&#x2019; IDENTIFIED BY &#x2018;password&#x2019;;<br>GRANT ALL PRIVILEGES ON <em>.</em> TO &#x2018;username&#x2019;@&#x2019;%&#x2019; WITH GRANT OPTION;<br>&#x67E5;&#x8BE2;&#x7528;&#x6237;</p>
 <p>SELECT DISTINCT CONCAT(&#x2018;User: &#x2018;&#x2019;&#x2019;,user,&#x2019;&#x2019;&#x2019;@&#x2019;&#x2019;&#x2019;,host,&#x2019;&#x2019;&#x2019;;&#x2019;) AS query FROM mysql.user;</p>
+<h4 id="mysql-&#x7D22;&#x5F15;"><a href="#mysql-&#x7D22;&#x5F15;" class="headerlink" title="mysql &#x7D22;&#x5F15;"></a>mysql &#x7D22;&#x5F15;</h4><p>BTREE  HASH</p>
+<p><a href="https://my.oschina.net/liughDevelop/blog/1788148" target="_blank" rel="external">MySQL&#x7684;&#x7D22;&#x5F15;&#x662F;&#x4EC0;&#x4E48;&#xFF1F;&#x600E;&#x4E48;&#x4F18;&#x5316;&#xFF1F;</a></p>
+<p>explan&#x6216;&#x8005;describe, possible_key key key_len &#x6267;&#x884C;&#x7684;&#x7D22;&#x5F15;,&#x5DF2;&#x7ECF;&#x626B;&#x63CF;&#x7684;&#x884C;&#x6570;row,&#x5982;&#x679C;&#x662F;&#x8303;&#x56F4;&#x503C;&#x7684;&#x8BDD;&#xFF0C;&#x7D22;&#x5F15;&#x65E0;&#x6548;&#x3002;</p>
+<p><a href="https://blog.csdn.net/qq_37307063/article/details/70141679" target="_blank" rel="external">mysql&#x7D22;&#x5F15;&#x7684;&#x4F7F;&#x7528;&#x53CA;&#x4F18;&#x5316;&#x65B9;&#x6CD5;</a>&#x5185;&#x6709;my.ini&#x7684;&#x914D;&#x7F6E;&#x53C2;&#x6570;&#x89E3;&#x91CA;</p>
 <h4 id="Oracle&#x7684;dblink"><a href="#Oracle&#x7684;dblink" class="headerlink" title="Oracle&#x7684;dblink"></a>Oracle&#x7684;dblink</h4><p>//00933&#x95EE;&#x9898;&#x4E00;&#x5B9A;&#x8981;&#x68C0;&#x67E5;&#x81EA;&#x5DF1;&#x7684;SQL&#x8BED;&#x53E5;&#x7684;&#x8BED;&#x6CD5; </p>
 <p>select * from user_sys_privs;//&#x67E5;&#x627E;&#x5F53;&#x524D;&#x7528;&#x6237;&#x7684;&#x6743;&#x9650;&#x662F;&#x5426;&#x5177;&#x6709;dblink&#x7684;create&#x6743;&#x9650;<br>grant create public database link,create database link to &#x201C;account&#x201D;; //&#x5206;&#x914D;&#x6743;&#x9650;</p>
 <p>select name,value from v$parameter where name=&#x2019;service_names&#x2019; //&#x67E5;&#x8BE2;&#x670D;&#x52A1;&#x540D;<br>select <em> from global_name;<br>select owner,object_name from dba_objects where object_type=&#x2019;DATABASE LINK&#x2019;;//&#x67E5;&#x8BE2;&#x5DF2;&#x6709;&#x7684;dblink<br>select </em> from dba_db_links;</p>
@@ -389,7 +393,7 @@
         <p><span>本文标题:</span><a href="/2017/08/14/数据库操作语句/">数据库操作语句</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">Mu Xiaobai(慕小白)</a></p>
         <p><span>发布时间:</span>2017-08-14, 03:22:28</p>
-        <p><span>最后更新:</span>2018-03-02, 07:03:55</p>
+        <p><span>最后更新:</span>2018-04-13, 06:41:10</p>
         <p>
             <span>原始链接:</span><a class="post-url" href="/2017/08/14/数据库操作语句/" title="数据库操作语句">https://muxiaobai.github.io/2017/08/14/数据库操作语句/</a>
             <span class="copy-path" data-clipboard-text="原文: https://muxiaobai.github.io/2017/08/14/数据库操作语句/　　作者: Mu Xiaobai(慕小白)" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
@@ -424,7 +428,7 @@
 
     <div id="toc" class="toc-article">
     <strong class="toc-title">文章目录</strong>
-    <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#mysql-创建用户-和授权"><span class="toc-number">1.</span> <span class="toc-text">mysql 创建用户 和授权</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Oracle的dblink"><span class="toc-number">2.</span> <span class="toc-text">Oracle的dblink</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Oracle"><span class="toc-number">3.</span> <span class="toc-text">Oracle</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#性能问题"><span class="toc-number">4.</span> <span class="toc-text">性能问题</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#表空间"><span class="toc-number">4.1.</span> <span class="toc-text">表空间</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#排查问题"><span class="toc-number">4.2.</span> <span class="toc-text">排查问题</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#执行计划F5"><span class="toc-number">4.3.</span> <span class="toc-text">执行计划F5</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#触发器"><span class="toc-number">5.</span> <span class="toc-text">触发器</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#查重和去重、其他"><span class="toc-number">6.</span> <span class="toc-text">查重和去重、其他</span></a></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#mysql-创建用户-和授权"><span class="toc-number">1.</span> <span class="toc-text">mysql 创建用户 和授权</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#mysql-索引"><span class="toc-number">2.</span> <span class="toc-text">mysql 索引</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Oracle的dblink"><span class="toc-number">3.</span> <span class="toc-text">Oracle的dblink</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Oracle"><span class="toc-number">4.</span> <span class="toc-text">Oracle</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#性能问题"><span class="toc-number">5.</span> <span class="toc-text">性能问题</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#表空间"><span class="toc-number">5.1.</span> <span class="toc-text">表空间</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#排查问题"><span class="toc-number">5.2.</span> <span class="toc-text">排查问题</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#执行计划F5"><span class="toc-number">5.3.</span> <span class="toc-text">执行计划F5</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#触发器"><span class="toc-number">6.</span> <span class="toc-text">触发器</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#查重和去重、其他"><span class="toc-number">7.</span> <span class="toc-text">查重和去重、其他</span></a></li></ol>
 </div>
 <style>
     .left-col .switch-btn,
