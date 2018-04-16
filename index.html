@@ -287,6 +287,148 @@
 </nav>
       <div class="body-wrap">
   
+    <article id="post-Tomcat源码阅读之从server-xml看组件关系" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2018/04/16/Tomcat源码阅读之从server-xml看组件关系/" class="article-date">
+      <time datetime="2018-04-16T06:59:43.000Z" itemprop="datePublished">2018-04-16</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/04/16/Tomcat源码阅读之从server-xml看组件关系/">Tomcat源码阅读之从server.xml看组件关系</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+              研究tomcat系列
+          
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/java/">java</a>
+    </div>
+
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/tomcat/">tomcat</a></li></ul>
+    </div>
+
+      
+        <p class="article-more-link">
+          <a href="/2018/04/16/Tomcat源码阅读之从server-xml看组件关系/#more">more >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-Thinking-in-java-基础之线程和并发-2" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2018/04/13/Thinking-in-java-基础之线程和并发-2/" class="article-date">
+      <time datetime="2018-04-13T06:53:14.000Z" itemprop="datePublished">2018-04-13</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/04/13/Thinking-in-java-基础之线程和并发-2/">Thinking in java 基础之线程和并发(2)</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <h4 id="&#x5185;&#x5B58;&#x6A21;&#x578B;&#x4E09;&#x5927;&#x7279;&#x6027;-&#x6709;&#x5E8F;&#x6027;-&#x539F;&#x5B50;&#x6027;-&#x53EF;&#x89C1;&#x6027;"><a href="#&#x5185;&#x5B58;&#x6A21;&#x578B;&#x4E09;&#x5927;&#x7279;&#x6027;-&#x6709;&#x5E8F;&#x6027;-&#x539F;&#x5B50;&#x6027;-&#x53EF;&#x89C1;&#x6027;" class="headerlink" title="&#x5185;&#x5B58;&#x6A21;&#x578B;&#x4E09;&#x5927;&#x7279;&#x6027; :&#x6709;&#x5E8F;&#x6027; &#x539F;&#x5B50;&#x6027; &#x53EF;&#x89C1;&#x6027;"></a>&#x5185;&#x5B58;&#x6A21;&#x578B;&#x4E09;&#x5927;&#x7279;&#x6027; :&#x6709;&#x5E8F;&#x6027; &#x539F;&#x5B50;&#x6027; &#x53EF;&#x89C1;&#x6027;</h4><ul>
+<li>&#x6709;&#x5E8F;&#x6027;&#xFF1A; </li>
+<li>&#x539F;&#x5B50;&#x6027;&#xFF1A;synchronized,Lock&#x6211;&#x5728;&#x4FEE;&#x6539;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x4F60;&#x6682;&#x65F6;&#x4E0D;&#x80FD;&#x4FEE;&#x6539;</li>
+<li>&#x53EF;&#x89C1;&#x6027;&#xFF1A;volatile ,&#x5355;&#x7EBF;&#x7A0B;&#x4FEE;&#x6539;&#x7684;&#x8D44;&#x6E90;&#x5BF9;&#x4E8E;&#x5176;&#x4ED6;&#x7EBF;&#x7A0B;&#x540C;&#x6837;&#x53EF;&#x89C1;</li>
+</ul>
+<p>&#x6BD4;&#x5BF9;&#x6570;&#x636E;&#x5E93;&#x7684;&#x4E8B;&#x52A1;&#x7279;&#x6027;&#xFF1A; &#x539F;&#x5B50;&#x6027;&#xFF0C;&#x4E00;&#x81F4;&#x6027;&#xFF0C;&#x9694;&#x79BB;&#x6027;&#xFF0C;&#x6301;&#x4E45;&#x6027;ACID</p>
+<p>#### </p>
+<p>####</p>
+<p>####</p>
+<p>####</p>
+<p>&#x53C2;&#x8003;&#x6587;&#x732E;:</p>
+<ul>
+<li><a href="https://my.oschina.net/liughDevelop/blog/1505500" target="_blank" rel="external">JDK&#x5E76;&#x53D1;&#x56DB;&#x7BC7;&#x6587;&#x7AE0;</a></li>
+<li><a href="https://github.com/CyC2018/Interview-Notebook/blob/master/notes/Java%20%E5%B9%B6%E5%8F%91.md" target="_blank" rel="external">&#x6280;&#x672F;&#x9762;&#x8BD5;&#x57FA;&#x7840;&#x77E5;&#x8BC6;CyC2018</a></li>
+</ul>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/java/">java</a>
+    </div>
+
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Concurrent/">Concurrent</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Thread/">Thread</a></li></ul>
+    </div>
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
     <article id="post-重装CENTOS一系列操作" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
