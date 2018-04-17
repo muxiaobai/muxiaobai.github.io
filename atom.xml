@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://muxiaobai.github.io/"/>
-  <updated>2018-04-17T10:02:09.498Z</updated>
+  <updated>2018-04-17T10:15:33.034Z</updated>
   <id>https://muxiaobai.github.io/</id>
   
   <author>
@@ -16,11 +16,44 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>Tomcat源码阅读之URL请求解析</title>
+    <link href="https://muxiaobai.github.io/2018/04/17/Tomcat%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB%E4%B9%8BURL%E8%AF%B7%E6%B1%82%E8%A7%A3%E6%9E%90/"/>
+    <id>https://muxiaobai.github.io/2018/04/17/Tomcat源码阅读之URL请求解析/</id>
+    <published>2018-04-17T10:07:03.000Z</published>
+    <updated>2018-04-17T10:15:33.034Z</updated>
+    
+    <content type="html"><![CDATA[<p>##</p>
+<p>##</p>
+<p>###</p>
+<ul>
+<li><a href="http://www.cnblogs.com/coldridgeValley/category/797239.html" target="_blank" rel="external">&#x968F;&#x7B14;&#x5206;&#x7C7B; - Tomcat</a></li>
+<li><a href="https://www.cnblogs.com/coldridgeValley/p/6606271.html" target="_blank" rel="external">Tomcat&#x4E2D;&#x7684;&#x8BBE;&#x8BA1;&#x6A21;&#x5F0F;</a></li>
+<li>&#x300A;&#x6DF1;&#x5165;&#x5256;&#x6790;Tomcat&#x300B;</li>
+<li><a href="https://www.ibm.com/developerworks/cn/java/j-lo-tomcat1/" target="_blank" rel="external">Tomcat &#x7CFB;&#x7EDF;&#x67B6;&#x6784;&#x4E0E;&#x8BBE;&#x8BA1;&#x6A21;&#x5F0F;</a></li>
+<li><a href="http://mirrors.tuna.tsinghua.edu.cn/apache/tomcat/tomcat-8/v8.5.30/src/apache-tomcat-8.5.30-src.zip" target="_blank" rel="external">tomcat8.5.30&#x6E90;&#x7801;</a></li>
+<li><a href="https://my.oschina.net/liughDevelop/blog/1790893#comment-list" target="_blank" rel="external">&#x624B;&#x5199;&#x4E00;&#x4E2A;&#x7B80;&#x5316;&#x7248;Tomcat</a></li>
+</ul>
+]]></content>
+    
+    <summary type="html">
+    
+      研究tomcat系列,组件之间的请求转发 Pipeline  Valve
+    
+    </summary>
+    
+      <category term="java" scheme="https://muxiaobai.github.io/categories/java/"/>
+    
+    
+      <category term="tomcat" scheme="https://muxiaobai.github.io/tags/tomcat/"/>
+    
+  </entry>
+  
+  <entry>
     <title>Tomcat源码阅读之组件生命周期</title>
     <link href="https://muxiaobai.github.io/2018/04/16/Tomcat%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB%E4%B9%8B%E7%BB%84%E4%BB%B6%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/"/>
     <id>https://muxiaobai.github.io/2018/04/16/Tomcat源码阅读之组件生命周期/</id>
     <published>2018-04-16T10:39:09.000Z</published>
-    <updated>2018-04-17T10:02:09.498Z</updated>
+    <updated>2018-04-17T10:09:48.938Z</updated>
     
     <content type="html"><![CDATA[<p><img src="/2018/04/16/Tomcat&#x6E90;&#x7801;&#x9605;&#x8BFB;&#x4E4B;&#x7EC4;&#x4EF6;&#x751F;&#x547D;&#x5468;&#x671F;/Lifecycle.PNG" alt="start&amp;stop"></p>
 <p>&#x4E0A;&#x7BC7;&#x8BF4;&#x9053;Catalina&#x4E2D;&#x7684;load &#x548C;init &#x65B9;&#x6CD5;,&#x63D0;&#x5230;&#x4E86;getServer().init(),&#x548C;getServer().start(),&#x8FD9;&#x4E24;&#x4E2A;&#x65B9;&#x6CD5;&#xFF0C;&#x672C;&#x6587;&#x4E3B;&#x8981;&#x901A;&#x8FC7;&#x8FD9;&#x4E24;&#x4E2A;&#x65B9;&#x6CD5;&#xFF0C;&#x8FDB;&#x4E00;&#x6B65;&#x7814;&#x7A76;&#x7EC4;&#x4EF6;&#x4E4B;&#x95F4;&#x7684;&#x5173;&#x7CFB;&#x548C;&#x5404;&#x79CD;&#x72B6;&#x6001;&#xFF0C;&#x5E0C;&#x671B;&#x5148;&#x770B;&#x4E00;&#x4E0B;server.xml&#x914D;&#x7F6E;&#x6587;&#x4EF6;&#x4E2D;&#x7684;&#x7EC4;&#x4EF6;&#x5173;&#x7CFB;&#x56FE;&#x3002;</p>
@@ -47,6 +80,7 @@
 <p>12&#x79CD;&#x72B6;&#x6001;: new(1)  init(2)  start(3)  stop(3)  destroy(2)  failed(1)<br>Lifecycle&#x6709;&#x56DB;&#x4E2A;&#x57FA;&#x672C;&#x7684;&#x65B9;&#x6CD5;&#xFF0C;init start stop destroy &#x5916;&#x52A0;&#x4E00;&#x4E2A;addLifecycleListener()&#x4E8B;&#x4EF6;&#x76D1;&#x542C;<br><code>public abstract class LifecycleBase implements Lifecycle</code> &#x8FD9;&#x4E2A;org.apache.catalina.util.LifecycleBean&#x4E2D;&#x91CD;&#x5199;&#x4E86;&#x4E0A;&#x9762;&#x56DB;&#x4E2A;&#x65B9;&#x6CD5;(synchronized)&#xFF0C;&#x7136;&#x540E;&#x8FD9;&#x91CC;&#x53C8;<br>&#x5728;&#x5185;&#x90E8;&#x52A0;&#x4E00;&#x4E2A;initInternal&#x65B9;&#x6CD5;&#x8C03;&#x7528;,&#x8FD9;&#x91CC;&#x5C31;&#x7528;&#x5230;&#x4E86;&#x6A21;&#x677F;&#x65B9;&#x6CD5;&#xFF0C;&#x5728;&#x8C03;&#x7528;init&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x524D;&#x540E;&#x505A;&#x4E00;&#x4E9B;&#x64CD;&#x4F5C;&#xFF0C;&#x5224;&#x65AD;&#x5F53;&#x524D;&#x72B6;&#x6001;&#x554A;&#xFF0C;&#x65E5;&#x5FD7;&#x554A;&#xFF0C;&#x7B49;&#x7B49;&#x3002;<br>&#x53E6;&#x5916;&#x8FD9;&#x91CC;&#x53C8;&#x6709;&#x4E00;&#x4E2A;&#x65B9;&#x6CD5;fireLifecycleEvent&#xFF0C;&#x89E6;&#x53D1;&#x751F;&#x547D;&#x5468;&#x671F;&#x4E8B;&#x4EF6;&#x3002;</p>
 <p><img src="/2018/04/16/Tomcat&#x6E90;&#x7801;&#x9605;&#x8BFB;&#x4E4B;&#x7EC4;&#x4EF6;&#x751F;&#x547D;&#x5468;&#x671F;/LifecycleBaseinit.PNG" alt="start&amp;stop"></p>
 <p>&#x4E00;&#x822C;&#x6240;&#x6709;&#x7684;&#x7EC4;&#x4EF6;&#x662F;&#x5B9E;&#x73B0;&#x7684;org.apache.catalina.util.LifecycleMBeanBase&#x8FD9;&#x4E2A;BaseBean&#x7684;&#x751F;&#x547D;&#x5468;&#x671F;&#xFF0C;&#x91CD;&#x5199;&#x4E86;initInternal&#xFF0C;&#x7136;&#x540E;&#x5728;&#x4F7F;&#x7528;&#x7EC4;&#x4EF6;&#x7684;&#x65F6;&#x5019;&#x5BF9;&#x751F;&#x547D;&#x5468;&#x671F;&#x505A;&#x5F97;&#x64CD;&#x4F5C;&#xFF0C;init&#x7B49;&#x5C31;&#x76F4;&#x63A5;&#x8C03;&#x7528;LifecycleMBeanBase&#xFF0C;&#x53C8;&#x8C03;&#x7528;&#x672C;&#x7EC4;&#x4EF6;&#x7684;initInternal.</p>
+<p>&#x89C1;&#x56FE;StandardService&#x4E2D;&#x7684;initInternal&#x65B9;&#x6CD5;:<br><img src="/2018/04/16/Tomcat&#x6E90;&#x7801;&#x9605;&#x8BFB;&#x4E4B;&#x7EC4;&#x4EF6;&#x751F;&#x547D;&#x5468;&#x671F;/StandardService.PNG" alt="start&amp;stop"></p>
 <ul>
 <li>&#x300A;&#x6DF1;&#x5165;&#x5256;&#x6790;Tomcat&#x300B;</li>
 <li><a href="https://www.ibm.com/developerworks/cn/java/j-lo-tomcat1/" target="_blank" rel="external">Tomcat &#x7CFB;&#x7EDF;&#x67B6;&#x6784;&#x4E0E;&#x8BBE;&#x8BA1;&#x6A21;&#x5F0F;</a></li>
@@ -1172,50 +1206,6 @@
     
     
       <category term="2016" scheme="https://muxiaobai.github.io/tags/2016/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>CSS 定位布局</title>
-    <link href="https://muxiaobai.github.io/2016/12/27/CSS-%E5%AE%9A%E4%BD%8D%E5%B8%83%E5%B1%80/"/>
-    <id>https://muxiaobai.github.io/2016/12/27/CSS-定位布局/</id>
-    <published>2016-12-27T08:01:46.000Z</published>
-    <updated>2017-08-09T06:39:03.000Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="position-absolute-fixed-relative-static-inherit"><a href="#position-absolute-fixed-relative-static-inherit" class="headerlink" title="position:absolute fixed relative static inherit"></a>position:absolute fixed relative static inherit</h2><p>absolute&#x548C;fixed&#x8131;&#x79BB;&#x6587;&#x6863;&#x6D41;&#xFF0C;&#x76F8;&#x5BF9;&#x4E8E;&#x6709;&#x5B9A;&#x4F4D;&#x5143;&#x7D20;&#x7684;&#x7236;&#x7EA7;&#x5B9A;&#x4F4D;,&#x53EF;&#x4EE5;&#x4F7F;&#x7528;(left top right bottom z-index)<br>&#x5176;&#x4E2D;fixed&#x7684;&#x7EDD;&#x5BF9;&#x662F;&#x76F8;&#x5BF9;&#x4E8E;&#x53EF;&#x662F;&#x7A97;&#x53E3;&#x7684;&#xFF0C;&#x6D4F;&#x89C8;&#x5668;&#x4E2D;&#x7684;document&#x3002;<br>relative &#x76F8;&#x5BF9;&#x5B9A;&#x4F4D;&#xFF0C;&#x5C3D;&#x91CF;&#x5C11;&#x7528;&#xFF0C;&#x76F8;&#x5BF9;&#x4E8E;&#x539F;&#x6765;&#x672C;&#x8EAB;&#x7684;&#x4F4D;&#x7F6E;&#x5B9A;&#x4F4D;&#xFF0C;&#x548C;&#x4E0B;&#x9762;&#x8BF4;&#x7684;float&#x6709;&#x7684;&#x4E00;&#x62FC;&#xFF0C;<br>static &#x9ED8;&#x8BA4;&#x72B6;&#x6001;&#x4E0B;&#x6CA1;&#x6709;(left top right bottom z-index),&#x65E0;&#x6548;&#x3002;<br>inherit &#x7EE7;&#x627F;&#x6709;&#x5B9A;&#x4F4D;&#x7684;&#x7236;&#x7EA7;&#x5143;&#x7D20;<br><a href="https://jsfiddle.net/muxiaobai/bqx9rep5/" target="_blank" rel="external">jsfiddle&#x6D4B;&#x8BD5;&#x5B9E;&#x4F8B;</a><br>&#x53C2;&#x8003;<a href="http://www.cnblogs.com/baimiaolei/p/5627755.html" target="_blank" rel="external">display&#x4E0E;position&#x4E4B;&#x95F4;&#x7684;&#x5173;&#x7CFB;</a></p>
-<h2 id="float-left-right"><a href="#float-left-right" class="headerlink" title="float:left/right"></a>float:left/right</h2><p>&#x6D6E;&#x52A8;&#x662F;&#x76F8;&#x5BF9;&#x4E8E;&#x672C;&#x884C;&#xFF0C;&#x76F8;&#x5F53;&#x4E8E; <code>{position:relative;left:0px;}</code>  &#x76F8;&#x5BF9;&#x5DE6;&#x8FB9;&#x4E3A;0px&#xFF1B;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;{clear:both}&#x6765;&#x6D88;&#x9664;&#x6D6E;&#x52A8;&#xFF0C;<br>&#x6D6E;&#x52A8;&#x8131;&#x79BB;&#x6587;&#x6863;&#x6D41;.&#x4E0D;&#x5E38;&#x7528;&#xFF0C;&#x4E00;&#x822C;&#x6211;&#x4E5F;&#x4E0D;&#x4F1A;&#x7528;&#x3002;&#x7834;&#x574F;&#x6587;&#x6863;&#x6D41;&#x3002;</p>
-<h2 id="display-block-inline-inline-block-none-&#x5E38;&#x7528;"><a href="#display-block-inline-inline-block-none-&#x5E38;&#x7528;" class="headerlink" title="display:block inline inline-block none;&#x5E38;&#x7528;"></a>display:block inline inline-block none;&#x5E38;&#x7528;</h2><p> &#x901A;&#x5E38;&#x4F7F;&#x7528; <code>{display:block;position:absolute;}</code> &#xFF0C;&#x7136;&#x540E;&#x8BA9;{display:none}&#x6765;&#x9690;&#x85CF;&#x3002;</p>
-<h2 id="&#x884C;&#x5185;&#x6A21;&#x578B;-&#x56DB;&#x6761;&#x7EBF;"><a href="#&#x884C;&#x5185;&#x6A21;&#x578B;-&#x56DB;&#x6761;&#x7EBF;" class="headerlink" title="&#x884C;&#x5185;&#x6A21;&#x578B; &#x56DB;&#x6761;&#x7EBF;"></a>&#x884C;&#x5185;&#x6A21;&#x578B; &#x56DB;&#x6761;&#x7EBF;</h2><p><a href="http://www.tuicool.com/articles/JzuQZnI" target="_blank" rel="external">HTML/CSS&#x76D2;&#x5B50;&#x6A21;&#x578B;&#xFF0C;&#x5757;&#x7EA7;&#x5143;&#x7D20;&#x548C;&#x884C;&#x5185;&#x5143;&#x7D20;</a><br>&#x884C;&#x5185;&#x5143;&#x7D20;&#x6CA1;&#x6709;width heigth padding margin &#x53EF;&#x4EE5;&#x901A;&#x8FC7;&#x8BBE;&#x7F6E;line-heigth&#x6765;&#x63A7;&#x5236;&#x9AD8;&#x5EA6;</p>
-<p>&#x5757;&#x7EA7;&#x76D2;&#x5B50;&#x6A21;&#x578B;&#x5DF2;&#x7ECF;&#x8C08;&#x7684;&#x4E0D;&#x5C11;&#x4E86;&#xFF0C;&#x8FD9;&#x79CD;&#x901A;&#x5E38;&#x662F;block&#x7C7B;&#x578B;&#x7684;&#x6216;&#x8005;&#x5177;&#x6709;disploy:block&#x5C5E;&#x6027;&#x7684;&#x5143;&#x7D20;,&#x4EC0;&#x4E48;padding border margin&#x4E4B;&#x7C7B;&#xFF1B;</p>
-<p>&#x8FD9;&#x6B21;&#x8C08;&#x5230;&#x7684;&#x662F;&#x884C;&#x5185;&#x6A21;&#x578B;&#x3002;&#x56DB;&#x6761;&#x7EBF;<br>&#x82F1;&#x8BED;&#x4E2D;&#x7684;&#x56DB;&#x7EBF;&#x4E09;&#x683C;&#xFF0C;&#x4E0D;&#x4E86;&#x89E3;&#x6BCF;&#x7EBF;&#x7684;&#x89C4;&#x5219;&#xFF0C;&#x600E;&#x4E48;&#x5199;&#x7684;&#x4E00;&#x624B;&#x6F02;&#x4EAE;&#x7684;&#x82F1;&#x6587;&#xFF1F;</p>
-<p>&#x4ECE;&#x4E0A;&#x5230;&#x4E0B;&#x7684;&#x7EBF; :</p>
-<p>top&#x9876;&#x7EBF;<br>middle&#x4E2D;&#x7EBF;<br>baseline&#x57FA;&#x7EBF;&#x4F20;&#x8BF4;&#x4E2D;&#x6839;&#x636E;&#x5F20;&#x946B;&#x65ED;&#x7684;&#x8BF4;&#x6CD5;x-height&#xFF0C;&#x201D;x&#x201D;&#x7684;&#x5E95;&#x3002;<br>bottom&#x5E95;&#x7EBF;</p>
-<p><img src="/2016/12/27/CSS-&#x5B9A;&#x4F4D;&#x5E03;&#x5C40;/04191646-bdab6a76666f4747a58b5e9b7c6be74c.png" alt="&#x56FE;&#x89E3;&#x56DB;&#x7EBF;&#x4E09;&#x683C;" title="&#x56FE;&#x89E3;"></p>
-<blockquote>
-<p>&#x884C;&#x9AD8;&#x7684;&#x5B9A;&#x4E49;:&#x662F;&#x4E24;&#x6761;&#x57FA;&#x7EBF;&#x7684;&#x8DDD;&#x79BB;</p>
-</blockquote>
-<p>&#x4E0D;&#x8FC7;&#x8BA1;&#x7B97;&#x7684;&#x65F6;&#x5019;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;&#x5B57;&#x4F53;&#xFF0B;&#x884C;&#x8DDD;&#x6765;&#x8BA1;&#x7B97;&#x3002;<br>&#x5982;&#x679C;&#x8BBE;&#x5B9A;&#x4E86;&#x884C;&#x9AD8;&#x540E;&#x51CF;&#x53BB;&#x5B57;&#x4F53;&#x5C31;&#x5F97;&#x5230;&#x884C;&#x8DDD;&#xFF08;&#x4E0A;&#x4E00;&#x884C;&#x7684;bottom&#x5230;&#x4E0B;&#x4E00;&#x884C;&#x7684;top&#x4E4B;&#x95F4;&#x7684;&#x9AD8;&#x5EA6;&#xFF09;&#x90A3;&#x4E48;&#x4E00;&#x4E9B;&#x884C;&#x8DDD;&#x4E5F;&#x5C31;&#x968F;&#x4E4B;&#x5C55;&#x5F00;&#x4E86;&#x3002;<br>&#x9996;&#x5148;&#x662F;&#x884C;&#x5185;&#x6846;&#xFF0C;&#x5982;&#x679C;&#x6CA1;&#x6709;padding&#x7B49;&#x56E0;&#x7D20;&#x7684;&#x5F71;&#x54CD;&#xFF0C;&#x5B57;&#x4F53;&#x7684;&#x9AD8;&#x5EA6;&#x5C31;&#x662F;&#x884C;&#x5185;&#x6846;&#xFF0C;&#x7136;&#x540E;&#x5C31;&#x662F;&#x884C;&#x6846;&#xFF0C;&#x4E5F;&#x662F;&#x5B9E;&#x9645;&#x5360;&#x636E;&#x4E00;&#x884C;&#x7684;&#x9AD8;&#x5EA6;&#xFF0C;&#x5373;&#x4E00;&#x884C;&#x5185;&#x6700;&#x5927;&#x7684;&#x884C;&#x5185;&#x8DDD;&#x3002;</p>
-<p><img src="/2016/12/27/CSS-&#x5B9A;&#x4F4D;&#x5E03;&#x5C40;/04191649-7fdab9f4cce5477a90e766ff47ba1291.png" alt="&#x884C;&#x8DDD;" title="&#x4E00;&#x4E9B;&#x884C;&#x8DDD;"></p>
-<p>&#x6CE8;:&#x4EE5;&#x4E0A;&#x4E24;&#x5F20;&#x56FE;&#x7247;&#x662F;&#x501F;&#x7528;&#x7684;&#xFF0C;&#x5982;&#x6709;&#x8981;&#x6C42;&#xFF0C;&#x53EF;&#x5220;&#x9664;&#x3002;<br><a href="https://jsfiddle.net/muxiaobai/8of4omak/" target="_blank" rel="external">jsfiddle inline-height test </a><br>&#x53C2;&#x8003;<a href="http://www.cnblogs.com/dolphinX/p/3236686.html" target="_blank" rel="external">CSS&#x884C;&#x9AD8;&#x2014;&#x2014;line-height</a><br><a href="http://www.zhangxinxu.com/wordpress/2015/08/css-deep-understand-vertical-align-and-line-height/" target="_blank" rel="external">vertical-align-and-line-height</a></p>
-<h2 id="&#x6700;&#x540E;&#x4E0A;&#x4E24;&#x5F20;&#x56FE;&#x7247;"><a href="#&#x6700;&#x540E;&#x4E0A;&#x4E24;&#x5F20;&#x56FE;&#x7247;" class="headerlink" title="&#x6700;&#x540E;&#x4E0A;&#x4E24;&#x5F20;&#x56FE;&#x7247;"></a>&#x6700;&#x540E;&#x4E0A;&#x4E24;&#x5F20;&#x56FE;&#x7247;</h2><p><img src="/2016/12/27/CSS-&#x5B9A;&#x4F4D;&#x5E03;&#x5C40;/69699506520645702.jpg" alt="position"><br><img src="/2016/12/27/CSS-&#x5B9A;&#x4F4D;&#x5E03;&#x5C40;/779058981978531304.jpg" alt="inline-height"></p>
-]]></content>
-    
-    <summary type="html">
-    
-      关于position,float,display,line-height等定位布局有关的style，学习
-    
-    </summary>
-    
-      <category term="前端" scheme="https://muxiaobai.github.io/categories/%E5%89%8D%E7%AB%AF/"/>
-    
-      <category term="CSS" scheme="https://muxiaobai.github.io/categories/%E5%89%8D%E7%AB%AF/CSS/"/>
-    
-    
-      <category term="CSS" scheme="https://muxiaobai.github.io/tags/CSS/"/>
-    
-      <category term="定位" scheme="https://muxiaobai.github.io/tags/%E5%AE%9A%E4%BD%8D/"/>
-    
-      <category term="行高" scheme="https://muxiaobai.github.io/tags/%E8%A1%8C%E9%AB%98/"/>
     
   </entry>
   

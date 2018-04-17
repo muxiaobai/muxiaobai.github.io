@@ -15,15 +15,16 @@
 
 
 
-<meta name="description" content="记录日常工作中遇到的技术问题">
-<meta property="og:type" content="website">
-<meta property="og:title" content="技术笔记">
-<meta property="og:url" content="https://muxiaobai.github.io/archives/page/2/index.html">
+<meta name="description" content="研究tomcat系列,组件之间的请求转发 Pipeline  Valve">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Tomcat源码阅读之URL请求解析">
+<meta property="og:url" content="https://muxiaobai.github.io/2018/04/17/Tomcat源码阅读之URL请求解析/index.html">
 <meta property="og:site_name" content="技术笔记">
-<meta property="og:description" content="记录日常工作中遇到的技术问题">
+<meta property="og:description" content="研究tomcat系列,组件之间的请求转发 Pipeline  Valve">
+<meta property="og:updated_time" content="2018-04-17T10:15:33.034Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="技术笔记">
-<meta name="twitter:description" content="记录日常工作中遇到的技术问题">
+<meta name="twitter:title" content="Tomcat源码阅读之URL请求解析">
+<meta name="twitter:description" content="研究tomcat系列,组件之间的请求转发 Pipeline  Valve">
 
 <link rel="apple-touch-icon" href= "/apple-touch-icon.png">
 
@@ -55,7 +56,7 @@
 <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
 
 
-<title>Archives | 技术笔记</title>
+<title>Tomcat源码阅读之URL请求解析 | 技术笔记</title>
 
 <script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
 <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
@@ -65,8 +66,8 @@
         fancybox: true,
         animate: true,
         isHome: false,
-        isPost: false,
-        isArchive: true,
+        isPost: true,
+        isArchive: false,
         isTag: false,
         isCategory: false,
         open_in_new: true,
@@ -278,369 +279,177 @@
     </div>
     <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
 </nav>
-      <div class="body-wrap">
+      <div class="body-wrap"><article id="post-Tomcat源码阅读之URL请求解析" class="article article-type-post" itemscope itemprop="blogPost">
   
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-          <div class="article-meta">
-              <a href="/2017/09/02/应用部署之nginx负载/" class="archive-article-date">
-      <time datetime="2017-09-02T10:46:10.000Z" itemprop="datePublished">09-02</time>
+    <div class="article-meta">
+      <a href="/2018/04/17/Tomcat源码阅读之URL请求解析/" class="article-date">
+      <time datetime="2018-04-17T10:07:03.000Z" itemprop="datePublished">2018-04-17</time>
 </a>
-        </div>
-         
+    </div>
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/09/02/应用部署之nginx负载/">应用部署之nginx负载</a>
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Tomcat源码阅读之URL请求解析
     </h1>
   
 
-        <div class="article-info info-on-archive">
-          
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/deploy/">deploy</a>
-    </div>
-
-
-          
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/nginx/">nginx</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/tomcat/">tomcat</a></li></ul>
-    </div>
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-          <div class="article-meta">
-              <a href="/2017/08/29/深入理解JVM之性能调优/" class="archive-article-date">
-      <time datetime="2017-08-29T13:58:04.000Z" itemprop="datePublished">08-29</time>
-</a>
-        </div>
-         
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/08/29/深入理解JVM之性能调优/">深入理解JVM之性能调优</a>
-    </h1>
-  
-
-        <div class="article-info info-on-archive">
-          
+      </header>
+      
+      <div class="article-info article-info-post">
+        
     <div class="article-category tagcloud">
     <a class="article-category-link" href="/categories/java/">java</a>
     </div>
 
 
-          
+        
     <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/jvm/">jvm</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/tomcat/">tomcat</a></li></ul>
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/tomcat/">tomcat</a></li></ul>
     </div>
 
-        </div>
         <div class="clearfix"></div>
-    </header>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <p>##</p>
+<p>##</p>
+<p>###</p>
+<ul>
+<li><a href="http://www.cnblogs.com/coldridgeValley/category/797239.html" target="_blank" rel="external">&#x968F;&#x7B14;&#x5206;&#x7C7B; - Tomcat</a></li>
+<li><a href="https://www.cnblogs.com/coldridgeValley/p/6606271.html" target="_blank" rel="external">Tomcat&#x4E2D;&#x7684;&#x8BBE;&#x8BA1;&#x6A21;&#x5F0F;</a></li>
+<li>&#x300A;&#x6DF1;&#x5165;&#x5256;&#x6790;Tomcat&#x300B;</li>
+<li><a href="https://www.ibm.com/developerworks/cn/java/j-lo-tomcat1/" target="_blank" rel="external">Tomcat &#x7CFB;&#x7EDF;&#x67B6;&#x6784;&#x4E0E;&#x8BBE;&#x8BA1;&#x6A21;&#x5F0F;</a></li>
+<li><a href="http://mirrors.tuna.tsinghua.edu.cn/apache/tomcat/tomcat-8/v8.5.30/src/apache-tomcat-8.5.30-src.zip" target="_blank" rel="external">tomcat8.5.30&#x6E90;&#x7801;</a></li>
+<li><a href="https://my.oschina.net/liughDevelop/blog/1790893#comment-list" target="_blank" rel="external">&#x624B;&#x5199;&#x4E00;&#x4E2A;&#x7B80;&#x5316;&#x7248;Tomcat</a></li>
+</ul>
+
+      
+    </div>
+    
   </div>
-</article>
   
     
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-          <div class="article-meta">
-              <a href="/2017/08/14/数据库操作语句/" class="archive-article-date">
-      <time datetime="2017-08-14T03:22:28.000Z" itemprop="datePublished">08-14</time>
-</a>
-        </div>
-         
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/08/14/数据库操作语句/">数据库操作语句</a>
-    </h1>
-  
-
-        <div class="article-info info-on-archive">
-          
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/SQL/">SQL</a>
+    <div class="copyright">
+        <p><span>本文标题:</span><a href="/2018/04/17/Tomcat源码阅读之URL请求解析/">Tomcat源码阅读之URL请求解析</a></p>
+        <p><span>文章作者:</span><a href="/" title="回到主页">Mu Xiaobai(慕小白)</a></p>
+        <p><span>发布时间:</span>2018-04-17, 10:07:03</p>
+        <p><span>最后更新:</span>2018-04-17, 10:15:33</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/2018/04/17/Tomcat源码阅读之URL请求解析/" title="Tomcat源码阅读之URL请求解析">https://muxiaobai.github.io/2018/04/17/Tomcat源码阅读之URL请求解析/</a>
+            <span class="copy-path" data-clipboard-text="原文: https://muxiaobai.github.io/2018/04/17/Tomcat源码阅读之URL请求解析/　　作者: Mu Xiaobai(慕小白)" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
+        </p>
     </div>
 
 
-          
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/常用代码/">常用代码</a></li></ul>
-    </div>
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-          <div class="article-meta">
-              <a href="/2017/08/09/javascript再学习之Event/" class="archive-article-date">
-      <time datetime="2017-08-09T12:03:00.000Z" itemprop="datePublished">08-09</time>
-</a>
-        </div>
-         
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/08/09/javascript再学习之Event/">javascript再学习之Event</a>
-    </h1>
-  
-
-        <div class="article-info info-on-archive">
-          
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/javascript/">javascript</a>
-    </div>
-
-
-          
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端/">前端</a></li></ul>
-    </div>
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-          <div class="article-meta">
-              <a href="/2017/08/08/javascript再学习之DOM/" class="archive-article-date">
-      <time datetime="2017-08-08T07:17:59.000Z" itemprop="datePublished">08-08</time>
-</a>
-        </div>
-         
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/08/08/javascript再学习之DOM/">javascript再学习之DOM</a>
-    </h1>
-  
-
-        <div class="article-info info-on-archive">
-          
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/javascript/">javascript</a>
-    </div>
-
-
-          
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端/">前端</a></li></ul>
-    </div>
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-          <div class="article-meta">
-              <a href="/2017/08/02/Javamelody-工具/" class="archive-article-date">
-      <time datetime="2017-08-02T09:05:00.000Z" itemprop="datePublished">08-02</time>
-</a>
-        </div>
-         
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/08/02/Javamelody-工具/">Javamelody 工具</a>
-    </h1>
-  
-
-        <div class="article-info info-on-archive">
-          
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/java/">java</a>
-    </div>
-
-
-          
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/工具/">工具</a></li></ul>
-    </div>
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-          <div class="article-meta">
-              <a href="/2017/07/20/hadoop-Sqoop-Hive等的安装/" class="archive-article-date">
-      <time datetime="2017-07-20T06:38:48.000Z" itemprop="datePublished">07-20</time>
-</a>
-        </div>
-         
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/07/20/hadoop-Sqoop-Hive等的安装/">hadoop-Sqoop-Hive等的安装</a>
-    </h1>
-  
-
-        <div class="article-info info-on-archive">
-          
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/hadoop/">hadoop</a>
-    </div>
-
-
-          
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-          <div class="article-meta">
-              <a href="/2017/07/19/Linux-下的java安装、变更以及升级问题/" class="archive-article-date">
-      <time datetime="2017-07-19T06:40:26.000Z" itemprop="datePublished">07-19</time>
-</a>
-        </div>
-         
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/07/19/Linux-下的java安装、变更以及升级问题/">Linux 下的java安装、变更以及升级问题</a>
-    </h1>
-  
-
-        <div class="article-info info-on-archive">
-          
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/Linux/">Linux</a><a class="article-category-link" href="/categories/Linux/java/">java</a><a class="article-category-link" href="/categories/Linux/java/hadoop/">hadoop</a>
-    </div>
-
-
-          
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-          <div class="article-meta">
-              <a href="/2017/06/29/毕业设计心得/" class="archive-article-date">
-      <time datetime="2017-06-29T06:20:02.000Z" itemprop="datePublished">06-29</time>
-</a>
-        </div>
-         
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/06/29/毕业设计心得/">毕业设计心得</a>
-    </h1>
-  
-
-        <div class="article-info info-on-archive">
-          
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/总结/">总结</a>
-    </div>
-
-
-          
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端/">前端</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/后端/">后端</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/系统/">系统</a></li></ul>
-    </div>
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-          <div class="article-meta">
-              <a href="/2017/01/23/2016年个人总结/" class="archive-article-date">
-      <time datetime="2017-01-23T06:27:27.000Z" itemprop="datePublished">01-23</time>
-</a>
-        </div>
-         
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/01/23/2016年个人总结/">2016年个人总结</a>
-    </h1>
-  
-
-        <div class="article-info info-on-archive">
-          
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/总结/">总结</a>
-    </div>
-
-
-          
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/2016/">2016</a></li></ul>
-    </div>
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
-    <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/archives/">&laquo; Prev</a><a class="page-number" href="/archives/">1</a><span class="page-number current">2</span><a class="page-number" href="/archives/page/3/">3</a><a class="page-number" href="/archives/page/4/">4</a><a class="page-number" href="/archives/page/5/">5</a><a class="extend next" rel="next" href="/archives/page/3/">Next &raquo;</a>
+    <nav id="article-nav">
+        
+        
+            <div id="article-nav-older" class="article-nav-title">
+                <a href="/2018/04/16/Tomcat源码阅读之组件生命周期/">
+                    Tomcat源码阅读之组件生命周期
+                </a>
+            </div>
+        
     </nav>
-  
 
+  
+</article>
+
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    
+</div>
+<style>
+    .left-col .switch-btn,
+    .left-col .switch-area {
+        display: none;
+    }
+</style>
+
+<input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+
+<script>
+    yiliaConfig.toc = ["隐藏目录", "显示目录", !!"false"];
+</script>
+
+
+
+    
+<div class="share">
+    
+
+    
+        <div class="addthis_sharing_toolbox"></div>
+    
+</div>
+
+
+
+
+
+
+
+    
+      <div class="duoshuo" id="comments">
+    <div id="comment-box" ></div>
+    <div class="ds-thread" id="ds-thread" data-thread-key="2018/04/17/Tomcat源码阅读之URL请求解析/" data-title="Tomcat源码阅读之URL请求解析" data-url="https://muxiaobai.github.io/2018/04/17/Tomcat源码阅读之URL请求解析/"></div>
+    <script>
+        var duoshuoQuery = {short_name:"muxiaobai"};
+        var loadComment = function(){
+            var d = document, s = d.createElement('script');
+            s.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+            s.async = true; s.charset = 'UTF-8';
+            (d.head || d.body).appendChild(s);
+        }
+
+        
+    </script>
+    
+    <script> loadComment(); </script>
+
+</div>
+    
+
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
+        
+
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+
+        
+            <a href="/2018/04/16/Tomcat源码阅读之组件生命周期/" title="下一篇: Tomcat源码阅读之组件生命周期">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2018/04/17/Tomcat源码阅读之URL请求解析/">Tomcat源码阅读之URL请求解析</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/04/16/Tomcat源码阅读之组件生命周期/">Tomcat源码阅读之组件生命周期</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/04/16/Tomcat源码阅读之从server-xml看组件关系/">Tomcat源码阅读之从server.xml看组件关系</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/04/13/Thinking-in-java-基础之线程和并发-2/">Thinking in java 基础之线程和并发(2)</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/03/02/重装CENTOS一系列操作/">重装CENTOS一系列操作</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/01/05/2017年个人总结/">2017年个人总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/12/22/javascript再学习之prototype/">javascript再学习之prototype</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/12/21/RSS好工具/">RSS好工具</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/10/23/前端小tips/">前端小tips</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/09/17/Linux-基础命令总结3/">Linux 基础命令总结3</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/09/02/应用部署之nginx负载/">应用部署之nginx负载</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/29/深入理解JVM之性能调优/">深入理解JVM之性能调优</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/14/数据库操作语句/">数据库操作语句</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/09/javascript再学习之Event/">javascript再学习之Event</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/08/javascript再学习之DOM/">javascript再学习之DOM</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/02/Javamelody-工具/">Javamelody 工具</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/07/20/hadoop-Sqoop-Hive等的安装/">hadoop-Sqoop-Hive等的安装</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/07/19/Linux-下的java安装、变更以及升级问题/">Linux 下的java安装、变更以及升级问题</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/06/29/毕业设计心得/">毕业设计心得</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/23/2016年个人总结/">2016年个人总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/27/CSS-定位布局/">CSS 定位布局</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/17/等待-等待-等待/">等待,等待,等待...</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/29/常见排序算法总结/">常见排序算法总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/24/Thinking-in-java-基础之网络Socket/">Thinkin in java 基础之网络Socket</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/19/由ES6中的Proxy和Reflect再了解Object/">由ES6中的Proxy和Reflect再了解Object</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/16/从ES6中学习编码/">从ES6中学习编码</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/13/模仿jQuery创建自己的js工具/">模仿jQuery创建自己的js工具</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/08/20/HTML5-API-新特性/">HTML5 API 新特性</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/08/09/Thinking-in-java-基础之线程和并发/">Thinking in java 基础之线程和并发</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/08/04/Thinking-in-java-基础之异常/">Thinking in java 基础之异常</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/08/03/Spring中的Session生命周期/">Spring中的Session生命周期</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/20/前后台数据交互方式总结/">前后台数据交互方式总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/19/JavaEE-资源路径问题/">JavaEE 资源路径问题</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/19/Sublime-下运行Java文件/">Sublime 下运行Java文件</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/09/Linux-基础Shell脚本/">Linux 基础Shell脚本</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/07/Linux-基础命令总结2/">Linux 基础命令总结2</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/01/好软件-靠机遇/">好软件,靠机遇</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/06/29/好网站-天天记/">好网站,天天记</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/06/29/hello-world/">Hello World</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/06/27/Linux下各目录的默认含义/">Linux下各目录的默认含义</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/06/27/Linux-基础命令总结/">Linux 基础命令总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/06/25/Thinking-in-java-基础之集合框架/">Thinking in java 基础之集合框架</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/06/25/Thinking-in-java-基础之I-O/">Thinking in java 基础之I/O</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/06/19/Linux-下安装SVN服务器/">Linux 下安装SVN服务器</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/06/17/GitHub Hexo/">GitHub + Hexo 构建我的博客</a></li></ul>
+
+
+
+
+    <script>
+        
+    </script>
 </div>
       <footer id="footer">
     <div class="outer">

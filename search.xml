@@ -4,6 +4,23 @@
   
     
     <entry>
+      <title><![CDATA[Tomcat源码阅读之URL请求解析]]></title>
+      <url>https://muxiaobai.github.io/2018/04/17/Tomcat%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB%E4%B9%8BURL%E8%AF%B7%E6%B1%82%E8%A7%A3%E6%9E%90/</url>
+      <content type="html"><![CDATA[<p>##</p>
+<p>##</p>
+<p>###</p>
+<ul>
+<li><a href="http://www.cnblogs.com/coldridgeValley/category/797239.html" target="_blank" rel="external">&#x968F;&#x7B14;&#x5206;&#x7C7B; - Tomcat</a></li>
+<li><a href="https://www.cnblogs.com/coldridgeValley/p/6606271.html" target="_blank" rel="external">Tomcat&#x4E2D;&#x7684;&#x8BBE;&#x8BA1;&#x6A21;&#x5F0F;</a></li>
+<li>&#x300A;&#x6DF1;&#x5165;&#x5256;&#x6790;Tomcat&#x300B;</li>
+<li><a href="https://www.ibm.com/developerworks/cn/java/j-lo-tomcat1/" target="_blank" rel="external">Tomcat &#x7CFB;&#x7EDF;&#x67B6;&#x6784;&#x4E0E;&#x8BBE;&#x8BA1;&#x6A21;&#x5F0F;</a></li>
+<li><a href="http://mirrors.tuna.tsinghua.edu.cn/apache/tomcat/tomcat-8/v8.5.30/src/apache-tomcat-8.5.30-src.zip" target="_blank" rel="external">tomcat8.5.30&#x6E90;&#x7801;</a></li>
+<li><a href="https://my.oschina.net/liughDevelop/blog/1790893#comment-list" target="_blank" rel="external">&#x624B;&#x5199;&#x4E00;&#x4E2A;&#x7B80;&#x5316;&#x7248;Tomcat</a></li>
+</ul>
+]]></content>
+    </entry>
+    
+    <entry>
       <title><![CDATA[Tomcat源码阅读之组件生命周期]]></title>
       <url>https://muxiaobai.github.io/2018/04/16/Tomcat%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB%E4%B9%8B%E7%BB%84%E4%BB%B6%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/</url>
       <content type="html"><![CDATA[<p><img src="/2018/04/16/Tomcat&#x6E90;&#x7801;&#x9605;&#x8BFB;&#x4E4B;&#x7EC4;&#x4EF6;&#x751F;&#x547D;&#x5468;&#x671F;/Lifecycle.PNG" alt="start&amp;stop"></p>
@@ -31,6 +48,7 @@
 <p>12&#x79CD;&#x72B6;&#x6001;: new(1)  init(2)  start(3)  stop(3)  destroy(2)  failed(1)<br>Lifecycle&#x6709;&#x56DB;&#x4E2A;&#x57FA;&#x672C;&#x7684;&#x65B9;&#x6CD5;&#xFF0C;init start stop destroy &#x5916;&#x52A0;&#x4E00;&#x4E2A;addLifecycleListener()&#x4E8B;&#x4EF6;&#x76D1;&#x542C;<br><code>public abstract class LifecycleBase implements Lifecycle</code> &#x8FD9;&#x4E2A;org.apache.catalina.util.LifecycleBean&#x4E2D;&#x91CD;&#x5199;&#x4E86;&#x4E0A;&#x9762;&#x56DB;&#x4E2A;&#x65B9;&#x6CD5;(synchronized)&#xFF0C;&#x7136;&#x540E;&#x8FD9;&#x91CC;&#x53C8;<br>&#x5728;&#x5185;&#x90E8;&#x52A0;&#x4E00;&#x4E2A;initInternal&#x65B9;&#x6CD5;&#x8C03;&#x7528;,&#x8FD9;&#x91CC;&#x5C31;&#x7528;&#x5230;&#x4E86;&#x6A21;&#x677F;&#x65B9;&#x6CD5;&#xFF0C;&#x5728;&#x8C03;&#x7528;init&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x524D;&#x540E;&#x505A;&#x4E00;&#x4E9B;&#x64CD;&#x4F5C;&#xFF0C;&#x5224;&#x65AD;&#x5F53;&#x524D;&#x72B6;&#x6001;&#x554A;&#xFF0C;&#x65E5;&#x5FD7;&#x554A;&#xFF0C;&#x7B49;&#x7B49;&#x3002;<br>&#x53E6;&#x5916;&#x8FD9;&#x91CC;&#x53C8;&#x6709;&#x4E00;&#x4E2A;&#x65B9;&#x6CD5;fireLifecycleEvent&#xFF0C;&#x89E6;&#x53D1;&#x751F;&#x547D;&#x5468;&#x671F;&#x4E8B;&#x4EF6;&#x3002;</p>
 <p><img src="/2018/04/16/Tomcat&#x6E90;&#x7801;&#x9605;&#x8BFB;&#x4E4B;&#x7EC4;&#x4EF6;&#x751F;&#x547D;&#x5468;&#x671F;/LifecycleBaseinit.PNG" alt="start&amp;stop"></p>
 <p>&#x4E00;&#x822C;&#x6240;&#x6709;&#x7684;&#x7EC4;&#x4EF6;&#x662F;&#x5B9E;&#x73B0;&#x7684;org.apache.catalina.util.LifecycleMBeanBase&#x8FD9;&#x4E2A;BaseBean&#x7684;&#x751F;&#x547D;&#x5468;&#x671F;&#xFF0C;&#x91CD;&#x5199;&#x4E86;initInternal&#xFF0C;&#x7136;&#x540E;&#x5728;&#x4F7F;&#x7528;&#x7EC4;&#x4EF6;&#x7684;&#x65F6;&#x5019;&#x5BF9;&#x751F;&#x547D;&#x5468;&#x671F;&#x505A;&#x5F97;&#x64CD;&#x4F5C;&#xFF0C;init&#x7B49;&#x5C31;&#x76F4;&#x63A5;&#x8C03;&#x7528;LifecycleMBeanBase&#xFF0C;&#x53C8;&#x8C03;&#x7528;&#x672C;&#x7EC4;&#x4EF6;&#x7684;initInternal.</p>
+<p>&#x89C1;&#x56FE;StandardService&#x4E2D;&#x7684;initInternal&#x65B9;&#x6CD5;:<br><img src="/2018/04/16/Tomcat&#x6E90;&#x7801;&#x9605;&#x8BFB;&#x4E4B;&#x7EC4;&#x4EF6;&#x751F;&#x547D;&#x5468;&#x671F;/StandardService.PNG" alt="start&amp;stop"></p>
 <ul>
 <li>&#x300A;&#x6DF1;&#x5165;&#x5256;&#x6790;Tomcat&#x300B;</li>
 <li><a href="https://www.ibm.com/developerworks/cn/java/j-lo-tomcat1/" target="_blank" rel="external">Tomcat &#x7CFB;&#x7EDF;&#x67B6;&#x6784;&#x4E0E;&#x8BBE;&#x8BA1;&#x6A21;&#x5F0F;</a></li>
