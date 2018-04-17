@@ -4,6 +4,22 @@
   
     
     <entry>
+      <title><![CDATA[Tomcat源码阅读之组件生命周期]]></title>
+      <url>https://muxiaobai.github.io/2018/04/16/Tomcat%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB%E4%B9%8B%E7%BB%84%E4%BB%B6%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/</url>
+      <content type="html"><![CDATA[<p><img src="/2018/04/16/Tomcat&#x6E90;&#x7801;&#x9605;&#x8BFB;&#x4E4B;&#x7EC4;&#x4EF6;&#x751F;&#x547D;&#x5468;&#x671F;/Tomcat&#x6E90;&#x7801;&#x9605;&#x8BFB;&#x4E4B;&#x4ECE;server-xml&#x770B;&#x7EC4;&#x4EF6;&#x5173;&#x7CFB;/Lifecycle.PNG" alt="start&amp;stop"></p>
+<p>##</p>
+<p>##</p>
+<p>##</p>
+<ul>
+<li>&#x300A;&#x6DF1;&#x5165;&#x5256;&#x6790;Tomcat&#x300B;</li>
+<li><a href="https://www.ibm.com/developerworks/cn/java/j-lo-tomcat1/" target="_blank" rel="external">Tomcat &#x7CFB;&#x7EDF;&#x67B6;&#x6784;&#x4E0E;&#x8BBE;&#x8BA1;&#x6A21;&#x5F0F;</a></li>
+<li><a href="http://mirrors.tuna.tsinghua.edu.cn/apache/tomcat/tomcat-8/v8.5.30/src/apache-tomcat-8.5.30-src.zip" target="_blank" rel="external">tomcat8.5.30&#x6E90;&#x7801;</a></li>
+<li><a href="https://my.oschina.net/liughDevelop/blog/1790893#comment-list" target="_blank" rel="external">&#x624B;&#x5199;&#x4E00;&#x4E2A;&#x7B80;&#x5316;&#x7248;Tomcat</a></li>
+</ul>
+]]></content>
+    </entry>
+    
+    <entry>
       <title><![CDATA[Tomcat源码阅读之从server.xml看组件关系]]></title>
       <url>https://muxiaobai.github.io/2018/04/16/Tomcat%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB%E4%B9%8B%E4%BB%8Eserver-xml%E7%9C%8B%E7%BB%84%E4%BB%B6%E5%85%B3%E7%B3%BB/</url>
       <content type="html"><![CDATA[<h2 id="&#x7EC4;&#x4EF6;&#x5173;&#x7CFB;&#x56FE;"><a href="#&#x7EC4;&#x4EF6;&#x5173;&#x7CFB;&#x56FE;" class="headerlink" title="&#x7EC4;&#x4EF6;&#x5173;&#x7CFB;&#x56FE;"></a>&#x7EC4;&#x4EF6;&#x5173;&#x7CFB;&#x56FE;</h2><p><img src="http://naotu.baidu.com/file/43052d65c99873cc44a09e10a577de38?token=2c2c55090d50e6df" alt="&#x767E;&#x5EA6;&#x8111;&#x56FE;"><br><img src="/2018/04/16/Tomcat&#x6E90;&#x7801;&#x9605;&#x8BFB;&#x4E4B;&#x4ECE;server-xml&#x770B;&#x7EC4;&#x4EF6;&#x5173;&#x7CFB;/image001.png" alt="&#x7EC4;&#x4EF6;&#x5173;&#x7CFB;"><br><img src="/2018/04/16/Tomcat&#x6E90;&#x7801;&#x9605;&#x8BFB;&#x4E4B;&#x4ECE;server-xml&#x770B;&#x7EC4;&#x4EF6;&#x5173;&#x7CFB;/1174710-20170804092103272-2042915115.png" alt="&#x7528;&#x6237;&#x548C;HTTP&#x3001;&#x5BB9;&#x5668;&#x7684;&#x5173;&#x7CFB;"></p>
@@ -35,7 +51,7 @@
 <p>&#x5148;&#x653E;&#x4E2A;&#x56FE;&#x5427;<br><img src="/2018/04/16/Tomcat&#x6E90;&#x7801;&#x9605;&#x8BFB;&#x4E4B;&#x4ECE;server-xml&#x770B;&#x7EC4;&#x4EF6;&#x5173;&#x7CFB;/Lifecycle.PNG" alt="start&amp;stop"></p>
 <p>&#x53C2;&#x8003;&#x4E0B;&#x4E00;&#x7BC7; &#x2018;Tomcat&#x6E90;&#x7801;&#x9605;&#x8BFB;&#x4E4B;&#x7EC4;&#x4EF6;&#x751F;&#x547D;&#x5468;&#x671F;&#x201D;                                                                                                         </p>
 <ul>
-<li>&#x6DF1;&#x5165;&#x5256;&#x6790;Tomcat</li>
+<li>&#x300A;&#x6DF1;&#x5165;&#x5256;&#x6790;Tomcat&#x300B;</li>
 <li><a href="https://www.ibm.com/developerworks/cn/java/j-lo-tomcat1/" target="_blank" rel="external">Tomcat &#x7CFB;&#x7EDF;&#x67B6;&#x6784;&#x4E0E;&#x8BBE;&#x8BA1;&#x6A21;&#x5F0F;</a></li>
 <li><a href="http://mirrors.tuna.tsinghua.edu.cn/apache/tomcat/tomcat-8/v8.5.30/src/apache-tomcat-8.5.30-src.zip" target="_blank" rel="external">tomcat8.5.30&#x6E90;&#x7801;</a></li>
 <li><a href="https://my.oschina.net/liughDevelop/blog/1790893#comment-list" target="_blank" rel="external">&#x624B;&#x5199;&#x4E00;&#x4E2A;&#x7B80;&#x5316;&#x7248;Tomcat</a></li>
