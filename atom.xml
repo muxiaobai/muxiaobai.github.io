@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://muxiaobai.github.io/"/>
-  <updated>2018-05-14T08:21:18.027Z</updated>
+  <updated>2018-05-14T09:12:38.338Z</updated>
   <id>https://muxiaobai.github.io/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="https://muxiaobai.github.io/2018/04/20/Tomcat%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB%E4%B9%8BContainer%E8%B4%A3%E4%BB%BB%E9%93%BE/"/>
     <id>https://muxiaobai.github.io/2018/04/20/Tomcat源码阅读之Container责任链/</id>
     <published>2018-04-20T07:39:00.000Z</published>
-    <updated>2018-05-14T08:21:18.027Z</updated>
+    <updated>2018-05-14T09:12:38.338Z</updated>
     
     <content type="html"><![CDATA[<p>&#x4E0A;&#x7BC7;&#x8BB2;&#x5230;Connector&#x5230;Container&#x7684;&#x8F6C;&#x6362;&#xFF0C;&#x672C;&#x6587;&#x4E3B;&#x8981;&#x662F;Container&#x5185;&#x90E8;&#x7684;&#x8F6C;&#x6362;&#xFF0C;&#x56DB;&#x4E2A;&#x7EC4;&#x4EF6;Engine&#x3001;Host&#x3001;Context&#x3001;Wrapper&#x3002;<br>&#x987A;&#x4FBF;&#x63D0;&#x4E00;&#x4E0B;Pipeline&#x548C;Value.</p>
 <p>&#x63A5;&#x4E0A;&#x6587;&#x7684;CoyoteAdapter.service()<code>connector.getService().getContainer().getPipeline().getFirst().invoke(request, response);</code>,</p>
