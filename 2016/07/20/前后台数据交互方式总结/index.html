@@ -534,22 +534,24 @@
 
 
     
-      
-<div id="container"></div>
-<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
-<script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
-<script>
-var gitment = new Gitment({
-  id: '前后台数据交互方式总结', // 可选。默认为 location.href
-  owner: 'undefined',
-  repo: 'muxiaobai.github.io',
-  oauth: {
-    client_id: '5e496d32f02cb04c1ccf',
-    client_secret: 'a98d21d1cc8b690a45fc996c62572247fdc5d7f3',
-  },
-})
-gitment.render('container')
-</script>
+      <section class="gitment" id="comments">
+    <div id="container"></div>
+    <link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+    <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+    <script>
+    //  id: '前后台数据交互方式总结', // 可选。默认为 location.href
+    var gitment = new Gitment({
+      id: '',
+      owner: 'muxiaobai',
+      repo: 'muxiaobai.github.io',
+      oauth: {
+        client_id: '5e496d32f02cb04c1ccf',
+        client_secret: 'a98d21d1cc8b690a45fc996c62572247fdc5d7f3',
+      },
+    })
+    gitment.render('container')
+    </script>
+</section>
     
 
 
