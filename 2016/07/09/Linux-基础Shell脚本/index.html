@@ -532,24 +532,22 @@
 
 
     
-      <div class="duoshuo" id="comments">
-    <div id="comment-box" ></div>
-    <div class="ds-thread" id="ds-thread" data-thread-key="2016/07/09/Linux-基础Shell脚本/" data-title="Linux 基础Shell脚本" data-url="https://muxiaobai.github.io/2016/07/09/Linux-基础Shell脚本/"></div>
-    <script>
-        var duoshuoQuery = {short_name:"muxiaobai"};
-        var loadComment = function(){
-            var d = document, s = d.createElement('script');
-            s.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-            s.async = true; s.charset = 'UTF-8';
-            (d.head || d.body).appendChild(s);
-        }
-
-        
-    </script>
-    
-    <script> loadComment(); </script>
-
-</div>
+      
+<div id="container"></div>
+<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+<script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+<script>
+var gitment = new Gitment({
+  id: 'Linux 基础Shell脚本', // 可选。默认为 location.href
+  owner: 'undefined',
+  repo: 'muxiaobai.github.io',
+  oauth: {
+    client_id: 'null',
+    client_secret: 'null',
+  },
+})
+gitment.render('container')
+</script>
     
 
 
