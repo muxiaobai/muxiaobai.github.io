@@ -21,12 +21,10 @@
 <meta property="og:url" content="https://muxiaobai.github.io/2018/06/08/浏览器的加载页面过程及优化方法/index.html">
 <meta property="og:site_name" content="技术笔记">
 <meta property="og:description" content="加载页面和优化，接着上一篇，跟着chrome开发者工具中的Memory和Performance来操作">
-<meta property="og:image" content="https://developers.google.com/web/fundamentals/performance/critical-rendering-path/">
-<meta property="og:updated_time" content="2018-06-08T03:48:10.004Z">
+<meta property="og:updated_time" content="2018-06-08T07:28:32.450Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="浏览器的加载页面过程及优化方法">
 <meta name="twitter:description" content="加载页面和优化，接着上一篇，跟着chrome开发者工具中的Memory和Performance来操作">
-<meta name="twitter:image" content="https://developers.google.com/web/fundamentals/performance/critical-rendering-path/">
 
 <link rel="apple-touch-icon" href= "/apple-touch-icon.png">
 
@@ -323,11 +321,13 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <p>## </p>
-<p><img src="https://developers.google.com/web/fundamentals/performance/critical-rendering-path/" alt="google&#x5B98;&#x65B9;&#x6587;&#x6863;"></p>
-<p>##</p>
-<p>##</p>
-<p>##</p>
+        <h2 id="&#x63A5;&#x4E0A;&#x4E00;&#x7BC7;&#x4E2D;&#x7684;DOM&#x6240;&#x6709;&#x65F6;&#x95F4;&#xFF0C;&#x6D4F;&#x89C8;&#x5668;&#x5728;&#x505A;&#x4E9B;&#x4EC0;&#x4E48;&#xFF1F;"><a href="#&#x63A5;&#x4E0A;&#x4E00;&#x7BC7;&#x4E2D;&#x7684;DOM&#x6240;&#x6709;&#x65F6;&#x95F4;&#xFF0C;&#x6D4F;&#x89C8;&#x5668;&#x5728;&#x505A;&#x4E9B;&#x4EC0;&#x4E48;&#xFF1F;" class="headerlink" title="&#x63A5;&#x4E0A;&#x4E00;&#x7BC7;&#x4E2D;&#x7684;DOM&#x6240;&#x6709;&#x65F6;&#x95F4;&#xFF0C;&#x6D4F;&#x89C8;&#x5668;&#x5728;&#x505A;&#x4E9B;&#x4EC0;&#x4E48;&#xFF1F;"></a>&#x63A5;&#x4E0A;&#x4E00;&#x7BC7;&#x4E2D;&#x7684;DOM&#x6240;&#x6709;&#x65F6;&#x95F4;&#xFF0C;&#x6D4F;&#x89C8;&#x5668;&#x5728;&#x505A;&#x4E9B;&#x4EC0;&#x4E48;&#xFF1F;</h2><p>&#x4E4B;&#x524D;&#x662F;&#x63A5;&#x53D7;&#x8D44;&#x6E90;,domLoading,domInteractive,domContentLoadedEventStart,domContentLoadedEventEnd,domComplete,&#x4E4B;&#x540E;&#x662F;&#x5176;&#x4ED6;&#xFF0C;&#x4E3B;&#x8981;&#x5206;&#x6790;&#x8FD9;&#x4E2D;&#x95F4;&#x7684;&#x65F6;&#x95F4;&#xFF0C;&#x6D4F;&#x89C8;&#x5668;&#x505A;&#x4EC0;&#x4E48;&#x6765;&#x5C55;&#x793A;&#x5185;&#x5BB9;&#x3002;<br>loadEventStart,loadEventEnd</p>
+<p>### </p>
+<p>###</p>
+<h2 id="&#x6027;&#x80FD;&#x5206;&#x6790;"><a href="#&#x6027;&#x80FD;&#x5206;&#x6790;" class="headerlink" title="&#x6027;&#x80FD;&#x5206;&#x6790;"></a>&#x6027;&#x80FD;&#x5206;&#x6790;</h2><h3 id="&#x52A0;&#x8F7D;&#x65F6;&#x95F4;"><a href="#&#x52A0;&#x8F7D;&#x65F6;&#x95F4;" class="headerlink" title="&#x52A0;&#x8F7D;&#x65F6;&#x95F4;"></a>&#x52A0;&#x8F7D;&#x65F6;&#x95F4;</h3><h3 id="&#x5185;&#x5B58;"><a href="#&#x5185;&#x5B58;" class="headerlink" title="&#x5185;&#x5B58;"></a>&#x5185;&#x5B58;</h3><p>&#x53C2;&#x8003;&#xFF1A;</p>
+<ul>
+<li><a href="https://developers.google.com/web/fundamentals/performance/critical-rendering-path/" target="_blank" rel="external">google&#x5B98;&#x65B9;&#x6587;&#x6863;</a></li>
+</ul>
 
       
     </div>
@@ -419,7 +419,7 @@
         <p><span>本文标题:</span><a href="/2018/06/08/浏览器的加载页面过程及优化方法/">浏览器的加载页面过程及优化方法</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">Mu Xiaobai(慕小白)</a></p>
         <p><span>发布时间:</span>2018-06-08, 03:45:26</p>
-        <p><span>最后更新:</span>2018-06-08, 03:48:10</p>
+        <p><span>最后更新:</span>2018-06-08, 07:28:32</p>
         <p>
             <span>原始链接:</span><a class="post-url" href="/2018/06/08/浏览器的加载页面过程及优化方法/" title="浏览器的加载页面过程及优化方法">https://muxiaobai.github.io/2018/06/08/浏览器的加载页面过程及优化方法/</a>
             <span class="copy-path" data-clipboard-text="原文: https://muxiaobai.github.io/2018/06/08/浏览器的加载页面过程及优化方法/　　作者: Mu Xiaobai(慕小白)" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
@@ -448,7 +448,7 @@
 
     <div id="toc" class="toc-article">
     <strong class="toc-title">文章目录</strong>
-    
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#接上一篇中的DOM所有时间，浏览器在做些什么？"><span class="toc-number">1.</span> <span class="toc-text">接上一篇中的DOM所有时间，浏览器在做些什么？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#性能分析"><span class="toc-number">2.</span> <span class="toc-text">性能分析</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#加载时间"><span class="toc-number">2.1.</span> <span class="toc-text">加载时间</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#内存"><span class="toc-number">2.2.</span> <span class="toc-text">内存</span></a></li></ol></li></ol>
 </div>
 <style>
     .left-col .switch-btn,
