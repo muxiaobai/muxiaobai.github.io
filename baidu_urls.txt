@@ -4,7 +4,6 @@ https://muxiaobai.github.io/2018/04/20/Tomcat源码阅读之Container责任链/
 https://muxiaobai.github.io/2018/04/17/Tomcat源码阅读之URL请求解析/
 https://muxiaobai.github.io/2018/04/16/Tomcat源码阅读之组件生命周期/
 https://muxiaobai.github.io/2018/04/16/Tomcat源码阅读之从server-xml看组件关系/
-https://muxiaobai.github.io/2018/04/13/Thinking-in-java-基础之线程和并发-2/
 https://muxiaobai.github.io/2018/03/02/重装CENTOS一系列操作/
 https://muxiaobai.github.io/2018/01/05/2017年个人总结/
 https://muxiaobai.github.io/2017/12/22/javascript再学习之prototype/
