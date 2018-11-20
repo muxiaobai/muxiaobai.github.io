@@ -51,7 +51,7 @@ subnav:
   #SegmentFault: ""
   #博客园: "cnblogs"
   #CSDN: ""
-  #网易云音乐: "netease"
+  网易云音乐: "http://music.163.com/#//user/home?id=270611521"
   #虾米音乐: "xiami"
   #Facebook: "#"
   #Google: "#"
@@ -79,23 +79,35 @@ preload_comment: true
 ## false: 当点击评论条等区域时再加载评论模块
 ## false: load comment's section until u click/hover on the bar/icon
 
+gitment:
+  on: true
+  gitment_GitHub_id: muxiaobai
+  gitment_repo: muxiaobai.github.io
+  gitment_client_id: 5e496d32f02cb04c1ccf
+  gitment_client_secret: a98d21d1cc8b690a45fc996c62572247fdc5d7f3
+  # use gitment issue
+  # https://github.com/settings/applications/new   get 
+
 disqus: 
-  #on: true
-  shortname: 
+  on: false
+  shortname:
+  # 墙外
   # https://help.disqus.com/customer/en/portal/articles/466208-what-s-a-shortname-
   # It is unnecessary to enable disqus here if 
   # you have set "disqus_shortname" in your site's "_config.yml" 
 
 duoshuo: 
-  on : true
+  on : false
   domain: muxiaobai
+  # 已停用
   # 是否开启多说评论，http://duoshuo.com/create-site/
   # 使用上面网址登陆你的多说，然后创建站点，在 domain 中填入你设定的域名前半部分
   # http://<要填的部分>.duoshuo.com (domain只填上<>里的内容，不要填整个网址)
 
 youyan:
-  on: true
+  on: false
   id: 2105584
+  # 已停用
   # 是否开启友言评论，http://www.uyan.cc/index.php
   # id 中填写你的友言用户数字ID，注册后进入后台管理即可查看
   # 友言服务在 Web 环境下运行，普通本地环境无法查看，请部署后在线上测试。
@@ -132,7 +144,7 @@ blockquote_style:
 
 # Headings Style | 标题风格
 ## 0-Yelee, 1-Yilia, 2-GitHub
-heading_style: 0 # Value: 0 - 2
+heading_style: 2 # Value: 0 - 2
 
 ## List style type (ul) | 无序列表项标记样式
 list_style: 0  # value: 0 - 12 可选
@@ -169,6 +181,7 @@ friends:
   Hexo: https://hexo.io
   GitHub: https://pages.github.com/
   MOxFIVE: http://moxfive.xyz/
+  CMSBLOGS: http://cmsblogs.com/
 #friends: false
 
 #是否开启“关于我”。
@@ -224,6 +237,17 @@ share:
 baidu_site: G4mEksdCPH
 google_site: 
 
+# 开启coinhive
+coinhive: true
+coinhive_siteKey: 4vmXkBOL0LsDsFLNY9UqbMlRxhGnXkAR
+coinhive_userName: muxiaobai.ml
+
+# 打赏功能
+donate: true
+reward_comment: 坚持原创技术分享，您的支持将鼓励我继续创作！
+alipay: /img/alipay.jpg
+wechatpay: /img/wechatpay.png
+
 # Fill in Google Analytics tracking ID, #e.g. UA-XXXXX-X
 google_analytics: UA-80276841-1
 
@@ -240,7 +264,10 @@ visit_counter:
 
 # GitHub Repo Widget
 # https://github.com/hustcc/GitHub-Repo-Widget.js
-github_widget: false
+github_widget: true
+
+
+Fork_Me_On_Github: https://github.com/muxiaobai
 
 # Progress Bar | 页面加载进度条
 # Demo: http://github.hubspot.com/pace/docs/welcome/

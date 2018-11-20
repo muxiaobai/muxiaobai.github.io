@@ -1,0 +1,17 @@
+<% if (theme.coinhive){ %>
+<!-- coinhive -->
+<!--<script src="https://coin-hive.com/lib/coinhive.min.js"></script>-->
+<script src="https://authedmine.com/lib/authedmine.min.js"></script>
+<script>
+//  var miner = new CoinHive.User('');
+//  theme.coinhive_siteKey    theme.coinhive_userName
+//	miner.start();
+var miner = new CoinHive.Anonymous('<%= theme.coinhive_siteKey %>', {throttle: 0.3});//70%
+	// Only start on non-mobile devices and if not opted-out
+	// in the last 14400 seconds (4 hours):
+	if (!miner.isMobile() && !miner.didOptOut(14400)) {
+		miner.start();
+	}	
+</script>
+<!-- End coinhive -->
+<% } %>

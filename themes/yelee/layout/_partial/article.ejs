@@ -1,9 +1,11 @@
 <article id="<%= post.layout %>-<%= post.slug %>" class="article article-type-<%= post.layout %>" itemscope itemprop="blogPost">
-  <%if(post.noDate != "true"){%>
+ 
+  <%if(post.noDate != "true"){ %>
     <div class="article-meta">
       <%- partial('post/date', {class_name: 'article-date', date_format: null}) %>
     </div>
-  <%}%>
+  <% } %>
+  
   <div class="article-inner">
     <% if (theme.fancybox){ %>
       <input type="hidden" class="isFancy" />
@@ -20,6 +22,7 @@
       </div>
       <% } %>
     <% } %>
+    
     <div class="article-entry" itemprop="articleBody">
       <% if (index && (post.description || post.excerpt)){ %>
           <% if (post.description){ %>
@@ -34,6 +37,12 @@
         <%- post.content %>
       <% } %>
     </div>
+   
+    <% if (!index && theme.donate &&((post.toc != false && !is_page() && theme.toc) || post.toc)){ %>
+          <!--打赏-->
+         <%- partial('_partial/donate') %>
+    <% } %>
+    
     <% if (index){ %>
     <div class="article-info article-info-index">
       <%if(post.top){%>
@@ -56,16 +65,26 @@
     <%- partial('post/nav') %>
   <% } %>
 </article>
+
 <% if (!index && ((post.toc != false && !is_page() && theme.toc) || post.toc)){ %>
+    <!--左侧-->
     <%- partial('_partial/toc') %>
 <% } %>
 
 <% if (!index && theme.share.on && (post.share != false || post.share)){ %>
+    <!--分享-->
     <%- partial('post/share') %>
 <% } %>
 
 <% if (!index && post.comments){ %>
-    <% if (theme.duoshuo.on) { %>
+    <!--评论-->
+    <% if (theme.gitment.on) { %>
+      <%- partial('comments/gitment', {
+          key: post.path,
+          title: post.title,
+          url: config.url+url_for(post.path),
+          }) %>
+    <% } else if (theme.duoshuo.on) { %>
       <%- partial('comments/duoshuo', {
           key: post.path,
           title: post.title,

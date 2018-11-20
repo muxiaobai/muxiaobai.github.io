@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html <% if (page.lang && page.lang != "default") { %>lang="<%= page.lang %>"<% } %>>
 <head>
+
 <%- partial('ie-updater') %>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
@@ -115,3 +116,4 @@ if ( is_archive() ) {
 <% } %>
 
 </head>
+ <%- partial('_partial/forkMeOnGithub') %>

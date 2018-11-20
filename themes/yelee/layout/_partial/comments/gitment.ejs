@@ -1,0 +1,17 @@
+<section class="gitment" id="comments">
+    <div id="gitment" class ="article article-type-post"></div>
+    <link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+    <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+    <script>
+    var gitment = new Gitment({
+      id: '<%=title%>',
+      owner: '<%= theme.gitment.gitment_GitHub_id%>',
+      repo: '<%= theme.gitment.gitment_repo%>',
+      oauth: {
+        client_id: '<%= theme.gitment.gitment_client_id%>',
+        client_secret: '<%= theme.gitment.gitment_client_secret%>',
+      },
+    })
+    gitment.render('gitment')
+    </script>
+</section>
