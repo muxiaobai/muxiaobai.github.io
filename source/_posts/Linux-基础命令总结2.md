@@ -3,10 +3,10 @@ title: Linux 基础命令总结2
 date: 2016-07-07 13:02:34
 tags: [基础命令,系统]
 categories: Linux
-description: "网络、软件、服务、系统环境、权限、进程、任务调度、工作"
+description: "网络(端口占用等)、服务、系统环境、权限、进程、任务调度、工作"
 ---
 
-##打印、输出
+## 打印、输出
 
 #### 打印
 
@@ -26,7 +26,7 @@ description: "网络、软件、服务、系统环境、权限、进程、任务
 
 `id`: pid和gid
 
-`who`: 详细列出所有登录用户
+`who`: 详细列出所有登录用户，看谁正在使用
 
 `users`: 简单列出所有登录用户
 
@@ -70,11 +70,12 @@ description: "网络、软件、服务、系统环境、权限、进程、任务
 
 -----
 
+`history` 历史命令
+
 ## 权限(目录和文件)和用户，组
 
 
-
-#### rwx权限
+#### rwx权限 读写执行
 
  >所有者 所属者 其他人
 
@@ -149,7 +150,28 @@ description: "网络、软件、服务、系统环境、权限、进程、任务
 
 `host`: 检测分析域名是否正常
 
-`netstat`: 查看网络状态、端口状态
+`netstat`: 查看网络状态、端口状态 -tulp   -tnaop  ☆
+
+-a 端口
+-t tcp
+-u udp
+-l listener
+-p program name 
+      
+      netstat -n | awk '/^tcp/ {++S[$NF]} END {for(a in S) print a, S[a]}'
+
+解析：
+- CLOSED  //无连接是活动的或正在进行
+- LISTEN  //服务器在等待进入呼叫
+- SYN_RECV  //一个连接请求已经到达，等待确认
+- SYN_SENT  //应用已经开始，打开一个连接
+- ESTABLISHED  //正常数据传输状态/当前并发连接数
+- FIN_WAIT1  //应用说它已经完成
+- FIN_WAIT2  //另一边已同意释放
+- ITMED_WAIT  //等待所有分组死掉
+- CLOSING  //两边同时尝试关闭
+- TIME_WAIT  //另一边已初始化一个释放
+- LAST_ACK  //等待所有分组死掉
 
 `ip`: iproute2中的命令(以上所有命令基本上都可以用这个命令来使用)
 
@@ -161,7 +183,30 @@ description: "网络、软件、服务、系统环境、权限、进程、任务
 
 `wget`: 下载资源
 
+`curl` : 
+
 远程连接：`ssh` `scp` `sftp` `telnet`(一般禁用) `ftp`(不常用)
+
+`sz` file 下载文件到本机
+
+#### 端口占用6中方法
+
+ss -tnlp  
+netstat
+lsof
+fuser 
+nmap (NetWork Mapper) 网络监测和安全审计工具，可能无此命令
+systemctl systemd系统的控制管理器和服务管理器 可能无此命令
+
+
+netstat -tlnaop
+
+-c 字符串  -u 用户名  -p pid
+
+
+lsof  进程打开或使用、调用的文件信息☆
+
+lsof -i:端口号 用于查看某一端口的占用情况，比如查看8000端口使用情况，lsof -i:8000
 
 ## 进程、系统资源(磁盘)
 
@@ -171,7 +216,7 @@ description: "网络、软件、服务、系统环境、权限、进程、任务
 
 ##### aux BSD
 
-##### -le Linux
+##### -el Linux
 -----
 ps命令常用用法（方便查看系统进程）
 
@@ -191,9 +236,45 @@ ps命令常用用法（方便查看系统进程）
 
 最常用的方法是ps -aux,然后再利用一个管道符号导向到grep去查找特定的进程,然后再对特定的进程进行操作。
 
-lsof  进程打开或使用、调用的文件信息
+ps -ef | grep tomcat 查看tomcat进程☆
 
--c 字符串  -u 用户名  -p pid
+
+##### 检查tomcat/nginx 并发数，连接数等
+
+内部的应用级别的：
+server {
+    listen  *:80 default_server;
+    server_name *.jiloc.com jiloc.com;
+    location /ngx_status   {
+        stub_status on;
+        access_log off;
+        #allow 127.0.0.1;
+        #deny all;
+    }
+}
+
+curl http://127.0.0.1/ngx_status
+
+浏览器 http://127.0.0.1/jStatus
+
+
+
+外部的，命令级别的：
+
+可查看所有建立连接的详细记录: netstat -nat | grep ESTABLISHED|wc  
+
+netstat -n | awk '/^tcp/ {++S[$NF]} END {for(a in S) print a, S[a]}'
+
+ps -ef|grep tomcat
+
+查看tomcat的线程数: ps -Lf pid|wc -l
+查看tomcat的并发数: netstat -an|grep pid |awk '{count[$6]++} END{for (i in count) print(i,count[i])}'
+
+
+[Linux 下Web服务器 Nginx 状态监控 查看nginx当前并发 连接 请求状态](https://www.jiloc.com/42193.html)
+[linux进程、线程状态 tomcat线程数 并发数查看](https://blog.csdn.net/wngua/article/details/70904991)
+[inux查看连接数，并发数](http://duanfei.iteye.com/blog/1894387)
+
 ---------
 
 ##### 输出信息
@@ -274,6 +355,7 @@ pkill  -t 终端号（TTY） 按终端号剔除用户（w显示用户）
 #### 磁盘
 
 挂载卸载：`mount` `umount` 
+
 
 磁盘空间：`du` `df` 
 
@@ -366,6 +448,9 @@ Red Hat `service` `ntsysv`
 Red Hat `rpm` `yum` 
 
 Debian `dpkg` `aptitude`
+
+
+[安装软件](http://muxiaobai.github.io/2017/09/17/Linux-%E5%9F%BA%E7%A1%80%E5%91%BD%E4%BB%A4%E6%80%BB%E7%BB%933/)
 
 ##附件
 

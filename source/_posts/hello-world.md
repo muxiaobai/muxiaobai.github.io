@@ -1,5 +1,6 @@
 ---
 title: Hello World
+date: 2016-06-29 06:20:02
 categories: 搭建网站
 description: "   Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub."
 ---
