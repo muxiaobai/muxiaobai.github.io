@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
-<head>
+<head><meta name="generator" content="Hexo 3.8.0">
 
 
     <!--[if lt IE 9]>
@@ -9,28 +9,30 @@
     <![endif]-->
 
 <meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<meta name="format-detection" content="telephone=no" />
-<meta name="author" content="Mu Xiaobai(慕小白)" />
+<meta name="format-detection" content="telephone=no">
+<meta name="author" content="Mu Xiaobai(慕小白)">
 
 
 
 <meta name="description" content="Form AJAX 总结">
+<meta name="keywords" content="前端,后端">
 <meta property="og:type" content="article">
 <meta property="og:title" content="前后台数据交互方式总结">
 <meta property="og:url" content="https://muxiaobai.github.io/2016/07/20/前后台数据交互方式总结/index.html">
 <meta property="og:site_name" content="技术笔记">
 <meta property="og:description" content="Form AJAX 总结">
-<meta property="og:image" content="https://muxiaobai.github.io/2016/07/20/前后台数据交互方式总结/201608031301.PNG">
-<meta property="og:image" content="https://muxiaobai.github.io/2016/07/20/前后台数据交互方式总结/201608031249.PNG">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://muxiaobai.github.io/.io//201608031301.PNG">
+<meta property="og:image" content="https://muxiaobai.github.io/.io//201608031249.PNG">
 <meta property="og:updated_time" content="2016-08-31T12:24:37.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="前后台数据交互方式总结">
 <meta name="twitter:description" content="Form AJAX 总结">
-<meta name="twitter:image" content="https://muxiaobai.github.io/2016/07/20/前后台数据交互方式总结/201608031301.PNG">
+<meta name="twitter:image" content="https://muxiaobai.github.io/.io//201608031301.PNG">
 
-<link rel="apple-touch-icon" href= "/apple-touch-icon.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
 
     <link rel="alternative" href="/atom.xml" title="技术笔记" type="application/atom+xml">
@@ -115,7 +117,7 @@
 <img style="position: absolute; top: 0; right: 0; border: 0;z-index: 1000" src="https://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png" alt="Fork me on GitHub">
 </a>
 <!-- End Fork Me On Github  -->
-
+</html>
 <body>
  
   <div id="container">
@@ -136,11 +138,11 @@
 
         
             <form id="search-form">
-            <input type="text" id="local-search-input" name="q" results="0" placeholder="search..." class="search form-control" autocomplete="off" autocorrect="off" searchonload="false" />
+            <input type="text" id="local-search-input" name="q" results="0" placeholder="search..." class="search form-control" autocomplete="off" autocorrect="off" searchonload="false">
             <i class="fa fa-times" onclick="resetSearch()"></i>
             </form>
             <div id="local-search-result"></div>
-            <p class='no-result'>No results found <i class='fa fa-spinner fa-pulse'></i></p>
+            <p class="no-result">No results found <i class="fa fa-spinner fa-pulse"></i></p>
         
 
 
@@ -215,7 +217,7 @@
                 
                 <section class="switch-part switch-part2">
                     <div class="widget tagcloud" id="js-tagcloud">
-                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/2016/">2016</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/2017/">2017</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/2018/">2018</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/API/">API</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS/">CSS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Cache/">Cache</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Canvas/">Canvas</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Collection/">Collection</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Concurrent/">Concurrent</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Error/">Error</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Exception/">Exception</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/File/">File</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Github/">Github</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hibernate/">Hibernate</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/I-O/">I/O</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Iterator/">Iterator</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/List/">List</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Map/">Map</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Object/">Object</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Session/">Session</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Set/">Set</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Shell/">Shell</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Socket/">Socket</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Spring/">Spring</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Storage/">Storage</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Struts/">Struts</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Sublime/">Sublime</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Thread/">Thread</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Throwable/">Throwable</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/directory/">directory</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/file/">file</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jQuery实践/">jQuery实践</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">javascript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jvm/">jvm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mongo/">mongo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nginx/">nginx</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/prototype/">prototype</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/redis/">redis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/svn/">svn</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tar/">tar</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tomcat/">tomcat</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/分析/">分析</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/前沿技术/">前沿技术</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/前端/">前端</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/后端/">后端</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/基础/">基础</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/基础命令/">基础命令</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/定位/">定位</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/工具/">工具</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/常用代码/">常用代码</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/常用命令/">常用命令</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/排序/">排序</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/插件/">插件</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/日志/">日志</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/目录/">目录</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/系统/">系统</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/编码/">编码</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/编辑器/">编辑器</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/网站/">网站</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/行高/">行高</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/设计/">设计</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/软件/">软件</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/连接池/">连接池</a></li></ul>
+                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/2016/">2016</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/2017/">2017</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/2018/">2018</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/API/">API</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CI/">CI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS/">CSS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Cache/">Cache</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Canvas/">Canvas</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Collection/">Collection</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Concurrent/">Concurrent</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Error/">Error</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Exception/">Exception</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/File/">File</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Github/">Github</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hibernate/">Hibernate</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/I-O/">I/O</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Iterator/">Iterator</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/List/">List</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Map/">Map</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Object/">Object</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Session/">Session</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Set/">Set</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Shell/">Shell</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Socket/">Socket</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Spring/">Spring</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Storage/">Storage</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Struts/">Struts</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Sublime/">Sublime</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Thread/">Thread</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Throwable/">Throwable</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/directory/">directory</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/file/">file</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jQuery实践/">jQuery实践</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">javascript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jvm/">jvm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mongo/">mongo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nginx/">nginx</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/prototype/">prototype</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/redis/">redis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/svn/">svn</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tar/">tar</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tomcat/">tomcat</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/分析/">分析</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/前沿技术/">前沿技术</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/前端/">前端</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/后端/">后端</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/基础/">基础</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/基础命令/">基础命令</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/定位/">定位</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/工具/">工具</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/常用代码/">常用代码</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/常用命令/">常用命令</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/排序/">排序</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/插件/">插件</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/日志/">日志</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/目录/">目录</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/系统/">系统</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/编码/">编码</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/编辑器/">编辑器</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/网站/">网站</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/行高/">行高</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/设计/">设计</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/软件/">软件</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/连接池/">连接池</a></li></ul>
                     </div>
                 </section>
                 
@@ -290,21 +292,21 @@
             </nav>
         </header>                
     </div>
-    <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
+    <link class="menu-list" tags="标签" friends="友情链接" about="关于我">
 </nav>
       <div class="body-wrap"><article id="post-前后台数据交互方式总结" class="article article-type-post" itemscope itemprop="blogPost">
  
   
     <div class="article-meta">
       <a href="/2016/07/20/前后台数据交互方式总结/" class="article-date">
-      <time datetime="2016-07-20T08:21:41.000Z" itemprop="datePublished">2016-07-20</time>
+      <time datetime="2016-07-20T00:21:41.000Z" itemprop="datePublished">2016-07-20</time>
 </a>
     </div>
   
   
   <div class="article-inner">
     
-      <input type="hidden" class="isFancy" />
+      <input type="hidden" class="isFancy">
     
     
       <header class="article-header">
@@ -337,56 +339,56 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <h2 id="&#x4E0D;&#x540C;&#x7684;&#x89D2;&#x5EA6;&#xFF0C;&#x4E0D;&#x540C;&#x7684;&#x8BF4;&#x8F9E;&#x2014;&#x2014;&#x2014;&#x2014;-&#x524D;&#x540E;&#x53F0;&#x6570;&#x636E;&#x4EA4;&#x4E92;"><a href="#&#x4E0D;&#x540C;&#x7684;&#x89D2;&#x5EA6;&#xFF0C;&#x4E0D;&#x540C;&#x7684;&#x8BF4;&#x8F9E;&#x2014;&#x2014;&#x2014;&#x2014;-&#x524D;&#x540E;&#x53F0;&#x6570;&#x636E;&#x4EA4;&#x4E92;" class="headerlink" title="&#x4E0D;&#x540C;&#x7684;&#x89D2;&#x5EA6;&#xFF0C;&#x4E0D;&#x540C;&#x7684;&#x8BF4;&#x8F9E;&#x2014;&#x2014;&#x2014;&#x2014;-&#x524D;&#x540E;&#x53F0;&#x6570;&#x636E;&#x4EA4;&#x4E92;"></a>&#x4E0D;&#x540C;&#x7684;&#x89D2;&#x5EA6;&#xFF0C;&#x4E0D;&#x540C;&#x7684;&#x8BF4;&#x8F9E;&#x2014;&#x2014;&#x2014;&#x2014;-&#x524D;&#x540E;&#x53F0;&#x6570;&#x636E;&#x4EA4;&#x4E92;</h2><h4 id="&#x4F20;&#x8F93;&#x6570;&#x636E;&#x5F62;&#x5F0F;"><a href="#&#x4F20;&#x8F93;&#x6570;&#x636E;&#x5F62;&#x5F0F;" class="headerlink" title="&#x4F20;&#x8F93;&#x6570;&#x636E;&#x5F62;&#x5F0F;"></a>&#x4F20;&#x8F93;&#x6570;&#x636E;&#x5F62;&#x5F0F;</h4><h5 id="JSON-&#x6D41;&#x884C;-Javascript-object-Notation"><a href="#JSON-&#x6D41;&#x884C;-Javascript-object-Notation" class="headerlink" title="JSON(&#x6D41;&#x884C;)(Javascript object Notation)"></a>JSON(&#x6D41;&#x884C;)(Javascript object Notation)</h5><p>JSON<br>&#x5BF9;&#x8C61;{} &#x6570;&#x7EC4;[] &#x5C5E;&#x6027;&#x540D;:&#x5C5E;&#x6027;&#x503C;  &#x201C;&#x952E;&#x201D;:&#x201D;&#x503C;&#x201D;</p>
-<p>JSONP(JSON with Padding)(&#x89E3;&#x51B3;&#x540C;&#x6E90;&#x7B56;&#x7565;)</p>
-<p>HTML&#x4E2D; script&gt;&#x3001;img&gt;&#x3001;iframe&gt;&#x6807;&#x7B7E;&#x53EF;&#x4EE5;&#x8DE8;&#x57DF;</p>
-<p>JSONP&#x53EF;&#x7528;&#x4E8E;&#x89E3;&#x51B3;&#x4E3B;&#x6D41;&#x6D4F;&#x89C8;&#x5668;&#x7684;&#x8DE8;&#x57DF;&#x6570;&#x636E;&#x8BBF;&#x95EE;&#x7684;&#x95EE;&#x9898;&#xFF1B;</p>
-<p>jQuery&#x5229;&#x7528;<strong>script&gt;</strong>&#x6807;&#x7B7E;&#xFF0C;&#x6765;&#x5B9E;&#x73B0;&#x8DE8;&#x57DF;&#x7684;&#x6570;&#x636E;&#x4EA4;&#x6362;&#xFF0C;&#x7136;&#x540E;&#x5305;&#x88C5;&#x7684;AJAX&#x4E2D;,&#x5916;&#x90E8;&#x8C03;&#x7528;&#x7684;&#x65F6;&#x5019;&#x56E0;&#x6B64;&#x5C31;&#x53EF;&#x4EE5;&#x5411;&#x5404;&#x4E2A;&#x57DF;&#x540D;&#x4E0B;&#x8BF7;&#x6C42;&#x8D44;&#x6E90;&#x3002;</p>
-<p>RESTFul(Representational State Transfer)<br>&#x653E;&#x5728;&#x8FD9;&#x53EA;&#x662F;&#x663E;&#x793A;&#x4E00;&#x4E0B;JSON&#x7684;&#x8D8B;&#x52BF;&#x3002;</p>
-<h5 id="xml-text-html"><a href="#xml-text-html" class="headerlink" title="xml text html"></a>xml text html</h5><p>xml :&#x66FE;&#x7ECF;&#x5F88;&#x8F89;&#x714C;&#xFF0C;&#x73B0;&#x5728;&#x662F;&#x4E00;&#x4E2A;&#x5931;&#x52BF;&#x7684;&#x5BA0;&#x513F;&#xFF0C;&#x5C31;&#x662F;&#x56E0;&#x4E3A;JSON&#xFF0C;JSON&#x770B;&#x8D77;&#x6765;&#x66F4;&#x5BB9;&#x6613;&#x8FDB;&#x884C;&#x6570;&#x636E;&#x4EA4;&#x4E92;&#xFF0C;&#x4F53;&#x79EF;&#x5C0F;&#xFF0C;&#x65B9;&#x4FBF;&#xFF0C;&#x7B80;&#x6D01;&#x3002;</p>
-<p>text html :&#x8001;&#x6837;&#x5B50;&#xFF0C;&#x6211;&#x4E0D;&#x5728;&#x4E4E;&#x4F60;&#x4EEC;&#x7684;&#x4E89;&#x5435;&#xFF0C;&#x4E00;&#x526F;&#x4E3A;&#x8001;&#x72EC;&#x5C0A;&#x7684;&#x6837;&#x5B50;&#xFF0C;&#x770B;&#x4F60;&#x4EEC;&#x73A9;&#x800D;&#xFF0C;&#x6211;&#x4E0D;&#x4FE1;&#xFF0C;&#x4F60;&#x4EEC;&#x8FD8;&#x80FD;&#x9694;&#x7A7A;&#x4F20;&#x7269;&#xFF1F;</p>
-<h4 id="&#x63D0;&#x4EA4;&#x65B9;&#x5F0F;"><a href="#&#x63D0;&#x4EA4;&#x65B9;&#x5F0F;" class="headerlink" title="&#x63D0;&#x4EA4;&#x65B9;&#x5F0F;"></a>&#x63D0;&#x4EA4;&#x65B9;&#x5F0F;</h4><h4 id="Form"><a href="#Form" class="headerlink" title="Form"></a>Form</h4><h5 id="HTML&#x7684;form"><a href="#HTML&#x7684;form" class="headerlink" title="HTML&#x7684;form"></a>HTML&#x7684;form</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">&lt;form action=&quot;&quot; method=&quot;&quot; enctype=&quot;&quot;&gt;</div><div class="line">method: post/get</div></pre></td></tr></table></figure>
+        <h2 id="不同的角度，不同的说辞————-前后台数据交互"><a href="#不同的角度，不同的说辞————-前后台数据交互" class="headerlink" title="不同的角度，不同的说辞————-前后台数据交互"></a>不同的角度，不同的说辞————-前后台数据交互</h2><h4 id="传输数据形式"><a href="#传输数据形式" class="headerlink" title="传输数据形式"></a>传输数据形式</h4><h5 id="JSON-流行-Javascript-object-Notation"><a href="#JSON-流行-Javascript-object-Notation" class="headerlink" title="JSON(流行)(Javascript object Notation)"></a>JSON(流行)(Javascript object Notation)</h5><p>JSON<br>对象{} 数组[] 属性名:属性值  “键”:”值”</p>
+<p>JSONP(JSON with Padding)(解决同源策略)</p>
+<p>HTML中 script>、img>、iframe>标签可以跨域</p>
+<p>JSONP可用于解决主流浏览器的跨域数据访问的问题；</p>
+<p>jQuery利用<strong>script></strong>标签，来实现跨域的数据交换，然后包装的AJAX中,外部调用的时候因此就可以向各个域名下请求资源。</p>
+<p>RESTFul(Representational State Transfer)<br>放在这只是显示一下JSON的趋势。</p>
+<h5 id="xml-text-html"><a href="#xml-text-html" class="headerlink" title="xml text html"></a>xml text html</h5><p>xml :曾经很辉煌，现在是一个失势的宠儿，就是因为JSON，JSON看起来更容易进行数据交互，体积小，方便，简洁。</p>
+<p>text html :老样子，我不在乎你们的争吵，一副为老独尊的样子，看你们玩耍，我不信，你们还能隔空传物？</p>
+<h4 id="提交方式"><a href="#提交方式" class="headerlink" title="提交方式"></a>提交方式</h4><h4 id="Form"><a href="#Form" class="headerlink" title="Form"></a>Form</h4><h5 id="HTML的form"><a href="#HTML的form" class="headerlink" title="HTML的form"></a>HTML的form</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;form action=&quot;&quot; method=&quot;&quot; enctype=&quot;&quot;&gt;</span><br><span class="line">method: post/get</span><br></pre></td></tr></table></figure>
 <p>enctype </p>
-<p>application/x-www-form-urlencoded &#x5728;&#x53D1;&#x9001;&#x524D;&#x7F16;&#x7801;&#x6240;&#x6709;&#x5B57;&#x7B26;&#xFF08;&#x9ED8;&#x8BA4;&#xFF09;</p>
-<p>multipart/form-data &#x4E0D;&#x5BF9;&#x5B57;&#x7B26;&#x7F16;&#x7801;&#x3002;&#x5728;&#x4F7F;&#x7528;&#x5305;&#x542B;<strong>&#x6587;&#x4EF6;&#x4E0A;&#x4F20;</strong>&#x63A7;&#x4EF6;&#x7684;&#x8868;&#x5355;&#x65F6;&#xFF0C;&#x5FC5;&#x987B;&#x4F7F;&#x7528;&#x8BE5;&#x503C;&#x3002;</p>
-<p>text/plain    &#x7A7A;&#x683C;&#x8F6C;&#x6362;&#x4E3A; &#x201C;+&#x201D; &#x52A0;&#x53F7;&#xFF0C;&#x4F46;&#x4E0D;&#x5BF9;&#x7279;&#x6B8A;&#x5B57;&#x7B26;&#x7F16;&#x7801;&#x3002;</p>
-<p>&#x6309;&#x94AE;&#x76F4;&#x63A5;&#x63D0;&#x4EA4;button/submit</p>
-<h5 id="js&#x4EE3;&#x66FF;&#x6309;&#x94AE;&#x7684;&#x201D;form&#x201D;"><a href="#js&#x4EE3;&#x66FF;&#x6309;&#x94AE;&#x7684;&#x201D;form&#x201D;" class="headerlink" title="js&#x4EE3;&#x66FF;&#x6309;&#x94AE;&#x7684;&#x201D;form&#x201D;"></a>js&#x4EE3;&#x66FF;&#x6309;&#x94AE;&#x7684;&#x201D;form&#x201D;</h5><p>&#x67D0;&#x4E00;&#x4E8B;&#x4EF6;&#x8C03;&#x7528;js&#xFF0C;&#x4EE3;&#x4E3A;&#x63D0;&#x4EA4; </p>
-<p>&#x8FD9;&#x79CD;&#x5F62;&#x5F0F;&#x53EF;&#x4EE5;&#x6DFB;&#x52A0;&#x8868;&#x5355;&#x9A8C;&#x8BC1;</p>
-<p>&#x5728;form&#x4E0A;&#x6DFB;&#x52A0;onsubmit=&#x201D;&#x201D;&#x4E8B;&#x4EF6;&#x8FD4;&#x56DE;false&#x5219;&#x4E0D;&#x63D0;&#x4EA4;form</p>
+<p>application/x-www-form-urlencoded 在发送前编码所有字符（默认）</p>
+<p>multipart/form-data 不对字符编码。在使用包含<strong>文件上传</strong>控件的表单时，必须使用该值。</p>
+<p>text/plain    空格转换为 “+” 加号，但不对特殊字符编码。</p>
+<p>按钮直接提交button/submit</p>
+<h5 id="js代替按钮的”form”"><a href="#js代替按钮的”form”" class="headerlink" title="js代替按钮的”form”"></a>js代替按钮的”form”</h5><p>某一事件调用js，代为提交 </p>
+<p>这种形式可以添加表单验证</p>
+<p>在form上添加onsubmit=””事件返回false则不提交form</p>
 <p>form.submit()</p>
-<h4 id="AJAX-Asynchronous-JavaScript-and-XML-&#x5F02;&#x6B65;&#x66F4;&#x65B0;"><a href="#AJAX-Asynchronous-JavaScript-and-XML-&#x5F02;&#x6B65;&#x66F4;&#x65B0;" class="headerlink" title="AJAX(Asynchronous JavaScript and XML)(&#x5F02;&#x6B65;&#x66F4;&#x65B0;)"></a>AJAX(Asynchronous JavaScript and XML)(&#x5F02;&#x6B65;&#x66F4;&#x65B0;)</h4><h5 id="xhr-XmlHttpRequest-ajax&#x7684;&#x539F;&#x59CB;&#x5F62;&#x6001;"><a href="#xhr-XmlHttpRequest-ajax&#x7684;&#x539F;&#x59CB;&#x5F62;&#x6001;" class="headerlink" title="xhr(XmlHttpRequest) ajax&#x7684;&#x539F;&#x59CB;&#x5F62;&#x6001;"></a>xhr(XmlHttpRequest) ajax&#x7684;&#x539F;&#x59CB;&#x5F62;&#x6001;</h5><p>IE6&#x53CA;&#x4E4B;&#x524D;&#x7684;&#x7248;&#x672C;&#x4F7F;&#x7528;ActiveXObject,IE7&#x4E4B;&#x540E;&#x53CA;&#x5176;&#x5B83;&#x6D4F;&#x89C8;&#x5668;&#x4F7F;&#x7528;XMLHttpRequest<br>&#x56E0;&#x6B64;&#x5F88;&#x5C11;&#x539F;&#x751F;&#x7684;&#x5BF9;&#x8C61;&#xFF0C;&#x73B0;&#x5728;&#x968F;&#x7740;jQuery&#x7684;&#x6D41;&#x884C;&#x548C;&#x589E;&#x5F3A;&#xFF0C;&#x6D4F;&#x89C8;&#x5668;&#x7684;&#x5347;&#x7EA7;&#xFF0C;&#x53EF;&#x4EE5;&#x8BF4;&#xFF0C;&#x5168;&#x90E8;&#x6D4F;&#x89C8;&#x5668;&#x90FD;&#x652F;&#x6301;XMLHttpRequest&#x5BF9;&#x8C61;&#xFF0C;&#x6211;&#x4EEC;&#x5C31;&#x53EF;&#x4EE5;&#x76F4;&#x63A5;&#x4F7F;&#x7528;jQuery&#x4E2D;&#x7684;ajax&#x6765;&#x8FDB;&#x884C;&#x524D;&#x540E;&#x53F0;&#x4EA4;&#x4E92;&#x3002;</p>
-<p>&#x5077;&#x4E2A;&#x61D2;&#xFF0C;&#x653E;&#x4E24;&#x7BC7;bolg&#x5728;&#x8FD9;&#xFF0C;<br><a href="http://blog.csdn.net/liujiahan629629/article/details/17126727" target="_blank" rel="external">AJAX&#x2014;&#x2014;&#x6838;&#x5FC3;XMLHttpRequest&#x5BF9;&#x8C61;</a><br><a href="http://www.cnblogs.com/beniao/archive/2008/03/29/1128914.html" target="_blank" rel="external">&#x8F7B;&#x677E;&#x638C;&#x63E1;XMLHttpRequest&#x5BF9;&#x8C61;</a></p>
-<p>&#x6CE8;:XMLHttpRequest Level 2&#x6DFB;&#x52A0;&#x4E86;&#x4E00;&#x4E2A;&#x65B0;&#x7684;&#x63A5;&#x53E3;FormData.&#x5229;&#x7528;FormData&#x5BF9;&#x8C61;,&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;JavaScript&#x7528;&#x4E00;&#x4E9B;&#x952E;&#x503C;&#x5BF9;&#x6765;&#x6A21;&#x62DF;&#x4E00;&#x7CFB;&#x5217;&#x8868;&#x5355;&#x63A7;&#x4EF6;,&#x6211;&#x4EEC;&#x8FD8;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;XMLHttpRequest&#x7684;send()&#x65B9;&#x6CD5;&#x6765;&#x5F02;&#x6B65;&#x7684;&#x63D0;&#x4EA4;&#x8FD9;&#x4E2A;&#x201D;&#x8868;&#x5355;&#x201D;.&#x6BD4;&#x8D77;&#x666E;&#x901A;&#x7684;ajax,&#x4F7F;&#x7528;FormData&#x7684;&#x6700;&#x5927;&#x4F18;&#x70B9;&#x5C31;&#x662F;&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x5F02;&#x6B65;&#x4E0A;&#x4F20;&#x4E00;&#x4E2A;<strong>&#x4E8C;&#x8FDB;&#x5236;&#x6587;&#x4EF6;</strong>. </p>
-<p><a href="https://developer.mozilla.org/zh-CN/docs/Web/API/FormData" target="_blank" rel="external">FormData&#x5BF9;&#x8C61;</a> <a href="http://www.tuicool.com/articles/uuiE3y" target="_blank" rel="external">Html5 FormData+Ajax&#x8868;&#x5355;&#x6570;&#x636E;&#x63D0;&#x4EA4;</a></p>
-<p>&#x6240;&#x6709;&#x4E3B;&#x6D41;&#x6D4F;&#x89C8;&#x5668;&#x7684;&#x8F83;&#x65B0;&#x7248;&#x672C;&#x90FD;&#x5DF2;&#x7ECF;&#x652F;&#x6301;&#x8FD9;&#x4E2A;&#x5BF9;&#x8C61;&#x4E86;&#xFF0C;&#x6BD4;&#x5982;Chrome 7+&#x3001;Firefox 4+&#x3001;IE 10+&#x3001;Opera 12+&#x3001;Safari 5+&#x3002;</p>
+<h4 id="AJAX-Asynchronous-JavaScript-and-XML-异步更新"><a href="#AJAX-Asynchronous-JavaScript-and-XML-异步更新" class="headerlink" title="AJAX(Asynchronous JavaScript and XML)(异步更新)"></a>AJAX(Asynchronous JavaScript and XML)(异步更新)</h4><h5 id="xhr-XmlHttpRequest-ajax的原始形态"><a href="#xhr-XmlHttpRequest-ajax的原始形态" class="headerlink" title="xhr(XmlHttpRequest) ajax的原始形态"></a>xhr(XmlHttpRequest) ajax的原始形态</h5><p>IE6及之前的版本使用ActiveXObject,IE7之后及其它浏览器使用XMLHttpRequest<br>因此很少原生的对象，现在随着jQuery的流行和增强，浏览器的升级，可以说，全部浏览器都支持XMLHttpRequest对象，我们就可以直接使用jQuery中的ajax来进行前后台交互。</p>
+<p>偷个懒，放两篇bolg在这，<br><a href="http://blog.csdn.net/liujiahan629629/article/details/17126727" target="_blank" rel="noopener">AJAX——核心XMLHttpRequest对象</a><br><a href="http://www.cnblogs.com/beniao/archive/2008/03/29/1128914.html" target="_blank" rel="noopener">轻松掌握XMLHttpRequest对象</a></p>
+<p>注:XMLHttpRequest Level 2添加了一个新的接口FormData.利用FormData对象,我们可以通过JavaScript用一些键值对来模拟一系列表单控件,我们还可以使用XMLHttpRequest的send()方法来异步的提交这个”表单”.比起普通的ajax,使用FormData的最大优点就是我们可以异步上传一个<strong>二进制文件</strong>. </p>
+<p><a href="https://developer.mozilla.org/zh-CN/docs/Web/API/FormData" target="_blank" rel="noopener">FormData对象</a> <a href="http://www.tuicool.com/articles/uuiE3y" target="_blank" rel="noopener">Html5 FormData+Ajax表单数据提交</a></p>
+<p>所有主流浏览器的较新版本都已经支持这个对象了，比如Chrome 7+、Firefox 4+、IE 10+、Opera 12+、Safari 5+。</p>
 <blockquote>
-<p>&#x4F46;&#x662F;jQuery&#x4E0D;&#x652F;&#x6301;FormData,&#x6B64;&#x5BF9;&#x8C61;&#x53EA;&#x80FD;&#x5728;&#x539F;&#x751F;XmlHttpRequest&#x4E2D;&#x4F7F;&#x7528;&#x3002;</p>
-<h5 id="jQuery"><a href="#jQuery" class="headerlink" title="jQuery"></a>jQuery</h5><p>&#x5305;&#x88C5;&#x540E;&#x7684;&#x5F62;&#x5F0F;&#xFF0C;&#x4E0D;&#x7528;&#x8003;&#x8651;&#x6D4F;&#x89C8;&#x5668;&#x7684;&#x517C;&#x5BB9;&#x6027;&#xFF0C;&#x66F4;&#x65B9;&#x4FBF;.</p>
+<p>但是jQuery不支持FormData,此对象只能在原生XmlHttpRequest中使用。</p>
 </blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">$.ajax({</div><div class="line">	url:&quot;&quot;,</div><div class="line">	type:&quot;&quot;,// get post</div><div class="line">	cache:&quot;&quot;,</div><div class="line">	data:&quot;&quot;,</div><div class="line">	dataType:&quot;&quot;,</div><div class="line">	success:function(){},</div><div class="line">	error: function(){},</div><div class="line">});</div></pre></td></tr></table></figure>
-<p>url:&#x8BF7;&#x6C42;&#x5730;&#x5740;&#x3002;</p>
+<h5 id="jQuery"><a href="#jQuery" class="headerlink" title="jQuery"></a>jQuery</h5><p>包装后的形式，不用考虑浏览器的兼容性，更方便.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">$.ajax(&#123;</span><br><span class="line">	url:&quot;&quot;,</span><br><span class="line">	type:&quot;&quot;,// get post</span><br><span class="line">	cache:&quot;&quot;,</span><br><span class="line">	data:&quot;&quot;,</span><br><span class="line">	dataType:&quot;&quot;,</span><br><span class="line">	success:function()&#123;&#125;,</span><br><span class="line">	error: function()&#123;&#125;,</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>url:请求地址。</p>
 <hr>
-<p>cache:&#x8981;&#x6C42;&#x4E3A;Boolean&#x7C7B;&#x578B;&#x7684;&#x53C2;&#x6570;&#xFF0C;&#x9ED8;&#x8BA4;&#x4E3A;true&#xFF08;&#x5F53;dataType&#x4E3A;script&#x65F6;&#xFF0C;&#x9ED8;&#x8BA4;&#x4E3A;false&#xFF09;&#xFF0C;&#x8BBE;&#x7F6E;&#x4E3A;false&#x5C06;&#x4E0D;&#x4F1A;&#x4ECE;&#x6D4F;&#x89C8;&#x5668;&#x7F13;&#x5B58;&#x4E2D;&#x52A0;&#x8F7D;&#x8BF7;&#x6C42;&#x4FE1;&#x606F;&#x3002;</p>
+<p>cache:要求为Boolean类型的参数，默认为true（当dataType为script时，默认为false），设置为false将不会从浏览器缓存中加载请求信息。</p>
 <hr>
-<p>data: Object&#x5BF9;&#x8C61;&#xFF0C;JSON</p>
+<p>data: Object对象，JSON</p>
 <hr>
-<p>dataType&#x662F;&#x8FD4;&#x56DE;&#x7684;&#x6570;&#x636E;&#x7C7B;&#x578B;&#x3002;</p>
-<p>dataType:&#x8981;&#x6C42;&#x4E3A;String&#x7C7B;&#x578B;&#x7684;&#x53C2;&#x6570;&#xFF0C;&#x9884;&#x671F;&#x670D;&#x52A1;&#x5668;&#x8FD4;&#x56DE;&#x7684;&#x6570;&#x636E;&#x7C7B;&#x578B;&#x3002;<br>&#x5982;&#x679C;&#x4E0D;&#x6307;&#x5B9A;&#xFF0C;JQuery&#x5C06;&#x81EA;&#x52A8;&#x6839;&#x636E;http&#x5305;mime&#x4FE1;&#x606F;&#x8FD4;&#x56DE;responseXML&#x6216;responseText&#xFF0C;&#x5E76;&#x4F5C;&#x4E3A;&#x56DE;&#x8C03;&#x51FD;&#x6570;&#x53C2;&#x6570;&#x4F20;&#x9012;&#x3002;&#x53EF;&#x7528;&#x7684;&#x7C7B;&#x578B;&#x5982;&#x4E0B;&#xFF1A;</p>
-<p>xml&#xFF1A;&#x8FD4;&#x56DE;XML&#x6587;&#x6863;&#xFF0C;&#x53EF;&#x7528;JQuery&#x5904;&#x7406;&#x3002;</p>
-<p>html&#xFF1A;&#x8FD4;&#x56DE;&#x7EAF;&#x6587;&#x672C;HTML&#x4FE1;&#x606F;&#xFF1B;&#x5305;&#x542B;&#x7684;script&#x6807;&#x7B7E;&#x4F1A;&#x5728;&#x63D2;&#x5165;DOM&#x65F6;&#x6267;&#x884C;&#x3002;</p>
-<p>script&#xFF1A;&#x8FD4;&#x56DE;&#x7EAF;&#x6587;&#x672C;JavaScript&#x4EE3;&#x7801;&#x3002;&#x4E0D;&#x4F1A;&#x81EA;&#x52A8;&#x7F13;&#x5B58;&#x7ED3;&#x679C;&#x3002;&#x9664;&#x975E;&#x8BBE;&#x7F6E;&#x4E86;cache&#x53C2;&#x6570;&#x3002;&#x6CE8;&#x610F;&#x5728;&#x8FDC;&#x7A0B;&#x8BF7;&#x6C42;&#x65F6;&#xFF08;&#x4E0D;&#x5728;&#x540C;&#x4E00;&#x4E2A;&#x57DF;&#x4E0B;&#xFF09;&#xFF0C;&#x6240;&#x6709;post&#x8BF7;&#x6C42;&#x90FD;&#x5C06;&#x8F6C;&#x4E3A;get&#x8BF7;&#x6C42;&#x3002;</p>
-<p>json&#xFF1A;&#x8FD4;&#x56DE;JSON&#x6570;&#x636E;&#x3002;</p>
-<p>jsonp&#xFF1A;JSONP&#x683C;&#x5F0F;&#x3002;&#x4F7F;&#x7528;SONP&#x5F62;&#x5F0F;&#x8C03;&#x7528;&#x51FD;&#x6570;&#x65F6;&#xFF0C;&#x4F8B;&#x5982;myurl?callback=?&#xFF0C;JQuery&#x5C06;&#x81EA;&#x52A8;&#x66FF;&#x6362;&#x540E;&#x4E00;&#x4E2A;&#x201C;?&#x201D;&#x4E3A;&#x6B63;&#x786E;&#x7684;&#x51FD;&#x6570;&#x540D;&#xFF0C;&#x4EE5;&#x6267;&#x884C;&#x56DE;&#x8C03;&#x51FD;&#x6570;&#x3002;</p>
-<p>text&#xFF1A;&#x8FD4;&#x56DE;&#x7EAF;&#x6587;&#x672C;&#x5B57;&#x7B26;&#x4E32;&#x3002;</p>
+<p>dataType是返回的数据类型。</p>
+<p>dataType:要求为String类型的参数，预期服务器返回的数据类型。<br>如果不指定，JQuery将自动根据http包mime信息返回responseXML或responseText，并作为回调函数参数传递。可用的类型如下：</p>
+<p>xml：返回XML文档，可用JQuery处理。</p>
+<p>html：返回纯文本HTML信息；包含的script标签会在插入DOM时执行。</p>
+<p>script：返回纯文本JavaScript代码。不会自动缓存结果。除非设置了cache参数。注意在远程请求时（不在同一个域下），所有post请求都将转为get请求。</p>
+<p>json：返回JSON数据。</p>
+<p>jsonp：JSONP格式。使用SONP形式调用函数时，例如myurl?callback=?，JQuery将自动替换后一个“?”为正确的函数名，以执行回调函数。</p>
+<p>text：返回纯文本字符串。</p>
 <hr>
-<p>success/error function(){}&#x6210;&#x529F;&#x6216;&#x8005;&#x5931;&#x8D25;&#x56DE;&#x8C03;</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$.get();</div><div class="line">$.post();</div><div class="line">$.getJSON();</div></pre></td></tr></table></figure>
-<p>&#x548C; <code>$.ajax()</code>&#x7C7B;&#x4F3C;</p>
-<p><img src="/2016/07/20/&#x524D;&#x540E;&#x53F0;&#x6570;&#x636E;&#x4EA4;&#x4E92;&#x65B9;&#x5F0F;&#x603B;&#x7ED3;/201608031301.PNG" alt=""></p>
-<p>$.getJSON() &#x8C03;&#x7528;get()<br><img src="/2016/07/20/&#x524D;&#x540E;&#x53F0;&#x6570;&#x636E;&#x4EA4;&#x4E92;&#x65B9;&#x5F0F;&#x603B;&#x7ED3;/201608031249.PNG" alt=""></p>
-<p>$.get() $.post() &#x8C03;&#x7528;ajax()</p>
-<p>&#x4F46;&#x662F;jQuery<strong>&#x4E0D;&#x652F;&#x6301;&#x5F02;&#x6B65;&#x4E0A;&#x4F20;&#x6587;&#x4EF6;</strong>&#xFF0C;&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x5F15;&#x5165;AjaxFileUpload&#x63D2;&#x4EF6;&#x6765;&#x5B9E;&#x73B0;&#x3002;</p>
+<p>success/error function(){}成功或者失败回调</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$.get();</span><br><span class="line">$.post();</span><br><span class="line">$.getJSON();</span><br></pre></td></tr></table></figure>
+<p>和 <code>$.ajax()</code>类似</p>
+<p><img src="/.io//201608031301.PNG" alt></p>
+<p>$.getJSON() 调用get()<br><img src="/.io//201608031249.PNG" alt></p>
+<p>$.get() $.post() 调用ajax()</p>
+<p>但是jQuery<strong>不支持异步上传文件</strong>，我们可以引入AjaxFileUpload插件来实现。</p>
 <p>#####</p>
 
       
@@ -440,7 +442,7 @@
 	}
 </style>
 <!-- 添加捐赠图标 -->
-<div class ="post-donate">
+<div class="post-donate">
     <div id="donate_board" class="donate_bar center">
         <a id="btn_donate" class="btn_donate" href="javascript:;" title="打赏"></a>
         <span class="donate_txt">
@@ -449,7 +451,7 @@
         </span>
         <br>
     </div>  
-	<div id="donate_guide" class="donate_bar center hidden" >
+	<div id="donate_guide" class="donate_bar center hidden">
 		<!-- 支付宝打赏图案 -->
 		<img src="/img/alipay.jpg" alt="支付宝打赏"> 
 		<!-- 微信打赏图案 -->
@@ -480,14 +482,14 @@
         <p><span>本文标题:</span><a href="/2016/07/20/前后台数据交互方式总结/">前后台数据交互方式总结</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">Mu Xiaobai(慕小白)</a></p>
         <p><span>发布时间:</span>2016-07-20, 08:21:41</p>
-        <p><span>最后更新:</span>2016-08-31, 12:24:37</p>
+        <p><span>最后更新:</span>2016-08-31, 20:24:37</p>
         <p>
             <span>原始链接:</span><a class="post-url" href="/2016/07/20/前后台数据交互方式总结/" title="前后台数据交互方式总结">https://muxiaobai.github.io/2016/07/20/前后台数据交互方式总结/</a>
             <span class="copy-path" data-clipboard-text="原文: https://muxiaobai.github.io/2016/07/20/前后台数据交互方式总结/　　作者: Mu Xiaobai(慕小白)" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
             <script> var clipboard = new Clipboard('.copy-path'); </script>
         </p>
         <p>
-            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target="_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
         </p>
     </div>
 
@@ -517,7 +519,7 @@
     <!--左侧-->
     <div id="toc" class="toc-article">
     <strong class="toc-title">文章目录</strong>
-    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#不同的角度，不同的说辞————-前后台数据交互"><span class="toc-number">1.</span> <span class="toc-text">不同的角度，不同的说辞————-前后台数据交互</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#传输数据形式"><span class="toc-number">1.0.1.</span> <span class="toc-text">传输数据形式</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#JSON-流行-Javascript-object-Notation"><span class="toc-number">1.0.1.1.</span> <span class="toc-text">JSON(流行)(Javascript object Notation)</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#xml-text-html"><span class="toc-number">1.0.1.2.</span> <span class="toc-text">xml text html</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#提交方式"><span class="toc-number">1.0.2.</span> <span class="toc-text">提交方式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Form"><span class="toc-number">1.0.3.</span> <span class="toc-text">Form</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#HTML的form"><span class="toc-number">1.0.3.1.</span> <span class="toc-text">HTML的form</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#js代替按钮的”form”"><span class="toc-number">1.0.3.2.</span> <span class="toc-text">js代替按钮的”form”</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#AJAX-Asynchronous-JavaScript-and-XML-异步更新"><span class="toc-number">1.0.4.</span> <span class="toc-text">AJAX(Asynchronous JavaScript and XML)(异步更新)</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#xhr-XmlHttpRequest-ajax的原始形态"><span class="toc-number">1.0.4.1.</span> <span class="toc-text">xhr(XmlHttpRequest) ajax的原始形态</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#jQuery"><span class="toc-number">1.0.4.2.</span> <span class="toc-text">jQuery</span></a></li></ol></li></ol></li></ol></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#不同的角度，不同的说辞————-前后台数据交互"><span class="toc-number">1.</span> <span class="toc-text">不同的角度，不同的说辞————-前后台数据交互</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#传输数据形式"><span class="toc-number">1.0.1.</span> <span class="toc-text">传输数据形式</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#JSON-流行-Javascript-object-Notation"><span class="toc-number">1.0.1.1.</span> <span class="toc-text">JSON(流行)(Javascript object Notation)</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#xml-text-html"><span class="toc-number">1.0.1.2.</span> <span class="toc-text">xml text html</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#提交方式"><span class="toc-number">1.0.2.</span> <span class="toc-text">提交方式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Form"><span class="toc-number">1.0.3.</span> <span class="toc-text">Form</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#HTML的form"><span class="toc-number">1.0.3.1.</span> <span class="toc-text">HTML的form</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#js代替按钮的”form”"><span class="toc-number">1.0.3.2.</span> <span class="toc-text">js代替按钮的”form”</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#AJAX-Asynchronous-JavaScript-and-XML-异步更新"><span class="toc-number">1.0.4.</span> <span class="toc-text">AJAX(Asynchronous JavaScript and XML)(异步更新)</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#xhr-XmlHttpRequest-ajax的原始形态"><span class="toc-number">1.0.4.1.</span> <span class="toc-text">xhr(XmlHttpRequest) ajax的原始形态</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#jQuery"><span class="toc-number">1.0.4.2.</span> <span class="toc-text">jQuery</span></a></li></ol></li></ol></li></ol>
 </div>
 <style>
     .left-col .switch-btn,
@@ -526,7 +528,7 @@
     }
 </style>
 
-<input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+<input type="button" id="tocButton" value="隐藏目录" title="点击按钮隐藏或者显示文章目录">
 
 <script>
     yiliaConfig.toc = ["隐藏目录", "显示目录", !!"false"];
@@ -553,7 +555,7 @@
     <!--评论-->
     
       <section class="gitment" id="comments">
-    <div id="gitment" class ="article article-type-post"></div>
+    <div id="gitment" class="article article-type-post"></div>
     <link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
     <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
     <script>
@@ -590,7 +592,7 @@
         
     </div>
 
-    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2019/05/21/高并发之缓存、限流、降级/">高并发之缓存、限流、降级</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/18/使用ELK分析日志/">使用ELK分析日志</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/01/Linux-基础命令总结4/">Linux 基础命令总结4</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/02/16/性能优化之redis储存计算值/">性能优化之redis储存计算值</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/01/15/2018年个人总结/">2018年个人总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/01/11/mongodb常用命令/">mongodb常用命令</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/01/11/mongodb主从架构设计/">mongodb主从架构设计</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/12/21/前言技术之OCR识别/">前言技术之OCR识别</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/11/22/深入理解JVM之远程监控/">深入理解JVM之远程监控</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/11/22/数据库监控-Druid监控配置/">数据库监控-Druid监控配置</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/11/15/应用部署之nginx参数配置/">应用部署之nginx参数配置</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/11/07/数据库操作-plsql操作/">数据库操作-plsql操作</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/10/09/javascript-常用代码/">javascript-常用代码</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/20/java-常用代码/">java 常用代码</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/04/数据库操作语句2/">数据库操作语句2</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/06/25/Spring源码阅读之AOP两种代理模式/">Spring源码阅读之AOP两种代理模式</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/06/22/Spring源码阅读之Ioc控制反转/">Spring源码阅读之Ioc控制反转</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/06/08/浏览器的加载页面过程及优化方法/">浏览器的加载页面过程及优化方法</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/06/07/浏览器的请求与响应过程/">浏览器的请求与响应过程</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/04/20/Tomcat源码阅读之Container责任链/">Tomcat源码阅读之Container责任链</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/04/17/Tomcat源码阅读之URL请求解析/">Tomcat源码阅读之URL请求解析</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/04/16/Tomcat源码阅读之组件生命周期/">Tomcat源码阅读之组件生命周期</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/04/16/Tomcat源码阅读之从server-xml看组件关系/">Tomcat源码阅读之从server.xml看组件关系</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/03/02/重装CENTOS一系列操作/">重装CENTOS一系列操作</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/01/05/2017年个人总结/">2017年个人总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/12/22/javascript再学习之prototype/">javascript再学习之prototype</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/12/21/RSS好工具/">RSS好工具</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/10/23/前端小tips/">前端小tips</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/09/17/Linux-基础命令总结3/">Linux 基础命令总结3</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/09/02/应用部署之nginx负载/">应用部署之nginx负载</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/29/深入理解JVM之性能调优/">深入理解JVM之性能调优</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/14/数据库操作语句/">数据库操作语句</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/09/javascript再学习之Event/">javascript再学习之Event</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/08/javascript再学习之DOM/">javascript再学习之DOM</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/02/Javamelody-工具/">Javamelody 工具</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/07/20/hadoop-Sqoop-Hive等的安装/">hadoop-Sqoop-Hive等的安装</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/07/19/Linux-下的java安装、变更以及升级问题/">Linux 下的java安装、变更以及升级问题</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/06/29/毕业设计心得/">毕业设计心得</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/23/2016年个人总结/">2016年个人总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/27/CSS-定位布局/">CSS 定位布局</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/17/等待-等待-等待/">等待,等待,等待...</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/29/常见排序算法总结/">常见排序算法总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/24/Thinking-in-java-基础之网络Socket/">Thinkin in java 基础之网络Socket</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/19/由ES6中的Proxy和Reflect再了解Object/">由ES6中的Proxy和Reflect再了解Object</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/16/从ES6中学习编码/">从ES6中学习编码</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/13/模仿jQuery创建自己的js工具/">模仿jQuery创建自己的js工具</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/08/20/HTML5-API-新特性/">HTML5 API 新特性</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/08/09/Thinking-in-java-基础之线程和并发/">Thinking in java 基础之线程和并发</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/08/04/Thinking-in-java-基础之异常/">Thinking in java 基础之异常</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/08/03/Spring中的Session生命周期/">Spring中的Session生命周期</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/20/前后台数据交互方式总结/">前后台数据交互方式总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/19/JavaEE-资源路径问题/">JavaEE 资源路径问题</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/19/Sublime-下运行Java文件/">Sublime 下运行Java文件</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/09/Linux-基础Shell脚本/">Linux 基础Shell脚本</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/07/Linux-基础命令总结2/">Linux 基础命令总结2</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/01/好软件-靠机遇/">好软件,靠机遇</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/06/29/好网站-天天记/">好网站,天天记</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/06/29/hello-world/">Hello World</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/06/27/Linux下各目录的默认含义/">Linux下各目录的默认含义</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/06/27/Linux-基础命令总结/">Linux 基础命令总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/06/25/Thinking-in-java-基础之集合框架/">Thinking in java 基础之集合框架</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/06/25/Thinking-in-java-基础之I-O/">Thinking in java 基础之I/O</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/06/19/Linux-下安装SVN服务器/">Linux 下安装SVN服务器</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/06/17/GitHub Hexo/">GitHub + Hexo 构建我的博客</a></li></ul>
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2019/05/21/高并发之缓存、限流、降级/">高并发之缓存、限流、降级</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/18/使用ELK分析日志/">使用ELK分析日志</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/01/Linux-基础命令总结4/">Linux 基础命令总结4</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/02/16/性能优化之redis储存计算值/">性能优化之redis储存计算值</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/01/15/2018年个人总结/">2018年个人总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/01/11/mongodb常用命令/">mongodb常用命令</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/01/11/mongodb主从架构设计/">mongodb主从架构设计</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/12/21/前言技术之OCR识别/">前言技术之OCR识别</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/11/22/深入理解JVM之远程监控/">深入理解JVM之远程监控</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/11/22/数据库监控-Druid监控配置/">数据库监控-Druid监控配置</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/11/15/应用部署之nginx参数配置/">应用部署之nginx参数配置</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/11/07/数据库操作-plsql操作/">数据库操作-plsql操作</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/10/09/javascript-常用代码/">javascript-常用代码</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/20/java-常用代码/">java 常用代码</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/04/数据库操作语句2/">数据库操作语句2</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/06/25/Spring源码阅读之AOP两种代理模式/">Spring源码阅读之AOP两种代理模式</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/06/22/Spring源码阅读之Ioc控制反转/">Spring源码阅读之Ioc控制反转</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/06/08/浏览器的加载页面过程及优化方法/">浏览器的加载页面过程及优化方法</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/06/07/浏览器的请求与响应过程/">浏览器的请求与响应过程</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/04/20/Tomcat源码阅读之Container责任链/">Tomcat源码阅读之Container责任链</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/04/17/Tomcat源码阅读之URL请求解析/">Tomcat源码阅读之URL请求解析</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/04/16/Tomcat源码阅读之组件生命周期/">Tomcat源码阅读之组件生命周期</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/04/16/Tomcat源码阅读之从server-xml看组件关系/">Tomcat源码阅读之从server.xml看组件关系</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/03/02/重装CENTOS一系列操作/">重装CENTOS一系列操作</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/01/05/2017年个人总结/">2017年个人总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/12/22/javascript再学习之prototype/">javascript再学习之prototype</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/12/21/RSS好工具/">RSS好工具</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/10/23/前端小tips/">前端小tips</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/09/17/Linux-基础命令总结3/">Linux 基础命令总结3</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/09/02/应用部署之nginx负载/">应用部署之nginx负载</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/29/深入理解JVM之性能调优/">深入理解JVM之性能调优</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/14/数据库操作语句/">数据库操作语句</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/09/javascript再学习之Event/">javascript再学习之Event</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/08/javascript再学习之DOM/">javascript再学习之DOM</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/02/Javamelody-工具/">Javamelody 工具</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/07/20/hadoop-Sqoop-Hive等的安装/">hadoop-Sqoop-Hive等的安装</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/07/19/Linux-下的java安装、变更以及升级问题/">Linux 下的java安装、变更以及升级问题</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/06/29/毕业设计心得/">毕业设计心得</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/23/2016年个人总结/">2016年个人总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/27/CSS-定位布局/">CSS 定位布局</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/17/等待-等待-等待/">等待,等待,等待...</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/29/常见排序算法总结/">常见排序算法总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/24/Thinking-in-java-基础之网络Socket/">Thinkin in java 基础之网络Socket</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/19/由ES6中的Proxy和Reflect再了解Object/">由ES6中的Proxy和Reflect再了解Object</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/16/从ES6中学习编码/">从ES6中学习编码</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/13/模仿jQuery创建自己的js工具/">模仿jQuery创建自己的js工具</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/08/27/测试Travis CI/">好软件,靠机遇</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/08/20/HTML5-API-新特性/">HTML5 API 新特性</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/08/09/Thinking-in-java-基础之线程和并发/">Thinking in java 基础之线程和并发</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/08/04/Thinking-in-java-基础之异常/">Thinking in java 基础之异常</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/08/03/Spring中的Session生命周期/">Spring中的Session生命周期</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/20/前后台数据交互方式总结/">前后台数据交互方式总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/19/JavaEE-资源路径问题/">JavaEE 资源路径问题</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/19/Sublime-下运行Java文件/">Sublime 下运行Java文件</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/09/Linux-基础Shell脚本/">Linux 基础Shell脚本</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/07/Linux-基础命令总结2/">Linux 基础命令总结2</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/01/好软件-靠机遇/">好软件,靠机遇</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/06/29/好网站-天天记/">好网站,天天记</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/06/29/hello-world/">Hello World</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/06/27/Linux下各目录的默认含义/">Linux下各目录的默认含义</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/06/27/Linux-基础命令总结/">Linux 基础命令总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/06/25/Thinking-in-java-基础之集合框架/">Thinking in java 基础之集合框架</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/06/25/Thinking-in-java-基础之I-O/">Thinking in java 基础之I/O</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/06/19/Linux-下安装SVN服务器/">Linux 下安装SVN服务器</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/06/17/GitHub Hexo/">GitHub + Hexo 构建我的博客</a></li></ul>
 
 
 
@@ -613,8 +615,8 @@
         
             <div class="visit">
                 
-                    <span id="busuanzi_container_site_pv" style='display:none'>
-                        <span id="site-visit" >本站到访数: 
+                    <span id="busuanzi_container_site_pv" style="display:none">
+                        <span id="site-visit">本站到访数: 
                             <span id="busuanzi_value_site_uv"></span>
                         </span>
                     </span>
@@ -623,7 +625,7 @@
                     <span>, </span>
                 
                 
-                    <span id="busuanzi_container_page_pv" style='display:none'>
+                    <span id="busuanzi_container_page_pv" style="display:none">
                         <span id="page-visit">本页阅读量: 
                             <span id="busuanzi_value_page_pv"></span>
                         </span>

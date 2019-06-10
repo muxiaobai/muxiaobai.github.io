@@ -120,98 +120,105 @@
 
     <url>
         <loc>https://muxiaobai.github.io/categories/%E5%89%8D%E7%AB%AF/</loc>
-        <lastmod>2019-02-16T04:39:29.740Z</lastmod>
+        <lastmod>2019-02-16T04:39:29.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
         <loc>https://muxiaobai.github.io/categories/%E5%89%8D%E7%AB%AF/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/</loc>
-        <lastmod>2019-02-16T04:39:29.740Z</lastmod>
+        <lastmod>2019-02-16T04:39:29.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
         <loc>https://muxiaobai.github.io/categories/%E6%80%BB%E7%BB%93/</loc>
-        <lastmod>2019-02-16T04:58:26.378Z</lastmod>
+        <lastmod>2019-02-16T04:58:26.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
         <loc>https://muxiaobai.github.io/categories/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/</loc>
-        <lastmod>2019-02-16T05:01:42.160Z</lastmod>
+        <lastmod>2019-02-16T05:01:42.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
         <loc>https://muxiaobai.github.io/categories/javascript/</loc>
-        <lastmod>2019-03-05T08:19:10.695Z</lastmod>
+        <lastmod>2019-03-05T08:19:10.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
         <loc>https://muxiaobai.github.io/categories/deploy/</loc>
-        <lastmod>2019-04-01T05:54:51.052Z</lastmod>
+        <lastmod>2019-04-01T05:54:51.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
         <loc>https://muxiaobai.github.io/categories/Linux/</loc>
-        <lastmod>2019-04-10T08:29:39.872Z</lastmod>
+        <lastmod>2019-04-10T08:29:39.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
         <loc>https://muxiaobai.github.io/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/</loc>
-        <lastmod>2019-04-19T06:30:46.294Z</lastmod>
+        <lastmod>2019-04-19T06:30:46.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
         <loc>https://muxiaobai.github.io/categories/SQL/</loc>
-        <lastmod>2019-04-24T06:43:43.215Z</lastmod>
+        <lastmod>2019-04-24T06:43:43.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
         <loc>https://muxiaobai.github.io/categories/SQL/%E6%95%B0%E6%8D%AE%E5%BA%93/</loc>
-        <lastmod>2019-04-24T06:43:43.215Z</lastmod>
+        <lastmod>2019-04-24T06:43:43.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
         <loc>https://muxiaobai.github.io/categories/java/</loc>
-        <lastmod>2019-05-09T01:24:45.783Z</lastmod>
+        <lastmod>2019-05-09T01:24:45.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
         <loc>https://muxiaobai.github.io/categories/java/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/</loc>
-        <lastmod>2019-05-09T01:24:45.783Z</lastmod>
+        <lastmod>2019-05-09T01:24:45.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
         <loc>https://muxiaobai.github.io/categories/%E5%B7%A5%E5%85%B7/</loc>
-        <lastmod>2019-05-19T04:29:40.481Z</lastmod>
+        <lastmod>2019-05-19T04:29:40.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
         <loc>https://muxiaobai.github.io/categories/%E9%AB%98%E5%B9%B6%E5%8F%91/</loc>
-        <lastmod>2019-05-21T12:52:54.235Z</lastmod>
+        <lastmod>2019-05-21T12:52:54.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://muxiaobai.github.io/categories/Travis/</loc>
+        <lastmod>2019-06-10T05:13:21.825Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>

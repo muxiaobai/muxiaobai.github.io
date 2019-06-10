@@ -9,7 +9,8 @@ install:
 script:
   - hexo generate
 after_script:
-  - cd ./public
+  - hexo deploy
+#  - cd ./public
 #  - git init
 #  - git config user.name "${USER_NAME}"
 #  - git config user.email "${EMAIL}"
@@ -19,4 +20,4 @@ after_script:
 # E: Build LifeCycle
 branches:
   only:
-    - WorkSpace
+    - dev
