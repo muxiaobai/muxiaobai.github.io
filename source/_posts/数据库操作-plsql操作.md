@@ -2,7 +2,7 @@
 title: 数据库操作-plsql操作
 date: 2018-11-07 05:58:38
 tags: [常用代码]
-categories: [SQL]
+categories: [SQL,数据库]
 description: "plsql的一些操作"
 ---
 
@@ -38,3 +38,21 @@ plsql Tools ------->Compare User Objects 选择另外一个库
 需要将csv另存为csv
 
 plsql Tools ------->Text Importer---->Open data file  --->Data to Oracle 选择Owener Table
+
+#### 记住密码多个账号，账号密码等
+
+Tools->Preferences
+
+tools -> Preferences -> User Interface - Options
+勾选 Autosave username, ，保存即可
+
+tools -> Preferences -> Oracle -> logon History
+
+Definition->Store history,Store with password
+
+->fixed user
+按格式：user/password@数据库 添加一个fixed user保存即可
+zzz/sdsdfs@192.168.1.12:1555/orcl
+
+
+[参考](https://www.cnblogs.com/Chary/p/No00008F.html)

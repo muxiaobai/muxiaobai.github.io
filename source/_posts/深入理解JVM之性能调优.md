@@ -2,16 +2,17 @@
 title: 深入理解JVM之性能调优
 date: 2017-08-29 13:58:04
 tags: [jvm,tomcat]
-categories: java
+categories: [java,性能优化]
 description: "JVM参数调优以及日志展示"
 ---
 
 
 
 先放一下我在慕课网上的三篇关于JVM的一些手记
-[深入理解JVM之基本构架](http://www.imooc.com/article/6143)
-[深入理解JVM之对象生命周期](http://www.imooc.com/article/6319)
-[深入理解JVM之类加载](http://www.imooc.com/article/6461)
+- [深入理解JVM之基本构架](http://www.imooc.com/article/6143)
+- [深入理解JVM之对象生命周期](http://www.imooc.com/article/6319)
+- [深入理解JVM之类加载](http://www.imooc.com/article/6461)
+
 本次 [JVM参数](http://www.cnblogs.com/redcreen/archive/2011/05/04/2037057.html)
 [GC知识要点回顾,有案例](http://blog.csdn.net/firecoder/article/details/7225654)
 [“-Xmx1024m -Xms1024m -Xmn512m -Xss256k”——Java运行参数(转)](http://blog.csdn.net/a503921892/article/details/39048889)
@@ -20,7 +21,7 @@ web监测工具Javamelody.jar[Javamelody](https://muxiaobai.github.io/2017/08/02
 jdk自带工具：
 jmc: java mission  control (飞行记录器(黑匣子))
 监测:jconsole
-监视jvisualvm   
+监视:jvisualvm   
 
 jvisualvm工具插件下载地址修改为[https://visualvm.github.io/pluginscenters.html](https://visualvm.github.io/pluginscenters.html)在这个上面查找到对应的版本，进行更新。
 
@@ -142,7 +143,7 @@ gc日志 配置Catalina.bat JAVA_OPTS
 ##### 根据gc log分析收集器
 
 [日志含义及分析](http://blog.csdn.net/doc_sgl/article/details/46594123)
-默认的垃圾收集器 PS Scavenge 和PS MarkSweep  对应 PS Eden 和PS Old
+默认的垃圾收集器 PS Scavenge 和PS MarkSweep  对应 PS Eden 和PS Old, Parallel Scavenge 和Serial Old
 `-XX:+UseParallelGC `
 ```
 Java HotSpot(TM) 64-Bit Server VM (25.111-b14) for windows-amd64 JRE (1.8.0_111-b14), built on Sep 22 2016 19:24:05 by "java_re" with MS VC++ 10.0 (VS2010)
@@ -161,6 +162,7 @@ CommandLine flags: -XX:InitialHeapSize=1073741824 -XX:MaxHeapSize=1073741824 -XX
 
 各种收集器的搭配 
 ![jvm](深入理解JVM之性能调优/gc收集器.jpg)
+![jvm参数设置](深入理解JVM之性能调优/jvmGC.png)
 
 参数：`-XX:+UseConcMarkSweepGC -XX:+UseParNewGC ` 
 

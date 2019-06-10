@@ -6,6 +6,19 @@ categories: [Linux,java,hadoop]
 description: "最近在研究hadoop，又牵扯到了java的linux安装，记录一下，方便日后查询"
 ---
 
+```
+修改/etc/profile文件 
+如果你的计算机仅仅作为开发使用时推荐使用这种方法，因为所有用户的shell都有权使用这些环境变量，可能会给系统带来安全性问题。 
+·用文本编辑器打开/etc/profile 
+·在profile文件末尾加入： 
+export JAVA_HOME=/usr/local/jdk1.8.0_144 
+export CLASSPATH=.:$JAVA_HOME/lib 
+export PATH=$JAVA_HOME/bin:$PATH 
+
+```
+> source /etc/profile
+
+
 原本是有openjdk的但是为了少踩点坑，准备换成HotSpot，于是就遇到了很多问题，总是更换失败。
 
 环境变量/etc/profile  .bashrc .profile

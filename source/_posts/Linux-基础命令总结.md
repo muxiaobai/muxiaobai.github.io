@@ -19,7 +19,7 @@ description: "文件、文件内容、目录、压缩打包、帮助"
 
 `rm`: 删除文件(Remove) -rf 强制递归删除
 
-`ln`: 创建文件链接(link)
+`ln`: 创建文件链接(link)  ln -s yuan   mubiao
 
 ##### -r: 递归
 
@@ -61,6 +61,8 @@ description: "文件、文件内容、目录、压缩打包、帮助"
 
 `xdvi`: (TeX文本处理器输出二进制文件)(大部分不支持)
 
+`>、<、>>` ：echo ssss > aaa.txt      写入   echo  ssss >> aaa.txt 追加ssss到文件aaa.txt   cat  < aaa.txt 读出文件到cat命令中作为输入
+
 ##### -n/N:行
 
 ##### -h/H:帮助
@@ -69,7 +71,7 @@ description: "文件、文件内容、目录、压缩打包、帮助"
 
 `stat`: 文件属性(status),修改时间，创建时间
 
-`file`: 文件类型，txt ，tar.gz等
+`file`: 文件类型，txt ，tar.gz等，文件大小用 ls -lh
 
 `du`: 文件占用的磁盘空间(disk usage,磁盘使用情况)
 

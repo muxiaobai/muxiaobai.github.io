@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+
+
+    <!--[if lt IE 9]>
+        <style>body {display: none; background: none !important} </style>
+        <meta http-equiv="Refresh" Content="0; url=//outdatedbrowser.com/" />
+    <![endif]-->
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="format-detection" content="telephone=no" />
+<meta name="author" content="Mu Xiaobai(慕小白)" />
+
+
+
+<meta name="description" content="毕业了，总要有点东西，那就毕业设计感悟一下吧">
+<meta property="og:type" content="article">
+<meta property="og:title" content="毕业设计心得">
+<meta property="og:url" content="https://muxiaobai.github.io/2017/06/29/毕业设计心得/index.html">
+<meta property="og:site_name" content="技术笔记">
+<meta property="og:description" content="毕业了，总要有点东西，那就毕业设计感悟一下吧">
+<meta property="og:image" content="https://muxiaobai.github.io/2017/06/29/毕业设计心得/20170629.png">
+<meta property="og:updated_time" content="2017-06-29T07:46:15.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="毕业设计心得">
+<meta name="twitter:description" content="毕业了，总要有点东西，那就毕业设计感悟一下吧">
+<meta name="twitter:image" content="https://muxiaobai.github.io/2017/06/29/毕业设计心得/20170629.png">
+
+<link rel="apple-touch-icon" href= "/apple-touch-icon.png">
+
+
+    <link rel="alternative" href="/atom.xml" title="技术笔记" type="application/atom+xml">
+
+
+
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+
+
+    <link href="//cdn.bootcss.com/animate.css/3.5.1/animate.min.css" rel="stylesheet">
+
+
+
+    <link href="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet">
+
+
+
+    <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+    <link href="//cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-minimal.css" rel="stylesheet">
+
+
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+<link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+
+
+<title>毕业设计心得 | 技术笔记</title>
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+
+<script>
+    var yiliaConfig = {
+        fancybox: true,
+        animate: true,
+        isHome: false,
+        isPost: true,
+        isArchive: false,
+        isTag: false,
+        isCategory: false,
+        open_in_new: true,
+        fancybox_js: "//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.js",
+        scrollreveal: "//cdn.bootcss.com/scrollReveal.js/3.1.4/scrollreveal.min.js",
+        search: true
+    }
+</script>
+
+
+    <script>
+        yiliaConfig.jquery_ui = [true, "//cdn.bootcss.com/jqueryui/1.10.4/jquery-ui.min.js", "//cdn.bootcss.com/jqueryui/1.10.4/css/jquery-ui.min.css"];
+    </script>
+
+
+
+    <script> yiliaConfig.rootUrl = "\/";</script>
+
+
+
+    <script src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-577a08f17286c0c0"></script>
+
+
+
+    <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "//hm.baidu.com/hm.js?9d6c9084c010ea425bd063ef91167131";
+            var s = document.getElementsByTagName("script")[0]; 
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+
+
+</head>
+ 
+<!-- add Fork Me On Github -->
+
+<a href="https://github.com/muxiaobai">
+<img style="position: absolute; top: 0; right: 0; border: 0;z-index: 1000" src="https://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png" alt="Fork me on GitHub">
+</a>
+<!-- End Fork Me On Github  -->
+
+<body>
+ 
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <a href="/" class="profilepic">
+            <img src="/img/avatars.jpg" class="animated zoomIn">
+        </a>
+        <hgroup>
+          <h1 class="header-author"><a href="/">Mu Xiaobai(慕小白)</a></h1>
+        </hgroup>
+
+        
+        <p class="header-subtitle">有输入,有输出</p>
+        
+
+        
+            <form id="search-form">
+            <input type="text" id="local-search-input" name="q" results="0" placeholder="search..." class="search form-control" autocomplete="off" autocorrect="off" searchonload="false" />
+            <i class="fa fa-times" onclick="resetSearch()"></i>
+            </form>
+            <div id="local-search-result"></div>
+            <p class='no-result'>No results found <i class='fa fa-spinner fa-pulse'></i></p>
+        
+
+
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        <div class="icon-wrap icon-link hide" data-idx="2">
+                            <div class="loopback_l"></div>
+                            <div class="loopback_r"></div>
+                        </div>
+                        
+                        
+                    </div>
+                    
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>菜单</li>
+                        <li>标签</li>
+                        
+                        <li>友情链接</li>
+                        
+                        
+                    </ul>
+                </div>
+            </div>
+        
+
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a href="/">主页</a></li>
+                        
+                            <li><a href="/archives/">所有文章</a></li>
+                        
+                            <li><a href="/tags/">标签云</a></li>
+                        
+                            <li><a href="/about/">关于我</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" target="_blank" href="mailto:zpf12345678910@gmail.com" title="Email"></a>
+                            
+                                <a class="fa 新浪微博" target="_blank" href="http://weibo.com/u/1751073805" title="新浪微博"></a>
+                            
+                                <a class="fa GitHub" target="_blank" href="https://github.com/muxiaobai" title="GitHub"></a>
+                            
+                                <a class="fa RSS" target="_blank" href="/atom.xml" title="RSS"></a>
+                            
+                                <a class="fa 网易云音乐" target="_blank" href="http://music.163.com/#//user/home?id=270611521" title="网易云音乐"></a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/2016/">2016</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/2017/">2017</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/2018/">2018</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/API/">API</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS/">CSS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Cache/">Cache</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Canvas/">Canvas</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Collection/">Collection</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Concurrent/">Concurrent</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Error/">Error</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Exception/">Exception</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/File/">File</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Github/">Github</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hibernate/">Hibernate</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/I-O/">I/O</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Iterator/">Iterator</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/List/">List</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Map/">Map</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Object/">Object</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Session/">Session</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Set/">Set</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Shell/">Shell</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Socket/">Socket</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Spring/">Spring</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Storage/">Storage</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Struts/">Struts</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Sublime/">Sublime</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Thread/">Thread</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Throwable/">Throwable</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/directory/">directory</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/file/">file</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jQuery实践/">jQuery实践</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">javascript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jvm/">jvm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mongo/">mongo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nginx/">nginx</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/prototype/">prototype</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/redis/">redis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/svn/">svn</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tar/">tar</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tomcat/">tomcat</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/分析/">分析</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/前沿技术/">前沿技术</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/前端/">前端</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/后端/">后端</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/基础/">基础</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/基础命令/">基础命令</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/定位/">定位</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/工具/">工具</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/常用代码/">常用代码</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/常用命令/">常用命令</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/排序/">排序</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/插件/">插件</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/日志/">日志</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/目录/">目录</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/系统/">系统</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/编码/">编码</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/编辑器/">编辑器</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/网站/">网站</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/行高/">行高</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/设计/">设计</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/软件/">软件</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/连接池/">连接池</a></li></ul>
+                    </div>
+                </section>
+                
+                
+                
+                <section class="switch-part switch-part3">
+                    <div id="js-friends">
+                    
+                      <a target="_blank" class="main-nav-link switch-friends-link" href="https://hexo.io">Hexo</a>
+                    
+                      <a target="_blank" class="main-nav-link switch-friends-link" href="https://pages.github.com/">GitHub</a>
+                    
+                      <a target="_blank" class="main-nav-link switch-friends-link" href="http://moxfive.xyz/">MOxFIVE</a>
+                    
+                      <a target="_blank" class="main-nav-link switch-friends-link" href="http://cmsblogs.com/">CMSBLOGS</a>
+                    
+                    </div>
+                </section>
+                
+
+                
+            </div>
+        </div>
+    </header>                
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">Mu Xiaobai(慕小白)</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                <img src="/img/avatars.jpg" class="animated zoomIn">
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="回到主页">Mu Xiaobai(慕小白)</a></h1>
+            </hgroup>
+            
+            <p class="header-subtitle">有输入,有输出</p>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/">主页</a></li>
+                
+                    <li><a href="/archives/">所有文章</a></li>
+                
+                    <li><a href="/tags/">标签云</a></li>
+                
+                    <li><a href="/about/">关于我</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" target="_blank" href="mailto:zpf12345678910@gmail.com" title="Email"></a>
+                            
+                                <a class="fa 新浪微博" target="_blank" href="http://weibo.com/u/1751073805" title="新浪微博"></a>
+                            
+                                <a class="fa GitHub" target="_blank" href="https://github.com/muxiaobai" title="GitHub"></a>
+                            
+                                <a class="fa RSS" target="_blank" href="/atom.xml" title="RSS"></a>
+                            
+                                <a class="fa 网易云音乐" target="_blank" href="http://music.163.com/#//user/home?id=270611521" title="网易云音乐"></a>
+                            
+                        </ul>
+            </nav>
+        </header>                
+    </div>
+    <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
+</nav>
+      <div class="body-wrap"><article id="post-毕业设计心得" class="article article-type-post" itemscope itemprop="blogPost">
+ 
+  
+    <div class="article-meta">
+      <a href="/2017/06/29/毕业设计心得/" class="article-date">
+      <time datetime="2017-06-29T06:20:02.000Z" itemprop="datePublished">2017-06-29</time>
+</a>
+    </div>
+  
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      毕业设计心得
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/总结/">总结</a>
+    </div>
+
+
+        
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端/">前端</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/后端/">后端</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/系统/">系统</a></li></ul>
+    </div>
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <p>&#x81EA;&#x6211;&#x5237;&#x65B0;&#xFF1A;<code>&lt;meta http-equiv=&quot;refresh&quot; content=&quot;0.1&quot;&gt;</code>&#x66F4;&#x6301;&#x4E45;&#xFF0C;&#x66F4;&#x5065;&#x58EE;<br>&#x6301;&#x7EED;&#x4E24;&#x4E2A;&#x591A;&#x6708;&#x7684;&#x6BD5;&#x4E1A;&#x8BBE;&#x8BA1;&#x751F;&#x6D3B;&#x5DF2;&#x7ECF;&#x7ED3;&#x675F;&#x4E86;&#xFF0C;&#x4E5F;&#x7ECF;&#x5386;&#x4E86;&#x6700;&#x9ED1;&#x6697;&#x7684;&#x7B54;&#x8FA9;&#xFF0C;&#x6700;&#x540E;&#x5B8C;&#x6574;&#x7684;&#x901A;&#x8FC7;&#x4E86;&#x5B66;&#x4E1A;&#xFF0C;&#x8FD8;&#x662F;&#x6BD4;&#x8F83;&#x6B23;&#x6170;&#x7684;&#xFF0C;&#x4E0B;&#x9762;&#x8BF4;&#x4E00;&#x4E9B;&#xFF0C;&#x6211;&#x5199;&#x6BD5;&#x4E1A;&#x8BBE;&#x8BA1;&#x7684;&#x4E00;&#x4E9B;&#x6536;&#x83B7;&#x3002;</p>
+<p>&#x60F3;&#x8981;&#x8DDF;&#x968F;&#x6F6E;&#x6D41;&#xFF0C;&#x6211;&#x81EA;&#x5DF1;&#x4E5F;&#x7528;&#x4E86;&#x4E00;&#x4E0B;github&#x4F5C;&#x4E3A;&#x6211;&#x7684;&#x4EE3;&#x7801;&#x4ED3;&#x5E93;&#xFF0C;&#x611F;&#x89C9;&#x8FD8;&#x4E0D;&#x9519;&#x3002;&#x8BBE;&#x8BA1;&#x7684;&#x7CFB;&#x7EDF;&#x4E3B;&#x8981;&#x5206;&#x4E3A;&#x4E24;&#x90E8;&#x5206;&#xFF0C;&#x524D;&#x7AEF;&#x548C;&#x540E;&#x7AEF;&#xFF0C;&#x5206;&#x522B;&#x91C7;&#x7528;spring-boot&#x548C;vue&#x6765;&#x505A;&#x7684;&#xFF0C;&#x4E2D;&#x95F4;&#x91C7;&#x7528;jersey&#x4F5C;&#x4E3A;&#x670D;&#x52A1;&#x3002;&#xFF08;&#x5B9E;&#x9645;&#x4E0A;&#xFF0C;&#x73B0;&#x5B9E;&#x5F00;&#x53D1;&#x4E2D;&#x751F;&#x4EA7;&#x4E2D;&#x5F88;&#x5C11;&#x4F7F;&#x7528;&#x8FD9;&#x79CD;&#x65B9;&#x5F0F;&#x7684;&#xFF0C;&#x6BD5;&#x7ADF;&#x8FD9;&#x53EA;&#x662F;&#x4E00;&#x4E2A;&#x5C1D;&#x8BD5;&#x3002;&#x56E0;&#x4E3A;jersey&#x63A5;&#x53E3;&#xFF0C;&#x670D;&#x52A1;&#x4E4B;&#x7C7B;&#x7684;&#x4E1C;&#x897F;&#x90FD;&#x662F;&#x5728;&#x7CFB;&#x7EDF;&#x5BF9;&#x63A5;&#x4E0A;&#x4F7F;&#x7528;&#xFF0C;&#x9996;&#x5148;&#x8FD9;&#x4E2A;&#x573A;&#x666F;&#x5C31;&#x4E0D;&#x592A;&#x5408;&#x9002;&#xFF0C;&#x4F46;&#x662F;&#x4E3A;&#x4E86;&#x719F;&#x6089;&#x65B0;&#x6280;&#x672F;&#xFF0C;&#x5C1D;&#x8BD5;&#x4E00;&#x4E0B;&#xFF0C;&#x4E5F;&#x4E0D;&#x4E3A;&#x8FC7;&#xFF09;&#x6211;&#x7684;&#x6BD5;&#x4E1A;&#x8BBE;&#x8BA1;&#x5168;&#x90E8;&#x4EE3;&#x7801;&#x63D0;&#x4EA4;&#x5728;github&#x4E0A;&#x9762;&#xFF0C;&#x5730;&#x5740;&#xFF1A;<a href="https://github.com/muxiaobai/graduation-project" target="_blank" rel="external">graduation-project</a>&#x3002;</p>
+<h4 id="&#xFF08;1&#xFF09;&#x4EE3;&#x7801;&#x7BA1;&#x7406;"><a href="#&#xFF08;1&#xFF09;&#x4EE3;&#x7801;&#x7BA1;&#x7406;" class="headerlink" title="&#xFF08;1&#xFF09;&#x4EE3;&#x7801;&#x7BA1;&#x7406;"></a>&#xFF08;1&#xFF09;&#x4EE3;&#x7801;&#x7BA1;&#x7406;</h4><p>&#x4EE3;&#x7801;&#x7248;&#x672C;&#x63A7;&#x5236;&#x91C7;&#x7528;git&#xFF0C;&#x4E3B;&#x8981;&#x7684;&#x4EE3;&#x7801;&#x4E00;&#x76F4;&#x6258;&#x7BA1;&#x5728;Github&#x4E0A;&#xFF0C;&#x5B9E;&#x9645;&#x4E0A;&#x7CFB;&#x7EDF;&#x5927;&#x4F53;&#x4E0A;&#x53EF;&#x4EE5;&#x5206;&#x4E3A;&#x4E24;&#x4E2A;&#x5C0F;&#x6A21;&#x5757;&#xFF0C;&#x6570;&#x636E;&#x65B9;&#x9762;&#x7684;&#x63A5;&#x53E3;&#xFF0C;&#x548C;&#x9875;&#x9762;&#x65B9;&#x9762;&#x7684;&#x5C55;&#x793A;&#x3002;&#x6240;&#x4EE5;&#x6B64;&#x5C31;&#x76F4;&#x63A5;&#x5229;&#x7528;Github&#x4EE3;&#x7801;&#x6258;&#x7BA1;&#x5E73;&#x53F0;&#xFF0C;&#x5176;&#x4E2D;&#x4E3B;&#x5206;&#x652F;&#x4E3A;master&#x5206;&#x652F;&#xFF0C;&#x9879;&#x76EE;&#x8FD8;&#x5305;&#x542B;&#x4E24;&#x4E2A;&#x5206;&#x652F;spring-boot&#x548C;vue&#x5206;&#x652F;&#xFF0C;&#x5404;&#x81EA;&#x63D0;&#x4EA4;&#x5230;&#x5404;&#x81EA;&#x7684;&#x5206;&#x652F;&#x4E0A;&#xFF0C;&#x5F53;&#x4E00;&#x4E2A;&#x529F;&#x80FD;&#x5B8C;&#x6210;&#x540E;&#xFF0C;&#x76F4;&#x63A5;&#x5408;&#x5E76;&#x5230;master&#x5206;&#x652F;&#x4E0A;&#x6765;&#x3002;&#x786E;&#x4FDD;master&#x5206;&#x652F;&#x6C38;&#x8FDC;&#x662F;&#x6700;&#x65B0;&#x7684;&#xFF0C;&#x5E76;&#x4E14;&#x662F;&#x53EF;&#x4EE5;&#x90E8;&#x7F72;&#x8FD0;&#x884C;&#x7684;&#x5206;&#x652F;&#x3002;</p>
+<h4 id="&#xFF08;2&#xFF09;&#x540E;&#x7AEF;&#x90E8;&#x5206;"><a href="#&#xFF08;2&#xFF09;&#x540E;&#x7AEF;&#x90E8;&#x5206;" class="headerlink" title="&#xFF08;2&#xFF09;&#x540E;&#x7AEF;&#x90E8;&#x5206;"></a>&#xFF08;2&#xFF09;&#x540E;&#x7AEF;&#x90E8;&#x5206;</h4><p>&#x6574;&#x4E2A;&#x6570;&#x636E;&#x63A5;&#x53E3;&#x91C7;&#x7528;spring-boot&#x6846;&#x67B6;&#xFF0C;spring&#x6280;&#x672F;&#xFF0C;&#x51E0;&#x4E4E;&#x662F;&#x73B0;&#x5728;&#x7684;Jave Web&#x9879;&#x76EE;&#x90FD;&#x4F1A;&#x7528;&#x5230;&#x7684;&#x6846;&#x67B6;&#xFF0C;&#x4F46;&#x662F;&#x4F20;&#x7EDF;&#x7684;spring&#x9700;&#x8981;&#x914D;&#x7F6E;&#x5927;&#x91CF;&#x7684;xml&#x914D;&#x7F6E;&#x6587;&#x4EF6;&#xFF0C;&#x503C;&#x5F97;&#x5E86;&#x5E78;&#x7684;&#x662F;&#xFF1A;spring-boot&#x7684;&#x51FA;&#x73B0;&#x89E3;&#x51B3;&#x4E86;&#x8FD9;&#x4E00;&#x95EE;&#x9898;&#x3002;spring-boot&#x9879;&#x76EE;&#x751A;&#x81F3;&#x5230;&#x670D;&#x52A1;&#x5668;&#x4E0A;&#x76F4;&#x63A5;&#x5C31;&#x53EF;&#x4EE5;&#x8FD0;&#x884C;&#xFF0C;&#x53EA;&#x9700;&#x8981;&#x6709;java&#x73AF;&#x5883;&#x5C31;OK&#x4E86;&#x3002;&#x771F;&#x50CF;spring-boot&#x5F00;&#x53D1;&#x8005;&#x6240;&#x8BF4;&#xFF1A;&#x201C;just run&#x201D;&#x3002;&#x800C;&#x4E14;spring-boot&#x9ED8;&#x8BA4;&#x7F16;&#x7801;&#x662F;utf-8&#x3002;Spring-boot&#x6846;&#x67B6;&#x7684;&#x4F7F;&#x7528;&#x53EF;&#x4EE5;&#x8BA9;&#x9879;&#x76EE;&#x7684;&#x6784;&#x5EFA;&#x53D8;&#x5F97;&#x66F4;&#x52A0;&#x7684;&#x65B9;&#x4FBF;&#x3002;Spring-boot&#x63D0;&#x4F9B;&#x5927;&#x91CF;&#x7684;&#x7B2C;&#x4E09;&#x65B9;&#x5E93;&#xFF08;libraries&#xFF09;&#xFF0C;&#x8FD9;&#x6837;&#x53EF;&#x4EE5;&#x8BA9;&#x6211;&#x4EEC;&#x5FEB;&#x901F;&#x7684;&#x521B;&#x5EFA;&#x4E00;&#x4E2A;spring&#x5DE5;&#x7A0B;&#xFF0C;&#x4E0B;&#x9762;&#x7684;&#x6570;&#x636E;&#x5E93;&#x8BBF;&#x95EE;&#x5C31;&#x662F;&#x4E00;&#x4E2A;&#x4F8B;&#x5B50;&#x3002;&#x8FD9;&#x662F;&#x4F7F;&#x7528;spring-boot&#x7684;&#x4F18;&#x52BF;&#x3002;<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">@ComponentScan(basePackages = { &quot;dao&quot;,&quot;service&quot;,&quot;domain&quot;,&quot;config&quot;})//&#x626B;&#x63CF;&#x7EC4;&#x4EF6;</div><div class="line">@EnableJpaRepositories(&quot;dao&quot;) // JPA&#x626B;&#x63CF;&#x8BE5;&#x5305;&#x8DEF;&#x5F84;&#x4E0B;&#x7684;Repositories</div><div class="line">@EntityScan(basePackages = { &quot;java.lang.Object&quot;,&quot;domain&quot;}) // &#x626B;&#x63CF;&#x5B9E;&#x4F53;&#x7C7B;</div><div class="line">@EnableAutoConfiguration</div><div class="line">@SpringBootApplication//&#x9879;&#x76EE;&#x542F;&#x52A8;&#x7C7B;</div><div class="line">@EnableConfigurationProperties({RedisProperties.class,DatabaseProperties.class}) </div><div class="line">public class Application {</div><div class="line">    //&#x6CE8;&#x518C;jersey</div><div class="line">    @Bean</div><div class="line">    public ServletRegistrationBean jerseyServlet() {</div><div class="line">        ServletRegistrationBean registration = new ServletRegistrationBean(  new ServletContainer(),&quot;/rest/*&quot;);</div><div class="line">        registration.addInitParameter(ServletProperties.JAXRS_APPLICATION_CLASS, JerseyConfig.class.getName());</div><div class="line">        return registration;</div><div class="line">    }</div><div class="line">    public static void main(String[] args) {</div><div class="line">        SpringApplication.run(Application.class, args);</div><div class="line">    }</div></pre></td></tr></table></figure></p>
+<p>&#x8FD9;&#x5C31;&#x662F;spring-boot&#x7684;&#x542F;&#x52A8;&#x7C7B;&#xFF0C;&#x5F88;&#x7B80;&#x5355;&#xFF0C;&#x5F88;&#x539F;&#x59CB;&#x3002;<code>gradle bootRun</code> </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">@Repository</div><div class="line">public interface UserDao  extends JpaRepository&lt;User, Long&gt;{</div><div class="line">    public User getUserById(Long id);</div><div class="line">    public User findByUsername(String username);</div><div class="line">}</div></pre></td></tr></table></figure>
+<p>&#x6570;&#x636E;&#x5E93;&#x91C7;&#x7528;MySQL&#x6765;&#x505A;&#xFF0C;&#x4FDD;&#x5B58;&#x6570;&#x636E;&#x4F7F;&#x7528;spring-boot-starter-data-jpa&#x8FD9;&#x4E2A;&#x5E93;&#xFF0C;&#x8FD9;&#x4E2A;&#x662F;Spring-boot&#x63D0;&#x4F9B;&#x7684;library&#xFF0C;&#x548C;&#x4F20;&#x7EDF;&#x8BBF;&#x95EE;&#x76F8;&#x6BD4;&#xFF0C;&#x65B0;&#x7684;&#x7ED3;&#x5408;&#x6A21;&#x5F0F;&#x76F4;&#x63A5;&#x7EE7;&#x627F;spring-boot-starter-data-jpa&#x4E2D;&#x7684;JpaRepository&#x5373;&#x53EF;&#x5B9E;&#x73B0;&#x6570;&#x636E;&#x7684;&#x64CD;&#x4F5C;&#xFF0C;&#x8FD9;&#x53EF;&#x4EE5;&#x51CF;&#x5C11;CRUD&#x7B49;&#x64CD;&#x4F5C;&#x4EE3;&#x7801;&#x7684;&#x7F16;&#x5199;&#xFF0C;&#x4E0D;&#x8FC7;&#x5BF9;&#x4E8E;&#x4F20;&#x7EDF;&#x7684;DAO&#xFF0C;Service&#x6765;&#x8BF4;&#xFF0C;&#x8FD9;&#x79CD;&#x90FD;&#x662F;&#x4E00;&#x4E9B;&#x6362;&#x6C64;&#x4E0D;&#x6362;&#x836F;&#x7684;&#x4E1C;&#x897F;&#xFF0C;&#x5F88;&#x597D;&#x8F6C;&#x6362;&#x3002;&#x8FD8;&#x6709;&#x4E00;&#x70B9;&#x4E0D;&#x540C;&#x7684;&#x662F;&#x8C03;&#x7528;Service&#x7684;&#x65B9;&#x5F0F;&#x3002;&#x8FD9;&#x91CC;&#x91C7;&#x7528;Jersey&#x63D0;&#x4F9B;&#x63A5;&#x53E3;&#x670D;&#x52A1;&#x3002;<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">@POST</div><div class="line">   @Path(&quot;add&quot;)</div><div class="line">   @Consumes(&quot;application/json;charset=UTF-8&quot;)</div><div class="line">   @Produces(MediaType.APPLICATION_JSON)</div><div class="line">   public Map&lt;String, Object&gt; post(@RequestBody User user){</div><div class="line">       returnValue.clear();</div><div class="line">       userService.save(user);</div><div class="line">       returnValue.put(&quot;code&quot;, 200);</div><div class="line">       returnValue.put(&quot;msg&quot;, &quot;success&quot;);</div><div class="line">       returnValue.put(&quot;action&quot;, &quot;add &quot;);</div><div class="line">       returnValue.put(&quot;data&quot;, user);</div><div class="line">       return returnValue;</div><div class="line">   }</div></pre></td></tr></table></figure></p>
+<p>&#x91C7;&#x7528;Jersey&#x6765;&#x5B9E;&#x73B0;RESTful&#xFF0C;&#x63D0;&#x4F9B;&#x6570;&#x636E;&#x7684;&#x63A5;&#x53E3;&#xFF0C;Jersey&#x91C7;&#x7528;&#x4E86;Annotation&#x673A;&#x5236;&#xFF0C;&#x4E0A;&#x9762;&#x7684;&#x4EE3;&#x7801;&#x5C31;&#x662F;&#x3002;&#x6240;&#x6709;&#x7684;HTTP&#x76F8;&#x5173;&#x7684;&#x53C2;&#x6570;&#x8BBE;&#x7F6E;&#x548C;&#x65B9;&#x6CD5;&#x90FD;&#x91C7;&#x7528;&#x6807;&#x6CE8;&#x5B9E;&#x73B0;&#x3002;Jersey&#x662F;&#x4E00;&#x4E2A;&#x5E73;&#x53F0;&#xFF0C;&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x6269;&#x5927;&#x81EA;&#x5DF1;&#x7684;&#x9700;&#x8981;&#xFF0C;&#x5982;&#x6D88;&#x606F;&#x683C;&#x5F0F;&#xFF0C;&#x867D;&#x7136;Jersey&#x5DF2;&#x7ECF;&#x63D0;&#x4F9B;&#x4E86;java&#x7684;&#x57FA;&#x672C;&#x6570;&#x636E;&#x7C7B;&#x578B;&#xFF0C;JSON&#xFF0C;XML&#x548C;&#x5176;&#x4ED6;&#x7C7B;&#x578B;&#xFF0C;&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x5F88;&#x5BB9;&#x6613;&#x5730;&#x6269;&#x5C55;&#x4ED6;&#x4EEC;&#x7684;&#x683C;&#x5F0F;&#x3002;&#x6D4B;&#x8BD5;&#x7684;&#x65F6;&#x5019;&#x6211;&#x4EEC;&#x91C7;&#x7528;soapUI&#x5DE5;&#x5177;&#x6765;&#x68C0;&#x6D4B;&#x63A5;&#x53E3;&#x7684;&#x6B63;&#x786E;&#x6027;&#x3002;</p>
+<h4 id="&#xFF08;3&#xFF09;&#x524D;&#x7AEF;&#x90E8;&#x5206;"><a href="#&#xFF08;3&#xFF09;&#x524D;&#x7AEF;&#x90E8;&#x5206;" class="headerlink" title="&#xFF08;3&#xFF09;&#x524D;&#x7AEF;&#x90E8;&#x5206;"></a>&#xFF08;3&#xFF09;&#x524D;&#x7AEF;&#x90E8;&#x5206;</h4><p>&#x91C7;&#x53D6;node+webpack+vue+vuex+vue-router+axios&#x8BBE;&#x8BA1;&#x7F51;&#x7AD9;&#x7684;&#x524D;&#x53F0;&#x548C;&#x540E;&#x53F0;&#xFF0C;&#x5176;&#x4E2D;node&#x662F;&#x57FA;&#x4E8E;V8&#x5B9E;&#x73B0;&#x7684;&#x4E00;&#x4E2A;&#x8FD0;&#x884C;&#x73AF;&#x5883;&#xFF0C;&#x6253;&#x5305;&#x5DE5;&#x5177;&#x548C;&#x521B;&#x5EFA;&#x9879;&#x76EE;&#x91C7;&#x7528;&#x7684;&#x662F;webpack&#xFF0C;&#x5269;&#x4E0B;&#x7684;&#x90FD;&#x662F;vue&#x7684;&#x5468;&#x8FB9;&#x751F;&#x6001;&#x7CFB;&#x7EDF;&#xFF0C;&#x63D0;&#x4F9B;&#x7684;&#x6846;&#x67B6;&#xFF0C;&#x5176;&#x4E2D;vuex&#x662F;&#x7BA1;&#x72B6;&#x6001;&#xFF0C;vue-router&#x7BA1;&#x8DEF;&#x7531;&#x8DF3;&#x8F6C;&#xFF0C; axios&#x89E3;&#x51B3;&#x8DE8;&#x57DF;&#x3002;&#x53E6;&#x5916;&#x524D;&#x7AEF;&#x8FD8;&#x91C7;&#x7528;&#x4E86;&#x997F;&#x4E86;&#x4E48;&#x7684;element-UI&#x548C;Mint-UI&#x8FD9;&#x4E24;&#x4E2A;&#x7EC4;&#x4EF6;&#xFF0C;&#x8FD9;&#x79CD;&#x7EC4;&#x4EF6;&#x53EF;&#x4EE5;&#x66F4;&#x65B9;&#x4FBF;&#x7684;&#x5B9E;&#x73B0;&#x9875;&#x9762;&#x3002;&#x53E6;&#x5916;Chrome&#x4E2D;&#x5DF2;&#x7ECF;&#x6709;&#x4E86;vue-DevTools&#x5DE5;&#x5177;&#x4E86;&#xFF0C;&#x8FD9;&#x662F;VUE&#x7EC4;&#x4EF6;&#x7684;&#x4E00;&#x4E2A;&#x8C03;&#x8BD5;&#x5DE5;&#x5177;&#xFF0C;&#x975E;&#x5E38;&#x597D;&#x7528;&#x3002;<br>&#x6211;&#x4EEC;&#x5E73;&#x65F6;&#x5927;&#x591A;&#x7528;js&#x53BB;&#x64CD;&#x4F5C;dom&#xFF0C;&#x6700;&#x5E38;&#x7528;&#x7684;&#x8FD8;&#x662F;jQuery&#x8FD9;&#x4E2A;js&#x5DE5;&#x5177;&#x3002;&#x8FD9;&#x91CC;&#x4F7F;&#x7528;vue&#x4E5F;&#x662F;&#x4E00;&#x79CD;&#x65B0;&#x7684;&#x5C1D;&#x8BD5;&#xFF0C;vue.js&#x5219;&#x662F;&#x4F7F;&#x7528;&#x4E86;&#x6570;&#x636E;&#x7ED1;&#x5B9A;&#x9A71;&#x52A8;&#x6765;&#x64CD;&#x4F5C;dom&#x7684;&#xFF0C;&#x4E5F;&#x5C31;&#x662F;&#x8BF4;&#x521B;&#x5EFA;&#x4E86;view&#x548C;model&#x4E4B;&#x95F4;&#x7684;&#x7ED1;&#x5B9A;&#x540E;&#xFF0C;&#x5F53;model&#x6570;&#x636E;&#x5C42;&#x53D1;&#x751F;&#x53D8;&#x5316;&#x65F6;&#xFF0C;view&#x7684;dom&#x5C31;&#x4F1A;&#x53D1;&#x751F;&#x76F8;&#x5E94;&#x53D8;&#x5316;&#x3002;mvvm&#x5373;&#x662F;model-view-viewmodel&#xFF0C;model&#x548C;view&#x4E4B;&#x95F4;&#x7684;&#x8854;&#x63A5;&#x4EA4;&#x4E92;&#x90FD;&#x662F;&#x901A;&#x8FC7;viewmodel&#x6765;&#x5B9E;&#x73B0;&#x7684;&#x3002;viewmodel&#x5C31;&#x662F;&#x521B;&#x5EFA;&#x4E00;&#x4E2A;vue&#x5B9E;&#x4F8B;&#xFF0C;vue&#x5B9E;&#x4F8B;&#x662F;&#x4F5C;&#x7528;&#x4E8E;&#x67D0;&#x4E00;&#x4E2A;dom&#x5143;&#x7D20;&#x4E0A;&#x7684;&#x3002;&#x56E0;&#x6B64;&#xFF0C;&#x4ECE;View&#x5C42;&#x770B;&#xFF0C;ViewModel&#x4E2D;&#x7684;DOM Listeners&#x5DE5;&#x5177;&#x4F1A;&#x5E2E;&#x6211;&#x4EEC;&#x76D1;&#x6D4B;&#x9875;&#x9762;&#x4E0A;DOM&#x5143;&#x7D20;&#x7684;&#x53D8;&#x5316;&#xFF0C;&#x5982;&#x679C;&#x6709;&#x53D8;&#x5316;&#xFF0C;&#x5219;&#x66F4;&#x6539;Model&#x4E2D;&#x7684;&#x6570;&#x636E;&#xFF1B;&#x4ECE;Model&#x5C42;&#x770B;&#xFF0C;&#x5F53;&#x6211;&#x4EEC;&#x66F4;&#x65B0;Model&#x4E2D;&#x7684;&#x6570;&#x636E;&#x65F6;&#xFF0C;Data Bindings&#x5DE5;&#x5177;&#x4F1A;&#x5E2E;&#x6211;&#x4EEC;&#x66F4;&#x65B0;&#x9875;&#x9762;&#x4E2D;&#x7684;DOM&#x5143;&#x7D20;&#x3002;<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">&lt;template&gt;</div><div class="line">  &lt;div class=&quot;index&quot;&gt;</div><div class="line">  &lt;input type=&quot;text&quot; name=&quot;&quot; v-model=&quot;parMsg&quot;/&gt;</div><div class="line">  &lt;p&gt;{{parMsg}}&lt;/p&gt;</div><div class="line">  &lt;/div&gt;</div><div class="line">&lt;/template&gt;</div><div class="line">&lt;script&gt;</div><div class="line">export default {</div><div class="line">  name: &apos;index&apos;,</div><div class="line">  data: function() {</div><div class="line">    return {</div><div class="line">      parMsg:&apos;&apos;//&#x8F93;&#x5165;input&#x7684;&#x5185;&#x5BB9;&#x4F1A;&#x968F;&#x65F6;&#x66F4;&#x65B0;&#x5230;p&#x5143;&#x7D20;&#x5185;</div><div class="line">    }</div><div class="line">  },</div><div class="line">}</div><div class="line">&lt;/script&gt;</div><div class="line">&lt;!-- Add &quot;scoped&quot; attribute to limit CSS to this component only --&gt;</div><div class="line">&lt;style scoped&gt;</div><div class="line">//&#x7701;&#x7565;</div><div class="line">&lt;/style&gt;</div></pre></td></tr></table></figure></p>
+<p>VUE&#x7684;&#x5468;&#x8FB9;&#x751F;&#x6001;&#x7CFB;&#x7EDF;&#x5F02;&#x5E38;&#x4E30;&#x5BCC;&#xFF0C;&#x5305;&#x62EC;vue-router&#x7684;&#x8DEF;&#x7531;&#x673A;&#x5236;&#xFF0C;&#x7528;Vue.js +vue-router&#x521B;&#x5EFA;&#x5355;&#x9875;&#x5E94;&#x7528;&#xFF0C;&#x662F;&#x975E;&#x5E38;&#x7B80;&#x5355;&#x7684;&#x3002;&#x4F7F;&#x7528;Vue.js&#xFF0C;&#x6211;&#x4EEC;&#x5DF2;&#x7ECF;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;&#x7EC4;&#x5408;&#x7EC4;&#x4EF6;&#x6765;&#x7EC4;&#x6210;&#x5E94;&#x7528;&#x7A0B;&#x5E8F;&#xFF0C;&#x5F53;&#x4F60;&#x8981;&#x628A;vue-router&#x6DFB;&#x52A0;&#x8FDB;&#x6765;&#xFF0C;&#x6211;&#x4EEC;&#x9700;&#x8981;&#x505A;&#x7684;&#x662F;&#xFF0C;&#x5C06;&#x7EC4;&#x4EF6;(components)&#x6620;&#x5C04;&#x5230;&#x8DEF;&#x7531;(routes)&#xFF0C;&#x7136;&#x540E;&#x544A;&#x8BC9;vue-router&#x5728;&#x54EA;&#x91CC;&#x6E32;&#x67D3;&#x5B83;&#x4EEC;&#xFF1B;Vuex &#x4E5F;&#x96C6;&#x6210;&#x5230;Vue&#x7684;&#x5B98;&#x65B9;&#x8C03;&#x8BD5;&#x5DE5;&#x5177;devtools extension&#xFF0C;&#x63D0;&#x4F9B;&#x4E86;&#x8BF8;&#x5982;&#x96F6;&#x914D;&#x7F6E;&#x7684;time-travel&#x8C03;&#x8BD5;&#x3001;&#x72B6;&#x6001;&#x5FEB;&#x7167;&#x5BFC;&#x5165;&#x5BFC;&#x51FA;&#x7B49;&#x9AD8;&#x7EA7;&#x8C03;&#x8BD5;&#x529F;&#x80FD;&#x3002;</p>
+<h4 id="&#xFF08;4&#xFF09;&#x524D;&#x540E;&#x7ED3;&#x5408;"><a href="#&#xFF08;4&#xFF09;&#x524D;&#x540E;&#x7ED3;&#x5408;" class="headerlink" title="&#xFF08;4&#xFF09;&#x524D;&#x540E;&#x7ED3;&#x5408;"></a>&#xFF08;4&#xFF09;&#x524D;&#x540E;&#x7ED3;&#x5408;</h4><p>&#x5229;&#x7528;git&#x5DE5;&#x5177;&#x8FDB;&#x884C;&#x6A21;&#x5757;&#x4E4B;&#x95F4;&#x7684;&#x7EC4;&#x5408;&#xFF0C;&#x5F00;&#x53D1;&#x9636;&#x6BB5;&#x91C7;&#x7528;ngrok&#x8BBF;&#x95EE;&#xFF0C;&#x540E;&#x53F0;&#x63D0;&#x4F9B;&#x7684;&#x670D;&#x52A1;&#x901A;&#x8FC7;ngrok&#x53CD;&#x4EE3;&#x7406;&#x5DE5;&#x5177;&#x53D1;&#x5E03;&#x5230;&#x5916;&#x7F51;&#x6765;&#x8FDB;&#x884C;&#x8BBF;&#x95EE;&#xFF0C;&#x901A;&#x8FC7; C9&#x5728;&#x7EBF;&#x670D;&#x52A1;&#x5668;&#x8BBF;&#x95EE;&#x7684;&#x65F6;&#x5019;&#x5C31;&#x53EF;&#x4EE5;&#x4E86;&#x3002;&#x90E8;&#x7F72;&#x9636;&#x6BB5;&#xFF0C;&#x5728;&#x670D;&#x52A1;&#x5668;&#x4E0A;&#x5B89;&#x88C5;java&#x540E;&#xFF0C;&#x91C7;&#x7528;java &#x2013;jar&#x8FD0;&#x884C;&#x5F00;&#x53D1;&#x7684;&#x540E;&#x53F0;jar&#x5305;&#xFF0C;&#x53E6;&#x4E00;&#x4E2A;&#x524D;&#x7AEF;&#x754C;&#x9762;&#x91C7;&#x7528;nginx&#x5E94;&#x7528;&#x670D;&#x52A1;&#x5668;&#x90E8;&#x7F72;&#x3002;<br>&#x5B9E;&#x9645;&#x4E0A;&#x8FD9;&#x91CC;&#x8FD8;&#x6709;&#x4E00;&#x4E2A;&#x8DE8;&#x57DF;&#x7684;&#x95EE;&#x9898;&#x9700;&#x8981;&#x89E3;&#x51B3;&#x3002;&#x56E0;&#x4E3A;&#x540E;&#x53F0;&#x670D;&#x52A1;&#x5728;&#x4E00;&#x4E2A;&#x57DF;&#x540D;&#x4E0B;&#xFF0C;&#x524D;&#x53F0;&#x8FD0;&#x884C;&#x5728;&#x53E6;&#x4E00;&#x4E2A;&#x57DF;&#x540D;&#x4E0B;&#xFF0C;&#x5373;&#x4F7F;&#x7AEF;&#x53E3;&#x4E0D;&#x901A;&#xFF0C;&#x4E5F;&#x662F;&#x8FD9;&#x6837;&#xFF0C;&#x56E0;&#x6B64;&#x524D;&#x53F0;&#x8C03;&#x7528;&#x7684;&#x65F6;&#x5019;&#x76F8;&#x5F53;&#x4E8E;&#x662F;&#x5728;&#x8DE8;&#x57DF;&#xFF0C;&#x8FD9;&#x4E2A;&#x5730;&#x65B9;&#x4E3B;&#x8981;&#x5C31;&#x662F;&#x540E;&#x53F0;&#x7684;&#x8DE8;&#x57DF;&#x63A5;&#x6536;&#x3002;&#x8FD9;&#x91CC;&#x901A;&#x8FC7;&#x4E00;&#x4E2A;&#x8FC7;&#x6EE4;&#x5668;&#x628A;&#x8FD4;&#x56DE;&#x7684;&#x5934;&#x90E8;&#x6DFB;&#x52A0;&#x5982;&#x4E0B;&#x56DB;&#x4E2A;&#x5934;&#x4FE1;&#x606F;&#xFF0C;&#x5982;&#x4E0B;&#x56FE;&#xFF0C;&#x5176;&#x4E2D;&#x201C;Access-Control-Allow-Origin&#x201D;&#x53C2;&#x6570;&#x662F;&#x53EF;&#x4EE5;&#x63A5;&#x6536;&#x7684;&#x5141;&#x8BB8;&#x901A;&#x8FC7;&#x7684;&#x57DF;&#x540D;&#xFF0C;&#x5728;&#x5B9E;&#x9645;&#x7684;&#x5E94;&#x7528;&#x9636;&#x6BB5;&#xFF0C;&#x5C31;&#x4F1A;&#x66FF;&#x6362;&#x6210;&#x6B63;&#x5F0F;&#x7684;&#x53EF;&#x63A5;&#x53D7;&#x7684;&#x57DF;&#x540D;&#xFF0C;&#x8FD9;&#x6837;&#x5C31;&#x80FD;&#x591F;&#x9632;&#x6B62;&#x5176;&#x4ED6;&#x57DF;&#x540D;&#x7684;&#x653B;&#x51FB;&#x3002;&#x201C;Access-Control-Allow-Methods&#x201D;&#x53C2;&#x6570;&#x662F;&#x53EF;&#x4EE5;&#x63A5;&#x53D7;&#x7684;&#x65B9;&#x6CD5;&#x3002;&#x8FD9;&#x4E5F;&#x662F;&#x7CFB;&#x7EDF;&#x7684;&#x5B89;&#x5168;&#x6027;&#x7684;&#x4E00;&#x4E2A;&#x8003;&#x8651;&#x3002;<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">public void doFilter(ServletRequest req, ServletResponse res, FilterChain chain)  </div><div class="line">        throws IOException, ServletException {  </div><div class="line">	HttpServletRequest request = (HttpServletRequest) req;</div><div class="line">	System.out.println(request.getParameterMap());</div><div class="line">    HttpServletResponse response = (HttpServletResponse) res;</div><div class="line">    request.setCharacterEncoding(&quot;UTF-8&quot;);</div><div class="line">    response.setCharacterEncoding(&quot;UTF-8&quot;);</div><div class="line">    response.setHeader(&quot;Access-Control-Allow-Origin&quot;, &quot;*&quot;);  </div><div class="line">    response.setHeader(&quot;Access-Control-Allow-Methods&quot;, </div><div class="line">    		&quot;POST, GET, PUT, OPTIONS, DELETE&quot;);  </div><div class="line">    response.setHeader(&quot;Access-Control-Max-Age&quot;, &quot;3600&quot;);  </div><div class="line">    response.setHeader(&quot;Access-Control-Allow-Headers&quot;,</div><div class="line">    		&quot;Origin, X-Requested-With, Content-Type, Accept&quot;);  </div><div class="line">    chain.doFilter(request, response);  </div><div class="line">}</div></pre></td></tr></table></figure></p>
+<p><img src="/2017/06/29/&#x6BD5;&#x4E1A;&#x8BBE;&#x8BA1;&#x5FC3;&#x5F97;/20170629.png" alt="&#x524D;&#x7AEF;&#x8BF7;&#x6C42;&#x6548;&#x679C;"><br>&#x524D;&#x53F0;&#x5728;&#x8C03;&#x7528;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x6211;&#x4EEC;&#x901A;&#x8FC7;&#x622A;&#x56FE;&#x5C31;&#x53EF;&#x4EE5;&#x770B;&#x51FA;&#xFF0C;&#x54CD;&#x5E94;&#x7684;&#x5934;&#x4FE1;&#x606F;&#x4E2D;&#x5DF2;&#x7ECF;&#x5305;&#x542B;&#x4E86;&#x201C;response&#x201D;&#x6DFB;&#x52A0;&#x7684;&#x5934;&#x4FE1;&#x606F;&#x3002;&#x5141;&#x8BB8;&#x901A;&#x8FC7;&#x7684;&#x57DF;&#x540D;&#x3001;&#x65B9;&#x6CD5;&#x3001;&#x652F;&#x6301;&#x7684;&#x5934;&#x4FE1;&#x606F;&#x548C;&#x6700;&#x5927;&#x65F6;&#x95F4;&#x3002;&#x4E0B;&#x56FE;&#x53EA;&#x662F;&#x4E00;&#x4E2A;&#x7B80;&#x5355;&#x7684;&#x793A;&#x8303;&#xFF0C;&#x4ECE;&#x56FE;&#x4E2D;&#x53EF;&#x4EE5;&#x770B;&#x51FA;&#x4E0A;&#x9762;&#x4ECB;&#x7ECD;&#x7684;&#x56DB;&#x4E2A;&#x53C2;&#x6570;&#x5168;&#x5728;&#x54CD;&#x5E94;&#x5934;&#x4E2D;&#xFF0C;&#x5B9E;&#x9645;&#x4E0A;&#x8DE8;&#x57DF;&#x8D44;&#x6E90;&#x5171;&#x4EAB;CORS&#xFF08;Cross-origin resource sharing&#xFF09;&#x95EE;&#x9898;&#x770B;&#x8D77;&#x6765;&#x6BD4;&#x8F83;&#x96BE;&#xFF0C;&#x4E0D;&#x8FC7;&#x4E00;&#x65E6;&#x7406;&#x89E3;&#x4E86;&#xFF0C;&#x81EA;&#x5DF1;&#x52A8;&#x624B;&#x505A;&#x8FC7;&#x4E00;&#x6B21;&#x4E4B;&#x540E;&#xFF0C;&#x90A3;&#x5C31;&#x5F88;&#x7B80;&#x5355;&#x4E86;&#x3002;  </p>
+<p>&#x4EE5;&#x4E0A;&#x5C31;&#x662F;&#x5173;&#x4E8E;&#x6BD5;&#x4E1A;&#x8BBE;&#x8BA1;&#x6280;&#x672F;&#x65B9;&#x9762;&#x7684;&#x603B;&#x7ED3;&#xFF0C;&#x4E1A;&#x52A1;&#x65B9;&#x9762;&#xFF0C;&#x5982;&#x679C;&#x81EA;&#x5DF1;&#x6709;&#x4E00;&#x4E2A;&#x597D;&#x7684;IDEA&#xFF0C;&#x7279;&#x522B;&#x662F;&#x751F;&#x6D3B;&#x4E2D;&#x9047;&#x5230;&#x7684;&#x95EE;&#x9898;&#xFF0C;&#x6216;&#x8005;&#x81EA;&#x5DF1;&#x9700;&#x8981;&#x7684;&#x4E1C;&#x897F;&#xFF0C;&#x6070;&#x6070;&#x53C8;&#x6CA1;&#x6709;&#x4EBA;&#x63D0;&#x4F9B;&#x8FD9;&#x79CD;&#x670D;&#x52A1;&#xFF0C;&#x4F60;&#x5C31;&#x53EF;&#x4EE5;&#x5C1D;&#x8BD5;&#x4E00;&#x4E0B;&#xFF0C;&#x8BF4;&#x4E0D;&#x5B9A;&#xFF0C;&#x5C31;&#x80FD;&#x505A;&#x5927;&#x4E86;&#x5462;&#xFF1F;</p>
+<p>&#x9E23;&#x8C22;&#xFF1A;&#x5B5F;&#x8001;&#xFF08;xian&#xFF09;&#x5E08;&#xFF08;fei&#xFF09;&#xFF0C;&#x674E;&#x8001;&#xFF08;kai&#xFF09;&#x5E08;&#xFF08;feng&#xFF09;&#xFF0C;&#x53F6;&#x8001;&#xFF08;xin&#xFF09;&#x5E08;&#xFF08;feng&#xFF09;&#xFF0C;&#x738B;&#x8001;&#xFF08;he&#xFF09;&#x5E08;&#xFF08;chao&#xFF09;&#xFF0C;&#x7CFB;&#xFF08;wang&#xFF09;&#x8001;&#x5E08;&#xFF0C;&#x5B66;&#x9662;&#x8001;&#x5E08;&#xFF0C;&#x6821;&#x8001;&#x5E08;&#xFF08;&#x8457;&#x540D;&#x7684;&#x601D;&#x4FEE;&#xFF0C;&#x6BDB;&#x6982;&#xFF0C;&#x9A6C;&#x54F2;&#xFF09;&#x3002;</p>
+
+      
+    </div>
+   
+    
+          <!--打赏-->
+         
+
+<!-- donate -->
+<style>
+   .donate_bar {
+	text-align: center;
+	margin-top: 5%
+	}
+	.donate_bar a.btn_donate {
+		display: inline-block;
+		width: 82px;
+		height: 82px;
+		margin-left: auto;
+		margin-right: auto;
+		background: url(http://img.t.sinajs.cn/t5/style/images/apps_PRF/e_media/btn_reward.gif)no-repeat;
+		-webkit-transition: background 0s;
+		-moz-transition: background 0s;
+		-o-transition: background 0s;
+		-ms-transition: background 0s;
+		transition: background 0s
+	}
+	.donate_bar a.btn_donate:hover {
+		background-position: 0 -82px
+	}
+	.donate_bar .donate_txt {
+		display: block;
+		color: #9d9d9d;
+		font: 14px/2 "Microsoft Yahei"
+	}
+	.donate_bar.hidden{
+		display: none
+	}
+	.post-donate{
+		margin-top: 80px;
+	}
+	#donate_guide{
+		/*height: 210px;
+		width: 420px;*/
+		margin: 0 auto;
+	}
+	#donate_guide img{
+		height: 200px;
+		height: 200px;
+	}
+</style>
+<!-- 添加捐赠图标 -->
+<div class ="post-donate">
+    <div id="donate_board" class="donate_bar center">
+        <a id="btn_donate" class="btn_donate" href="javascript:;" title="打赏"></a>
+        <span class="donate_txt">
+           &uarr;<br>
+		   坚持原创技术分享，您的支持将鼓励我继续创作！
+        </span>
+        <br>
+    </div>  
+	<div id="donate_guide" class="donate_bar center hidden" >
+		<!-- 支付宝打赏图案 -->
+		<img src="/img/alipay.jpg" alt="支付宝打赏"> 
+		<!-- 微信打赏图案 -->
+		<img src="/img/wechatpay.png" alt="微信打赏">  
+    </div>
+	<script type="text/javascript">
+		document.getElementById('btn_donate').onclick = function(){
+			//$('#donate_board').addClass('hidden');
+			if($('#donate_guide').hasClass('hidden')){
+				$('#donate_guide').removeClass('hidden');
+			}else{
+				$('#donate_guide').addClass('hidden');
+			}
+		}
+	</script>
+</div>
+
+<!-- End donate -->
+
+
+    
+    
+    
+  </div>
+  
+    
+    <div class="copyright">
+        <p><span>本文标题:</span><a href="/2017/06/29/毕业设计心得/">毕业设计心得</a></p>
+        <p><span>文章作者:</span><a href="/" title="回到主页">Mu Xiaobai(慕小白)</a></p>
+        <p><span>发布时间:</span>2017-06-29, 06:20:02</p>
+        <p><span>最后更新:</span>2017-06-29, 07:46:15</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/2017/06/29/毕业设计心得/" title="毕业设计心得">https://muxiaobai.github.io/2017/06/29/毕业设计心得/</a>
+            <span class="copy-path" data-clipboard-text="原文: https://muxiaobai.github.io/2017/06/29/毕业设计心得/　　作者: Mu Xiaobai(慕小白)" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
+        </p>
+    </div>
+
+
+
+    <nav id="article-nav">
+        
+            <div id="article-nav-newer" class="article-nav-title">
+                <a href="/2017/07/19/Linux-下的java安装、变更以及升级问题/">
+                    Linux 下的java安装、变更以及升级问题
+                </a>
+            </div>
+        
+        
+            <div id="article-nav-older" class="article-nav-title">
+                <a href="/2017/01/23/2016年个人总结/">
+                    2016年个人总结
+                </a>
+            </div>
+        
+    </nav>
+
+  
+</article>
+
+
+    <!--左侧-->
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#（1）代码管理"><span class="toc-number">1.</span> <span class="toc-text">（1）代码管理</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#（2）后端部分"><span class="toc-number">2.</span> <span class="toc-text">（2）后端部分</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#（3）前端部分"><span class="toc-number">3.</span> <span class="toc-text">（3）前端部分</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#（4）前后结合"><span class="toc-number">4.</span> <span class="toc-text">（4）前后结合</span></a></li></ol>
+</div>
+<style>
+    .left-col .switch-btn,
+    .left-col .switch-area {
+        display: none;
+    }
+</style>
+
+<input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+
+<script>
+    yiliaConfig.toc = ["隐藏目录", "显示目录", !!"false"];
+</script>
+
+
+
+    <!--分享-->
+    
+<div class="share">
+    
+
+    
+        <div class="addthis_sharing_toolbox"></div>
+    
+</div>
+
+
+
+
+
+
+
+    <!--评论-->
+    
+      <section class="gitment" id="comments">
+    <div id="gitment" class ="article article-type-post"></div>
+    <link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+    <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+    <script>
+    var gitment = new Gitment({
+      id: '毕业设计心得',
+      owner: 'muxiaobai',
+      repo: 'muxiaobai.github.io',
+      oauth: {
+        client_id: '5e496d32f02cb04c1ccf',
+        client_secret: 'a98d21d1cc8b690a45fc996c62572247fdc5d7f3',
+      },
+    })
+    gitment.render('gitment')
+    </script>
+</section>
+    
+
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/2017/07/19/Linux-下的java安装、变更以及升级问题/" title="上一篇: Linux 下的java安装、变更以及升级问题">
+                <i class="fa fa-angle-left"></i>
+            </a>
+        
+
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+
+        
+            <a href="/2017/01/23/2016年个人总结/" title="下一篇: 2016年个人总结">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2019/05/21/高并发之缓存、限流、降级/">高并发之缓存、限流、降级</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/18/使用ELK分析日志/">使用ELK分析日志</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/01/Linux-基础命令总结4/">Linux 基础命令总结4</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/02/16/性能优化之redis储存计算值/">性能优化之redis储存计算值</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/01/15/2018年个人总结/">2018年个人总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/01/11/mongodb常用命令/">mongodb常用命令</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/01/11/mongodb主从架构设计/">mongodb主从架构设计</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/12/21/前言技术之OCR识别/">前言技术之OCR识别</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/11/22/深入理解JVM之远程监控/">深入理解JVM之远程监控</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/11/22/数据库监控-Druid监控配置/">数据库监控-Druid监控配置</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/11/15/应用部署之nginx参数配置/">应用部署之nginx参数配置</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/11/07/数据库操作-plsql操作/">数据库操作-plsql操作</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/10/09/javascript-常用代码/">javascript-常用代码</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/20/java-常用代码/">java 常用代码</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/04/数据库操作语句2/">数据库操作语句2</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/06/25/Spring源码阅读之AOP两种代理模式/">Spring源码阅读之AOP两种代理模式</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/06/22/Spring源码阅读之Ioc控制反转/">Spring源码阅读之Ioc控制反转</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/06/08/浏览器的加载页面过程及优化方法/">浏览器的加载页面过程及优化方法</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/06/07/浏览器的请求与响应过程/">浏览器的请求与响应过程</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/04/20/Tomcat源码阅读之Container责任链/">Tomcat源码阅读之Container责任链</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/04/17/Tomcat源码阅读之URL请求解析/">Tomcat源码阅读之URL请求解析</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/04/16/Tomcat源码阅读之组件生命周期/">Tomcat源码阅读之组件生命周期</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/04/16/Tomcat源码阅读之从server-xml看组件关系/">Tomcat源码阅读之从server.xml看组件关系</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/03/02/重装CENTOS一系列操作/">重装CENTOS一系列操作</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/01/05/2017年个人总结/">2017年个人总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/12/22/javascript再学习之prototype/">javascript再学习之prototype</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/12/21/RSS好工具/">RSS好工具</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/10/23/前端小tips/">前端小tips</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/09/17/Linux-基础命令总结3/">Linux 基础命令总结3</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/09/02/应用部署之nginx负载/">应用部署之nginx负载</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/29/深入理解JVM之性能调优/">深入理解JVM之性能调优</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/14/数据库操作语句/">数据库操作语句</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/09/javascript再学习之Event/">javascript再学习之Event</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/08/javascript再学习之DOM/">javascript再学习之DOM</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/02/Javamelody-工具/">Javamelody 工具</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/07/20/hadoop-Sqoop-Hive等的安装/">hadoop-Sqoop-Hive等的安装</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/07/19/Linux-下的java安装、变更以及升级问题/">Linux 下的java安装、变更以及升级问题</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/06/29/毕业设计心得/">毕业设计心得</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/23/2016年个人总结/">2016年个人总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/27/CSS-定位布局/">CSS 定位布局</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/17/等待-等待-等待/">等待,等待,等待...</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/29/常见排序算法总结/">常见排序算法总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/24/Thinking-in-java-基础之网络Socket/">Thinkin in java 基础之网络Socket</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/19/由ES6中的Proxy和Reflect再了解Object/">由ES6中的Proxy和Reflect再了解Object</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/16/从ES6中学习编码/">从ES6中学习编码</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/13/模仿jQuery创建自己的js工具/">模仿jQuery创建自己的js工具</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/08/20/HTML5-API-新特性/">HTML5 API 新特性</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/08/09/Thinking-in-java-基础之线程和并发/">Thinking in java 基础之线程和并发</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/08/04/Thinking-in-java-基础之异常/">Thinking in java 基础之异常</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/08/03/Spring中的Session生命周期/">Spring中的Session生命周期</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/20/前后台数据交互方式总结/">前后台数据交互方式总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/19/JavaEE-资源路径问题/">JavaEE 资源路径问题</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/19/Sublime-下运行Java文件/">Sublime 下运行Java文件</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/09/Linux-基础Shell脚本/">Linux 基础Shell脚本</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/07/Linux-基础命令总结2/">Linux 基础命令总结2</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/01/好软件-靠机遇/">好软件,靠机遇</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/06/29/好网站-天天记/">好网站,天天记</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/06/29/hello-world/">Hello World</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/06/27/Linux下各目录的默认含义/">Linux下各目录的默认含义</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/06/27/Linux-基础命令总结/">Linux 基础命令总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/06/25/Thinking-in-java-基础之集合框架/">Thinking in java 基础之集合框架</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/06/25/Thinking-in-java-基础之I-O/">Thinking in java 基础之I/O</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/06/19/Linux-下安装SVN服务器/">Linux 下安装SVN服务器</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/06/17/GitHub Hexo/">GitHub + Hexo 构建我的博客</a></li></ul>
+
+
+
+
+    <script>
+        
+    </script>
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                <i class="fa fa-copyright"></i> 
+                2016-2019 Mu Xiaobai(慕小白)
+            </div>
+            <div class="footer-right">
+                <a href="http://hexo.io/" target="_blank" title="快速、简洁且高效的博客框架">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="简而不减 Hexo 双栏博客主题  v3.5">Yelee</a> by MOxFIVE <i class="fa fa-heart animated infinite pulse"></i>
+            </div>
+        </div>
+        
+            <div class="visit">
+                
+                    <span id="busuanzi_container_site_pv" style='display:none'>
+                        <span id="site-visit" >本站到访数: 
+                            <span id="busuanzi_value_site_uv"></span>
+                        </span>
+                    </span>
+                
+                
+                    <span>, </span>
+                
+                
+                    <span id="busuanzi_container_page_pv" style='display:none'>
+                        <span id="page-visit">本页阅读量: 
+                            <span id="busuanzi_value_page_pv"></span>
+                        </span>
+                    </span>
+                
+            </div>
+        
+    </div>
+</footer>
+    </div>
+    
+    <script src="/js/GithubRepoWidget.js"></script>
+
+<script data-main="/js/main.js" src="//cdn.bootcss.com/require.js/2.2.0/require.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            var iPad = window.navigator.userAgent.indexOf('iPad');
+            if (iPad > -1 || $(".left-col").css("display") === "none") {
+                var bgColorList = ["#9db3f4", "#414141", "#e5a859", "#f5dfc6", "#c084a0", "#847e72", "#cd8390", "#996731"];
+                var bgColor = Math.ceil(Math.random() * (bgColorList.length - 1));
+                $("body").css({"background-color": bgColorList[bgColor], "background-size": "cover"});
+            }
+            else {
+                var backgroundnum = 5;
+                var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+                $("body").css({"background": backgroundimg, "background-attachment": "fixed", "background-size": "cover"});
+            }
+        })
+    </script>
+
+
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-80276841-1', 'auto');
+ga('send', 'pageview');
+</script>
+<!-- End Google Analytics -->
+
+
+
+
+
+<div class="scroll" id="scroll">
+    <a href="#" title="返回顶部"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments" onclick="load$hide();" title="查看评论"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer" title="转到底部"><i class="fa fa-arrow-down"></i></a>
+</div>
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+  </div>
+</body>
+</html>

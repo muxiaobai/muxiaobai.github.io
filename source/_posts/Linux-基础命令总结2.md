@@ -3,7 +3,7 @@ title: Linux 基础命令总结2
 date: 2016-07-07 13:02:34
 tags: [基础命令,系统]
 categories: Linux
-description: "网络(端口占用等)、服务、系统环境、权限、进程、任务调度、工作"
+description: "用户，网络(端口占用等)、服务(自启动)、系统环境、权限、进程、任务调度、工作"
 ---
 
 ## 打印、输出
@@ -26,19 +26,19 @@ description: "网络(端口占用等)、服务、系统环境、权限、进程�
 
 `id`: pid和gid
 
-`who`: 详细列出所有登录用户，看谁正在使用
+`who`: 详细列出所有登录用户，看谁正在使用，展示IP
 
 `users`: 简单列出所有登录用户
 
 `finger`: 打印用户信息
 
-`last`: 确定之前谁在什么时候登录这台主机
+`last`: 确定之前谁在什么时候登录这台主机，历史登录用户
 
 #### 主机
 
 `printenv`:打印环境变量
 
-`uname`: 系统内核信息
+`uname`: 系统内核信息（Unix name）
 
 ##### -a 所有 
 
@@ -135,6 +135,22 @@ description: "网络(端口占用等)、服务、系统环境、权限、进程�
 #### 所属组：
 
 `groups` `groupadd` `groupdel` `groupmod`
+
+
+useradd 用户名 -g 组名–G 组名-d Home 目录名-p 密码
+
+useradd usenmae –g usenmae  –p ora123 
+
+passwd  username
+
+cat /etc/group  查看所有所属组
+
+chmod -R g+w 
+
+chown -R bid:bids /home/newname  把/home/newname的所有者改为bid，所属组改为bids
+
+
+
 
 ## 网络和连接登录
 
@@ -352,12 +368,34 @@ pkill  -t 终端号（TTY） 按终端号剔除用户（w显示用户）
 
 `renice`:优先级
 
+#### CPU
+
+总核数 = 物理CPU个数 X 每颗物理CPU的核数 
+
+总逻辑CPU数 = 物理CPU个数 X 每颗物理CPU的核数 X 超线程数
+
+查看物理CPU个数
+cat /proc/cpuinfo| grep "physical id"| sort| uniq| wc -l
+
+查看每个物理CPU中core的个数(即核数)
+
+cat /proc/cpuinfo| grep "cpu cores"| uniq
+
+查看逻辑CPU的个数
+
+cat /proc/cpuinfo| grep "processor"| wc -l
+
+查看CPU信息（型号）
+cat /proc/cpuinfo | grep name | cut -f2 -d: | uniq -c
+
 #### 磁盘
 
 挂载卸载：`mount` `umount` 
 
 
-磁盘空间：`du` `df` 
+磁盘空间：
+`du` estimates and displays the disk space used by files
+`df`  df -h 查看存储大小
 
 `dmesg`
 
@@ -437,15 +475,27 @@ chkconfig crond on检查是否启动
 
 ## 服务
 
+
 正常情况下，使用绝对路径  /etc/init.d  启动脚本位置
 
 Red Hat `service` `ntsysv` 
 
 默认启动项：`chkconfig` 
 
+
+systemctl enable xxx-service
+systemctl list-unit-files |  grep enabled
+
+开机自启动
+新建一个脚本zookeeper
+为新建的脚本zookeeper添加可执行权限，命令是:chmod +x zookeeper
+把zookeeper这个脚本添加到开机启动项里面，命令是： chkconfig --add zookeeper
+如果想看看是否添加成功，命令是：chkconfig --list
+
+
 ## 安装软件
 
-Red Hat `rpm` `yum` 
+Red Hat `rpm` `yum`   rpm -ivh xxxx.rpm ; yum install
 
 Debian `dpkg` `aptitude`
 
@@ -456,7 +506,7 @@ Debian `dpkg` `aptitude`
 
 `cal`: 日历(Calendar)
 
-`date`: 日期
+`date`: 日期 修改时间并同步到硬件上 date -s "2018-12-03 16:10:10" & hwclock --systohc
 
 `dc`:计算器
 

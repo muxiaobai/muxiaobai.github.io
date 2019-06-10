@@ -70,6 +70,16 @@ C:\server\nginx-1.0.2>nginx.exe -s reopen
 
 C:\server\nginx-1.0.2>nginx -v
 
+
+nginx -c nginx.conf 加载配置启动
+nginx -t nginx.conf 测试配置文件是否ok
+nginx -s reload 重新加载配置
+nginx -s stop
+nginx -s quit
+
+端口号大于servername
+
+
 ## 配置nginx.conf
 
 ```
@@ -171,7 +181,7 @@ http {
     # another virtual host using mix of IP-, name-, and port-based configuration
     #
     #server {
-    #     listen       8081;
+    #    listen       8081;
     #    listen       somename:8080;
     #    server_name  somename  alias  another.alias;
 

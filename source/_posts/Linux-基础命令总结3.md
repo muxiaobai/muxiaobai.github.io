@@ -52,23 +52,36 @@ deplist：显示rpm软件包的所有依赖关系。
 
 ## Vim
 
-- 选中 v，移动光标 然后y复制  
-- 复制yy 3yy 复制光标行，复制光标及下面两行
-- 粘贴p 光标处粘贴复制内容
-- 删除dd 3dd 删除光标行，删除光标及以下三行
-- u 撤销  Ctrl +R 回撤
-- Ctrl f 下一页 Ctrl b 上一页
+- 选中 v，移动光标 然后y复制  （visual mode）
+- 复制yy 3yy 复制光标行，复制光标及下面两行（yank拉取）
+- 粘贴p 光标处粘贴复制内容（put paste放置）
+- 删除dd 3dd 删除光标行，删除光标及以下三行（delete）
+- u 撤销（undo）  Ctrl +R 回撤
+- Ctrl f 下一页 Ctrl b 上一页（）
 - 行头行尾 0/^行首 $ 行尾
 - 文件头文件尾 gg/1G 文件头部  3G 第三行 G 文件尾部 
 - /查找匹配
 
 ![图解命令](Linux-基础命令总结3/1353759337_6781.png)
-![图解命令](Linux-基础命令总结3/160604162658756.gif)
-
+![图解命令](Linux-基础命令总结3/chinese.gif)
+![图解命令](Linux-基础命令总结3/english.gif)
+[网址](https://blog.csdn.net/de_moivre/article/details/84663132)
 
 ## 高级
 
 `awk` `gawk`: 
+
+![图片说明](1089507-20170126222420597-662074402.jpg)
+
+awk '{print $0}'
+
+    -F参数：指定分隔符，可指定一个或多个
+ awk -F":" '{ print $1 }' /etc/passwd  冒号作为分隔符
+ awk -F '[ ,]+' '{print $3" "$7}' test.txt    空格和逗号都分隔
+
+[awk 操作指南](http://www.cnblogs.com/ginvip/p/6352157.html)
+
+
 
 `sed`: 
 
@@ -89,3 +102,5 @@ deplist：显示rpm软件包的所有依赖关系。
 `ruby`: ruby程序,语言Ruby
 
 [CMD快捷键](https://www.cnblogs.com/webzhangnan/p/3221410.html)
+
+[scp](https://www.cnblogs.com/webnote/p/5877920.html)
