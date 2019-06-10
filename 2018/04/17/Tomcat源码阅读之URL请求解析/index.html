@@ -1,0 +1,717 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+
+
+    <!--[if lt IE 9]>
+        <style>body {display: none; background: none !important} </style>
+        <meta http-equiv="Refresh" Content="0; url=//outdatedbrowser.com/" />
+    <![endif]-->
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="format-detection" content="telephone=no">
+<meta name="author" content="Mu Xiaobai(慕小白)">
+
+
+
+<meta name="description" content="研究tomcat系列,组件之间的请求转发，Connector怎么到了Container？">
+<meta name="keywords" content="tomcat">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Tomcat源码阅读之URL请求解析">
+<meta property="og:url" content="https://muxiaobai.github.io/2018/04/17/Tomcat源码阅读之URL请求解析/index.html">
+<meta property="og:site_name" content="技术笔记">
+<meta property="og:description" content="研究tomcat系列,组件之间的请求转发，Connector怎么到了Container？">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://muxiaobai.github.io/.io//Connector.png">
+<meta property="og:updated_time" content="2018-04-20T08:07:09.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Tomcat源码阅读之URL请求解析">
+<meta name="twitter:description" content="研究tomcat系列,组件之间的请求转发，Connector怎么到了Container？">
+<meta name="twitter:image" content="https://muxiaobai.github.io/.io//Connector.png">
+
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+
+    <link rel="alternative" href="/atom.xml" title="技术笔记" type="application/atom+xml">
+
+
+
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+
+
+    <link href="//cdn.bootcss.com/animate.css/3.5.1/animate.min.css" rel="stylesheet">
+
+
+
+    <link href="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet">
+
+
+
+    <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+    <link href="//cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-minimal.css" rel="stylesheet">
+
+
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+<link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+
+
+<title>Tomcat源码阅读之URL请求解析 | 技术笔记</title>
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+
+<script>
+    var yiliaConfig = {
+        fancybox: true,
+        animate: true,
+        isHome: false,
+        isPost: true,
+        isArchive: false,
+        isTag: false,
+        isCategory: false,
+        open_in_new: true,
+        fancybox_js: "//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.js",
+        scrollreveal: "//cdn.bootcss.com/scrollReveal.js/3.1.4/scrollreveal.min.js",
+        search: true
+    }
+</script>
+
+
+    <script>
+        yiliaConfig.jquery_ui = [true, "//cdn.bootcss.com/jqueryui/1.10.4/jquery-ui.min.js", "//cdn.bootcss.com/jqueryui/1.10.4/css/jquery-ui.min.css"];
+    </script>
+
+
+
+    <script> yiliaConfig.rootUrl = "\/";</script>
+
+
+
+    <script src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-577a08f17286c0c0"></script>
+
+
+
+    <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "//hm.baidu.com/hm.js?9d6c9084c010ea425bd063ef91167131";
+            var s = document.getElementsByTagName("script")[0]; 
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+
+
+</head>
+ 
+<!-- add Fork Me On Github -->
+
+<a href="https://github.com/muxiaobai">
+<img style="position: absolute; top: 0; right: 0; border: 0;z-index: 1000" src="https://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png" alt="Fork me on GitHub">
+</a>
+<!-- End Fork Me On Github  -->
+</html>
+<body>
+ 
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <a href="/" class="profilepic">
+            <img src="/img/avatars.jpg" class="animated zoomIn">
+        </a>
+        <hgroup>
+          <h1 class="header-author"><a href="/">Mu Xiaobai(慕小白)</a></h1>
+        </hgroup>
+
+        
+        <p class="header-subtitle">有输入,有输出</p>
+        
+
+        
+            <form id="search-form">
+            <input type="text" id="local-search-input" name="q" results="0" placeholder="search..." class="search form-control" autocomplete="off" autocorrect="off" searchonload="false">
+            <i class="fa fa-times" onclick="resetSearch()"></i>
+            </form>
+            <div id="local-search-result"></div>
+            <p class="no-result">No results found <i class="fa fa-spinner fa-pulse"></i></p>
+        
+
+
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        <div class="icon-wrap icon-link hide" data-idx="2">
+                            <div class="loopback_l"></div>
+                            <div class="loopback_r"></div>
+                        </div>
+                        
+                        
+                    </div>
+                    
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>菜单</li>
+                        <li>标签</li>
+                        
+                        <li>友情链接</li>
+                        
+                        
+                    </ul>
+                </div>
+            </div>
+        
+
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a href="/">主页</a></li>
+                        
+                            <li><a href="/archives/">所有文章</a></li>
+                        
+                            <li><a href="/tags/">标签云</a></li>
+                        
+                            <li><a href="/about/">关于我</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" target="_blank" href="mailto:zpf12345678910@gmail.com" title="Email"></a>
+                            
+                                <a class="fa 新浪微博" target="_blank" href="http://weibo.com/u/1751073805" title="新浪微博"></a>
+                            
+                                <a class="fa GitHub" target="_blank" href="https://github.com/muxiaobai" title="GitHub"></a>
+                            
+                                <a class="fa RSS" target="_blank" href="/atom.xml" title="RSS"></a>
+                            
+                                <a class="fa 网易云音乐" target="_blank" href="http://music.163.com/#//user/home?id=270611521" title="网易云音乐"></a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/2016/">2016</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/2017/">2017</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/2018/">2018</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/API/">API</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CI/">CI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS/">CSS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Cache/">Cache</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Canvas/">Canvas</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Collection/">Collection</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Concurrent/">Concurrent</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Error/">Error</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Exception/">Exception</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/File/">File</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Github/">Github</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hibernate/">Hibernate</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/I-O/">I/O</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Iterator/">Iterator</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/List/">List</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Map/">Map</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Object/">Object</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Session/">Session</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Set/">Set</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Shell/">Shell</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Socket/">Socket</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Spring/">Spring</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Storage/">Storage</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Struts/">Struts</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Sublime/">Sublime</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Thread/">Thread</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Throwable/">Throwable</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/directory/">directory</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/file/">file</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jQuery实践/">jQuery实践</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">javascript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jvm/">jvm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mongo/">mongo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nginx/">nginx</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/prototype/">prototype</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/redis/">redis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/svn/">svn</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tar/">tar</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tomcat/">tomcat</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/分析/">分析</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/前沿技术/">前沿技术</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/前端/">前端</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/后端/">后端</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/基础/">基础</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/基础命令/">基础命令</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/定位/">定位</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/工具/">工具</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/常用代码/">常用代码</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/常用命令/">常用命令</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/排序/">排序</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/插件/">插件</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/日志/">日志</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/目录/">目录</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/系统/">系统</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/编码/">编码</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/编辑器/">编辑器</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/网站/">网站</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/行高/">行高</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/设计/">设计</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/软件/">软件</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/连接池/">连接池</a></li></ul>
+                    </div>
+                </section>
+                
+                
+                
+                <section class="switch-part switch-part3">
+                    <div id="js-friends">
+                    
+                      <a target="_blank" class="main-nav-link switch-friends-link" href="https://hexo.io">Hexo</a>
+                    
+                      <a target="_blank" class="main-nav-link switch-friends-link" href="https://pages.github.com/">GitHub</a>
+                    
+                      <a target="_blank" class="main-nav-link switch-friends-link" href="http://moxfive.xyz/">MOxFIVE</a>
+                    
+                      <a target="_blank" class="main-nav-link switch-friends-link" href="http://cmsblogs.com/">CMSBLOGS</a>
+                    
+                    </div>
+                </section>
+                
+
+                
+            </div>
+        </div>
+    </header>                
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">Mu Xiaobai(慕小白)</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                <img src="/img/avatars.jpg" class="animated zoomIn">
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="回到主页">Mu Xiaobai(慕小白)</a></h1>
+            </hgroup>
+            
+            <p class="header-subtitle">有输入,有输出</p>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/">主页</a></li>
+                
+                    <li><a href="/archives/">所有文章</a></li>
+                
+                    <li><a href="/tags/">标签云</a></li>
+                
+                    <li><a href="/about/">关于我</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" target="_blank" href="mailto:zpf12345678910@gmail.com" title="Email"></a>
+                            
+                                <a class="fa 新浪微博" target="_blank" href="http://weibo.com/u/1751073805" title="新浪微博"></a>
+                            
+                                <a class="fa GitHub" target="_blank" href="https://github.com/muxiaobai" title="GitHub"></a>
+                            
+                                <a class="fa RSS" target="_blank" href="/atom.xml" title="RSS"></a>
+                            
+                                <a class="fa 网易云音乐" target="_blank" href="http://music.163.com/#//user/home?id=270611521" title="网易云音乐"></a>
+                            
+                        </ul>
+            </nav>
+        </header>                
+    </div>
+    <link class="menu-list" tags="标签" friends="友情链接" about="关于我">
+</nav>
+      <div class="body-wrap"><article id="post-Tomcat源码阅读之URL请求解析" class="article article-type-post" itemscope itemprop="blogPost">
+ 
+  
+    <div class="article-meta">
+      <a href="/2018/04/17/Tomcat源码阅读之URL请求解析/" class="article-date">
+      <time datetime="2018-04-17T02:07:03.000Z" itemprop="datePublished">2018-04-17</time>
+</a>
+    </div>
+  
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Tomcat源码阅读之URL请求解析
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/java/">java</a>
+    </div>
+
+
+        
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/tomcat/">tomcat</a></li></ul>
+    </div>
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <h2 id="这个流程写的很详细"><a href="#这个流程写的很详细" class="headerlink" title="这个流程写的很详细"></a>这个流程写的很详细</h2><p>可参考这个博客的<a href="http://hill007299.iteye.com/blog/1757198" target="_blank" rel="noopener">时序图</a></p>
+<h2 id="http-localhost-8080-examples-composite-jsp"><a href="#http-localhost-8080-examples-composite-jsp" class="headerlink" title="http://localhost:8080/examples/composite.jsp"></a><a href="http://localhost:8080/examples/composite.jsp" target="_blank" rel="noopener">http://localhost:8080/examples/composite.jsp</a></h2><ul>
+<li>在端口8080启动Server，并通知Service完成启动，Service通知Connector完成初始化和启动的过程</li>
+<li>Connector首先收到这个请求，会调用ProtocolHandler完成http协议的解析，然后交给SocketProcessor处理，解析请求头，通过ConnectionHandler，给到Http11Processor，再交给CoyoteAdapter解析请求行和请求体，并把解析信息封装到Request和Response对象中， 把请求（此时应该是Request对象，这里的Request对象已经封装了Http请求的信息）交给Container容器 </li>
+<li>Container容器交给其子容器——Engine容器，并等待Engine容器的处理结果 Engine容器匹配其所有的虚拟主机，这里匹配到Host</li>
+<li>请求被移交给hostname为localhost的Host容器，host匹配其所有子容器Context，这里找到contextPath为/examples的Context容器。如果匹配不到就把该请求交给路径名为”“的Context去处理</li>
+<li>请求再次被移交给Context容器，Context继续匹配其子容器Wrapper，由Wrapper容器加载composite.jsp对应的servlet，这里编译的servlet是basic_002dcomparisons_jsp.class文件</li>
+<li>Context容器根据后缀匹配原则*.jsp找到composite.jsp编译的java类的class文件</li>
+<li>Connector构建一个org.apache.catalina.connector.Request以及org.apache.catalina.connector.Response对象，使用反射调用Servelt的service方法</li>
+<li>Context容器把封装了响应消息的Response对象返回给Host容器</li>
+<li>容器把Response返回给Engine容器</li>
+<li>Engine容器返回给Connector</li>
+<li>Connetor容器把Response返回给浏览器</li>
+<li>浏览器解析Response报文</li>
+<li>显示资源内容</li>
+</ul>
+<p><img src="/.io//Connector.png" alt="流程主要代码"></p>
+<h2 id="Connector到Container"><a href="#Connector到Container" class="headerlink" title="Connector到Container"></a>Connector到Container</h2><p>Connector 中的init和start 都是对应service调用的参考上一篇<a href>Tomcat组件生命周期</a></p>
+<p>这里主要通过initInternal和startInternal来进行详细分析。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br></pre></td><td class="code"><pre><span class="line">//代码段1</span><br><span class="line">    protected String protocolHandlerClassName = &quot;org.apache.coyote.http11.Http11NioProtocol&quot;;</span><br><span class="line">    public Connector(String protocol) &#123;</span><br><span class="line">        setProtocol(protocol);</span><br><span class="line">        // Instantiate protocol handler</span><br><span class="line">        ProtocolHandler p = null;</span><br><span class="line">        try &#123;</span><br><span class="line">            Class&lt;?&gt; clazz = Class.forName(protocolHandlerClassName);</span><br><span class="line">            p = (ProtocolHandler) clazz.getConstructor().newInstance();</span><br><span class="line">        &#125; catch (Exception e) &#123;</span><br><span class="line">            log.error(sm.getString(</span><br><span class="line">                    &quot;coyoteConnector.protocolHandlerInstantiationFailed&quot;), e);</span><br><span class="line">        &#125; finally &#123;</span><br><span class="line">        </span><br><span class="line">            this.protocolHandler = p;//初始化的时候这里的protocolHandler是通过反射获取的Http11NioProtocol实例。</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        if (Globals.STRICT_SERVLET_COMPLIANCE) &#123;</span><br><span class="line">            uriCharset = StandardCharsets.ISO_8859_1;</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            uriCharset = StandardCharsets.UTF_8;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    @Override</span><br><span class="line">    protected void initInternal() throws LifecycleException &#123;</span><br><span class="line">        super.initInternal();</span><br><span class="line">        </span><br><span class="line">        // Initialize adapter</span><br><span class="line">        adapter = new CoyoteAdapter(this);</span><br><span class="line">        protocolHandler.setAdapter(adapter);//protocolHandler到CoyoteAdapter的关联关系</span><br><span class="line"></span><br><span class="line">      </span><br><span class="line">        try &#123;</span><br><span class="line">            protocolHandler.init();//AbstractProtocol.init(),这里会调用到endpoint.bind()</span><br><span class="line">        &#125; catch (Exception e) &#123;</span><br><span class="line">            throw new LifecycleException(</span><br><span class="line">                    sm.getString(&quot;coyoteConnector.protocolHandlerInitializationFailed&quot;), e);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * Begin processing requests via this Connector.</span><br><span class="line">     *</span><br><span class="line">     * @exception LifecycleException if a fatal startup error occurs</span><br><span class="line">     */</span><br><span class="line">    @Override</span><br><span class="line">    protected void startInternal() throws LifecycleException &#123;</span><br><span class="line"></span><br><span class="line">        // Validate settings before starting</span><br><span class="line">        if (getPort() &lt; 0) &#123;</span><br><span class="line">            throw new LifecycleException(sm.getString(</span><br><span class="line">                    &quot;coyoteConnector.invalidPort&quot;, Integer.valueOf(getPort())));</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        setState(LifecycleState.STARTING);</span><br><span class="line"></span><br><span class="line">        try &#123;</span><br><span class="line">            protocolHandler.start();//AbstractProtocol.start(),这里会调用到endpoint.start()</span><br><span class="line">        &#125; catch (Exception e) &#123;</span><br><span class="line">            throw new LifecycleException(</span><br><span class="line">                    sm.getString(&quot;coyoteConnector.protocolHandlerStartFailed&quot;), e);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p>Connector中主要确定要哪一个协议来处理请求，最后又交回到CoyoteAdapter中。</p>
+<h4 id="AbstractProtocol"><a href="#AbstractProtocol" class="headerlink" title="AbstractProtocol"></a>AbstractProtocol</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line">@Override</span><br><span class="line">   public void init() throws Exception &#123;</span><br><span class="line">       if (getLog().isInfoEnabled()) &#123;</span><br><span class="line">           getLog().info(sm.getString(&quot;abstractProtocolHandler.init&quot;, getName()));</span><br><span class="line">       &#125;</span><br><span class="line"></span><br><span class="line">       if (oname == null) &#123;</span><br><span class="line">           // Component not pre-registered so register it</span><br><span class="line">           oname = createObjectName();</span><br><span class="line">           if (oname != null) &#123;</span><br><span class="line">               Registry.getRegistry(null, null).registerComponent(this, oname, null);</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;</span><br><span class="line"></span><br><span class="line">       if (this.domain != null) &#123;</span><br><span class="line">           rgOname = new ObjectName(domain + &quot;:type=GlobalRequestProcessor,name=&quot; + getName());</span><br><span class="line">           Registry.getRegistry(null, null).registerComponent(</span><br><span class="line">                   getHandler().getGlobal(), rgOname, null);</span><br><span class="line">       &#125;</span><br><span class="line"></span><br><span class="line">       String endpointName = getName();</span><br><span class="line">       endpoint.setName(endpointName.substring(1, endpointName.length()-1));</span><br><span class="line">       endpoint.setDomain(domain);</span><br><span class="line"></span><br><span class="line">       endpoint.init();//这里在初始化Http11NioProtocol的时候有一个实例化NioEndpoint，这个就是endpoint</span><br><span class="line">       ···················</span><br><span class="line">       Http11NioProtocol 的构造方法</span><br><span class="line">        public Http11NioProtocol() &#123;</span><br><span class="line">       super(new NioEndpoint());</span><br><span class="line">       &#125;</span><br><span class="line">       ····················</span><br><span class="line">       </span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">   @Override</span><br><span class="line">   public void start() throws Exception &#123;</span><br><span class="line">       if (getLog().isInfoEnabled()) &#123;</span><br><span class="line">           getLog().info(sm.getString(&quot;abstractProtocolHandler.start&quot;, getName()));</span><br><span class="line">       &#125;</span><br><span class="line"></span><br><span class="line">       endpoint.start();</span><br><span class="line"></span><br><span class="line">       // Start async timeout thread</span><br><span class="line">       asyncTimeout = new AsyncTimeout();</span><br><span class="line">       Thread timeoutThread = new Thread(asyncTimeout, getNameInternal() + &quot;-AsyncTimeout&quot;);</span><br><span class="line">       int priority = endpoint.getThreadPriority();</span><br><span class="line">       if (priority &lt; Thread.MIN_PRIORITY || priority &gt; Thread.MAX_PRIORITY) &#123;</span><br><span class="line">           priority = Thread.NORM_PRIORITY;</span><br><span class="line">       &#125;</span><br><span class="line">       timeoutThread.setPriority(priority);</span><br><span class="line">       timeoutThread.setDaemon(true);</span><br><span class="line">       timeoutThread.start();</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+<p>此步骤已经从Connector转到了AbstractProtocol协议处理内部，然后找NioEndpoint</p>
+<p>需要注意在Connector找AbstractProtocol的时候，<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">public AbstractHttp11Protocol(AbstractEndpoint&lt;S&gt; endpoint) &#123;</span><br><span class="line">    super(endpoint);</span><br><span class="line">    setConnectionTimeout(Constants.DEFAULT_CONNECTION_TIMEOUT);</span><br><span class="line">    ConnectionHandler&lt;S&gt; cHandler = new ConnectionHandler&lt;&gt;(this);</span><br><span class="line">    setHandler(cHandler);</span><br><span class="line">    getEndpoint().setHandler(cHandler);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>这里在AbstractHttp11Protocol构造函数中设置了NioEndpoint的handler，就是AbstractProtocol中的ConnectionHandler，因此在Protocol处理完后给ConnectionHandler，然后通过getHandler调用process(),</p>
+<h4 id="AbstractEndpoint-和NioEndpoint"><a href="#AbstractEndpoint-和NioEndpoint" class="headerlink" title="AbstractEndpoint 和NioEndpoint"></a>AbstractEndpoint 和NioEndpoint</h4><p>首先是抽象类AbstractEndpoint中的init和start，会bind()和start()一下，这才会到NioEndpoint进行处理</p>
+<p>AbstractEndpoint</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">public void init() throws Exception &#123;</span><br><span class="line">    if (bindOnInit) &#123;</span><br><span class="line">        bind();</span><br><span class="line">        bindState = BindState.BOUND_ON_INIT;</span><br><span class="line">    &#125;</span><br><span class="line">    if (this.domain != null) &#123;</span><br><span class="line">        // Register endpoint (as ThreadPool - historical name)</span><br><span class="line">        oname = new ObjectName(domain + &quot;:type=ThreadPool,name=\&quot;&quot; + getName() + &quot;\&quot;&quot;);</span><br><span class="line">        Registry.getRegistry(null, null).registerComponent(this, oname, null);</span><br><span class="line"></span><br><span class="line">        for (SSLHostConfig sslHostConfig : findSslHostConfigs()) &#123;</span><br><span class="line">            registerJmx(sslHostConfig);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">public final void start() throws Exception &#123;</span><br><span class="line">    if (bindState == BindState.UNBOUND) &#123;</span><br><span class="line">        bind();</span><br><span class="line">        bindState = BindState.BOUND_ON_START;</span><br><span class="line">    &#125;</span><br><span class="line">    startInternal();</span><br><span class="line">&#125;</span><br><span class="line">public abstract void bind() throws Exception;</span><br><span class="line">public abstract void startInternal() throws Exception;</span><br></pre></td></tr></table></figure>
+<p>NioEndpoint</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">@Override</span><br><span class="line">    public void bind() throws Exception &#123;</span><br><span class="line"></span><br><span class="line">        serverSock = ServerSocketChannel.open();</span><br><span class="line">        socketProperties.setProperties(serverSock.socket());</span><br><span class="line">        InetSocketAddress addr = (getAddress()!=null?new InetSocketAddress(getAddress(),getPort()):new InetSocketAddress(getPort()));</span><br><span class="line">        serverSock.socket().bind(addr,getAcceptCount());</span><br><span class="line">        serverSock.configureBlocking(true); //mimic APR behavior</span><br><span class="line"></span><br><span class="line">        selectorPool.open();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void startInternal() throws Exception &#123;</span><br><span class="line"></span><br><span class="line">        if (!running) &#123;</span><br><span class="line"> </span><br><span class="line">         // Start poller threads 这里启动了并一直在空转看内部的run()方法有一个while(true)</span><br><span class="line">            pollers = new Poller[getPollerThreadCount()];</span><br><span class="line">            for (int i=0; i&lt;pollers.length; i++) &#123;</span><br><span class="line">                pollers[i] = new Poller();</span><br><span class="line">                Thread pollerThread = new Thread(pollers[i], getName() + &quot;-ClientPoller-&quot;+i);</span><br><span class="line">                pollerThread.setPriority(threadPriority);</span><br><span class="line">                pollerThread.setDaemon(true);</span><br><span class="line">                pollerThread.start();</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            startAcceptorThreads();//调用到AbstractEndpoint然后new Acceptor(),并start()</span><br><span class="line">            ···············</span><br><span class="line">             Acceptor.run()方法</span><br><span class="line">             </span><br><span class="line">               // Accept the next incoming connection from the server</span><br><span class="line">             socket = serverSock.accept();这里阻塞了，等待请求</span><br><span class="line">             setSocketOptions();// getPoller0().register(channel);</span><br><span class="line">            ················</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p>Acceptor的作用是控制与tomcat建立连接的数量，但Acceptor只负责建立连接。socket内容的读写是通过Poller来实现的。</p>
+<p>setSocketOptions()是关键关联点</p>
+<h4 id="NioEndpoint到SocketProcessor到ConnectionHandler"><a href="#NioEndpoint到SocketProcessor到ConnectionHandler" class="headerlink" title="NioEndpoint到SocketProcessor到ConnectionHandler"></a>NioEndpoint到SocketProcessor到ConnectionHandler</h4><p>这里应该是使用了一个注册监听。</p>
+<p>Poller 和事件类PollerEvent<br>Poller 是在startInternal就启动了<code>pollerThread.start();</code><br>先把channel注册到Poller并添加addEvent(),对应一个PollerEvent，然后每次Poller在run()的时候，就会events()[PollerEvent.run()],如果有事件，就会返回true，</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br></pre></td><td class="code"><pre><span class="line">Poller implements Runnable &#123;</span><br><span class="line">    public boolean events() &#123;</span><br><span class="line">        boolean result = false;</span><br><span class="line">        //events.poll()看event里面还有没有事件</span><br><span class="line">        PollerEvent pe = null;</span><br><span class="line">        for (int i = 0, size = events.size(); i &lt; size &amp;&amp; (pe = events.poll()) != null; i++ ) &#123;</span><br><span class="line">            result = true;</span><br><span class="line">            try &#123;</span><br><span class="line">                pe.run();</span><br><span class="line">                pe.reset();</span><br><span class="line">                if (running &amp;&amp; !paused) &#123;</span><br><span class="line">                    eventCache.push(pe);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125; catch ( Throwable x ) &#123;</span><br><span class="line">                log.error(&quot;&quot;,x);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        return result;</span><br><span class="line">    &#125;</span><br><span class="line">    public void register(final NioChannel socket) &#123;</span><br><span class="line">        PollerEvent r = eventCache.pop();</span><br><span class="line">        addEvent(r);</span><br><span class="line">    &#125;</span><br><span class="line">    public void run() &#123;</span><br><span class="line">            // Loop until destroy() is called</span><br><span class="line">            while (true) &#123;</span><br><span class="line"></span><br><span class="line">                boolean hasEvents = false;</span><br><span class="line"></span><br><span class="line">                try &#123;</span><br><span class="line">                    if (!close) &#123;</span><br><span class="line">                        hasEvents = events();</span><br><span class="line">                        if (wakeupCounter.getAndSet(-1) &gt; 0) &#123;</span><br><span class="line">                            //if we are here, means we have other stuff to do</span><br><span class="line">                            //do a non blocking select</span><br><span class="line">                            keyCount = selector.selectNow();</span><br><span class="line">                        &#125; else &#123;</span><br><span class="line">                            keyCount = selector.select(selectorTimeout);</span><br><span class="line">                        &#125;</span><br><span class="line">                        wakeupCounter.set(0);</span><br><span class="line">                    &#125;</span><br><span class="line">                    if (close) &#123;</span><br><span class="line">                        events();</span><br><span class="line">                        timeout(0, false);</span><br><span class="line">                        try &#123;</span><br><span class="line">                            selector.close();</span><br><span class="line">                        &#125; catch (IOException ioe) &#123;</span><br><span class="line">                            log.error(sm.getString(&quot;endpoint.nio.selectorCloseFail&quot;), ioe);</span><br><span class="line">                        &#125;</span><br><span class="line">                        break;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125; catch (Throwable x) &#123;</span><br><span class="line">                    ExceptionUtils.handleThrowable(x);</span><br><span class="line">                    log.error(&quot;&quot;,x);</span><br><span class="line">                    continue;</span><br><span class="line">                &#125;</span><br><span class="line">                //either we timed out or we woke up, process events first</span><br><span class="line">                if ( keyCount == 0 ) hasEvents = (hasEvents | events());</span><br><span class="line"></span><br><span class="line">                Iterator&lt;SelectionKey&gt; iterator =</span><br><span class="line">                    keyCount &gt; 0 ? selector.selectedKeys().iterator() : null;</span><br><span class="line">                // Walk through the collection of ready keys and dispatch</span><br><span class="line">                // any active event.</span><br><span class="line">                while (iterator != null &amp;&amp; iterator.hasNext()) &#123;</span><br><span class="line">                    SelectionKey sk = iterator.next();</span><br><span class="line">                    NioSocketWrapper attachment = (NioSocketWrapper)sk.attachment();</span><br><span class="line">                    // Attachment may be null if another thread has called</span><br><span class="line">                    // cancelledKey()</span><br><span class="line">                    if (attachment == null) &#123;</span><br><span class="line">                        iterator.remove();</span><br><span class="line">                    &#125; else &#123;</span><br><span class="line">                        iterator.remove();</span><br><span class="line">                        //这样就到了继续处理的时候</span><br><span class="line">                        processKey(sk, attachment);</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;//while</span><br><span class="line"></span><br><span class="line">                //process timeouts</span><br><span class="line">                timeout(keyCount,hasEvents);</span><br><span class="line">            &#125;//while</span><br><span class="line"></span><br><span class="line">            getStopLatch().countDown();</span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">PollerEvent implements Runnable &#123;</span><br><span class="line">     public void run() &#123;</span><br><span class="line">           socket.getIOChannel().register(</span><br><span class="line">                            socket.getPoller().getSelector(), SelectionKey.OP_READ, socketWrapper);</span><br><span class="line">     &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Poller只要执行run()之后，就会依次按照下面这个步骤：</p>
+<ul>
+<li><code>processKey(sk, attachment);</code><ul>
+<li><code>processSendfile(sk,attachment, false);</code></li>
+</ul>
+</li>
+<li><code>processSocket(socketWrapper, SocketEvent.OPEN_READ, true)</code></li>
+<li>找到AbstractEndpoint.processSocket()</li>
+<li><code>sc = createSocketProcessor(socketWrapper, event); sc.run();</code></li>
+<li>NioEndpoint.createSocketProcessor()内部<code>new SocketProcessor(socketWrapper, event);</code></li>
+<li><code>state = getHandler().process(socketWrapper, SocketEvent.OPEN_READ);</code></li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">@Override</span><br><span class="line">protected SocketProcessorBase&lt;NioChannel&gt; createSocketProcessor(</span><br><span class="line">        SocketWrapperBase&lt;NioChannel&gt; socketWrapper, SocketEvent event) &#123;</span><br><span class="line">    return new SocketProcessor(socketWrapper, event);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>到SocketProcessor后，getHandler()就能用ConnectionHandler进而到Http11Processor处理(AbstractHttp11Protocol的构造函数定义的handler)</p>
+<h4 id="ConnectionHandler到Http11Processor"><a href="#ConnectionHandler到Http11Processor" class="headerlink" title="ConnectionHandler到Http11Processor"></a>ConnectionHandler到Http11Processor</h4><p>NioEndpoint调用processSocket()方法，最终还是执行SocketProcessor.doRun();这个doRun中就使用了getHandler().process(socketWrapper);此处的handler是上文中AbstractHttp11Protocol构造函数中设置的ConnectionHandler（内部类AbstractProtocol），这个类中就把SocketProcessor和Http11Processor 关联起来l，也正如这个名字所示ConnectionHandler.</p>
+<p>AbstractProtocol.ConnectionHandler.process()方法内部<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">processor = getProtocol().createProcessor();</span><br><span class="line">···················</span><br><span class="line"> AbstractHttp11Protocol.createProcessor();这就是上一行的创建这个处理就是Http11Processor。</span><br><span class="line"> Http11Processor processor = new Http11Processor(getMaxHttpHeaderSize(),</span><br><span class="line">               getAllowHostHeaderMismatch(), getRejectIllegalHeaderName(), getEndpoint(),</span><br><span class="line">               getMaxTrailerSize(), allowedTrailerHeaders, getMaxExtensionSize(),</span><br><span class="line">               getMaxSwallowSize(), httpUpgradeProtocols, getSendReasonPhrase());</span><br><span class="line">····················</span><br><span class="line">processor.process(wrapper, status);</span><br></pre></td></tr></table></figure></p>
+<p>那么这个process就是Http11Processor的执行了，下面就是Http11Processor和CoyoteAdapter的转换。</p>
+<h4 id="Http11Processor到CoyoteAdapter到Container"><a href="#Http11Processor到CoyoteAdapter到Container" class="headerlink" title="Http11Processor到CoyoteAdapter到Container"></a>Http11Processor到CoyoteAdapter到Container</h4><p>上面的<code>processor.process(wrapper, status);</code>实际上是调用AbstractProcessorLight.process()————–&gt;内部有一个service()</p>
+<p>就又回到了Http11Processor重写的方法service()</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">public SocketState process(SocketWrapperBase&lt;?&gt; socketWrapper, SocketEvent status)</span><br><span class="line">          throws IOException &#123;</span><br><span class="line"></span><br><span class="line">      SocketState state = SocketState.CLOSED;</span><br><span class="line">      Iterator&lt;DispatchType&gt; dispatches = null;</span><br><span class="line">      do &#123;</span><br><span class="line">                     // There may be pipe-lined data to read. If the data isn&apos;t</span><br><span class="line">                  // processed now, execution will exit this loop and call</span><br><span class="line">                  // release() which will recycle the processor (and input</span><br><span class="line">                  // buffer) deleting any pipe-lined data. To avoid this,</span><br><span class="line">                  // process it now.</span><br><span class="line">                  state = service(socketWrapper);</span><br><span class="line">        </span><br><span class="line">      &#125; while (state == SocketState.ASYNC_END ||</span><br><span class="line">              dispatches != null &amp;&amp; state != SocketState.CLOSED);</span><br><span class="line"></span><br><span class="line">      return state;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+<p>Http11Processor.process()————–&gt;AbstractProcessorLight.process()<br> state = service(socketWrapper);———–&gt;Http11Processor.service()</p>
+<p>Http11Processor.service() :<br><code>import org.apache.coyote.Request;</code><br><code>getAdapter().service(request, response);</code></p>
+<p>getAdapter是在Connector.init()中给的就是下面这个CoyoteAdapter</p>
+<p>CoyoteAdapter.service()方法中有代码：<br>这里构造request，response</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">request = connector.createRequest();</span><br><span class="line">request.setCoyoteRequest(req);</span><br><span class="line">response = connector.createResponse();</span><br><span class="line">response.setCoyoteResponse(res);</span><br><span class="line">connector.getService().getContainer().getPipeline().getFirst().invoke(request, response);</span><br></pre></td></tr></table></figure>
+<p><code>org.apache.catalina.connector.Request</code>这个req.res都有了，然后就是找到具体的请求处理模块并返回。</p>
+<p>这样就找到了Container，实际上到这里已经完成了Connector到Container的转换。</p>
+<p><a href="http://naotu.baidu.com/file/3a08dd05ba3011c349941c95a4814be4?token=1ab842bbabc206c6" target="_blank" rel="noopener">百度脑图Connector</a></p>
+<h2 id="Container内部进行责任链处理"><a href="#Container内部进行责任链处理" class="headerlink" title="Container内部进行责任链处理"></a>Container内部进行责任链处理</h2><h4 id="Engine-Host-Context-Wrapper"><a href="#Engine-Host-Context-Wrapper" class="headerlink" title="Engine Host Context Wrapper"></a>Engine Host Context Wrapper</h4><p>见下篇”Tomcat源码阅读之Container责任链”</p>
+<p>系列文章</p>
+<ul>
+<li><a href="http://muxiaobai.github.io/2018/04/16/Tomcat%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB%E4%B9%8B%E4%BB%8Eserver-xml%E7%9C%8B%E7%BB%84%E4%BB%B6%E5%85%B3%E7%B3%BB/">Tomcat源码阅读之从server.xml看组件关系</a></li>
+<li><a href="http://muxiaobai.github.io/2018/04/16/Tomcat%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB%E4%B9%8B%E7%BB%84%E4%BB%B6%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/">Tomcat源码阅读之组件生命周期</a></li>
+<li><a href="http://muxiaobai.github.io/2018/04/17/Tomcat%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB%E4%B9%8BURL%E8%AF%B7%E6%B1%82%E8%A7%A3%E6%9E%90/">Tomcat源码阅读之URL请求解析</a></li>
+<li><a href="https://muxiaobai.github.io/2018/04/20/Tomcat%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB%E4%B9%8BContainer%E8%B4%A3%E4%BB%BB%E9%93%BE/">Tomcat源码阅读之Container责任链</a></li>
+</ul>
+<p>参看文献：</p>
+<ul>
+<li><a href="https://blog.csdn.net/yanlinwang/article/details/46382889" target="_blank" rel="noopener">Poller</a></li>
+<li><a href="http://www.cnblogs.com/coldridgeValley/category/797239.html" target="_blank" rel="noopener">随笔分类 - Tomcat</a></li>
+<li><a href="https://www.cnblogs.com/coldridgeValley/p/6606271.html" target="_blank" rel="noopener">Tomcat中的设计模式</a></li>
+<li>《深入剖析Tomcat》</li>
+<li><a href="https://www.ibm.com/developerworks/cn/java/j-lo-tomcat1/" target="_blank" rel="noopener">Tomcat 系统架构与设计模式</a></li>
+<li><a href="http://mirrors.tuna.tsinghua.edu.cn/apache/tomcat/tomcat-8/v8.5.30/src/apache-tomcat-8.5.30-src.zip" target="_blank" rel="noopener">tomcat8.5.30源码</a></li>
+<li><a href="https://my.oschina.net/liughDevelop/blog/1790893#comment-list" target="_blank" rel="noopener">手写一个简化版Tomcat</a></li>
+<li><a href="http://www.cnblogs.com/coldridgeValley/p/6252781.html" target="_blank" rel="noopener">Tomcat对HTTP请求的处理(二)</a></li>
+<li><a href="https://blog.csdn.net/u011116672/article/details/50994038" target="_blank" rel="noopener">请求流程</a></li>
+</ul>
+
+      
+    </div>
+   
+    
+          <!--打赏-->
+         
+
+<!-- donate -->
+<style>
+   .donate_bar {
+	text-align: center;
+	margin-top: 5%
+	}
+	.donate_bar a.btn_donate {
+		display: inline-block;
+		width: 82px;
+		height: 82px;
+		margin-left: auto;
+		margin-right: auto;
+		background: url(http://img.t.sinajs.cn/t5/style/images/apps_PRF/e_media/btn_reward.gif)no-repeat;
+		-webkit-transition: background 0s;
+		-moz-transition: background 0s;
+		-o-transition: background 0s;
+		-ms-transition: background 0s;
+		transition: background 0s
+	}
+	.donate_bar a.btn_donate:hover {
+		background-position: 0 -82px
+	}
+	.donate_bar .donate_txt {
+		display: block;
+		color: #9d9d9d;
+		font: 14px/2 "Microsoft Yahei"
+	}
+	.donate_bar.hidden{
+		display: none
+	}
+	.post-donate{
+		margin-top: 80px;
+	}
+	#donate_guide{
+		/*height: 210px;
+		width: 420px;*/
+		margin: 0 auto;
+	}
+	#donate_guide img{
+		height: 200px;
+		height: 200px;
+	}
+</style>
+<!-- 添加捐赠图标 -->
+<div class="post-donate">
+    <div id="donate_board" class="donate_bar center">
+        <a id="btn_donate" class="btn_donate" href="javascript:;" title="打赏"></a>
+        <span class="donate_txt">
+           &uarr;<br>
+		   坚持原创技术分享，您的支持将鼓励我继续创作！
+        </span>
+        <br>
+    </div>  
+	<div id="donate_guide" class="donate_bar center hidden">
+		<!-- 支付宝打赏图案 -->
+		<img src="/img/alipay.jpg" alt="支付宝打赏"> 
+		<!-- 微信打赏图案 -->
+		<img src="/img/wechatpay.png" alt="微信打赏">  
+    </div>
+	<script type="text/javascript">
+		document.getElementById('btn_donate').onclick = function(){
+			//$('#donate_board').addClass('hidden');
+			if($('#donate_guide').hasClass('hidden')){
+				$('#donate_guide').removeClass('hidden');
+			}else{
+				$('#donate_guide').addClass('hidden');
+			}
+		}
+	</script>
+</div>
+
+<!-- End donate -->
+
+
+    
+    
+    
+  </div>
+  
+    
+    <div class="copyright">
+        <p><span>本文标题:</span><a href="/2018/04/17/Tomcat源码阅读之URL请求解析/">Tomcat源码阅读之URL请求解析</a></p>
+        <p><span>文章作者:</span><a href="/" title="回到主页">Mu Xiaobai(慕小白)</a></p>
+        <p><span>发布时间:</span>2018-04-17, 10:07:03</p>
+        <p><span>最后更新:</span>2018-04-20, 16:07:09</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/2018/04/17/Tomcat源码阅读之URL请求解析/" title="Tomcat源码阅读之URL请求解析">https://muxiaobai.github.io/2018/04/17/Tomcat源码阅读之URL请求解析/</a>
+            <span class="copy-path" data-clipboard-text="原文: https://muxiaobai.github.io/2018/04/17/Tomcat源码阅读之URL请求解析/　　作者: Mu Xiaobai(慕小白)" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target="_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
+        </p>
+    </div>
+
+
+
+    <nav id="article-nav">
+        
+            <div id="article-nav-newer" class="article-nav-title">
+                <a href="/2018/04/20/Tomcat源码阅读之Container责任链/">
+                    Tomcat源码阅读之Container责任链
+                </a>
+            </div>
+        
+        
+            <div id="article-nav-older" class="article-nav-title">
+                <a href="/2018/04/16/Tomcat源码阅读之组件生命周期/">
+                    Tomcat源码阅读之组件生命周期
+                </a>
+            </div>
+        
+    </nav>
+
+  
+</article>
+
+
+    <!--左侧-->
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#这个流程写的很详细"><span class="toc-number">1.</span> <span class="toc-text">这个流程写的很详细</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#http-localhost-8080-examples-composite-jsp"><span class="toc-number">2.</span> <span class="toc-text">http://localhost:8080/examples/composite.jsp</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Connector到Container"><span class="toc-number">3.</span> <span class="toc-text">Connector到Container</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#AbstractProtocol"><span class="toc-number">3.0.1.</span> <span class="toc-text">AbstractProtocol</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#AbstractEndpoint-和NioEndpoint"><span class="toc-number">3.0.2.</span> <span class="toc-text">AbstractEndpoint 和NioEndpoint</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#NioEndpoint到SocketProcessor到ConnectionHandler"><span class="toc-number">3.0.3.</span> <span class="toc-text">NioEndpoint到SocketProcessor到ConnectionHandler</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#ConnectionHandler到Http11Processor"><span class="toc-number">3.0.4.</span> <span class="toc-text">ConnectionHandler到Http11Processor</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Http11Processor到CoyoteAdapter到Container"><span class="toc-number">3.0.5.</span> <span class="toc-text">Http11Processor到CoyoteAdapter到Container</span></a></li></ol></li></ol><li class="toc-item toc-level-2"><a class="toc-link" href="#Container内部进行责任链处理"><span class="toc-number">4.</span> <span class="toc-text">Container内部进行责任链处理</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Engine-Host-Context-Wrapper"><span class="toc-number">4.0.1.</span> <span class="toc-text">Engine Host Context Wrapper</span></a></li></ol></li>
+</div>
+<style>
+    .left-col .switch-btn,
+    .left-col .switch-area {
+        display: none;
+    }
+</style>
+
+<input type="button" id="tocButton" value="隐藏目录" title="点击按钮隐藏或者显示文章目录">
+
+<script>
+    yiliaConfig.toc = ["隐藏目录", "显示目录", !!"false"];
+</script>
+
+
+
+    <!--分享-->
+    
+<div class="share">
+    
+
+    
+        <div class="addthis_sharing_toolbox"></div>
+    
+</div>
+
+
+
+
+
+
+
+    <!--评论-->
+    
+      <section class="gitment" id="comments">
+    <div id="gitment" class="article article-type-post"></div>
+    <link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+    <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+    <script>
+    var gitment = new Gitment({
+      id: 'Tomcat源码阅读之URL请求解析',
+      owner: 'muxiaobai',
+      repo: 'muxiaobai.github.io',
+      oauth: {
+        client_id: '5e496d32f02cb04c1ccf',
+        client_secret: 'a98d21d1cc8b690a45fc996c62572247fdc5d7f3',
+      },
+    })
+    gitment.render('gitment')
+    </script>
+</section>
+    
+
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/2018/04/20/Tomcat源码阅读之Container责任链/" title="上一篇: Tomcat源码阅读之Container责任链">
+                <i class="fa fa-angle-left"></i>
+            </a>
+        
+
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+
+        
+            <a href="/2018/04/16/Tomcat源码阅读之组件生命周期/" title="下一篇: Tomcat源码阅读之组件生命周期">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2019/05/21/高并发之缓存、限流、降级/">高并发之缓存、限流、降级</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/18/使用ELK分析日志/">使用ELK分析日志</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/01/Linux-基础命令总结4/">Linux 基础命令总结4</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/02/16/性能优化之redis储存计算值/">性能优化之redis储存计算值</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/01/15/2018年个人总结/">2018年个人总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/01/11/mongodb常用命令/">mongodb常用命令</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/01/11/mongodb主从架构设计/">mongodb主从架构设计</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/12/21/前言技术之OCR识别/">前言技术之OCR识别</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/11/22/深入理解JVM之远程监控/">深入理解JVM之远程监控</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/11/22/数据库监控-Druid监控配置/">数据库监控-Druid监控配置</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/11/15/应用部署之nginx参数配置/">应用部署之nginx参数配置</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/11/07/数据库操作-plsql操作/">数据库操作-plsql操作</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/10/09/javascript-常用代码/">javascript-常用代码</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/20/java-常用代码/">java 常用代码</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/04/数据库操作语句2/">数据库操作语句2</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/06/25/Spring源码阅读之AOP两种代理模式/">Spring源码阅读之AOP两种代理模式</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/06/22/Spring源码阅读之Ioc控制反转/">Spring源码阅读之Ioc控制反转</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/06/08/浏览器的加载页面过程及优化方法/">浏览器的加载页面过程及优化方法</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/06/07/浏览器的请求与响应过程/">浏览器的请求与响应过程</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/04/20/Tomcat源码阅读之Container责任链/">Tomcat源码阅读之Container责任链</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/04/17/Tomcat源码阅读之URL请求解析/">Tomcat源码阅读之URL请求解析</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/04/16/Tomcat源码阅读之组件生命周期/">Tomcat源码阅读之组件生命周期</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/04/16/Tomcat源码阅读之从server-xml看组件关系/">Tomcat源码阅读之从server.xml看组件关系</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/03/02/重装CENTOS一系列操作/">重装CENTOS一系列操作</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/01/05/2017年个人总结/">2017年个人总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/12/22/javascript再学习之prototype/">javascript再学习之prototype</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/12/21/RSS好工具/">RSS好工具</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/10/23/前端小tips/">前端小tips</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/09/17/Linux-基础命令总结3/">Linux 基础命令总结3</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/09/02/应用部署之nginx负载/">应用部署之nginx负载</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/29/深入理解JVM之性能调优/">深入理解JVM之性能调优</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/14/数据库操作语句/">数据库操作语句</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/09/javascript再学习之Event/">javascript再学习之Event</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/08/javascript再学习之DOM/">javascript再学习之DOM</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/02/Javamelody-工具/">Javamelody 工具</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/07/20/hadoop-Sqoop-Hive等的安装/">hadoop-Sqoop-Hive等的安装</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/07/19/Linux-下的java安装、变更以及升级问题/">Linux 下的java安装、变更以及升级问题</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/06/29/毕业设计心得/">毕业设计心得</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/23/2016年个人总结/">2016年个人总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/27/CSS-定位布局/">CSS 定位布局</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/17/等待-等待-等待/">等待,等待,等待...</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/29/常见排序算法总结/">常见排序算法总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/24/Thinking-in-java-基础之网络Socket/">Thinkin in java 基础之网络Socket</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/19/由ES6中的Proxy和Reflect再了解Object/">由ES6中的Proxy和Reflect再了解Object</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/16/从ES6中学习编码/">从ES6中学习编码</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/13/模仿jQuery创建自己的js工具/">模仿jQuery创建自己的js工具</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/08/27/测试Travis CI/">好软件,靠机遇</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/08/20/HTML5-API-新特性/">HTML5 API 新特性</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/08/09/Thinking-in-java-基础之线程和并发/">Thinking in java 基础之线程和并发</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/08/04/Thinking-in-java-基础之异常/">Thinking in java 基础之异常</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/08/03/Spring中的Session生命周期/">Spring中的Session生命周期</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/20/前后台数据交互方式总结/">前后台数据交互方式总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/19/JavaEE-资源路径问题/">JavaEE 资源路径问题</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/19/Sublime-下运行Java文件/">Sublime 下运行Java文件</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/09/Linux-基础Shell脚本/">Linux 基础Shell脚本</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/07/Linux-基础命令总结2/">Linux 基础命令总结2</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/01/好软件-靠机遇/">好软件,靠机遇</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/06/29/好网站-天天记/">好网站,天天记</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/06/29/hello-world/">Hello World</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/06/27/Linux下各目录的默认含义/">Linux下各目录的默认含义</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/06/27/Linux-基础命令总结/">Linux 基础命令总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/06/25/Thinking-in-java-基础之集合框架/">Thinking in java 基础之集合框架</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/06/25/Thinking-in-java-基础之I-O/">Thinking in java 基础之I/O</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/06/19/Linux-下安装SVN服务器/">Linux 下安装SVN服务器</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/06/17/GitHub Hexo/">GitHub + Hexo 构建我的博客</a></li></ul>
+
+
+
+
+    <script>
+        
+    </script>
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                <i class="fa fa-copyright"></i> 
+                2016-2019 Mu Xiaobai(慕小白)
+            </div>
+            <div class="footer-right">
+                <a href="http://hexo.io/" target="_blank" title="快速、简洁且高效的博客框架">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="简而不减 Hexo 双栏博客主题  v3.5">Yelee</a> by MOxFIVE <i class="fa fa-heart animated infinite pulse"></i>
+            </div>
+        </div>
+        
+            <div class="visit">
+                
+                    <span id="busuanzi_container_site_pv" style="display:none">
+                        <span id="site-visit">本站到访数: 
+                            <span id="busuanzi_value_site_uv"></span>
+                        </span>
+                    </span>
+                
+                
+                    <span>, </span>
+                
+                
+                    <span id="busuanzi_container_page_pv" style="display:none">
+                        <span id="page-visit">本页阅读量: 
+                            <span id="busuanzi_value_page_pv"></span>
+                        </span>
+                    </span>
+                
+            </div>
+        
+    </div>
+</footer>
+    </div>
+    
+    <script src="/js/GithubRepoWidget.js"></script>
+
+<script data-main="/js/main.js" src="//cdn.bootcss.com/require.js/2.2.0/require.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            var iPad = window.navigator.userAgent.indexOf('iPad');
+            if (iPad > -1 || $(".left-col").css("display") === "none") {
+                var bgColorList = ["#9db3f4", "#414141", "#e5a859", "#f5dfc6", "#c084a0", "#847e72", "#cd8390", "#996731"];
+                var bgColor = Math.ceil(Math.random() * (bgColorList.length - 1));
+                $("body").css({"background-color": bgColorList[bgColor], "background-size": "cover"});
+            }
+            else {
+                var backgroundnum = 5;
+                var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+                $("body").css({"background": backgroundimg, "background-attachment": "fixed", "background-size": "cover"});
+            }
+        })
+    </script>
+
+
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-80276841-1', 'auto');
+ga('send', 'pageview');
+</script>
+<!-- End Google Analytics -->
+
+
+
+
+
+<div class="scroll" id="scroll">
+    <a href="#" title="返回顶部"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments" onclick="load$hide();" title="查看评论"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer" title="转到底部"><i class="fa fa-arrow-down"></i></a>
+</div>
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+  </div>
+</body>
+</html>

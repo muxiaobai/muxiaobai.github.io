@@ -1,0 +1,880 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+
+
+    <!--[if lt IE 9]>
+        <style>body {display: none; background: none !important} </style>
+        <meta http-equiv="Refresh" Content="0; url=//outdatedbrowser.com/" />
+    <![endif]-->
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="format-detection" content="telephone=no">
+<meta name="author" content="Mu Xiaobai(慕小白)">
+
+
+
+<meta name="description" content="用户，网络(端口占用等)、服务(自启动)、系统环境、权限、进程、任务调度、工作">
+<meta name="keywords" content="基础命令,系统">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linux 基础命令总结2">
+<meta property="og:url" content="https://muxiaobai.github.io/2016/07/07/Linux-基础命令总结2/index.html">
+<meta property="og:site_name" content="技术笔记">
+<meta property="og:description" content="用户，网络(端口占用等)、服务(自启动)、系统环境、权限、进程、任务调度、工作">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-04-10T08:29:31.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Linux 基础命令总结2">
+<meta name="twitter:description" content="用户，网络(端口占用等)、服务(自启动)、系统环境、权限、进程、任务调度、工作">
+
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+
+    <link rel="alternative" href="/atom.xml" title="技术笔记" type="application/atom+xml">
+
+
+
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+
+
+    <link href="//cdn.bootcss.com/animate.css/3.5.1/animate.min.css" rel="stylesheet">
+
+
+
+    <link href="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet">
+
+
+
+    <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+    <link href="//cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-minimal.css" rel="stylesheet">
+
+
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+<link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+
+
+<title>Linux 基础命令总结2 | 技术笔记</title>
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+
+<script>
+    var yiliaConfig = {
+        fancybox: true,
+        animate: true,
+        isHome: false,
+        isPost: true,
+        isArchive: false,
+        isTag: false,
+        isCategory: false,
+        open_in_new: true,
+        fancybox_js: "//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.js",
+        scrollreveal: "//cdn.bootcss.com/scrollReveal.js/3.1.4/scrollreveal.min.js",
+        search: true
+    }
+</script>
+
+
+    <script>
+        yiliaConfig.jquery_ui = [true, "//cdn.bootcss.com/jqueryui/1.10.4/jquery-ui.min.js", "//cdn.bootcss.com/jqueryui/1.10.4/css/jquery-ui.min.css"];
+    </script>
+
+
+
+    <script> yiliaConfig.rootUrl = "\/";</script>
+
+
+
+    <script src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-577a08f17286c0c0"></script>
+
+
+
+    <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "//hm.baidu.com/hm.js?9d6c9084c010ea425bd063ef91167131";
+            var s = document.getElementsByTagName("script")[0]; 
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+
+
+</head>
+ 
+<!-- add Fork Me On Github -->
+
+<a href="https://github.com/muxiaobai">
+<img style="position: absolute; top: 0; right: 0; border: 0;z-index: 1000" src="https://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png" alt="Fork me on GitHub">
+</a>
+<!-- End Fork Me On Github  -->
+</html>
+<body>
+ 
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <a href="/" class="profilepic">
+            <img src="/img/avatars.jpg" class="animated zoomIn">
+        </a>
+        <hgroup>
+          <h1 class="header-author"><a href="/">Mu Xiaobai(慕小白)</a></h1>
+        </hgroup>
+
+        
+        <p class="header-subtitle">有输入,有输出</p>
+        
+
+        
+            <form id="search-form">
+            <input type="text" id="local-search-input" name="q" results="0" placeholder="search..." class="search form-control" autocomplete="off" autocorrect="off" searchonload="false">
+            <i class="fa fa-times" onclick="resetSearch()"></i>
+            </form>
+            <div id="local-search-result"></div>
+            <p class="no-result">No results found <i class="fa fa-spinner fa-pulse"></i></p>
+        
+
+
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        <div class="icon-wrap icon-link hide" data-idx="2">
+                            <div class="loopback_l"></div>
+                            <div class="loopback_r"></div>
+                        </div>
+                        
+                        
+                    </div>
+                    
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>菜单</li>
+                        <li>标签</li>
+                        
+                        <li>友情链接</li>
+                        
+                        
+                    </ul>
+                </div>
+            </div>
+        
+
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a href="/">主页</a></li>
+                        
+                            <li><a href="/archives/">所有文章</a></li>
+                        
+                            <li><a href="/tags/">标签云</a></li>
+                        
+                            <li><a href="/about/">关于我</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" target="_blank" href="mailto:zpf12345678910@gmail.com" title="Email"></a>
+                            
+                                <a class="fa 新浪微博" target="_blank" href="http://weibo.com/u/1751073805" title="新浪微博"></a>
+                            
+                                <a class="fa GitHub" target="_blank" href="https://github.com/muxiaobai" title="GitHub"></a>
+                            
+                                <a class="fa RSS" target="_blank" href="/atom.xml" title="RSS"></a>
+                            
+                                <a class="fa 网易云音乐" target="_blank" href="http://music.163.com/#//user/home?id=270611521" title="网易云音乐"></a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/2016/">2016</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/2017/">2017</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/2018/">2018</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/API/">API</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CI/">CI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS/">CSS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Cache/">Cache</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Canvas/">Canvas</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Collection/">Collection</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Concurrent/">Concurrent</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Error/">Error</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Exception/">Exception</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/File/">File</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Github/">Github</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hibernate/">Hibernate</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/I-O/">I/O</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Iterator/">Iterator</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/List/">List</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Map/">Map</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Object/">Object</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Session/">Session</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Set/">Set</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Shell/">Shell</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Socket/">Socket</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Spring/">Spring</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Storage/">Storage</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Struts/">Struts</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Sublime/">Sublime</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Thread/">Thread</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Throwable/">Throwable</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/directory/">directory</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/file/">file</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jQuery实践/">jQuery实践</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">javascript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jvm/">jvm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mongo/">mongo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nginx/">nginx</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/prototype/">prototype</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/redis/">redis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/svn/">svn</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tar/">tar</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tomcat/">tomcat</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/分析/">分析</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/前沿技术/">前沿技术</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/前端/">前端</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/后端/">后端</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/基础/">基础</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/基础命令/">基础命令</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/定位/">定位</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/工具/">工具</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/常用代码/">常用代码</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/常用命令/">常用命令</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/排序/">排序</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/插件/">插件</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/日志/">日志</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/目录/">目录</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/系统/">系统</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/编码/">编码</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/编辑器/">编辑器</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/网站/">网站</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/行高/">行高</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/设计/">设计</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/软件/">软件</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/连接池/">连接池</a></li></ul>
+                    </div>
+                </section>
+                
+                
+                
+                <section class="switch-part switch-part3">
+                    <div id="js-friends">
+                    
+                      <a target="_blank" class="main-nav-link switch-friends-link" href="https://hexo.io">Hexo</a>
+                    
+                      <a target="_blank" class="main-nav-link switch-friends-link" href="https://pages.github.com/">GitHub</a>
+                    
+                      <a target="_blank" class="main-nav-link switch-friends-link" href="http://moxfive.xyz/">MOxFIVE</a>
+                    
+                      <a target="_blank" class="main-nav-link switch-friends-link" href="http://cmsblogs.com/">CMSBLOGS</a>
+                    
+                    </div>
+                </section>
+                
+
+                
+            </div>
+        </div>
+    </header>                
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">Mu Xiaobai(慕小白)</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                <img src="/img/avatars.jpg" class="animated zoomIn">
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="回到主页">Mu Xiaobai(慕小白)</a></h1>
+            </hgroup>
+            
+            <p class="header-subtitle">有输入,有输出</p>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/">主页</a></li>
+                
+                    <li><a href="/archives/">所有文章</a></li>
+                
+                    <li><a href="/tags/">标签云</a></li>
+                
+                    <li><a href="/about/">关于我</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" target="_blank" href="mailto:zpf12345678910@gmail.com" title="Email"></a>
+                            
+                                <a class="fa 新浪微博" target="_blank" href="http://weibo.com/u/1751073805" title="新浪微博"></a>
+                            
+                                <a class="fa GitHub" target="_blank" href="https://github.com/muxiaobai" title="GitHub"></a>
+                            
+                                <a class="fa RSS" target="_blank" href="/atom.xml" title="RSS"></a>
+                            
+                                <a class="fa 网易云音乐" target="_blank" href="http://music.163.com/#//user/home?id=270611521" title="网易云音乐"></a>
+                            
+                        </ul>
+            </nav>
+        </header>                
+    </div>
+    <link class="menu-list" tags="标签" friends="友情链接" about="关于我">
+</nav>
+      <div class="body-wrap"><article id="post-Linux-基础命令总结2" class="article article-type-post" itemscope itemprop="blogPost">
+ 
+  
+    <div class="article-meta">
+      <a href="/2016/07/07/Linux-基础命令总结2/" class="article-date">
+      <time datetime="2016-07-07T05:02:34.000Z" itemprop="datePublished">2016-07-07</time>
+</a>
+    </div>
+  
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Linux 基础命令总结2
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/Linux/">Linux</a>
+    </div>
+
+
+        
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/基础命令/">基础命令</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/系统/">系统</a></li></ul>
+    </div>
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <h2 id="打印、输出"><a href="#打印、输出" class="headerlink" title="打印、输出"></a>打印、输出</h2><h4 id="打印"><a href="#打印" class="headerlink" title="打印"></a>打印</h4><p><code>lpr</code>  <code>lpq</code> <code>lprm</code></p>
+<h4 id="输出"><a href="#输出" class="headerlink" title="输出"></a>输出</h4><p><code>echo</code>  <code>printf</code> <code>yes</code> <code>seq</code> <code>clear</code><br><a id="more"></a></p>
+<h2 id="用户、主机环境"><a href="#用户、主机环境" class="headerlink" title="用户、主机环境"></a>用户、主机环境</h2><h4 id="用户"><a href="#用户" class="headerlink" title="用户"></a>用户</h4><p><code>logname</code>: 登录名</p>
+<p><code>whoami</code>: 当前有效的用户名</p>
+<p><code>id</code>: pid和gid</p>
+<p><code>who</code>: 详细列出所有登录用户，看谁正在使用，展示IP</p>
+<p><code>users</code>: 简单列出所有登录用户</p>
+<p><code>finger</code>: 打印用户信息</p>
+<p><code>last</code>: 确定之前谁在什么时候登录这台主机，历史登录用户</p>
+<h4 id="主机"><a href="#主机" class="headerlink" title="主机"></a>主机</h4><p><code>printenv</code>:打印环境变量</p>
+<p><code>uname</code>: 系统内核信息（Unix name）</p>
+<h5 id="a-所有"><a href="#a-所有" class="headerlink" title="-a 所有"></a>-a 所有</h5><h5 id="–r内核版本（release）"><a href="#–r内核版本（release）" class="headerlink" title="–r内核版本（release）"></a>–r内核版本（release）</h5><h5 id="s内核名称"><a href="#s内核名称" class="headerlink" title="-s内核名称"></a>-s内核名称</h5><p><code>hostname</code>:系统主机名</p>
+<hr>
+<p>-s, –short           short host name</p>
+<p>-a, –alias           alias names</p>
+<p>-i, –ip-address      addresses for the hostname  </p>
+<p>-I, –all-ip-addresses all addresses for the host</p>
+<p>-f, –fqdn, –long    long host name (FQDN)</p>
+<p>-A, –all-fqdns        all long host names (FQDNs)</p>
+<p>-d, –domain          DNS domain name <code>dominname</code> </p>
+<p>-y, –yp, –nis       NIS/YP domainname   <code>dnsdominname</code> <code>ypdominname</code> <code>nisdominname</code></p>
+<p>-F, –file            read hostname or NIS domainname from given file   </p>
+<hr>
+<p><code>history</code> 历史命令</p>
+<h2 id="权限-目录和文件-和用户，组"><a href="#权限-目录和文件-和用户，组" class="headerlink" title="权限(目录和文件)和用户，组"></a>权限(目录和文件)和用户，组</h2><h4 id="rwx权限-读写执行"><a href="#rwx权限-读写执行" class="headerlink" title="rwx权限 读写执行"></a>rwx权限 读写执行</h4><blockquote>
+<p>所有者 所属者 其他人</p>
+</blockquote>
+<p>默认：<code>umask</code> </p>
+<p>改变权限：<code>chmod</code> <code>chown</code> <code>chgrp</code></p>
+<h4 id="高级权限管理ACL-SODO-文件特殊权限"><a href="#高级权限管理ACL-SODO-文件特殊权限" class="headerlink" title="高级权限管理ACL SODO 文件特殊权限"></a>高级权限管理ACL SODO 文件特殊权限</h4><h5 id="ACL权限-解决用户身份不够的情况-目录和文件"><a href="#ACL权限-解决用户身份不够的情况-目录和文件" class="headerlink" title="ACL权限(解决用户身份不够的情况)(目录和文件)"></a>ACL权限(解决用户身份不够的情况)(目录和文件)</h5><blockquote>
+<p>首先要看ACL权限是否开启 <code>dumpe2fs -h /dev/xvdal</code></p>
+</blockquote>
+<blockquote>
+<p><code>setfacl</code></p>
+</blockquote>
+<blockquote>
+<p><code>getfacl</code> 文件或目录后面有一个[+]号</p>
+</blockquote>
+<blockquote>
+<p>mask 用来控制最大权限</p>
+</blockquote>
+<h5 id="sudo-超级用户root执行的系统命令-命令"><a href="#sudo-超级用户root执行的系统命令-命令" class="headerlink" title="sudo(超级用户root执行的系统命令)(命令)"></a>sudo(超级用户root执行的系统命令)(命令)</h5><blockquote>
+<p>visudo(修改/etc/sudoers.tmp文件)<br>sudo -l 查看被添加的权限</p>
+</blockquote>
+<h5 id="SetUID-SetGID-Sticky-BIT-文件特殊权限-一般不使用"><a href="#SetUID-SetGID-Sticky-BIT-文件特殊权限-一般不使用" class="headerlink" title="SetUID SetGID Sticky BIT(文件特殊权限)(一般不使用)"></a>SetUID SetGID Sticky BIT(文件特殊权限)(一般不使用)</h5><blockquote>
+<p>SetUID 可执行文件有执行权限的时候才有SUID  USER[s=S+x]S无效</p>
+</blockquote>
+<blockquote>
+<p><code>chmod 4755[u+s] 文件名</code></p>
+</blockquote>
+<blockquote>
+<p><code>chmod 0755[u-s] 文件名</code></p>
+</blockquote>
+<blockquote>
+<p>SetGID 可执行文件有执行权限的时候才有SGID,目录的rx权限  GROUP组身份是我</p>
+</blockquote>
+<blockquote>
+<p><code>chmod 2755[g+s] 文件名</code></p>
+</blockquote>
+<blockquote>
+<p><code>chmod 0755[u-s] 文件名</code></p>
+</blockquote>
+<blockquote>
+<p>Sticky BIT  SBIT粘着位作用,仅针对目录，其他人有rwx权限 </p>
+</blockquote>
+<blockquote>
+<p><code>chmod 1755[o+t] 目录</code></p>
+</blockquote>
+<blockquote>
+<p><code>chmod 0755[o-t] 目录</code></p>
+</blockquote>
+<blockquote>
+<p>i[insert插入]/a[append追加] 不可改变位权限</p>
+</blockquote>
+<blockquote>
+<p><code>chattr [a/i]</code></p>
+</blockquote>
+<blockquote>
+<p><code>lsattr</code></p>
+</blockquote>
+<p><code>pam</code> <code>selinux</code></p>
+<h4 id="用户："><a href="#用户：" class="headerlink" title="用户："></a>用户：</h4><p><code>useradd</code> <code>userdel</code> <code>usermod</code></p>
+<h4 id="所属组："><a href="#所属组：" class="headerlink" title="所属组："></a>所属组：</h4><p><code>groups</code> <code>groupadd</code> <code>groupdel</code> <code>groupmod</code></p>
+<p>useradd 用户名 -g 组名–G 组名-d Home 目录名-p 密码</p>
+<p>useradd usenmae –g usenmae  –p ora123 </p>
+<p>passwd  username</p>
+<p>cat /etc/group  查看所有所属组</p>
+<p>chmod -R g+w </p>
+<p>chown -R bid:bids /home/newname  把/home/newname的所有者改为bid，所属组改为bids</p>
+<h2 id="网络和连接登录"><a href="#网络和连接登录" class="headerlink" title="网络和连接登录"></a>网络和连接登录</h2><p><code>arp</code>: 硬件地址(IP —-&gt; MAC地址)</p>
+<p><code>traceroute</code>: 到某一个地址的路由信息</p>
+<p><code>route</code>: 路由表</p>
+<p><code>ifconfig</code>: 配置网络信息</p>
+<p><code>ping</code>: 检测网络畅通</p>
+<p><code>host</code>: 检测分析域名是否正常</p>
+<p><code>netstat</code>: 查看网络状态、端口状态 -tulp   -tnaop  ☆</p>
+<p>-a 端口<br>-t tcp<br>-u udp<br>-l listener<br>-p program name </p>
+<pre><code>netstat -n | awk &apos;/^tcp/ {++S[$NF]} END {for(a in S) print a, S[a]}&apos;
+</code></pre><p>解析：</p>
+<ul>
+<li>CLOSED  //无连接是活动的或正在进行</li>
+<li>LISTEN  //服务器在等待进入呼叫</li>
+<li>SYN_RECV  //一个连接请求已经到达，等待确认</li>
+<li>SYN_SENT  //应用已经开始，打开一个连接</li>
+<li>ESTABLISHED  //正常数据传输状态/当前并发连接数</li>
+<li>FIN_WAIT1  //应用说它已经完成</li>
+<li>FIN_WAIT2  //另一边已同意释放</li>
+<li>ITMED_WAIT  //等待所有分组死掉</li>
+<li>CLOSING  //两边同时尝试关闭</li>
+<li>TIME_WAIT  //另一边已初始化一个释放</li>
+<li>LAST_ACK  //等待所有分组死掉</li>
+</ul>
+<p><code>ip</code>: iproute2中的命令(以上所有命令基本上都可以用这个命令来使用)</p>
+<p><code>net</code>: 无</p>
+<p><code>msg</code>:禁用</p>
+<p><code>nbtstat</code>:  无</p>
+<p><code>wget</code>: 下载资源</p>
+<p><code>curl</code> : </p>
+<p>远程连接：<code>ssh</code> <code>scp</code> <code>sftp</code> <code>telnet</code>(一般禁用) <code>ftp</code>(不常用)</p>
+<p><code>sz</code> file 下载文件到本机</p>
+<h4 id="端口占用6中方法"><a href="#端口占用6中方法" class="headerlink" title="端口占用6中方法"></a>端口占用6中方法</h4><p>ss -tnlp<br>netstat<br>lsof<br>fuser<br>nmap (NetWork Mapper) 网络监测和安全审计工具，可能无此命令<br>systemctl systemd系统的控制管理器和服务管理器 可能无此命令</p>
+<p>netstat -tlnaop</p>
+<p>-c 字符串  -u 用户名  -p pid</p>
+<p>lsof  进程打开或使用、调用的文件信息☆</p>
+<p>lsof -i:端口号 用于查看某一端口的占用情况，比如查看8000端口使用情况，lsof -i:8000</p>
+<h2 id="进程、系统资源-磁盘"><a href="#进程、系统资源-磁盘" class="headerlink" title="进程、系统资源(磁盘)"></a>进程、系统资源(磁盘)</h2><h4 id="进程"><a href="#进程" class="headerlink" title="进程"></a>进程</h4><p><code>ps</code>: 查看进程</p>
+<h5 id="aux-BSD"><a href="#aux-BSD" class="headerlink" title="aux BSD"></a>aux BSD</h5><h5 id="el-Linux"><a href="#el-Linux" class="headerlink" title="-el Linux"></a>-el Linux</h5><hr>
+<p>ps命令常用用法（方便查看系统进程）</p>
+<ul>
+<li>1）ps a 显示现行终端机下的所有程序，包括其他用户的程序。</li>
+<li>2）ps -A 显示所有进程。</li>
+<li>3）ps -c列出程序时，显示每个程序真正的指令名称，而不包含路径，参数或常驻服务的标示。</li>
+<li>4）ps -e 此参数的效果和指定”A”参数相同。</li>
+<li>5）ps e 列出程序时，显示每个程序所使用的环境变量。</li>
+<li>6）ps f 用ASCII字符显示树状结构，表达程序间的相互关系。</li>
+<li>7）ps -H 显示树状结构，表示程序间的相互关系。</li>
+<li>8）ps -N 显示所有的程序，除了执行ps指令终端机下的程序之外。</li>
+<li>9）ps s 采用程序信号的格式显示程序状况。</li>
+<li>10）ps S 列出程序时，包括已中断的子程序资料。</li>
+<li>11）ps -t&lt;终端机编号&gt; 　指定终端机编号，并列出属于该终端机的程序的状况。</li>
+<li>12）ps u 　以用户为主的格式来显示程序状况。</li>
+<li>13）ps x 　显示所有程序，不以终端机来区分。</li>
+</ul>
+<p>最常用的方法是ps -aux,然后再利用一个管道符号导向到grep去查找特定的进程,然后再对特定的进程进行操作。</p>
+<p>ps -ef | grep tomcat 查看tomcat进程☆</p>
+<h5 id="检查tomcat-nginx-并发数，连接数等"><a href="#检查tomcat-nginx-并发数，连接数等" class="headerlink" title="检查tomcat/nginx 并发数，连接数等"></a>检查tomcat/nginx 并发数，连接数等</h5><p>内部的应用级别的：<br>server {<br>    listen  <em>:80 default_server;<br>    server_name </em>.jiloc.com jiloc.com;<br>    location /ngx_status   {<br>        stub_status on;<br>        access_log off;</p>
+<pre><code>    #allow 127.0.0.1;
+    #deny all;
+}
+</code></pre><p>}</p>
+<p>curl <a href="http://127.0.0.1/ngx_status" target="_blank" rel="noopener">http://127.0.0.1/ngx_status</a></p>
+<p>浏览器 <a href="http://127.0.0.1/jStatus" target="_blank" rel="noopener">http://127.0.0.1/jStatus</a></p>
+<p>外部的，命令级别的：</p>
+<p>可查看所有建立连接的详细记录: netstat -nat | grep ESTABLISHED|wc  </p>
+<p>netstat -n | awk ‘/^tcp/ {++S[$NF]} END {for(a in S) print a, S[a]}’</p>
+<p>ps -ef|grep tomcat</p>
+<p>查看tomcat的线程数: ps -Lf pid|wc -l<br>查看tomcat的并发数: netstat -an|grep pid |awk ‘{count[$6]++} END{for (i in count) print(i,count[i])}’</p>
+<p><a href="https://www.jiloc.com/42193.html" target="_blank" rel="noopener">Linux 下Web服务器 Nginx 状态监控 查看nginx当前并发 连接 请求状态</a><br><a href="https://blog.csdn.net/wngua/article/details/70904991" target="_blank" rel="noopener">linux进程、线程状态 tomcat线程数 并发数查看</a><br><a href="http://duanfei.iteye.com/blog/1894387" target="_blank" rel="noopener">inux查看连接数，并发数</a></p>
+<hr>
+<h5 id="输出信息"><a href="#输出信息" class="headerlink" title="输出信息"></a>输出信息</h5><hr>
+<p>USER 该进程由哪个用户产生的</p>
+<p>PID 该进程ID号</p>
+<p>%CPU  该进程占用CPU资源的百分比</p>
+<p>%MEM  该进程占用物理内存资源的百分比</p>
+<p>VSZ 该进程占用虚拟内存大小，单位KB</p>
+<p>RSS 该进程占用实际物理内存的大小，单位KB</p>
+<p>TTY ？内核调用，该进程在哪一个终端上运行的，tty1-tty7代表本地控制台终端，tty1-tty6本地字符界面，tty7图形界面 pts/0-255虚拟终端（远程登录，远程终端）</p>
+<p>STAT  进程状态  R：运行 S：睡眠 T：停止s：包含子进程+：位于后台</p>
+<p>START 该进程的启动时间 </p>
+<p>TIME   该进程占用CPU的运算时间</p>
+<p>COMMAND　产生该进程的命令名</p>
+<hr>
+<p><code>pstree</code> :树形进程展示 </p>
+<h5 id="p-显示进程PID（详情）"><a href="#p-显示进程PID（详情）" class="headerlink" title="-p 显示进程PID（详情）"></a>-p 显示进程PID（详情）</h5><h5 id="u-显示进程所属用户-USER"><a href="#u-显示进程所属用户-USER" class="headerlink" title="-u 显示进程所属用户(USER)"></a>-u 显示进程所属用户(USER)</h5><p><code>top</code>: 系统健康状况</p>
+<p>默认每三秒更新一次 默认CPU占用率排序</p>
+<p>当前时间|运行时间|用户|平均负载load average： 1min 5min 15min<br>总数| 状态（运行、睡眠、停止、僵尸：正在停止但是没有完全停止）<br>CPU | 用户us| 系统sy|  改变过优先级的用户ni|空闲率id|  等待输入/输出wa|硬中断hi |软中断si| 虚拟时间st（steal time）</p>
+<p>|MEM（物理内存KB） |总total |空闲free| 使用used | 缓冲buff/cache<br>|SWAP（交换分区KB）|总total |空闲free| 使用used | </p>
+<p>-d  每隔几秒更新一次</p>
+<p>?h：交互模式帮助</p>
+<p>P：CPU使用率排序（默认）</p>
+<p>M：内存使用率排序</p>
+<p>N：PID排序</p>
+<p>q：退出</p>
+<p><code>uptime</code>: 显示启动时间和平均负载(top命令的第一行)(<code>w</code>也可以看到此信息,还有用户信息)()</p>
+<p><code>kill</code>: 杀死进程(-l参数:查看信号) </p>
+<h5 id="kill-–l进程ID"><a href="#kill-–l进程ID" class="headerlink" title="kill –l进程ID"></a>kill –l进程ID</h5><p>kill [-1重启] [-9强制] 进程ID</p>
+<p><code>killall</code>: 进程名  </p>
+<p><code>pkill</code>: 进程名</p>
+<p>pkill  -t 终端号（TTY） 按终端号剔除用户（w显示用户）</p>
+<p><code>nice</code>:优先级</p>
+<p><code>renice</code>:优先级</p>
+<h4 id="CPU"><a href="#CPU" class="headerlink" title="CPU"></a>CPU</h4><p>总核数 = 物理CPU个数 X 每颗物理CPU的核数 </p>
+<p>总逻辑CPU数 = 物理CPU个数 X 每颗物理CPU的核数 X 超线程数</p>
+<p>查看物理CPU个数<br>cat /proc/cpuinfo| grep “physical id”| sort| uniq| wc -l</p>
+<p>查看每个物理CPU中core的个数(即核数)</p>
+<p>cat /proc/cpuinfo| grep “cpu cores”| uniq</p>
+<p>查看逻辑CPU的个数</p>
+<p>cat /proc/cpuinfo| grep “processor”| wc -l</p>
+<p>查看CPU信息（型号）<br>cat /proc/cpuinfo | grep name | cut -f2 -d: | uniq -c</p>
+<h4 id="磁盘"><a href="#磁盘" class="headerlink" title="磁盘"></a>磁盘</h4><p>挂载卸载：<code>mount</code> <code>umount</code> </p>
+<p>磁盘空间：<br><code>du</code> estimates and displays the disk space used by files<br><code>df</code>  df -h 查看存储大小</p>
+<p><code>dmesg</code></p>
+<h5 id="dmesg-开机内核监测信息-grep-CPU"><a href="#dmesg-开机内核监测信息-grep-CPU" class="headerlink" title="dmesg 开机内核监测信息 | grep CPU"></a>dmesg 开机内核监测信息 | grep CPU</h5><p><code>free</code></p>
+<h5 id="free-查看内存-b-–k-–m-–g"><a href="#free-查看内存-b-–k-–m-–g" class="headerlink" title="free 查看内存-b –k –m –g"></a>free 查看内存-b –k –m –g</h5><p><code>parted</code> <code>sfdisk</code> <code>fdisk</code> </p>
+<p><code>mkfs</code> </p>
+<p><code>floppy</code> </p>
+<h2 id="工作"><a href="#工作" class="headerlink" title="工作"></a>工作</h2><p><code>jobs</code>: 列出所有正在运行的任务</p>
+<p><code>fg</code>: 恢复任务，前台运行该任务(foreground)</p>
+<p><code>bg</code>: 将任务放到后台运行(background)</p>
+<p><code>Ctrl+Z</code>: 暂停当前任务,和<code>bg</code>类似</p>
+<p><code>命令后加 &amp;</code>: 将任务放到后台运行</p>
+<p><code>suspend</code>: 暂停shell</p>
+<h2 id="定时任务、任务控制"><a href="#定时任务、任务控制" class="headerlink" title="定时任务、任务控制"></a>定时任务、任务控制</h2><p><code>crond</code>: 定时任务</p>
+<p>crond后台守护d  cron</p>
+<p>service crond restart重启服务</p>
+<p>chkconfig crond on检查是否启动</p>
+<p><code>crontab</code>: 循环定时任务</p>
+<hr>
+<h5 id="e-编辑定时任务"><a href="#e-编辑定时任务" class="headerlink" title="-e 编辑定时任务"></a>-e 编辑定时任务</h5><h5 id="l-查看任务"><a href="#l-查看任务" class="headerlink" title="-l 查看任务"></a>-l 查看任务</h5><h5 id="r-删除当前用户的所有任务"><a href="#r-删除当前用户的所有任务" class="headerlink" title="-r 删除当前用户的所有任务"></a>-r 删除当前用户的所有任务</h5><hr>
+<p>*  *  *  *  *  command</p>
+<p>一个小时当中的第几分钟0-59</p>
+<p>一天当中的第几个小时0-23</p>
+<p>一个月当中的第几天1-31</p>
+<p>一年中的的第几个月1-12</p>
+<p>一周当中的第几天0-7（0、7代表星期天）</p>
+<p>* 任意时间</p>
+<p>, 一个不连续的时间</p>
+<p>- 连续的时间范围</p>
+<p>*/n 每隔n执行</p>
+<p><code>sleep</code>: ()</p>
+<p><code>watch</code>: ()</p>
+<p><code>at</code>: ()</p>
+<h2 id="服务"><a href="#服务" class="headerlink" title="服务"></a>服务</h2><p>正常情况下，使用绝对路径  /etc/init.d  启动脚本位置</p>
+<p>Red Hat <code>service</code> <code>ntsysv</code> </p>
+<p>默认启动项：<code>chkconfig</code> </p>
+<p>systemctl enable xxx-service<br>systemctl list-unit-files |  grep enabled</p>
+<p>开机自启动<br>新建一个脚本zookeeper<br>为新建的脚本zookeeper添加可执行权限，命令是:chmod +x zookeeper<br>把zookeeper这个脚本添加到开机启动项里面，命令是： chkconfig –add zookeeper<br>如果想看看是否添加成功，命令是：chkconfig –list</p>
+<h2 id="安装软件"><a href="#安装软件" class="headerlink" title="安装软件"></a>安装软件</h2><p>Red Hat <code>rpm</code> <code>yum</code>   rpm -ivh xxxx.rpm ; yum install</p>
+<p>Debian <code>dpkg</code> <code>aptitude</code></p>
+<p><a href="http://muxiaobai.github.io/2017/09/17/Linux-%E5%9F%BA%E7%A1%80%E5%91%BD%E4%BB%A4%E6%80%BB%E7%BB%933/">安装软件</a></p>
+<p>##附件</p>
+<p><code>cal</code>: 日历(Calendar)</p>
+<p><code>date</code>: 日期 修改时间并同步到硬件上 date -s “2018-12-03 16:10:10” &amp; hwclock –systohc</p>
+<p><code>dc</code>:计算器</p>
+<p><code>expr</code>:计算器</p>
+<h2 id="登录、注销和关机"><a href="#登录、注销和关机" class="headerlink" title="登录、注销和关机"></a>登录、注销和关机</h2><p><code>shutdown</code>: </p>
+<h5 id="r-重启"><a href="#r-重启" class="headerlink" title="-r 重启"></a>-r 重启</h5><h5 id="h-关机"><a href="#h-关机" class="headerlink" title="-h 关机"></a>-h 关机</h5><p><code>logout</code></p>
+<p><code>exit</code></p>
+
+      
+    </div>
+   
+    
+          <!--打赏-->
+         
+
+<!-- donate -->
+<style>
+   .donate_bar {
+	text-align: center;
+	margin-top: 5%
+	}
+	.donate_bar a.btn_donate {
+		display: inline-block;
+		width: 82px;
+		height: 82px;
+		margin-left: auto;
+		margin-right: auto;
+		background: url(http://img.t.sinajs.cn/t5/style/images/apps_PRF/e_media/btn_reward.gif)no-repeat;
+		-webkit-transition: background 0s;
+		-moz-transition: background 0s;
+		-o-transition: background 0s;
+		-ms-transition: background 0s;
+		transition: background 0s
+	}
+	.donate_bar a.btn_donate:hover {
+		background-position: 0 -82px
+	}
+	.donate_bar .donate_txt {
+		display: block;
+		color: #9d9d9d;
+		font: 14px/2 "Microsoft Yahei"
+	}
+	.donate_bar.hidden{
+		display: none
+	}
+	.post-donate{
+		margin-top: 80px;
+	}
+	#donate_guide{
+		/*height: 210px;
+		width: 420px;*/
+		margin: 0 auto;
+	}
+	#donate_guide img{
+		height: 200px;
+		height: 200px;
+	}
+</style>
+<!-- 添加捐赠图标 -->
+<div class="post-donate">
+    <div id="donate_board" class="donate_bar center">
+        <a id="btn_donate" class="btn_donate" href="javascript:;" title="打赏"></a>
+        <span class="donate_txt">
+           &uarr;<br>
+		   坚持原创技术分享，您的支持将鼓励我继续创作！
+        </span>
+        <br>
+    </div>  
+	<div id="donate_guide" class="donate_bar center hidden">
+		<!-- 支付宝打赏图案 -->
+		<img src="/img/alipay.jpg" alt="支付宝打赏"> 
+		<!-- 微信打赏图案 -->
+		<img src="/img/wechatpay.png" alt="微信打赏">  
+    </div>
+	<script type="text/javascript">
+		document.getElementById('btn_donate').onclick = function(){
+			//$('#donate_board').addClass('hidden');
+			if($('#donate_guide').hasClass('hidden')){
+				$('#donate_guide').removeClass('hidden');
+			}else{
+				$('#donate_guide').addClass('hidden');
+			}
+		}
+	</script>
+</div>
+
+<!-- End donate -->
+
+
+    
+    
+    
+  </div>
+  
+    
+    <div class="copyright">
+        <p><span>本文标题:</span><a href="/2016/07/07/Linux-基础命令总结2/">Linux 基础命令总结2</a></p>
+        <p><span>文章作者:</span><a href="/" title="回到主页">Mu Xiaobai(慕小白)</a></p>
+        <p><span>发布时间:</span>2016-07-07, 13:02:34</p>
+        <p><span>最后更新:</span>2019-04-10, 16:29:31</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/2016/07/07/Linux-基础命令总结2/" title="Linux 基础命令总结2">https://muxiaobai.github.io/2016/07/07/Linux-基础命令总结2/</a>
+            <span class="copy-path" data-clipboard-text="原文: https://muxiaobai.github.io/2016/07/07/Linux-基础命令总结2/　　作者: Mu Xiaobai(慕小白)" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target="_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
+        </p>
+    </div>
+
+
+
+    <nav id="article-nav">
+        
+            <div id="article-nav-newer" class="article-nav-title">
+                <a href="/2016/07/09/Linux-基础Shell脚本/">
+                    Linux 基础Shell脚本
+                </a>
+            </div>
+        
+        
+            <div id="article-nav-older" class="article-nav-title">
+                <a href="/2016/07/01/好软件-靠机遇/">
+                    好软件,靠机遇
+                </a>
+            </div>
+        
+    </nav>
+
+  
+</article>
+
+
+    <!--左侧-->
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#打印、输出"><span class="toc-number">1.</span> <span class="toc-text">打印、输出</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#打印"><span class="toc-number">1.0.1.</span> <span class="toc-text">打印</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#输出"><span class="toc-number">1.0.2.</span> <span class="toc-text">输出</span></a></li></ol></li></ol><li class="toc-item toc-level-2"><a class="toc-link" href="#用户、主机环境"><span class="toc-number">2.</span> <span class="toc-text">用户、主机环境</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#用户"><span class="toc-number">2.0.1.</span> <span class="toc-text">用户</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#主机"><span class="toc-number">2.0.2.</span> <span class="toc-text">主机</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#a-所有"><span class="toc-number">2.0.2.1.</span> <span class="toc-text">-a 所有</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#–r内核版本（release）"><span class="toc-number">2.0.2.2.</span> <span class="toc-text">–r内核版本（release）</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#s内核名称"><span class="toc-number">2.0.2.3.</span> <span class="toc-text">-s内核名称</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#权限-目录和文件-和用户，组"><span class="toc-number">3.</span> <span class="toc-text">权限(目录和文件)和用户，组</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#rwx权限-读写执行"><span class="toc-number">3.0.1.</span> <span class="toc-text">rwx权限 读写执行</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#高级权限管理ACL-SODO-文件特殊权限"><span class="toc-number">3.0.2.</span> <span class="toc-text">高级权限管理ACL SODO 文件特殊权限</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#ACL权限-解决用户身份不够的情况-目录和文件"><span class="toc-number">3.0.2.1.</span> <span class="toc-text">ACL权限(解决用户身份不够的情况)(目录和文件)</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#sudo-超级用户root执行的系统命令-命令"><span class="toc-number">3.0.2.2.</span> <span class="toc-text">sudo(超级用户root执行的系统命令)(命令)</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#SetUID-SetGID-Sticky-BIT-文件特殊权限-一般不使用"><span class="toc-number">3.0.2.3.</span> <span class="toc-text">SetUID SetGID Sticky BIT(文件特殊权限)(一般不使用)</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#用户："><span class="toc-number">3.0.3.</span> <span class="toc-text">用户：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#所属组："><span class="toc-number">3.0.4.</span> <span class="toc-text">所属组：</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#网络和连接登录"><span class="toc-number">4.</span> <span class="toc-text">网络和连接登录</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#端口占用6中方法"><span class="toc-number">4.0.1.</span> <span class="toc-text">端口占用6中方法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#进程、系统资源-磁盘"><span class="toc-number">5.</span> <span class="toc-text">进程、系统资源(磁盘)</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#进程"><span class="toc-number">5.0.1.</span> <span class="toc-text">进程</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#aux-BSD"><span class="toc-number">5.0.1.1.</span> <span class="toc-text">aux BSD</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#el-Linux"><span class="toc-number">5.0.1.2.</span> <span class="toc-text">-el Linux</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#检查tomcat-nginx-并发数，连接数等"><span class="toc-number">5.0.1.3.</span> <span class="toc-text">检查tomcat/nginx 并发数，连接数等</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#输出信息"><span class="toc-number">5.0.1.4.</span> <span class="toc-text">输出信息</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#p-显示进程PID（详情）"><span class="toc-number">5.0.1.5.</span> <span class="toc-text">-p 显示进程PID（详情）</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#u-显示进程所属用户-USER"><span class="toc-number">5.0.1.6.</span> <span class="toc-text">-u 显示进程所属用户(USER)</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#kill-–l进程ID"><span class="toc-number">5.0.1.7.</span> <span class="toc-text">kill –l进程ID</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#CPU"><span class="toc-number">5.0.2.</span> <span class="toc-text">CPU</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#磁盘"><span class="toc-number">5.0.3.</span> <span class="toc-text">磁盘</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#dmesg-开机内核监测信息-grep-CPU"><span class="toc-number">5.0.3.1.</span> <span class="toc-text">dmesg 开机内核监测信息 | grep CPU</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#free-查看内存-b-–k-–m-–g"><span class="toc-number">5.0.3.2.</span> <span class="toc-text">free 查看内存-b –k –m –g</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#工作"><span class="toc-number">6.</span> <span class="toc-text">工作</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#定时任务、任务控制"><span class="toc-number">7.</span> <span class="toc-text">定时任务、任务控制</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#e-编辑定时任务"><span class="toc-number">7.0.0.1.</span> <span class="toc-text">-e 编辑定时任务</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#l-查看任务"><span class="toc-number">7.0.0.2.</span> <span class="toc-text">-l 查看任务</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#r-删除当前用户的所有任务"><span class="toc-number">7.0.0.3.</span> <span class="toc-text">-r 删除当前用户的所有任务</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#服务"><span class="toc-number">8.</span> <span class="toc-text">服务</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#安装软件"><span class="toc-number">9.</span> <span class="toc-text">安装软件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#登录、注销和关机"><span class="toc-number">10.</span> <span class="toc-text">登录、注销和关机</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#r-重启"><span class="toc-number">10.0.0.1.</span> <span class="toc-text">-r 重启</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#h-关机"><span class="toc-number">10.0.0.2.</span> <span class="toc-text">-h 关机</span></a></li></ol></li>
+</div>
+<style>
+    .left-col .switch-btn,
+    .left-col .switch-area {
+        display: none;
+    }
+</style>
+
+<input type="button" id="tocButton" value="隐藏目录" title="点击按钮隐藏或者显示文章目录">
+
+<script>
+    yiliaConfig.toc = ["隐藏目录", "显示目录", !!"false"];
+</script>
+
+
+
+    <!--分享-->
+    
+<div class="share">
+    
+
+    
+        <div class="addthis_sharing_toolbox"></div>
+    
+</div>
+
+
+
+
+
+
+
+    <!--评论-->
+    
+      <section class="gitment" id="comments">
+    <div id="gitment" class="article article-type-post"></div>
+    <link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+    <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+    <script>
+    var gitment = new Gitment({
+      id: 'Linux 基础命令总结2',
+      owner: 'muxiaobai',
+      repo: 'muxiaobai.github.io',
+      oauth: {
+        client_id: '5e496d32f02cb04c1ccf',
+        client_secret: 'a98d21d1cc8b690a45fc996c62572247fdc5d7f3',
+      },
+    })
+    gitment.render('gitment')
+    </script>
+</section>
+    
+
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/2016/07/09/Linux-基础Shell脚本/" title="上一篇: Linux 基础Shell脚本">
+                <i class="fa fa-angle-left"></i>
+            </a>
+        
+
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+
+        
+            <a href="/2016/07/01/好软件-靠机遇/" title="下一篇: 好软件,靠机遇">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2019/05/21/高并发之缓存、限流、降级/">高并发之缓存、限流、降级</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/18/使用ELK分析日志/">使用ELK分析日志</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/01/Linux-基础命令总结4/">Linux 基础命令总结4</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/02/16/性能优化之redis储存计算值/">性能优化之redis储存计算值</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/01/15/2018年个人总结/">2018年个人总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/01/11/mongodb常用命令/">mongodb常用命令</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/01/11/mongodb主从架构设计/">mongodb主从架构设计</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/12/21/前言技术之OCR识别/">前言技术之OCR识别</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/11/22/深入理解JVM之远程监控/">深入理解JVM之远程监控</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/11/22/数据库监控-Druid监控配置/">数据库监控-Druid监控配置</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/11/15/应用部署之nginx参数配置/">应用部署之nginx参数配置</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/11/07/数据库操作-plsql操作/">数据库操作-plsql操作</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/10/09/javascript-常用代码/">javascript-常用代码</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/20/java-常用代码/">java 常用代码</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/04/数据库操作语句2/">数据库操作语句2</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/06/25/Spring源码阅读之AOP两种代理模式/">Spring源码阅读之AOP两种代理模式</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/06/22/Spring源码阅读之Ioc控制反转/">Spring源码阅读之Ioc控制反转</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/06/08/浏览器的加载页面过程及优化方法/">浏览器的加载页面过程及优化方法</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/06/07/浏览器的请求与响应过程/">浏览器的请求与响应过程</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/04/20/Tomcat源码阅读之Container责任链/">Tomcat源码阅读之Container责任链</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/04/17/Tomcat源码阅读之URL请求解析/">Tomcat源码阅读之URL请求解析</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/04/16/Tomcat源码阅读之组件生命周期/">Tomcat源码阅读之组件生命周期</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/04/16/Tomcat源码阅读之从server-xml看组件关系/">Tomcat源码阅读之从server.xml看组件关系</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/03/02/重装CENTOS一系列操作/">重装CENTOS一系列操作</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/01/05/2017年个人总结/">2017年个人总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/12/22/javascript再学习之prototype/">javascript再学习之prototype</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/12/21/RSS好工具/">RSS好工具</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/10/23/前端小tips/">前端小tips</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/09/17/Linux-基础命令总结3/">Linux 基础命令总结3</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/09/02/应用部署之nginx负载/">应用部署之nginx负载</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/29/深入理解JVM之性能调优/">深入理解JVM之性能调优</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/14/数据库操作语句/">数据库操作语句</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/09/javascript再学习之Event/">javascript再学习之Event</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/08/javascript再学习之DOM/">javascript再学习之DOM</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/02/Javamelody-工具/">Javamelody 工具</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/07/20/hadoop-Sqoop-Hive等的安装/">hadoop-Sqoop-Hive等的安装</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/07/19/Linux-下的java安装、变更以及升级问题/">Linux 下的java安装、变更以及升级问题</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/06/29/毕业设计心得/">毕业设计心得</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/23/2016年个人总结/">2016年个人总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/27/CSS-定位布局/">CSS 定位布局</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/17/等待-等待-等待/">等待,等待,等待...</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/29/常见排序算法总结/">常见排序算法总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/24/Thinking-in-java-基础之网络Socket/">Thinkin in java 基础之网络Socket</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/19/由ES6中的Proxy和Reflect再了解Object/">由ES6中的Proxy和Reflect再了解Object</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/16/从ES6中学习编码/">从ES6中学习编码</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/13/模仿jQuery创建自己的js工具/">模仿jQuery创建自己的js工具</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/08/27/测试Travis CI/">好软件,靠机遇</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/08/20/HTML5-API-新特性/">HTML5 API 新特性</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/08/09/Thinking-in-java-基础之线程和并发/">Thinking in java 基础之线程和并发</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/08/04/Thinking-in-java-基础之异常/">Thinking in java 基础之异常</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/08/03/Spring中的Session生命周期/">Spring中的Session生命周期</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/20/前后台数据交互方式总结/">前后台数据交互方式总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/19/JavaEE-资源路径问题/">JavaEE 资源路径问题</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/19/Sublime-下运行Java文件/">Sublime 下运行Java文件</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/09/Linux-基础Shell脚本/">Linux 基础Shell脚本</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/07/Linux-基础命令总结2/">Linux 基础命令总结2</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/01/好软件-靠机遇/">好软件,靠机遇</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/06/29/好网站-天天记/">好网站,天天记</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/06/29/hello-world/">Hello World</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/06/27/Linux下各目录的默认含义/">Linux下各目录的默认含义</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/06/27/Linux-基础命令总结/">Linux 基础命令总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/06/25/Thinking-in-java-基础之集合框架/">Thinking in java 基础之集合框架</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/06/25/Thinking-in-java-基础之I-O/">Thinking in java 基础之I/O</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/06/19/Linux-下安装SVN服务器/">Linux 下安装SVN服务器</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/06/17/GitHub Hexo/">GitHub + Hexo 构建我的博客</a></li></ul>
+
+
+
+
+    <script>
+        
+    </script>
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                <i class="fa fa-copyright"></i> 
+                2016-2019 Mu Xiaobai(慕小白)
+            </div>
+            <div class="footer-right">
+                <a href="http://hexo.io/" target="_blank" title="快速、简洁且高效的博客框架">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="简而不减 Hexo 双栏博客主题  v3.5">Yelee</a> by MOxFIVE <i class="fa fa-heart animated infinite pulse"></i>
+            </div>
+        </div>
+        
+            <div class="visit">
+                
+                    <span id="busuanzi_container_site_pv" style="display:none">
+                        <span id="site-visit">本站到访数: 
+                            <span id="busuanzi_value_site_uv"></span>
+                        </span>
+                    </span>
+                
+                
+                    <span>, </span>
+                
+                
+                    <span id="busuanzi_container_page_pv" style="display:none">
+                        <span id="page-visit">本页阅读量: 
+                            <span id="busuanzi_value_page_pv"></span>
+                        </span>
+                    </span>
+                
+            </div>
+        
+    </div>
+</footer>
+    </div>
+    
+    <script src="/js/GithubRepoWidget.js"></script>
+
+<script data-main="/js/main.js" src="//cdn.bootcss.com/require.js/2.2.0/require.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            var iPad = window.navigator.userAgent.indexOf('iPad');
+            if (iPad > -1 || $(".left-col").css("display") === "none") {
+                var bgColorList = ["#9db3f4", "#414141", "#e5a859", "#f5dfc6", "#c084a0", "#847e72", "#cd8390", "#996731"];
+                var bgColor = Math.ceil(Math.random() * (bgColorList.length - 1));
+                $("body").css({"background-color": bgColorList[bgColor], "background-size": "cover"});
+            }
+            else {
+                var backgroundnum = 5;
+                var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+                $("body").css({"background": backgroundimg, "background-attachment": "fixed", "background-size": "cover"});
+            }
+        })
+    </script>
+
+
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-80276841-1', 'auto');
+ga('send', 'pageview');
+</script>
+<!-- End Google Analytics -->
+
+
+
+
+
+<div class="scroll" id="scroll">
+    <a href="#" title="返回顶部"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments" onclick="load$hide();" title="查看评论"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer" title="转到底部"><i class="fa fa-arrow-down"></i></a>
+</div>
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+  </div>
+</body>
+</html>

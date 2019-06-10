@@ -1,0 +1,730 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+
+
+    <!--[if lt IE 9]>
+        <style>body {display: none; background: none !important} </style>
+        <meta http-equiv="Refresh" Content="0; url=//outdatedbrowser.com/" />
+    <![endif]-->
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="format-detection" content="telephone=no">
+<meta name="author" content="Mu Xiaobai(慕小白)">
+
+
+
+<meta name="description" content="摘录，了解">
+<meta name="keywords" content="目录">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linux下各目录的默认含义">
+<meta property="og:url" content="https://muxiaobai.github.io/2016/06/27/Linux下各目录的默认含义/index.html">
+<meta property="og:site_name" content="技术笔记">
+<meta property="og:description" content="摘录，了解">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2016-08-31T12:24:36.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Linux下各目录的默认含义">
+<meta name="twitter:description" content="摘录，了解">
+
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+
+    <link rel="alternative" href="/atom.xml" title="技术笔记" type="application/atom+xml">
+
+
+
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+
+
+    <link href="//cdn.bootcss.com/animate.css/3.5.1/animate.min.css" rel="stylesheet">
+
+
+
+    <link href="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet">
+
+
+
+    <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+    <link href="//cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-minimal.css" rel="stylesheet">
+
+
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+<link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+
+
+<title>Linux下各目录的默认含义 | 技术笔记</title>
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+
+<script>
+    var yiliaConfig = {
+        fancybox: true,
+        animate: true,
+        isHome: false,
+        isPost: true,
+        isArchive: false,
+        isTag: false,
+        isCategory: false,
+        open_in_new: true,
+        fancybox_js: "//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.js",
+        scrollreveal: "//cdn.bootcss.com/scrollReveal.js/3.1.4/scrollreveal.min.js",
+        search: true
+    }
+</script>
+
+
+    <script>
+        yiliaConfig.jquery_ui = [true, "//cdn.bootcss.com/jqueryui/1.10.4/jquery-ui.min.js", "//cdn.bootcss.com/jqueryui/1.10.4/css/jquery-ui.min.css"];
+    </script>
+
+
+
+    <script> yiliaConfig.rootUrl = "\/";</script>
+
+
+
+    <script src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-577a08f17286c0c0"></script>
+
+
+
+    <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "//hm.baidu.com/hm.js?9d6c9084c010ea425bd063ef91167131";
+            var s = document.getElementsByTagName("script")[0]; 
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+
+
+</head>
+ 
+<!-- add Fork Me On Github -->
+
+<a href="https://github.com/muxiaobai">
+<img style="position: absolute; top: 0; right: 0; border: 0;z-index: 1000" src="https://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png" alt="Fork me on GitHub">
+</a>
+<!-- End Fork Me On Github  -->
+</html>
+<body>
+ 
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <a href="/" class="profilepic">
+            <img src="/img/avatars.jpg" class="animated zoomIn">
+        </a>
+        <hgroup>
+          <h1 class="header-author"><a href="/">Mu Xiaobai(慕小白)</a></h1>
+        </hgroup>
+
+        
+        <p class="header-subtitle">有输入,有输出</p>
+        
+
+        
+            <form id="search-form">
+            <input type="text" id="local-search-input" name="q" results="0" placeholder="search..." class="search form-control" autocomplete="off" autocorrect="off" searchonload="false">
+            <i class="fa fa-times" onclick="resetSearch()"></i>
+            </form>
+            <div id="local-search-result"></div>
+            <p class="no-result">No results found <i class="fa fa-spinner fa-pulse"></i></p>
+        
+
+
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        <div class="icon-wrap icon-link hide" data-idx="2">
+                            <div class="loopback_l"></div>
+                            <div class="loopback_r"></div>
+                        </div>
+                        
+                        
+                    </div>
+                    
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>菜单</li>
+                        <li>标签</li>
+                        
+                        <li>友情链接</li>
+                        
+                        
+                    </ul>
+                </div>
+            </div>
+        
+
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a href="/">主页</a></li>
+                        
+                            <li><a href="/archives/">所有文章</a></li>
+                        
+                            <li><a href="/tags/">标签云</a></li>
+                        
+                            <li><a href="/about/">关于我</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" target="_blank" href="mailto:zpf12345678910@gmail.com" title="Email"></a>
+                            
+                                <a class="fa 新浪微博" target="_blank" href="http://weibo.com/u/1751073805" title="新浪微博"></a>
+                            
+                                <a class="fa GitHub" target="_blank" href="https://github.com/muxiaobai" title="GitHub"></a>
+                            
+                                <a class="fa RSS" target="_blank" href="/atom.xml" title="RSS"></a>
+                            
+                                <a class="fa 网易云音乐" target="_blank" href="http://music.163.com/#//user/home?id=270611521" title="网易云音乐"></a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/2016/">2016</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/2017/">2017</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/2018/">2018</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/API/">API</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CI/">CI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS/">CSS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Cache/">Cache</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Canvas/">Canvas</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Collection/">Collection</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Concurrent/">Concurrent</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Error/">Error</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Exception/">Exception</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/File/">File</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Github/">Github</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hibernate/">Hibernate</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/I-O/">I/O</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Iterator/">Iterator</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/List/">List</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Map/">Map</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Object/">Object</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Session/">Session</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Set/">Set</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Shell/">Shell</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Socket/">Socket</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Spring/">Spring</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Storage/">Storage</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Struts/">Struts</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Sublime/">Sublime</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Thread/">Thread</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Throwable/">Throwable</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/directory/">directory</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/file/">file</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jQuery实践/">jQuery实践</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">javascript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jvm/">jvm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mongo/">mongo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nginx/">nginx</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/prototype/">prototype</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/redis/">redis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/svn/">svn</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tar/">tar</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tomcat/">tomcat</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/分析/">分析</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/前沿技术/">前沿技术</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/前端/">前端</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/后端/">后端</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/基础/">基础</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/基础命令/">基础命令</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/定位/">定位</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/工具/">工具</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/常用代码/">常用代码</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/常用命令/">常用命令</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/排序/">排序</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/插件/">插件</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/日志/">日志</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/目录/">目录</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/系统/">系统</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/编码/">编码</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/编辑器/">编辑器</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/网站/">网站</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/行高/">行高</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/设计/">设计</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/软件/">软件</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/连接池/">连接池</a></li></ul>
+                    </div>
+                </section>
+                
+                
+                
+                <section class="switch-part switch-part3">
+                    <div id="js-friends">
+                    
+                      <a target="_blank" class="main-nav-link switch-friends-link" href="https://hexo.io">Hexo</a>
+                    
+                      <a target="_blank" class="main-nav-link switch-friends-link" href="https://pages.github.com/">GitHub</a>
+                    
+                      <a target="_blank" class="main-nav-link switch-friends-link" href="http://moxfive.xyz/">MOxFIVE</a>
+                    
+                      <a target="_blank" class="main-nav-link switch-friends-link" href="http://cmsblogs.com/">CMSBLOGS</a>
+                    
+                    </div>
+                </section>
+                
+
+                
+            </div>
+        </div>
+    </header>                
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">Mu Xiaobai(慕小白)</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                <img src="/img/avatars.jpg" class="animated zoomIn">
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="回到主页">Mu Xiaobai(慕小白)</a></h1>
+            </hgroup>
+            
+            <p class="header-subtitle">有输入,有输出</p>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/">主页</a></li>
+                
+                    <li><a href="/archives/">所有文章</a></li>
+                
+                    <li><a href="/tags/">标签云</a></li>
+                
+                    <li><a href="/about/">关于我</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" target="_blank" href="mailto:zpf12345678910@gmail.com" title="Email"></a>
+                            
+                                <a class="fa 新浪微博" target="_blank" href="http://weibo.com/u/1751073805" title="新浪微博"></a>
+                            
+                                <a class="fa GitHub" target="_blank" href="https://github.com/muxiaobai" title="GitHub"></a>
+                            
+                                <a class="fa RSS" target="_blank" href="/atom.xml" title="RSS"></a>
+                            
+                                <a class="fa 网易云音乐" target="_blank" href="http://music.163.com/#//user/home?id=270611521" title="网易云音乐"></a>
+                            
+                        </ul>
+            </nav>
+        </header>                
+    </div>
+    <link class="menu-list" tags="标签" friends="友情链接" about="关于我">
+</nav>
+      <div class="body-wrap"><article id="post-Linux下各目录的默认含义" class="article article-type-post" itemscope itemprop="blogPost">
+ 
+  
+    <div class="article-meta">
+      <a href="/2016/06/27/Linux下各目录的默认含义/" class="article-date">
+      <time datetime="2016-06-27T13:09:58.000Z" itemprop="datePublished">2016-06-27</time>
+</a>
+    </div>
+  
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Linux下各目录的默认含义
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/Linux/">Linux</a>
+    </div>
+
+
+        
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/目录/">目录</a></li></ul>
+    </div>
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <p>常用的文件目录,以及文件位置,文件夹默认的作用等的总结。<br>例如：/etc/init.d,/usr/local等<br><a id="more"></a></p>
+<p>根:/<br>/etc<br>全局的配置文件存放目录。<br>系统和程序一般都可以通过修改相应的配置文件，来进行配置。例如，要配置系统开机的时候启动那些程序，配置某个程序启动的时候显示什么样的风格等等。通常这些配置文件都集中存放在/etc目录中，所以想要配置什么东西的话，可以在/etc下面寻找我们可能需要修改的文件。一些大型套件，如X11，在 /etc 下它们自己的子目录。系统配置文件可以放在这里或在 /usr/etc。 不过所程序总是在 /etc 目录下查找所需的配置文件，你也可以将这些文件链接到目录 /usr/etc。另外，还一个需要注意的常见现象就是，当某个程序在某个用户下运行的时候，可能会在该用户的家目录中生成一个配置文件（一般这个文件最开始就是/etc下相应配置文件的拷贝，存放相应于“当前用户”的配置，这样当前用户可以通过配置这个家目录的配置文件，来改变程序的行为，并且这个行为只是该用户特的。原因就是：一般来说一个程序启动，如果需要读取一些配置文件的话，它会首先读取当前用户家目录的配置文件，如果存在就使用；如果不存在它就到/etc下读取全局的配置文件进而启动程序。就是这个配置文件不自动生成，我们手动在自己的家目录中创建一个文件的话，也有许多程序会首先读取到这个家目录的文件并且以它的配置作为启动的选项（例如我们可以在家目录中创建vim程序的配置文件.vimrc，来配置自己的vim程序。 </p>
+<p>/boot<br>引导程序，内核等存放的目录。<br>这个目录，包括了在引导过程中所必需的文件，引导程序的相关文件（例如grub，lilo以及相应的配置文件以及Linux操作系统内核相关文件（例如vmlinuz等一般都存放在这里。在最开始的启动阶段，通过引导程序将内核加载到内存，完成内核的启动（这个时候，虚拟文件系统还不存在，加载的内核虽然是从硬盘读取的，但是没经过Linux的虚拟文件系统，这是比较底层的东西来实现的。然后内核自己创建好虚拟文件系统，并且从虚拟文件系统的其他子目录中（例如/sbin 和 /etc加载需要在开机启动的其他程序或者服务或者特定的动作（部分可以由用户自己在相应的目录中修改相应的文件来配制。如果我们的机器中包含多个操作系统，那么可以通过修改这个目录中的某个配置文件（例如grub.conf来调整启动的默认操作系统，系统启动的择菜单，以及启动延迟等参数。</p>
+<p>/sbin<br>超级用户可以使用的命令的存放目录。<br>存放大多涉及系统管理的命令（例如引导系统的init程序，是超级权限用户root的可执行命令存放地，普通用户无权限执行这个目录下的命令（但是时普通用户也可能会用到。这个目录和/usr/sbin; /usr/X11R6/sbin或/usr/local/sbin等目录是相似的，我们要记住，凡是目录sbin中包含的都是root权限才能执行的，这样就行了。后面会具体区分。</p>
+<p>/bin<br>普通用户可以使用的命令的存放目录。<br>系统所需要的那些命令位于此目录，比如ls、cp、mkdir等命令；类似的目录还/usr/bin，/usr/local/bin等等。这个目录中的文件都是可执行的、普通用户都可以使用的命令。作为基础系统所需要的最基础的命令就是放在这里。</p>
+<p>/lib<br>根目录下的所程序的共享库目录。<br>此目录下包含系统引导和在根用户执行命令时候所必需用到的共享库。做个不太好但是比较形象的比喻，点类似于Windows上面的system32目录。理说，这里存放的文件应该是/bin目录下程序所需要的库文件的存放地，也不排除一些例外的情况。类似的目录还/usr/lib，/usr/local/lib等等。</p>
+<p>/dev<br>设备文件目录。<br>在Linux中设备都是以文件形式出现，这里的设备可以是硬盘，键盘，鼠标，网卡，终端，等设备，通过访问这些文件可以访问到相应的设备。设备文件可以使用mknod命令来创建，具体参见相应的命令；而为了将对这些设备文件的访问转化为对设备的访问，需要向相应的设备提供设备驱动模块（一般将设备驱动编译之后，生成的结果是一个*.ko类型的二进制文件，在内核启动之后，再通过insmod等命令加载相应的设备驱动之后，我们就可以通过设备文件来访问设备了。一般来说，想要Linux系统支持某个设备，只要个东西：相应的硬件设备，支持硬件的驱动模块，以及相应的设备文件。</p>
+<p>/home<br>普通用户的家目录（$HOME目录。<br>在Linux机器上，用户主目录通常直接或间接地置在此目录下。其结构通常由本地机的管理员来决定。通常而言，系统的每个用户都自己的家目录，目录以用户名作为名字存放在/home下面（例如quietheart用户，其家目录的名字为/home/quietheart。该目录中保存了绝大多数的用户文件(用户自己的配置文件，定制文件，文档，数据等)，root用户除外（参见后面的/root目录。由于这个目录包含了用户实际的数据，通常系统管理员为这个目录单独挂载一个独立的磁盘分区，这样这个目录的文件系统格式就可能和其他目录不一样了（尽管表面上看，这个目录还是属于根目录的一棵子树上），有利于数据的维护。</p>
+<p>/root<br>用户root的$HOME目录<br>系统管理员(就是root用户或超级用户)的主目录比较特殊，不存放在/home中，而是直接放在/root目录下了。</p>
+<p>/usr<br>这个目录中包含了命令库文件和在通常操作中不会修改的文件。<br>这个目录对于系统来说也是一个非常重要的目录，其地位类似Windows上面的”Program Files”目录（请原谅我可能这样做比较不太恰当^_^。安装程序的时候，默认就是安装在此文件内部某个子文件夹内。输入命令后系统默认执行/usr/bin下的程序（当然，前提是这个目录的路径已经被添加到了系统的环境变量中。此目录通常也会挂载一个独立的磁盘分区，它应保存共享只读类文件，这样它可以被运行Linux的不同主机挂载。</p>
+<p>/usr/lib<br>目标库文件，包括动态连接库加上一些通常不是直接调用的可执行文件的存放位置。<br>这个目录功能类似/lib目录，理说，这里存放的文件应该是/bin目录下程序所需要的库文件的存放地，也不排除一些例外的情况。</p>
+<p>/usr/bin<br>一般使用者使用并且不是系统自检等所必需可执行文件的目录。<br>此目录相当于根文件系统下的对应目录（/bin，非启动系统，非修复系统以及非本地安装的程序一般都放在此目录下。</p>
+<p>/usr/sbin<br>管理员使用的非系统必须的可执行文件存放目录。<br>此目录相当于根文件系统下的对应目录（/sbin，保存系统管理程序的二进制文件，并且这些文件不是系统启动或文件系统挂载 /usr 目录或修复系统所必需的。</p>
+<p>/usr/share<br>存放共享文件的目录。<br>在此目录下不同的子目录中保存了同一个操作系统在不同构架下工作时特定应用程序的共享数据(例如程序文档信息)。使用者可以找到通常放在 /usr/doc 或 /usr/lib 或 /usr/man 目录下的这些类似数据。</p>
+<p>/usr/include<br>C程序语言编译使用的头文件。<br>linux下开发和编译应用程序所需要的头文件一般都存放在这里，通过头文件来使用某些库函数。默认来说这个路径被添加到了环境变量中，这样编译开发程序的时候编译器会自动搜索这个路径，从中找到你的程序中可能包含的头文件。</p>
+<p>/usr/local<br>安装本地程序的一般默认路径。<br>当我们下载一个程序源代码，编译并且安装的时候，如果不特别指定安装的程序路径，那么默认会将程序相关的文件安装到这个目录的对应目录下。例如，安装的程序可执行文件被安装（安装实质就是复制到了/usr/local/bin下面，此程序（可执行文件所需要依赖的库文件被安装到了/usr/local/lib目录下，被安装的软件如果是某个开发库（例如Qt，Gtk等那么相应的头文件可能就被安装到了/usr/local/include中等等。也就是说，这个目录存放的内容，一般都是我们后来自己安装的软件的默认路径，如果择了这个默认路径作为软件的安装路径，被安装的软件的所文件都限制在这个目录中，其中的子目录就相应于根目录的子目录。</p>
+<p>/proc<br>特殊文件目录。<br>这个目录采用一种特殊的文件系统格式（proc格式，内核支持这种格式。其中包含了全部虚拟文件。它们并不保存在磁盘中，也不占据磁盘空间(尽管命令ls -c会显示它们的大小)。当您查看它们时，您实际上看到的是内存里的信息，这些文件助于我们了解系统内部信息。例如：<br>├1/ 关于进程1的信息目录。每个进程在/proc 下一个名为其进程号的目录。<br>├cpuinfo 处理器信息，如类型、制造商、型号和性能。<br>├devices 当前运行的核心配置的设备驱动的列表。<br>├dma 显示当前使用的DMA通道。<br>├filesystems 核心配置的文件系统。<br>├interrupts 显示使用的中断，and how many of each there have been.<br>├ioports 当前使用的I/O端口。<br>├kcore 系统物理内存映象。与物理内存大小一样，但实际不占这么多内存；<br>├kmsg 核心输出的消息。也被送到syslog 。<br>├ksyms 核心符号表。<br>├loadavg 系统”平均负载”；3个没意义的指示器指出系统当前的工作量。<br>├meminfo 存储器使用信息，包括物理内存和swap。<br>├modules 当前加载了哪些核心模块。<br>├net 网络协议状态信息。<br>├self 到查看/proc 的程序的进程目录的符号连接。<br>├stat 系统的不同状态<br>├uptime 系统启动的时间长度。<br>└version 核心版本。</p>
+<p>/opt<br>可择的文件目录。<br>这个目录表示的是可择的意思，些自定义软件包或者第方工具，就可以安装在这里。比如在Fedora Core 5.0中，OpenOffice就是安装在这里。些我们自己编译的软件包，就可以安装在这个目录中；通过源码包安装的软件，可以把它们的安装路径设置成/opt这样来安装。这个目录的作用一点类似/usr/local。</p>
+<p>/mnt<br>临时挂载目录。<br>这个目录一般是用于存放挂载储存设备的挂载目录的，比如磁盘，光驱，网络文件系统等，当我们需要挂载某个磁盘设备的时候，可以把磁盘设备挂载到这个目录上去，这样我们可以直接通过访问这个目录来访问那个磁盘了。一般来说，我们最好在/mnt目录下面多建立几个子目录，挂载的时候挂载到这些子目录上面，因为通常我们可能不仅仅是挂载一个设备吧?</p>
+<p>/media<br>挂载的媒体设备目录。<br>挂载的媒体设备目录，一般外部设备挂载到这里，例如cdrom等。比如我们插入一个U盘，我们一般会发现，Linux自动在这个目录下建立一个disk目录，然后把U盘挂载到这个disk目录上，通过访问这个disk来访问U盘。</p>
+<p>/var<br>内容经常变化的目录。<br>此目录下文件的大小可能会改变，如缓冲文件，日志文件，缓存文件，等一般都存放在这里。</p>
+<p>/tmp<br>临时文件目录。<br>该目录存放系统中的一些临时文件，文件可能会被系统自动清空。的系统直接把tmpfs类型的文件系统挂载到这个目录上，tmpfs文件系统由Linux内核支持，在这个文件系统中的数据，实际上是内存中的，由于内存的数据断电易失，当系统重新启动的时候我们就会发现这个目录被清空了。</p>
+<p>另外，有些目录初学者容易混淆，这里简单区分一下：<br>/bin,/sbin与/usr/bin,/usr/sbin:<br>/bin一般存放对于用户和系统来说“必须”的程序（二进制文件）。<br>/sbin一般存放用于系统管理的“必需”的程序（二进制文件），一般普通用户不会使用，根用户使用。<br>/usr/bin一般存放的只是对用户和系统来说“不是必需的”程序（二进制文件）。<br>/usr/sbin一般存放用于系统管理的系统管理的不是必需的程序（二进制文件）。</p>
+<p>/lib与/usr/lib:<br>/lib和/usr/lib的区别类似/bin,/sbin与/usr/bin,/usr/sbin。<br>/lib一般存放对于用户和系统来说“必须”的库（二进制文件）。<br>/usr/lib一般存放的只是对用户和系统来说“不是必需的”库（二进制文件）。</p>
+<p>linux下的文件结构，看看每个文件夹都是干吗用的<br>/bin 二进制可执行命令<br>/dev 设备特殊文件<br>/etc 系统管理和配置文件<br>/etc/rc.d 启动的配置文件和脚本<br>/home 用户主目录的基点，比如用户user的主目录就是/home/user，可以用~user表示<br>/lib 标准程序设计库，又叫动态链接共享库，作用类似windows里的.dll文件<br>/sbin 系统管理命令，这里存放的是系统管理员使用的管理程序<br>/tmp 公用的临时文件存储点<br>/root 系统管理员的主目录（呵呵，特权阶级）<br>/mnt 系统提供这个目录是让用户临时挂载其他的文件系统。<br>/lost+found 这个目录平时是空的，系统非正常关机而留下“无家可归”的文件（windows下叫什么.chk）就在这里<br>/proc 虚拟的目录，是系统内存的映射。可直接访问这个目录来获取系统信息。<br>/var 某些大文件的溢出区，比方说各种服务的日志文件<br>/usr 最庞大的目录，要用到的应用程序和文件几乎都在这个目录。其中包含：<br>/usr/x11r6 存放x window的目录<br>/usr/bin 众多的应用程序<br>/usr/sbin 超级用户的一些管理程序<br>/usr/doc linux文档<br>/usr/include linux下开发和编译应用程序所需要的头文件<br>/usr/lib 常用的动态链接库和软件包的配置文件<br>/usr/man 帮助文档<br>/usr/src 源代码，linux内核的源代码就放在/usr/src/linux里<br>/usr/local/bin 本地增加的命令<br>/usr/local/lib 本地增加的库</p>
+<ol start="10">
+<li>/mnt目录<br>/ m n t目录是系统管理员临时安装( m o u n t )文件系统的安装点。程序并不自动支持安装到<br>/mnt 。/mnt 下面可以分为许多子目录，例如/mnt/dosa 可能是使用m s d o s文件系统的软驱，<br>而/mnt/exta 可能是使用e x t 2文件系统的软驱，/mnt/cdrom 光驱等等。 </li>
+</ol>
+<p>下面详细介绍； </p>
+<p>/etc文件系统<br>/etc 目录包含各种系统配置文件，下面说明其中的一些。其他的你应该知道它们属于哪个<br>程序，并阅读该程序的m a n页。许多网络配置文件也在/etc 中。 </p>
+<ol>
+<li>/etc/rc或/etc/rc.d或/etc/rc?.d<br>启动、或改变运行级时运行的脚本或脚本的目录。 </li>
+<li>/etc/passwd<br>用户数据库，其中的域给出了用户名、真实姓名、用户起始目录、加密口令和用户的其<br>他信息。 </li>
+<li>/etc/fdprm<br>软盘参数表，用以说明不同的软盘格式。可用setfdprm 进行设置。更多的信息见s e t f d p r m<br>的帮助页。 </li>
+<li>/etc/fstab<br>指定启动时需要自动安装的文件系统列表。也包括用swapon -a启用的s w a p区的信息。 </li>
+<li>/etc/group<br>类似/etc/passwd ，但说明的不是用户信息而是组的信息。包括组的各种数据。 </li>
+<li>/etc/inittab<br>init 的配置文件。 </li>
+<li>/etc/issue<br>包括用户在登录提示符前的输出信息。通常包括系统的一段短说明或欢迎信息。具体内<br>容由系统管理员确定。 </li>
+<li>/etc/magic<br>“f i l e”的配置文件。包含不同文件格式的说明，“f i l e”基于它猜测文件类型。 </li>
+<li>/etc/motd<br>m o t d是message of the day的缩写，用户成功登录后自动输出。内容由系统管理员确定。<br>常用于通告信息，如计划关机时间的警告等。 </li>
+<li>/etc/mtab<br>当前安装的文件系统列表。由脚本( s c r i t p )初始化，并由mount 命令自动更新。当需要一<br>个当前安装的文件系统的列表时使用(例如df 命令)。 </li>
+<li>/etc/shadow<br>在安装了影子( s h a d o w )口令软件的系统上的影子口令文件。影子口令文件将/ e t c / p a s s w d<br>文件中的加密口令移动到/ e t c / s h a d o w中，而后者只对超级用户( r o o t )可读。这使破译口令更困<br>难，以此增加系统的安全性。 </li>
+<li>/etc/login.defs<br>l o g i n命令的配置文件。 </li>
+<li>/etc/printcap<br>类似/etc/termcap ，但针对打印机。语法不同。 </li>
+<li>/etc/profile 、/ e t c / c s h . l o g i n、/etc/csh.cshrc<br>登录或启动时b o u r n e或c shells执行的文件。这允许系统管理员为所有用户建立全局缺省环境。 </li>
+<li>/etc/securetty<br>确认安全终端，即哪个终端允许超级用户( r o o t )登录。一般只列出虚拟控制台，这样就不<br>可能(至少很困难)通过调制解调器( m o d e m )或网络闯入系统并得到超级用户特权。 </li>
+<li>/etc/shells<br>列出可以使用的s h e l l。chsh 命令允许用户在本文件指定范围内改变登录的s h e l l。提供一<br>台机器f t p服务的服务进程ftpd 检查用户s h e l l是否列在/etc/shells 文件中，如果不是，将不允<br>许该用户登录。 </li>
+<li>/etc/termcap<br>终端性能数据库。说明不同的终端用什么“转义序列”控制。写程序时不直接输出转义<br>序列(这样只能工作于特定品牌的终端)，而是从/etc/termcap 中查找要做的工作的正确序列。<br>这样，多数的程序可以在多数终端上运行。 </li>
+</ol>
+<p>/dev文件系统<br>/dev 目录包括所有设备的设备文件。设备文件用特定的约定命名，这在设备列表中说明。<br>设备文件在安装时由系统产生，以后可以用/dev/makedev 描述。/dev/makedev.local是<br>系统管理员为本地设备文件(或连接)写的描述文稿(即如一些非标准设备驱动不是标准<br>makedev的一部分)。下面简要介绍/dev下一些常用文件。<br>1./dev/console<br>系统控制台，也就是直接和系统连接的监视器。 </p>
+<ol start="2">
+<li>/dev/hd<br>i d e硬盘驱动程序接口。如：/dev/hda指的是第一个硬盘，had1则是指/dev/hda的第一个<br>分区。如系统中有其他的硬盘，则依次为/dev/hdb、/dev/hdc、……；如有多个分区则依次为<br>hda1、hda2……</li>
+<li>/dev/sd<br>scsi磁盘驱动程序接口。如有系统有scsi硬盘，就不会访问/dev/ha d，而会访问/dev/sda。 </li>
+<li>/dev/fd<br>软驱设备驱动程序。如：/dev/fd0指系统的第一个软盘，也就是通常所说的a：盘，<br>/dev/fd1指第二个软盘，……而/dev/fd1h1440则表示访问驱动器1中的4.5高密盘。<br>5./dev/st<br>scsi磁带驱动器驱动程序。<br>6./dev/tty<br>提供虚拟控制台支持。如：/dev/tty1指的是系统的第一个虚拟控制台，/dev/tty2则是系统<br>的第二个虚拟控制台。<br>7./dev/pty<br>提供远程登陆伪终端支持。在进行telnet登录时就要用到/dev/pty设备。<br>8./dev/ttys<br>计算机串行接口，对于dos来说就是“com1”口。<br>9./dev/cua<br>计算机串行接口，与调制解调器一起使用的设备。<br>10./dev/null<br>“黑洞”，所有写入该设备的信息都将消失。例如：当想要将屏幕上的输出信息隐藏起来<br>时，只要将输出信息输入到/dev/null中即可。</li>
+</ol>
+<p>/usr文件系统<br>/usr是个很重要的目录，通常这一文件系统很大，因为所有程序安装在这里。/usr里的<br>所有文件一般来自linux发行版(distribution)；本地安装的程序和其他东西在/usr/local下，因为这样可以在升级新版系统或新发行版时无须重新安装全部程序。/usr目录下的许多内容是<br>可选的，但这些功能会使用户使用系统更加有效。/ u s r可容纳许多大型的软件包和它们的配置<br>文件。下面列出一些重要的目录(一些不太重要的目录被省略了)。 </p>
+<ol>
+<li>/usr/x11r6<br>包含x wi n d o w系统的所有可执行程序、配置文件和支持文件。为简化x的开发和安装，<br>x的文件没有集成到系统中。x wi n d o w系统是一个功能强大的图形环境，提供了大量的图形<br>工具程序。用户如果对microsoft wi n d o w s或m a c h i n t o s h比较熟悉的话，就不会对x wi n d o w系统感到束手无策了。 </li>
+<li>/usr/x386<br>类似/ u s r / x 11r6 ，但是是专门给x 11 release 5的。 </li>
+<li>/usr/bin<br>集中了几乎所有用户命令，是系统的软件库。另有些命令在/bin 或/usr/local/bin 中。 </li>
+<li>/usr/sbin<br>包括了根文件系统不必要的系统管理命令，例如多数服务程序。 </li>
+<li>/usr/man、/ u s r / i n f o、/ u s r / d o c<br>这些目录包含所有手册页、g n u信息文档和各种其他文档文件。每个联机手册的“节”<br>都有两个子目录。例如： / u s r / m a n / m a n 1中包含联机手册第一节的源码(没有格式化的原始文<br>件)，/ u s r / m a n / c a t 1包含第一节已格式化的内容。l联机手册分为以下九节：内部命令、系统调<br>用、库函数、设备、文件格式、游戏、宏软件包、系统管理和核心程序。 </li>
+<li>/usr/include<br>包含了c语言的头文件，这些文件多以. h结尾，用来描述c语言程序中用到的数据结构、<br>子过程和常量。为了保持一致性，这实际上应该放在/usr/lib 下，但习惯上一直沿用了这个名<br>字。 </li>
+<li>/usr/lib<br>包含了程序或子系统的不变的数据文件，包括一些s i t e - w i d e配置文件。名字l i b来源于库<br>(library); 编程的原始库也存在/usr/lib 里。当编译程序时，程序便会和其中的库进行连接。也<br>有许多程序把配置文件存入其中。 </li>
+<li>/usr/local<br>本地安装的软件和其他文件放在这里。这与/ u s r很相似。用户可能会在这发现一些比较大<br>的软件包，如t e x、e m a c s等。 </li>
+</ol>
+<p>/var文件系统<br>/var 包含系统一般运行时要改变的数据。通常这些数据所在的目录的大小是要经常变化<br>或扩充的。原来/ v a r目录中有些内容是在/ u s r中的，但为了保持/ u s r目录的相对稳定，就把那<br>些需要经常改变的目录放到/ v a r中了。每个系统是特定的，即不通过网络与其他计算机共享。<br>下面列出一些重要的目录(一些不太重要的目录省略了)。 </p>
+<ol>
+<li>/var/catman<br>包括了格式化过的帮助( m a n )页。帮助页的源文件一般存在/ usr/man / m a n中；有些m a n页<br>可能有预格式化的版本，存在/ u s r / m a n / c a t中。而其他的m a n页在第一次看时都需要格式化，<br>格式化完的版本存在/var/man 中，这样其他人再看相同的页时就无须等待格式化了。<br>(/var/catman 经常被清除，就像清除临时目录一样。) </li>
+<li>/var/lib<br>存放系统正常运行时要改变的文件。 </li>
+<li>/var/local<br>存放/usr/local 中安装的程序的可变数据(即系统管理员安装的程序)。注意，如果必要，<br>即使本地安装的程序也会使用其他/var 目录，例如/var/lock 。 </li>
+<li>/var/lock<br>锁定文件。许多程序遵循在/var/lock 中产生一个锁定文件的约定，以用来支持他们正在<br>使用某个特定的设备或文件。其他程序注意到这个锁定文件时，就不会再使用这个设备或文<br>件。 </li>
+<li>/var/log<br>各种程序的日志( l o g )文件，尤其是login (/var/log/wtmp log纪录所有到系统的登录和注<br>销) 和syslog (/var/log/messages 纪录存储所有核心和系统程序信息)。/var/log 里的文件经常不<br>确定地增长，应该定期清除。 </li>
+<li>/var/run<br>保存在下一次系统引导前有效的关于系统的信息文件。例如， /var/run/utmp 包含当前登<br>录的用户的信息。 </li>
+<li>/var/spool<br>放置“假脱机( s p o o l )”程序的目录，如m a i l、n e w s、打印队列和其他队列工作的目录。每<br>个不同的s p o o l在/var/spool 下有自己的子目录，例如，用户的邮箱就存放在/var/spool/mail 中。 </li>
+<li>/var/tmp<br>比/tmp 允许更大的或需要存在较长时间的临时文件。<br>注意系统管理员可能不允许/var/tmp 有很旧的文件。 </li>
+</ol>
+<p>/proc文件系统<br>/proc 文件系统是一个伪的文件系统，就是说它是一个实际上不存在的目录，因而这是一<br>个非常特殊的目录。它并不存在于某个磁盘上，而是由核心在内存中产生。这个目录用于提<br>供关于系统的信息。下面说明一些最重要的文件和目录(/proc 文件系统在proc man页中有更详<br>细的说明)。 </p>
+<ol>
+<li>/proc/x<br>关于进程x的信息目录，这一x是这一进程的标识号。每个进程在/proc 下有一个名为自<br>己进程号的目录。 </li>
+<li>/proc/cpuinfo<br>存放处理器( c p u )的信息，如c p u的类型、制造商、型号和性能等。 </li>
+<li>/proc/devices<br>当前运行的核心配置的设备驱动的列表。 </li>
+<li>/proc/dma<br>显示当前使用的d m a通道。 </li>
+<li>/proc/filesystems<br>核心配置的文件系统信息。 </li>
+<li>/proc/interrupts<br>显示被占用的中断信息和占用者的信息，以及被占用的数量。 </li>
+<li>/proc/ioports<br>当前使用的i / o端口。 </li>
+<li>/proc/kcore<br>系统物理内存映像。与物理内存大小完全一样，然而实际上没有占用这么多内存；它仅<br>仅是在程序访问它时才被创建。(注意：除非你把它拷贝到什么地方，否则/proc 下没有任何<br>东西占用任何磁盘空间。) </li>
+<li>/proc/kmsg<br>核心输出的消息。也会被送到s y s l o g。 </li>
+<li>/proc/ksyms<br>核心符号表。 </li>
+<li>/proc/loadavg<br>系统“平均负载”； 3个没有意义的指示器指出系统当前的工作量。 </li>
+<li>/proc/meminfo<br>各种存储器使用信息，包括物理内存和交换分区( s w a p )。 </li>
+<li>/proc/modules<br>存放当前加载了哪些核心模块信息。 </li>
+<li>/proc/net<br>网络协议状态信息。 </li>
+<li>/proc/self<br>存放到查看/proc 的程序的进程目录的符号连接。当2个进程查看/proc 时，这将会是不同<br>的连接。这主要便于程序得到它自己的进程目录。 </li>
+<li>/proc/stat<br>系统的不同状态，例如，系统启动后页面发生错误的次数。 </li>
+<li>/proc/uptime<br>系统启动的时间长度。 </li>
+<li>/proc/version<br>核心版本。</li>
+</ol>
+
+      
+    </div>
+   
+    
+          <!--打赏-->
+         
+
+<!-- donate -->
+<style>
+   .donate_bar {
+	text-align: center;
+	margin-top: 5%
+	}
+	.donate_bar a.btn_donate {
+		display: inline-block;
+		width: 82px;
+		height: 82px;
+		margin-left: auto;
+		margin-right: auto;
+		background: url(http://img.t.sinajs.cn/t5/style/images/apps_PRF/e_media/btn_reward.gif)no-repeat;
+		-webkit-transition: background 0s;
+		-moz-transition: background 0s;
+		-o-transition: background 0s;
+		-ms-transition: background 0s;
+		transition: background 0s
+	}
+	.donate_bar a.btn_donate:hover {
+		background-position: 0 -82px
+	}
+	.donate_bar .donate_txt {
+		display: block;
+		color: #9d9d9d;
+		font: 14px/2 "Microsoft Yahei"
+	}
+	.donate_bar.hidden{
+		display: none
+	}
+	.post-donate{
+		margin-top: 80px;
+	}
+	#donate_guide{
+		/*height: 210px;
+		width: 420px;*/
+		margin: 0 auto;
+	}
+	#donate_guide img{
+		height: 200px;
+		height: 200px;
+	}
+</style>
+<!-- 添加捐赠图标 -->
+<div class="post-donate">
+    <div id="donate_board" class="donate_bar center">
+        <a id="btn_donate" class="btn_donate" href="javascript:;" title="打赏"></a>
+        <span class="donate_txt">
+           &uarr;<br>
+		   坚持原创技术分享，您的支持将鼓励我继续创作！
+        </span>
+        <br>
+    </div>  
+	<div id="donate_guide" class="donate_bar center hidden">
+		<!-- 支付宝打赏图案 -->
+		<img src="/img/alipay.jpg" alt="支付宝打赏"> 
+		<!-- 微信打赏图案 -->
+		<img src="/img/wechatpay.png" alt="微信打赏">  
+    </div>
+	<script type="text/javascript">
+		document.getElementById('btn_donate').onclick = function(){
+			//$('#donate_board').addClass('hidden');
+			if($('#donate_guide').hasClass('hidden')){
+				$('#donate_guide').removeClass('hidden');
+			}else{
+				$('#donate_guide').addClass('hidden');
+			}
+		}
+	</script>
+</div>
+
+<!-- End donate -->
+
+
+    
+    
+    
+  </div>
+  
+    
+    <div class="copyright">
+        <p><span>本文标题:</span><a href="/2016/06/27/Linux下各目录的默认含义/">Linux下各目录的默认含义</a></p>
+        <p><span>文章作者:</span><a href="/" title="回到主页">Mu Xiaobai(慕小白)</a></p>
+        <p><span>发布时间:</span>2016-06-27, 21:09:58</p>
+        <p><span>最后更新:</span>2016-08-31, 20:24:36</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/2016/06/27/Linux下各目录的默认含义/" title="Linux下各目录的默认含义">https://muxiaobai.github.io/2016/06/27/Linux下各目录的默认含义/</a>
+            <span class="copy-path" data-clipboard-text="原文: https://muxiaobai.github.io/2016/06/27/Linux下各目录的默认含义/　　作者: Mu Xiaobai(慕小白)" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target="_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
+        </p>
+    </div>
+
+
+
+    <nav id="article-nav">
+        
+            <div id="article-nav-newer" class="article-nav-title">
+                <a href="/2016/06/29/hello-world/">
+                    Hello World
+                </a>
+            </div>
+        
+        
+            <div id="article-nav-older" class="article-nav-title">
+                <a href="/2016/06/27/Linux-基础命令总结/">
+                    Linux 基础命令总结
+                </a>
+            </div>
+        
+    </nav>
+
+  
+</article>
+
+
+    <!--左侧-->
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    
+</div>
+<style>
+    .left-col .switch-btn,
+    .left-col .switch-area {
+        display: none;
+    }
+</style>
+
+<input type="button" id="tocButton" value="隐藏目录" title="点击按钮隐藏或者显示文章目录">
+
+<script>
+    yiliaConfig.toc = ["隐藏目录", "显示目录", !!"false"];
+</script>
+
+
+
+    <!--分享-->
+    
+<div class="share">
+    
+
+    
+        <div class="addthis_sharing_toolbox"></div>
+    
+</div>
+
+
+
+
+
+
+
+    <!--评论-->
+    
+      <section class="gitment" id="comments">
+    <div id="gitment" class="article article-type-post"></div>
+    <link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+    <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+    <script>
+    var gitment = new Gitment({
+      id: 'Linux下各目录的默认含义',
+      owner: 'muxiaobai',
+      repo: 'muxiaobai.github.io',
+      oauth: {
+        client_id: '5e496d32f02cb04c1ccf',
+        client_secret: 'a98d21d1cc8b690a45fc996c62572247fdc5d7f3',
+      },
+    })
+    gitment.render('gitment')
+    </script>
+</section>
+    
+
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/2016/06/29/hello-world/" title="上一篇: Hello World">
+                <i class="fa fa-angle-left"></i>
+            </a>
+        
+
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+
+        
+            <a href="/2016/06/27/Linux-基础命令总结/" title="下一篇: Linux 基础命令总结">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2019/05/21/高并发之缓存、限流、降级/">高并发之缓存、限流、降级</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/18/使用ELK分析日志/">使用ELK分析日志</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/01/Linux-基础命令总结4/">Linux 基础命令总结4</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/02/16/性能优化之redis储存计算值/">性能优化之redis储存计算值</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/01/15/2018年个人总结/">2018年个人总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/01/11/mongodb常用命令/">mongodb常用命令</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/01/11/mongodb主从架构设计/">mongodb主从架构设计</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/12/21/前言技术之OCR识别/">前言技术之OCR识别</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/11/22/深入理解JVM之远程监控/">深入理解JVM之远程监控</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/11/22/数据库监控-Druid监控配置/">数据库监控-Druid监控配置</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/11/15/应用部署之nginx参数配置/">应用部署之nginx参数配置</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/11/07/数据库操作-plsql操作/">数据库操作-plsql操作</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/10/09/javascript-常用代码/">javascript-常用代码</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/20/java-常用代码/">java 常用代码</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/04/数据库操作语句2/">数据库操作语句2</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/06/25/Spring源码阅读之AOP两种代理模式/">Spring源码阅读之AOP两种代理模式</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/06/22/Spring源码阅读之Ioc控制反转/">Spring源码阅读之Ioc控制反转</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/06/08/浏览器的加载页面过程及优化方法/">浏览器的加载页面过程及优化方法</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/06/07/浏览器的请求与响应过程/">浏览器的请求与响应过程</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/04/20/Tomcat源码阅读之Container责任链/">Tomcat源码阅读之Container责任链</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/04/17/Tomcat源码阅读之URL请求解析/">Tomcat源码阅读之URL请求解析</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/04/16/Tomcat源码阅读之组件生命周期/">Tomcat源码阅读之组件生命周期</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/04/16/Tomcat源码阅读之从server-xml看组件关系/">Tomcat源码阅读之从server.xml看组件关系</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/03/02/重装CENTOS一系列操作/">重装CENTOS一系列操作</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/01/05/2017年个人总结/">2017年个人总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/12/22/javascript再学习之prototype/">javascript再学习之prototype</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/12/21/RSS好工具/">RSS好工具</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/10/23/前端小tips/">前端小tips</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/09/17/Linux-基础命令总结3/">Linux 基础命令总结3</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/09/02/应用部署之nginx负载/">应用部署之nginx负载</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/29/深入理解JVM之性能调优/">深入理解JVM之性能调优</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/14/数据库操作语句/">数据库操作语句</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/09/javascript再学习之Event/">javascript再学习之Event</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/08/javascript再学习之DOM/">javascript再学习之DOM</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/02/Javamelody-工具/">Javamelody 工具</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/07/20/hadoop-Sqoop-Hive等的安装/">hadoop-Sqoop-Hive等的安装</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/07/19/Linux-下的java安装、变更以及升级问题/">Linux 下的java安装、变更以及升级问题</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/06/29/毕业设计心得/">毕业设计心得</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/23/2016年个人总结/">2016年个人总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/27/CSS-定位布局/">CSS 定位布局</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/17/等待-等待-等待/">等待,等待,等待...</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/29/常见排序算法总结/">常见排序算法总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/24/Thinking-in-java-基础之网络Socket/">Thinkin in java 基础之网络Socket</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/19/由ES6中的Proxy和Reflect再了解Object/">由ES6中的Proxy和Reflect再了解Object</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/16/从ES6中学习编码/">从ES6中学习编码</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/13/模仿jQuery创建自己的js工具/">模仿jQuery创建自己的js工具</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/08/27/测试Travis CI/">好软件,靠机遇</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/08/20/HTML5-API-新特性/">HTML5 API 新特性</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/08/09/Thinking-in-java-基础之线程和并发/">Thinking in java 基础之线程和并发</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/08/04/Thinking-in-java-基础之异常/">Thinking in java 基础之异常</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/08/03/Spring中的Session生命周期/">Spring中的Session生命周期</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/20/前后台数据交互方式总结/">前后台数据交互方式总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/19/JavaEE-资源路径问题/">JavaEE 资源路径问题</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/19/Sublime-下运行Java文件/">Sublime 下运行Java文件</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/09/Linux-基础Shell脚本/">Linux 基础Shell脚本</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/07/Linux-基础命令总结2/">Linux 基础命令总结2</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/01/好软件-靠机遇/">好软件,靠机遇</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/06/29/好网站-天天记/">好网站,天天记</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/06/29/hello-world/">Hello World</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/06/27/Linux下各目录的默认含义/">Linux下各目录的默认含义</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/06/27/Linux-基础命令总结/">Linux 基础命令总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/06/25/Thinking-in-java-基础之集合框架/">Thinking in java 基础之集合框架</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/06/25/Thinking-in-java-基础之I-O/">Thinking in java 基础之I/O</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/06/19/Linux-下安装SVN服务器/">Linux 下安装SVN服务器</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/06/17/GitHub Hexo/">GitHub + Hexo 构建我的博客</a></li></ul>
+
+
+
+
+    <script>
+        
+    </script>
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                <i class="fa fa-copyright"></i> 
+                2016-2019 Mu Xiaobai(慕小白)
+            </div>
+            <div class="footer-right">
+                <a href="http://hexo.io/" target="_blank" title="快速、简洁且高效的博客框架">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="简而不减 Hexo 双栏博客主题  v3.5">Yelee</a> by MOxFIVE <i class="fa fa-heart animated infinite pulse"></i>
+            </div>
+        </div>
+        
+            <div class="visit">
+                
+                    <span id="busuanzi_container_site_pv" style="display:none">
+                        <span id="site-visit">本站到访数: 
+                            <span id="busuanzi_value_site_uv"></span>
+                        </span>
+                    </span>
+                
+                
+                    <span>, </span>
+                
+                
+                    <span id="busuanzi_container_page_pv" style="display:none">
+                        <span id="page-visit">本页阅读量: 
+                            <span id="busuanzi_value_page_pv"></span>
+                        </span>
+                    </span>
+                
+            </div>
+        
+    </div>
+</footer>
+    </div>
+    
+    <script src="/js/GithubRepoWidget.js"></script>
+
+<script data-main="/js/main.js" src="//cdn.bootcss.com/require.js/2.2.0/require.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            var iPad = window.navigator.userAgent.indexOf('iPad');
+            if (iPad > -1 || $(".left-col").css("display") === "none") {
+                var bgColorList = ["#9db3f4", "#414141", "#e5a859", "#f5dfc6", "#c084a0", "#847e72", "#cd8390", "#996731"];
+                var bgColor = Math.ceil(Math.random() * (bgColorList.length - 1));
+                $("body").css({"background-color": bgColorList[bgColor], "background-size": "cover"});
+            }
+            else {
+                var backgroundnum = 5;
+                var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+                $("body").css({"background": backgroundimg, "background-attachment": "fixed", "background-size": "cover"});
+            }
+        })
+    </script>
+
+
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-80276841-1', 'auto');
+ga('send', 'pageview');
+</script>
+<!-- End Google Analytics -->
+
+
+
+
+
+<div class="scroll" id="scroll">
+    <a href="#" title="返回顶部"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments" onclick="load$hide();" title="查看评论"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer" title="转到底部"><i class="fa fa-arrow-down"></i></a>
+</div>
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+  </div>
+</body>
+</html>

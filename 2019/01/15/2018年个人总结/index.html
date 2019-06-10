@@ -1,0 +1,729 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+
+
+    <!--[if lt IE 9]>
+        <style>body {display: none; background: none !important} </style>
+        <meta http-equiv="Refresh" Content="0; url=//outdatedbrowser.com/" />
+    <![endif]-->
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="format-detection" content="telephone=no">
+<meta name="author" content="Mu Xiaobai(慕小白)">
+
+
+
+<meta name="description" content="2018年已经过去，总结一下。">
+<meta name="keywords" content="2018">
+<meta property="og:type" content="article">
+<meta property="og:title" content="2018年个人总结">
+<meta property="og:url" content="https://muxiaobai.github.io/2019/01/15/2018年个人总结/index.html">
+<meta property="og:site_name" content="技术笔记">
+<meta property="og:description" content="2018年已经过去，总结一下。">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-02-16T04:58:26.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="2018年个人总结">
+<meta name="twitter:description" content="2018年已经过去，总结一下。">
+
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+
+    <link rel="alternative" href="/atom.xml" title="技术笔记" type="application/atom+xml">
+
+
+
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+
+
+    <link href="//cdn.bootcss.com/animate.css/3.5.1/animate.min.css" rel="stylesheet">
+
+
+
+    <link href="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet">
+
+
+
+    <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+    <link href="//cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-minimal.css" rel="stylesheet">
+
+
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+<link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+
+
+<title>2018年个人总结 | 技术笔记</title>
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+
+<script>
+    var yiliaConfig = {
+        fancybox: true,
+        animate: true,
+        isHome: false,
+        isPost: true,
+        isArchive: false,
+        isTag: false,
+        isCategory: false,
+        open_in_new: true,
+        fancybox_js: "//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.js",
+        scrollreveal: "//cdn.bootcss.com/scrollReveal.js/3.1.4/scrollreveal.min.js",
+        search: true
+    }
+</script>
+
+
+    <script>
+        yiliaConfig.jquery_ui = [true, "//cdn.bootcss.com/jqueryui/1.10.4/jquery-ui.min.js", "//cdn.bootcss.com/jqueryui/1.10.4/css/jquery-ui.min.css"];
+    </script>
+
+
+
+    <script> yiliaConfig.rootUrl = "\/";</script>
+
+
+
+    <script src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-577a08f17286c0c0"></script>
+
+
+
+    <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "//hm.baidu.com/hm.js?9d6c9084c010ea425bd063ef91167131";
+            var s = document.getElementsByTagName("script")[0]; 
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+
+
+</head>
+ 
+<!-- add Fork Me On Github -->
+
+<a href="https://github.com/muxiaobai">
+<img style="position: absolute; top: 0; right: 0; border: 0;z-index: 1000" src="https://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png" alt="Fork me on GitHub">
+</a>
+<!-- End Fork Me On Github  -->
+</html>
+<body>
+ 
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <a href="/" class="profilepic">
+            <img src="/img/avatars.jpg" class="animated zoomIn">
+        </a>
+        <hgroup>
+          <h1 class="header-author"><a href="/">Mu Xiaobai(慕小白)</a></h1>
+        </hgroup>
+
+        
+        <p class="header-subtitle">有输入,有输出</p>
+        
+
+        
+            <form id="search-form">
+            <input type="text" id="local-search-input" name="q" results="0" placeholder="search..." class="search form-control" autocomplete="off" autocorrect="off" searchonload="false">
+            <i class="fa fa-times" onclick="resetSearch()"></i>
+            </form>
+            <div id="local-search-result"></div>
+            <p class="no-result">No results found <i class="fa fa-spinner fa-pulse"></i></p>
+        
+
+
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        <div class="icon-wrap icon-link hide" data-idx="2">
+                            <div class="loopback_l"></div>
+                            <div class="loopback_r"></div>
+                        </div>
+                        
+                        
+                    </div>
+                    
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>菜单</li>
+                        <li>标签</li>
+                        
+                        <li>友情链接</li>
+                        
+                        
+                    </ul>
+                </div>
+            </div>
+        
+
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a href="/">主页</a></li>
+                        
+                            <li><a href="/archives/">所有文章</a></li>
+                        
+                            <li><a href="/tags/">标签云</a></li>
+                        
+                            <li><a href="/about/">关于我</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" target="_blank" href="mailto:zpf12345678910@gmail.com" title="Email"></a>
+                            
+                                <a class="fa 新浪微博" target="_blank" href="http://weibo.com/u/1751073805" title="新浪微博"></a>
+                            
+                                <a class="fa GitHub" target="_blank" href="https://github.com/muxiaobai" title="GitHub"></a>
+                            
+                                <a class="fa RSS" target="_blank" href="/atom.xml" title="RSS"></a>
+                            
+                                <a class="fa 网易云音乐" target="_blank" href="http://music.163.com/#//user/home?id=270611521" title="网易云音乐"></a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/2016/">2016</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/2017/">2017</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/2018/">2018</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/API/">API</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CI/">CI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS/">CSS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Cache/">Cache</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Canvas/">Canvas</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Collection/">Collection</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Concurrent/">Concurrent</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Error/">Error</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Exception/">Exception</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/File/">File</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Github/">Github</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hibernate/">Hibernate</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/I-O/">I/O</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Iterator/">Iterator</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/List/">List</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Map/">Map</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Object/">Object</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Session/">Session</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Set/">Set</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Shell/">Shell</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Socket/">Socket</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Spring/">Spring</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Storage/">Storage</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Struts/">Struts</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Sublime/">Sublime</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Thread/">Thread</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Throwable/">Throwable</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/directory/">directory</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/file/">file</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jQuery实践/">jQuery实践</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">javascript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jvm/">jvm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mongo/">mongo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nginx/">nginx</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/prototype/">prototype</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/redis/">redis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/svn/">svn</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tar/">tar</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tomcat/">tomcat</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/分析/">分析</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/前沿技术/">前沿技术</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/前端/">前端</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/后端/">后端</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/基础/">基础</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/基础命令/">基础命令</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/定位/">定位</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/工具/">工具</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/常用代码/">常用代码</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/常用命令/">常用命令</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/排序/">排序</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/插件/">插件</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/日志/">日志</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/目录/">目录</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/系统/">系统</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/编码/">编码</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/编辑器/">编辑器</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/网站/">网站</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/行高/">行高</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/设计/">设计</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/软件/">软件</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/连接池/">连接池</a></li></ul>
+                    </div>
+                </section>
+                
+                
+                
+                <section class="switch-part switch-part3">
+                    <div id="js-friends">
+                    
+                      <a target="_blank" class="main-nav-link switch-friends-link" href="https://hexo.io">Hexo</a>
+                    
+                      <a target="_blank" class="main-nav-link switch-friends-link" href="https://pages.github.com/">GitHub</a>
+                    
+                      <a target="_blank" class="main-nav-link switch-friends-link" href="http://moxfive.xyz/">MOxFIVE</a>
+                    
+                      <a target="_blank" class="main-nav-link switch-friends-link" href="http://cmsblogs.com/">CMSBLOGS</a>
+                    
+                    </div>
+                </section>
+                
+
+                
+            </div>
+        </div>
+    </header>                
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">Mu Xiaobai(慕小白)</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                <img src="/img/avatars.jpg" class="animated zoomIn">
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="回到主页">Mu Xiaobai(慕小白)</a></h1>
+            </hgroup>
+            
+            <p class="header-subtitle">有输入,有输出</p>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/">主页</a></li>
+                
+                    <li><a href="/archives/">所有文章</a></li>
+                
+                    <li><a href="/tags/">标签云</a></li>
+                
+                    <li><a href="/about/">关于我</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" target="_blank" href="mailto:zpf12345678910@gmail.com" title="Email"></a>
+                            
+                                <a class="fa 新浪微博" target="_blank" href="http://weibo.com/u/1751073805" title="新浪微博"></a>
+                            
+                                <a class="fa GitHub" target="_blank" href="https://github.com/muxiaobai" title="GitHub"></a>
+                            
+                                <a class="fa RSS" target="_blank" href="/atom.xml" title="RSS"></a>
+                            
+                                <a class="fa 网易云音乐" target="_blank" href="http://music.163.com/#//user/home?id=270611521" title="网易云音乐"></a>
+                            
+                        </ul>
+            </nav>
+        </header>                
+    </div>
+    <link class="menu-list" tags="标签" friends="友情链接" about="关于我">
+</nav>
+      <div class="body-wrap"><article id="post-2018年个人总结" class="article article-type-post" itemscope itemprop="blogPost">
+ 
+  
+    <div class="article-meta">
+      <a href="/2019/01/15/2018年个人总结/" class="article-date">
+      <time datetime="2019-01-14T20:19:28.000Z" itemprop="datePublished">2019-01-15</time>
+</a>
+    </div>
+  
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      2018年个人总结
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/总结/">总结</a>
+    </div>
+
+
+        
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/2018/">2018</a></li></ul>
+    </div>
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <h2 id="工作，个人技能"><a href="#工作，个人技能" class="headerlink" title="工作，个人技能"></a>工作，个人技能</h2><h4 id="新事物、新工具"><a href="#新事物、新工具" class="headerlink" title="新事物、新工具"></a>新事物、新工具</h4><ul>
+<li>自己前期对一些node等命令了解一些，现在通过在项目中使用，更加熟悉，像node、 npm、yarn、vs code 等工具。使用electron，可以实现在win和mac平台上打包成程序。</li>
+<li>Hbuilder工具可以打包成Android和ios上的应用。</li>
+<li>MongoDB redis等基本命令；之前也想着看，但是只是了解到一点儿内容，没有实际的使用，并没有把握，现在这些东西都可以说是熟悉了。</li>
+<li>更新系统可以基本实现脚本化，并且可以保留原始备份应用，之前一直都在写，后来因为window server的原因，中断了，现在又使用起来，肯定要把这部分的知识拾起来，深入一下了。</li>
+<li>杨百翰Coca语料库网站使用，antconc语料分析工具，如果工作上也出现这种没有接触过的工具，应该怎么处理？ </li>
+</ul>
+<h4 id="如何接触新事物、学习新工具"><a href="#如何接触新事物、学习新工具" class="headerlink" title="如何接触新事物、学习新工具"></a>如何接触新事物、学习新工具</h4><p>新事物、新工具这类可以统称为“我的未知世界”、“我的盲区”。</p>
+<p>可以分为三类，一类是知道，简单的使用过，没有深入研究，参加使用英语语种讨论；第二类是听说过，但没有使用过，这类和第三类没有什么区别，参加使用，日语韩语德语等语种研讨，第三类是听都没有听说过，这种是有很大的专业性壁垒，类似去参加一场不知道是什么语言的研讨；</p>
+<p>明确一点的是首先要知道这个工具是做什么用的？出现这个工具，肯定是有一些背景的，为什么会出现，这就是原因，然后找一下有没有类似的工具，可以参考的理念性的，因为同一类工具，是解决同一类问题，，背后会有一定的原理性的东西存在。这样的东西把握住了之后，就能把握主旨。</p>
+<p>最次一级的是怎么使用这个工具？但这个也是最实用的一点。具体的使用情况，在具体用的时候再去研究，这样就能节省时间；人的精力是有限的，之前一位老师和我这么讲的时候，我还总觉得无所谓，我的精力无限，但是现在看来，该听的话还是要听一下的，把时间用在最需要研究的地方。</p>
+<blockquote>
+<p>最后一条，网络如此发达，谷歌百度为何不用？老师在你身边，怎能不好好学习。</p>
+</blockquote>
+<blockquote>
+<p>方法论比方法更重要。</p>
+</blockquote>
+<h4 id="计划性、把控方面"><a href="#计划性、把控方面" class="headerlink" title="计划性、把控方面"></a>计划性、把控方面</h4><p>分两部分，一个是对整体的项目规划性</p>
+<p>计划性认知，比之前有很大的提升，最开始在学校的时候，虽然也是带项目，但是对于一个项目的整体规划，整体到什么阶段，要做到什么事情，要给客户展示什么内容，缺乏认识；只是一味的往前做，没有给客户一个安心，每一个周期做什么东西了，并没有给客户。这样客户的感觉就是很随意，看到什么就做什么。</p>
+<p>二是对任务的把控方面</p>
+<p>能够把任务进行分解，分模块，按步骤进行处理。可以大致预估任务的复杂度，预计的人天,这可以说是提升最大的软技能，上一份工作中，只是对自己能力的预估，慢慢的掌握住方法；任务复杂或者简单，和负责人说有多少内容，慢慢的自己就有了一点感觉，在对别人的时间把控方面也有了提升，这点还要通过看别人的代码，逐渐建立起来的体系。</p>
+<h4 id="分析问题，解决问题"><a href="#分析问题，解决问题" class="headerlink" title="分析问题，解决问题"></a>分析问题，解决问题</h4><p>例如：①有一个树形查询的oracle语句，在数据量少的时候很快就可以查出来列表，数据量大之后，因为每一条数据都要统计其他的信息，列表就要加载很久，最后采用redis的形式，存储这个计算出来的值。</p>
+<p>在影响这个计算值的时候，把redis中的数据清空，在查询的时候把这个值填到redis中，下次列表查询的时候就直接使用这个值，具体可以参考其他的文章<a href="https://muxiaobai.github.io/2019/02/16/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E4%B9%8Bredis%E5%82%A8%E5%AD%98%E8%AE%A1%E7%AE%97%E5%80%BC/">性能优化之redis储存计算值</a></p>
+<p>②有一个列表，后台响应很快，大概300ms的时间，数据都已经到前台了，但是前台的页面重新layout，又采用的是easyui的组件，因此通过chrome的Performance来进行积累渲染的过程，优化前台的渲染逻辑，从而达到要求。</p>
+<blockquote>
+<p>这个实际上也是因为平时经常看一些文章，所以就有这方面的想法，算是厚积薄发吧，还是要注重积累，现在如果分析到响应速度呀等，就先从前后台的交互位置查起，看是前台，还是后台的问题导致的，再进一步找后台sql还是循环，是数据量大，传输过程，网络影响，还是前台渲染的时候有问题。</p>
+</blockquote>
+<p>遇到问题应该找谁来解决，协调，把握几点吧，自己能解决的问题，说出大概的时间解决，自己解决不了的问题，找相关人员解决，自己不知道找谁来解决的问题，向领导反馈，这些基本的逻辑，有的时候还真的是没呢么容易做到，一般总是想着我来做我来做，但是呢，一个人的精力有限，该分出去的就要分出去，有时，可能就会想着都经过自己的话，就知道，能把控，可是，该放松的该授权的就要授权。</p>
+<p>####</p>
+<h2 id="生活"><a href="#生活" class="headerlink" title="生活"></a>生活</h2><h4 id="踏过的地方"><a href="#踏过的地方" class="headerlink" title="踏过的地方"></a>踏过的地方</h4><p>踏过的城市：南阳、枣庄、西安、宝鸡太白、深圳、香港、广西河池-柳州、杭州</p>
+<blockquote>
+<p>西安  正南正北的规矩，古代皇宫式的华丽</p>
+</blockquote>
+<p>北方真不是人呆的地方，夏天热的要死，冬天雾霾让人无法呼吸，还是南方好，不冷，空气好，就是离家远了点儿，西安的夏天高达40度，怎么玩？玩不了丫。还是喜欢走路上班。从第一份工作，到现在，上下班都是住宿和公司都是相差不远的，走路，还可以锻炼一下身体，棒棒哒！！！</p>
+<blockquote>
+<p>宝鸡太白 看秦岭云海  高山云海之上，神仙居住的地方</p>
+</blockquote>
+<p>山里面凉快，真的是很凉快，在里面看的水还好一点，但是在一条路上，有一个缺口，可能就是在这里突出一下秦岭的威严，天然的露出了一个小口子，让你们看看，在我大秦岭面前，你们这些小如蝼蚁的人们，都给我臣服吧。再来插播一条，云海去看过的都说好。ps：并没有收广告费。</p>
+<blockquote>
+<p>香港 去体验一把，维多利亚港 高楼，海港，游轮，帆船</p>
+</blockquote>
+<p>登上游轮，吹着海风，别有一番滋味，想到一句话：你以为有钱人是幸福的，实际上，有钱人的幸福你想都想不到。莎莎、万宁、屈臣氏、卓悦，遍地，人挨人，人挤人，护肤品，化妆品，奶粉，保健品（贴膏），很奇怪，奶粉和保健品会在这里售卖?<br>电影里面总能看到有人拿的是一卷钱，用卷起来的，这次过去换港币的时候，真的是这样子的，我跑到一个小的巷道里面，找的是一个比较正规的柜台，当时，旁边有很多那种“一卷”钱，在香港这种地方，没有港币真的很麻烦，很多地方还是只收现金，1000的不收。不像大陆地区，哪怕没有带现金，吃穿玩，一切都正常。<br>想象中的紫金花广场应该很霸气的，到跟前一看，哎呀，还不如大陆的一个小广场，不过还是拍照留念了一下。毕竟来了一趟，不容易呢。</p>
+<blockquote>
+<p>广西河池 看山看水 山水一体，原始山川河流</p>
+</blockquote>
+<p>抖音小视频，山顶上转圈，转圈，我真的是去了，虽然是在不知名的小山顶上，但是这也是山丫，感觉很舒服，和秦岭的山水，和香港的海风是完全不一样的感觉，这里的山水，是小景，是一种温文尔雅的舒适感，坐船真坐的够够的了，不贵，而且将近一个小时，回来的路上，坐的人们都是冷飕飕的，刘三姐的故事，在广西真的是随处都是，路桥，山里，坊间，一会儿说是桂林阳朔的，一会说是河池宜州。本来就是游山玩水，历史问题就不再考究。听说这里的人们还在唱山歌，原来山间人家，自有山间的一些儿玩法，中原人没有见过的，就觉得神奇，唱的都是人家自己的语言和调调。</p>
+<blockquote>
+<p>柳州 近代工业  一种厚重，有工业底蕴的城市</p>
+</blockquote>
+<p>螺蛳粉真的是有螺蛳的，螺蛳熬得汤，加酸笋，加腐竹，加豆泡（豆腐泡），加卤水。</p>
+<p>柳江从中穿过，别称“壶城”，柳州城有很多桥，当时已经建好的有21座，还有在规划中的，为了交通，横穿柳江过来，桥梁工程应该是很发达的；柳工，柳钢，五菱，重工业基地，双面针，金嗓子等，柳钢雪条，雪糕，是一座小城，和惠州，徐州很像，但是没有惠州那么浮躁，没有徐州那么庄重，个人感觉柳州很随和，但也很稳。</p>
+<blockquote>
+<p>杭州 西湖加现代设计的一种和谐</p>
+</blockquote>
+<p>听说是有：西湖醋鱼，龙井虾仁 八宝豆腐等。楼外楼。真的只是听说，去一周，直接就回来了，什么都没有带，遗憾，还说带一点茶叶回来呢，西湖，龙井绿茶，不过自己出去跑一趟，就很好的了。</p>
+<blockquote>
+<p>实际上只要看到外部的，未经历过的，都是心情舒畅。</p>
+</blockquote>
+<h4 id="公开课"><a href="#公开课" class="headerlink" title="公开课"></a>公开课</h4><p>前段时间一直在看心理学的公开课，说实话，收获挺大的，早就想看一些这种社会学心理学的内容，这也是<code>下一年重点内容</code>，</p>
+<h4 id="经历过的事情"><a href="#经历过的事情" class="headerlink" title="经历过的事情"></a>经历过的事情</h4><blockquote>
+<p>辞职和找工作、要福利</p>
+</blockquote>
+<p>和领导说辞职的时候，一定要挺住，别放松，说一个月才能办理，咱就要要一周就能出结果。很多情况下，只不过是口头上说，一般不是要职人员，当前没有必要的项目，那么这种流程很快就能结束的，一个月，待在那里还不要疯了，何必在那里碍眼。找工作的时候，该问清楚的就要问清楚，该有的利益福利，该要就要。有些话适合说清楚，就别含糊。</p>
+<blockquote>
+<p>学会拒绝</p>
+</blockquote>
+<p>上级，上次一个任务，我明确的和上级说过，可能会出现这种问题，需要我们这边提供帮助，可是呀，他说不用我们这边，不用，结果，两天之后，果然还是出现这种问题了，然后又打电话让我给他解决，我就说现在没有时间，要到晚上才行。想其他办法，我估计，还是会找我来进行处理。</p>
+<p>该跑的坑就要跑，上一任技术走了，眼看当下没有人接手，烫手的山芋，让我接，都不是傻瓜。我还是选择出去待在项目上，能跟着实力强的人再学习，何乐而不为呢？蚂蚁金服，唯一对不住的就是她，刚回去，就又跑了。</p>
+<p>亲友，为什么亲属长辈问我有没有钱？真的是很无语，果断拒绝。当时我就不抱有给他的可能，因为我也知道这种人，但像同学，这次问我借钱的时候，我直接问他要多少，有什么事情要帮忙的，有的时候，亲戚这种关系更不能掺和利益，麻烦，说不清，道不明，反而惹得都不舒服。</p>
+<blockquote>
+<p>学会表达自己的真实感受</p>
+</blockquote>
+<p>没有表达好，直言快语，有话直说，工作上在对待上司，工资等，简单一点儿，直接一点儿，省的把自己搞的很累，还过得不舒服。有不知道的就直接问，</p>
+<blockquote>
+<p>学会控制自己的真实感受</p>
+</blockquote>
+<p>从心理学学到的，而且在生活中经历过的。</p>
+<ul>
+<li>1.避免表达出事后诸葛亮的一种态度。</li>
+<li>2.想解决办法，而不是制造麻烦。</li>
+<li>3.有时候太直白，不利于团队团结。</li>
+</ul>
+<h2 id="计划"><a href="#计划" class="headerlink" title="计划"></a>计划</h2><h4 id="2018年计划完成情况"><a href="#2018年计划完成情况" class="headerlink" title="2018年计划完成情况"></a>2018年计划完成情况</h4><ul>
+<li>人不要脸，书不能丢，一个月一本书。要有记录</li>
+<li>画一画自己知识体系，思维导图（包括但不限于JAVA、JS、CSS、browser、network、）</li>
+<li>hello world 大数据 sparker等 demo</li>
+<li>kaggle等课程熟悉，完成5次天池比赛</li>
+</ul>
+<p>完成度20%</p>
+<p>没有驱动性，自驱力差；机器学习只学了点儿皮毛，kaggle完成2个，熟悉大致的操作流程，无法商用。后半年都没有实际操作。反倒是MongoDB、redis等工具开始用起来；运维方面的知识掌握不少，把之前简单的脚本重新掌握并应用了。</p>
+<h4 id="2019年计划"><a href="#2019年计划" class="headerlink" title="2019年计划"></a>2019年计划</h4><ul>
+<li>听讲座，参加技术，文化，社会论坛等，扩展知识广度。</li>
+<li>心理学知识，受益匪浅，需要继续学习。</li>
+<li>研究服务器性能、部署等问题，分析出自己的一套配置。</li>
+<li></li>
+</ul>
+<p>2019.01.15 慕小白 于浙江杭州</p>
+
+      
+    </div>
+   
+    
+          <!--打赏-->
+         
+
+<!-- donate -->
+<style>
+   .donate_bar {
+	text-align: center;
+	margin-top: 5%
+	}
+	.donate_bar a.btn_donate {
+		display: inline-block;
+		width: 82px;
+		height: 82px;
+		margin-left: auto;
+		margin-right: auto;
+		background: url(http://img.t.sinajs.cn/t5/style/images/apps_PRF/e_media/btn_reward.gif)no-repeat;
+		-webkit-transition: background 0s;
+		-moz-transition: background 0s;
+		-o-transition: background 0s;
+		-ms-transition: background 0s;
+		transition: background 0s
+	}
+	.donate_bar a.btn_donate:hover {
+		background-position: 0 -82px
+	}
+	.donate_bar .donate_txt {
+		display: block;
+		color: #9d9d9d;
+		font: 14px/2 "Microsoft Yahei"
+	}
+	.donate_bar.hidden{
+		display: none
+	}
+	.post-donate{
+		margin-top: 80px;
+	}
+	#donate_guide{
+		/*height: 210px;
+		width: 420px;*/
+		margin: 0 auto;
+	}
+	#donate_guide img{
+		height: 200px;
+		height: 200px;
+	}
+</style>
+<!-- 添加捐赠图标 -->
+<div class="post-donate">
+    <div id="donate_board" class="donate_bar center">
+        <a id="btn_donate" class="btn_donate" href="javascript:;" title="打赏"></a>
+        <span class="donate_txt">
+           &uarr;<br>
+		   坚持原创技术分享，您的支持将鼓励我继续创作！
+        </span>
+        <br>
+    </div>  
+	<div id="donate_guide" class="donate_bar center hidden">
+		<!-- 支付宝打赏图案 -->
+		<img src="/img/alipay.jpg" alt="支付宝打赏"> 
+		<!-- 微信打赏图案 -->
+		<img src="/img/wechatpay.png" alt="微信打赏">  
+    </div>
+	<script type="text/javascript">
+		document.getElementById('btn_donate').onclick = function(){
+			//$('#donate_board').addClass('hidden');
+			if($('#donate_guide').hasClass('hidden')){
+				$('#donate_guide').removeClass('hidden');
+			}else{
+				$('#donate_guide').addClass('hidden');
+			}
+		}
+	</script>
+</div>
+
+<!-- End donate -->
+
+
+    
+    
+    
+  </div>
+  
+    
+    <div class="copyright">
+        <p><span>本文标题:</span><a href="/2019/01/15/2018年个人总结/">2018年个人总结</a></p>
+        <p><span>文章作者:</span><a href="/" title="回到主页">Mu Xiaobai(慕小白)</a></p>
+        <p><span>发布时间:</span>2019-01-15, 04:19:28</p>
+        <p><span>最后更新:</span>2019-02-16, 12:58:26</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/2019/01/15/2018年个人总结/" title="2018年个人总结">https://muxiaobai.github.io/2019/01/15/2018年个人总结/</a>
+            <span class="copy-path" data-clipboard-text="原文: https://muxiaobai.github.io/2019/01/15/2018年个人总结/　　作者: Mu Xiaobai(慕小白)" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target="_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
+        </p>
+    </div>
+
+
+
+    <nav id="article-nav">
+        
+            <div id="article-nav-newer" class="article-nav-title">
+                <a href="/2019/02/16/性能优化之redis储存计算值/">
+                    性能优化之redis储存计算值
+                </a>
+            </div>
+        
+        
+            <div id="article-nav-older" class="article-nav-title">
+                <a href="/2019/01/11/mongodb常用命令/">
+                    mongodb常用命令
+                </a>
+            </div>
+        
+    </nav>
+
+  
+</article>
+
+
+    <!--左侧-->
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#工作，个人技能"><span class="toc-number">1.</span> <span class="toc-text">工作，个人技能</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#新事物、新工具"><span class="toc-number">1.0.1.</span> <span class="toc-text">新事物、新工具</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#如何接触新事物、学习新工具"><span class="toc-number">1.0.2.</span> <span class="toc-text">如何接触新事物、学习新工具</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#计划性、把控方面"><span class="toc-number">1.0.3.</span> <span class="toc-text">计划性、把控方面</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#分析问题，解决问题"><span class="toc-number">1.0.4.</span> <span class="toc-text">分析问题，解决问题</span></a></li></ol></li></ol><li class="toc-item toc-level-2"><a class="toc-link" href="#生活"><span class="toc-number">2.</span> <span class="toc-text">生活</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#踏过的地方"><span class="toc-number">2.0.1.</span> <span class="toc-text">踏过的地方</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#公开课"><span class="toc-number">2.0.2.</span> <span class="toc-text">公开课</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#经历过的事情"><span class="toc-number">2.0.3.</span> <span class="toc-text">经历过的事情</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#计划"><span class="toc-number">3.</span> <span class="toc-text">计划</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#2018年计划完成情况"><span class="toc-number">3.0.1.</span> <span class="toc-text">2018年计划完成情况</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2019年计划"><span class="toc-number">3.0.2.</span> <span class="toc-text">2019年计划</span></a></li></ol></li>
+</div>
+<style>
+    .left-col .switch-btn,
+    .left-col .switch-area {
+        display: none;
+    }
+</style>
+
+<input type="button" id="tocButton" value="隐藏目录" title="点击按钮隐藏或者显示文章目录">
+
+<script>
+    yiliaConfig.toc = ["隐藏目录", "显示目录", !!"false"];
+</script>
+
+
+
+    <!--分享-->
+    
+<div class="share">
+    
+
+    
+        <div class="addthis_sharing_toolbox"></div>
+    
+</div>
+
+
+
+
+
+
+
+    <!--评论-->
+    
+      <section class="gitment" id="comments">
+    <div id="gitment" class="article article-type-post"></div>
+    <link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+    <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+    <script>
+    var gitment = new Gitment({
+      id: '2018年个人总结',
+      owner: 'muxiaobai',
+      repo: 'muxiaobai.github.io',
+      oauth: {
+        client_id: '5e496d32f02cb04c1ccf',
+        client_secret: 'a98d21d1cc8b690a45fc996c62572247fdc5d7f3',
+      },
+    })
+    gitment.render('gitment')
+    </script>
+</section>
+    
+
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/2019/02/16/性能优化之redis储存计算值/" title="上一篇: 性能优化之redis储存计算值">
+                <i class="fa fa-angle-left"></i>
+            </a>
+        
+
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+
+        
+            <a href="/2019/01/11/mongodb常用命令/" title="下一篇: mongodb常用命令">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2019/05/21/高并发之缓存、限流、降级/">高并发之缓存、限流、降级</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/18/使用ELK分析日志/">使用ELK分析日志</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/01/Linux-基础命令总结4/">Linux 基础命令总结4</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/02/16/性能优化之redis储存计算值/">性能优化之redis储存计算值</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/01/15/2018年个人总结/">2018年个人总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/01/11/mongodb常用命令/">mongodb常用命令</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/01/11/mongodb主从架构设计/">mongodb主从架构设计</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/12/21/前言技术之OCR识别/">前言技术之OCR识别</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/11/22/深入理解JVM之远程监控/">深入理解JVM之远程监控</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/11/22/数据库监控-Druid监控配置/">数据库监控-Druid监控配置</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/11/15/应用部署之nginx参数配置/">应用部署之nginx参数配置</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/11/07/数据库操作-plsql操作/">数据库操作-plsql操作</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/10/09/javascript-常用代码/">javascript-常用代码</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/20/java-常用代码/">java 常用代码</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/04/数据库操作语句2/">数据库操作语句2</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/06/25/Spring源码阅读之AOP两种代理模式/">Spring源码阅读之AOP两种代理模式</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/06/22/Spring源码阅读之Ioc控制反转/">Spring源码阅读之Ioc控制反转</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/06/08/浏览器的加载页面过程及优化方法/">浏览器的加载页面过程及优化方法</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/06/07/浏览器的请求与响应过程/">浏览器的请求与响应过程</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/04/20/Tomcat源码阅读之Container责任链/">Tomcat源码阅读之Container责任链</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/04/17/Tomcat源码阅读之URL请求解析/">Tomcat源码阅读之URL请求解析</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/04/16/Tomcat源码阅读之组件生命周期/">Tomcat源码阅读之组件生命周期</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/04/16/Tomcat源码阅读之从server-xml看组件关系/">Tomcat源码阅读之从server.xml看组件关系</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/03/02/重装CENTOS一系列操作/">重装CENTOS一系列操作</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/01/05/2017年个人总结/">2017年个人总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/12/22/javascript再学习之prototype/">javascript再学习之prototype</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/12/21/RSS好工具/">RSS好工具</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/10/23/前端小tips/">前端小tips</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/09/17/Linux-基础命令总结3/">Linux 基础命令总结3</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/09/02/应用部署之nginx负载/">应用部署之nginx负载</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/29/深入理解JVM之性能调优/">深入理解JVM之性能调优</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/14/数据库操作语句/">数据库操作语句</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/09/javascript再学习之Event/">javascript再学习之Event</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/08/javascript再学习之DOM/">javascript再学习之DOM</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/02/Javamelody-工具/">Javamelody 工具</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/07/20/hadoop-Sqoop-Hive等的安装/">hadoop-Sqoop-Hive等的安装</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/07/19/Linux-下的java安装、变更以及升级问题/">Linux 下的java安装、变更以及升级问题</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/06/29/毕业设计心得/">毕业设计心得</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/23/2016年个人总结/">2016年个人总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/27/CSS-定位布局/">CSS 定位布局</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/17/等待-等待-等待/">等待,等待,等待...</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/29/常见排序算法总结/">常见排序算法总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/24/Thinking-in-java-基础之网络Socket/">Thinkin in java 基础之网络Socket</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/19/由ES6中的Proxy和Reflect再了解Object/">由ES6中的Proxy和Reflect再了解Object</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/16/从ES6中学习编码/">从ES6中学习编码</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/13/模仿jQuery创建自己的js工具/">模仿jQuery创建自己的js工具</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/08/27/测试Travis CI/">好软件,靠机遇</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/08/20/HTML5-API-新特性/">HTML5 API 新特性</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/08/09/Thinking-in-java-基础之线程和并发/">Thinking in java 基础之线程和并发</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/08/04/Thinking-in-java-基础之异常/">Thinking in java 基础之异常</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/08/03/Spring中的Session生命周期/">Spring中的Session生命周期</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/20/前后台数据交互方式总结/">前后台数据交互方式总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/19/JavaEE-资源路径问题/">JavaEE 资源路径问题</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/19/Sublime-下运行Java文件/">Sublime 下运行Java文件</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/09/Linux-基础Shell脚本/">Linux 基础Shell脚本</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/07/Linux-基础命令总结2/">Linux 基础命令总结2</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/01/好软件-靠机遇/">好软件,靠机遇</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/06/29/好网站-天天记/">好网站,天天记</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/06/29/hello-world/">Hello World</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/06/27/Linux下各目录的默认含义/">Linux下各目录的默认含义</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/06/27/Linux-基础命令总结/">Linux 基础命令总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/06/25/Thinking-in-java-基础之集合框架/">Thinking in java 基础之集合框架</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/06/25/Thinking-in-java-基础之I-O/">Thinking in java 基础之I/O</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/06/19/Linux-下安装SVN服务器/">Linux 下安装SVN服务器</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/06/17/GitHub Hexo/">GitHub + Hexo 构建我的博客</a></li></ul>
+
+
+
+
+    <script>
+        
+    </script>
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                <i class="fa fa-copyright"></i> 
+                2016-2019 Mu Xiaobai(慕小白)
+            </div>
+            <div class="footer-right">
+                <a href="http://hexo.io/" target="_blank" title="快速、简洁且高效的博客框架">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="简而不减 Hexo 双栏博客主题  v3.5">Yelee</a> by MOxFIVE <i class="fa fa-heart animated infinite pulse"></i>
+            </div>
+        </div>
+        
+            <div class="visit">
+                
+                    <span id="busuanzi_container_site_pv" style="display:none">
+                        <span id="site-visit">本站到访数: 
+                            <span id="busuanzi_value_site_uv"></span>
+                        </span>
+                    </span>
+                
+                
+                    <span>, </span>
+                
+                
+                    <span id="busuanzi_container_page_pv" style="display:none">
+                        <span id="page-visit">本页阅读量: 
+                            <span id="busuanzi_value_page_pv"></span>
+                        </span>
+                    </span>
+                
+            </div>
+        
+    </div>
+</footer>
+    </div>
+    
+    <script src="/js/GithubRepoWidget.js"></script>
+
+<script data-main="/js/main.js" src="//cdn.bootcss.com/require.js/2.2.0/require.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            var iPad = window.navigator.userAgent.indexOf('iPad');
+            if (iPad > -1 || $(".left-col").css("display") === "none") {
+                var bgColorList = ["#9db3f4", "#414141", "#e5a859", "#f5dfc6", "#c084a0", "#847e72", "#cd8390", "#996731"];
+                var bgColor = Math.ceil(Math.random() * (bgColorList.length - 1));
+                $("body").css({"background-color": bgColorList[bgColor], "background-size": "cover"});
+            }
+            else {
+                var backgroundnum = 5;
+                var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+                $("body").css({"background": backgroundimg, "background-attachment": "fixed", "background-size": "cover"});
+            }
+        })
+    </script>
+
+
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-80276841-1', 'auto');
+ga('send', 'pageview');
+</script>
+<!-- End Google Analytics -->
+
+
+
+
+
+<div class="scroll" id="scroll">
+    <a href="#" title="返回顶部"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments" onclick="load$hide();" title="查看评论"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer" title="转到底部"><i class="fa fa-arrow-down"></i></a>
+</div>
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+  </div>
+</body>
+</html>

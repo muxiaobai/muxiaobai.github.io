@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+
+
+    <!--[if lt IE 9]>
+        <style>body {display: none; background: none !important} </style>
+        <meta http-equiv="Refresh" Content="0; url=//outdatedbrowser.com/" />
+    <![endif]-->
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="format-detection" content="telephone=no">
+<meta name="author" content="Mu Xiaobai(慕小白)">
+
+
+
+<meta name="description" content="2017年已经过去，总结一下。">
+<meta name="keywords" content="2017">
+<meta property="og:type" content="article">
+<meta property="og:title" content="2017年个人总结">
+<meta property="og:url" content="https://muxiaobai.github.io/2018/01/05/2017年个人总结/index.html">
+<meta property="og:site_name" content="技术笔记">
+<meta property="og:description" content="2017年已经过去，总结一下。">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-01-25T03:05:11.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="2017年个人总结">
+<meta name="twitter:description" content="2017年已经过去，总结一下。">
+
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+
+    <link rel="alternative" href="/atom.xml" title="技术笔记" type="application/atom+xml">
+
+
+
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+
+
+    <link href="//cdn.bootcss.com/animate.css/3.5.1/animate.min.css" rel="stylesheet">
+
+
+
+    <link href="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet">
+
+
+
+    <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+    <link href="//cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-minimal.css" rel="stylesheet">
+
+
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+<link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+
+
+<title>2017年个人总结 | 技术笔记</title>
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+
+<script>
+    var yiliaConfig = {
+        fancybox: true,
+        animate: true,
+        isHome: false,
+        isPost: true,
+        isArchive: false,
+        isTag: false,
+        isCategory: false,
+        open_in_new: true,
+        fancybox_js: "//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.js",
+        scrollreveal: "//cdn.bootcss.com/scrollReveal.js/3.1.4/scrollreveal.min.js",
+        search: true
+    }
+</script>
+
+
+    <script>
+        yiliaConfig.jquery_ui = [true, "//cdn.bootcss.com/jqueryui/1.10.4/jquery-ui.min.js", "//cdn.bootcss.com/jqueryui/1.10.4/css/jquery-ui.min.css"];
+    </script>
+
+
+
+    <script> yiliaConfig.rootUrl = "\/";</script>
+
+
+
+    <script src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-577a08f17286c0c0"></script>
+
+
+
+    <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "//hm.baidu.com/hm.js?9d6c9084c010ea425bd063ef91167131";
+            var s = document.getElementsByTagName("script")[0]; 
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+
+
+</head>
+ 
+<!-- add Fork Me On Github -->
+
+<a href="https://github.com/muxiaobai">
+<img style="position: absolute; top: 0; right: 0; border: 0;z-index: 1000" src="https://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png" alt="Fork me on GitHub">
+</a>
+<!-- End Fork Me On Github  -->
+</html>
+<body>
+ 
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <a href="/" class="profilepic">
+            <img src="/img/avatars.jpg" class="animated zoomIn">
+        </a>
+        <hgroup>
+          <h1 class="header-author"><a href="/">Mu Xiaobai(慕小白)</a></h1>
+        </hgroup>
+
+        
+        <p class="header-subtitle">有输入,有输出</p>
+        
+
+        
+            <form id="search-form">
+            <input type="text" id="local-search-input" name="q" results="0" placeholder="search..." class="search form-control" autocomplete="off" autocorrect="off" searchonload="false">
+            <i class="fa fa-times" onclick="resetSearch()"></i>
+            </form>
+            <div id="local-search-result"></div>
+            <p class="no-result">No results found <i class="fa fa-spinner fa-pulse"></i></p>
+        
+
+
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        <div class="icon-wrap icon-link hide" data-idx="2">
+                            <div class="loopback_l"></div>
+                            <div class="loopback_r"></div>
+                        </div>
+                        
+                        
+                    </div>
+                    
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>菜单</li>
+                        <li>标签</li>
+                        
+                        <li>友情链接</li>
+                        
+                        
+                    </ul>
+                </div>
+            </div>
+        
+
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a href="/">主页</a></li>
+                        
+                            <li><a href="/archives/">所有文章</a></li>
+                        
+                            <li><a href="/tags/">标签云</a></li>
+                        
+                            <li><a href="/about/">关于我</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" target="_blank" href="mailto:zpf12345678910@gmail.com" title="Email"></a>
+                            
+                                <a class="fa 新浪微博" target="_blank" href="http://weibo.com/u/1751073805" title="新浪微博"></a>
+                            
+                                <a class="fa GitHub" target="_blank" href="https://github.com/muxiaobai" title="GitHub"></a>
+                            
+                                <a class="fa RSS" target="_blank" href="/atom.xml" title="RSS"></a>
+                            
+                                <a class="fa 网易云音乐" target="_blank" href="http://music.163.com/#//user/home?id=270611521" title="网易云音乐"></a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/2016/">2016</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/2017/">2017</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/2018/">2018</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/API/">API</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CI/">CI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS/">CSS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Cache/">Cache</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Canvas/">Canvas</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Collection/">Collection</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Concurrent/">Concurrent</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Error/">Error</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Exception/">Exception</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/File/">File</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Github/">Github</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hibernate/">Hibernate</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/I-O/">I/O</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Iterator/">Iterator</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/List/">List</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Map/">Map</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Object/">Object</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Session/">Session</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Set/">Set</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Shell/">Shell</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Socket/">Socket</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Spring/">Spring</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Storage/">Storage</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Struts/">Struts</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Sublime/">Sublime</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Thread/">Thread</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Throwable/">Throwable</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/directory/">directory</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/file/">file</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jQuery实践/">jQuery实践</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">javascript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jvm/">jvm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mongo/">mongo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nginx/">nginx</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/prototype/">prototype</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/redis/">redis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/svn/">svn</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tar/">tar</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tomcat/">tomcat</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/分析/">分析</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/前沿技术/">前沿技术</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/前端/">前端</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/后端/">后端</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/基础/">基础</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/基础命令/">基础命令</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/定位/">定位</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/工具/">工具</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/常用代码/">常用代码</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/常用命令/">常用命令</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/排序/">排序</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/插件/">插件</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/日志/">日志</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/目录/">目录</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/系统/">系统</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/编码/">编码</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/编辑器/">编辑器</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/网站/">网站</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/行高/">行高</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/设计/">设计</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/软件/">软件</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/连接池/">连接池</a></li></ul>
+                    </div>
+                </section>
+                
+                
+                
+                <section class="switch-part switch-part3">
+                    <div id="js-friends">
+                    
+                      <a target="_blank" class="main-nav-link switch-friends-link" href="https://hexo.io">Hexo</a>
+                    
+                      <a target="_blank" class="main-nav-link switch-friends-link" href="https://pages.github.com/">GitHub</a>
+                    
+                      <a target="_blank" class="main-nav-link switch-friends-link" href="http://moxfive.xyz/">MOxFIVE</a>
+                    
+                      <a target="_blank" class="main-nav-link switch-friends-link" href="http://cmsblogs.com/">CMSBLOGS</a>
+                    
+                    </div>
+                </section>
+                
+
+                
+            </div>
+        </div>
+    </header>                
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">Mu Xiaobai(慕小白)</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                <img src="/img/avatars.jpg" class="animated zoomIn">
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="回到主页">Mu Xiaobai(慕小白)</a></h1>
+            </hgroup>
+            
+            <p class="header-subtitle">有输入,有输出</p>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/">主页</a></li>
+                
+                    <li><a href="/archives/">所有文章</a></li>
+                
+                    <li><a href="/tags/">标签云</a></li>
+                
+                    <li><a href="/about/">关于我</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" target="_blank" href="mailto:zpf12345678910@gmail.com" title="Email"></a>
+                            
+                                <a class="fa 新浪微博" target="_blank" href="http://weibo.com/u/1751073805" title="新浪微博"></a>
+                            
+                                <a class="fa GitHub" target="_blank" href="https://github.com/muxiaobai" title="GitHub"></a>
+                            
+                                <a class="fa RSS" target="_blank" href="/atom.xml" title="RSS"></a>
+                            
+                                <a class="fa 网易云音乐" target="_blank" href="http://music.163.com/#//user/home?id=270611521" title="网易云音乐"></a>
+                            
+                        </ul>
+            </nav>
+        </header>                
+    </div>
+    <link class="menu-list" tags="标签" friends="友情链接" about="关于我">
+</nav>
+      <div class="body-wrap"><article id="post-2017年个人总结" class="article article-type-post" itemscope itemprop="blogPost">
+ 
+  
+    <div class="article-meta">
+      <a href="/2018/01/05/2017年个人总结/" class="article-date">
+      <time datetime="2018-01-04T23:47:29.000Z" itemprop="datePublished">2018-01-05</time>
+</a>
+    </div>
+  
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      2017年个人总结
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/总结/">总结</a>
+    </div>
+
+
+        
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/2017/">2017</a></li></ul>
+    </div>
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <h2 id="工作总结"><a href="#工作总结" class="headerlink" title="工作总结"></a>工作总结</h2><p>具体问题 具体总结</p>
+<h4 id="对接、接口"><a href="#对接、接口" class="headerlink" title="对接、接口"></a>对接、接口</h4><p>与外面写接口的时候，一定要写log表记录所有的操作，这样在排查问题的时候也有依据。而且也可以避免一些扯皮，你说他改了，人家说没有改，纠缠在一起，搞不清楚。另外一个就是在调用别人的接口的时候，如果有别的方法进行验证的，一定要先验证，验证通过后，再进行对接，这不是说别人的接口怎么样，而是为了节省时间，一步一步来，先把外部的因素排除掉，确保此接口可以正常访问，可以得到我们需要的数据等。要不然自己在这里对了半天，结果人家说接口还有问题，这样的话，只会浪费时间，而且还搞得一团糟。有问题，一定要及时沟通，不管是什么，肯定是要去面对，要去解决的，最终把事情做好，达成共识。</p>
+<h4 id="改问题，改bug"><a href="#改问题，改bug" class="headerlink" title="改问题，改bug"></a>改问题，改bug</h4><p>看具体的现象，内因体现出来的现象，才能更好的了解内因。哲学思维，从现象看本质，同样适用于这个行业。另外一个哲学思维是：矛盾分为主要矛盾和次要矛盾，找问题就要找主要矛盾，找关键点。要是之后又遇到这种问题，是否就要考虑这种现象？就像重复的js方法被覆盖，总是进不去想要的那个，就要考虑是否出现了重复的，搜索一下，看看，也许就是这个问题呢？另外就是，这种通用的js让我写，是否要把内部的方法都包括起来，不对外暴露，要不然总是这样重复，覆盖，也会打乱原来的的一些逻辑。这种隐藏的问题是最让人崩溃的。</p>
+<h4 id="新内容"><a href="#新内容" class="headerlink" title="新内容"></a>新内容</h4><p>认知的过程，没搞过，怎么办？先搞清楚需求，需求要做什么，这个技术能不能解决这个需求，有没有好的替代方案？就类似于上次的单点登录，对于客户来说只要能从一个系统跳转到另外一个系统，并且不用登录。那何必要使用WSO2  Identity Server来做验证，这个过程可以直接简单的post一个当前系统的用户名和密码，跨域，就可以解决的问题，为什么要使用那么复杂的软件来实现。当然用了新的东西是可以了解到别人对于单点登录是怎么解决的，对于自己来说，也了解到了单点登录的常用场景，至少在以后，如果别人谈起这个东西，知道是怎么一回事。</p>
+<p>怎么写新功能。写法和之前相比怎么样？有没有更优雅？</p>
+<p>网点管理模块，这个模块在实现的时候使用了angular，同时对象方法等都已经在用了，写的时候已经注意，还有一点不满意的是，上下组件传值，watch和emit，又脱离了angular，这个用起来有一点问题。所以采用原生js的写法，当这个改变修改其它。</p>
+<p>echarts，好几个图表应该怎么写？有没有可能组合通用的方法。<br>其中使用了原型，在这里也找了原型的一些优点和劣势，原型中的属性会被修改，那么所有这个原型下面的对象，在访问这些属性的时候就都会变。属性可以写到对象下面，原型上面，挂载的都是方法，只调用，不存储。 这里还有一个问题就是回调的时候怎么找到原来的this，暂时使用_this代替。这种不好，还没有找到好的方法。</p>
+<h4 id="网易产品（特指网易云音乐）"><a href="#网易产品（特指网易云音乐）" class="headerlink" title="网易产品（特指网易云音乐）"></a>网易产品（特指网易云音乐）</h4><p>产品是真的可以，平民化，特别是每日推荐，这种可能是关联规则，相似度的推荐，也可能是人工智能的推荐系统，</p>
+<h4 id="经验总结"><a href="#经验总结" class="headerlink" title="经验总结"></a>经验总结</h4><p>如果是自己，应该怎么进行沟通，管理，怎样让下属更有向心力？之前在学校带项目的时候，可能是都是学生，都没有太多外面的想法，没有什么家庭，晋升的顾虑，所以就比较好管理一点，大家做的时候都很用心，可是那时候都带的不好自己还有很多要练习的。这方面自己也有总结，现在在团队中也看到了一些优点和缺点，具体如下：</p>
+<blockquote>
+<ol>
+<li>日报，周报，写东西，告诉用户，让用户知道我们在干什么。这就是沟通。这些在之前我自己带团队的时候，只是有什么问题改什么问题，虽然也有每周二进行一次例会，之后就越来越随意了，就导致客户不知道我们在干什么，双方沟通就出现了问题。所以需要，每周任务明细，完成度，能完成多少，打算做多少，这些工作，需要给自己的团队明确。让下属做的时候也知道是一个什么位置，大概还有什么要完成的，让下属自己进行规划和计划，同时需要把整体的任务、工作给到客户，让客户知道我们做的东西，毕竟做出来的东西是给人家用的，客户是甲方。这点我需要进行学习，怎么把控进度，碰到外部因素怎么办？如何解决。</li>
+</ol>
+</blockquote>
+<blockquote>
+<ol start="2">
+<li>准备工作：我们准备做什么，需要客户准备什么。我们做的任务需要客户配合的，客户一般肯定是会全力配合的，千万不要说，还有什么东西是需要客户提供的，他们没有提供，就做不了，以这种理由来进行推脱责任。这样只会让客户反感，站在客户的角度来说，你不提，那不就是没有问题，要不然这么久都没有反馈，这点和第一点很类似，也是为了让客户知道我们做什么，例如端口，服务器，接口等这些内容，虽然理所应当客户提供，但是他并不知道，需要这些，要告知客户。</li>
+</ol>
+</blockquote>
+<blockquote>
+<ol start="3">
+<li>解决问题才是最重要的。推来推去，还是这个东西，任务不会改变，也不会消失，只会浪费时间。另一个就是不要逃避，也是逃不了的。在自己带团队的时候就出现这种情况，有的问题比较复杂，就一次次的推脱，总想把这个给糊弄过去，实际上，你越是觉得不想做的，客户一下子就能感受的到，你是以一种负面的情绪来应对的。敷衍，敷衍不能了事。</li>
+</ol>
+</blockquote>
+<blockquote>
+<ol start="4">
+<li>需求沟通不明确，实施起来很难受，改的很辛苦。请不要用客户就是这么提的，当做令牌。客户提的要求并不是客户的需求，这点我们在学校做的时候，我认为是做的比较好的，每次我们在和客户确认新的功能点的时候，总会反复的论证，包含各类人员的参与，具体使用者、开发人员、需求调研人员。这样的需求只会让客户想一出是一出，做出来的东西也是一次次的修改，也增加了不稳定性。如果是设计没有考虑到，场景没有考虑到，做的修改，这些都是可以接受的，软件管理经过这20多年的经历，虽然说各种项目管理软件已经琳琅满目，但是真正能做到让项目按时交付，鲁棒性强，还是很难的。</li>
+</ol>
+</blockquote>
+<blockquote>
+<ol start="5">
+<li>尽量不要做临时性的任务调整，除非真的很紧急。这种也是规划，因为每个人都希望自己的时间自己来支配，有多少任务，需要用多长时间，留多少时间来进行能力提升，做自己要做的事情。临时性的任务太多，就会导致员工感觉，自己的事情被打乱了，有一种被催、被干扰的负面情绪。这种会让员工干起活来总是不爽，试问？这样不好。</li>
+</ol>
+</blockquote>
+<blockquote>
+<ol start="6">
+<li>预演。应急措施，万一着火了怎么办，万一打仗了怎么办，这种居安思危的态度不能少，忧患意识，这个服务器宕掉，备用服务器还可以运行吗？影响正常使用吗？这种事故每发生一次，就让客户对我们的信任度降低，频繁的发生，那可能客户已经想把你给换掉了，而且已经在行动了。</li>
+</ol>
+</blockquote>
+<h2 id="生活"><a href="#生活" class="headerlink" title="生活"></a>生活</h2><p>2017元旦经历梧桐山登顶；好汉坡，有时候经历一下，坚持一下，就可以完成的。贵在坚持！！！</p>
+<p>毕业人，6月，毕业，好快好快，转眼间从2013到2017四年就过去了，从当初的青春懵懂，到现在的佛系无畏。是真的翻天覆地。2017上半年好像没什么要讲的，就一个毕业设计还值得一提，毕业设计上的具体东西，已经在上一篇有总结，好像毕业设计把自己的word排版练得不错，现在常规操作，无压力。excel,也还OK，ppt好像还差一点，太少自己做的模板了，知道一些操作，但是要是从头设计，漂亮的，有感觉得还是没有把握，好像是遗传了教学课件的基因，别的没学到，“课件模板”的精髓掌握的还挺好， ╮(╯▽╰)╭     </p>
+<p>工作，基本上已经没有什么压力，因为之前连框架都搭建过，一些基本的框架原理也都看过，再掌握的话也是在这个基础上进行添加，进行巩固。这个应该说再上一模块已经讲过了，不多说。下半年值得留意的几件小事如下：</p>
+<h4 id="捐赠回馈"><a href="#捐赠回馈" class="headerlink" title="捐赠回馈"></a>捐赠回馈</h4><p>对于母校，那是一个只可以自己骂的，别人不能说一点不好的。可我不能回去，在功成名就之间，也没有理由和脸面回去。现在，给我曾经待过的实验室送了两本书，机器学习相关，就OK了。也不是什么大的回馈，只希望之后的学弟学妹们在实验室能够收获前言知识，不过好像内容也没那么容易，至少我自己看的时候还是需要下点功夫的。深深的感谢曾经的老师，孟老师，电商系的各位大佬们，母校，祝你们在新的一年里工作顺利，阖家欢乐。</p>
+<h4 id="人生第二次醉，惩罚自己2017不再喝酒"><a href="#人生第二次醉，惩罚自己2017不再喝酒" class="headerlink" title="人生第二次醉，惩罚自己2017不再喝酒"></a>人生第二次醉，惩罚自己2017不再喝酒</h4><p>国庆节，表哥结婚，我看的都留下了泪水。可看起来也没什么泪点啊，和平常一样，前年二姑家儿子结婚也没这样啊。是不是又长大了一岁，又多了很多感触，时间就是这样无情的在你的人生中留下痕迹。甚至，你都没有发觉。听说心情不好会醉酒，我这次是真滴醉了。直到2018-1-1，这两个月内我都没有碰过酒，要好好的反思一下，也为了另外一件事，不能说的秘密。</p>
+<p>酱香型酒—–郎酒(四川)果然不一样。味道感觉更醇厚（红花郎，青花郎），平时都是浓香型，洋河(江苏)蓝色经典 天之来，海之蓝，梦之蓝，这也是平时的娱乐活动吗？别的知识倒是没有没有什么长进，酒啊这些反倒是看了不少。</p>
+<p>附知乎<a href="https://www.zhihu.com/question/20828281" target="_blank" rel="noopener">白酒区别</a></p>
+<h4 id="十一第一次坐飞机。"><a href="#十一第一次坐飞机。" class="headerlink" title="十一第一次坐飞机。"></a>十一第一次坐飞机。</h4><p>国庆结束，值得说的就是坐飞机了，还记得高中，回外婆家，看见了一架直升飞机，问我弟说：“你想不想坐飞机？开飞机？”，那时谁能想到现在我就坐上了飞机呢？飞机是真滴快，2个小时，从南阳姜营机场到广州白云机场，还记得上次还是回学校等待答辩的时候，还在感慨高铁真的快，早上从广州南下午就到徐州东了，8个小时，相比飞机还是差了一点的。出行，外出，一直都是一件大事，老一辈还会挑选日子，“七不出门八不回家”，现在已经不再说这个日期了，不过背后的寓意还是要遵守的，柴米油盐酱醋茶七件东西没有准备好，不能出门，就是该准备的还要准备，准备好就可以随时出门。“孝悌忠义礼义廉耻”八条，没有做好，是不能回家的，现在，出门在外，一样要做到遵守法律法规，才能平安回家。</p>
+<p>今年的罗胖跨年演讲在上海-梅赛德斯奔驰文化中心，远程深圳卫视观看。得到，进行用户筛选，宝马在中间找我的客户。用户愿意付钱，十万百万已经足够了，这群就是你的忠实粉丝。你就要好好的对待她。同时，宝马也相中了这群用户，两者合作，也有有新的火花。看得到的用户，大都可能是买宝马的，买宝马的这群，很多都是看得到的。挺你,罗胖！<br>虽然有时候说你是个兜卖知识的奸商。(<em>^▽^</em>)</p>
+<h4 id="做饭"><a href="#做饭" class="headerlink" title="做饭"></a>做饭</h4><p>做饭，曾经以为很难的事情，现在也开始进行了，虽然不是特别好吃，特别没有卖相，但基本的像什么番茄炒鸡蛋，煎蛋，拍黄瓜，红萝卜炒肉，煲木耳羹，排骨汤啊，这些还是知道怎么做的了，最起码常见的一些套路还是有的。可以回家试一试，更加长进一点，再学习其他的一些做法，作品，好好学习，做拿手好菜，勾引她。哦对了，还要学习一个汤，大枣红糖姜水。像暖男靠近/^_^  (*￣︶￣)</p>
+<h4 id="还有最重要的一件事：girl-friend"><a href="#还有最重要的一件事：girl-friend" class="headerlink" title="还有最重要的一件事：girl friend"></a>还有最重要的一件事：girl friend</h4><p>做梦一般的！</p>
+<h2 id="学习"><a href="#学习" class="headerlink" title="学习"></a>学习</h2><h4 id="机器学习"><a href="#机器学习" class="headerlink" title="机器学习"></a>机器学习</h4><p>感觉不能说什么了，就照着之后的计划进行就是万幸了。最近把github上的东西又“丢下”了！捡起来继续前行。ヾ(◍°∇°◍)ﾉﾞ</p>
+<p>邮箱登录：蒙牛风味酸牛奶<br><a href="http://naotu.baidu.com/file/096b0afa7159d6c24a0d3c0e3b0f4375?token=51b6065fa03be141" target="_blank" rel="noopener">ML百度脑图</a><br>密码：RLxn</p>
+<h4 id="股票基金"><a href="#股票基金" class="headerlink" title="股票基金"></a>股票基金</h4><p>我的本科知识，温习一下。开通证券账号，进行投资。</p>
+<h2 id="计划"><a href="#计划" class="headerlink" title="计划"></a>计划</h2><h4 id="2017计划完成情况"><a href="#2017计划完成情况" class="headerlink" title="2017计划完成情况"></a>2017计划完成情况</h4><ul>
+<li>把前端知识系统起来。</li>
+<li>thinking in java代码演示。</li>
+<li>hadoop spark zookeeper等框架的理解。</li>
+<li>攒点钱——感觉这个最现实了，攒个两三万。</li>
+<li>身体方面，要保重，跑起来，运动起来。</li>
+<li>学学花，学学咖啡，学学植物，学学养生。这都是瞎扯的。</li>
+</ul>
+<p>完成度30%</p>
+<p>前端将js进行了深入，没有系统起来，如果从空白写一个页面，感觉还是无从下手。java代码没有演示，反倒是十大经典机器学习算法已经看完啦，hadoop等这些大数据的框架理论有了基础的了解，但是没有实际的应用，要进行一个hello world。运动方面，这是一个持久的话题。其他艺术方面，了解的也是一些烟酒茶吃喝等，其他艺术没有涉及，惭愧。</p>
+<h4 id="2018年计划"><a href="#2018年计划" class="headerlink" title="2018年计划"></a>2018年计划</h4><ul>
+<li>人不要脸，书不能丢，一个月一本书。要有记录</li>
+<li>画一画自己知识体系，思维导图（包括但不限于JAVA、JS、CSS、browser、network、）</li>
+<li>hello world 大数据 sparker等 demo</li>
+<li>kaggle等课程熟悉，完成5次天池比赛</li>
+</ul>
+<h4 id="接下来怎么发展的问题"><a href="#接下来怎么发展的问题" class="headerlink" title="接下来怎么发展的问题"></a>接下来怎么发展的问题</h4><p>2018.01.31慕小白 于广东佛山禅城</p>
+
+      
+    </div>
+   
+    
+          <!--打赏-->
+         
+
+<!-- donate -->
+<style>
+   .donate_bar {
+	text-align: center;
+	margin-top: 5%
+	}
+	.donate_bar a.btn_donate {
+		display: inline-block;
+		width: 82px;
+		height: 82px;
+		margin-left: auto;
+		margin-right: auto;
+		background: url(http://img.t.sinajs.cn/t5/style/images/apps_PRF/e_media/btn_reward.gif)no-repeat;
+		-webkit-transition: background 0s;
+		-moz-transition: background 0s;
+		-o-transition: background 0s;
+		-ms-transition: background 0s;
+		transition: background 0s
+	}
+	.donate_bar a.btn_donate:hover {
+		background-position: 0 -82px
+	}
+	.donate_bar .donate_txt {
+		display: block;
+		color: #9d9d9d;
+		font: 14px/2 "Microsoft Yahei"
+	}
+	.donate_bar.hidden{
+		display: none
+	}
+	.post-donate{
+		margin-top: 80px;
+	}
+	#donate_guide{
+		/*height: 210px;
+		width: 420px;*/
+		margin: 0 auto;
+	}
+	#donate_guide img{
+		height: 200px;
+		height: 200px;
+	}
+</style>
+<!-- 添加捐赠图标 -->
+<div class="post-donate">
+    <div id="donate_board" class="donate_bar center">
+        <a id="btn_donate" class="btn_donate" href="javascript:;" title="打赏"></a>
+        <span class="donate_txt">
+           &uarr;<br>
+		   坚持原创技术分享，您的支持将鼓励我继续创作！
+        </span>
+        <br>
+    </div>  
+	<div id="donate_guide" class="donate_bar center hidden">
+		<!-- 支付宝打赏图案 -->
+		<img src="/img/alipay.jpg" alt="支付宝打赏"> 
+		<!-- 微信打赏图案 -->
+		<img src="/img/wechatpay.png" alt="微信打赏">  
+    </div>
+	<script type="text/javascript">
+		document.getElementById('btn_donate').onclick = function(){
+			//$('#donate_board').addClass('hidden');
+			if($('#donate_guide').hasClass('hidden')){
+				$('#donate_guide').removeClass('hidden');
+			}else{
+				$('#donate_guide').addClass('hidden');
+			}
+		}
+	</script>
+</div>
+
+<!-- End donate -->
+
+
+    
+    
+    
+  </div>
+  
+    
+    <div class="copyright">
+        <p><span>本文标题:</span><a href="/2018/01/05/2017年个人总结/">2017年个人总结</a></p>
+        <p><span>文章作者:</span><a href="/" title="回到主页">Mu Xiaobai(慕小白)</a></p>
+        <p><span>发布时间:</span>2018-01-05, 07:47:29</p>
+        <p><span>最后更新:</span>2019-01-25, 11:05:11</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/2018/01/05/2017年个人总结/" title="2017年个人总结">https://muxiaobai.github.io/2018/01/05/2017年个人总结/</a>
+            <span class="copy-path" data-clipboard-text="原文: https://muxiaobai.github.io/2018/01/05/2017年个人总结/　　作者: Mu Xiaobai(慕小白)" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target="_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
+        </p>
+    </div>
+
+
+
+    <nav id="article-nav">
+        
+            <div id="article-nav-newer" class="article-nav-title">
+                <a href="/2018/03/02/重装CENTOS一系列操作/">
+                    重装CENTOS一系列操作
+                </a>
+            </div>
+        
+        
+            <div id="article-nav-older" class="article-nav-title">
+                <a href="/2017/12/22/javascript再学习之prototype/">
+                    javascript再学习之prototype
+                </a>
+            </div>
+        
+    </nav>
+
+  
+</article>
+
+
+    <!--左侧-->
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#工作总结"><span class="toc-number">1.</span> <span class="toc-text">工作总结</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#对接、接口"><span class="toc-number">1.0.1.</span> <span class="toc-text">对接、接口</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#改问题，改bug"><span class="toc-number">1.0.2.</span> <span class="toc-text">改问题，改bug</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#新内容"><span class="toc-number">1.0.3.</span> <span class="toc-text">新内容</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#网易产品（特指网易云音乐）"><span class="toc-number">1.0.4.</span> <span class="toc-text">网易产品（特指网易云音乐）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#经验总结"><span class="toc-number">1.0.5.</span> <span class="toc-text">经验总结</span></a></li></ol></li></ol><li class="toc-item toc-level-2"><a class="toc-link" href="#生活"><span class="toc-number">2.</span> <span class="toc-text">生活</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#捐赠回馈"><span class="toc-number">2.0.1.</span> <span class="toc-text">捐赠回馈</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#人生第二次醉，惩罚自己2017不再喝酒"><span class="toc-number">2.0.2.</span> <span class="toc-text">人生第二次醉，惩罚自己2017不再喝酒</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#十一第一次坐飞机。"><span class="toc-number">2.0.3.</span> <span class="toc-text">十一第一次坐飞机。</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#做饭"><span class="toc-number">2.0.4.</span> <span class="toc-text">做饭</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#还有最重要的一件事：girl-friend"><span class="toc-number">2.0.5.</span> <span class="toc-text">还有最重要的一件事：girl friend</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#学习"><span class="toc-number">3.</span> <span class="toc-text">学习</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#机器学习"><span class="toc-number">3.0.1.</span> <span class="toc-text">机器学习</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#股票基金"><span class="toc-number">3.0.2.</span> <span class="toc-text">股票基金</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#计划"><span class="toc-number">4.</span> <span class="toc-text">计划</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#2017计划完成情况"><span class="toc-number">4.0.1.</span> <span class="toc-text">2017计划完成情况</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2018年计划"><span class="toc-number">4.0.2.</span> <span class="toc-text">2018年计划</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#接下来怎么发展的问题"><span class="toc-number">4.0.3.</span> <span class="toc-text">接下来怎么发展的问题</span></a></li></ol></li>
+</div>
+<style>
+    .left-col .switch-btn,
+    .left-col .switch-area {
+        display: none;
+    }
+</style>
+
+<input type="button" id="tocButton" value="隐藏目录" title="点击按钮隐藏或者显示文章目录">
+
+<script>
+    yiliaConfig.toc = ["隐藏目录", "显示目录", !!"false"];
+</script>
+
+
+
+    <!--分享-->
+    
+<div class="share">
+    
+
+    
+        <div class="addthis_sharing_toolbox"></div>
+    
+</div>
+
+
+
+
+
+
+
+    <!--评论-->
+    
+      <section class="gitment" id="comments">
+    <div id="gitment" class="article article-type-post"></div>
+    <link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+    <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+    <script>
+    var gitment = new Gitment({
+      id: '2017年个人总结',
+      owner: 'muxiaobai',
+      repo: 'muxiaobai.github.io',
+      oauth: {
+        client_id: '5e496d32f02cb04c1ccf',
+        client_secret: 'a98d21d1cc8b690a45fc996c62572247fdc5d7f3',
+      },
+    })
+    gitment.render('gitment')
+    </script>
+</section>
+    
+
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/2018/03/02/重装CENTOS一系列操作/" title="上一篇: 重装CENTOS一系列操作">
+                <i class="fa fa-angle-left"></i>
+            </a>
+        
+
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+
+        
+            <a href="/2017/12/22/javascript再学习之prototype/" title="下一篇: javascript再学习之prototype">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2019/05/21/高并发之缓存、限流、降级/">高并发之缓存、限流、降级</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/18/使用ELK分析日志/">使用ELK分析日志</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/01/Linux-基础命令总结4/">Linux 基础命令总结4</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/02/16/性能优化之redis储存计算值/">性能优化之redis储存计算值</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/01/15/2018年个人总结/">2018年个人总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/01/11/mongodb常用命令/">mongodb常用命令</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/01/11/mongodb主从架构设计/">mongodb主从架构设计</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/12/21/前言技术之OCR识别/">前言技术之OCR识别</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/11/22/深入理解JVM之远程监控/">深入理解JVM之远程监控</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/11/22/数据库监控-Druid监控配置/">数据库监控-Druid监控配置</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/11/15/应用部署之nginx参数配置/">应用部署之nginx参数配置</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/11/07/数据库操作-plsql操作/">数据库操作-plsql操作</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/10/09/javascript-常用代码/">javascript-常用代码</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/20/java-常用代码/">java 常用代码</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/04/数据库操作语句2/">数据库操作语句2</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/06/25/Spring源码阅读之AOP两种代理模式/">Spring源码阅读之AOP两种代理模式</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/06/22/Spring源码阅读之Ioc控制反转/">Spring源码阅读之Ioc控制反转</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/06/08/浏览器的加载页面过程及优化方法/">浏览器的加载页面过程及优化方法</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/06/07/浏览器的请求与响应过程/">浏览器的请求与响应过程</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/04/20/Tomcat源码阅读之Container责任链/">Tomcat源码阅读之Container责任链</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/04/17/Tomcat源码阅读之URL请求解析/">Tomcat源码阅读之URL请求解析</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/04/16/Tomcat源码阅读之组件生命周期/">Tomcat源码阅读之组件生命周期</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/04/16/Tomcat源码阅读之从server-xml看组件关系/">Tomcat源码阅读之从server.xml看组件关系</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/03/02/重装CENTOS一系列操作/">重装CENTOS一系列操作</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/01/05/2017年个人总结/">2017年个人总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/12/22/javascript再学习之prototype/">javascript再学习之prototype</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/12/21/RSS好工具/">RSS好工具</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/10/23/前端小tips/">前端小tips</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/09/17/Linux-基础命令总结3/">Linux 基础命令总结3</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/09/02/应用部署之nginx负载/">应用部署之nginx负载</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/29/深入理解JVM之性能调优/">深入理解JVM之性能调优</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/14/数据库操作语句/">数据库操作语句</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/09/javascript再学习之Event/">javascript再学习之Event</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/08/javascript再学习之DOM/">javascript再学习之DOM</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/02/Javamelody-工具/">Javamelody 工具</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/07/20/hadoop-Sqoop-Hive等的安装/">hadoop-Sqoop-Hive等的安装</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/07/19/Linux-下的java安装、变更以及升级问题/">Linux 下的java安装、变更以及升级问题</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/06/29/毕业设计心得/">毕业设计心得</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/23/2016年个人总结/">2016年个人总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/27/CSS-定位布局/">CSS 定位布局</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/17/等待-等待-等待/">等待,等待,等待...</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/29/常见排序算法总结/">常见排序算法总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/24/Thinking-in-java-基础之网络Socket/">Thinkin in java 基础之网络Socket</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/19/由ES6中的Proxy和Reflect再了解Object/">由ES6中的Proxy和Reflect再了解Object</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/16/从ES6中学习编码/">从ES6中学习编码</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/13/模仿jQuery创建自己的js工具/">模仿jQuery创建自己的js工具</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/08/27/测试Travis CI/">好软件,靠机遇</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/08/20/HTML5-API-新特性/">HTML5 API 新特性</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/08/09/Thinking-in-java-基础之线程和并发/">Thinking in java 基础之线程和并发</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/08/04/Thinking-in-java-基础之异常/">Thinking in java 基础之异常</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/08/03/Spring中的Session生命周期/">Spring中的Session生命周期</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/20/前后台数据交互方式总结/">前后台数据交互方式总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/19/JavaEE-资源路径问题/">JavaEE 资源路径问题</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/19/Sublime-下运行Java文件/">Sublime 下运行Java文件</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/09/Linux-基础Shell脚本/">Linux 基础Shell脚本</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/07/Linux-基础命令总结2/">Linux 基础命令总结2</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/01/好软件-靠机遇/">好软件,靠机遇</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/06/29/好网站-天天记/">好网站,天天记</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/06/29/hello-world/">Hello World</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/06/27/Linux下各目录的默认含义/">Linux下各目录的默认含义</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/06/27/Linux-基础命令总结/">Linux 基础命令总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/06/25/Thinking-in-java-基础之集合框架/">Thinking in java 基础之集合框架</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/06/25/Thinking-in-java-基础之I-O/">Thinking in java 基础之I/O</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/06/19/Linux-下安装SVN服务器/">Linux 下安装SVN服务器</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/06/17/GitHub Hexo/">GitHub + Hexo 构建我的博客</a></li></ul>
+
+
+
+
+    <script>
+        
+    </script>
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                <i class="fa fa-copyright"></i> 
+                2016-2019 Mu Xiaobai(慕小白)
+            </div>
+            <div class="footer-right">
+                <a href="http://hexo.io/" target="_blank" title="快速、简洁且高效的博客框架">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="简而不减 Hexo 双栏博客主题  v3.5">Yelee</a> by MOxFIVE <i class="fa fa-heart animated infinite pulse"></i>
+            </div>
+        </div>
+        
+            <div class="visit">
+                
+                    <span id="busuanzi_container_site_pv" style="display:none">
+                        <span id="site-visit">本站到访数: 
+                            <span id="busuanzi_value_site_uv"></span>
+                        </span>
+                    </span>
+                
+                
+                    <span>, </span>
+                
+                
+                    <span id="busuanzi_container_page_pv" style="display:none">
+                        <span id="page-visit">本页阅读量: 
+                            <span id="busuanzi_value_page_pv"></span>
+                        </span>
+                    </span>
+                
+            </div>
+        
+    </div>
+</footer>
+    </div>
+    
+    <script src="/js/GithubRepoWidget.js"></script>
+
+<script data-main="/js/main.js" src="//cdn.bootcss.com/require.js/2.2.0/require.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            var iPad = window.navigator.userAgent.indexOf('iPad');
+            if (iPad > -1 || $(".left-col").css("display") === "none") {
+                var bgColorList = ["#9db3f4", "#414141", "#e5a859", "#f5dfc6", "#c084a0", "#847e72", "#cd8390", "#996731"];
+                var bgColor = Math.ceil(Math.random() * (bgColorList.length - 1));
+                $("body").css({"background-color": bgColorList[bgColor], "background-size": "cover"});
+            }
+            else {
+                var backgroundnum = 5;
+                var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+                $("body").css({"background": backgroundimg, "background-attachment": "fixed", "background-size": "cover"});
+            }
+        })
+    </script>
+
+
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-80276841-1', 'auto');
+ga('send', 'pageview');
+</script>
+<!-- End Google Analytics -->
+
+
+
+
+
+<div class="scroll" id="scroll">
+    <a href="#" title="返回顶部"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments" onclick="load$hide();" title="查看评论"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer" title="转到底部"><i class="fa fa-arrow-down"></i></a>
+</div>
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+  </div>
+</body>
+</html>
