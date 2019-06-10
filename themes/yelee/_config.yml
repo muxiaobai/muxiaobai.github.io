@@ -9,7 +9,7 @@ Yelee: "3.5"
 menu:
   主页: /
   所有文章: /archives/
-  分类: /categories/
+#  分类: /categories/
   标签云: /tags/
   关于我: /about/
 
@@ -238,7 +238,7 @@ baidu_site: G4mEksdCPH
 google_site: 
 
 # 开启coinhive
-coinhive: true
+coinhive: false
 coinhive_siteKey: 4vmXkBOL0LsDsFLNY9UqbMlRxhGnXkAR
 coinhive_userName: muxiaobai.ml
 
