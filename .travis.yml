@@ -9,9 +9,9 @@ install:
 script:
   - hexo generate
 after_script:
-  - hexo deploy
-#  - cd ./public
-#  - git init
+#  - hexo deploy
+  - cd ./public
+  - git init
   - git config user.name "${USER_NAME}"
   - git config user.email "${EMAIL}"
   - git add .
