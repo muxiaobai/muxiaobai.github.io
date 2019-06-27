@@ -16,20 +16,18 @@
 
 
 
-<meta name="description" content="源码阅读两大模块之AOP,面向切面编程，与jdk代理和cglib代理">
-<meta name="keywords" content="Spring">
+<meta name="description" content="日常工具快捷操作">
+<meta name="keywords" content="工具,插件">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Spring源码阅读之AOP两种代理模式">
-<meta property="og:url" content="https://muxiaobai.github.io/2018/06/25/Spring源码阅读之AOP两种代理模式/index.html">
+<meta property="og:title" content="tools-ide快捷操作">
+<meta property="og:url" content="https://muxiaobai.github.io/2019/06/27/tools-ide快捷操作/index.html">
 <meta property="og:site_name" content="技术笔记">
-<meta property="og:description" content="源码阅读两大模块之AOP,面向切面编程，与jdk代理和cglib代理">
+<meta property="og:description" content="日常工具快捷操作">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://muxiaobai.github.io/.io//20180628.png">
-<meta property="og:updated_time" content="2018-06-28T03:44:11.000Z">
+<meta property="og:updated_time" content="2019-06-27T12:52:41.511Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Spring源码阅读之AOP两种代理模式">
-<meta name="twitter:description" content="源码阅读两大模块之AOP,面向切面编程，与jdk代理和cglib代理">
-<meta name="twitter:image" content="https://muxiaobai.github.io/.io//20180628.png">
+<meta name="twitter:title" content="tools-ide快捷操作">
+<meta name="twitter:description" content="日常工具快捷操作">
 
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
@@ -61,7 +59,7 @@
 <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
 
 
-<title>Spring源码阅读之AOP两种代理模式 | 技术笔记</title>
+<title>tools-ide快捷操作 | 技术笔记</title>
 
 <script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
 <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
@@ -293,12 +291,12 @@
     </div>
     <link class="menu-list" tags="标签" friends="友情链接" about="关于我">
 </nav>
-      <div class="body-wrap"><article id="post-Spring源码阅读之AOP两种代理模式" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-tools-ide快捷操作" class="article article-type-post" itemscope itemprop="blogPost">
  
   
     <div class="article-meta">
-      <a href="/2018/06/25/Spring源码阅读之AOP两种代理模式/" class="article-date">
-      <time datetime="2018-06-24T19:13:09.000Z" itemprop="datePublished">2018-06-25</time>
+      <a href="/2019/06/27/tools-ide快捷操作/" class="article-date">
+      <time datetime="2019-06-27T11:28:57.000Z" itemprop="datePublished">2019-06-27</time>
 </a>
     </div>
   
@@ -312,7 +310,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      Spring源码阅读之AOP两种代理模式
+      tools-ide快捷操作
     </h1>
   
 
@@ -321,13 +319,13 @@
       <div class="article-info article-info-post">
         
     <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/java/">java</a>
+    <a class="article-category-link" href="/categories/工具/">工具</a>
     </div>
 
 
         
     <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Spring/">Spring</a></li></ul>
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/工具/">工具</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/插件/">插件</a></li></ul>
     </div>
 
         <div class="clearfix"></div>
@@ -338,33 +336,71 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <p><img src="/.io//20180628.png" alt="AOP"><br><a id="more"></a></p>
-<p><a href="https://github.com/code4craft/tiny-spring" target="_blank" rel="noopener">github简易Spring实现</a></p>
-<p>一般用作：日志，权限控制，异常，事务等情况下。</p>
-<p>xml中的解析</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;bean id=&quot;autoProxyCreator&quot; class=&quot;us.codecraft.tinyioc.aop.AspectJAwareAdvisorAutoProxyCreator&quot;&gt;&lt;/bean&gt;</span><br><span class="line"></span><br><span class="line">&lt;bean id=&quot;timeInterceptor&quot; class=&quot;us.codecraft.tinyioc.aop.TimerInterceptor&quot;&gt;&lt;/bean&gt;</span><br><span class="line"></span><br><span class="line">&lt;bean id=&quot;aspectjAspect&quot; class=&quot;us.codecraft.tinyioc.aop.AspectJExpressionPointcutAdvisor&quot;&gt;</span><br><span class="line">    &lt;property name=&quot;advice&quot; ref=&quot;timeInterceptor&quot;&gt;&lt;/property&gt;</span><br><span class="line">    &lt;property name=&quot;expression&quot; value=&quot;execution(* us.codecraft.tinyioc.*.*(..))&quot;&gt;&lt;/property&gt;</span><br><span class="line">&lt;/bean&gt;</span><br></pre></td></tr></table></figure>
-<p>AspectJAwareAdvisorAutoProxyCreator implements BeanPostProcessor<br>所以扫描这个类的时候会执行AspectJAwareAdvisorAutoProxyCreator.postProcessAfterInitialization()。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">public Object postProcessAfterInitialization(Object bean, String beanName) throws Exception &#123;</span><br><span class="line">		if (bean instanceof AspectJExpressionPointcutAdvisor) &#123;</span><br><span class="line">			return bean;</span><br><span class="line">		&#125;</span><br><span class="line">		if (bean instanceof MethodInterceptor) &#123;</span><br><span class="line">			return bean;</span><br><span class="line">		&#125;</span><br><span class="line">		List&lt;AspectJExpressionPointcutAdvisor&gt; advisors = beanFactory</span><br><span class="line">				.getBeansForType(AspectJExpressionPointcutAdvisor.class);</span><br><span class="line">		for (AspectJExpressionPointcutAdvisor advisor : advisors) &#123;</span><br><span class="line">			if (advisor.getPointcut().getClassFilter().matches(bean.getClass())) &#123;</span><br><span class="line">                ProxyFactory advisedSupport = new ProxyFactory();</span><br><span class="line">				advisedSupport.setMethodInterceptor((MethodInterceptor) advisor.getAdvice());</span><br><span class="line">				advisedSupport.setMethodMatcher(advisor.getPointcut().getMethodMatcher());</span><br><span class="line"></span><br><span class="line">				TargetSource targetSource = new TargetSource(bean, bean.getClass(), bean.getClass().getInterfaces());</span><br><span class="line">				advisedSupport.setTargetSource(targetSource);</span><br><span class="line"></span><br><span class="line">				return advisedSupport.getProxy();</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		return bean;</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
-<p>然后遍历所有的AspectJExpressionPointcutAdvisor,如果有其他的bean满足条件advisor.getPointcut().getClassFilter().matches(bean.getClass())那么则返回代理对象。</p>
-<p>这里面的返回代理对象如果用代码来写的话就是下面这样，</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">   // 1. 设置被代理对象(Joinpoint)</span><br><span class="line">AdvisedSupport advisedSupport = new AdvisedSupport();</span><br><span class="line">TargetSource targetSource = new TargetSource(helloWorldService, HelloWorldServiceImpl.class,</span><br><span class="line">		HelloWorldService.class);</span><br><span class="line">advisedSupport.setTargetSource(targetSource);</span><br><span class="line"></span><br><span class="line">//设置匹配的match</span><br><span class="line">MethodMatcher methodMatcher = new MethodMatcher() &#123;</span><br><span class="line">       </span><br><span class="line">       @Override</span><br><span class="line">       public boolean matches(Method method, Class targetClass) &#123;</span><br><span class="line">           return true;</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;;</span><br><span class="line">advisedSupport.setMethodMatcher(methodMatcher);</span><br><span class="line"></span><br><span class="line">// 2. 设置拦截器(Advice)</span><br><span class="line">TimerInterceptor timerInterceptor = new TimerInterceptor();</span><br><span class="line">advisedSupport.setMethodInterceptor(timerInterceptor);</span><br><span class="line"></span><br><span class="line">// 3. 创建代理(Proxy)</span><br><span class="line">JdkDynamicAopProxy jdkDynamicAopProxy = new JdkDynamicAopProxy(advisedSupport);</span><br><span class="line">HelloWorldService helloWorldServiceProxy = (HelloWorldService) jdkDynamicAopProxy.getProxy();</span><br><span class="line"></span><br><span class="line">// 4. 基于AOP的调用</span><br><span class="line">helloWorldServiceProxy.helloWorld();</span><br></pre></td></tr></table></figure>
-<p>advisedSupport{targetSource,methodMatcher,methodInterceptor}<br>这个里面记录了代理目标，和匹配的expression和具体的拦截操作</p>
-<h4 id="JDK动态代理"><a href="#JDK动态代理" class="headerlink" title="JDK动态代理"></a>JDK动态代理</h4><p>implements InvocationHandler</p>
-<p>先获取代理类Proxy.newProxyInstance(getClass().getClassLoader(), advised.getTargetSource().getInterfaces(), this);，然后implements InvocationHandler ,上面的this,执行target方法的时候就会优先执行InvocationHandler.invoke(final Object proxy, final Method method, final Object[] args);</p>
-<h5 id="Proxy-newProxyInstance"><a href="#Proxy-newProxyInstance" class="headerlink" title="Proxy.newProxyInstance()"></a>Proxy.newProxyInstance()</h5><p>这个是jdk动态代理，需要代理类实现接口，而且只能代理接口里面的方法，因为使用接口来创建代理。</p>
-<p>Proxy.newProxyInstance(),获取代理类方法：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">public static Object newProxyInstance(ClassLoader loader,</span><br><span class="line">                                         Class&lt;?&gt;[] interfaces,</span><br><span class="line">                                         InvocationHandler h)</span><br><span class="line">       throws IllegalArgumentException</span><br><span class="line">   &#123;</span><br><span class="line">       Objects.requireNonNull(h);//InvocationHandler 不为空</span><br><span class="line"></span><br><span class="line">       final Class&lt;?&gt;[] intfs = interfaces.clone();</span><br><span class="line">       </span><br><span class="line">       /*</span><br><span class="line">        * Look up or generate the designated proxy class.</span><br><span class="line">        * 查找或生成指定的代理类。</span><br><span class="line">        */</span><br><span class="line">       Class&lt;?&gt; cl = getProxyClass0(loader, intfs);//</span><br><span class="line"></span><br><span class="line">       /*</span><br><span class="line">        * Invoke its constructor with the designated invocation handler.</span><br><span class="line">        * 用指定的调用处理程序调用它的构造函数。 constructorParams = InvocationHandler.class</span><br><span class="line">        */</span><br><span class="line">       final Constructor&lt;?&gt; cons = cl.getConstructor(constructorParams);</span><br><span class="line">      </span><br><span class="line">       return cons.newInstance(new Object[]&#123;h&#125;);//返回代理类</span><br><span class="line"></span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
-<p>getProxyClass0()</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">private static Class&lt;?&gt; getProxyClass0(ClassLoader loader,</span><br><span class="line">                                          Class&lt;?&gt;... interfaces) &#123;</span><br><span class="line">       if (interfaces.length &gt; 65535) &#123;</span><br><span class="line">           throw new IllegalArgumentException(&quot;interface limit exceeded&quot;);</span><br><span class="line">       &#125;</span><br><span class="line"></span><br><span class="line">       // If the proxy class defined by the given loader implementing</span><br><span class="line">       // the given interfaces exists, this will simply return the cached copy;</span><br><span class="line">       // otherwise, it will create the proxy class via the ProxyClassFactory</span><br><span class="line">       //如果classloader加载的接口代理类存在，直接从cache中国返回</span><br><span class="line">       //否则从ProxyClassFactory创建一个新的代理类</span><br><span class="line">       return proxyClassCache.get(loader, interfaces);</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
-<h4 id="CGLIB"><a href="#CGLIB" class="headerlink" title="CGLIB"></a>CGLIB</h4><p>implements MethodInterceptor </p>
-<p>获取代理类</p>
-<p>Enhancer e=new Enhancer();//创建代理对象类<br>e.setSuperclass(object.getClass());//声明代理对象的父类是谁（是目标对象）<br>e.setCallback(this);//设置回调函数，即调用intercept()<br>return e.create();//返回创建的代理对象</p>
-<p>执行intercept(Object obj, Method method, Object[] args, MethodProxy proxy);</p>
+        <h2 id="sublime"><a href="#sublime" class="headerlink" title="sublime"></a>sublime</h2><p>sublime 工具插件<br>package control<br>ConvertToUTF8</p>
+<p>激活sublime</p>
+<p>C:\Windows\System32\drivers\etc  host</p>
+<p>127.0.0.1 <a href="http://www.sublimetext.com" target="_blank" rel="noopener">www.sublimetext.com</a><br>127.0.0.1 license.sublimehq.com<br>127.0.0.1 45.55.255.55<br>127.0.0.1 45.55.41.223</p>
+<p>—– BEGIN LICENSE —–<br>sgbteam<br>Single User License<br>EA7E-1153259<br>8891CBB9 F1513E4F 1A3405C1 A865D53F<br>115F202E 7B91AB2D 0D2A40ED 352B269B<br>76E84F0B CD69BFC7 59F2DFEF E267328F<br>215652A3 E88F9D8F 4C38E3BA 5B2DAAE4<br>969624E7 DC9CD4D5 717FB40C 1B9738CF<br>20B3C4F1 E917B5B3 87C38D9C ACCE7DD8<br>5F7EF854 86B9743C FADC04AA FB0DA5C0<br>F913BE58 42FEA319 F954EFDD AE881E0B<br>—— END LICENSE ——</p>
+<p>ZYNGA INC.<br>50 User License<br>EA7E-811825<br>927BA117 84C9300F 4A0CCBC4 34A56B44<br>985E4562 59F2B63B CCCFF92F 0E646B83<br>0FD6487D 1507AE29 9CC4F9F5 0A6F32E3<br>0343D868 C18E2CD5 27641A71 25475648<br>309705B3 E468DDC4 1B766A18 7952D28C<br>E627DDBA 960A2153 69A2D98A C87C0607<br>45DC6049 8C04EC29 D18DFA40 442C680B<br>1342224D 44D90641 33A3B9F2 46AADB8F</p>
+<h2 id="IDEA"><a href="#IDEA" class="headerlink" title="IDEA"></a>IDEA</h2><h3 id="插件"><a href="#插件" class="headerlink" title="插件"></a>插件</h3><p>Key promoter X  展示快捷键<br>Alibaba Java Coding Guidelines<br>SonarLint  代码检查</p>
+<h3 id="注释"><a href="#注释" class="headerlink" title="注释"></a>注释</h3><p>/**</p>
 <ul>
-<li><a href="https://zhuanlan.zhihu.com/p/27757233" target="_blank" rel="noopener">Java JDK代理、CGLIB、AspectJ代理分析比较</a></li>
-<li><a href="https://blog.csdn.net/moreevan/article/details/11977115" target="_blank" rel="noopener">Spring AOP 实现原理</a></li>
-<li><a href="http://www.cnblogs.com/dazhaxie/archive/2012/06/18/2553300.html" target="_blank" rel="noopener">Spring源代码解析(收藏)</a></li>
+<li>Project Name:${project_name}</li>
+<li>File Name:${file_name}</li>
+<li>Package Name:${package_name}</li>
+<li>Date:${date} ${time}</li>
+<li>Copyright (c) ${year}, All Rights Reserved.<br><em>
+</em>/</li>
 </ul>
+<p>${filecomment}</p>
+<p>${package_declaration}<br>/**</p>
+<ul>
+<li>ClassName:${type_name} </li>
+<li>Function: ${todo} </li>
+<li>Reason: ${todo} </li>
+<li>Date: ${date} ${time} </li>
+<li>@author Mu Xiaobai</li>
+<li>@version </li>
+<li>@since JDK 1.8<br>*/<br>${typecomment}<br>${type_declaration}</li>
+</ul>
+<p>aa 包<br>/**</p>
+<ul>
+<li>Project Name:$project_name$</li>
+<li>File Name:$file_name$</li>
+<li>Package Name:$package_name$</li>
+<li>Date:$date$ $time$</li>
+<li>Copyright (c) $year$, All Rights Reserved.<br><em>
+</em>/<br>ss 类<br>/**</li>
+<li>@ClassName: $class_name$ </li>
+<li>@Function: //TODO </li>
+<li>@Reason: //TODO</li>
+<li>@Date: $date$ $time$ </li>
+<li>@author Mu Xiaobai</li>
+<li>@version </li>
+<li>@since JDK 1.8<br><em>/<br>zz 方法<br>/</em> </li>
+<li>@name: $enclosing_method$</li>
+<li>@description: TODO </li>
+<li>@param $param$</li>
+<li>@return: $return$ </li>
+<li>@date: $date$ $time$</li>
+<li>@auther: $user$</li>
+<li>*/</li>
+</ul>
+<h3 id="设置"><a href="#设置" class="headerlink" title="设置"></a>设置</h3><h3 id="快捷键"><a href="#快捷键" class="headerlink" title="快捷键"></a>快捷键</h3><p>ctrl + shift + r 替换<br>ctrl + shift + f 查找</p>
+<p>ctrl + shift + u 大小写替换</p>
+<p>ctrl + x 剪切<br>ctrl + d 复制粘贴<br>ctrl + / 单行注释<br>ctrl + shift + / 选中内容多行注释</p>
+<p>ctrl + z 撤回<br>ctrl + shift + z 撤回的撤回</p>
+<p>ctrl +alt + s 设置<br>ctrl +alt +shift + s 本项目设置 打包</p>
+<h2 id="navicat"><a href="#navicat" class="headerlink" title="navicat"></a>navicat</h2><p>ctrl + shift + r  选中内容执行<br>ctrl + r 执行当期窗口所有<br>ctrl + q 打开新执行窗口<br>ctrl + w 关闭当期窗口</p>
+<h2 id="plsql"><a href="#plsql" class="headerlink" title="plsql"></a>plsql</h2><p>F8 执行选中</p>
+<p>设置AutoReplace<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sf = select t.* ,t.rowid from </span><br><span class="line">s = select * from</span><br></pre></td></tr></table></figure></p>
+<p>打开PL/SQL，在Tools-&gt;Perferences-&gt;Editor中Autoreplace，勾选Enabled，选择配置的AutoReplace.txt文件，点击OK即可。</p>
+<h2 id="eclipse"><a href="#eclipse" class="headerlink" title="eclipse"></a>eclipse</h2><h3 id="快捷键-1"><a href="#快捷键-1" class="headerlink" title="快捷键"></a>快捷键</h3><p>ctrl+shift+G查看方法被调用<br>ctrl+alt+R 重启或者启动tomcat<br>ctrl+shift+T 查找文件在哪里 匹配java<br>ctrl+shift+R resource查找所有资源<br>ctrl+h file search Containing text 搜索包含某个字符串的所有文件<br>ctrl+shift+c注释/反注释<br>ctrl + alt + H查看方法被调用</p>
+<p>ctrl+shift+L  查看所有的快捷键</p>
+<p>ctrl+alt+G  搜索文本</p>
+<h3 id="插件-1"><a href="#插件-1" class="headerlink" title="插件"></a>插件</h3><p>svn - <a href="http://subclipse.tigris.org/update_1.8.x" target="_blank" rel="noopener">http://subclipse.tigris.org/update_1.8.x</a><br>jd-core - <a href="http://jd.benow.ca/jd-eclipse/update" target="_blank" rel="noopener">http://jd.benow.ca/jd-eclipse/update</a><br>zookeeper：  <a href="http://www.massedynamic.org/eclipse/updates/" target="_blank" rel="noopener">http://www.massedynamic.org/eclipse/updates/</a><br>Enhanced Class Decompiler  <a href="http://feeling.sourceforge.net/update" target="_blank" rel="noopener">http://feeling.sourceforge.net/update</a></p>
+<p>反编译</p>
+<p>重启之后，在窗口菜单栏点击Widow-&gt;Preference-&gt;General-&gt;Editors-&gt;File Associations,将FileType里的<em>.class和</em>.class without source的Associated editors下面的Class File Editor设置成default即可</p>
 
       
     </div>
@@ -454,13 +490,13 @@
   
     
     <div class="copyright">
-        <p><span>本文标题:</span><a href="/2018/06/25/Spring源码阅读之AOP两种代理模式/">Spring源码阅读之AOP两种代理模式</a></p>
+        <p><span>本文标题:</span><a href="/2019/06/27/tools-ide快捷操作/">tools-ide快捷操作</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">Mu Xiaobai(慕小白)</a></p>
-        <p><span>发布时间:</span>2018-06-25, 03:13:09</p>
-        <p><span>最后更新:</span>2018-06-28, 11:44:11</p>
+        <p><span>发布时间:</span>2019-06-27, 19:28:57</p>
+        <p><span>最后更新:</span>2019-06-27, 20:52:41</p>
         <p>
-            <span>原始链接:</span><a class="post-url" href="/2018/06/25/Spring源码阅读之AOP两种代理模式/" title="Spring源码阅读之AOP两种代理模式">https://muxiaobai.github.io/2018/06/25/Spring源码阅读之AOP两种代理模式/</a>
-            <span class="copy-path" data-clipboard-text="原文: https://muxiaobai.github.io/2018/06/25/Spring源码阅读之AOP两种代理模式/　　作者: Mu Xiaobai(慕小白)" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <span>原始链接:</span><a class="post-url" href="/2019/06/27/tools-ide快捷操作/" title="tools-ide快捷操作">https://muxiaobai.github.io/2019/06/27/tools-ide快捷操作/</a>
+            <span class="copy-path" data-clipboard-text="原文: https://muxiaobai.github.io/2019/06/27/tools-ide快捷操作/　　作者: Mu Xiaobai(慕小白)" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
             <script> var clipboard = new Clipboard('.copy-path'); </script>
         </p>
         <p>
@@ -472,16 +508,10 @@
 
     <nav id="article-nav">
         
-            <div id="article-nav-newer" class="article-nav-title">
-                <a href="/2018/09/04/数据库操作语句2/">
-                    数据库操作语句2
-                </a>
-            </div>
-        
         
             <div id="article-nav-older" class="article-nav-title">
-                <a href="/2018/06/22/Spring源码阅读之Ioc控制反转/">
-                    Spring源码阅读之Ioc控制反转
+                <a href="/2019/05/21/高并发之缓存、限流、降级/">
+                    高并发之缓存、限流、降级
                 </a>
             </div>
         
@@ -494,7 +524,7 @@
     <!--左侧-->
     <div id="toc" class="toc-article">
     <strong class="toc-title">文章目录</strong>
-    <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#JDK动态代理"><span class="toc-number">1.</span> <span class="toc-text">JDK动态代理</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#Proxy-newProxyInstance"><span class="toc-number">1.1.</span> <span class="toc-text">Proxy.newProxyInstance()</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#CGLIB"><span class="toc-number">2.</span> <span class="toc-text">CGLIB</span></a></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#sublime"><span class="toc-number">1.</span> <span class="toc-text">sublime</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#IDEA"><span class="toc-number">2.</span> <span class="toc-text">IDEA</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#插件"><span class="toc-number">2.1.</span> <span class="toc-text">插件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#注释"><span class="toc-number">2.2.</span> <span class="toc-text">注释</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#设置"><span class="toc-number">2.3.</span> <span class="toc-text">设置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#快捷键"><span class="toc-number">2.4.</span> <span class="toc-text">快捷键</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#navicat"><span class="toc-number">3.</span> <span class="toc-text">navicat</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#plsql"><span class="toc-number">4.</span> <span class="toc-text">plsql</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#eclipse"><span class="toc-number">5.</span> <span class="toc-text">eclipse</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#快捷键-1"><span class="toc-number">5.1.</span> <span class="toc-text">快捷键</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#插件-1"><span class="toc-number">5.2.</span> <span class="toc-text">插件</span></a></li></ol></li></ol>
 </div>
 <style>
     .left-col .switch-btn,
@@ -535,7 +565,7 @@
     <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
     <script>
     var gitment = new Gitment({
-      id: 'Spring源码阅读之AOP两种代理模式',
+      id: 'tools-ide快捷操作',
       owner: 'muxiaobai',
       repo: 'muxiaobai.github.io',
       oauth: {
@@ -553,15 +583,13 @@
 
     <div class="scroll" id="post-nav-button">
         
-            <a href="/2018/09/04/数据库操作语句2/" title="上一篇: 数据库操作语句2">
-                <i class="fa fa-angle-left"></i>
-            </a>
+            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
         
 
         <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
 
         
-            <a href="/2018/06/22/Spring源码阅读之Ioc控制反转/" title="下一篇: Spring源码阅读之Ioc控制反转">
+            <a href="/2019/05/21/高并发之缓存、限流、降级/" title="下一篇: 高并发之缓存、限流、降级">
                 <i class="fa fa-angle-right"></i>
             </a>
         

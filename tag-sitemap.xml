@@ -289,13 +289,6 @@
     </url>
 
     <url>
-        <loc>https://muxiaobai.github.io/tags/%E6%8F%92%E4%BB%B6/</loc>
-        <lastmod>2018-11-08T11:46:11.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
         <loc>https://muxiaobai.github.io/tags/%E5%89%8D%E6%B2%BF%E6%8A%80%E6%9C%AF/</loc>
         <lastmod>2018-12-24T02:07:07.000Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -326,13 +319,6 @@
     <url>
         <loc>https://muxiaobai.github.io/tags/2017/</loc>
         <lastmod>2019-01-25T03:05:11.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://muxiaobai.github.io/tags/%E5%B7%A5%E5%85%B7/</loc>
-        <lastmod>2019-02-16T04:39:29.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
@@ -459,6 +445,20 @@
     <url>
         <loc>https://muxiaobai.github.io/tags/CI/</loc>
         <lastmod>2019-06-10T05:13:21.825Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://muxiaobai.github.io/tags/%E5%B7%A5%E5%85%B7/</loc>
+        <lastmod>2019-06-27T12:52:41.511Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://muxiaobai.github.io/tags/%E6%8F%92%E4%BB%B6/</loc>
+        <lastmod>2019-06-27T12:52:41.511Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
