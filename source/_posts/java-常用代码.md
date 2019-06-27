@@ -608,7 +608,7 @@ public static String postMethod(String url,String method,Object[] param){
              
              while ((output = responseBuffer.readLine()) != null) {
                     System.out.println(output);
-                    val = val + output;
+                    val = val + output+"\r\n";
              }
 
              httpConnection.disconnect();
@@ -645,7 +645,7 @@ public static String postMethod(String url,String method,Object[] param){
 
             String str = null;  
             while ((str = bufferedReader.readLine()) != null) {  
-                buffer.append(str);  
+                buffer.append(str).append("\r\n");  
             }  
             bufferedReader.close();  
             inputStreamReader.close();  
