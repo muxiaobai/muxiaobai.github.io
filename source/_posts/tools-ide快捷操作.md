@@ -7,10 +7,6 @@ description: "日常工具快捷操作"
 ---
 
 
-
-
-
-
 ## sublime
 
 sublime 工具插件
@@ -127,6 +123,9 @@ zz 方法
 ctrl + shift + r 替换
 ctrl + shift + f 查找
 
+alt + ←/→  鼠标上次的位置/下次的位置
+ctrl + alt + 鼠标左键 查看方法的实现类
+
 
 ctrl + shift + u 大小写替换
 
@@ -143,6 +142,7 @@ ctrl + shift + z 撤回的撤回
 ctrl +alt + s 设置
 ctrl +alt +shift + s 本项目设置 打包
 
+参考[IntelliJ-IDEA-Tutorial](https://github.com/judasn/IntelliJ-IDEA-Tutorial/blob/master/keymap-introduce.md)
 ## navicat
 
 ctrl + shift + r  选中内容执行
@@ -180,10 +180,11 @@ ctrl+shift+L  查看所有的快捷键
 ctrl+alt+G  搜索文本
 
 ### 插件
-svn - http://subclipse.tigris.org/update_1.8.x
-jd-core - http://jd.benow.ca/jd-eclipse/update
-zookeeper：  http://www.massedynamic.org/eclipse/updates/
-Enhanced Class Decompiler  http://feeling.sourceforge.net/update
+
+- svn - http://subclipse.tigris.org/update_1.8.x
+- jd-core - http://jd.benow.ca/jd-eclipse/update
+- zookeeper：  http://www.massedynamic.org/eclipse/updates/
+- Enhanced Class Decompiler  http://feeling.sourceforge.net/update
 
 反编译
 
