@@ -7,7 +7,7 @@
   },
   "dependencies": {
     "hexo": "^3.2.0",
-    "hexo-asset-image": "git+https://github.com/CodeFalling/hexo-asset-image.git",
+    "hexo-asset-image": "git+https://github.com/xcodebuild/hexo-asset-image.git",
     "hexo-baidu-url-submit": "0.0.5",
     "hexo-deployer-git": "^0.2.0",
     "hexo-generator-archive": "^0.1.4",

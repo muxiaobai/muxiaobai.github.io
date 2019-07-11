@@ -57,9 +57,12 @@ E627DDBA 960A2153 69A2D98A C87C0607
 
 ### 插件
 Key promoter X  展示快捷键
-Alibaba Java Coding Guidelines
+Alibaba Java Coding Guidelines 代码检测
 SonarLint  代码检查
-
+Free Mybatis plugin   mapper跳转到xml。xml跳转到mapper
+JRebel 热部署
+Lombok 不用写get set 方法
+GosnFormat json转java对象类
 ### 注释
 
 /**
