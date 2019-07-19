@@ -100,41 +100,6 @@
     </url>
 
     <url>
-        <loc>https://muxiaobai.github.io/tags/List/</loc>
-        <lastmod>2016-08-31T12:24:37.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://muxiaobai.github.io/tags/Set/</loc>
-        <lastmod>2016-08-31T12:24:37.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://muxiaobai.github.io/tags/Map/</loc>
-        <lastmod>2016-08-31T12:24:37.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://muxiaobai.github.io/tags/Collection/</loc>
-        <lastmod>2016-08-31T12:24:37.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://muxiaobai.github.io/tags/Iterator/</loc>
-        <lastmod>2016-08-31T12:24:37.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
         <loc>https://muxiaobai.github.io/tags/I-O/</loc>
         <lastmod>2016-08-31T12:24:37.000Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -164,6 +129,41 @@
 
     <url>
         <loc>https://muxiaobai.github.io/tags/Exception/</loc>
+        <lastmod>2016-08-31T12:24:37.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://muxiaobai.github.io/tags/List/</loc>
+        <lastmod>2016-08-31T12:24:37.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://muxiaobai.github.io/tags/Set/</loc>
+        <lastmod>2016-08-31T12:24:37.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://muxiaobai.github.io/tags/Map/</loc>
+        <lastmod>2016-08-31T12:24:37.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://muxiaobai.github.io/tags/Collection/</loc>
+        <lastmod>2016-08-31T12:24:37.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://muxiaobai.github.io/tags/Iterator/</loc>
         <lastmod>2016-08-31T12:24:37.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
