@@ -24,17 +24,17 @@
 <meta property="og:site_name" content="技术笔记">
 <meta property="og:description" content="总结java中的异常，错误，Java的基础理念是：结构不佳的代码不能运行。发现错误的理想时机是在编译阶段！">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://muxiaobai.github.io/.io//201608031722.jpg">
-<meta property="og:image" content="https://muxiaobai.github.io/.io//201608091509Throwable.PNG">
-<meta property="og:image" content="https://muxiaobai.github.io/.io//201608091504Error.PNG">
-<meta property="og:image" content="https://muxiaobai.github.io/.io//201608091505Exception.PNG">
-<meta property="og:image" content="https://muxiaobai.github.io/.io//201608091505IOException.PNG">
-<meta property="og:image" content="https://muxiaobai.github.io/.io//201608091506RuntimeException.PNG">
+<meta property="og:image" content="https://muxiaobai.github.io/2016/08/04/Thinking-in-java-基础之异常/201608031722.jpg">
+<meta property="og:image" content="https://muxiaobai.github.io/2016/08/04/Thinking-in-java-基础之异常/201608091509Throwable.PNG">
+<meta property="og:image" content="https://muxiaobai.github.io/2016/08/04/Thinking-in-java-基础之异常/201608091504Error.PNG">
+<meta property="og:image" content="https://muxiaobai.github.io/2016/08/04/Thinking-in-java-基础之异常/201608091505Exception.PNG">
+<meta property="og:image" content="https://muxiaobai.github.io/2016/08/04/Thinking-in-java-基础之异常/201608091505IOException.PNG">
+<meta property="og:image" content="https://muxiaobai.github.io/2016/08/04/Thinking-in-java-基础之异常/201608091506RuntimeException.PNG">
 <meta property="og:updated_time" content="2016-08-31T12:24:37.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Thinking in java 基础之异常">
 <meta name="twitter:description" content="总结java中的异常，错误，Java的基础理念是：结构不佳的代码不能运行。发现错误的理想时机是在编译阶段！">
-<meta name="twitter:image" content="https://muxiaobai.github.io/.io//201608031722.jpg">
+<meta name="twitter:image" content="https://muxiaobai.github.io/2016/08/04/Thinking-in-java-基础之异常/201608031722.jpg">
 
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
@@ -344,14 +344,14 @@
       
           
         <h2 id="Thinking-in-java-基础之异常"><a href="#Thinking-in-java-基础之异常" class="headerlink" title="Thinking in java 基础之异常"></a>Thinking in java 基础之异常</h2><p>类图如下</p>
-<p><img src="/.io//201608031722.jpg" alt="异常类图"></p>
+<p><img src="/2016/08/04/Thinking-in-java-基础之异常/201608031722.jpg" alt="异常类图"></p>
 <h4 id="异常概念"><a href="#异常概念" class="headerlink" title="异常概念"></a>异常概念</h4><p>checked 异常的一个问题是，有时候不允许抛出这样的异常。特别是，如果要覆盖超类中声明的方法，或者实现接口中声明的方法，而那个方法没有声明任何 checked 异常，那么新的实现也不能声明 checked 异常。因此必须预先处理异常。<br>Error我们不用处理。</p>
 <p>VirtualMachineError在程序中是不能处理的，这个一般属于虚拟机的问题，内存溢出和栈溢出。(OOM) </p>
 <p>Exception中的IOException必须try catch，这种文件资源是必须要捕捉的，文件要在finally中进行关闭。</p>
 <p>Exception中的RuntimeException 可以不必try，还可以继续throws，让使用者处理。</p>
 <p>下面来看看源码</p>
-<p><img src="/.io//201608091509Throwable.PNG" alt="异常Throwable类"></p>
-<p><img src="/.io//201608091504Error.PNG" alt="异常Error类"><br><img src="/.io//201608091505Exception.PNG" alt="异常Exception类"><br><img src="/.io//201608091505IOException.PNG" alt="异常IOException类"><br><img src="/.io//201608091506RuntimeException.PNG" alt="异常RuntimeException类"></p>
+<p><img src="/2016/08/04/Thinking-in-java-基础之异常/201608091509Throwable.PNG" alt="异常Throwable类"></p>
+<p><img src="/2016/08/04/Thinking-in-java-基础之异常/201608091504Error.PNG" alt="异常Error类"><br><img src="/2016/08/04/Thinking-in-java-基础之异常/201608091505Exception.PNG" alt="异常Exception类"><br><img src="/2016/08/04/Thinking-in-java-基础之异常/201608091505IOException.PNG" alt="异常IOException类"><br><img src="/2016/08/04/Thinking-in-java-基础之异常/201608091506RuntimeException.PNG" alt="异常RuntimeException类"></p>
 <p>我们可以看到除了Throwable之外的类，都是只有构造方法，而且我们从类的名字就能看出具体是什么异常。</p>
 <h4 id="为什么要用try-或者-throws"><a href="#为什么要用try-或者-throws" class="headerlink" title="为什么要用try 或者 throws"></a>为什么要用try 或者 throws</h4><p>try是为了捕捉异常，而方法中throws是为了把方法抛出去。</p>
 <p>下面我们来看例子:</p>
@@ -567,8 +567,10 @@
     
       <section class="gitment" id="comments">
     <div id="gitment" class="article article-type-post"></div>
-    <link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
-    <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+    <!-- <link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+    <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script> -->
+    <link rel="stylesheet" href="https://jjeejj.github.io/css/gitment.css">
+    <script src="https://jjeejj.github.io/js/gitment.js"></script>
     <script>
     var gitment = new Gitment({
       id: 'Thinking in java 基础之异常',

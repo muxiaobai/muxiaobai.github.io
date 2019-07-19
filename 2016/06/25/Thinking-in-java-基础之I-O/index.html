@@ -24,13 +24,13 @@
 <meta property="og:site_name" content="技术笔记">
 <meta property="og:description" content="主要总结java.io包中的类结构作用！">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://muxiaobai.github.io/.io//201606250959.jpg">
-<meta property="og:image" content="https://muxiaobai.github.io/.io//20160625095901.png">
+<meta property="og:image" content="https://muxiaobai.github.io/2016/06/25/Thinking-in-java-基础之I-O/201606250959.jpg">
+<meta property="og:image" content="https://muxiaobai.github.io/2016/06/25/Thinking-in-java-基础之I-O/20160625095901.png">
 <meta property="og:updated_time" content="2016-08-31T12:24:37.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Thinking in java 基础之I&#x2F;O">
 <meta name="twitter:description" content="主要总结java.io包中的类结构作用！">
-<meta name="twitter:image" content="https://muxiaobai.github.io/.io//201606250959.jpg">
+<meta name="twitter:image" content="https://muxiaobai.github.io/2016/06/25/Thinking-in-java-基础之I-O/201606250959.jpg">
 
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
@@ -339,7 +339,7 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <h2 id="Thinking-in-java基础之-I-O"><a href="#Thinking-in-java基础之-I-O" class="headerlink" title="Thinking in java基础之 I/O"></a>Thinking in java基础之 I/O</h2><h4 id="首先给图了解大概内容，当你忘记一些类的继承关系的时候，可以回过头来看一眼"><a href="#首先给图了解大概内容，当你忘记一些类的继承关系的时候，可以回过头来看一眼" class="headerlink" title="首先给图了解大概内容，当你忘记一些类的继承关系的时候，可以回过头来看一眼"></a>首先给图了解大概内容，当你忘记一些类的继承关系的时候，可以回过头来看一眼</h4><p><img src="/.io//201606250959.jpg" alt="I/O类图"><br><a id="more"></a><br>java所有的IO操作都在java.io包之中进行定义，而且整个java.io包实际上就是五个类和一个接口：</p>
+        <h2 id="Thinking-in-java基础之-I-O"><a href="#Thinking-in-java基础之-I-O" class="headerlink" title="Thinking in java基础之 I/O"></a>Thinking in java基础之 I/O</h2><h4 id="首先给图了解大概内容，当你忘记一些类的继承关系的时候，可以回过头来看一眼"><a href="#首先给图了解大概内容，当你忘记一些类的继承关系的时候，可以回过头来看一眼" class="headerlink" title="首先给图了解大概内容，当你忘记一些类的继承关系的时候，可以回过头来看一眼"></a>首先给图了解大概内容，当你忘记一些类的继承关系的时候，可以回过头来看一眼</h4><p><img src="/2016/06/25/Thinking-in-java-基础之I-O/201606250959.jpg" alt="I/O类图"><br><a id="more"></a><br>java所有的IO操作都在java.io包之中进行定义，而且整个java.io包实际上就是五个类和一个接口：</p>
 <p> • 五个类：File、InputStream、OutputStream、Reader、Wirter</p>
 <p> • 一个接口：Serializable</p>
 <hr>
@@ -363,7 +363,7 @@
 <p>eclipseDemo is a directory</p>
 <p>GitHubDemo is a directory</p>
 <p>我的电脑【E：/Demo】下面有三个文件目录，所以显示为directory。下面给出File类的方法File方法</p>
-<p><img src="/.io//20160625095901.png" alt="I/O类图"></p>
+<p><img src="/2016/06/25/Thinking-in-java-基础之I-O/20160625095901.png" alt="I/O类图"></p>
 <h4 id="文件读取和文件输出"><a href="#文件读取和文件输出" class="headerlink" title="文件读取和文件输出"></a>文件读取和文件输出</h4><ul>
 <li><p>文件输出</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">FileOutputStream</span><br><span class="line"></span><br><span class="line">package IO;</span><br><span class="line">import java.io.File;</span><br><span class="line">import java.io.FileOutputStream;</span><br><span class="line">import java.io.IOException;</span><br><span class="line">import java.io.OutputStream;</span><br><span class="line"></span><br><span class="line">public class FileOutputStreamDemo &#123;</span><br><span class="line">public static void main(String[] args) throws IOException &#123;</span><br><span class="line">File file = new File(&quot;E:&quot; + File.separator + &quot;hellodemo&quot;</span><br><span class="line"></span><br><span class="line">File.separator + &quot;test.txt&quot;); // 定义文件路径</span><br><span class="line">if (!file.getParentFile().exists()) &#123; // 父路径不存在</span><br><span class="line">file.getParentFile().mkdirs(); // 创建父路径</span><br><span class="line">&#125;</span><br><span class="line">OutputStream output = new FileOutputStream(file); // 通过子类实例化父类</span><br><span class="line">String outputdata = &quot;Hello World&quot;;// 要输出的数据</span><br><span class="line">output.write(outputdata.getBytes()); // 输出数据，要将数据变为字节数组输出</span><br><span class="line">output.close(); // 关闭资源</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -572,8 +572,10 @@
     
       <section class="gitment" id="comments">
     <div id="gitment" class="article article-type-post"></div>
-    <link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
-    <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+    <!-- <link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+    <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script> -->
+    <link rel="stylesheet" href="https://jjeejj.github.io/css/gitment.css">
+    <script src="https://jjeejj.github.io/js/gitment.js"></script>
     <script>
     var gitment = new Gitment({
       id: 'Thinking in java 基础之I/O',

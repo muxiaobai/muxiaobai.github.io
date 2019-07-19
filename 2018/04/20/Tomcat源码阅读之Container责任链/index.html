@@ -24,13 +24,13 @@
 <meta property="og:site_name" content="技术笔记">
 <meta property="og:description" content="研究tomcat系列,Container内部怎么进行请求处理？">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://muxiaobai.github.io/.io//665375-20160119184923890-1995839223.png">
-<meta property="og:image" content="https://muxiaobai.github.io/.io//818454-20161025170804984-654825756.png">
+<meta property="og:image" content="https://muxiaobai.github.io/2018/04/20/Tomcat源码阅读之Container责任链/665375-20160119184923890-1995839223.png">
+<meta property="og:image" content="https://muxiaobai.github.io/2018/04/20/Tomcat源码阅读之Container责任链/818454-20161025170804984-654825756.png">
 <meta property="og:updated_time" content="2018-05-14T09:12:38.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Tomcat源码阅读之Container责任链">
 <meta name="twitter:description" content="研究tomcat系列,Container内部怎么进行请求处理？">
-<meta name="twitter:image" content="https://muxiaobai.github.io/.io//665375-20160119184923890-1995839223.png">
+<meta name="twitter:image" content="https://muxiaobai.github.io/2018/04/20/Tomcat源码阅读之Container责任链/665375-20160119184923890-1995839223.png">
 
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
@@ -341,7 +341,7 @@
           
         <p>上篇讲到Connector到Container的转换，本文主要是Container内部的转换，四个组件Engine、Host、Context、Wrapper。<br>顺便提一下Pipeline和Value.</p>
 <p>接上文的CoyoteAdapter.service()<code>connector.getService().getContainer().getPipeline().getFirst().invoke(request, response);</code>,</p>
-<p>如图如图<br><img src="/.io//665375-20160119184923890-1995839223.png" alt="请求流图"><br><img src="/.io//818454-20161025170804984-654825756.png" alt="请求流图"><br>默认的Engine是StandardEngine，这个是在EngineRuleSet中通过digester设置的，<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">digester.addObjectCreate(prefix + &quot;Engine&quot;,</span><br><span class="line">                         &quot;org.apache.catalina.core.StandardEngine&quot;,</span><br><span class="line">                         &quot;className&quot;);</span><br><span class="line">digester.addSetProperties(prefix + &quot;Engine&quot;);</span><br><span class="line">digester.addRule(prefix + &quot;Engine&quot;,</span><br><span class="line">                 new LifecycleListenerRule</span><br><span class="line">                 (&quot;org.apache.catalina.startup.EngineConfig&quot;,</span><br><span class="line">                  &quot;engineConfigClass&quot;));</span><br><span class="line">digester.addSetNext(prefix + &quot;Engine&quot;,</span><br><span class="line">                    &quot;setContainer&quot;,</span><br><span class="line">                    &quot;org.apache.catalina.Engine&quot;);</span><br></pre></td></tr></table></figure></p>
+<p>如图如图<br><img src="/2018/04/20/Tomcat源码阅读之Container责任链/665375-20160119184923890-1995839223.png" alt="请求流图"><br><img src="/2018/04/20/Tomcat源码阅读之Container责任链/818454-20161025170804984-654825756.png" alt="请求流图"><br>默认的Engine是StandardEngine，这个是在EngineRuleSet中通过digester设置的，<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">digester.addObjectCreate(prefix + &quot;Engine&quot;,</span><br><span class="line">                         &quot;org.apache.catalina.core.StandardEngine&quot;,</span><br><span class="line">                         &quot;className&quot;);</span><br><span class="line">digester.addSetProperties(prefix + &quot;Engine&quot;);</span><br><span class="line">digester.addRule(prefix + &quot;Engine&quot;,</span><br><span class="line">                 new LifecycleListenerRule</span><br><span class="line">                 (&quot;org.apache.catalina.startup.EngineConfig&quot;,</span><br><span class="line">                  &quot;engineConfigClass&quot;));</span><br><span class="line">digester.addSetNext(prefix + &quot;Engine&quot;,</span><br><span class="line">                    &quot;setContainer&quot;,</span><br><span class="line">                    &quot;org.apache.catalina.Engine&quot;);</span><br></pre></td></tr></table></figure></p>
 <p>然后这个<code>org.apache.catalina.core.StandardEngine</code>就是connector.getService().getContainer()的实际Container，所有的Container实例化的时候，都有pipeline和setBasic()。</p>
 <p>StandardEngine构造方法<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">public StandardEngine() &#123;</span><br><span class="line"></span><br><span class="line">    super();</span><br><span class="line">    pipeline.setBasic(new StandardEngineValve());</span><br><span class="line">    /* Set the jmvRoute using the system property jvmRoute */</span><br><span class="line">    try &#123;</span><br><span class="line">        setJvmRoute(System.getProperty(&quot;jvmRoute&quot;));</span><br><span class="line">    &#125; catch(Exception ex) &#123;</span><br><span class="line">        log.warn(sm.getString(&quot;standardEngine.jvmRouteFail&quot;));</span><br><span class="line">    &#125;</span><br><span class="line">    // By default, the engine will hold the reloading thread</span><br><span class="line">    backgroundProcessorDelay = 10;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p>ContainerBase中会有这个<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">protected final Pipeline pipeline = new StandardPipeline(this);</span><br></pre></td></tr></table></figure></p>
@@ -532,8 +532,10 @@
     
       <section class="gitment" id="comments">
     <div id="gitment" class="article article-type-post"></div>
-    <link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
-    <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+    <!-- <link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+    <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script> -->
+    <link rel="stylesheet" href="https://jjeejj.github.io/css/gitment.css">
+    <script src="https://jjeejj.github.io/js/gitment.js"></script>
     <script>
     var gitment = new Gitment({
       id: 'Tomcat源码阅读之Container责任链',

@@ -24,15 +24,15 @@
 <meta property="og:site_name" content="技术笔记">
 <meta property="og:description" content="从浏览器的请求响应，重新认识chrome">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://muxiaobai.github.io/.io//baidu.png">
-<meta property="og:image" content="https://muxiaobai.github.io/.io//load.png">
-<meta property="og:image" content="https://muxiaobai.github.io/.io//timing-overview.png">
-<meta property="og:image" content="https://muxiaobai.github.io/.io//dom-navtiming.png">
+<meta property="og:image" content="https://muxiaobai.github.io/2018/06/07/浏览器的请求与响应过程/baidu.png">
+<meta property="og:image" content="https://muxiaobai.github.io/2018/06/07/浏览器的请求与响应过程/load.png">
+<meta property="og:image" content="https://muxiaobai.github.io/2018/06/07/浏览器的请求与响应过程/timing-overview.png">
+<meta property="og:image" content="https://muxiaobai.github.io/2018/06/07/浏览器的请求与响应过程/dom-navtiming.png">
 <meta property="og:updated_time" content="2018-06-11T09:47:01.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="浏览器的请求与响应过程">
 <meta name="twitter:description" content="从浏览器的请求响应，重新认识chrome">
-<meta name="twitter:image" content="https://muxiaobai.github.io/.io//baidu.png">
+<meta name="twitter:image" content="https://muxiaobai.github.io/2018/06/07/浏览器的请求与响应过程/baidu.png">
 
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
@@ -342,7 +342,7 @@
       
           
         <p>从一个简单的工具说起:<a href="https://github.com/pod4g/hiper" target="_blank" rel="noopener">hiper</a></p>
-<p><img src="/.io//baidu.png" alt="百度"><br><img src="/.io//load.png" alt="另一个加载大量图片的网站"></p>
+<p><img src="/2018/06/07/浏览器的请求与响应过程/baidu.png" alt="百度"><br><img src="/2018/06/07/浏览器的请求与响应过程/load.png" alt="另一个加载大量图片的网站"></p>
 <ul>
 <li>DNS look time: DNS 寻址</li>
 <li>TCP connect time: TCP握手</li>
@@ -365,7 +365,7 @@
 <li>8.totalLoadTime += this.getLoadTime(navigationStart, loadEventEnd)</li>
 </ul>
 <p>这个工具中的时间计算</p>
-<p><img src="/.io//timing-overview.png" alt="timing-overview"></p>
+<p><img src="/2018/06/07/浏览器的请求与响应过程/timing-overview.png" alt="timing-overview"></p>
 <p>chrome 中的performance.timing对象记录了所有的时间 <a href="https://www.cnblogs.com/btgyoyo/p/6341077.html" target="_blank" rel="noopener">浏览器从输入网址发生的事(前端优化)</a></p>
 <p>navigationStart,如果没有前一个网页，则等于fetchStart属性。<br>fetchstart,</p>
 <p>DNS: domainLookupStart,domainLookupEnd,</p>
@@ -373,7 +373,7 @@
 <p>TTFB和Download: requestStart,responseStart,responseEnd,</p>
 <p>渲染DOM:<br>domLoading,开始解析渲染DOM树的时间<br>domInteractive,完成解析DOM树的时间</p>
 <p>加载资源:<br>domContentLoadedEventStart,在DOM树解析完成后，网页内资源加载开始的时间<br>domContentLoadedEventEnd,DOM树解析完成后，网页内资源加载完成时间（如JS脚本加载执行完成） 这个阶段会可能会触发 domcontentLoaded 事件<br>domComplete,DOM已经结束，而且资源也加载完了。</p>
-<p>DOM的onload回调方法时间: loadEventStart,loadEventEnd load回调函数执行完成的时间<br><img src="/.io//dom-navtiming.png" alt="详细放大图"><br><a href="https://blog.csdn.net/redtopic/article/details/70677690" target="_blank" rel="noopener">各个时间</a><br><a href="https://www.cnblogs.com/btgyoyo/p/6341077.html" target="_blank" rel="noopener">介绍performance中的time</a></p>
+<p>DOM的onload回调方法时间: loadEventStart,loadEventEnd load回调函数执行完成的时间<br><img src="/2018/06/07/浏览器的请求与响应过程/dom-navtiming.png" alt="详细放大图"><br><a href="https://blog.csdn.net/redtopic/article/details/70677690" target="_blank" rel="noopener">各个时间</a><br><a href="https://www.cnblogs.com/btgyoyo/p/6341077.html" target="_blank" rel="noopener">介绍performance中的time</a></p>
 <h3 id="DOMContentLoaded-Load-两个事件"><a href="#DOMContentLoaded-Load-两个事件" class="headerlink" title="DOMContentLoaded Load 两个事件"></a>DOMContentLoaded Load 两个事件</h3><p><a href="https://testdrive-archive.azurewebsites.net/HTML5/DOMContentLoaded/Default.html" target="_blank" rel="noopener">DOMContentLoaded和Load两个时间，蓝线和红线</a><br>这两种情况的差别，DOMContentLoaded完成的时候，是页面已经出来，结束白屏状态，当Load的时候，图片，等其他资源也加载完毕。</p>
 <p><a href="https://www.cnblogs.com/Bonnie3449/p/8419609.html" target="_blank" rel="noopener">DOMContentLoaded 与 load事件</a></p>
 <h3 id="DOM中的document-readystate属性值："><a href="#DOM中的document-readystate属性值：" class="headerlink" title="DOM中的document.readystate属性值："></a>DOM中的document.readystate属性值：</h3><ul>
@@ -588,8 +588,10 @@
     
       <section class="gitment" id="comments">
     <div id="gitment" class="article article-type-post"></div>
-    <link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
-    <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+    <!-- <link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+    <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script> -->
+    <link rel="stylesheet" href="https://jjeejj.github.io/css/gitment.css">
+    <script src="https://jjeejj.github.io/js/gitment.js"></script>
     <script>
     var gitment = new Gitment({
       id: '浏览器的请求与响应过程',

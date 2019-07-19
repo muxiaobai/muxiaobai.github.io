@@ -24,14 +24,14 @@
 <meta property="og:site_name" content="技术笔记">
 <meta property="og:description" content="prototype永远是一个迷，值得去探索！">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://muxiaobai.github.io/.io//person.png">
-<meta property="og:image" content="https://muxiaobai.github.io/.io//person2.png">
-<meta property="og:image" content="https://muxiaobai.github.io/.io//xproto-2.png">
+<meta property="og:image" content="https://muxiaobai.github.io/2017/12/22/javascript再学习之prototype/person.png">
+<meta property="og:image" content="https://muxiaobai.github.io/2017/12/22/javascript再学习之prototype/person2.png">
+<meta property="og:image" content="https://muxiaobai.github.io/2017/12/22/javascript再学习之prototype/xproto-2.png">
 <meta property="og:updated_time" content="2017-12-26T07:14:11.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="javascript再学习之prototype">
 <meta name="twitter:description" content="prototype永远是一个迷，值得去探索！">
-<meta name="twitter:image" content="https://muxiaobai.github.io/.io//person.png">
+<meta name="twitter:image" content="https://muxiaobai.github.io/2017/12/22/javascript再学习之prototype/person.png">
 
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
@@ -341,10 +341,10 @@
       
           
         <h2 id="Function中"><a href="#Function中" class="headerlink" title="Function中"></a>Function中</h2><p>  有prototype 和__proto__</p>
-<h4 id="第一种情况-对象中有say"><a href="#第一种情况-对象中有say" class="headerlink" title="第一种情况 对象中有say"></a>第一种情况 对象中有say</h4><p><img src="/.io//person.png" alt="对象"><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">function Person()&#123;</span><br><span class="line">	  this.say = function()&#123;</span><br><span class="line">	    console.log(&quot;Hello&quot;);</span><br><span class="line">	  &#125;;</span><br><span class="line">	&#125;</span><br><span class="line">	var person = new Person();</span><br><span class="line">	person.say(); //hello</span><br><span class="line">	debugger;</span><br></pre></td></tr></table></figure></p>
+<h4 id="第一种情况-对象中有say"><a href="#第一种情况-对象中有say" class="headerlink" title="第一种情况 对象中有say"></a>第一种情况 对象中有say</h4><p><img src="/2017/12/22/javascript再学习之prototype/person.png" alt="对象"><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">function Person()&#123;</span><br><span class="line">	  this.say = function()&#123;</span><br><span class="line">	    console.log(&quot;Hello&quot;);</span><br><span class="line">	  &#125;;</span><br><span class="line">	&#125;</span><br><span class="line">	var person = new Person();</span><br><span class="line">	person.say(); //hello</span><br><span class="line">	debugger;</span><br></pre></td></tr></table></figure></p>
 <p>ES6</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">class Person &#123;</span><br><span class="line"> constructor() &#123;</span><br><span class="line">     this.say = function() &#123;</span><br><span class="line">         console.log(&quot;hello&quot;);</span><br><span class="line">     &#125;;</span><br><span class="line"> &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">const person = new Person();</span><br><span class="line">const p2 = new Person();</span><br><span class="line">console.log(person.say === p2.say);// false</span><br><span class="line">debugger;</span><br></pre></td></tr></table></figure>
-<h4 id="第二种情况-原型上有say"><a href="#第二种情况-原型上有say" class="headerlink" title="第二种情况 原型上有say"></a>第二种情况 原型上有say</h4><p><img src="/.io//person2.png" alt="原型"></p>
+<h4 id="第二种情况-原型上有say"><a href="#第二种情况-原型上有say" class="headerlink" title="第二种情况 原型上有say"></a>第二种情况 原型上有say</h4><p><img src="/2017/12/22/javascript再学习之prototype/person2.png" alt="原型"></p>
 <p>p1.say == person.say 肯定是true</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">function Person &#123;  </span><br><span class="line">&#125;</span><br><span class="line">Person.prototype.say = function()&#123;</span><br><span class="line">console.log(&quot;hello&quot;);</span><br><span class="line">&#125;</span><br><span class="line">const person = new Person();</span><br><span class="line">const p2 = new Person();</span><br><span class="line">person.say();//hello</span><br><span class="line">debugger;</span><br></pre></td></tr></table></figure>
 <p>prototype实际上也是一个对象,然后constructor就是function Person</p>
@@ -366,7 +366,7 @@
 <p>下面这个怎么解释？</p>
 <p>Function.__proto__ === Function.prototype </p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line">var A = function()&#123;&#125;; // A是一个方法，当然也是个对象  </span><br><span class="line">var a = new A(); // a是一个由A创造出的对象，不是方法  </span><br><span class="line"></span><br><span class="line">//看一看对象非方法的行为</span><br><span class="line">console.log(a.__proto__); //object  </span><br><span class="line">console.log(a.prototype); //undefined, 对象没有 </span><br><span class="line"></span><br><span class="line">//看一看方法的行为，方法也是对象哦</span><br><span class="line"></span><br><span class="line">console.log(A.__proto__); //function  </span><br><span class="line">console.log(A.prototype); //object  </span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">console.log(a.__proto__ === A.prototype); //true  </span><br><span class="line">console.log(a.prototype === undefined); //true</span><br><span class="line"></span><br><span class="line">console.log(A.__proto__ === Function.prototype); //true  </span><br><span class="line">console.log(A.prototype === a.__proto__); //true  </span><br><span class="line"></span><br><span class="line">//先看a这条链</span><br><span class="line">console.log(a.__proto__.__proto__ === A.prototype.__proto__); //true  </span><br><span class="line">console.log(a.__proto__.__proto__ === Object.prototype);//true  </span><br><span class="line">console.log(a.__proto__.__proto__.__proto__ === Object.prototype.__proto__);//true  </span><br><span class="line">console.log(a.__proto__.__proto__.__proto__ === null);//true</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">//再看看A这条条链</span><br><span class="line">console.log(A.__proto__.__proto__ === Function.prototype.__proto__);//true  </span><br><span class="line">console.log(A.__proto__.__proto__ === Object.prototype);//true  </span><br><span class="line">console.log(A.__proto__.__proto__.__proto__ === Object.prototype.__proto__);//true  </span><br><span class="line">console.log(A.__proto__.__proto__.__proto__ === null);//true</span><br></pre></td></tr></table></figure>
-<p><img src="/.io//xproto-2.png" alt="prototype"></p>
+<p><img src="/2017/12/22/javascript再学习之prototype/xproto-2.png" alt="prototype"></p>
 <p>参考 <a href="http://varnull.cn/cong-\_\_proto\_\_-prototype-shuo-qi/" target="_blank" rel="noopener">从 __proto__ prototype 说起</a></p>
 
       
@@ -534,8 +534,10 @@
     
       <section class="gitment" id="comments">
     <div id="gitment" class="article article-type-post"></div>
-    <link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
-    <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+    <!-- <link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+    <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script> -->
+    <link rel="stylesheet" href="https://jjeejj.github.io/css/gitment.css">
+    <script src="https://jjeejj.github.io/js/gitment.js"></script>
     <script>
     var gitment = new Gitment({
       id: 'javascript再学习之prototype',
