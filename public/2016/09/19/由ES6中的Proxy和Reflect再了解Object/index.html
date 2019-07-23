@@ -24,15 +24,15 @@
 <meta property="og:site_name" content="技术笔记">
 <meta property="og:description" content="最近在看ES6， 对Object又有了新的理解, 主要体现在 Object的用法和原型上。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://muxiaobai.github.io/.io//201609201006.PNG">
-<meta property="og:image" content="https://muxiaobai.github.io/.io//201609201019.PNG">
-<meta property="og:image" content="https://muxiaobai.github.io/.io//201609201219.PNG">
-<meta property="og:image" content="https://muxiaobai.github.io/.io//20160920.png">
+<meta property="og:image" content="https://muxiaobai.github.io/2016/09/19/由ES6中的Proxy和Reflect再了解Object/201609201006.PNG">
+<meta property="og:image" content="https://muxiaobai.github.io/2016/09/19/由ES6中的Proxy和Reflect再了解Object/201609201019.PNG">
+<meta property="og:image" content="https://muxiaobai.github.io/2016/09/19/由ES6中的Proxy和Reflect再了解Object/201609201219.PNG">
+<meta property="og:image" content="https://muxiaobai.github.io/2016/09/19/由ES6中的Proxy和Reflect再了解Object/20160920.png">
 <meta property="og:updated_time" content="2016-09-20T04:52:11.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="由ES6中的Proxy和Reflect再了解Object">
 <meta name="twitter:description" content="最近在看ES6， 对Object又有了新的理解, 主要体现在 Object的用法和原型上。">
-<meta name="twitter:image" content="https://muxiaobai.github.io/.io//201609201006.PNG">
+<meta name="twitter:image" content="https://muxiaobai.github.io/2016/09/19/由ES6中的Proxy和Reflect再了解Object/201609201006.PNG">
 
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
@@ -354,10 +354,10 @@
 <li>construct()//和new 有关的</li>
 </ul>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">console.log(Reflect);</span><br></pre></td></tr></table></figure>
-<p><img src="/.io//201609201006.PNG" alt="Reflect中的方法"></p>
+<p><img src="/2016/09/19/由ES6中的Proxy和Reflect再了解Object/201609201006.PNG" alt="Reflect中的方法"></p>
 <p>5+2+2+2+1+1模板出现，下面来看具体的一个使用:</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">var target=&#123;&#125;;</span><br><span class="line">var handler=&#123;</span><br><span class="line">    get:function(target,property)&#123;</span><br><span class="line">        console.log(&apos;handler get&apos;);</span><br><span class="line">        return target[property];</span><br><span class="line">    &#125;,</span><br><span class="line">    set(target,propkey,value)&#123;</span><br><span class="line">        console.log(&quot;handler set value:&quot;+value);</span><br><span class="line">        return Reflect.set(...arguments);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line">var proxy=new Proxy(target,handler);</span><br><span class="line">proxy.a=&apos;a&apos;;</span><br><span class="line">console.log(&quot;target a:&quot;+target.a);//实际上不知道target，只知道proxy，所以所有的对target的操作都落在proxy上了。</span><br><span class="line">console.log(&quot;proxy a:&quot;+proxy.a);//通过proxy取得target上的值，广义上，通过操作proxy来操作target。</span><br></pre></td></tr></table></figure>
-<p><img src="/.io//201609201019.PNG" alt="Reflect中的方法"><br>在上面的例子中，通过两个方法来说明Proxy和Reflect，我们一个一个看，handler中的set方法，在我们对proxy.a进行赋值的时候，Proxy对象首先通过handler的set，然后输出”handler set value: a”,紧接着return了Reflect.set(),这里通过反射静态类方法，调用set，然后把proxy传过来的参数通过，各个参数对应起来，就相当于直接调用target[‘propkey’]=value。</p>
+<p><img src="/2016/09/19/由ES6中的Proxy和Reflect再了解Object/201609201019.PNG" alt="Reflect中的方法"><br>在上面的例子中，通过两个方法来说明Proxy和Reflect，我们一个一个看，handler中的set方法，在我们对proxy.a进行赋值的时候，Proxy对象首先通过handler的set，然后输出”handler set value: a”,紧接着return了Reflect.set(),这里通过反射静态类方法，调用set，然后把proxy传过来的参数通过，各个参数对应起来，就相当于直接调用target[‘propkey’]=value。</p>
 <blockquote>
 <p>注:这里的Reflect调用就是实现其默认行为。</p>
 </blockquote>
@@ -370,14 +370,14 @@
 </blockquote>
 <h2 id="回头再看Object"><a href="#回头再看Object" class="headerlink" title="回头再看Object"></a>回头再看Object</h2><p>先看一段代码:</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">var Person=function(name,age)&#123;</span><br><span class="line">    this[&apos;Person function&apos;]=&apos;Person function&apos;;</span><br><span class="line">    this.name=name;</span><br><span class="line">    this.age=age;</span><br><span class="line">    this.getAge=function()&#123;return this.age;&#125;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Person.prototype=&#123;constructor:Person,&apos;Person.prototype&apos;:&apos;Person.prototype&apos;&#125;;</span><br><span class="line">var myPerson=new Person(&apos;zhang&apos;,20);</span><br><span class="line">Object.preventExtensions(myPerson);</span><br><span class="line">//Object.freeze(myPerson);</span><br><span class="line"></span><br><span class="line">myPerson.a=&apos;as&apos;;</span><br><span class="line">console.log(myPerson);</span><br><span class="line">console.log(myPerson.a);//undifined因为myPerson被freeze了，其中freeze是冻结，preventExtensions是组织扩展，阻止添加新属性</span><br><span class="line">console.log(myPerson.__proto__);</span><br><span class="line">console.log(Object.getPrototypeOf(myPerson));</span><br><span class="line">console.log(Person.prototype);//</span><br><span class="line"></span><br><span class="line">console.log(myPerson.constructor==Person);//true</span><br><span class="line">console.log(Person.prototype.constructor);</span><br></pre></td></tr></table></figure>
-<p><img src="/.io//201609201219.PNG" alt="Reflect中的方法"></p>
+<p><img src="/2016/09/19/由ES6中的Proxy和Reflect再了解Object/201609201219.PNG" alt="Reflect中的方法"></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;constructor:Person,&apos;Person.prototype&apos;:&apos;Person.prototype&apos;&#125;;//这是一个神奇的东西</span><br></pre></td></tr></table></figure>
 <p>myPerson.<strong>proto</strong>===Object.getPrototypeOf（myPerson）==Person.prototype</p>
 <p>实例的<strong>proto</strong>是这个神奇的东西，她的另一种取法是通过Object.getPrototypeOf(实例)，对应构造函数的prototype也是这个神奇的东西，而这个东西的constructor就是前面的函数。那我们再试一次函数的prototype是什么?<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">console.log(Person.prototype.constructor.prototype);</span><br></pre></td></tr></table></figure></p>
 <p>结果显示:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;constructor:Person,&apos;Person.prototype&apos;:&apos;Person.prototype&apos;&#125;;还是这个神奇的东西</span><br></pre></td></tr></table></figure></p>
 <p>挺神奇的，是吧?</p>
 <h2 id="Object原型分析"><a href="#Object原型分析" class="headerlink" title="Object原型分析"></a>Object原型分析</h2><p>借用一幅图来说明</p>
-<p><img src="/.io//20160920.png" alt="原型关系"><br>图片来源；<a href="https://zhuanlan.zhihu.com/p/22189387" target="_blank" rel="noopener">Javascript的原型链图（原创 知乎首发）</a><br>非常推荐用户去读一读这篇文章。到此结束！</p>
+<p><img src="/2016/09/19/由ES6中的Proxy和Reflect再了解Object/20160920.png" alt="原型关系"><br>图片来源；<a href="https://zhuanlan.zhihu.com/p/22189387" target="_blank" rel="noopener">Javascript的原型链图（原创 知乎首发）</a><br>非常推荐用户去读一读这篇文章。到此结束！</p>
 
       
     </div>

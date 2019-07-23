@@ -24,16 +24,16 @@
 <meta property="og:site_name" content="技术笔记">
 <meta property="og:description" content="SVN安装和错误">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://muxiaobai.github.io/.io//201606192134.jpg">
-<meta property="og:image" content="https://muxiaobai.github.io/.io//201606192138.jpg">
-<meta property="og:image" content="https://muxiaobai.github.io/.io//201606192139.jpg">
-<meta property="og:image" content="https://muxiaobai.github.io/.io//201606192140.jpg">
-<meta property="og:image" content="https://muxiaobai.github.io/.io//201606192141.jpg">
+<meta property="og:image" content="https://muxiaobai.github.io/2016/06/19/Linux-下安装SVN服务器/201606192134.jpg">
+<meta property="og:image" content="https://muxiaobai.github.io/2016/06/19/Linux-下安装SVN服务器/201606192138.jpg">
+<meta property="og:image" content="https://muxiaobai.github.io/2016/06/19/Linux-下安装SVN服务器/201606192139.jpg">
+<meta property="og:image" content="https://muxiaobai.github.io/2016/06/19/Linux-下安装SVN服务器/201606192140.jpg">
+<meta property="og:image" content="https://muxiaobai.github.io/2016/06/19/Linux-下安装SVN服务器/201606192141.jpg">
 <meta property="og:updated_time" content="2016-08-31T12:24:36.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Linux 下安装SVN服务器">
 <meta name="twitter:description" content="SVN安装和错误">
-<meta name="twitter:image" content="https://muxiaobai.github.io/.io//201606192134.jpg">
+<meta name="twitter:image" content="https://muxiaobai.github.io/2016/06/19/Linux-下安装SVN服务器/201606192134.jpg">
 
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
@@ -344,10 +344,10 @@
           
         <h3 id="1、安装步骤如下："><a href="#1、安装步骤如下：" class="headerlink" title="1、安装步骤如下："></a>1、安装步骤如下：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install subversion</span><br></pre></td></tr></table></figure>
 <a id="more"></a>
-<h3 id="2、输入rpm-ql-subversion查看安装位置，如下图："><a href="#2、输入rpm-ql-subversion查看安装位置，如下图：" class="headerlink" title="2、输入rpm -ql subversion查看安装位置，如下图："></a>2、输入rpm -ql subversion查看安装位置，如下图：</h3><p>我们知道svn在bin目录下生成了几个二进制文件。<br><img src="/.io//201606192134.jpg" alt="文件目录"><br>输入 svn –help可以查看svn的使用方法，如下图。<br><img src="/.io//201606192138.jpg" alt="svn方法"></p>
+<h3 id="2、输入rpm-ql-subversion查看安装位置，如下图："><a href="#2、输入rpm-ql-subversion查看安装位置，如下图：" class="headerlink" title="2、输入rpm -ql subversion查看安装位置，如下图："></a>2、输入rpm -ql subversion查看安装位置，如下图：</h3><p>我们知道svn在bin目录下生成了几个二进制文件。<br><img src="/2016/06/19/Linux-下安装SVN服务器/201606192134.jpg" alt="文件目录"><br>输入 svn –help可以查看svn的使用方法，如下图。<br><img src="/2016/06/19/Linux-下安装SVN服务器/201606192138.jpg" alt="svn方法"></p>
 <h3 id="3、创建svn版本库目录"><a href="#3、创建svn版本库目录" class="headerlink" title="3、创建svn版本库目录"></a>3、创建svn版本库目录</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mkdir -p /var/svn/svnrepos</span><br></pre></td></tr></table></figure>
 <h3 id="4、创建版本库"><a href="#4、创建版本库" class="headerlink" title="4、创建版本库"></a>4、创建版本库</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">svnadmin create /var/svn/svnrepos</span><br></pre></td></tr></table></figure>
-<p>执行了这个命令之后会在/var/svn/svnrepos目录下生成如下这些文件<br><img src="/.io//201606192139.jpg" alt="版本目录"></p>
+<p>执行了这个命令之后会在/var/svn/svnrepos目录下生成如下这些文件<br><img src="/2016/06/19/Linux-下安装SVN服务器/201606192139.jpg" alt="版本目录"></p>
 <h3 id="5、进入conf目录（该svn版本库配置文件）"><a href="#5、进入conf目录（该svn版本库配置文件）" class="headerlink" title="5、进入conf目录（该svn版本库配置文件）"></a>5、进入conf目录（该svn版本库配置文件）</h3><p>authz文件是权限控制文件<br>passwd是帐号密码文件<br>svnserve.conf SVN服务配置文件</p>
 <h3 id="6、设置帐号密码"><a href="#6、设置帐号密码" class="headerlink" title="6、设置帐号密码"></a>6、设置帐号密码</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vi passwd</span><br></pre></td></tr></table></figure>
 <p>在[users]块中添加用户和密码，格式：帐号=密码，如zhang=zhang</p>
@@ -357,8 +357,8 @@
 <h3 id="8、修改svnserve-conf文件"><a href="#8、修改svnserve-conf文件" class="headerlink" title="8、修改svnserve.conf文件"></a>8、修改svnserve.conf文件</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vi svnserve.conf（注意前面没有空格）</span><br></pre></td></tr></table></figure>
 <p>打开下面的几个注释：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">anon-access = read #匿名用户可读</span><br><span class="line">auth-access = write #授权用户可写</span><br><span class="line">password-db = passwd #使用哪个文件作为账号文件</span><br><span class="line">authz-db = authz #使用哪个文件作为权限文件</span><br><span class="line">realm = /var/svn/svnrepos # 认证空间名，版本库所在目录</span><br></pre></td></tr></table></figure></p>
 <h3 id="9、启动svn版本库"><a href="#9、启动svn版本库" class="headerlink" title="9、启动svn版本库"></a>9、启动svn版本库</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">svnserve -d -r /var/svn/svnrepos</span><br></pre></td></tr></table></figure>
-<h3 id="10、在windows上测试"><a href="#10、在windows上测试" class="headerlink" title="10、在windows上测试"></a>10、在windows上测试</h3><p>新建一个测试文件夹，在该文件夹下右键选择 SVN checkout如下图(要事先安装TortoiseSVN)：<br>填写SVN的地址，如下图：<br>输入密码，如下图：<br><img src="/.io//201606192140.jpg" alt="右键单击"></p>
-<p><img src="/.io//201606192141.jpg" alt="填写SVN地址"></p>
+<h3 id="10、在windows上测试"><a href="#10、在windows上测试" class="headerlink" title="10、在windows上测试"></a>10、在windows上测试</h3><p>新建一个测试文件夹，在该文件夹下右键选择 SVN checkout如下图(要事先安装TortoiseSVN)：<br>填写SVN的地址，如下图：<br>输入密码，如下图：<br><img src="/2016/06/19/Linux-下安装SVN服务器/201606192140.jpg" alt="右键单击"></p>
+<p><img src="/2016/06/19/Linux-下安装SVN服务器/201606192141.jpg" alt="填写SVN地址"></p>
 <h1 id="svn-日志文件显示时间为1970-01-01-No-data-———-最终解决办法"><a href="#svn-日志文件显示时间为1970-01-01-No-data-———-最终解决办法" class="headerlink" title="svn 日志文件显示时间为1970-01-01 No data ———-最终解决办法"></a>svn 日志文件显示时间为1970-01-01 No data ———-最终解决办法</h1><p>此问题主要出现在svnserve文件中的anon-access访问权限的设置问题上。</p>
 <h5 id="如果anon-access-none时，按照文档中注释：禁止所有匿名访问，也就是说如果不在authz-db中开放访问的用户，是不会允许读写版本日志的，故系统对日志的读写也纳入禁止访问范围，"><a href="#如果anon-access-none时，按照文档中注释：禁止所有匿名访问，也就是说如果不在authz-db中开放访问的用户，是不会允许读写版本日志的，故系统对日志的读写也纳入禁止访问范围，" class="headerlink" title="如果anon-access = none时，按照文档中注释：禁止所有匿名访问，也就是说如果不在authz-db中开放访问的用户，是不会允许读写版本日志的，故系统对日志的读写也纳入禁止访问范围，"></a>如果anon-access = none时，按照文档中注释：禁止所有匿名访问，也就是说如果不在authz-db中开放访问的用户，是不会允许读写版本日志的，故系统对日志的读写也纳入禁止访问范围，</h5><h5 id="所以在查看日志时，出现时间日期显示为1970-01-01，-日志信息显示no-data。也就是这个原因。所以在设置svnserve中的访问权限时，请设置为-anon-access-read，只读模式。这样的话，日志文件即可显示正常。"><a href="#所以在查看日志时，出现时间日期显示为1970-01-01，-日志信息显示no-data。也就是这个原因。所以在设置svnserve中的访问权限时，请设置为-anon-access-read，只读模式。这样的话，日志文件即可显示正常。" class="headerlink" title="所以在查看日志时，出现时间日期显示为1970-01-01， 日志信息显示no data。也就是这个原因。所以在设置svnserve中的访问权限时，请设置为 anon-access = read，只读模式。这样的话，日志文件即可显示正常。"></a>所以在查看日志时，出现时间日期显示为1970-01-01， 日志信息显示no data。也就是这个原因。所以在设置svnserve中的访问权限时，请设置为 anon-access = read，只读模式。这样的话，日志文件即可显示正常。</h5><h2 id="但是，实践证明anon-access-none才是正确的。"><a href="#但是，实践证明anon-access-none才是正确的。" class="headerlink" title="但是，实践证明anon-access = none才是正确的。"></a>但是，实践证明<code>anon-access = none</code>才是正确的。</h2>
       

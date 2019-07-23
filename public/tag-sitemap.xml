@@ -51,14 +51,14 @@
     </url>
 
     <url>
-        <loc>https://muxiaobai.github.io/tags/Shell/</loc>
+        <loc>https://muxiaobai.github.io/tags/svn/</loc>
         <lastmod>2016-08-31T12:24:36.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
-        <loc>https://muxiaobai.github.io/tags/svn/</loc>
+        <loc>https://muxiaobai.github.io/tags/Shell/</loc>
         <lastmod>2016-08-31T12:24:36.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
@@ -100,6 +100,41 @@
     </url>
 
     <url>
+        <loc>https://muxiaobai.github.io/tags/I-O/</loc>
+        <lastmod>2016-08-31T12:24:37.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://muxiaobai.github.io/tags/File/</loc>
+        <lastmod>2016-08-31T12:24:37.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://muxiaobai.github.io/tags/Throwable/</loc>
+        <lastmod>2016-08-31T12:24:37.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://muxiaobai.github.io/tags/Error/</loc>
+        <lastmod>2016-08-31T12:24:37.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://muxiaobai.github.io/tags/Exception/</loc>
+        <lastmod>2016-08-31T12:24:37.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
         <loc>https://muxiaobai.github.io/tags/List/</loc>
         <lastmod>2016-08-31T12:24:37.000Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -129,41 +164,6 @@
 
     <url>
         <loc>https://muxiaobai.github.io/tags/Iterator/</loc>
-        <lastmod>2016-08-31T12:24:37.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://muxiaobai.github.io/tags/Throwable/</loc>
-        <lastmod>2016-08-31T12:24:37.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://muxiaobai.github.io/tags/Error/</loc>
-        <lastmod>2016-08-31T12:24:37.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://muxiaobai.github.io/tags/Exception/</loc>
-        <lastmod>2016-08-31T12:24:37.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://muxiaobai.github.io/tags/I-O/</loc>
-        <lastmod>2016-08-31T12:24:37.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://muxiaobai.github.io/tags/File/</loc>
         <lastmod>2016-08-31T12:24:37.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
@@ -437,28 +437,28 @@
 
     <url>
         <loc>https://muxiaobai.github.io/tags/CI/</loc>
-        <lastmod>2019-06-10T05:13:21.825Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://muxiaobai.github.io/tags/%E5%B7%A5%E5%85%B7/</loc>
-        <lastmod>2019-07-08T03:46:05.601Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://muxiaobai.github.io/tags/%E6%8F%92%E4%BB%B6/</loc>
-        <lastmod>2019-07-08T03:46:05.601Z</lastmod>
+        <lastmod>2019-07-19T02:50:05.792Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
         <loc>https://muxiaobai.github.io/tags/%E5%9F%BA%E7%A1%80%E5%91%BD%E4%BB%A4/</loc>
-        <lastmod>2019-07-11T08:18:28.243Z</lastmod>
+        <lastmod>2019-07-23T11:46:54.616Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://muxiaobai.github.io/tags/%E5%B7%A5%E5%85%B7/</loc>
+        <lastmod>2019-07-23T11:48:57.598Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://muxiaobai.github.io/tags/%E6%8F%92%E4%BB%B6/</loc>
+        <lastmod>2019-07-23T11:48:57.598Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>

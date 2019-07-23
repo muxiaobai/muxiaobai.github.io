@@ -24,19 +24,19 @@
 <meta property="og:site_name" content="技术笔记">
 <meta property="og:description" content="日志分析系统搭建">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://muxiaobai.github.io/.io//filebeat.png">
-<meta property="og:image" content="https://muxiaobai.github.io/.io//elasticsearch-init.png">
-<meta property="og:image" content="https://muxiaobai.github.io/.io//logstash-nginx.png">
-<meta property="og:image" content="https://muxiaobai.github.io/.io//elasticsearch-header.png">
-<meta property="og:image" content="https://muxiaobai.github.io/.io//data1.png">
-<meta property="og:image" content="https://muxiaobai.github.io/.io//data2.png">
-<meta property="og:image" content="https://muxiaobai.github.io/.io//kibaba2.png">
-<meta property="og:image" content="https://muxiaobai.github.io/.io//kibaba4.png">
+<meta property="og:image" content="https://muxiaobai.github.io/2019/05/18/使用ELK分析日志/filebeat.png">
+<meta property="og:image" content="https://muxiaobai.github.io/2019/05/18/使用ELK分析日志/elasticsearch-init.png">
+<meta property="og:image" content="https://muxiaobai.github.io/2019/05/18/使用ELK分析日志/logstash-nginx.png">
+<meta property="og:image" content="https://muxiaobai.github.io/2019/05/18/使用ELK分析日志/elasticsearch-header.png">
+<meta property="og:image" content="https://muxiaobai.github.io/2019/05/18/使用ELK分析日志/data1.png">
+<meta property="og:image" content="https://muxiaobai.github.io/2019/05/18/使用ELK分析日志/data2.png">
+<meta property="og:image" content="https://muxiaobai.github.io/2019/05/18/使用ELK分析日志/kibaba2.png">
+<meta property="og:image" content="https://muxiaobai.github.io/2019/05/18/使用ELK分析日志/kibaba4.png">
 <meta property="og:updated_time" content="2019-05-19T04:29:40.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="使用ELK分析日志">
 <meta name="twitter:description" content="日志分析系统搭建">
-<meta name="twitter:image" content="https://muxiaobai.github.io/.io//filebeat.png">
+<meta name="twitter:image" content="https://muxiaobai.github.io/2019/05/18/使用ELK分析日志/filebeat.png">
 
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
@@ -348,7 +348,7 @@
         <p><a href="https://www.elastic.co/cn/elk-stack" target="_blank" rel="noopener">elk 官网介绍</a><br>要解决的问题：<br>对于日志等文件，需要进行分析，例如：访问IP数，什么时候访问最多，用户量最大；<br>简单的架构就是直接使用filebeat来获取到数据。<br>还有一种实现方式是：拉取文件后，先通过Logstash（tools）把对应的文件分析出来，然后输出到ElasticSearch（data）中然后使用kibaba来进行虚拟化的展示（view）。<br>还可以加上output的输出到队列缓存中等。</p>
 <h3 id="主要技术手段"><a href="#主要技术手段" class="headerlink" title="主要技术手段"></a>主要技术手段</h3><p>filebeat、Logstash、ElasticSearch、Kibaba</p>
 <h5 id="filebeat"><a href="#filebeat" class="headerlink" title="filebeat"></a>filebeat</h5><p>通常会有一个客户端和一个服务器，客户端运行在业务应用机上，可以访问到对应的日志文件，<br>然后连接服务器，服务器把数据发送到Logstash中，也可以把数据直接output到ElasticSearch内。</p>
-<p><img src="/.io//filebeat.png" alt="ElasticSearch控制台"></p>
+<p><img src="/2019/05/18/使用ELK分析日志/filebeat.png" alt="ElasticSearch控制台"></p>
 <h5 id="Logstash"><a href="#Logstash" class="headerlink" title="Logstash"></a>Logstash</h5><p>Logstash把获取到的数据进行过滤（filter）处理，把找到的文件进行分析，输出到ElasticSearch,</p>
 <h5 id="ElasticSearch"><a href="#ElasticSearch" class="headerlink" title="ElasticSearch"></a>ElasticSearch</h5><p>不用多讲，存储索引数据用的，基于Lucene，的分布式架构。在这种elk中充当数据源。</p>
 <h5 id="Kibaba"><a href="#Kibaba" class="headerlink" title="Kibaba"></a>Kibaba</h5><p>visual展示</p>
@@ -373,14 +373,14 @@
 <p>slave-1<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">cluster.name: muxiaobai-test</span><br><span class="line">node.name: slave-1</span><br><span class="line">#node.master: true</span><br><span class="line"></span><br><span class="line">network.host: 127.0.0.1</span><br><span class="line">http.port: 9500</span><br><span class="line"></span><br><span class="line">discovery.zen.ping.unicast.hosts: [&quot;127.0.0.1&quot;]</span><br></pre></td></tr></table></figure></p>
 <p>slave-2<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">cluster.name: muxiaobai-test</span><br><span class="line">node.name: slave-1</span><br><span class="line">#node.master: true</span><br><span class="line"></span><br><span class="line">network.host: 127.0.0.1</span><br><span class="line">http.port: 9400</span><br><span class="line"></span><br><span class="line">discovery.zen.ping.unicast.hosts: [&quot;127.0.0.1&quot;]</span><br></pre></td></tr></table></figure></p>
 <h5 id="使用elastic-head-图形化工具查看运行情况"><a href="#使用elastic-head-图形化工具查看运行情况" class="headerlink" title="使用elastic-head 图形化工具查看运行情况"></a>使用elastic-head 图形化工具查看运行情况</h5><p><a href="https://github.com/mobz/elasticsearch-head" target="_blank" rel="noopener">elastic-head github</a><br>需要node环境<br><code>npm install</code> <code>npm run start</code>默认9100端口 访问<a href="http://127.0.0.1:9100" target="_blank" rel="noopener">http://127.0.0.1:9100</a></p>
-<p><img src="/.io//elasticsearch-init.png" alt="Logstash日志进入ElasticSearch"></p>
+<p><img src="/2019/05/18/使用ELK分析日志/elasticsearch-init.png" alt="Logstash日志进入ElasticSearch"></p>
 <h5 id="使用kibaba"><a href="#使用kibaba" class="headerlink" title="使用kibaba"></a>使用kibaba</h5><p>默认端口5601，<a href="http://localhost:5601" target="_blank" rel="noopener">http://localhost:5601</a>,把对应的索引加进去。</p>
 <h4 id="操作如下"><a href="#操作如下" class="headerlink" title="操作如下"></a>操作如下</h4><p>首先访问 nginx ，地址：<a href="http://localhost" target="_blank" rel="noopener">http://localhost</a></p>
 <p>然后可以看到Logstash窗口输出的日志</p>
-<p><img src="/.io//logstash-nginx.png" alt="ElasticSearch控制台"></p>
-<p><a href="http://localhost:9100,中，可以看到访问日志的内容" target="_blank" rel="noopener">http://localhost:9100,中，可以看到访问日志的内容</a><br>效果如下：<br><img src="/.io//elasticsearch-header.png" alt="Logstash日志进入ElasticSearch"><br>具体切分的数据<br><img src="/.io//data1.png" alt="Logstash日志进入ElasticSearch"></p>
-<p><img src="/.io//data2.png" alt="Logstash日志进入ElasticSearch"></p>
-<p>创建了索引后，<br><img src="/.io//kibaba2.png" alt="Logstash日志进入ElasticSearch"><br>在kibaba中有默认的时间线，访问次数，即可展示<br><img src="/.io//kibaba4.png" alt="Logstash日志进入ElasticSearch"></p>
+<p><img src="/2019/05/18/使用ELK分析日志/logstash-nginx.png" alt="ElasticSearch控制台"></p>
+<p><a href="http://localhost:9100,中，可以看到访问日志的内容" target="_blank" rel="noopener">http://localhost:9100,中，可以看到访问日志的内容</a><br>效果如下：<br><img src="/2019/05/18/使用ELK分析日志/elasticsearch-header.png" alt="Logstash日志进入ElasticSearch"><br>具体切分的数据<br><img src="/2019/05/18/使用ELK分析日志/data1.png" alt="Logstash日志进入ElasticSearch"></p>
+<p><img src="/2019/05/18/使用ELK分析日志/data2.png" alt="Logstash日志进入ElasticSearch"></p>
+<p>创建了索引后，<br><img src="/2019/05/18/使用ELK分析日志/kibaba2.png" alt="Logstash日志进入ElasticSearch"><br>在kibaba中有默认的时间线，访问次数，即可展示<br><img src="/2019/05/18/使用ELK分析日志/kibaba4.png" alt="Logstash日志进入ElasticSearch"></p>
 <h3 id="使用filebeat"><a href="#使用filebeat" class="headerlink" title="使用filebeat"></a>使用filebeat</h3><p><a href="https://www.elastic.co/guide/en/beats/filebeat/7.0/filebeat-module-nginx.html#nginx-settings" target="_blank" rel="noopener">nginx filebeat 配置</a></p>
 <p>已经有模板，使用的时候先开启，然后安装，最后启动即可</p>
 <ul>

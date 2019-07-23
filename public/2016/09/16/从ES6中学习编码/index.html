@@ -24,13 +24,13 @@
 <meta property="og:site_name" content="技术笔记">
 <meta property="og:description" content="最近学习ECMAscript6，从字符串扩充上，学到了六种表示字符的方法，由此对编码格式又有了深入的了解。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://muxiaobai.github.io/.io//2011050311372042.png">
-<meta property="og:image" content="https://muxiaobai.github.io/.io//201105031137219627.png">
+<meta property="og:image" content="https://muxiaobai.github.io/2016/09/16/从ES6中学习编码/2011050311372042.png">
+<meta property="og:image" content="https://muxiaobai.github.io/2016/09/16/从ES6中学习编码/201105031137219627.png">
 <meta property="og:updated_time" content="2016-09-19T03:49:25.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="从ES6中学习编码">
 <meta name="twitter:description" content="最近学习ECMAscript6，从字符串扩充上，学到了六种表示字符的方法，由此对编码格式又有了深入的了解。">
-<meta name="twitter:image" content="https://muxiaobai.github.io/.io//2011050311372042.png">
+<meta name="twitter:image" content="https://muxiaobai.github.io/2016/09/16/从ES6中学习编码/2011050311372042.png">
 
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
@@ -428,7 +428,7 @@
 <blockquote>
 <p>小秘密:按住ALT+要查询的码值（注意，这里是十进制），松开即可显示出对应字符。例如：按住ALT+97,则会显示出’a’。</p>
 </blockquote>
-<p><img src="/.io//2011050311372042.png" alt="ASCII"><br><img src="/.io//201105031137219627.png" alt="ASCII扩展集"></p>
+<p><img src="/2016/09/16/从ES6中学习编码/2011050311372042.png" alt="ASCII"><br><img src="/2016/09/16/从ES6中学习编码/201105031137219627.png" alt="ASCII扩展集"></p>
 <h2 id="GB2312和GBK又有什么关系？"><a href="#GB2312和GBK又有什么关系？" class="headerlink" title="GB2312和GBK又有什么关系？"></a>GB2312和GBK又有什么关系？</h2><p>但是随着时间的推移，电脑也慢慢走进中国，可是电脑上不能显示汉字，这对于中国来说，是一个大问题。因此中国制定了GB2312字符集。</p>
 <p>我国专家把那些127号之后的奇异符号（即ASCII扩展集）取消掉，规定：一个小于127的字符的意义与原来相同，但两个大于127的字符连在一起时，就表示一个汉字，前面的一个字节（他称之为高字节）从0xA1用到 0xF7，后面一个字节（低字节）从0xA1到0xFE，这样我们就可以组合出大约7000多个简体汉字了。在这些编码里，还把数学符号、罗马希腊的 字母、日文的假名们都编进去了，连在ASCII里本来就有的数字、标点、字母都统统重新编了两个字节长的编码，这就是常说的”全角”字符，而原来在127号以下的那些就叫”半角”字符了。</p>
 <blockquote>

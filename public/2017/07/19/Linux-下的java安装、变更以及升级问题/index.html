@@ -23,12 +23,12 @@
 <meta property="og:site_name" content="技术笔记">
 <meta property="og:description" content="最近在研究hadoop，又牵扯到了java的linux安装，记录一下，方便日后查询">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://muxiaobai.github.io/.io//20170720125445.png">
+<meta property="og:image" content="https://muxiaobai.github.io/2017/07/19/Linux-下的java安装、变更以及升级问题/20170720125445.png">
 <meta property="og:updated_time" content="2019-01-22T08:13:43.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Linux 下的java安装、变更以及升级问题">
 <meta name="twitter:description" content="最近在研究hadoop，又牵扯到了java的linux安装，记录一下，方便日后查询">
-<meta name="twitter:image" content="https://muxiaobai.github.io/.io//20170720125445.png">
+<meta name="twitter:image" content="https://muxiaobai.github.io/2017/07/19/Linux-下的java安装、变更以及升级问题/20170720125445.png">
 
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
@@ -345,7 +345,7 @@
 <p>sudo update-alternatives –display java 展示<br>sudo update-alternatives –config java 配置<br>sudo update-alternatives –config javac 配置<br>sudo update-java-alternatives -l<br>需要选中一个</p>
 <hr>
 <p>hadoop配置文件 ，以及安装步骤<br><a href="https://ask.hellobi.com/blog/niupoop/8832" target="_blank" rel="noopener">hadoop配置文件</a></p>
-<p>window用cygwin64 总是失败，就转换到linux，一下子就启动成功了。<br><img src="/.io//20170720125445.png" alt="jps"><br>CentOS 7.0默认使用的是firewall作为防火墙，这样对于传统的 <code>service iptables stop</code> 就没有用了,</p>
+<p>window用cygwin64 总是失败，就转换到linux，一下子就启动成功了。<br><img src="/2017/07/19/Linux-下的java安装、变更以及升级问题/20170720125445.png" alt="jps"><br>CentOS 7.0默认使用的是firewall作为防火墙，这样对于传统的 <code>service iptables stop</code> 就没有用了,</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">systemctl stop firewalld.service #停止firewall</span><br><span class="line">systemctl disable firewalld.service #禁止firewall开机启动</span><br><span class="line">firewall-cmd --state #查看默认防火墙状态（关闭后显示notrunning，开启后显示running）</span><br></pre></td></tr></table></figure>
 
       
