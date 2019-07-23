@@ -8,7 +8,15 @@
 
     <url>
         <loc>https://muxiaobai.github.io/2017/09/17/Linux-%E5%9F%BA%E7%A1%80%E5%91%BD%E4%BB%A4%E6%80%BB%E7%BB%933/</loc>
-        <lastmod>2019-07-11T08:18:28.243Z</lastmod>
+        <lastmod>2019-07-23T11:46:54.616Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://muxiaobai.github.io/2016/08/27/%E6%B5%8B%E8%AF%95Travis%20CI/</loc>
+        <lastmod>2019-07-19T02:50:05.792Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
@@ -25,14 +33,6 @@
     <url>
         <loc>https://muxiaobai.github.io/2018/09/20/java-%E5%B8%B8%E7%94%A8%E4%BB%A3%E7%A0%81/</loc>
         <lastmod>2019-06-27T11:27:19.435Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>https://muxiaobai.github.io/2016/08/27/%E6%B5%8B%E8%AF%95Travis%20CI/</loc>
-        <lastmod>2019-06-10T05:13:21.825Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
@@ -455,6 +455,14 @@
     </url>
 
     <url>
+        <loc>https://muxiaobai.github.io/2016/06/25/Thinking-in-java-%E5%9F%BA%E7%A1%80%E4%B9%8B%E9%9B%86%E5%90%88%E6%A1%86%E6%9E%B6/</loc>
+        <lastmod>2016-08-31T12:24:37.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
         <loc>https://muxiaobai.github.io/2016/06/25/Thinking-in-java-%E5%9F%BA%E7%A1%80%E4%B9%8BI-O/</loc>
         <lastmod>2016-08-31T12:24:37.000Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -464,14 +472,6 @@
 
     <url>
         <loc>https://muxiaobai.github.io/2016/08/04/Thinking-in-java-%E5%9F%BA%E7%A1%80%E4%B9%8B%E5%BC%82%E5%B8%B8/</loc>
-        <lastmod>2016-08-31T12:24:37.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>https://muxiaobai.github.io/2016/06/25/Thinking-in-java-%E5%9F%BA%E7%A1%80%E4%B9%8B%E9%9B%86%E5%90%88%E6%A1%86%E6%9E%B6/</loc>
         <lastmod>2016-08-31T12:24:37.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>

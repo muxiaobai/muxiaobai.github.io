@@ -196,13 +196,6 @@
     </url>
 
     <url>
-        <loc>https://muxiaobai.github.io/categories/Travis/</loc>
-        <lastmod>2019-06-10T05:13:21.825Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
         <loc>https://muxiaobai.github.io/categories/java/</loc>
         <lastmod>2019-06-27T11:27:19.435Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -217,8 +210,15 @@
     </url>
 
     <url>
+        <loc>https://muxiaobai.github.io/categories/Travis/</loc>
+        <lastmod>2019-07-19T02:50:05.792Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
         <loc>https://muxiaobai.github.io/categories/Linux/</loc>
-        <lastmod>2019-07-11T08:18:28.243Z</lastmod>
+        <lastmod>2019-07-23T11:46:54.616Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
