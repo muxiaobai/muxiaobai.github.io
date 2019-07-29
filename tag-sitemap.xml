@@ -359,13 +359,6 @@
     </url>
 
     <url>
-        <loc>https://muxiaobai.github.io/tags/%E5%89%8D%E7%AB%AF/</loc>
-        <lastmod>2019-03-05T08:19:10.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
         <loc>https://muxiaobai.github.io/tags/nginx/</loc>
         <lastmod>2019-04-01T05:54:51.000Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -381,13 +374,6 @@
 
     <url>
         <loc>https://muxiaobai.github.io/tags/mongo/</loc>
-        <lastmod>2019-04-19T06:30:46.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://muxiaobai.github.io/tags/%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/</loc>
         <lastmod>2019-04-19T06:30:46.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
@@ -459,6 +445,20 @@
     <url>
         <loc>https://muxiaobai.github.io/tags/%E6%8F%92%E4%BB%B6/</loc>
         <lastmod>2019-07-23T11:48:57.598Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://muxiaobai.github.io/tags/%E5%89%8D%E7%AB%AF/</loc>
+        <lastmod>2019-07-29T11:28:29.034Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://muxiaobai.github.io/tags/%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/</loc>
+        <lastmod>2019-07-29T12:25:16.939Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
