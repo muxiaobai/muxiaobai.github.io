@@ -16,6 +16,19 @@ alert(options.attr('url')); //拿到选中项的url值
 
 ```
 
+#### ajax 设置请求头
+
+```
+ $.ajaxSetup({
+	beforeSend:function(request, settings) {
+		if (token) {
+		request.setRequestHeader("Authorization", token);
+		}
+	}
+});
+
+```
+
 #### Ajax,设置时间超时 
 
 ```
@@ -82,6 +95,24 @@ var xhr = $.ajax({
 }
 
 ```
+
+####  在类数组对象中找到其中符合条件的数据
+
+```
+var data = [{menuId:1,menuName:"菜单",parentMenuId:0},
+{menuId:2,menuName:"角色",parentMenuId:1},
+{menuId:3,menuName:"人员",parentMenuId:1}];
+getOne function(){
+	var menuId = 1;
+	function objFn(value, index, arr){
+		return value["menuId"]== menuId;
+	}
+	return data[data.findIndex(objFn)];//
+
+};
+```
+返回：{menuId:1,menuName:"菜单",parentMenuId:0}
+ES6语法 findIndex();
 
 #### 数组对象去重
 
