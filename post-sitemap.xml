@@ -7,6 +7,14 @@
     </url>
 
     <url>
+        <loc>https://muxiaobai.github.io/2019/06/27/tools-ide%E5%BF%AB%E6%8D%B7%E6%93%8D%E4%BD%9C/</loc>
+        <lastmod>2019-07-30T11:27:20.325Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
         <loc>https://muxiaobai.github.io/2019/07/29/git%E7%9A%84%E4%B8%80%E4%BA%9B%E5%85%B6%E5%AE%83%E6%93%8D%E4%BD%9C/</loc>
         <lastmod>2019-07-29T12:25:16.939Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -17,14 +25,6 @@
     <url>
         <loc>https://muxiaobai.github.io/2018/10/09/javascript-%E5%B8%B8%E7%94%A8%E4%BB%A3%E7%A0%81/</loc>
         <lastmod>2019-07-29T11:28:29.034Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>https://muxiaobai.github.io/2019/06/27/tools-ide%E5%BF%AB%E6%8D%B7%E6%93%8D%E4%BD%9C/</loc>
-        <lastmod>2019-07-23T11:48:57.598Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
@@ -463,7 +463,7 @@
     </url>
 
     <url>
-        <loc>https://muxiaobai.github.io/2016/06/25/Thinking-in-java-%E5%9F%BA%E7%A1%80%E4%B9%8BI-O/</loc>
+        <loc>https://muxiaobai.github.io/2016/08/04/Thinking-in-java-%E5%9F%BA%E7%A1%80%E4%B9%8B%E5%BC%82%E5%B8%B8/</loc>
         <lastmod>2016-08-31T12:24:37.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -471,7 +471,7 @@
     </url>
 
     <url>
-        <loc>https://muxiaobai.github.io/2016/08/04/Thinking-in-java-%E5%9F%BA%E7%A1%80%E4%B9%8B%E5%BC%82%E5%B8%B8/</loc>
+        <loc>https://muxiaobai.github.io/2016/06/25/Thinking-in-java-%E5%9F%BA%E7%A1%80%E4%B9%8BI-O/</loc>
         <lastmod>2016-08-31T12:24:37.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
