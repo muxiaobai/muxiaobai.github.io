@@ -54,6 +54,21 @@ E627DDBA 960A2153 69A2D98A C87C0607
 
 ## IDEA   
 
+###默认配置
+
+#### 滚轮字体大小
+
+Editor-----> General-----> Change font size(Zoom) with Ctrl+Mouse Wheel
+
+
+
+#### 自动导包
+
+![自动导包](/tools-ide快捷操作/AutoImport.png)
+
+勾选标注第1个选项，IntelliJ IDEA 将在我们书写代码的时候自动帮我们导入需要用到的包。但是对于那些同名的包，还是需要手动 Alt + Enter 进行导入的
+
+勾选标注 第2个选项，IntelliJ IDEA 将在我们书写代码的时候自动帮我们优化导入的包，比如自动去掉一些没有用到的包。
 
 ### 插件
 Key promoter X  展示快捷键
@@ -63,6 +78,8 @@ Free Mybatis plugin   mapper跳转到xml。xml跳转到mapper
 JRebel 热部署
 Lombok 不用写get set 方法
 GosnFormat json转java对象类
+
+
 ### 注释
 
 /**
@@ -146,6 +163,7 @@ ctrl +alt + s 设置
 ctrl +alt +shift + s 本项目设置 打包
 
 参考[IntelliJ-IDEA-Tutorial](https://github.com/judasn/IntelliJ-IDEA-Tutorial/blob/master/keymap-introduce.md)
+
 ## navicat
 
 ctrl + shift + r  选中内容执行
