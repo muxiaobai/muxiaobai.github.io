@@ -3772,7 +3772,7 @@
 <p>cat /etc/group  查看所有所属组</p>
 <p>chmod -R g+w </p>
 <p>chown -R bid:bids /home/newname  把/home/newname的所有者改为bid，所属组改为bids</p>
-<h2 id="网络和连接登录"><a href="#网络和连接登录" class="headerlink" title="网络和连接登录"></a>网络和连接登录</h2><p><code>arp</code>: 硬件地址(IP —-&gt; MAC地址)</p>
+<h2 id="网络和连接登录，上传下载文件"><a href="#网络和连接登录，上传下载文件" class="headerlink" title="网络和连接登录，上传下载文件"></a>网络和连接登录，上传下载文件</h2><p><code>arp</code>: 硬件地址(IP —-&gt; MAC地址)</p>
 <p><code>traceroute</code>: 到某一个地址的路由信息</p>
 <p><code>route</code>: 路由表</p>
 <p><code>ifconfig</code>: 配置网络信息</p>
@@ -3803,6 +3803,7 @@
 <p><code>curl</code> : </p>
 <p>远程连接：<code>ssh</code> <code>scp</code> <code>sftp</code> <code>telnet</code>(一般禁用) <code>ftp</code>(不常用)</p>
 <p><code>sz</code> file 下载文件到本机</p>
+<p><code>rz</code> 上传</p>
 <h4 id="端口占用6中方法"><a href="#端口占用6中方法" class="headerlink" title="端口占用6中方法"></a>端口占用6中方法</h4><p>ss -tnlp<br>netstat<br>lsof<br>fuser<br>nmap (NetWork Mapper) 网络监测和安全审计工具，可能无此命令<br>systemctl systemd系统的控制管理器和服务管理器 可能无此命令</p>
 <p>netstat -tlnaop</p>
 <p>-c 字符串  -u 用户名  -p pid</p>
