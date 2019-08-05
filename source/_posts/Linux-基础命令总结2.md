@@ -152,7 +152,7 @@ chown -R bid:bids /home/newname  把/home/newname的所有者改为bid，所属�
 
 
 
-## 网络和连接登录
+## 网络和连接登录，上传下载文件
 
 `arp`: 硬件地址(IP ----> MAC地址)
 
@@ -204,6 +204,8 @@ chown -R bid:bids /home/newname  把/home/newname的所有者改为bid，所属�
 远程连接：`ssh` `scp` `sftp` `telnet`(一般禁用) `ftp`(不常用)
 
 `sz` file 下载文件到本机
+
+`rz` 上传
 
 #### 端口占用6中方法
 

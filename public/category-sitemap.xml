@@ -203,13 +203,6 @@
     </url>
 
     <url>
-        <loc>https://muxiaobai.github.io/categories/Linux/</loc>
-        <lastmod>2019-07-23T11:46:54.616Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
         <loc>https://muxiaobai.github.io/categories/javascript/</loc>
         <lastmod>2019-07-29T11:28:29.034Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -218,7 +211,14 @@
 
     <url>
         <loc>https://muxiaobai.github.io/categories/%E5%B7%A5%E5%85%B7/</loc>
-        <lastmod>2019-07-29T12:25:16.939Z</lastmod>
+        <lastmod>2019-07-30T11:27:20.325Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://muxiaobai.github.io/categories/Linux/</loc>
+        <lastmod>2019-08-05T11:48:52.182Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
