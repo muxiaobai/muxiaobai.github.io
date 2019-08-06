@@ -13,6 +13,7 @@ public/
 # Idea#
 .idea
 .iml
+.imi
 
 # Compiled class file
 *.class
