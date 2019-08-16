@@ -34,7 +34,6 @@ java -jar arthas-boot.jar --target-ip 0.0.0.0
 - thread 查线程
 - jvm 当前jvm信息
 - sysprop(sysenv) 系统参数(System Property)(System Environment Variables)
-
 - jad 反编译
 - sc (search class)查jvm加载的类 -d 加载的信息 classLoaderHash 哪一个ClassLoader加载的类
 - sm (search method) 查class方法
