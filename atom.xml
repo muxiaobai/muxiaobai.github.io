@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://muxiaobai.github.io/"/>
-  <updated>2019-08-16T05:53:40.809Z</updated>
+  <updated>2019-08-16T05:56:43.520Z</updated>
   <id>https://muxiaobai.github.io/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="https://muxiaobai.github.io/2019/08/16/java%E7%BA%BF%E4%B8%8A%E4%BB%A3%E7%A0%81%E7%9B%91%E6%8E%A7-%E5%B7%A5%E5%85%B7-%E6%B1%87%E6%80%BB/"/>
     <id>https://muxiaobai.github.io/2019/08/16/java线上代码监控-工具-汇总/</id>
     <published>2019-08-16T05:32:13.000Z</published>
-    <updated>2019-08-16T05:53:40.809Z</updated>
+    <updated>2019-08-16T05:56:43.520Z</updated>
     
     <content type="html"><![CDATA[<p>强力推荐alibaba的arthas</p><h2 id="arthas"><a href="#arthas" class="headerlink" title="arthas"></a>arthas</h2><p>官网<a href="https://alibaba.github.io/arthas" target="_blank" rel="noopener">https://alibaba.github.io/arthas</a></p><p>教程<a href="https://alibaba.github.io/arthas/arthas-tutorials?language=cn&amp;id=arthas-basics" target="_blank" rel="noopener">Arthas 基础教程</a></p><p>教程<a href="https://alibaba.github.io/arthas/arthas-tutorials?language=cn&amp;id=arthas-advanced" target="_blank" rel="noopener">Arthas 进阶教程</a></p><p>启动</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">wget https://alibaba.github.io/arthas/arthas-boot.jar</span><br><span class="line">java -jar arthas-boot.jar --target-ip 0.0.0.0</span><br></pre></td></tr></table></figure><p>选择对应的main</p><p>通用命令</p><ul><li>keymap 快捷键</li><li>help</li><li>Q ctrl+c 退出当前命令</li></ul><p>常用命令</p><ul><li>dashboard 实时看板</li><li>thread 查线程</li><li>jvm 当前jvm信息</li><li><p>sysprop(sysenv) 系统参数(System Property)(System Environment Variables)</p></li><li><p>jad 反编译</p></li><li>sc (search class)查jvm加载的类 -d 加载的信息 classLoaderHash 哪一个ClassLoader加载的类</li><li>sm (search method) 查class方法</li><li>mc (Memory Compiler) 使用指定的ClassLoader编译java</li><li>redefine 热更新代码</li><li>watch 方法执行数据观测（实时调用）</li><li>ognl 动态执行代码</li></ul><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">反编译 修改 编译 热更新</span><br><span class="line">jad --source-only com.example.demo.arthas.user.UserController &gt; /tmp/UserController.java</span><br><span class="line">vim /tmp/UserController.java</span><br><span class="line">mc /tmp/UserController.java -d /tmp </span><br><span class="line">redefine /tmp/com/example/demo/arthas/user/UserController.class</span><br></pre></td></tr></table></figure><h2 id="其它监控"><a href="#其它监控" class="headerlink" title="其它监控"></a>其它监控</h2><p>Druid连接池 数据库监控 参考 <a href="https://muxiaobai.github.io/2018/11/22/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9B%91%E6%8E%A7-Druid%E7%9B%91%E6%8E%A7%E9%85%8D%E7%BD%AE/">数据库监控-Druid监控配置</a><br>Javamelody 传统应用 参考 <a href="https://muxiaobai.github.io/2017/08/02/Javamelody-%E5%B7%A5%E5%85%B7/">Javamelody 工具</a><br>jre自带的工具 jconsole jvisualvm参考 <a href="https://muxiaobai.github.io/2018/11/22/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3JVM%E4%B9%8B%E8%BF%9C%E7%A8%8B%E7%9B%91%E6%8E%A7/">深入理解JVM之远程监控</a></p>]]></content>
     
