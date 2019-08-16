@@ -852,9 +852,9 @@ a {
 }
 #header .header-nav .social .GitHub {
   background: url("/img/GitHub.png") center no-repeat #000;
-  -webkit-background-size: 75%;
-  -moz-background-size: 75%;
-  background-size: 75%;
+  -webkit-background-size: 110%;
+  -moz-background-size: 110%;
+  background-size: 110%;
 }
 #header .header-nav .social .CodePen {
   background: url("//cdn.bootcss.com/logos/0.2.0/codepen-icon.svg") no-repeat #000;
