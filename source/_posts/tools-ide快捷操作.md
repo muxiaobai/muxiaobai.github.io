@@ -6,6 +6,16 @@ categories: 工具
 description: "日常工具快捷操作"
 ---
 
+## vs Code
+GitLens git 操作
+vscode-icons 文件图标
+Beautify 美化代码
+CSS Peek 从html的class跳转到css文件对应的位置
+IntelliSense for CSS class names in HTML 自动提示CSS的class
+Markdown Preview markdown 预览
+
+![vscode 插件](tools-ide快捷操作/vscodeplugins.png)
+
 
 ## sublime
 
@@ -64,21 +74,28 @@ Editor-----> General-----> Change font size(Zoom) with Ctrl+Mouse Wheel
 
 #### 自动导包
 
-![自动导包](/tools-ide快捷操作/AutoImport.png)
+![自动导包](tools-ide快捷操作/AutoImport.png)
 
 勾选标注第1个选项，IntelliJ IDEA 将在我们书写代码的时候自动帮我们导入需要用到的包。但是对于那些同名的包，还是需要手动 Alt + Enter 进行导入的
 
 勾选标注 第2个选项，IntelliJ IDEA 将在我们书写代码的时候自动帮我们优化导入的包，比如自动去掉一些没有用到的包。
 
 ### 插件
-Key promoter X  展示快捷键
-Alibaba Java Coding Guidelines 代码检测
-SonarLint  代码检查
-Free Mybatis plugin   mapper跳转到xml。xml跳转到mapper
-JRebel 热部署
-Lombok 不用写get set 方法
-GosnFormat json转java对象类
 
+个人意见，仅供参考,顺序代表推荐强度
+
+- Alibaba Java Coding Guidelines 代码检测
+- JRebel for Intellij 热部署 （收费）
+- Lombok 不用写get set 方法
+- save-action  保存的时候导包，格式化代码
+- FindBugs Idea 扫描代码，可能出现的bug
+- Free Mybatis plugin   mapper跳转到xml。xml跳转到mapper
+- Key promoter X  展示快捷键
+- Statistic 代码统计
+- Translation  Google 翻译 
+- jclasslib Bytecode viewer 查看字节码文件
+- GosnFormat json转java对象类
+- SonarLint  代码检查
 
 ### 注释
 
@@ -161,6 +178,7 @@ ctrl + shift + z 撤回的撤回
 
 ctrl +alt + s 设置
 ctrl +alt +shift + s 本项目设置 打包
+
 
 参考[IntelliJ-IDEA-Tutorial](https://github.com/judasn/IntelliJ-IDEA-Tutorial/blob/master/keymap-introduce.md)
 

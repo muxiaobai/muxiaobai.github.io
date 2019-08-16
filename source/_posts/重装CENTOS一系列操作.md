@@ -40,6 +40,17 @@ python 库 g++ numpy pands matplotlib sklearn xgboost tensroflow
 
 
 bash Anaconda-2.1.0-Linux-x86_64.sh
+#### CentOS7 联网问题
+
+cd /etc/sysconfig/network-scripts打开配置文件
+
+vi ifcfg-ens33这里可能你的文件名不是这个，但是找前面是 ifcfg-ens 的就是了
+
+将文件里的 ONBOOT=no，改为ONBOOT=yes，然后保存并退出（不要忘记保存！！）
+
+修改完成之后需要重新启动一下网络服务，才能生效。使用下面的命令。
+
+service network restart
 
 #### 环境变量
 

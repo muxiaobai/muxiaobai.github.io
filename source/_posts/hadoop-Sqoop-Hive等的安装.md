@@ -48,7 +48,10 @@ Spark Streaming 跟Storm类似，只不过Spark Streaming是小时间窗口的�
 Spark SQL
 
 
-#### Zookeeper
+#### Zookeeper 分布式协调服务
+
+在此基础上 加上netty alibaba开发出了Dubbo服务治理。
+
 
 
 
