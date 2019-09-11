@@ -4,6 +4,50 @@
   
     
     <entry>
+      <title><![CDATA[devops之docker]]></title>
+      <url>https://muxiaobai.github.io/2019/08/31/devops%E4%B9%8Bdocker/</url>
+      <content type="html"><![CDATA[<hr>
+<p>官网 hub.docker.com</p>
+<p>docker login/logout</p>
+<h4 id="远程镜像"><a href="#远程镜像" class="headerlink" title="远程镜像"></a>远程镜像</h4><p>docker pull mysql<br>docker push<br>docker search </p>
+<h3 id="本地镜像-image"><a href="#本地镜像-image" class="headerlink" title="本地镜像 image"></a>本地镜像 image</h3><p>docker images<br>docker rmi</p>
+<h3 id="网络-network"><a href="#网络-network" class="headerlink" title="网络 network"></a>网络 network</h3><p>172.17.0.1/16 以下都可以是使用</p>
+<p>docker network ls<br>docker network inspect mysql-net<br>docker network create –subnet=172.19.0.0/24 mysql-net</p>
+<h3 id="volume"><a href="#volume" class="headerlink" title="volume"></a>volume</h3><p>docker volume create –name v1<br>docker volumn inspect</p>
+<h3 id="容器-container"><a href="#容器-container" class="headerlink" title="容器 container"></a>容器 container</h3><p>docker run -d –name mmmysql -p 3300:3306 -m 500M<br>-v v1:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=123456 –privileged<br>–net=mysql-net –ip 172.19.0.2 mysql:latest</p>
+<p>mvn clean clean package docker:build -Dmaven.test.skip=true</p>
+<p>docker run -d –name tomcat1 -p 3300:3306 –net mysql-net –ip 172.19.0.2 -v v1:/var/lib/mysql mytomcat:latest</p>
+<h3 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h3><p>docker ps -a<br>docker ps<br>docker exec -it mmmysql /bin/bash<br>docker logs -f –tail=100 mmmysql  最新的100行<br>docker inspect mmmysql</p>
+<hr>
+<p>docker-compose.yml docker 编排</p>
+<p><img src="/2019/08/31/devops之docker/docker.PNG" alt="docker请求"></p>
+<p>K8s</p>
+<h4 id="Pod"><a href="#Pod" class="headerlink" title="Pod"></a>Pod</h4><p>Pod  (container-mysql1,container-mysql2,container-mysql3)<br>一个Pod包含一类的container</p>
+<h4 id="Node"><a href="#Node" class="headerlink" title="Node"></a>Node</h4><p>Node一台机器多个Pod<br>Kubelet操作Pod<br>docker<br><img src="/2019/08/31/devops之docker/Node.PNG" alt="Node Pod"></p>
+<h4 id="Service"><a href="#Service" class="headerlink" title="Service"></a>Service</h4><p>label:不同的Node内部的Pod，同一个label 叫Service<br>mysql1  mysql2<br><img src="/2019/08/31/devops之docker/Service.PNG" alt="Service label"></p>
+<p>####<br>master Node Worker Node 调度算法：Scheduler APIServer ControllerManager<br><img src="/2019/08/31/devops之docker/kub.PNG" alt="kub结构"><br>ReplicaSet 对Pod进行扩缩容</p>
+<p>对Pod滚动更新：Deployment</p>
+<p>分布式ETCD数据存储</p>
+<p>使用者通过Kubectl操作K8s和docker<br><img src="/2019/08/31/devops之docker/useropera.PNG" alt="Node Pod"></p>
+<hr>
+]]></content>
+      
+        <categories>
+            
+            <category> devops </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> devops </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[java线上代码监控-工具(汇总)]]></title>
       <url>https://muxiaobai.github.io/2019/08/16/java%E7%BA%BF%E4%B8%8A%E4%BB%A3%E7%A0%81%E7%9B%91%E6%8E%A7-%E5%B7%A5%E5%85%B7-%E6%B1%87%E6%80%BB/</url>
       <content type="html"><![CDATA[<p>强力推荐alibaba的arthas</p>
