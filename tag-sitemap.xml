@@ -51,14 +51,14 @@
     </url>
 
     <url>
-        <loc>https://muxiaobai.github.io/tags/Shell/</loc>
+        <loc>https://muxiaobai.github.io/tags/svn/</loc>
         <lastmod>2016-08-31T12:24:36.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
-        <loc>https://muxiaobai.github.io/tags/svn/</loc>
+        <loc>https://muxiaobai.github.io/tags/Shell/</loc>
         <lastmod>2016-08-31T12:24:36.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
@@ -100,6 +100,20 @@
     </url>
 
     <url>
+        <loc>https://muxiaobai.github.io/tags/I-O/</loc>
+        <lastmod>2016-08-31T12:24:37.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://muxiaobai.github.io/tags/File/</loc>
+        <lastmod>2016-08-31T12:24:37.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
         <loc>https://muxiaobai.github.io/tags/Throwable/</loc>
         <lastmod>2016-08-31T12:24:37.000Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -115,20 +129,6 @@
 
     <url>
         <loc>https://muxiaobai.github.io/tags/Exception/</loc>
-        <lastmod>2016-08-31T12:24:37.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://muxiaobai.github.io/tags/I-O/</loc>
-        <lastmod>2016-08-31T12:24:37.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://muxiaobai.github.io/tags/File/</loc>
         <lastmod>2016-08-31T12:24:37.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
@@ -422,13 +422,6 @@
     </url>
 
     <url>
-        <loc>https://muxiaobai.github.io/tags/%E5%9F%BA%E7%A1%80%E5%91%BD%E4%BB%A4/</loc>
-        <lastmod>2019-08-05T11:48:52.182Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
         <loc>https://muxiaobai.github.io/tags/%E7%B3%BB%E7%BB%9F/</loc>
         <lastmod>2019-08-05T11:48:52.182Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -466,6 +459,13 @@
     <url>
         <loc>https://muxiaobai.github.io/tags/devops/</loc>
         <lastmod>2019-09-11T03:44:49.362Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://muxiaobai.github.io/tags/%E5%9F%BA%E7%A1%80%E5%91%BD%E4%BB%A4/</loc>
+        <lastmod>2019-09-18T13:50:38.337Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>

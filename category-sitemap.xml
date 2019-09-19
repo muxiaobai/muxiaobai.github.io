@@ -210,22 +210,22 @@
     </url>
 
     <url>
+        <loc>https://muxiaobai.github.io/categories/devops/</loc>
+        <lastmod>2019-09-11T03:44:49.362Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
         <loc>https://muxiaobai.github.io/categories/Linux/</loc>
-        <lastmod>2019-08-16T05:56:13.336Z</lastmod>
+        <lastmod>2019-09-18T13:50:38.337Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
         <loc>https://muxiaobai.github.io/categories/java/</loc>
-        <lastmod>2019-08-16T06:26:56.844Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://muxiaobai.github.io/categories/devops/</loc>
-        <lastmod>2019-09-11T03:44:49.362Z</lastmod>
+        <lastmod>2019-09-19T13:17:09.156Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
