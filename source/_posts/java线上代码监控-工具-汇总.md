@@ -51,6 +51,29 @@ redefine /tmp/com/example/demo/arthas/user/UserController.class
 ```
 
 
+调用请求: curl -w "@curl-time.txt" http://127.0.0.1:8080/hello
+
+## 常用和spring有关的
+
+从spring-mvc入手
+
+
+### 内部：
+trace 方法内部调用路径，并输出方法路径上的每个节点上耗时 -j跳过jdkclass
+Servlet Filter 转发 哪一个Controller
+
+trace javax.servlet.Servlet *
+trace javax.servlet.Filter *
+trace org.springframework.web.servlet.DispatcherServlet *
+
+watch org.springframework.web.servlet.DispatcherServlet getHandler returnObj
+是哪一个controller调用
+
+外部：
+stack org.springframework.web.servlet.DispatcherServlet *
+stack 输出当前方法被调用的调用路径
+很多时候我们都知道一个方法被执行，但这个方法被执行的路径非常多，或者你根本就不知道这个方法是从那里被执行了，此时你需要的是 stack 命令。
+
 ## 其它监控
 
 Druid连接池 数据库监控 参考 [数据库监控-Druid监控配置](https://muxiaobai.github.io/2018/11/22/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9B%91%E6%8E%A7-Druid%E7%9B%91%E6%8E%A7%E9%85%8D%E7%BD%AE/)

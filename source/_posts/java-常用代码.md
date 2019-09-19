@@ -383,6 +383,28 @@ Map<String, Object> itemMap = JSONObject.parseObject(exportFiled, LinkedHashMap.
 ```
 ## 日期相关
 
+#### 获取当前一天的00:00:00-----23:59:59
+
+```
+private static Date getStartTime() {
+	Calendar todayStart = Calendar.getInstance();
+	todayStart.set(Calendar.HOUR_OF_DAY,0);
+	todayStart.set(Calendar.MINUTE,0);
+	todayStart.set(Calendar.SECOND,0);
+	todayStart.set(Calendar.MILLISECOND,0);
+	return todayStart.getTime();
+}
+
+private static Date getEndTime() {
+	Calendar todayEnd = Calendar.getInstance();
+	todayEnd.set(Calendar.HOUR_OF_DAY,23);
+	todayEnd.set(Calendar.MINUTE,59);
+	todayEnd.set(Calendar.SECOND,59);
+	todayEnd.set(Calendar.MILLISECOND,999);
+	return todayEnd.getTime();
+}
+
+```
 #### 计算两个日期相差天数  xx天 xx天xx时xx分xx秒
 
 ```
