@@ -37,6 +37,7 @@ description: "shell快捷件键，常用命令"
 - ps -aux | sort -k4nr |head -h 10 内存前十的进程
 - du -sh *   当前路径（disk usage）
 - df -hP  整个磁盘（disk free）
+- df -k /tmp 查看磁盘使用
 - crontab -l 定时任务
 - tail -f /root/file.log 查看实时日志文件
 - free -h 查询内存文件

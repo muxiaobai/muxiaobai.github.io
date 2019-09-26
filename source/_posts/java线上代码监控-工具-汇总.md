@@ -16,6 +16,8 @@ description: "代码线上检测,快速查找bug"
 
 教程[Arthas 进阶教程](https://alibaba.github.io/arthas/arthas-tutorials?language=cn&id=arthas-advanced)
 
+   参数：--tunnel-server 'ws://47.75.156.201:7777/ws'
+默认的是
 启动
 
 ```
@@ -49,7 +51,55 @@ vim /tmp/UserController.java
 mc /tmp/UserController.java -d /tmp 
 redefine /tmp/com/example/demo/arthas/user/UserController.class
 ```
+### 暂存运行状态文件hpof
 
+类似jmap命令的heap dump功能。
+
+```
+heapdump /tmp/dump.hprof
+
+```
+
+只dump live对象
+
+```
+
+[arthas@58205]$ heapdump --live /tmp/dump.hprof
+Dumping heap to /tmp/dump.hprof...
+Heap dump file created
+
+```
+
+分析hprof文件工具
+- 使用eclipse的MAT (Memory Analyzer Tools)
+- 或者IDEA 的jprofiler插件 [IDEA 配置执行器](https://blog.csdn.net/wytocsdn/article/details/79258247) 需要装jprofiler执行器[jprofiler下载](https://www.ej-technologies.com/download/jprofiler/version_92) [license](https://www.cnblogs.com/jifeng/p/3336408.html)  [jprofiler 使用](https://blog.csdn.net/vicky_pyh/article/details/88797514)
+- IMB 的heapAnalyzer
+
+```
+
+按默认选择“Single or evaluation license”
+Name 和 Company 随意
+-----------------------忧郁的分割线---------------------------
+L-Larry_Lau@163.com#23874-hrwpdp1sh1wrn#0620
+L-Larry_Lau@163.com#36573-fdkscp15axjj6#25257
+L-Larry_Lau@163.com#5481-ucjn4a16rvd98#6038
+L-Larry_Lau@163.com#99016-hli5ay1ylizjj#27215
+L-Larry_Lau@163.com#40775-3wle0g1uin5c1#0674
+--------------------------------------------------------------
+L-Larry_Lau@163.com#7009-14frku31ynzpfr#20176
+L-Larry_Lau@163.com#49604-1jfe58we9gyb6#5814
+L-Larry_Lau@163.com#25531-1qcev4yintqkj#23927
+L-Larry_Lau@163.com#96496-1qsu1lb1jz7g8w#23479
+L-Larry_Lau@163.com#20948-11amlvg181cw0p#171159
+
+```
+
+JRebel和JProfiler同时运行
+
+如果IDEA中配置了JRebel热部署，要想JRebel和JProfiler同时运行，就要改手动管理JProfiler session了。
+在 Run–Debug Configurations窗口JRebel Debug tab页中配置Environment Variables属性 CATALINA_OPTS：
+使用springboot不成功，
+CATALINA_OPTS=-agentpath:E:\tools\jprofiler_windows-x64_9_2_1\jprofiler9\bin\windows-x64\jprofilerti.dll=port=8849,nowait,id=81,config=C:\Users\Administrator\.jprofiler9\config.xml
 
 调用请求: curl -w "@curl-time.txt" http://127.0.0.1:8080/hello
 

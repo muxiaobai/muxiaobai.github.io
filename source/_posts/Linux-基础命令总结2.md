@@ -207,6 +207,22 @@ chown -R bid:bids /home/newname  把/home/newname的所有者改为bid，所属�
 
 `rz` 上传
 
+
+安装rzsz
+
+wget http://www.ohse.de/uwe/releases/lrzsz-0.12.20.tar.gz
+tar zxvf lrzsz-0.12.20.tar.gz && cd lrzsz-0.12.20
+./configure --prefix=/usr/local/'name' && make && make install 
+上面安装过程默认把lsz和lrz安装到了/usr/local/bin/目录下，现在我们并不能直接使用，下面创建软链接，并命名为rz/sz：
+cd /usr/bin
+
+ln -s /usr/local/bin/lrz rz
+
+ln -s /usr/local/bin/lsz sz
+
+或者 
+yum install -y lrzsz
+
 #### 端口占用6中方法
 
 ss -tnlp  
