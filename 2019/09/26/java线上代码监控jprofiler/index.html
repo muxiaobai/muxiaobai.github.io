@@ -16,18 +16,17 @@
 
 
 
-<meta name="description" content="Travis CI">
-<meta name="keywords" content="CI">
+<meta name="description" content="代码线上检测,快速查找bug">
 <meta property="og:type" content="article">
-<meta property="og:title" content="好软件,靠机遇">
-<meta property="og:url" content="https://muxiaobai.github.io/2016/08/27/测试Travis CI/index.html">
+<meta property="og:title" content="java线上代码监控jprofiler">
+<meta property="og:url" content="https://muxiaobai.github.io/2019/09/26/java线上代码监控jprofiler/index.html">
 <meta property="og:site_name" content="技术笔记">
-<meta property="og:description" content="Travis CI">
+<meta property="og:description" content="代码线上检测,快速查找bug">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-07-19T02:50:05.792Z">
+<meta property="og:updated_time" content="2019-09-26T02:17:59.032Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="好软件,靠机遇">
-<meta name="twitter:description" content="Travis CI">
+<meta name="twitter:title" content="java线上代码监控jprofiler">
+<meta name="twitter:description" content="代码线上检测,快速查找bug">
 
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
@@ -59,7 +58,7 @@
 <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
 
 
-<title>好软件,靠机遇 | 技术笔记</title>
+<title>java线上代码监控jprofiler | 技术笔记</title>
 
 <script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
 <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
@@ -291,12 +290,12 @@
     </div>
     <link class="menu-list" tags="标签" friends="友情链接" about="关于我">
 </nav>
-      <div class="body-wrap"><article id="post-测试Travis CI" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-java线上代码监控jprofiler" class="article article-type-post" itemscope itemprop="blogPost">
  
   
     <div class="article-meta">
-      <a href="/2016/08/27/测试Travis CI/" class="article-date">
-      <time datetime="2016-08-27T09:58:39.000Z" itemprop="datePublished">2016-08-27</time>
+      <a href="/2019/09/26/java线上代码监控jprofiler/" class="article-date">
+      <time datetime="2019-09-26T01:45:43.000Z" itemprop="datePublished">2019-09-26</time>
 </a>
     </div>
   
@@ -310,7 +309,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      好软件,靠机遇
+      java线上代码监控jprofiler
     </h1>
   
 
@@ -319,15 +318,11 @@
       <div class="article-info article-info-post">
         
     <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/Travis/">Travis</a>
+    <a class="article-category-link" href="/categories/java/">java</a>
     </div>
 
 
         
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CI/">CI</a></li></ul>
-    </div>
-
         <div class="clearfix"></div>
       </div>
       
@@ -336,11 +331,19 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <hr>
-<h2 id="自动线上构建博客Travis-CI"><a href="#自动线上构建博客Travis-CI" class="headerlink" title="自动线上构建博客Travis CI"></a>自动线上构建博客Travis CI</h2><h5 id="其他的已经完成"><a href="#其他的已经完成" class="headerlink" title="其他的已经完成"></a>其他的已经完成</h5><p>Git global setup<br>git config –global user.name “zhangpf”<br>git config –global user.email “<a href="mailto:zpf12345678910@gmail.com" target="_blank" rel="noopener">zpf12345678910@gmail.com</a>“</p>
-<p>Create a new repository<br>git clone <a href="mailto:git@123.57.34.235" target="_blank" rel="noopener">git@123.57.34.235</a>:zhangpf/vsb.git<br>cd vsb<br>touch README.md<br>git add README.md<br>git commit -m “add README”<br>git push -u origin master</p>
-<p>Push an existing folder<br>cd existing_folder<br>git init<br>git remote add origin <a href="mailto:git@123.57.34.235" target="_blank" rel="noopener">git@123.57.34.235</a>:zhangpf/vsb.git<br>git add .<br>git commit -m “Initial commit”<br>git push -u origin master</p>
-<p>Push an existing Git repository<br>cd existing_repo<br>git remote rename origin old-origin<br>git remote add origin <a href="mailto:git@123.57.34.235" target="_blank" rel="noopener">git@123.57.34.235</a>:zhangpf/vsb.git<br>git push -u origin –all<br>git push -u origin –tags</p>
+        <p>启动一个jvm进程</p>
+<p>java -jar xxx.0.0.1.jar</p>
+<p>服务器解压<a href="https://download-gcdn.ej-technologies.com/jprofiler/jprofiler_linux_11_0_2.tar.gz" target="_blank" rel="noopener">服务器端</a><br><a href="https://download-gcdn.ej-technologies.com/jprofiler/jprofiler_windows-x64_11_0_2.zip" target="_blank" rel="noopener">window客户端</a></p>
+<p>服务器</p>
+<ul>
+<li>解压服务器</li>
+<li>启动./jprofiler11.0.2/bin.jpenable</li>
+<li>选择要监控功能的jvm</li>
+<li>选择使用远程GUI监控</li>
+<li>设置端口</li>
+</ul>
+<p>客户端</p>
+<p>新建一个remote Session</p>
 
       
     </div>
@@ -430,13 +433,13 @@
   
     
     <div class="copyright">
-        <p><span>本文标题:</span><a href="/2016/08/27/测试Travis CI/">好软件,靠机遇</a></p>
+        <p><span>本文标题:</span><a href="/2019/09/26/java线上代码监控jprofiler/">java线上代码监控jprofiler</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">Mu Xiaobai(慕小白)</a></p>
-        <p><span>发布时间:</span>2016-08-27, 17:58:39</p>
-        <p><span>最后更新:</span>2019-07-19, 10:50:05</p>
+        <p><span>发布时间:</span>2019-09-26, 09:45:43</p>
+        <p><span>最后更新:</span>2019-09-26, 10:17:59</p>
         <p>
-            <span>原始链接:</span><a class="post-url" href="/2016/08/27/测试Travis CI/" title="好软件,靠机遇">https://muxiaobai.github.io/2016/08/27/测试Travis CI/</a>
-            <span class="copy-path" data-clipboard-text="原文: https://muxiaobai.github.io/2016/08/27/测试Travis CI/　　作者: Mu Xiaobai(慕小白)" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <span>原始链接:</span><a class="post-url" href="/2019/09/26/java线上代码监控jprofiler/" title="java线上代码监控jprofiler">https://muxiaobai.github.io/2019/09/26/java线上代码监控jprofiler/</a>
+            <span class="copy-path" data-clipboard-text="原文: https://muxiaobai.github.io/2019/09/26/java线上代码监控jprofiler/　　作者: Mu Xiaobai(慕小白)" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
             <script> var clipboard = new Clipboard('.copy-path'); </script>
         </p>
         <p>
@@ -448,16 +451,10 @@
 
     <nav id="article-nav">
         
-            <div id="article-nav-newer" class="article-nav-title">
-                <a href="/2016/09/13/模仿jQuery创建自己的js工具/">
-                    模仿jQuery创建自己的js工具
-                </a>
-            </div>
-        
         
             <div id="article-nav-older" class="article-nav-title">
-                <a href="/2016/08/20/HTML5-API-新特性/">
-                    HTML5 API 新特性
+                <a href="/2019/08/31/devops之docker/">
+                    devops之docker
                 </a>
             </div>
         
@@ -470,7 +467,7 @@
     <!--左侧-->
     <div id="toc" class="toc-article">
     <strong class="toc-title">文章目录</strong>
-    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#自动线上构建博客Travis-CI"><span class="toc-number">1.</span> <span class="toc-text">自动线上构建博客Travis CI</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#其他的已经完成"><span class="toc-number">1.0.0.1.</span> <span class="toc-text">其他的已经完成</span></a></li></ol></li></ol>
+    
 </div>
 <style>
     .left-col .switch-btn,
@@ -511,7 +508,7 @@
     <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
     <script>
     var gitment = new Gitment({
-      id: '好软件,靠机遇',
+      id: 'java线上代码监控jprofiler',
       owner: 'muxiaobai',
       repo: 'muxiaobai.github.io',
       oauth: {
@@ -529,15 +526,13 @@
 
     <div class="scroll" id="post-nav-button">
         
-            <a href="/2016/09/13/模仿jQuery创建自己的js工具/" title="上一篇: 模仿jQuery创建自己的js工具">
-                <i class="fa fa-angle-left"></i>
-            </a>
+            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
         
 
         <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
 
         
-            <a href="/2016/08/20/HTML5-API-新特性/" title="下一篇: HTML5 API 新特性">
+            <a href="/2019/08/31/devops之docker/" title="下一篇: devops之docker">
                 <i class="fa fa-angle-right"></i>
             </a>
         

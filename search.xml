@@ -4,6 +4,33 @@
   
     
     <entry>
+      <title><![CDATA[java线上代码监控jprofiler]]></title>
+      <url>https://muxiaobai.github.io/2019/09/26/java%E7%BA%BF%E4%B8%8A%E4%BB%A3%E7%A0%81%E7%9B%91%E6%8E%A7jprofiler/</url>
+      <content type="html"><![CDATA[<p>启动一个jvm进程</p>
+<p>java -jar xxx.0.0.1.jar</p>
+<p>服务器解压<a href="https://download-gcdn.ej-technologies.com/jprofiler/jprofiler_linux_11_0_2.tar.gz" target="_blank" rel="noopener">服务器端</a><br><a href="https://download-gcdn.ej-technologies.com/jprofiler/jprofiler_windows-x64_11_0_2.zip" target="_blank" rel="noopener">window客户端</a></p>
+<p>服务器</p>
+<ul>
+<li>解压服务器</li>
+<li>启动./jprofiler11.0.2/bin.jpenable</li>
+<li>选择要监控功能的jvm</li>
+<li>选择使用远程GUI监控</li>
+<li>设置端口</li>
+</ul>
+<p>客户端</p>
+<p>新建一个remote Session</p>
+]]></content>
+      
+        <categories>
+            
+            <category> java </category>
+            
+        </categories>
+        
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[devops之docker]]></title>
       <url>https://muxiaobai.github.io/2019/08/31/devops%E4%B9%8Bdocker/</url>
       <content type="html"><![CDATA[<hr>
@@ -54,7 +81,7 @@
 <h2 id="arthas"><a href="#arthas" class="headerlink" title="arthas"></a>arthas</h2><p>官网<a href="https://alibaba.github.io/arthas" target="_blank" rel="noopener">https://alibaba.github.io/arthas</a></p>
 <p>教程<a href="https://alibaba.github.io/arthas/arthas-tutorials?language=cn&amp;id=arthas-basics" target="_blank" rel="noopener">Arthas 基础教程</a></p>
 <p>教程<a href="https://alibaba.github.io/arthas/arthas-tutorials?language=cn&amp;id=arthas-advanced" target="_blank" rel="noopener">Arthas 进阶教程</a></p>
-<p>启动</p>
+<p>   参数：–tunnel-server ‘ws://47.75.156.201:7777/ws’<br>默认的是<br>启动</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">wget https://alibaba.github.io/arthas/arthas-boot.jar</span><br><span class="line">java -jar arthas-boot.jar --target-ip 0.0.0.0</span><br></pre></td></tr></table></figure>
 <p>选择对应的main</p>
 <p>通用命令</p>
@@ -78,6 +105,19 @@
 <li>ognl 动态执行代码</li>
 </ul>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">反编译 修改 编译 热更新</span><br><span class="line">jad --source-only com.example.demo.arthas.user.UserController &gt; /tmp/UserController.java</span><br><span class="line">vim /tmp/UserController.java</span><br><span class="line">mc /tmp/UserController.java -d /tmp </span><br><span class="line">redefine /tmp/com/example/demo/arthas/user/UserController.class</span><br></pre></td></tr></table></figure>
+<h3 id="暂存运行状态文件hpof"><a href="#暂存运行状态文件hpof" class="headerlink" title="暂存运行状态文件hpof"></a>暂存运行状态文件hpof</h3><p>类似jmap命令的heap dump功能。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">heapdump /tmp/dump.hprof</span><br></pre></td></tr></table></figure>
+<p>只dump live对象</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">[arthas@58205]$ heapdump --live /tmp/dump.hprof</span><br><span class="line">Dumping heap to /tmp/dump.hprof...</span><br><span class="line">Heap dump file created</span><br></pre></td></tr></table></figure>
+<p>分析hprof文件工具</p>
+<ul>
+<li>使用eclipse的MAT (Memory Analyzer Tools)</li>
+<li>或者IDEA 的jprofiler插件 <a href="https://blog.csdn.net/wytocsdn/article/details/79258247" target="_blank" rel="noopener">IDEA 配置执行器</a> 需要装jprofiler执行器<a href="https://www.ej-technologies.com/download/jprofiler/version_92" target="_blank" rel="noopener">jprofiler下载</a> <a href="https://www.cnblogs.com/jifeng/p/3336408.html" target="_blank" rel="noopener">license</a>  <a href="https://blog.csdn.net/vicky_pyh/article/details/88797514" target="_blank" rel="noopener">jprofiler 使用</a></li>
+<li>IMB 的heapAnalyzer</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">按默认选择“Single or evaluation license”</span><br><span class="line">Name 和 Company 随意</span><br><span class="line">-----------------------忧郁的分割线---------------------------</span><br><span class="line">L-Larry_Lau@163.com#23874-hrwpdp1sh1wrn#0620</span><br><span class="line">L-Larry_Lau@163.com#36573-fdkscp15axjj6#25257</span><br><span class="line">L-Larry_Lau@163.com#5481-ucjn4a16rvd98#6038</span><br><span class="line">L-Larry_Lau@163.com#99016-hli5ay1ylizjj#27215</span><br><span class="line">L-Larry_Lau@163.com#40775-3wle0g1uin5c1#0674</span><br><span class="line">--------------------------------------------------------------</span><br><span class="line">L-Larry_Lau@163.com#7009-14frku31ynzpfr#20176</span><br><span class="line">L-Larry_Lau@163.com#49604-1jfe58we9gyb6#5814</span><br><span class="line">L-Larry_Lau@163.com#25531-1qcev4yintqkj#23927</span><br><span class="line">L-Larry_Lau@163.com#96496-1qsu1lb1jz7g8w#23479</span><br><span class="line">L-Larry_Lau@163.com#20948-11amlvg181cw0p#171159</span><br></pre></td></tr></table></figure>
+<p>JRebel和JProfiler同时运行</p>
+<p>如果IDEA中配置了JRebel热部署，要想JRebel和JProfiler同时运行，就要改手动管理JProfiler session了。<br>在 Run–Debug Configurations窗口JRebel Debug tab页中配置Environment Variables属性 CATALINA_OPTS：<br>使用springboot不成功，<br>CATALINA_OPTS=-agentpath:E:\tools\jprofiler_windows-x64_9_2_1\jprofiler9\bin\windows-x64\jprofilerti.dll=port=8849,nowait,id=81,config=C:\Users\Administrator.jprofiler9\config.xml</p>
 <p>调用请求: curl -w “@curl-time.txt” <a href="http://127.0.0.1:8080/hello" target="_blank" rel="noopener">http://127.0.0.1:8080/hello</a></p>
 <h2 id="常用和spring有关的"><a href="#常用和spring有关的" class="headerlink" title="常用和spring有关的"></a>常用和spring有关的</h2><p>从spring-mvc入手</p>
 <h3 id="内部："><a href="#内部：" class="headerlink" title="内部："></a>内部：</h3><p>trace 方法内部调用路径，并输出方法路径上的每个节点上耗时 -j跳过jdkclass<br>Servlet Filter 转发 哪一个Controller</p>
@@ -401,6 +441,7 @@
 <li>ps -aux | sort -k4nr |head -h 10 内存前十的进程</li>
 <li>du -sh *   当前路径（disk usage）</li>
 <li>df -hP  整个磁盘（disk free）</li>
+<li>df -k /tmp 查看磁盘使用</li>
 <li>crontab -l 定时任务</li>
 <li>tail -f /root/file.log 查看实时日志文件</li>
 <li>free -h 查询内存文件</li>
@@ -3920,6 +3961,11 @@
 <p>远程连接：<code>ssh</code> <code>scp</code> <code>sftp</code> <code>telnet</code>(一般禁用) <code>ftp</code>(不常用)</p>
 <p><code>sz</code> file 下载文件到本机</p>
 <p><code>rz</code> 上传</p>
+<p>安装rzsz</p>
+<p>wget <a href="http://www.ohse.de/uwe/releases/lrzsz-0.12.20.tar.gz" target="_blank" rel="noopener">http://www.ohse.de/uwe/releases/lrzsz-0.12.20.tar.gz</a><br>tar zxvf lrzsz-0.12.20.tar.gz &amp;&amp; cd lrzsz-0.12.20<br>./configure –prefix=/usr/local/‘name’ &amp;&amp; make &amp;&amp; make install<br>上面安装过程默认把lsz和lrz安装到了/usr/local/bin/目录下，现在我们并不能直接使用，下面创建软链接，并命名为rz/sz：<br>cd /usr/bin</p>
+<p>ln -s /usr/local/bin/lrz rz</p>
+<p>ln -s /usr/local/bin/lsz sz</p>
+<p>或者<br>yum install -y lrzsz</p>
 <h4 id="端口占用6中方法"><a href="#端口占用6中方法" class="headerlink" title="端口占用6中方法"></a>端口占用6中方法</h4><p>ss -tnlp<br>netstat<br>lsof<br>fuser<br>nmap (NetWork Mapper) 网络监测和安全审计工具，可能无此命令<br>systemctl systemd系统的控制管理器和服务管理器 可能无此命令</p>
 <p>netstat -tlnaop</p>
 <p>-c 字符串  -u 用户名  -p pid</p>
