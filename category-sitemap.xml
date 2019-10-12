@@ -189,13 +189,6 @@
     </url>
 
     <url>
-        <loc>https://muxiaobai.github.io/categories/javascript/</loc>
-        <lastmod>2019-07-29T11:28:29.034Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
         <loc>https://muxiaobai.github.io/categories/hadoop/</loc>
         <lastmod>2019-08-16T05:09:58.986Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -224,8 +217,15 @@
     </url>
 
     <url>
+        <loc>https://muxiaobai.github.io/categories/javascript/</loc>
+        <lastmod>2019-10-09T05:58:34.762Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
         <loc>https://muxiaobai.github.io/categories/java/</loc>
-        <lastmod>2019-09-26T02:17:59.032Z</lastmod>
+        <lastmod>2019-10-12T01:52:00.627Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
