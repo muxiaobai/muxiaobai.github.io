@@ -7,6 +7,30 @@
     </url>
 
     <url>
+        <loc>https://muxiaobai.github.io/2018/09/20/java-%E5%B8%B8%E7%94%A8%E4%BB%A3%E7%A0%81/</loc>
+        <lastmod>2019-10-12T01:52:00.627Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://muxiaobai.github.io/2018/10/09/javascript-%E5%B8%B8%E7%94%A8%E4%BB%A3%E7%A0%81/</loc>
+        <lastmod>2019-10-09T05:58:34.762Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://muxiaobai.github.io/2019/09/29/java-%E5%B8%B8%E7%94%A8%E4%BB%A3%E7%A0%812-future%E7%AD%89/</loc>
+        <lastmod>2019-09-30T05:44:46.600Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
         <loc>https://muxiaobai.github.io/2019/09/26/java%E7%BA%BF%E4%B8%8A%E4%BB%A3%E7%A0%81%E7%9B%91%E6%8E%A7jprofiler/</loc>
         <lastmod>2019-09-26T02:17:59.032Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -33,14 +57,6 @@
     <url>
         <loc>https://muxiaobai.github.io/2019/04/01/Linux-%E5%9F%BA%E7%A1%80%E5%91%BD%E4%BB%A4%E6%80%BB%E7%BB%934/</loc>
         <lastmod>2019-09-20T02:47:09.300Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>https://muxiaobai.github.io/2018/09/20/java-%E5%B8%B8%E7%94%A8%E4%BB%A3%E7%A0%81/</loc>
-        <lastmod>2019-09-19T11:15:42.851Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
@@ -81,14 +97,6 @@
     <url>
         <loc>https://muxiaobai.github.io/2017/07/20/hadoop-Sqoop-Hive%E7%AD%89%E7%9A%84%E5%AE%89%E8%A3%85/</loc>
         <lastmod>2019-08-16T05:09:58.986Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>https://muxiaobai.github.io/2018/10/09/javascript-%E5%B8%B8%E7%94%A8%E4%BB%A3%E7%A0%81/</loc>
-        <lastmod>2019-07-29T11:28:29.034Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
@@ -487,14 +495,6 @@
     </url>
 
     <url>
-        <loc>https://muxiaobai.github.io/2016/06/25/Thinking-in-java-%E5%9F%BA%E7%A1%80%E4%B9%8BI-O/</loc>
-        <lastmod>2016-08-31T12:24:37.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
         <loc>https://muxiaobai.github.io/2016/08/04/Thinking-in-java-%E5%9F%BA%E7%A1%80%E4%B9%8B%E5%BC%82%E5%B8%B8/</loc>
         <lastmod>2016-08-31T12:24:37.000Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -511,8 +511,8 @@
     </url>
 
     <url>
-        <loc>https://muxiaobai.github.io/2016/07/09/Linux-%E5%9F%BA%E7%A1%80Shell%E8%84%9A%E6%9C%AC/</loc>
-        <lastmod>2016-08-31T12:24:36.000Z</lastmod>
+        <loc>https://muxiaobai.github.io/2016/06/25/Thinking-in-java-%E5%9F%BA%E7%A1%80%E4%B9%8BI-O/</loc>
+        <lastmod>2016-08-31T12:24:37.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
@@ -520,6 +520,14 @@
 
     <url>
         <loc>https://muxiaobai.github.io/2016/06/19/Linux-%E4%B8%8B%E5%AE%89%E8%A3%85SVN%E6%9C%8D%E5%8A%A1%E5%99%A8/</loc>
+        <lastmod>2016-08-31T12:24:36.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://muxiaobai.github.io/2016/07/09/Linux-%E5%9F%BA%E7%A1%80Shell%E8%84%9A%E6%9C%AC/</loc>
         <lastmod>2016-08-31T12:24:36.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>

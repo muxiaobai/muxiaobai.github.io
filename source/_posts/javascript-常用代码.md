@@ -95,6 +95,55 @@ var xhr = $.ajax({
 }
 
 ```
+#### xhr  下载数据可以，加请求头
+
+调用方式
+ $("#export").click(function(){
+      // window.location.href ='http://192.0.0.1:8080/exportData?id=' + id;
+          createxhr('http://192.0.0.1:8080/exportData?id=' + id);
+  });
+```
+function createxhr(url){
+    var xhr = new XMLHttpRequest();
+    var formData = new FormData();
+    // formData.append("ss","ss");
+    //如果是post，在formData append参数
+    xhr.open('get',url);  
+    xhr.setRequestHeader("Authorization", sessionStorage.getItem('token'));
+    xhr.responseType = 'blob';
+    xhr.onload = function (e) {
+        if (this.status == 200) {
+          var blob = this.response;
+          var filename = "filename.xlsx";
+          blob.type ="application/octet-stream";
+          if (window.navigator.msSaveOrOpenBlob) {
+              navigator.msSaveBlob(blob, filename);
+          } else {
+            var a = document.createElement('a');
+            var url = "";//createObjectURL(blob);
+            if(window.URL){
+                url = window.URL.createObjectURL(blob);
+            }else{
+                url = window.webkitURL.createObjectURL(blob);
+            }
+            a.href = url;
+            a.download = filename;
+            document.body.appendChild(a);
+            a.click();
+            window.URL.revokeObjectURL(url);
+          }
+        }
+    };
+    xhr.send(formData);
+  }
+```
+测试chrome通过，IE11通过，
+
+#### xhr 上传数据
+
+可以使用FormData来进行。
+
+
 
 ####  在类数组对象中找到其中符合条件的数据
 
