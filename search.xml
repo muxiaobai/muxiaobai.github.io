@@ -4,6 +4,55 @@
   
     
     <entry>
+      <title><![CDATA[Thinking in java 基础之volatile]]></title>
+      <url>https://muxiaobai.github.io/2019/10/12/Thinking-in-java-%E5%9F%BA%E7%A1%80%E4%B9%8Bvolatile/</url>
+      <content type="html"><![CDATA[<p>显性的作用就是： 这个变量在修改之后，可以及时更新到另外一个线程。</p>
+<h3 id="两个代码"><a href="#两个代码" class="headerlink" title="两个代码"></a>两个代码</h3><p>无volatile<br><img src="/2019/10/12/Thinking-in-java-基础之volatile/1.png" alt="无volatile"></p>
+<p>有volatile<br><img src="/2019/10/12/Thinking-in-java-基础之volatile/1.png" alt="有volatile"></p>
+<p>看一下汇编是啥样子的</p>
+<p><a href="https://sourceforge.net/projects/fcml/files/fcml-1.1.1/hsdis-1.1.1-win32-amd64.zip/download" target="_blank" rel="noopener">下载</a><br>hsdis-1.1.1-win32-amd64.zip放到${JAVA_HOME}\jdk1.8.0_171\jre\bin\server下,先<code>javac xxx.java</code> 编译成xxx.class<br><code>java -XX:+UnlockDiagnosticVMOptions -XX:+PrintAssembly  xxx.class &gt;a.txt</code><br>生成汇编文件<br>给jvm添加参数<br><code>-server -Xcomp -XX:+UnlockDiagnosticVMOptions -XX:+PrintAssembly -XX:CompileCommand=compileonly,*Test.getInstance</code></p>
+<p><img src="/2019/10/12/Thinking-in-java-基础之volatile/3.png" alt="汇编"><br>在修改有volatile修饰的属性，加有lock add第八行。</p>
+<p>锁提供了原子性和可见性<br>volatile具有锁的可见性，</p>
+<p>指令重排序（本是为了优化代码，对最终的结果无影响）</p>
+<p>有序性：即程序执行的顺序按照代码的先后顺序执行。举个简单的例子，看下面这段代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">int i = 0;              </span><br><span class="line">boolean flag = false;</span><br><span class="line">i = 1;                //语句1  </span><br><span class="line">flag = true;          //语句2</span><br></pre></td></tr></table></figure></p>
+<p>从代码顺序上看，语句1是在语句2前面的，那么JVM在真正执行这段代码的时候会保证语句1一定会在语句2前面执行吗？不一定，为什么呢？这里可能会发生指令重排序（Instruction Reorder）。</p>
+<h2 id="指令重排序"><a href="#指令重排序" class="headerlink" title="指令重排序:"></a>指令重排序:</h2><p>一般来说，处理器为了提高程序运行效率，可能会对输入代码进行优化，它不保证程序中各个语句的执行先后顺序同代码中的顺序一致，但是它会保证程序最终执行结果和代码顺序执行的结果是一致的。</p>
+<p>比如上面的代码中，语句1和语句2谁先执行对最终的程序结果并没有影响，那么就有可能在执行过程中，语句2先执行而语句1后执行。虽然处理器会对指令进行重排序，但是它会保证程序最终结果会和代码顺序执行结果相同，那么它靠什么保证的呢？靠的是数据依赖性：</p>
+<p>编译器和处理器在重排序时，会遵守数据依赖性，编译器和处理器不会改变存在数据依赖关系的两个操作的执行顺序。</p>
+<h2 id="内存屏障"><a href="#内存屏障" class="headerlink" title="内存屏障"></a>内存屏障</h2><p>内存屏障分为两种：Load Barrier 和 Store Barrier即读屏障和写屏障。</p>
+<p>内存屏障有两个作用：</p>
+<ul>
+<li>1.阻止屏障两侧的指令重排序；</li>
+<li>2.强制把写缓冲区/高速缓存中的脏数据等写回主内存，让缓存中相应的数据失效。</li>
+</ul>
+<p>对于Load Barrier来说，在指令前插入Load Barrier，可以让高速缓存中的数据失效，强制从新从主内存加载数据；<br>对于Store Barrier来说，在指令后插入Store Barrier，能让写入缓存中的最新数据更新写入主内存，让其他线程可见。<br>java的内存屏障通常所谓的四种即LoadLoad,StoreStore,LoadStore,StoreLoad实际上也是上述两种的组合，完成一系列的屏障和数据同步功能。</p>
+<ul>
+<li>LoadLoad屏障：对于这样的语句Load1; LoadLoad; Load2，在Load2及后续读取操作要读取的数据被访问前，保证Load1要读取的数据被读取完毕。</li>
+<li>StoreStore屏障：对于这样的语句Store1; StoreStore; Store2，在Store2及后续写入操作执行前，保证Store1的写入操作对其它处理器可见。</li>
+<li>LoadStore屏障：对于这样的语句Load1; LoadStore; Store2，在Store2及后续写入操作被刷出前，保证Load1要读取的数据被读取完毕。</li>
+<li>StoreLoad屏障：对于这样的语句Store1; StoreLoad; Load2，在Load2及后续所有读取操作执行前，保证Store1的写入对所有处理器可见。它的开销是四种屏障中最大的。在大多数处理器的实现中，这个屏障是个万能屏障，兼具其它三种内存屏障的功能</li>
+</ul>
+<p>volatile的内存屏障策略非常严格保守，非常悲观且毫无安全感的心态：</p>
+<ul>
+<li>在每个volatile写操作前插入StoreStore屏障，在写操作后插入StoreLoad屏障；</li>
+<li>在每个volatile读操作前插入LoadLoad屏障，在读操作后插入LoadStore屏障；</li>
+</ul>
+<p>由于内存屏障的作用，避免了volatile变量和其它指令重排序、线程之间实现了通信，使得volatile表现出了锁的特性。</p>
+<p><img src="/2019/10/12/Thinking-in-java-基础之volatile/L0.png" alt="CPU三级缓存架构图"></p>
+<p>因为CPU高速运转，直接读内存会很慢，又开辟一级二级三级缓存，多核CPU下每一个有独立的一级二级缓存；如果现在来了一个数据存在三级缓存中，第一个Thread读取之后，并修改了值，但没有同步到三级缓存中；这时候第二个线程要读值，他还是只从三级缓存中读取内容，；但有了内存屏障，在第三个读的时候，</p>
+<p>从.java———–&gt;.class编译完成，然后.class 在不同的平台上，对于volatile来说，JVM有不同的实现，一次编写，到处运行<code>Write once, run anywhere</code>,JVM屏蔽各种架构的指令集，例如x86 MMX，SSE等，在window系统上使用window指令，在linux上使用linux指令，最终Java实现了，程序员不用关系各个平台的差异。<br>但对于.net ，需要安装其他的中间件等，才能在非window系统运行。</p>
+]]></content>
+      
+        <categories>
+            
+            <category> java </category>
+            
+        </categories>
+        
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[java-常用代码2-future等]]></title>
       <url>https://muxiaobai.github.io/2019/09/29/java-%E5%B8%B8%E7%94%A8%E4%BB%A3%E7%A0%812-future%E7%AD%89/</url>
       <content type="html"><![CDATA[<p>远程调用可以合并 10ms执行一次。阻塞队列</p>
@@ -175,6 +224,9 @@
 <p>创建并切换dev 分支<br>git checkout -b dev</p>
 <p>切换到dev分支<br>git checkout dev</p>
 <p>删除远程xxx分支<br>git remote rm xxx</p>
+<p>#### </p>
+<p>首先，git fetch –all  取回远程库的所有修改；<br>然后，git reset –hard origin/master<br>指向远程库origin的master</p>
+<h4 id="回滚上次提交"><a href="#回滚上次提交" class="headerlink" title="回滚上次提交"></a>回滚上次提交</h4><p>git reset –hard HEAD^<br>git log<br>git reset commit_id</p>
 ]]></content>
       
         <categories>
