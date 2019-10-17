@@ -60,3 +60,17 @@ git checkout dev
 
 删除远程xxx分支
 git remote rm xxx
+
+
+
+#### 
+
+首先，git fetch --all  取回远程库的所有修改；
+然后，git reset --hard origin/master
+指向远程库origin的master
+
+#### 回滚上次提交
+
+git reset --hard HEAD^
+git log
+git reset commit_id
