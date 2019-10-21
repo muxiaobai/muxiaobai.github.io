@@ -16,17 +16,21 @@
 
 
 
-<meta name="description" content="代码线上检测,快速查找bug">
+<meta name="description" content="类加载过程">
 <meta property="og:type" content="article">
-<meta property="og:title" content="java线上代码监控-工具(汇总)">
-<meta property="og:url" content="https://muxiaobai.github.io/2019/08/16/java线上代码监控-工具-汇总/index.html">
+<meta property="og:title" content="Thinking in java 基础之类加载顺序&amp;初始化">
+<meta property="og:url" content="https://muxiaobai.github.io/2019/10/21/Thinking-in-java-基础之类加载顺序-初始化/index.html">
 <meta property="og:site_name" content="技术笔记">
-<meta property="og:description" content="代码线上检测,快速查找bug">
+<meta property="og:description" content="类加载过程">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-09-26T02:17:49.423Z">
+<meta property="og:image" content="https://muxiaobai.github.io/2019/10/21/Thinking-in-java-基础之类加载顺序-初始化/Class初始化.png">
+<meta property="og:image" content="https://muxiaobai.github.io/2019/10/21/Thinking-in-java-基础之类加载顺序-初始化/获取Class四种方式.PNG">
+<meta property="og:image" content="https://muxiaobai.github.io/2019/10/21/Thinking-in-java-基础之类加载顺序-初始化/Class初始化时机.png">
+<meta property="og:updated_time" content="2019-10-21T07:59:29.360Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="java线上代码监控-工具(汇总)">
-<meta name="twitter:description" content="代码线上检测,快速查找bug">
+<meta name="twitter:title" content="Thinking in java 基础之类加载顺序&amp;初始化">
+<meta name="twitter:description" content="类加载过程">
+<meta name="twitter:image" content="https://muxiaobai.github.io/2019/10/21/Thinking-in-java-基础之类加载顺序-初始化/Class初始化.png">
 
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
@@ -58,7 +62,7 @@
 <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
 
 
-<title>java线上代码监控-工具(汇总) | 技术笔记</title>
+<title>Thinking in java 基础之类加载顺序&amp;初始化 | 技术笔记</title>
 
 <script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
 <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
@@ -290,12 +294,12 @@
     </div>
     <link class="menu-list" tags="标签" friends="友情链接" about="关于我">
 </nav>
-      <div class="body-wrap"><article id="post-java线上代码监控-工具-汇总" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-Thinking-in-java-基础之类加载顺序-初始化" class="article article-type-post" itemscope itemprop="blogPost">
  
   
     <div class="article-meta">
-      <a href="/2019/08/16/java线上代码监控-工具-汇总/" class="article-date">
-      <time datetime="2019-08-16T05:32:13.000Z" itemprop="datePublished">2019-08-16</time>
+      <a href="/2019/10/21/Thinking-in-java-基础之类加载顺序-初始化/" class="article-date">
+      <time datetime="2019-10-21T07:25:42.000Z" itemprop="datePublished">2019-10-21</time>
 </a>
     </div>
   
@@ -309,7 +313,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      java线上代码监控-工具(汇总)
+      Thinking in java 基础之类加载顺序&amp;初始化
     </h1>
   
 
@@ -331,54 +335,22 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <p>强力推荐alibaba的arthas</p>
-<h2 id="arthas"><a href="#arthas" class="headerlink" title="arthas"></a>arthas</h2><p>官网<a href="https://alibaba.github.io/arthas" target="_blank" rel="noopener">https://alibaba.github.io/arthas</a></p>
-<p>教程<a href="https://alibaba.github.io/arthas/arthas-tutorials?language=cn&amp;id=arthas-basics" target="_blank" rel="noopener">Arthas 基础教程</a></p>
-<p>教程<a href="https://alibaba.github.io/arthas/arthas-tutorials?language=cn&amp;id=arthas-advanced" target="_blank" rel="noopener">Arthas 进阶教程</a></p>
-<p>   参数：–tunnel-server ‘ws://47.75.156.201:7777/ws’<br>默认的是<br>启动</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">wget https://alibaba.github.io/arthas/arthas-boot.jar</span><br><span class="line">java -jar arthas-boot.jar --target-ip 0.0.0.0</span><br></pre></td></tr></table></figure>
-<p>选择对应的main</p>
-<p>通用命令</p>
-<ul>
-<li>keymap 快捷键</li>
-<li>help</li>
-<li>Q ctrl+c 退出当前命令</li>
+        <h4 id="先来一个题"><a href="#先来一个题" class="headerlink" title="先来一个题"></a>先来一个题</h4><p><img src="/2019/10/21/Thinking-in-java-基础之类加载顺序-初始化/Class初始化.png" alt="初始化"></p>
+<h4 id="初始化"><a href="#初始化" class="headerlink" title="初始化"></a>初始化</h4><h5 id="java对象，获取"><a href="#java对象，获取" class="headerlink" title="java对象，获取"></a>java对象，获取</h5><ul>
+<li>new </li>
+<li>反射</li>
+<li>反序列化</li>
+<li>克隆</li>
 </ul>
-<p>常用命令</p>
-<ul>
-<li>dashboard 实时看板</li>
-<li>thread 查线程</li>
-<li>jvm 当前jvm信息</li>
-<li>sysprop(sysenv) 系统参数(System Property)(System Environment Variables)</li>
-<li>jad 反编译</li>
-<li>sc (search class)查jvm加载的类 -d 加载的信息 classLoaderHash 哪一个ClassLoader加载的类</li>
-<li>sm (search method) 查class方法</li>
-<li>mc (Memory Compiler) 使用指定的ClassLoader编译java</li>
-<li>redefine 热更新代码</li>
-<li>watch 方法执行数据观测（实时调用）</li>
-<li>ognl 动态执行代码</li>
+<h5 id="Class对象获取"><a href="#Class对象获取" class="headerlink" title="Class对象获取"></a>Class对象获取</h5><ul>
+<li>类名.class</li>
+<li>实例.getClass()</li>
+<li>classloader.loadClass(“包.类”)</li>
+<li>Class.forName(“包.类”);</li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">反编译 修改 编译 热更新</span><br><span class="line">jad --source-only com.example.demo.arthas.user.UserController &gt; /tmp/UserController.java</span><br><span class="line">vim /tmp/UserController.java</span><br><span class="line">mc /tmp/UserController.java -d /tmp </span><br><span class="line">redefine /tmp/com/example/demo/arthas/user/UserController.class</span><br></pre></td></tr></table></figure>
-<h3 id="暂存运行状态文件hpof"><a href="#暂存运行状态文件hpof" class="headerlink" title="暂存运行状态文件hpof"></a>暂存运行状态文件hpof</h3><p>类似jmap命令的heap dump功能。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">heapdump /tmp/dump.hprof</span><br></pre></td></tr></table></figure>
-<p>只dump live对象</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">[arthas@58205]$ heapdump --live /tmp/dump.hprof</span><br><span class="line">Dumping heap to /tmp/dump.hprof...</span><br><span class="line">Heap dump file created</span><br></pre></td></tr></table></figure>
-<p>分析hprof文件工具</p>
-<ul>
-<li>使用eclipse的MAT (Memory Analyzer Tools)</li>
-<li>或者IDEA 的jprofiler插件 <a href="https://blog.csdn.net/wytocsdn/article/details/79258247" target="_blank" rel="noopener">IDEA 配置执行器</a> 需要装jprofiler执行器<a href="https://www.ej-technologies.com/download/jprofiler/version_92" target="_blank" rel="noopener">jprofiler下载</a> <a href="https://www.cnblogs.com/jifeng/p/3336408.html" target="_blank" rel="noopener">license</a>  <a href="https://blog.csdn.net/vicky_pyh/article/details/88797514" target="_blank" rel="noopener">jprofiler 使用</a></li>
-<li>IMB 的heapAnalyzer</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">按默认选择“Single or evaluation license”</span><br><span class="line">Name 和 Company 随意</span><br><span class="line">-----------------------忧郁的分割线---------------------------</span><br><span class="line">L-Larry_Lau@163.com#23874-hrwpdp1sh1wrn#0620</span><br><span class="line">L-Larry_Lau@163.com#36573-fdkscp15axjj6#25257</span><br><span class="line">L-Larry_Lau@163.com#5481-ucjn4a16rvd98#6038</span><br><span class="line">L-Larry_Lau@163.com#99016-hli5ay1ylizjj#27215</span><br><span class="line">L-Larry_Lau@163.com#40775-3wle0g1uin5c1#0674</span><br><span class="line">--------------------------------------------------------------</span><br><span class="line">L-Larry_Lau@163.com#7009-14frku31ynzpfr#20176</span><br><span class="line">L-Larry_Lau@163.com#49604-1jfe58we9gyb6#5814</span><br><span class="line">L-Larry_Lau@163.com#25531-1qcev4yintqkj#23927</span><br><span class="line">L-Larry_Lau@163.com#96496-1qsu1lb1jz7g8w#23479</span><br><span class="line">L-Larry_Lau@163.com#20948-11amlvg181cw0p#171159</span><br></pre></td></tr></table></figure>
-<p>JRebel和JProfiler同时运行</p>
-<p>如果IDEA中配置了JRebel热部署，要想JRebel和JProfiler同时运行，就要改手动管理JProfiler session了。<br>在 Run–Debug Configurations窗口JRebel Debug tab页中配置Environment Variables属性 CATALINA_OPTS：<br>使用springboot不成功，<br>CATALINA_OPTS=-agentpath:E:\tools\jprofiler_windows-x64_9_2_1\jprofiler9\bin\windows-x64\jprofilerti.dll=port=8849,nowait,id=81,config=C:\Users\Administrator.jprofiler9\config.xml</p>
-<p>调用请求: curl -w “@curl-time.txt” <a href="http://127.0.0.1:8080/hello" target="_blank" rel="noopener">http://127.0.0.1:8080/hello</a></p>
-<h2 id="常用和spring有关的"><a href="#常用和spring有关的" class="headerlink" title="常用和spring有关的"></a>常用和spring有关的</h2><p>从spring-mvc入手</p>
-<h3 id="内部："><a href="#内部：" class="headerlink" title="内部："></a>内部：</h3><p>trace 方法内部调用路径，并输出方法路径上的每个节点上耗时 -j跳过jdkclass<br>Servlet Filter 转发 哪一个Controller</p>
-<p>trace javax.servlet.Servlet <em><br>trace javax.servlet.Filter </em><br>trace org.springframework.web.servlet.DispatcherServlet *</p>
-<p>watch org.springframework.web.servlet.DispatcherServlet getHandler returnObj<br>是哪一个controller调用</p>
-<p>外部：<br>stack org.springframework.web.servlet.DispatcherServlet *<br>stack 输出当前方法被调用的调用路径<br>很多时候我们都知道一个方法被执行，但这个方法被执行的路径非常多，或者你根本就不知道这个方法是从那里被执行了，此时你需要的是 stack 命令。</p>
-<h2 id="其它监控"><a href="#其它监控" class="headerlink" title="其它监控"></a>其它监控</h2><p>Druid连接池 数据库监控 参考 <a href="https://muxiaobai.github.io/2018/11/22/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9B%91%E6%8E%A7-Druid%E7%9B%91%E6%8E%A7%E9%85%8D%E7%BD%AE/">数据库监控-Druid监控配置</a><br>Javamelody 传统应用 参考 <a href="https://muxiaobai.github.io/2017/08/02/Javamelody-%E5%B7%A5%E5%85%B7/">Javamelody 工具</a><br>jre自带的工具 jconsole jvisualvm参考 <a href="https://muxiaobai.github.io/2018/11/22/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3JVM%E4%B9%8B%E8%BF%9C%E7%A8%8B%E7%9B%91%E6%8E%A7/">深入理解JVM之远程监控</a></p>
+<p><img src="/2019/10/21/Thinking-in-java-基础之类加载顺序-初始化/获取Class四种方式.PNG" alt="初始化"></p>
+<p><img src="/2019/10/21/Thinking-in-java-基础之类加载顺序-初始化/Class初始化时机.png" alt="初始化"></p>
+<p>#### </p>
 
       
     </div>
@@ -468,13 +440,13 @@
   
     
     <div class="copyright">
-        <p><span>本文标题:</span><a href="/2019/08/16/java线上代码监控-工具-汇总/">java线上代码监控-工具(汇总)</a></p>
+        <p><span>本文标题:</span><a href="/2019/10/21/Thinking-in-java-基础之类加载顺序-初始化/">Thinking in java 基础之类加载顺序&amp;初始化</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">Mu Xiaobai(慕小白)</a></p>
-        <p><span>发布时间:</span>2019-08-16, 13:32:13</p>
-        <p><span>最后更新:</span>2019-09-26, 10:17:49</p>
+        <p><span>发布时间:</span>2019-10-21, 15:25:42</p>
+        <p><span>最后更新:</span>2019-10-21, 15:59:29</p>
         <p>
-            <span>原始链接:</span><a class="post-url" href="/2019/08/16/java线上代码监控-工具-汇总/" title="java线上代码监控-工具(汇总)">https://muxiaobai.github.io/2019/08/16/java线上代码监控-工具-汇总/</a>
-            <span class="copy-path" data-clipboard-text="原文: https://muxiaobai.github.io/2019/08/16/java线上代码监控-工具-汇总/　　作者: Mu Xiaobai(慕小白)" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <span>原始链接:</span><a class="post-url" href="/2019/10/21/Thinking-in-java-基础之类加载顺序-初始化/" title="Thinking in java 基础之类加载顺序&amp;初始化">https://muxiaobai.github.io/2019/10/21/Thinking-in-java-基础之类加载顺序-初始化/</a>
+            <span class="copy-path" data-clipboard-text="原文: https://muxiaobai.github.io/2019/10/21/Thinking-in-java-基础之类加载顺序-初始化/　　作者: Mu Xiaobai(慕小白)" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
             <script> var clipboard = new Clipboard('.copy-path'); </script>
         </p>
         <p>
@@ -486,16 +458,10 @@
 
     <nav id="article-nav">
         
-            <div id="article-nav-newer" class="article-nav-title">
-                <a href="/2019/08/31/devops之docker/">
-                    devops之docker
-                </a>
-            </div>
-        
         
             <div id="article-nav-older" class="article-nav-title">
-                <a href="/2019/07/29/git的一些其它操作/">
-                    git的一些其它操作
+                <a href="/2019/10/17/Thinking-in-java-基础之HashMap/">
+                    Thinking in java 基础之HashMap
                 </a>
             </div>
         
@@ -508,7 +474,7 @@
     <!--左侧-->
     <div id="toc" class="toc-article">
     <strong class="toc-title">文章目录</strong>
-    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#arthas"><span class="toc-number">1.</span> <span class="toc-text">arthas</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#暂存运行状态文件hpof"><span class="toc-number">1.1.</span> <span class="toc-text">暂存运行状态文件hpof</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#常用和spring有关的"><span class="toc-number">2.</span> <span class="toc-text">常用和spring有关的</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#内部："><span class="toc-number">2.1.</span> <span class="toc-text">内部：</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#其它监控"><span class="toc-number">3.</span> <span class="toc-text">其它监控</span></a></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#先来一个题"><span class="toc-number">1.</span> <span class="toc-text">先来一个题</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#初始化"><span class="toc-number">2.</span> <span class="toc-text">初始化</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#java对象，获取"><span class="toc-number">2.1.</span> <span class="toc-text">java对象，获取</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Class对象获取"><span class="toc-number">2.2.</span> <span class="toc-text">Class对象获取</span></a></li></ol></li></ol>
 </div>
 <style>
     .left-col .switch-btn,
@@ -549,7 +515,7 @@
     <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
     <script>
     var gitment = new Gitment({
-      id: 'java线上代码监控-工具(汇总)',
+      id: 'Thinking in java 基础之类加载顺序&amp;初始化',
       owner: 'muxiaobai',
       repo: 'muxiaobai.github.io',
       oauth: {
@@ -567,15 +533,13 @@
 
     <div class="scroll" id="post-nav-button">
         
-            <a href="/2019/08/31/devops之docker/" title="上一篇: devops之docker">
-                <i class="fa fa-angle-left"></i>
-            </a>
+            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
         
 
         <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
 
         
-            <a href="/2019/07/29/git的一些其它操作/" title="下一篇: git的一些其它操作">
+            <a href="/2019/10/17/Thinking-in-java-基础之HashMap/" title="下一篇: Thinking in java 基础之HashMap">
                 <i class="fa fa-angle-right"></i>
             </a>
         
