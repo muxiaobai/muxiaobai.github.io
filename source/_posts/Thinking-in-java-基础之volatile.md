@@ -28,6 +28,25 @@ hsdis-1.1.1-win32-amd64.zip放到${JAVA_HOME}\jdk1.8.0_171\jre\bin\server下,先
 ![汇编](Thinking-in-java-基础之volatile/3.png)
 在修改有volatile修饰的属性，加有lock add第八行。
 
+```
+public class Test {
+    public static volatile boolean stop = false ;
+    public static void main(String[] args) throws InterruptedException {
+        Thread thread = new Thread(()->{
+            int i=0;
+            while (!stop){
+                i++;
+            }
+            System.out.println(i);
+        });
+        thread.start();
+        System.out.println("begin start thread");
+        Thread.sleep(1000);
+        stop = true;
+    }
+}
+
+```
 锁提供了原子性和可见性
 volatile具有锁的可见性，
 
@@ -85,5 +104,5 @@ volatile的内存屏障策略非常严格保守，非常悲观且毫无安全感
 从.java----------->.class编译完成，然后.class 在不同的平台上，对于volatile来说，JVM有不同的实现，一次编写，到处运行`Write once, run anywhere`,JVM屏蔽各种架构的指令集，例如x86 MMX，SSE等，在window系统上使用window指令，在linux上使用linux指令，最终Java实现了，程序员不用关系各个平台的差异。
 但对于.net ，需要安装其他的中间件等，才能在非window系统运行。
 
-
+![总结适配器模式](Thinking-in-java-基础之volatile/CPU.PNG)
 
