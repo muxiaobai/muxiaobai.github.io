@@ -26,7 +26,7 @@
 <meta property="og:image" content="https://muxiaobai.github.io/2019/10/21/Thinking-in-java-基础之类加载顺序-初始化/Class初始化.png">
 <meta property="og:image" content="https://muxiaobai.github.io/2019/10/21/Thinking-in-java-基础之类加载顺序-初始化/获取Class四种方式.PNG">
 <meta property="og:image" content="https://muxiaobai.github.io/2019/10/21/Thinking-in-java-基础之类加载顺序-初始化/Class初始化时机.png">
-<meta property="og:updated_time" content="2019-10-21T07:59:29.360Z">
+<meta property="og:updated_time" content="2019-10-21T09:39:54.251Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Thinking in java 基础之类加载顺序&amp;初始化">
 <meta name="twitter:description" content="类加载过程">
@@ -335,7 +335,16 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <h4 id="先来一个题"><a href="#先来一个题" class="headerlink" title="先来一个题"></a>先来一个题</h4><p><img src="/2019/10/21/Thinking-in-java-基础之类加载顺序-初始化/Class初始化.png" alt="初始化"></p>
+        <h4 id="先来一个题"><a href="#先来一个题" class="headerlink" title="先来一个题"></a>先来一个题</h4><p>FatherClass:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">public class FatherClass &#123;</span><br><span class="line">    public  static  int F_NUM = 1111;</span><br><span class="line">    static &#123;</span><br><span class="line">        System.out.println(F_NUM);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    FatherClass()&#123;</span><br><span class="line">        System.out.println(F_NUM);</span><br><span class="line">        F_NUM = 5555;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>SonClass<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">public class SonClass  extends  FatherClass&#123;</span><br><span class="line">    public  static  int S_NUM = 2222;</span><br><span class="line">    static &#123;</span><br><span class="line">        F_NUM = 3333;</span><br><span class="line">        System.out.println(S_NUM);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    static &#123;</span><br><span class="line">        S_NUM = 4444;</span><br><span class="line">        System.out.println(F_NUM);</span><br><span class="line">    &#125;</span><br><span class="line">    //这里是一个大坑，没有无参的构造方法，所以newInstance的时候会报错</span><br><span class="line">    SonClass(int inNUM)&#123;</span><br><span class="line">        System.out.println(F_NUM);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">public class LoaderOrder &#123;</span><br><span class="line">    public static void main(String[] args) throws ClassNotFoundException, IllegalAccessException, InstantiationException &#123;</span><br><span class="line">//        testClassLoad();</span><br><span class="line">        testClassForName();</span><br><span class="line">    &#125;</span><br><span class="line">    public static void testClassLoad() throws ClassNotFoundException, IllegalAccessException, InstantiationException &#123;</span><br><span class="line">        Class clazz =LoaderOrder.class.getClassLoader().loadClass(&quot;io.github.muxiaobai.spring_my_demo.loadClass.SonClass&quot;);</span><br><span class="line">        System.out.println(&quot;---------------------------&quot;);</span><br><span class="line">        clazz.newInstance();</span><br><span class="line">        System.out.println(&quot;===========================&quot;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    public static void testClassForName() throws ClassNotFoundException, IllegalAccessException, InstantiationException &#123;</span><br><span class="line">        Class clazz =Class.forName(&quot;io.github.muxiaobai.spring_my_demo.loadClass.SonClass&quot;);</span><br><span class="line">        System.out.println(&quot;---------------------------&quot;);</span><br><span class="line">        clazz.newInstance();</span><br><span class="line">        System.out.println(&quot;===========================&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>使用ClassLoad<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">---------------------------</span><br><span class="line">Exception in thread &quot;main&quot; java.lang.InstantiationException: io.github.muxiaobai.spring_my_demo.loadClass.SonClass</span><br><span class="line">	at java.lang.Class.newInstance(Class.java:427)</span><br></pre></td></tr></table></figure></p>
+<p>使用Class.forName();</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">1111</span><br><span class="line">2222</span><br><span class="line">3333</span><br><span class="line">---------------------------</span><br><span class="line">Exception in thread &quot;main&quot; java.lang.InstantiationException: io.github.muxiaobai.spring_my_demo.loadClass.SonClass</span><br></pre></td></tr></table></figure>
+<p>链接：static成员变量，附初始值。0,null,false,</p>
+<p>初始化做了那些事情？显性的：static语句块，执行到实例化的时候没有无参的构造函数，因此父类和子类都没有实例化。</p>
+<p>没有完成类的初始化，无法访问类成员</p>
+<p><img src="/2019/10/21/Thinking-in-java-基础之类加载顺序-初始化/Class初始化.png" alt="初始化"></p>
 <h4 id="初始化"><a href="#初始化" class="headerlink" title="初始化"></a>初始化</h4><h5 id="java对象，获取"><a href="#java对象，获取" class="headerlink" title="java对象，获取"></a>java对象，获取</h5><ul>
 <li>new </li>
 <li>反射</li>
@@ -349,8 +358,25 @@
 <li>Class.forName(“包.类”);</li>
 </ul>
 <p><img src="/2019/10/21/Thinking-in-java-基础之类加载顺序-初始化/获取Class四种方式.PNG" alt="初始化"></p>
+<p>jvm加载步骤：加载——链接（验证，准备，解析）———–初始化</p>
 <p><img src="/2019/10/21/Thinking-in-java-基础之类加载顺序-初始化/Class初始化时机.png" alt="初始化"></p>
-<p>#### </p>
+<p>两种，实际上是识别到字节码指令:new，putstatic,getstatic,invokestatic,<br>反射</p>
+<p>根据Java虚拟机的规范，只有5中情况属于主动引用：</p>
+<ul>
+<li><p>遇到new（使用new 关键字实例化一个对象）、getstatic（读取一个类的静态字段）、putstatic或者invokestatic（设置一个类的静态字段）这4条指令的时候，如果累没有进行过初始化。则需要先触发其初始化。</p>
+</li>
+<li><p>使用反射进行反射调用的时候，如果类没有初始化，则需要先触发其初始化。</p>
+</li>
+<li><p>当初始化一个类的时候，如果其父类没有初始化，则需要先触发其父类的初始化</p>
+</li>
+<li><p>程序启动需要触发main方法的时候，虚拟机会先触发这个类的初始化</p>
+</li>
+<li><p>当使用jdk1.7的动态语言支持的时候，如果一个java.lang.invoke.MethodHandler实例最后的解析结果为REF_getStatic、REF_pusStatic、REF_invokeStatic的方法句柄（句柄中包含了对象的实例数据和类型数据，句柄是访问对象的一种方法。句柄存储在堆中），并且句柄对应的类没有被初始化，那么需要先触发这个类的初始化。</p>
+</li>
+</ul>
+<h4 id="其它"><a href="#其它" class="headerlink" title="其它"></a>其它</h4><ul>
+<li><a href="https://www.cnblogs.com/shyroke/p/9161603.html" target="_blank" rel="noopener">类加载机制和类的加载、连接（验证、准备、解析）和初始化</a></li>
+</ul>
 
       
     </div>
@@ -443,7 +469,7 @@
         <p><span>本文标题:</span><a href="/2019/10/21/Thinking-in-java-基础之类加载顺序-初始化/">Thinking in java 基础之类加载顺序&amp;初始化</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">Mu Xiaobai(慕小白)</a></p>
         <p><span>发布时间:</span>2019-10-21, 15:25:42</p>
-        <p><span>最后更新:</span>2019-10-21, 15:59:29</p>
+        <p><span>最后更新:</span>2019-10-21, 17:39:54</p>
         <p>
             <span>原始链接:</span><a class="post-url" href="/2019/10/21/Thinking-in-java-基础之类加载顺序-初始化/" title="Thinking in java 基础之类加载顺序&amp;初始化">https://muxiaobai.github.io/2019/10/21/Thinking-in-java-基础之类加载顺序-初始化/</a>
             <span class="copy-path" data-clipboard-text="原文: https://muxiaobai.github.io/2019/10/21/Thinking-in-java-基础之类加载顺序-初始化/　　作者: Mu Xiaobai(慕小白)" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
@@ -474,7 +500,7 @@
     <!--左侧-->
     <div id="toc" class="toc-article">
     <strong class="toc-title">文章目录</strong>
-    <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#先来一个题"><span class="toc-number">1.</span> <span class="toc-text">先来一个题</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#初始化"><span class="toc-number">2.</span> <span class="toc-text">初始化</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#java对象，获取"><span class="toc-number">2.1.</span> <span class="toc-text">java对象，获取</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Class对象获取"><span class="toc-number">2.2.</span> <span class="toc-text">Class对象获取</span></a></li></ol></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#先来一个题"><span class="toc-number">1.</span> <span class="toc-text">先来一个题</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#初始化"><span class="toc-number">2.</span> <span class="toc-text">初始化</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#java对象，获取"><span class="toc-number">2.1.</span> <span class="toc-text">java对象，获取</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Class对象获取"><span class="toc-number">2.2.</span> <span class="toc-text">Class对象获取</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#其它"><span class="toc-number">3.</span> <span class="toc-text">其它</span></a></li></ol>
 </div>
 <style>
     .left-col .switch-btn,

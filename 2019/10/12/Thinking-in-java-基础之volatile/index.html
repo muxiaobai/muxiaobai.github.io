@@ -28,7 +28,7 @@
 <meta property="og:image" content="https://muxiaobai.github.io/2019/10/12/Thinking-in-java-基础之volatile/3.png">
 <meta property="og:image" content="https://muxiaobai.github.io/2019/10/12/Thinking-in-java-基础之volatile/L0.png">
 <meta property="og:image" content="https://muxiaobai.github.io/2019/10/12/Thinking-in-java-基础之volatile/CPU.PNG">
-<meta property="og:updated_time" content="2019-10-21T07:37:16.105Z">
+<meta property="og:updated_time" content="2019-10-21T08:34:22.720Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Thinking in java 基础之volatile">
 <meta name="twitter:description" content="从volatile到内存屏障">
@@ -374,6 +374,7 @@
 <p>因为CPU高速运转，直接读内存会很慢，又开辟一级二级三级缓存，多核CPU下每一个有独立的一级二级缓存；如果现在来了一个数据存在三级缓存中，第一个Thread读取之后，并修改了值，但没有同步到三级缓存中；这时候第二个线程要读值，他还是只从三级缓存中读取内容，；但有了内存屏障，在第三个读的时候，</p>
 <p>从.java———–&gt;.class编译完成，然后.class 在不同的平台上，对于volatile来说，JVM有不同的实现，一次编写，到处运行<code>Write once, run anywhere</code>,JVM屏蔽各种架构的指令集，例如x86 MMX，SSE等，在window系统上使用window指令，在linux上使用linux指令，最终Java实现了，程序员不用关系各个平台的差异。<br>但对于.net ，需要安装其他的中间件等，才能在非window系统运行。</p>
 <p><img src="/2019/10/12/Thinking-in-java-基础之volatile/CPU.PNG" alt="总结适配器模式"></p>
+<p><a href="https://mrbird.cc/Java-Memory-model.html#more" target="_blank" rel="noopener">参考Java 内存模型</a></p>
 
       
     </div>
@@ -466,7 +467,7 @@
         <p><span>本文标题:</span><a href="/2019/10/12/Thinking-in-java-基础之volatile/">Thinking in java 基础之volatile</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">Mu Xiaobai(慕小白)</a></p>
         <p><span>发布时间:</span>2019-10-12, 10:41:58</p>
-        <p><span>最后更新:</span>2019-10-21, 15:37:16</p>
+        <p><span>最后更新:</span>2019-10-21, 16:34:22</p>
         <p>
             <span>原始链接:</span><a class="post-url" href="/2019/10/12/Thinking-in-java-基础之volatile/" title="Thinking in java 基础之volatile">https://muxiaobai.github.io/2019/10/12/Thinking-in-java-基础之volatile/</a>
             <span class="copy-path" data-clipboard-text="原文: https://muxiaobai.github.io/2019/10/12/Thinking-in-java-基础之volatile/　　作者: Mu Xiaobai(慕小白)" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>

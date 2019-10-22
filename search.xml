@@ -6,7 +6,16 @@
     <entry>
       <title><![CDATA[Thinking in java 基础之类加载顺序&初始化]]></title>
       <url>https://muxiaobai.github.io/2019/10/21/Thinking-in-java-%E5%9F%BA%E7%A1%80%E4%B9%8B%E7%B1%BB%E5%8A%A0%E8%BD%BD%E9%A1%BA%E5%BA%8F-%E5%88%9D%E5%A7%8B%E5%8C%96/</url>
-      <content type="html"><![CDATA[<h4 id="先来一个题"><a href="#先来一个题" class="headerlink" title="先来一个题"></a>先来一个题</h4><p><img src="/2019/10/21/Thinking-in-java-基础之类加载顺序-初始化/Class初始化.png" alt="初始化"></p>
+      <content type="html"><![CDATA[<h4 id="先来一个题"><a href="#先来一个题" class="headerlink" title="先来一个题"></a>先来一个题</h4><p>FatherClass:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">public class FatherClass &#123;</span><br><span class="line">    public  static  int F_NUM = 1111;</span><br><span class="line">    static &#123;</span><br><span class="line">        System.out.println(F_NUM);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    FatherClass()&#123;</span><br><span class="line">        System.out.println(F_NUM);</span><br><span class="line">        F_NUM = 5555;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>SonClass<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">public class SonClass  extends  FatherClass&#123;</span><br><span class="line">    public  static  int S_NUM = 2222;</span><br><span class="line">    static &#123;</span><br><span class="line">        F_NUM = 3333;</span><br><span class="line">        System.out.println(S_NUM);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    static &#123;</span><br><span class="line">        S_NUM = 4444;</span><br><span class="line">        System.out.println(F_NUM);</span><br><span class="line">    &#125;</span><br><span class="line">    //这里是一个大坑，没有无参的构造方法，所以newInstance的时候会报错</span><br><span class="line">    SonClass(int inNUM)&#123;</span><br><span class="line">        System.out.println(F_NUM);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">public class LoaderOrder &#123;</span><br><span class="line">    public static void main(String[] args) throws ClassNotFoundException, IllegalAccessException, InstantiationException &#123;</span><br><span class="line">//        testClassLoad();</span><br><span class="line">        testClassForName();</span><br><span class="line">    &#125;</span><br><span class="line">    public static void testClassLoad() throws ClassNotFoundException, IllegalAccessException, InstantiationException &#123;</span><br><span class="line">        Class clazz =LoaderOrder.class.getClassLoader().loadClass(&quot;io.github.muxiaobai.spring_my_demo.loadClass.SonClass&quot;);</span><br><span class="line">        System.out.println(&quot;---------------------------&quot;);</span><br><span class="line">        clazz.newInstance();</span><br><span class="line">        System.out.println(&quot;===========================&quot;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    public static void testClassForName() throws ClassNotFoundException, IllegalAccessException, InstantiationException &#123;</span><br><span class="line">        Class clazz =Class.forName(&quot;io.github.muxiaobai.spring_my_demo.loadClass.SonClass&quot;);</span><br><span class="line">        System.out.println(&quot;---------------------------&quot;);</span><br><span class="line">        clazz.newInstance();</span><br><span class="line">        System.out.println(&quot;===========================&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>使用ClassLoad<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">---------------------------</span><br><span class="line">Exception in thread &quot;main&quot; java.lang.InstantiationException: io.github.muxiaobai.spring_my_demo.loadClass.SonClass</span><br><span class="line">	at java.lang.Class.newInstance(Class.java:427)</span><br></pre></td></tr></table></figure></p>
+<p>使用Class.forName();</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">1111</span><br><span class="line">2222</span><br><span class="line">3333</span><br><span class="line">---------------------------</span><br><span class="line">Exception in thread &quot;main&quot; java.lang.InstantiationException: io.github.muxiaobai.spring_my_demo.loadClass.SonClass</span><br></pre></td></tr></table></figure>
+<p>链接：static成员变量，附初始值。0,null,false,</p>
+<p>初始化做了那些事情？显性的：static语句块，执行到实例化的时候没有无参的构造函数，因此父类和子类都没有实例化。</p>
+<p>没有完成类的初始化，无法访问类成员</p>
+<p><img src="/2019/10/21/Thinking-in-java-基础之类加载顺序-初始化/Class初始化.png" alt="初始化"></p>
 <h4 id="初始化"><a href="#初始化" class="headerlink" title="初始化"></a>初始化</h4><h5 id="java对象，获取"><a href="#java对象，获取" class="headerlink" title="java对象，获取"></a>java对象，获取</h5><ul>
 <li>new </li>
 <li>反射</li>
@@ -20,8 +29,25 @@
 <li>Class.forName(“包.类”);</li>
 </ul>
 <p><img src="/2019/10/21/Thinking-in-java-基础之类加载顺序-初始化/获取Class四种方式.PNG" alt="初始化"></p>
+<p>jvm加载步骤：加载——链接（验证，准备，解析）———–初始化</p>
 <p><img src="/2019/10/21/Thinking-in-java-基础之类加载顺序-初始化/Class初始化时机.png" alt="初始化"></p>
-<p>#### </p>
+<p>两种，实际上是识别到字节码指令:new，putstatic,getstatic,invokestatic,<br>反射</p>
+<p>根据Java虚拟机的规范，只有5中情况属于主动引用：</p>
+<ul>
+<li><p>遇到new（使用new 关键字实例化一个对象）、getstatic（读取一个类的静态字段）、putstatic或者invokestatic（设置一个类的静态字段）这4条指令的时候，如果累没有进行过初始化。则需要先触发其初始化。</p>
+</li>
+<li><p>使用反射进行反射调用的时候，如果类没有初始化，则需要先触发其初始化。</p>
+</li>
+<li><p>当初始化一个类的时候，如果其父类没有初始化，则需要先触发其父类的初始化</p>
+</li>
+<li><p>程序启动需要触发main方法的时候，虚拟机会先触发这个类的初始化</p>
+</li>
+<li><p>当使用jdk1.7的动态语言支持的时候，如果一个java.lang.invoke.MethodHandler实例最后的解析结果为REF_getStatic、REF_pusStatic、REF_invokeStatic的方法句柄（句柄中包含了对象的实例数据和类型数据，句柄是访问对象的一种方法。句柄存储在堆中），并且句柄对应的类没有被初始化，那么需要先触发这个类的初始化。</p>
+</li>
+</ul>
+<h4 id="其它"><a href="#其它" class="headerlink" title="其它"></a>其它</h4><ul>
+<li><a href="https://www.cnblogs.com/shyroke/p/9161603.html" target="_blank" rel="noopener">类加载机制和类的加载、连接（验证、准备、解析）和初始化</a></li>
+</ul>
 ]]></content>
       
         <categories>
@@ -136,6 +162,7 @@ hashMap.put(&quot;abc&quot;,&quot;1&quot;);
 <p>因为CPU高速运转，直接读内存会很慢，又开辟一级二级三级缓存，多核CPU下每一个有独立的一级二级缓存；如果现在来了一个数据存在三级缓存中，第一个Thread读取之后，并修改了值，但没有同步到三级缓存中；这时候第二个线程要读值，他还是只从三级缓存中读取内容，；但有了内存屏障，在第三个读的时候，</p>
 <p>从.java———–&gt;.class编译完成，然后.class 在不同的平台上，对于volatile来说，JVM有不同的实现，一次编写，到处运行<code>Write once, run anywhere</code>,JVM屏蔽各种架构的指令集，例如x86 MMX，SSE等，在window系统上使用window指令，在linux上使用linux指令，最终Java实现了，程序员不用关系各个平台的差异。<br>但对于.net ，需要安装其他的中间件等，才能在非window系统运行。</p>
 <p><img src="/2019/10/12/Thinking-in-java-基础之volatile/CPU.PNG" alt="总结适配器模式"></p>
+<p><a href="https://mrbird.cc/Java-Memory-model.html#more" target="_blank" rel="noopener">参考Java 内存模型</a></p>
 ]]></content>
       
         <categories>
