@@ -106,3 +106,5 @@ volatile的内存屏障策略非常严格保守，非常悲观且毫无安全感
 
 ![总结适配器模式](Thinking-in-java-基础之volatile/CPU.PNG)
 
+
+[参考Java 内存模型](https://mrbird.cc/Java-Memory-model.html#more)
