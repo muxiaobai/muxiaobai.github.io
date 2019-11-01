@@ -4,6 +4,56 @@
   
     
     <entry>
+      <title><![CDATA[Thinking in java 基础之AQS和应用]]></title>
+      <url>https://muxiaobai.github.io/2019/10/31/Thinking-in-java-%E5%9F%BA%E7%A1%80%E4%B9%8BAQS%E5%92%8C%E5%BA%94%E7%94%A8/</url>
+      <content type="html"><![CDATA[<p>使用锁的时候我们直接<code>ReentrantLock lock = new ReentrantLock();lock.lock();</code>,这中间究竟有什么内容,<br>lock的时候，其它线程为什么不能执行，unlook()的时候其它的线程究竟从哪个线程能执行？本文主要分析lock的各种情况。</p>
+<h2 id="j-u-c-locks-AbstractQueuedSynchronizer"><a href="#j-u-c-locks-AbstractQueuedSynchronizer" class="headerlink" title="j.u.c.locks.AbstractQueuedSynchronizer"></a>j.u.c.locks.AbstractQueuedSynchronizer</h2><p>有共享和独占两种状态，SHARE，EXCLUSIVE 这两个在AQS中对应两个Node节点{state:1,thread:Thread.CurrentThread()},节点里面的内容。<br>从名字里面就能知道，共享锁，每一个线程来都可以拿到锁，简单的来说，就是可以运行lock和unlock内的代码，独占锁，一个线程lock，其它线程必须等到unlock之后，再去抢占锁。</p>
+<blockquote>
+<p>排队接水喝，我的杯子放在这里，当前这个饮水机就我能用。其它人来了，不好意思，排队。</p>
+</blockquote>
+<p>至于怎么抢占，又分为公平锁，和非公平锁，公平锁：先来后到，非公平：随机获取。</p>
+<blockquote>
+<p>排队接水喝， 先后顺序，公平，来了个领导，他先接水，不公平，但合理。</p>
+</blockquote>
+<p>AbstractOwnableSynchronizer</p>
+<p><img src="/2019/10/31/Thinking-in-java-基础之AQS和应用/state.png" alt="图"><br>CLH锁也是一种基于链表的可扩展、高性能、公平的自旋锁，申请线程仅仅在本地变量上自旋，它不断轮询前驱的状态，假设发现前驱释放了锁就结束自旋。</p>
+<p>资源state使用volatile标识，保证所有的线程来的时候都是确定的值。详细查看<a href>volatile</a>，其它线程在队列里。</p>
+<p>protected boolean tryAcquire(int arg) : 独占式获取同步状态，试着获取，成功返回true，反之为false<br>protected boolean tryRelease(int arg) ：独占式释放同步状态，等待中的其他线程此时将有机会获取到同步状态；<br>protected int tryAcquireShared(int arg) ：共享式获取同步状态，返回值大于等于0，代表获取成功；反之获取失败；<br>protected boolean tryReleaseShared(int arg) ：共享式释放同步状态，成功为true，失败为false<br>protected boolean isHeldExclusively() ： 是否在独占模式下被线程占用。</p>
+<h2 id="CountDownLatch-倒计时器"><a href="#CountDownLatch-倒计时器" class="headerlink" title="CountDownLatch 倒计时器"></a>CountDownLatch 倒计时器</h2><p>它允许一个或多个线程一直等待，直到其他线程的操作执行完后再执行</p>
+<p>CountDownLatch，任务分为N个子线程去执行，state也初始化为N（注意N要与线程个数一致）。这N个子线程是并行执行的，每个子线程执行完后countDown()一次，state会CAS(Compare and Swap)减1。等到所有子线程都执行完后(即state=0)，会unpark()主调用线程，然后主调用线程就会从await()函数返回，继续后余动作。</p>
+<h2 id="CyclicBarrier-循环栅栏"><a href="#CyclicBarrier-循环栅栏" class="headerlink" title="CyclicBarrier 循环栅栏"></a>CyclicBarrier 循环栅栏</h2><p>让一组线程到达一个屏障（也可以叫同步点）时被阻塞，直到最后一个线程到达屏障时，屏障才会开门，所有被屏障拦截的线程才会继续干活。</p>
+<blockquote>
+<p>CountDownLatch: A synchronization aid that allows one or more threads to wait until a set of operations being performed in other threads completes. (CountDownLatch: 一个或者多个线程，等待其他多个线程完成某件事情之后才能执行；) CyclicBarrier : A synchronization aid that allows a set of threads to all wait for each other to reach a common barrier point.(CyclicBarrier : 多个线程互相等待，直到到达同一个同步点，再继续一起执行。)</p>
+</blockquote>
+<p>对于CountDownLatch来说，重点是“一个线程（多个线程）等待”，而其他的N个线程在完成“某件事情”之后，可以终止，也可以等待。而对于CyclicBarrier，重点是多个线程，在任意一个线程没有完成，所有的线程都必须等待。</p>
+<h2 id="Semaphore-信号量"><a href="#Semaphore-信号量" class="headerlink" title="Semaphore 信号量"></a>Semaphore 信号量</h2><p>synchronized 和 ReentrantLock 都是一次只允许一个线程访问某个资源,可以指定多个线程同时访问某个资源</p>
+<h2 id="ReentrantLock-重入锁"><a href="#ReentrantLock-重入锁" class="headerlink" title="ReentrantLock 重入锁"></a>ReentrantLock 重入锁</h2><blockquote>
+<p>排队接水喝，水杯太大，杯子放着接，我先干别的事，干完了回来，直接就能拿杯子，重入。</p>
+</blockquote>
+<p>ReentrantLock，state初始化为0，表示未锁定状态。A线程lock()时，会调用tryAcquire()独占该锁并将state+1。此后，其他线程再tryAcquire()时就会失败，直到A线程unlock()到state=0（即释放锁）为止，其它线程才有机会获取该锁。当然，释放锁之前，A线程自己是可以重复获取此锁的（state会累加），这就是可重入的概念。但要注意，获取多少次就要释放多么次，这样才能保证state是能回到零态的。</p>
+<h2 id="tomcat的-LimitLatch"><a href="#tomcat的-LimitLatch" class="headerlink" title="tomcat的 LimitLatch"></a>tomcat的 LimitLatch</h2><ul>
+<li><a href="https://www.cnblogs.com/waterystone/p/4920797.html" target="_blank" rel="noopener">Java并发之AQS详解</a></li>
+<li><a href="https://www.cnblogs.com/chengxiao/archive/2017/07/24/7141160.html" target="_blank" rel="noopener">Java并发包基石-AQS详解</a></li>
+<li><a href="https://github.com/Snailclimb/JavaGuide/blob/master/docs/java/Multithread/AQS.md#41-countdownlatch-%E7%9A%84%E4%B8%89%E7%A7%8D%E5%85%B8%E5%9E%8B%E7%94%A8%E6%B3%95" target="_blank" rel="noopener">JavaGuide</a></li>
+</ul>
+]]></content>
+      
+        <categories>
+            
+            <category> java </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> Thread </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[Thinking in java 基础之类加载顺序&初始化]]></title>
       <url>https://muxiaobai.github.io/2019/10/21/Thinking-in-java-%E5%9F%BA%E7%A1%80%E4%B9%8B%E7%B1%BB%E5%8A%A0%E8%BD%BD%E9%A1%BA%E5%BA%8F-%E5%88%9D%E5%A7%8B%E5%8C%96/</url>
       <content type="html"><![CDATA[<h4 id="先来一个题"><a href="#先来一个题" class="headerlink" title="先来一个题"></a>先来一个题</h4><p>FatherClass:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">public class FatherClass &#123;</span><br><span class="line">    public  static  int F_NUM = 1111;</span><br><span class="line">    static &#123;</span><br><span class="line">        System.out.println(F_NUM);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    FatherClass()&#123;</span><br><span class="line">        System.out.println(F_NUM);</span><br><span class="line">        F_NUM = 5555;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
@@ -441,13 +491,22 @@ hashMap.put(&quot;abc&quot;,&quot;1&quot;);
 <li>*/</li>
 </ul>
 <h3 id="设置"><a href="#设置" class="headerlink" title="设置"></a>设置</h3><h3 id="快捷键"><a href="#快捷键" class="headerlink" title="快捷键"></a>快捷键</h3><p>ctrl + shift + r 替换<br>ctrl + shift + f 查找</p>
-<p>alt + ←/→  鼠标上次的位置/下次的位置<br>ctrl + alt + 鼠标左键 查看方法的实现类</p>
+<p>alt + ↑/↓  本类中的方法依次上下跳转<br>alt + ←/→  左右边的类</p>
 <p>ctrl + shift + u 大小写替换</p>
+<p>ctrl +  ←/→   光标左/右单词移动<br>ctrl+shift + ←/→  左/右边单词扩选</p>
+<p>ctrl+w 选中光标，依次扩选<br>ctrl +shift + w 反向收缩选中内容</p>
+<p>Ctrl + u    前往当前光标所在的方法的父类的方法 / 接口定义<br>ctrl + b 进入光标所在的方法/变量的接口或是定义处</p>
+<p>ctrl + alt + 鼠标左键 查看方法的实现类<br>ctrl + alt + ←/→  鼠标上次的位置/下次的位置</p>
+<p>Ctrl + Alt + T    对选中的代码弹出环绕选项弹出层 （必备）</p>
 <p>ctrl + x 剪切<br>ctrl + d 复制粘贴<br>ctrl + / 单行注释<br>ctrl + shift + / 选中内容多行注释</p>
 <p>ctrl + z 撤回<br>ctrl + shift + z 撤回的撤回</p>
 <p>ctrl +alt + s 设置<br>ctrl +alt +shift + s 本项目设置 打包</p>
-<p>参考<a href="https://github.com/judasn/IntelliJ-IDEA-Tutorial/blob/master/keymap-introduce.md" target="_blank" rel="noopener">IntelliJ-IDEA-Tutorial</a></p>
-<h2 id="navicat"><a href="#navicat" class="headerlink" title="navicat"></a>navicat</h2><p>ctrl + shift + r  选中内容执行<br>ctrl + r 执行当期窗口所有<br>ctrl + q 打开新执行窗口<br>ctrl + w 关闭当期窗口</p>
+<p>参考:</p>
+<ul>
+<li><a href="https://github.com/judasn/IntelliJ-IDEA-Tutorial/blob/master/keymap-introduce.md" target="_blank" rel="noopener">IntelliJ-IDEA-Tutorial</a></li>
+<li><a href="https://blog.csdn.net/deniro_li/article/details/72902621" target="_blank" rel="noopener">IntelliJ IDEA 快捷键说明大全（中英对照、带图示详解）</a><h2 id="navicat"><a href="#navicat" class="headerlink" title="navicat"></a>navicat</h2></li>
+</ul>
+<p>ctrl + shift + r  选中内容执行<br>ctrl + r 执行当期窗口所有<br>ctrl + q 打开新执行窗口<br>ctrl + w 关闭当期窗口</p>
 <h2 id="plsql"><a href="#plsql" class="headerlink" title="plsql"></a>plsql</h2><p>F8 执行选中</p>
 <p>设置AutoReplace<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sf = select t.* ,t.rowid from </span><br><span class="line">s = select * from</span><br></pre></td></tr></table></figure></p>
 <p>打开PL/SQL，在Tools-&gt;Perferences-&gt;Editor中Autoreplace，勾选Enabled，选择配置的AutoReplace.txt文件，点击OK即可。</p>
@@ -3645,6 +3704,7 @@ hashMap.put(&quot;abc&quot;,&quot;1&quot;);
 <li><a href="http://blog.csdn.net/escaflone/article/details/10418651" target="_blank" rel="noopener">Java 多线程 并发编程</a></li>
 <li><a href="https://my.oschina.net/liughDevelop/blog/1505500" target="_blank" rel="noopener">JDK并发四篇文章</a></li>
 <li><a href="https://github.com/CyC2018/Interview-Notebook/blob/master/notes/Java%20%E5%B9%B6%E5%8F%91.md" target="_blank" rel="noopener">技术面试基础知识CyC2018</a></li>
+<li><a href="https://github.com/CyC2018/CS-Notes/blob/master/notes/Java%20%E5%B9%B6%E5%8F%91.md" target="_blank" rel="noopener">CyC2018并发</a></li>
 </ul>
 ]]></content>
       

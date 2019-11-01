@@ -16,21 +16,20 @@
 
 
 
-<meta name="description" content="类加载过程">
+<meta name="description" content="jdk的juc中的AQS和应用，各种锁的比较">
+<meta name="keywords" content="Thread">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Thinking in java 基础之类加载顺序&amp;初始化">
-<meta property="og:url" content="https://muxiaobai.github.io/2019/10/21/Thinking-in-java-基础之类加载顺序-初始化/index.html">
+<meta property="og:title" content="Thinking in java 基础之AQS和应用">
+<meta property="og:url" content="https://muxiaobai.github.io/2019/10/31/Thinking-in-java-基础之AQS和应用/index.html">
 <meta property="og:site_name" content="技术笔记">
-<meta property="og:description" content="类加载过程">
+<meta property="og:description" content="jdk的juc中的AQS和应用，各种锁的比较">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://muxiaobai.github.io/2019/10/21/Thinking-in-java-基础之类加载顺序-初始化/Class初始化.png">
-<meta property="og:image" content="https://muxiaobai.github.io/2019/10/21/Thinking-in-java-基础之类加载顺序-初始化/获取Class四种方式.PNG">
-<meta property="og:image" content="https://muxiaobai.github.io/2019/10/21/Thinking-in-java-基础之类加载顺序-初始化/Class初始化时机.png">
-<meta property="og:updated_time" content="2019-10-22T02:06:04.356Z">
+<meta property="og:image" content="https://muxiaobai.github.io/2019/10/31/Thinking-in-java-基础之AQS和应用/state.png">
+<meta property="og:updated_time" content="2019-11-01T07:36:33.664Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Thinking in java 基础之类加载顺序&amp;初始化">
-<meta name="twitter:description" content="类加载过程">
-<meta name="twitter:image" content="https://muxiaobai.github.io/2019/10/21/Thinking-in-java-基础之类加载顺序-初始化/Class初始化.png">
+<meta name="twitter:title" content="Thinking in java 基础之AQS和应用">
+<meta name="twitter:description" content="jdk的juc中的AQS和应用，各种锁的比较">
+<meta name="twitter:image" content="https://muxiaobai.github.io/2019/10/31/Thinking-in-java-基础之AQS和应用/state.png">
 
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
@@ -62,7 +61,7 @@
 <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
 
 
-<title>Thinking in java 基础之类加载顺序&amp;初始化 | 技术笔记</title>
+<title>Thinking in java 基础之AQS和应用 | 技术笔记</title>
 
 <script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
 <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
@@ -294,12 +293,12 @@
     </div>
     <link class="menu-list" tags="标签" friends="友情链接" about="关于我">
 </nav>
-      <div class="body-wrap"><article id="post-Thinking-in-java-基础之类加载顺序-初始化" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-Thinking-in-java-基础之AQS和应用" class="article article-type-post" itemscope itemprop="blogPost">
  
   
     <div class="article-meta">
-      <a href="/2019/10/21/Thinking-in-java-基础之类加载顺序-初始化/" class="article-date">
-      <time datetime="2019-10-21T07:25:42.000Z" itemprop="datePublished">2019-10-21</time>
+      <a href="/2019/10/31/Thinking-in-java-基础之AQS和应用/" class="article-date">
+      <time datetime="2019-10-31T05:12:44.000Z" itemprop="datePublished">2019-10-31</time>
 </a>
     </div>
   
@@ -313,7 +312,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      Thinking in java 基础之类加载顺序&amp;初始化
+      Thinking in java 基础之AQS和应用
     </h1>
   
 
@@ -327,6 +326,10 @@
 
 
         
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Thread/">Thread</a></li></ul>
+    </div>
+
         <div class="clearfix"></div>
       </div>
       
@@ -335,47 +338,35 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <h4 id="先来一个题"><a href="#先来一个题" class="headerlink" title="先来一个题"></a>先来一个题</h4><p>FatherClass:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">public class FatherClass &#123;</span><br><span class="line">    public  static  int F_NUM = 1111;</span><br><span class="line">    static &#123;</span><br><span class="line">        System.out.println(F_NUM);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    FatherClass()&#123;</span><br><span class="line">        System.out.println(F_NUM);</span><br><span class="line">        F_NUM = 5555;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>SonClass<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">public class SonClass  extends  FatherClass&#123;</span><br><span class="line">    public  static  int S_NUM = 2222;</span><br><span class="line">    static &#123;</span><br><span class="line">        F_NUM = 3333;</span><br><span class="line">        System.out.println(S_NUM);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    static &#123;</span><br><span class="line">        S_NUM = 4444;</span><br><span class="line">        System.out.println(F_NUM);</span><br><span class="line">    &#125;</span><br><span class="line">    //这里是一个大坑，没有无参的构造方法，所以newInstance的时候会报错</span><br><span class="line">    SonClass(int inNUM)&#123;</span><br><span class="line">        System.out.println(F_NUM);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">public class LoaderOrder &#123;</span><br><span class="line">    public static void main(String[] args) throws ClassNotFoundException, IllegalAccessException, InstantiationException &#123;</span><br><span class="line">//        testClassLoad();</span><br><span class="line">        testClassForName();</span><br><span class="line">    &#125;</span><br><span class="line">    public static void testClassLoad() throws ClassNotFoundException, IllegalAccessException, InstantiationException &#123;</span><br><span class="line">        Class clazz =LoaderOrder.class.getClassLoader().loadClass(&quot;io.github.muxiaobai.spring_my_demo.loadClass.SonClass&quot;);</span><br><span class="line">        System.out.println(&quot;---------------------------&quot;);</span><br><span class="line">        clazz.newInstance();</span><br><span class="line">        System.out.println(&quot;===========================&quot;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    public static void testClassForName() throws ClassNotFoundException, IllegalAccessException, InstantiationException &#123;</span><br><span class="line">        Class clazz =Class.forName(&quot;io.github.muxiaobai.spring_my_demo.loadClass.SonClass&quot;);</span><br><span class="line">        System.out.println(&quot;---------------------------&quot;);</span><br><span class="line">        clazz.newInstance();</span><br><span class="line">        System.out.println(&quot;===========================&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>使用ClassLoad<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">---------------------------</span><br><span class="line">Exception in thread &quot;main&quot; java.lang.InstantiationException: io.github.muxiaobai.spring_my_demo.loadClass.SonClass</span><br><span class="line">	at java.lang.Class.newInstance(Class.java:427)</span><br></pre></td></tr></table></figure></p>
-<p>使用Class.forName();</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">1111</span><br><span class="line">2222</span><br><span class="line">3333</span><br><span class="line">---------------------------</span><br><span class="line">Exception in thread &quot;main&quot; java.lang.InstantiationException: io.github.muxiaobai.spring_my_demo.loadClass.SonClass</span><br></pre></td></tr></table></figure>
-<p>链接：static成员变量，附初始值。0,null,false,</p>
-<p>初始化做了那些事情？显性的：static语句块，执行到实例化的时候没有无参的构造函数，因此父类和子类都没有实例化。</p>
-<p>没有完成类的初始化，无法访问类成员</p>
-<p><img src="/2019/10/21/Thinking-in-java-基础之类加载顺序-初始化/Class初始化.png" alt="初始化"></p>
-<h4 id="初始化"><a href="#初始化" class="headerlink" title="初始化"></a>初始化</h4><h5 id="java对象，获取"><a href="#java对象，获取" class="headerlink" title="java对象，获取"></a>java对象，获取</h5><ul>
-<li>new </li>
-<li>反射</li>
-<li>反序列化</li>
-<li>克隆</li>
-</ul>
-<h5 id="Class对象获取"><a href="#Class对象获取" class="headerlink" title="Class对象获取"></a>Class对象获取</h5><ul>
-<li>类名.class</li>
-<li>实例.getClass()</li>
-<li>classloader.loadClass(“包.类”)</li>
-<li>Class.forName(“包.类”);</li>
-</ul>
-<p><img src="/2019/10/21/Thinking-in-java-基础之类加载顺序-初始化/获取Class四种方式.PNG" alt="初始化"></p>
-<p>jvm加载步骤：加载——链接（验证，准备，解析）———–初始化</p>
-<p><img src="/2019/10/21/Thinking-in-java-基础之类加载顺序-初始化/Class初始化时机.png" alt="初始化"></p>
-<p>两种，实际上是识别到字节码指令:new，putstatic,getstatic,invokestatic,<br>反射</p>
-<p>根据Java虚拟机的规范，只有5中情况属于主动引用：</p>
-<ul>
-<li><p>遇到new（使用new 关键字实例化一个对象）、getstatic（读取一个类的静态字段）、putstatic或者invokestatic（设置一个类的静态字段）这4条指令的时候，如果累没有进行过初始化。则需要先触发其初始化。</p>
-</li>
-<li><p>使用反射进行反射调用的时候，如果类没有初始化，则需要先触发其初始化。</p>
-</li>
-<li><p>当初始化一个类的时候，如果其父类没有初始化，则需要先触发其父类的初始化</p>
-</li>
-<li><p>程序启动需要触发main方法的时候，虚拟机会先触发这个类的初始化</p>
-</li>
-<li><p>当使用jdk1.7的动态语言支持的时候，如果一个java.lang.invoke.MethodHandler实例最后的解析结果为REF_getStatic、REF_pusStatic、REF_invokeStatic的方法句柄（句柄中包含了对象的实例数据和类型数据，句柄是访问对象的一种方法。句柄存储在堆中），并且句柄对应的类没有被初始化，那么需要先触发这个类的初始化。</p>
-</li>
-</ul>
-<h4 id="其它"><a href="#其它" class="headerlink" title="其它"></a>其它</h4><ul>
-<li><a href="https://www.cnblogs.com/shyroke/p/9161603.html" target="_blank" rel="noopener">类加载机制和类的加载、连接（验证、准备、解析）和初始化</a></li>
+        <p>使用锁的时候我们直接<code>ReentrantLock lock = new ReentrantLock();lock.lock();</code>,这中间究竟有什么内容,<br>lock的时候，其它线程为什么不能执行，unlook()的时候其它的线程究竟从哪个线程能执行？本文主要分析lock的各种情况。</p>
+<h2 id="j-u-c-locks-AbstractQueuedSynchronizer"><a href="#j-u-c-locks-AbstractQueuedSynchronizer" class="headerlink" title="j.u.c.locks.AbstractQueuedSynchronizer"></a>j.u.c.locks.AbstractQueuedSynchronizer</h2><p>有共享和独占两种状态，SHARE，EXCLUSIVE 这两个在AQS中对应两个Node节点{state:1,thread:Thread.CurrentThread()},节点里面的内容。<br>从名字里面就能知道，共享锁，每一个线程来都可以拿到锁，简单的来说，就是可以运行lock和unlock内的代码，独占锁，一个线程lock，其它线程必须等到unlock之后，再去抢占锁。</p>
+<blockquote>
+<p>排队接水喝，我的杯子放在这里，当前这个饮水机就我能用。其它人来了，不好意思，排队。</p>
+</blockquote>
+<p>至于怎么抢占，又分为公平锁，和非公平锁，公平锁：先来后到，非公平：随机获取。</p>
+<blockquote>
+<p>排队接水喝， 先后顺序，公平，来了个领导，他先接水，不公平，但合理。</p>
+</blockquote>
+<p>AbstractOwnableSynchronizer</p>
+<p><img src="/2019/10/31/Thinking-in-java-基础之AQS和应用/state.png" alt="图"><br>CLH锁也是一种基于链表的可扩展、高性能、公平的自旋锁，申请线程仅仅在本地变量上自旋，它不断轮询前驱的状态，假设发现前驱释放了锁就结束自旋。</p>
+<p>资源state使用volatile标识，保证所有的线程来的时候都是确定的值。详细查看<a href>volatile</a>，其它线程在队列里。</p>
+<p>protected boolean tryAcquire(int arg) : 独占式获取同步状态，试着获取，成功返回true，反之为false<br>protected boolean tryRelease(int arg) ：独占式释放同步状态，等待中的其他线程此时将有机会获取到同步状态；<br>protected int tryAcquireShared(int arg) ：共享式获取同步状态，返回值大于等于0，代表获取成功；反之获取失败；<br>protected boolean tryReleaseShared(int arg) ：共享式释放同步状态，成功为true，失败为false<br>protected boolean isHeldExclusively() ： 是否在独占模式下被线程占用。</p>
+<h2 id="CountDownLatch-倒计时器"><a href="#CountDownLatch-倒计时器" class="headerlink" title="CountDownLatch 倒计时器"></a>CountDownLatch 倒计时器</h2><p>它允许一个或多个线程一直等待，直到其他线程的操作执行完后再执行</p>
+<p>CountDownLatch，任务分为N个子线程去执行，state也初始化为N（注意N要与线程个数一致）。这N个子线程是并行执行的，每个子线程执行完后countDown()一次，state会CAS(Compare and Swap)减1。等到所有子线程都执行完后(即state=0)，会unpark()主调用线程，然后主调用线程就会从await()函数返回，继续后余动作。</p>
+<h2 id="CyclicBarrier-循环栅栏"><a href="#CyclicBarrier-循环栅栏" class="headerlink" title="CyclicBarrier 循环栅栏"></a>CyclicBarrier 循环栅栏</h2><p>让一组线程到达一个屏障（也可以叫同步点）时被阻塞，直到最后一个线程到达屏障时，屏障才会开门，所有被屏障拦截的线程才会继续干活。</p>
+<blockquote>
+<p>CountDownLatch: A synchronization aid that allows one or more threads to wait until a set of operations being performed in other threads completes. (CountDownLatch: 一个或者多个线程，等待其他多个线程完成某件事情之后才能执行；) CyclicBarrier : A synchronization aid that allows a set of threads to all wait for each other to reach a common barrier point.(CyclicBarrier : 多个线程互相等待，直到到达同一个同步点，再继续一起执行。)</p>
+</blockquote>
+<p>对于CountDownLatch来说，重点是“一个线程（多个线程）等待”，而其他的N个线程在完成“某件事情”之后，可以终止，也可以等待。而对于CyclicBarrier，重点是多个线程，在任意一个线程没有完成，所有的线程都必须等待。</p>
+<h2 id="Semaphore-信号量"><a href="#Semaphore-信号量" class="headerlink" title="Semaphore 信号量"></a>Semaphore 信号量</h2><p>synchronized 和 ReentrantLock 都是一次只允许一个线程访问某个资源,可以指定多个线程同时访问某个资源</p>
+<h2 id="ReentrantLock-重入锁"><a href="#ReentrantLock-重入锁" class="headerlink" title="ReentrantLock 重入锁"></a>ReentrantLock 重入锁</h2><blockquote>
+<p>排队接水喝，水杯太大，杯子放着接，我先干别的事，干完了回来，直接就能拿杯子，重入。</p>
+</blockquote>
+<p>ReentrantLock，state初始化为0，表示未锁定状态。A线程lock()时，会调用tryAcquire()独占该锁并将state+1。此后，其他线程再tryAcquire()时就会失败，直到A线程unlock()到state=0（即释放锁）为止，其它线程才有机会获取该锁。当然，释放锁之前，A线程自己是可以重复获取此锁的（state会累加），这就是可重入的概念。但要注意，获取多少次就要释放多么次，这样才能保证state是能回到零态的。</p>
+<h2 id="tomcat的-LimitLatch"><a href="#tomcat的-LimitLatch" class="headerlink" title="tomcat的 LimitLatch"></a>tomcat的 LimitLatch</h2><ul>
+<li><a href="https://www.cnblogs.com/waterystone/p/4920797.html" target="_blank" rel="noopener">Java并发之AQS详解</a></li>
+<li><a href="https://www.cnblogs.com/chengxiao/archive/2017/07/24/7141160.html" target="_blank" rel="noopener">Java并发包基石-AQS详解</a></li>
+<li><a href="https://github.com/Snailclimb/JavaGuide/blob/master/docs/java/Multithread/AQS.md#41-countdownlatch-%E7%9A%84%E4%B8%89%E7%A7%8D%E5%85%B8%E5%9E%8B%E7%94%A8%E6%B3%95" target="_blank" rel="noopener">JavaGuide</a></li>
 </ul>
 
       
@@ -466,13 +457,13 @@
   
     
     <div class="copyright">
-        <p><span>本文标题:</span><a href="/2019/10/21/Thinking-in-java-基础之类加载顺序-初始化/">Thinking in java 基础之类加载顺序&amp;初始化</a></p>
+        <p><span>本文标题:</span><a href="/2019/10/31/Thinking-in-java-基础之AQS和应用/">Thinking in java 基础之AQS和应用</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">Mu Xiaobai(慕小白)</a></p>
-        <p><span>发布时间:</span>2019-10-21, 15:25:42</p>
-        <p><span>最后更新:</span>2019-10-22, 10:06:04</p>
+        <p><span>发布时间:</span>2019-10-31, 13:12:44</p>
+        <p><span>最后更新:</span>2019-11-01, 15:36:33</p>
         <p>
-            <span>原始链接:</span><a class="post-url" href="/2019/10/21/Thinking-in-java-基础之类加载顺序-初始化/" title="Thinking in java 基础之类加载顺序&amp;初始化">https://muxiaobai.github.io/2019/10/21/Thinking-in-java-基础之类加载顺序-初始化/</a>
-            <span class="copy-path" data-clipboard-text="原文: https://muxiaobai.github.io/2019/10/21/Thinking-in-java-基础之类加载顺序-初始化/　　作者: Mu Xiaobai(慕小白)" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <span>原始链接:</span><a class="post-url" href="/2019/10/31/Thinking-in-java-基础之AQS和应用/" title="Thinking in java 基础之AQS和应用">https://muxiaobai.github.io/2019/10/31/Thinking-in-java-基础之AQS和应用/</a>
+            <span class="copy-path" data-clipboard-text="原文: https://muxiaobai.github.io/2019/10/31/Thinking-in-java-基础之AQS和应用/　　作者: Mu Xiaobai(慕小白)" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
             <script> var clipboard = new Clipboard('.copy-path'); </script>
         </p>
         <p>
@@ -484,16 +475,10 @@
 
     <nav id="article-nav">
         
-            <div id="article-nav-newer" class="article-nav-title">
-                <a href="/2019/10/31/Thinking-in-java-基础之AQS和应用/">
-                    Thinking in java 基础之AQS和应用
-                </a>
-            </div>
-        
         
             <div id="article-nav-older" class="article-nav-title">
-                <a href="/2019/10/17/Thinking-in-java-基础之HashMap/">
-                    Thinking in java 基础之HashMap
+                <a href="/2019/10/21/Thinking-in-java-基础之类加载顺序-初始化/">
+                    Thinking in java 基础之类加载顺序&amp;初始化
                 </a>
             </div>
         
@@ -506,7 +491,7 @@
     <!--左侧-->
     <div id="toc" class="toc-article">
     <strong class="toc-title">文章目录</strong>
-    <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#先来一个题"><span class="toc-number">1.</span> <span class="toc-text">先来一个题</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#初始化"><span class="toc-number">2.</span> <span class="toc-text">初始化</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#java对象，获取"><span class="toc-number">2.1.</span> <span class="toc-text">java对象，获取</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Class对象获取"><span class="toc-number">2.2.</span> <span class="toc-text">Class对象获取</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#其它"><span class="toc-number">3.</span> <span class="toc-text">其它</span></a></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#j-u-c-locks-AbstractQueuedSynchronizer"><span class="toc-number">1.</span> <span class="toc-text">j.u.c.locks.AbstractQueuedSynchronizer</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CountDownLatch-倒计时器"><span class="toc-number">2.</span> <span class="toc-text">CountDownLatch 倒计时器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CyclicBarrier-循环栅栏"><span class="toc-number">3.</span> <span class="toc-text">CyclicBarrier 循环栅栏</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Semaphore-信号量"><span class="toc-number">4.</span> <span class="toc-text">Semaphore 信号量</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ReentrantLock-重入锁"><span class="toc-number">5.</span> <span class="toc-text">ReentrantLock 重入锁</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#tomcat的-LimitLatch"><span class="toc-number">6.</span> <span class="toc-text">tomcat的 LimitLatch</span></a></li></ol>
 </div>
 <style>
     .left-col .switch-btn,
@@ -547,7 +532,7 @@
     <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
     <script>
     var gitment = new Gitment({
-      id: 'Thinking in java 基础之类加载顺序&amp;初始化',
+      id: 'Thinking in java 基础之AQS和应用',
       owner: 'muxiaobai',
       repo: 'muxiaobai.github.io',
       oauth: {
@@ -565,15 +550,13 @@
 
     <div class="scroll" id="post-nav-button">
         
-            <a href="/2019/10/31/Thinking-in-java-基础之AQS和应用/" title="上一篇: Thinking in java 基础之AQS和应用">
-                <i class="fa fa-angle-left"></i>
-            </a>
+            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
         
 
         <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
 
         
-            <a href="/2019/10/17/Thinking-in-java-基础之HashMap/" title="下一篇: Thinking in java 基础之HashMap">
+            <a href="/2019/10/21/Thinking-in-java-基础之类加载顺序-初始化/" title="下一篇: Thinking in java 基础之类加载顺序&amp;初始化">
                 <i class="fa fa-angle-right"></i>
             </a>
         
