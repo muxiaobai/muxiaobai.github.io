@@ -29,7 +29,7 @@
 <meta property="og:image" content="https://muxiaobai.github.io/2019/08/31/devops之docker/Service.PNG">
 <meta property="og:image" content="https://muxiaobai.github.io/2019/08/31/devops之docker/kub.PNG">
 <meta property="og:image" content="https://muxiaobai.github.io/2019/08/31/devops之docker/useropera.PNG">
-<meta property="og:updated_time" content="2019-09-11T03:44:49.362Z">
+<meta property="og:updated_time" content="2019-11-28T08:43:33.448Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="devops之docker">
 <meta name="twitter:description" content="docker">
@@ -350,9 +350,9 @@
 <h3 id="网络-network"><a href="#网络-network" class="headerlink" title="网络 network"></a>网络 network</h3><p>172.17.0.1/16 以下都可以是使用</p>
 <p>docker network ls<br>docker network inspect mysql-net<br>docker network create –subnet=172.19.0.0/24 mysql-net</p>
 <h3 id="volume"><a href="#volume" class="headerlink" title="volume"></a>volume</h3><p>docker volume create –name v1<br>docker volumn inspect</p>
-<h3 id="容器-container"><a href="#容器-container" class="headerlink" title="容器 container"></a>容器 container</h3><p>docker run -d –name mmmysql -p 3300:3306 -m 500M<br>-v v1:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=123456 –privileged<br>–net=mysql-net –ip 172.19.0.2 mysql:latest</p>
+<h3 id="容器-container"><a href="#容器-container" class="headerlink" title="容器 container"></a>容器 container</h3><p>docker run -d --name mmmysql -p 3300:3306 -m 500M<br>-v v1:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=123456 --privileged --net=mysql-net –ip 172.19.0.2 mysql:latest</p>
 <p>mvn clean clean package docker:build -Dmaven.test.skip=true</p>
-<p>docker run -d –name tomcat1 -p 3300:3306 –net mysql-net –ip 172.19.0.2 -v v1:/var/lib/mysql mytomcat:latest</p>
+<p>docker run -d --name tomcat1 -p 3300:3306 --net mysql-net --ip 172.19.0.2 -v v1:/var/lib/mysql mytomcat:latest</p>
 <h3 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h3><p>docker ps -a<br>docker ps<br>docker exec -it mmmysql /bin/bash<br>docker logs -f –tail=100 mmmysql  最新的100行<br>docker inspect mmmysql</p>
 <hr>
 <p>docker-compose.yml docker 编排</p>
@@ -458,7 +458,7 @@
         <p><span>本文标题:</span><a href="/2019/08/31/devops之docker/">devops之docker</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">Mu Xiaobai(慕小白)</a></p>
         <p><span>发布时间:</span>2019-08-31, 16:45:53</p>
-        <p><span>最后更新:</span>2019-09-11, 11:44:49</p>
+        <p><span>最后更新:</span>2019-11-28, 16:43:33</p>
         <p>
             <span>原始链接:</span><a class="post-url" href="/2019/08/31/devops之docker/" title="devops之docker">https://muxiaobai.github.io/2019/08/31/devops之docker/</a>
             <span class="copy-path" data-clipboard-text="原文: https://muxiaobai.github.io/2019/08/31/devops之docker/　　作者: Mu Xiaobai(慕小白)" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>

@@ -279,9 +279,9 @@ hashMap.put(&quot;abc&quot;,&quot;1&quot;);
 <h3 id="网络-network"><a href="#网络-network" class="headerlink" title="网络 network"></a>网络 network</h3><p>172.17.0.1/16 以下都可以是使用</p>
 <p>docker network ls<br>docker network inspect mysql-net<br>docker network create –subnet=172.19.0.0/24 mysql-net</p>
 <h3 id="volume"><a href="#volume" class="headerlink" title="volume"></a>volume</h3><p>docker volume create –name v1<br>docker volumn inspect</p>
-<h3 id="容器-container"><a href="#容器-container" class="headerlink" title="容器 container"></a>容器 container</h3><p>docker run -d –name mmmysql -p 3300:3306 -m 500M<br>-v v1:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=123456 –privileged<br>–net=mysql-net –ip 172.19.0.2 mysql:latest</p>
+<h3 id="容器-container"><a href="#容器-container" class="headerlink" title="容器 container"></a>容器 container</h3><p>docker run -d --name mmmysql -p 3300:3306 -m 500M<br>-v v1:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=123456 --privileged --net=mysql-net –ip 172.19.0.2 mysql:latest</p>
 <p>mvn clean clean package docker:build -Dmaven.test.skip=true</p>
-<p>docker run -d –name tomcat1 -p 3300:3306 –net mysql-net –ip 172.19.0.2 -v v1:/var/lib/mysql mytomcat:latest</p>
+<p>docker run -d --name tomcat1 -p 3300:3306 --net mysql-net --ip 172.19.0.2 -v v1:/var/lib/mysql mytomcat:latest</p>
 <h3 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h3><p>docker ps -a<br>docker ps<br>docker exec -it mmmysql /bin/bash<br>docker logs -f –tail=100 mmmysql  最新的100行<br>docker inspect mmmysql</p>
 <hr>
 <p>docker-compose.yml docker 编排</p>
