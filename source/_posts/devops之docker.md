@@ -35,13 +35,12 @@ docker network create --subnet=172.19.0.0/24 mysql-net
 docker volume create --name v1
 docker volumn inspect
 ### 容器 container
-docker run -d --name mmmysql -p 3300:3306 -m 500M
--v v1:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=123456 --privileged
---net=mysql-net --ip 172.19.0.2 mysql:latest
+docker run -d \--name mmmysql -p 3300:3306 -m 500M
+-v v1:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=123456 \--privileged \--net=mysql-net --ip 172.19.0.2 mysql:latest
 
 mvn clean clean package docker:build -Dmaven.test.skip=true
 
-docker run -d --name tomcat1 -p 3300:3306 --net mysql-net --ip 172.19.0.2 -v v1:/var/lib/mysql mytomcat:latest
+docker run -d \--name tomcat1 -p 3300:3306 \--net mysql-net \--ip 172.19.0.2 -v v1:/var/lib/mysql mytomcat:latest
 ### 实例
 docker ps -a
 docker ps 

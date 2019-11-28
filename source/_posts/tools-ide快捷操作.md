@@ -160,17 +160,31 @@ zz 方法
 ctrl + shift + r 替换
 ctrl + shift + f 查找
 
-alt + ←/→  鼠标上次的位置/下次的位置
-ctrl + alt + 鼠标左键 查看方法的实现类
-
+alt + ↑/↓  本类中的方法依次上下跳转
+alt + ←/→  左右边的类
 
 ctrl + shift + u 大小写替换
 
+ctrl +  ←/→   光标左/右单词移动
+ctrl+shift + ←/→  左/右边单词扩选
+
+
+ctrl+w 选中光标，依次扩选
+ctrl +shift + w 反向收缩选中内容
+
+Ctrl + u	前往当前光标所在的方法的父类的方法 / 接口定义
+ctrl + b 进入光标所在的方法/变量的接口或是定义处
+
+ctrl + alt + 鼠标左键 查看方法的实现类
+ctrl + alt + ←/→  鼠标上次的位置/下次的位置
+
+Ctrl + Alt + T	对选中的代码弹出环绕选项弹出层 （必备）
 
 ctrl + x 剪切
 ctrl + d 复制粘贴
 ctrl + / 单行注释
 ctrl + shift + / 选中内容多行注释
+
 
 
 ctrl + z 撤回
@@ -180,8 +194,9 @@ ctrl +alt + s 设置
 ctrl +alt +shift + s 本项目设置 打包
 
 
-参考[IntelliJ-IDEA-Tutorial](https://github.com/judasn/IntelliJ-IDEA-Tutorial/blob/master/keymap-introduce.md)
-
+参考:
+- [IntelliJ-IDEA-Tutorial](https://github.com/judasn/IntelliJ-IDEA-Tutorial/blob/master/keymap-introduce.md)
+- [IntelliJ IDEA 快捷键说明大全（中英对照、带图示详解）](https://blog.csdn.net/deniro_li/article/details/72902621)
 ## navicat
 
 ctrl + shift + r  选中内容执行
