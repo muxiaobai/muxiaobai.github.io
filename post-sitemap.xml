@@ -7,8 +7,16 @@
     </url>
 
     <url>
+        <loc>https://muxiaobai.github.io/2019/07/29/git%E7%9A%84%E4%B8%80%E4%BA%9B%E5%85%B6%E5%AE%83%E6%93%8D%E4%BD%9C/</loc>
+        <lastmod>2019-12-03T08:15:50.491Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
         <loc>https://muxiaobai.github.io/2019/08/31/devops%E4%B9%8Bdocker/</loc>
-        <lastmod>2019-11-28T08:43:33.448Z</lastmod>
+        <lastmod>2019-11-28T08:45:50.407Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
@@ -73,14 +81,6 @@
     <url>
         <loc>https://muxiaobai.github.io/2019/10/17/Thinking-in-java-%E5%9F%BA%E7%A1%80%E4%B9%8BHashMap/</loc>
         <lastmod>2019-10-18T06:08:58.340Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>https://muxiaobai.github.io/2019/07/29/git%E7%9A%84%E4%B8%80%E4%BA%9B%E5%85%B6%E5%AE%83%E6%93%8D%E4%BD%9C/</loc>
-        <lastmod>2019-10-12T09:48:29.082Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
@@ -535,7 +535,7 @@
     </url>
 
     <url>
-        <loc>https://muxiaobai.github.io/2016/06/25/Thinking-in-java-%E5%9F%BA%E7%A1%80%E4%B9%8BI-O/</loc>
+        <loc>https://muxiaobai.github.io/2016/08/04/Thinking-in-java-%E5%9F%BA%E7%A1%80%E4%B9%8B%E5%BC%82%E5%B8%B8/</loc>
         <lastmod>2016-08-31T12:24:37.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -543,7 +543,7 @@
     </url>
 
     <url>
-        <loc>https://muxiaobai.github.io/2016/08/04/Thinking-in-java-%E5%9F%BA%E7%A1%80%E4%B9%8B%E5%BC%82%E5%B8%B8/</loc>
+        <loc>https://muxiaobai.github.io/2016/06/25/Thinking-in-java-%E5%9F%BA%E7%A1%80%E4%B9%8BI-O/</loc>
         <lastmod>2016-08-31T12:24:37.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>

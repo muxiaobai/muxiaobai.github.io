@@ -392,13 +392,19 @@ hashMap.put(&quot;abc&quot;,&quot;1&quot;);
 <p>git remote add origin <a href="https://github.com/muxiaobai/xxx" target="_blank" rel="noopener">https://github.com/muxiaobai/xxx</a></p>
 <p>拉取origin下的代码</p>
 <p>git fetch origin</p>
+<h3 id="已存在的git仓库更换地址"><a href="#已存在的git仓库更换地址" class="headerlink" title="已存在的git仓库更换地址"></a>已存在的git仓库更换地址</h3><p>cd existing_repo<br>git remote rename origin old-origin<br>git remote add origin <a href="http://192.168.120.63/xxx/xxx.git" target="_blank" rel="noopener">http://192.168.120.63/xxx/xxx.git</a><br>git push -u origin –all<br>git push -u origin –tags</p>
 <h4 id="切换分支"><a href="#切换分支" class="headerlink" title="切换分支"></a>切换分支</h4><p>查看远程和本地分支<br>git branch -a</p>
 <p>创建并切换dev 分支<br>git checkout -b dev</p>
 <p>切换到dev分支<br>git checkout dev</p>
 <p>删除远程xxx分支<br>git remote rm xxx</p>
 <p>#### </p>
 <p>首先，git fetch –all  取回远程库的所有修改；<br>然后，git reset –hard origin/master<br>指向远程库origin的master</p>
-<h4 id="回滚上次提交"><a href="#回滚上次提交" class="headerlink" title="回滚上次提交"></a>回滚上次提交</h4><p>git reset –hard HEAD^<br>git log<br>git reset commit_id</p>
+<h4 id="回滚上次提交"><a href="#回滚上次提交" class="headerlink" title="回滚上次提交"></a>回滚上次提交</h4><p>git reset --hard HEAD^<br>git log<br>git reset commit_id</p>
+<h3 id="每个人的数据库连接信息不一样，可以选择忽略"><a href="#每个人的数据库连接信息不一样，可以选择忽略" class="headerlink" title="每个人的数据库连接信息不一样，可以选择忽略"></a>每个人的数据库连接信息不一样，可以选择忽略</h3><p>具体操作如下：</p>
+<p>在命令行中输入</p>
+<p>git update-index –assume-unchanged [file-path]<br>命令中的file-path 就是需要忽略提价的文件的路径</p>
+<p>如果需要恢复提交，使用：</p>
+<p>git update-index –no-assume-unchanged [file-path]</p>
 ]]></content>
       
         <categories>
