@@ -47,6 +47,15 @@ git remote add origin https://github.com/muxiaobai/xxx
 
 git fetch origin
 
+
+### 已存在的git仓库更换地址
+
+cd existing_repo
+git remote rename origin old-origin
+git remote add origin http://192.168.120.63/xxx/xxx.git
+git push -u origin --all
+git push -u origin --tags
+
 #### 切换分支
 
 查看远程和本地分支
@@ -71,6 +80,18 @@ git remote rm xxx
 
 #### 回滚上次提交
 
-git reset --hard HEAD^
+git reset \--hard HEAD^
 git log
 git reset commit_id
+
+### 每个人的数据库连接信息不一样，可以选择忽略
+具体操作如下：
+
+在命令行中输入
+
+git update-index --assume-unchanged [file-path]
+命令中的file-path 就是需要忽略提价的文件的路径
+
+如果需要恢复提交，使用：
+
+git update-index --no-assume-unchanged [file-path]
