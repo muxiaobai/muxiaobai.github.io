@@ -149,7 +149,7 @@ chmod -R g+w
 
 chown -R bid:bids /home/newname  把/home/newname的所有者改为bid，所属组改为bids
 
-
+读r=4  写w=2  执行x=1  用户，组，其他用户
 
 
 ## 网络和连接登录，上传下载文件
@@ -206,6 +206,10 @@ chown -R bid:bids /home/newname  把/home/newname的所有者改为bid，所属�
 `sz` file 下载文件到本机
 
 `rz` 上传
+
+`scp /opt/local root@192.168.1.2:/opt/remote` 文件到192.168.1.2服务器上
+
+`scp  root@192.168.1.2:/opt/remote /opt/local` 文件从192.168.1.2服务器上拉取
 
 
 安装rzsz

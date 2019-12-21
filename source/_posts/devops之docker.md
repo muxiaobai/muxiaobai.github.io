@@ -42,6 +42,7 @@ mvn clean clean package docker:build -Dmaven.test.skip=true
 
 docker run -d \--name tomcat1 -p 3300:3306 \--net mysql-net \--ip 172.19.0.2 -v v1:/var/lib/mysql mytomcat:latest
 ### 实例
+
 docker ps -a
 docker ps 
 docker exec -it mmmysql /bin/bash

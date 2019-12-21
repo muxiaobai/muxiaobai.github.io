@@ -39,7 +39,8 @@ description: "shell快捷件键，常用命令"
 - df -hP  整个磁盘（disk free）
 - df -k /tmp 查看磁盘使用
 - crontab -l 定时任务
-- tail -f /root/file.log 查看实时日志文件
+- tail -f -n 200 /root/file.log 查看实时日志文件
 - free -h 查询内存文件
 - /var/log/messages 系统日志，
--  service /etc/init.d  启动脚本位置
+- service /etc/init.d  启动脚本位置
+
