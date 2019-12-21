@@ -4,6 +4,60 @@
   
     
     <entry>
+      <title><![CDATA[devops之jenkins持续集成]]></title>
+      <url>https://muxiaobai.github.io/2019/12/21/devops%E4%B9%8Bjenkins%E6%8C%81%E7%BB%AD%E9%9B%86%E6%88%90/</url>
+      <content type="html"><![CDATA[<p>分两步走，第一安装，第二配置</p>
+<h2 id="权限问题"><a href="#权限问题" class="headerlink" title="权限问题"></a>权限问题</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">chown -R 1000 /root/jenkins_home</span><br><span class="line">chmod 777 /var/run/docker.sock</span><br></pre></td></tr></table></figure>
+<h2 id="docker-创建jenkins工具持续集成"><a href="#docker-创建jenkins工具持续集成" class="headerlink" title="docker 创建jenkins工具持续集成"></a>docker 创建jenkins工具持续集成</h2><p>拉取镜像 <code>docker pulljenkins/jenkins</code></p>
+<p>8080映射到16000 5000映射到16001端口<br>创建容器:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">docker run --name jenkins -p 16000:8080 -p 16001:50000 \</span><br><span class="line">    -v /var/run/docker.sock:/var/run/docker.sock \</span><br><span class="line">    -v $(which docker):/bin/docker \</span><br><span class="line">    -v /root/jenkins_home:/var/jenkins_home \</span><br><span class="line">    -d jenkins/jenkins</span><br></pre></td></tr></table></figure>
+<ul>
+<li>/root/jenkins_home 为jenkins工作空间，包括插件maven，git工具等</li>
+<li>需要在shell中使用宿主机的docker命令</li>
+</ul>
+<p>删除容器：<code>docker rm -f jenkins</code></p>
+<p>下面的创建，添加了本地执行shell挂载卷</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">docker run \</span><br><span class="line">    -d -p 16000:8080 -p 16001:50000 \</span><br><span class="line">    -v /opt/demo/:/opt/demo \</span><br><span class="line">    -v /root/jenkins_home/:/var/jenkins_home \</span><br><span class="line">    -v /var/run/docker.sock:/var/run/docker.sock \</span><br><span class="line">    -v $(which docker):/usr/bin/docker \</span><br><span class="line">    -v $(which git):/usr/bin/git \</span><br><span class="line">    -v ~/.ssh:/var/jenkins_home/.ssh \</span><br><span class="line">    --name=jenkins jenkins/jenkins</span><br></pre></td></tr></table></figure>
+<p>挂载：其中/opt/demo 为命令执行空间</p>
+<p>访问 <a href="http://ip:16000" target="_blank" rel="noopener">http://ip:16000</a></p>
+<p>以上 安装完成</p>
+<p>参考<a href="https://www.cnblogs.com/stulzq/p/8627360.html" target="_blank" rel="noopener">jenkins安装</a></p>
+<h2 id="构建集成配置"><a href="#构建集成配置" class="headerlink" title="构建集成配置"></a>构建集成配置</h2><p>需要以下工具     </p>
+<ul>
+<li>Git plugin 源码地址</li>
+<li>Maven Integration plugin   构建工具</li>
+<li>Publish Over SSH 远程发布</li>
+</ul>
+<p><code>/root/jenkins_home/tools/hudson.tasks.Maven_MavenInstallation</code>在这个文件夹下会有maven工具支持构建</p>
+<p>新建项目选择maven,需要安装maven 工具<br><img src="/2019/12/21/devops之jenkins持续集成/pom.png" alt="maven"></p>
+<h3 id="配置源码仓库"><a href="#配置源码仓库" class="headerlink" title="配置源码仓库"></a>配置源码仓库</h3><p>配置git地址，分支<code>refs/heads/dev</code></p>
+<p><img src="/2019/12/21/devops之jenkins持续集成/gitsource.png" alt="源码配置"></p>
+<h3 id="配置触发器"><a href="#配置触发器" class="headerlink" title="配置触发器"></a>配置触发器</h3><p>github hook<br><img src="/2019/12/21/devops之jenkins持续集成/githubhook.png" alt="github hook"><br>只用把github勾选<br><img src="/2019/12/21/devops之jenkins持续集成/配置触发器.png" alt="配置触发器"></p>
+<h3 id="配置-Build"><a href="#配置-Build" class="headerlink" title="配置 Build"></a>配置 Build</h3><p>pom.xml<br>clean package<br><img src="/2019/12/21/devops之jenkins持续集成/bulid.png" alt="build"></p>
+<h3 id="配置Post-Steps"><a href="#配置Post-Steps" class="headerlink" title="配置Post Steps"></a>配置Post Steps</h3><h4 id="本机发布执行shell"><a href="#本机发布执行shell" class="headerlink" title="本机发布执行shell"></a>本机发布执行shell</h4><p>shell脚本</p>
+<p><img src="/2019/12/21/devops之jenkins持续集成/shell.png" alt="本地shell"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line">#!/bin/bash</span><br><span class="line">WORK_DIR=/opt/demo/package</span><br><span class="line">PROJECT_NAME=app-demo</span><br><span class="line">PROJECT_VERSION=0.0.1</span><br><span class="line">echo `pwd`</span><br><span class="line">docker ps -a </span><br><span class="line">#  判断工作目录是否存在</span><br><span class="line">if [ ! -e $&#123;WORK_DIR&#125; ] &amp;&amp; [ ! -d $&#123;WORK_DIR&#125; ]; then</span><br><span class="line">    mkdir -p $&#123;WORK_DIR&#125;</span><br><span class="line">    echo &quot;Create Dir: $&#123;WORK_DIR&#125;&quot;</span><br><span class="line">fi</span><br><span class="line"></span><br><span class="line"># Dockerfile存在 删除</span><br><span class="line">if [ -e $&#123;WORK_DIR&#125;/$&#123;PROJECT_NAME&#125;/Dockerfile ]; then</span><br><span class="line">    rm -rf $&#123;WORK_DIR&#125;/$&#123;PROJECT_NAME&#125;/Dockerfile</span><br><span class="line">    echo &quot;Remove File: $&#123;WORK_DIR&#125;/$&#123;PROJECT_NAME&#125;/Dockerfile&quot;</span><br><span class="line">fi</span><br><span class="line"># 如果容器已经启动，移除</span><br><span class="line">if docker ps -a | grep $&#123;PROJECT_NAME&#125;; then</span><br><span class="line">    docker rm -f $&#123;PROJECT_NAME&#125;-$&#123;PROJECT_VERSION&#125;</span><br><span class="line">    docker rmi -f $&#123;PROJECT_NAME&#125;-$&#123;PROJECT_VERSION&#125;</span><br><span class="line">    echo &quot;Remove Docker Container: $&#123;PROJECT_NAME&#125;-$&#123;PROJECT_VERSION&#125;&quot;</span><br><span class="line">fi</span><br><span class="line"></span><br><span class="line"># 拷贝jar包到工作目录 jar是通过maven pom.xml 生成的</span><br><span class="line">cp ./target/*.jar $&#123;WORK_DIR&#125;/$&#123;PROJECT_NAME&#125;/ </span><br><span class="line"># 拷贝Dockerfile到工作目录 是提前编写在git项目内</span><br><span class="line">cp ./Dockerfile $&#123;WORK_DIR&#125;/$&#123;PROJECT_NAME&#125;/</span><br><span class="line"></span><br><span class="line"># 开始构建镜像</span><br><span class="line"># 进入工作目录</span><br><span class="line">cd $&#123;WORK_DIR&#125;/$&#123;PROJECT_NAME&#125;/</span><br><span class="line"># 构建镜像 在个工作目录，依据当前目录创建镜像</span><br><span class="line"># docker build -t $&#123;PROJECT_NAME&#125;:$&#123;PROJECT_VERSION&#125; .</span><br><span class="line"># 推送镜像</span><br><span class="line"># docker push $&#123;PROJECT_NAME&#125;:$&#123;PROJECT_VERSION&#125;</span><br><span class="line"></span><br><span class="line">#  启动容器</span><br><span class="line"># docker run -d -p 18000:8761 --name $&#123;PROJECT_NAME&#125; $&#123;PROJECT_NAME&#125;:$&#123;PROJECT_VERSION&#125;</span><br><span class="line"></span><br><span class="line">#dockerstart.sh 为便捷构建容器启动容器脚本</span><br><span class="line">#cd $&#123;WORK_DIR&#125;</span><br><span class="line">#sh ../shell/dockerstart.sh $&#123;PROJECT_NAME&#125;-$&#123;PROJECT_VERSION&#125; /opt/demo/package/ 18000</span><br><span class="line"></span><br><span class="line">#判断容器启动成功</span><br><span class="line">if docker ps  | grep $&#123;PROJECT_NAME&#125;; then</span><br><span class="line">    echo &quot;Start Docker Container: $&#123;PROJECT_NAME&#125;-$&#123;PROJECT_VERSION&#125; Success&quot;</span><br><span class="line">else </span><br><span class="line">    echo &quot;Start Docker Container: $&#123;PROJECT_NAME&#125;-$&#123;PROJECT_VERSION&#125; Error&quot;</span><br><span class="line">    return 1</span><br><span class="line">fi</span><br></pre></td></tr></table></figure>
+<h4 id="远程发布SSH-Publishers"><a href="#远程发布SSH-Publishers" class="headerlink" title="远程发布SSH Publishers"></a>远程发布SSH Publishers</h4><p>配置插件如果要进行远程发布，需要插件</p>
+<p>先在系统全局配置中配置以下ssh<br><img src="/2019/12/21/devops之jenkins持续集成/配置ssh.png" alt="配置"><br><img src="/2019/12/21/devops之jenkins持续集成/SSHpublisher.png" alt="远程发布"></p>
+<p><a href="https://blog.csdn.net/Denny2333/article/details/88037413" target="_blank" rel="noopener">配置构建项目</a></p>
+]]></content>
+      
+        <categories>
+            
+            <category> devops </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> devops </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[Thinking in java 基础之AQS和应用]]></title>
       <url>https://muxiaobai.github.io/2019/10/31/Thinking-in-java-%E5%9F%BA%E7%A1%80%E4%B9%8BAQS%E5%92%8C%E5%BA%94%E7%94%A8/</url>
       <content type="html"><![CDATA[<p>使用锁的时候我们直接<code>ReentrantLock lock = new ReentrantLock();lock.lock();</code>,这中间究竟有什么内容,<br>lock的时候，其它线程为什么不能执行，unlook()的时候其它的线程究竟从哪个线程能执行？本文主要分析lock的各种情况。</p>
@@ -699,7 +753,7 @@ hashMap.put(&quot;abc&quot;,&quot;1&quot;);
 <li>df -hP  整个磁盘（disk free）</li>
 <li>df -k /tmp 查看磁盘使用</li>
 <li>crontab -l 定时任务</li>
-<li>tail -f /root/file.log 查看实时日志文件</li>
+<li>tail -f -n 200 /root/file.log 查看实时日志文件</li>
 <li>free -h 查询内存文件</li>
 <li>/var/log/messages 系统日志，</li>
 <li>service /etc/init.d  启动脚本位置</li>
@@ -4189,6 +4243,7 @@ hashMap.put(&quot;abc&quot;,&quot;1&quot;);
 <p>cat /etc/group  查看所有所属组</p>
 <p>chmod -R g+w </p>
 <p>chown -R bid:bids /home/newname  把/home/newname的所有者改为bid，所属组改为bids</p>
+<p>读r=4  写w=2  执行x=1  用户，组，其他用户</p>
 <h2 id="网络和连接登录，上传下载文件"><a href="#网络和连接登录，上传下载文件" class="headerlink" title="网络和连接登录，上传下载文件"></a>网络和连接登录，上传下载文件</h2><p><code>arp</code>: 硬件地址(IP —-&gt; MAC地址)</p>
 <p><code>traceroute</code>: 到某一个地址的路由信息</p>
 <p><code>route</code>: 路由表</p>
@@ -4221,6 +4276,8 @@ hashMap.put(&quot;abc&quot;,&quot;1&quot;);
 <p>远程连接：<code>ssh</code> <code>scp</code> <code>sftp</code> <code>telnet</code>(一般禁用) <code>ftp</code>(不常用)</p>
 <p><code>sz</code> file 下载文件到本机</p>
 <p><code>rz</code> 上传</p>
+<p><code>scp /opt/local root@192.168.1.2:/opt/remote</code> 文件到192.168.1.2服务器上</p>
+<p><code>scp  root@192.168.1.2:/opt/remote /opt/local</code> 文件从192.168.1.2服务器上拉取</p>
 <p>安装rzsz</p>
 <p>wget <a href="http://www.ohse.de/uwe/releases/lrzsz-0.12.20.tar.gz" target="_blank" rel="noopener">http://www.ohse.de/uwe/releases/lrzsz-0.12.20.tar.gz</a><br>tar zxvf lrzsz-0.12.20.tar.gz &amp;&amp; cd lrzsz-0.12.20<br>./configure –prefix=/usr/local/‘name’ &amp;&amp; make &amp;&amp; make install<br>上面安装过程默认把lsz和lrz安装到了/usr/local/bin/目录下，现在我们并不能直接使用，下面创建软链接，并命名为rz/sz：<br>cd /usr/bin</p>
 <p>ln -s /usr/local/bin/lrz rz</p>

@@ -1,3 +1,4 @@
+https://muxiaobai.github.io/2019/12/21/devops之jenkins持续集成/
 https://muxiaobai.github.io/2019/10/31/Thinking-in-java-基础之AQS和应用/
 https://muxiaobai.github.io/2019/10/21/Thinking-in-java-基础之类加载顺序-初始化/
 https://muxiaobai.github.io/2019/10/17/Thinking-in-java-基础之HashMap/
