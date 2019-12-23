@@ -29,6 +29,24 @@ git config --global -e
 
 这时候运行git difftool，vscode 就作为默认difftool打开了
 
+#### git add 回退 
+
+git status 先看一下add 中的文件 
+git reset HEAD 如果后面什么都不跟的话 就是上一次add 里面的全部撤销了 
+git reset HEAD XXX/XXX/XXX.java 就是对某个文件进行撤销了
+
+#### git commit 回退
+
+`git reset --soft HEAD^`这样就成功的撤销了你的commit
+注意，仅仅是撤回commit操作，您写的代码仍然保留。
+ 
+HEAD^的意思是上一个版本，也可以写成HEAD~1
+
+如果你进行了2次commit，想都撤回，可以使用HEAD~2
+
+--soft  
+不删除工作空间改动代码，撤销commit，不撤销git add . 
+
 #### 修改远程仓库 origin，更换地址
 
 查看远程地址

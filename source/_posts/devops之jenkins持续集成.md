@@ -77,10 +77,18 @@ docker run \
 ![源码配置](devops之jenkins持续集成/gitsource.png)
 ### 配置触发器
 
-github hook
+#### github hook
 ![github hook](devops之jenkins持续集成/githubhook.png)
 只用把github勾选
 ![配置触发器](devops之jenkins持续集成/配置触发器.png)
+
+#### gitlab配置
+Accepted Merge Requests Events 接受合并分支时，触发
+![配置jenkins合并触发](devops之jenkins持续集成/webhook.png)
+出现`Url is blocked: Requests to the local network are not allowed` 问题，需要在系统管理员处配置：
+![配置gitlabwebhook](devops之jenkins持续集成/gitlab配置1.png)
+合并分支时候调用hook地址
+![配置gitlab](devops之jenkins持续集成/gitlab配置2.png)
 
 ### 配置 Build
 pom.xml
