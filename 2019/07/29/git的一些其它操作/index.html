@@ -24,7 +24,7 @@
 <meta property="og:site_name" content="技术笔记">
 <meta property="og:description" content="git常见操作">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-12-20T01:11:09.193Z">
+<meta property="og:updated_time" content="2019-12-23T05:15:59.546Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="git的一些其它操作">
 <meta name="twitter:description" content="git常见操作">
@@ -343,6 +343,11 @@
 <p>在里面加上</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[diff]</span><br><span class="line">    tool = default-difftool</span><br><span class="line">[difftool &quot;default-difftool&quot;]</span><br><span class="line">    cmd = code --wait --diff $LOCAL $REMOTE</span><br></pre></td></tr></table></figure>
 <p>这时候运行git difftool，vscode 就作为默认difftool打开了</p>
+<h4 id="git-add-回退"><a href="#git-add-回退" class="headerlink" title="git add 回退"></a>git add 回退</h4><p>git status 先看一下add 中的文件<br>git reset HEAD 如果后面什么都不跟的话 就是上一次add 里面的全部撤销了<br>git reset HEAD XXX/XXX/XXX.java 就是对某个文件进行撤销了</p>
+<h4 id="git-commit-回退"><a href="#git-commit-回退" class="headerlink" title="git commit 回退"></a>git commit 回退</h4><p><code>git reset --soft HEAD^</code>这样就成功的撤销了你的commit<br>注意，仅仅是撤回commit操作，您写的代码仍然保留。</p>
+<p>HEAD^的意思是上一个版本，也可以写成HEAD~1</p>
+<p>如果你进行了2次commit，想都撤回，可以使用HEAD~2</p>
+<p>–soft<br>不删除工作空间改动代码，撤销commit，不撤销git add . </p>
 <h4 id="修改远程仓库-origin，更换地址"><a href="#修改远程仓库-origin，更换地址" class="headerlink" title="修改远程仓库 origin，更换地址"></a>修改远程仓库 origin，更换地址</h4><p>查看远程地址</p>
 <p>git remote -v  </p>
 <p>移除origin远程地址</p>
@@ -456,7 +461,7 @@
         <p><span>本文标题:</span><a href="/2019/07/29/git的一些其它操作/">git的一些其它操作</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">Mu Xiaobai(慕小白)</a></p>
         <p><span>发布时间:</span>2019-07-29, 19:21:25</p>
-        <p><span>最后更新:</span>2019-12-20, 09:11:09</p>
+        <p><span>最后更新:</span>2019-12-23, 13:15:59</p>
         <p>
             <span>原始链接:</span><a class="post-url" href="/2019/07/29/git的一些其它操作/" title="git的一些其它操作">https://muxiaobai.github.io/2019/07/29/git的一些其它操作/</a>
             <span class="copy-path" data-clipboard-text="原文: https://muxiaobai.github.io/2019/07/29/git的一些其它操作/　　作者: Mu Xiaobai(慕小白)" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
@@ -493,7 +498,7 @@
     <!--左侧-->
     <div id="toc" class="toc-article">
     <strong class="toc-title">文章目录</strong>
-    <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#git-diff"><span class="toc-number">1.</span> <span class="toc-text">git diff</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#修改远程仓库-origin，更换地址"><span class="toc-number">2.</span> <span class="toc-text">修改远程仓库 origin，更换地址</span></a></li></ol><li class="toc-item toc-level-3"><a class="toc-link" href="#已存在的git仓库更换地址"><span class="toc-number"></span> <span class="toc-text">已存在的git仓库更换地址</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#切换分支"><span class="toc-number">1.</span> <span class="toc-text">切换分支</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#回滚上次提交"><span class="toc-number">2.</span> <span class="toc-text">回滚上次提交</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#每个人的数据库连接信息不一样，可以选择忽略"><span class="toc-number"></span> <span class="toc-text">每个人的数据库连接信息不一样，可以选择忽略</span></a>
+    <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#git-diff"><span class="toc-number">1.</span> <span class="toc-text">git diff</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#git-add-回退"><span class="toc-number">2.</span> <span class="toc-text">git add 回退</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#git-commit-回退"><span class="toc-number">3.</span> <span class="toc-text">git commit 回退</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#修改远程仓库-origin，更换地址"><span class="toc-number">4.</span> <span class="toc-text">修改远程仓库 origin，更换地址</span></a></li></ol><li class="toc-item toc-level-3"><a class="toc-link" href="#已存在的git仓库更换地址"><span class="toc-number"></span> <span class="toc-text">已存在的git仓库更换地址</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#切换分支"><span class="toc-number">1.</span> <span class="toc-text">切换分支</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#回滚上次提交"><span class="toc-number">2.</span> <span class="toc-text">回滚上次提交</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#每个人的数据库连接信息不一样，可以选择忽略"><span class="toc-number"></span> <span class="toc-text">每个人的数据库连接信息不一样，可以选择忽略</span></a>
 </li></div>
 <style>
     .left-col .switch-btn,
