@@ -436,13 +436,6 @@
     </url>
 
     <url>
-        <loc>https://muxiaobai.github.io/tags/%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/</loc>
-        <lastmod>2019-12-20T01:11:09.193Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
         <loc>https://muxiaobai.github.io/tags/Shell/</loc>
         <lastmod>2019-12-20T01:29:10.152Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -465,7 +458,14 @@
 
     <url>
         <loc>https://muxiaobai.github.io/tags/devops/</loc>
-        <lastmod>2019-12-21T06:37:51.981Z</lastmod>
+        <lastmod>2019-12-23T05:12:50.045Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://muxiaobai.github.io/tags/%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/</loc>
+        <lastmod>2019-12-23T05:15:59.546Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>

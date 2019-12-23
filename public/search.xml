@@ -32,7 +32,8 @@
 <p>新建项目选择maven,需要安装maven 工具<br><img src="/2019/12/21/devops之jenkins持续集成/pom.png" alt="maven"></p>
 <h3 id="配置源码仓库"><a href="#配置源码仓库" class="headerlink" title="配置源码仓库"></a>配置源码仓库</h3><p>配置git地址，分支<code>refs/heads/dev</code></p>
 <p><img src="/2019/12/21/devops之jenkins持续集成/gitsource.png" alt="源码配置"></p>
-<h3 id="配置触发器"><a href="#配置触发器" class="headerlink" title="配置触发器"></a>配置触发器</h3><p>github hook<br><img src="/2019/12/21/devops之jenkins持续集成/githubhook.png" alt="github hook"><br>只用把github勾选<br><img src="/2019/12/21/devops之jenkins持续集成/配置触发器.png" alt="配置触发器"></p>
+<h3 id="配置触发器"><a href="#配置触发器" class="headerlink" title="配置触发器"></a>配置触发器</h3><h4 id="github-hook"><a href="#github-hook" class="headerlink" title="github hook"></a>github hook</h4><p><img src="/2019/12/21/devops之jenkins持续集成/githubhook.png" alt="github hook"><br>只用把github勾选<br><img src="/2019/12/21/devops之jenkins持续集成/配置触发器.png" alt="配置触发器"></p>
+<h4 id="gitlab配置"><a href="#gitlab配置" class="headerlink" title="gitlab配置"></a>gitlab配置</h4><p>Accepted Merge Requests Events 接受合并分支时，触发<br><img src="/2019/12/21/devops之jenkins持续集成/webhook.png" alt="配置jenkins合并触发"><br>出现<code>Url is blocked: Requests to the local network are not allowed</code> 问题，需要在系统管理员处配置：<br><img src="/2019/12/21/devops之jenkins持续集成/gitlab配置1.png" alt="配置gitlabwebhook"><br>合并分支时候调用hook地址<br><img src="/2019/12/21/devops之jenkins持续集成/gitlab配置2.png" alt="配置gitlab"></p>
 <h3 id="配置-Build"><a href="#配置-Build" class="headerlink" title="配置 Build"></a>配置 Build</h3><p>pom.xml<br>clean package<br><img src="/2019/12/21/devops之jenkins持续集成/bulid.png" alt="build"></p>
 <h3 id="配置Post-Steps"><a href="#配置Post-Steps" class="headerlink" title="配置Post Steps"></a>配置Post Steps</h3><h4 id="本机发布执行shell"><a href="#本机发布执行shell" class="headerlink" title="本机发布执行shell"></a>本机发布执行shell</h4><p>shell脚本</p>
 <p><img src="/2019/12/21/devops之jenkins持续集成/shell.png" alt="本地shell"></p>
@@ -438,6 +439,11 @@ hashMap.put(&quot;abc&quot;,&quot;1&quot;);
 <p>在里面加上</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[diff]</span><br><span class="line">    tool = default-difftool</span><br><span class="line">[difftool &quot;default-difftool&quot;]</span><br><span class="line">    cmd = code --wait --diff $LOCAL $REMOTE</span><br></pre></td></tr></table></figure>
 <p>这时候运行git difftool，vscode 就作为默认difftool打开了</p>
+<h4 id="git-add-回退"><a href="#git-add-回退" class="headerlink" title="git add 回退"></a>git add 回退</h4><p>git status 先看一下add 中的文件<br>git reset HEAD 如果后面什么都不跟的话 就是上一次add 里面的全部撤销了<br>git reset HEAD XXX/XXX/XXX.java 就是对某个文件进行撤销了</p>
+<h4 id="git-commit-回退"><a href="#git-commit-回退" class="headerlink" title="git commit 回退"></a>git commit 回退</h4><p><code>git reset --soft HEAD^</code>这样就成功的撤销了你的commit<br>注意，仅仅是撤回commit操作，您写的代码仍然保留。</p>
+<p>HEAD^的意思是上一个版本，也可以写成HEAD~1</p>
+<p>如果你进行了2次commit，想都撤回，可以使用HEAD~2</p>
+<p>–soft<br>不删除工作空间改动代码，撤销commit，不撤销git add . </p>
 <h4 id="修改远程仓库-origin，更换地址"><a href="#修改远程仓库-origin，更换地址" class="headerlink" title="修改远程仓库 origin，更换地址"></a>修改远程仓库 origin，更换地址</h4><p>查看远程地址</p>
 <p>git remote -v  </p>
 <p>移除origin远程地址</p>
