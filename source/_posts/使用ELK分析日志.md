@@ -164,14 +164,14 @@ node.name: slave-1
 #node.master: true
 
 network.host: 127.0.0.1
-http.port: 9500
+http.port: 9300
 
 discovery.zen.ping.unicast.hosts: ["127.0.0.1"]
 ```
 slave-2
 ```
 cluster.name: muxiaobai-test
-node.name: slave-1
+node.name: slave-2
 #node.master: true
 
 network.host: 127.0.0.1

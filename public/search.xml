@@ -679,8 +679,8 @@ hashMap.put(&quot;abc&quot;,&quot;1&quot;);
 <p>上面用到正则切割日志等功能</p>
 <p>启动：<code>./logstash -f ../config/logstash.conf &amp;</code><br><code>./logstash -f ../config/logstash.conf --path.data=C:/ProgramTool/dev/logstash-6.7.0/data</code><br>如果有一个实例的话，启动时，需要指定path.data</p>
 <h5 id="简单的es主从"><a href="#简单的es主从" class="headerlink" title="简单的es主从"></a>简单的es主从</h5><p>master 默认9200端口<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">http.cors.enabled: true</span><br><span class="line">http.cors.allow-origin: &quot;*&quot;</span><br><span class="line"></span><br><span class="line">cluster.name: muxiaobai-test</span><br><span class="line">node.name: master</span><br><span class="line">node.master: true</span><br><span class="line"></span><br><span class="line">network.host: 127.0.0.1</span><br></pre></td></tr></table></figure></p>
-<p>slave-1<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">cluster.name: muxiaobai-test</span><br><span class="line">node.name: slave-1</span><br><span class="line">#node.master: true</span><br><span class="line"></span><br><span class="line">network.host: 127.0.0.1</span><br><span class="line">http.port: 9500</span><br><span class="line"></span><br><span class="line">discovery.zen.ping.unicast.hosts: [&quot;127.0.0.1&quot;]</span><br></pre></td></tr></table></figure></p>
-<p>slave-2<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">cluster.name: muxiaobai-test</span><br><span class="line">node.name: slave-1</span><br><span class="line">#node.master: true</span><br><span class="line"></span><br><span class="line">network.host: 127.0.0.1</span><br><span class="line">http.port: 9400</span><br><span class="line"></span><br><span class="line">discovery.zen.ping.unicast.hosts: [&quot;127.0.0.1&quot;]</span><br></pre></td></tr></table></figure></p>
+<p>slave-1<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">cluster.name: muxiaobai-test</span><br><span class="line">node.name: slave-1</span><br><span class="line">#node.master: true</span><br><span class="line"></span><br><span class="line">network.host: 127.0.0.1</span><br><span class="line">http.port: 9300</span><br><span class="line"></span><br><span class="line">discovery.zen.ping.unicast.hosts: [&quot;127.0.0.1&quot;]</span><br></pre></td></tr></table></figure></p>
+<p>slave-2<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">cluster.name: muxiaobai-test</span><br><span class="line">node.name: slave-2</span><br><span class="line">#node.master: true</span><br><span class="line"></span><br><span class="line">network.host: 127.0.0.1</span><br><span class="line">http.port: 9400</span><br><span class="line"></span><br><span class="line">discovery.zen.ping.unicast.hosts: [&quot;127.0.0.1&quot;]</span><br></pre></td></tr></table></figure></p>
 <h5 id="使用elastic-head-图形化工具查看运行情况"><a href="#使用elastic-head-图形化工具查看运行情况" class="headerlink" title="使用elastic-head 图形化工具查看运行情况"></a>使用elastic-head 图形化工具查看运行情况</h5><p><a href="https://github.com/mobz/elasticsearch-head" target="_blank" rel="noopener">elastic-head github</a><br>需要node环境<br><code>npm install</code> <code>npm run start</code>默认9100端口 访问<a href="http://127.0.0.1:9100" target="_blank" rel="noopener">http://127.0.0.1:9100</a></p>
 <p><img src="/2019/05/18/使用ELK分析日志/elasticsearch-init.png" alt="Logstash日志进入ElasticSearch"></p>
 <h5 id="使用kibaba"><a href="#使用kibaba" class="headerlink" title="使用kibaba"></a>使用kibaba</h5><p>默认端口5601，<a href="http://localhost:5601" target="_blank" rel="noopener">http://localhost:5601</a>,把对应的索引加进去。</p>
@@ -921,6 +921,31 @@ hashMap.put(&quot;abc&quot;,&quot;1&quot;);
         <tags>
             
             <tag> 2018 </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[2019年个人总结]]></title>
+      <url>https://muxiaobai.github.io/2019/01/13/2019%E5%B9%B4%E4%B8%AA%E4%BA%BA%E6%80%BB%E7%BB%93/</url>
+      <content type="html"><![CDATA[<h2 id="工作-技能"><a href="#工作-技能" class="headerlink" title="工作 技能"></a>工作 技能</h2><h4 id="认清自己的位置"><a href="#认清自己的位置" class="headerlink" title="认清自己的位置"></a>认清自己的位置</h4><p>心心念的微服务可以落地，心心念的持续集成可以试验。</p>
+<p>#### </p>
+<h2 id="去过的地方"><a href="#去过的地方" class="headerlink" title="去过的地方"></a>去过的地方</h2><h4 id="渭南-华山"><a href="#渭南-华山" class="headerlink" title="渭南-华山"></a>渭南-华山</h4><p>认识彼此，冲突产生，</p>
+<h4 id="北京"><a href="#北京" class="headerlink" title="北京"></a>北京</h4><p>升国旗<br>故宫</p>
+<h4 id="郑州"><a href="#郑州" class="headerlink" title="郑州"></a>郑州</h4><p>现场看足球</p>
+<h2 id="计划"><a href="#计划" class="headerlink" title="计划"></a>计划</h2><h4 id="计划回顾"><a href="#计划回顾" class="headerlink" title="计划回顾"></a>计划回顾</h4>]]></content>
+      
+        <categories>
+            
+            <category> 总结 </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> 2019 </tag>
             
         </tags>
         
@@ -4140,7 +4165,10 @@ hashMap.put(&quot;abc&quot;,&quot;1&quot;);
 <p>~/.bash_logout</p>
 <p>历史命令</p>
 <p>~/.bash_history</p>
-<h2 id="正则表达式"><a href="#正则表达式" class="headerlink" title="正则表达式"></a>正则表达式</h2><h2 id="流程控制语句"><a href="#流程控制语句" class="headerlink" title="流程控制语句"></a>流程控制语句</h2>]]></content>
+<h2 id="正则表达式"><a href="#正则表达式" class="headerlink" title="正则表达式"></a>正则表达式</h2><h2 id="流程控制语句"><a href="#流程控制语句" class="headerlink" title="流程控制语句"></a>流程控制语句</h2><p>常用的shell</p>
+<h4 id="判断文件存在"><a href="#判断文件存在" class="headerlink" title="判断文件存在"></a>判断文件存在</h4><p>if [ -e file ] then</p>
+<p>fi</p>
+]]></content>
       
         <categories>
             
