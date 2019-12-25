@@ -14,6 +14,7 @@ https://muxiaobai.github.io/2019/05/18/使用ELK分析日志/
 https://muxiaobai.github.io/2019/04/01/Linux-基础命令总结4/
 https://muxiaobai.github.io/2019/02/16/性能优化之redis储存计算值/
 https://muxiaobai.github.io/2019/01/15/2018年个人总结/
+https://muxiaobai.github.io/2019/01/13/2019年个人总结/
 https://muxiaobai.github.io/2019/01/11/mongodb常用命令/
 https://muxiaobai.github.io/2019/01/11/mongodb主从架构设计/
 https://muxiaobai.github.io/2018/12/21/前言技术之OCR识别/
