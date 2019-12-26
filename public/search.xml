@@ -4,6 +4,50 @@
   
     
     <entry>
+      <title><![CDATA[2019年个人总结]]></title>
+      <url>https://muxiaobai.github.io/2020/01/13/2019%E5%B9%B4%E4%B8%AA%E4%BA%BA%E6%80%BB%E7%BB%93/</url>
+      <content type="html"><![CDATA[<h2 id="工作-技能"><a href="#工作-技能" class="headerlink" title="工作 技能"></a>工作 技能</h2><h4 id="认清自己的位置"><a href="#认清自己的位置" class="headerlink" title="认清自己的位置"></a>认清自己的位置</h4><p>心心念的微服务可以落地，心心念的持续集成可以试验。</p>
+<p>#### </p>
+<h2 id="去过的地方"><a href="#去过的地方" class="headerlink" title="去过的地方"></a>去过的地方</h2><h4 id="渭南-华山"><a href="#渭南-华山" class="headerlink" title="渭南-华山"></a>渭南-华山</h4><p>认识彼此，冲突产生，</p>
+<h4 id="北京"><a href="#北京" class="headerlink" title="北京"></a>北京</h4><p>升国旗<br>故宫</p>
+<h4 id="郑州"><a href="#郑州" class="headerlink" title="郑州"></a>郑州</h4><p>现场看足球</p>
+<h2 id="计划"><a href="#计划" class="headerlink" title="计划"></a>计划</h2><h4 id="计划回顾"><a href="#计划回顾" class="headerlink" title="计划回顾"></a>计划回顾</h4>]]></content>
+      
+        <categories>
+            
+            <category> 总结 </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> 2019 </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[tools-需要开启自启动的应用配置]]></title>
+      <url>https://muxiaobai.github.io/2019/12/26/tools-%E9%9C%80%E8%A6%81%E5%BC%80%E5%90%AF%E8%87%AA%E5%90%AF%E5%8A%A8%E7%9A%84%E5%BA%94%E7%94%A8%E9%85%8D%E7%BD%AE/</url>
+      <content type="html"><![CDATA[<p><code>C:\Users\Administrator\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup</code>每个人对应的目录可能不一致，<br>可以用 win +r  <code>shell:startup</code><br>把需要启动的bat文件创建快捷方式，到此文件夹下<br><img src="/2019/12/26/tools-需要开启自启动的应用配置/自启动目录.png" alt="自启动目录"><br>一开机就启动必须的应用 IDEA VS Code  Chrome CloudMusic,自己写的脚本必须启动的内容</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">echo start </span><br><span class="line"></span><br><span class="line">echo idea START</span><br><span class="line">start /d &quot;E:\Program Files\JetBrains\IntelliJ IDEA 2019.1.2\bin&quot; idea64.exe</span><br><span class="line"></span><br><span class="line">echo VS CODE START</span><br><span class="line">start /d &quot;E:\tools\Microsoft VS Code&quot; code.exe</span><br><span class="line"></span><br><span class="line">echo Chrome START</span><br><span class="line">start /d &quot;C:\Program Files (x86)\Google\Chrome\Application&quot; chrome.exe</span><br><span class="line"></span><br><span class="line">echo cloudmusic START</span><br><span class="line">start /d &quot;C:\Program Files (x86)\Netease\CloudMusic&quot; cloudmusic.exe</span><br><span class="line"></span><br><span class="line">echo javaw START</span><br><span class="line">start /d  &quot;E:\workspace\idea\cloud\&quot; taskrunjavaw.bat</span><br><span class="line"></span><br><span class="line">exit</span><br></pre></td></tr></table></figure>
+<p>切换到对应目录然后执行exe</p>
+<p>taskrunjavaw.bat 中是需要启动的平台<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">@echo off</span><br><span class="line"></span><br><span class="line">start javaw -jar ./app-core/app-register/target/app-register-0.0.1.jar   &amp;</span><br><span class="line">ping -n 8 127.0.0.1 1&gt;null</span><br><span class="line">rem 等待8秒</span><br><span class="line">echo &quot;app-register&quot;</span><br><span class="line">start javaw -jar ./app-core/app-config/target/app-config-0.0.1.jar &amp;</span><br><span class="line">pause</span><br></pre></td></tr></table></figure></p>
+<p>对于一些不经常变动的，定式启动内容可以如此处理。</p>
+]]></content>
+      
+        <categories>
+            
+            <category> 工具 </category>
+            
+        </categories>
+        
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[devops之jenkins持续集成]]></title>
       <url>https://muxiaobai.github.io/2019/12/21/devops%E4%B9%8Bjenkins%E6%8C%81%E7%BB%AD%E9%9B%86%E6%88%90/</url>
       <content type="html"><![CDATA[<p>分两步走，第一安装，第二配置</p>
@@ -432,7 +476,12 @@ hashMap.put(&quot;abc&quot;,&quot;1&quot;);
     <entry>
       <title><![CDATA[git的一些其它操作]]></title>
       <url>https://muxiaobai.github.io/2019/07/29/git%E7%9A%84%E4%B8%80%E4%BA%9B%E5%85%B6%E5%AE%83%E6%93%8D%E4%BD%9C/</url>
-      <content type="html"><![CDATA[<h4 id="git-diff"><a href="#git-diff" class="headerlink" title="git diff"></a>git diff</h4><p>先把vscode作为git默认编辑器</p>
+      <content type="html"><![CDATA[<h4 id="git-拉取代码失败"><a href="#git-拉取代码失败" class="headerlink" title="git 拉取代码失败"></a>git 拉取代码失败</h4><p>解决方法很简单，在git clone时加上–depth=1即可解决</p>
+<blockquote>
+<p>depth用于指定克隆深度，为1即表示只克隆最近一次commit.</p>
+</blockquote>
+<p>这种方法克隆的项目只包含最近的一次commit的一个分支，体积很小，即可解决文章开头提到的项目过大导致Timeout的问题，但会产生另外一个问题，他只会把默认分支clone下来，其他远程分支并不在本地，所以这种情况下，需要用如下方法拉取其他分支：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">$ git clone --depth 1 https://github.com/dogescript/xxxxxxx.git</span><br><span class="line">$ git remote set-branches origin &apos;remote_branch_name&apos;</span><br><span class="line">$ git fetch --depth 1 origin remote_branch_name</span><br><span class="line">$ git checkout remote_branch_name</span><br></pre></td></tr></table></figure></p>
+<h4 id="git-diff"><a href="#git-diff" class="headerlink" title="git diff"></a>git diff</h4><p>先把vscode作为git默认编辑器</p>
 <p>git config –global core.editor “code –wait”</p>
 <p>用vscode 打开 .gitconfig文件</p>
 <p>git config –global -e</p>
@@ -763,7 +812,9 @@ hashMap.put(&quot;abc&quot;,&quot;1&quot;);
 <li>free -h 查询内存文件</li>
 <li>/var/log/messages 系统日志，</li>
 <li>service /etc/init.d  启动脚本位置</li>
+<li>netstat -ano | grep 端口占用<br>wget 判断端口</li>
 </ul>
+<p><img src="/2019/04/01/Linux-基础命令总结4/wget测试端口.png" alt="wget"></p>
 ]]></content>
       
         <categories>
@@ -927,31 +978,6 @@ hashMap.put(&quot;abc&quot;,&quot;1&quot;);
     </entry>
     
     <entry>
-      <title><![CDATA[2019年个人总结]]></title>
-      <url>https://muxiaobai.github.io/2019/01/13/2019%E5%B9%B4%E4%B8%AA%E4%BA%BA%E6%80%BB%E7%BB%93/</url>
-      <content type="html"><![CDATA[<h2 id="工作-技能"><a href="#工作-技能" class="headerlink" title="工作 技能"></a>工作 技能</h2><h4 id="认清自己的位置"><a href="#认清自己的位置" class="headerlink" title="认清自己的位置"></a>认清自己的位置</h4><p>心心念的微服务可以落地，心心念的持续集成可以试验。</p>
-<p>#### </p>
-<h2 id="去过的地方"><a href="#去过的地方" class="headerlink" title="去过的地方"></a>去过的地方</h2><h4 id="渭南-华山"><a href="#渭南-华山" class="headerlink" title="渭南-华山"></a>渭南-华山</h4><p>认识彼此，冲突产生，</p>
-<h4 id="北京"><a href="#北京" class="headerlink" title="北京"></a>北京</h4><p>升国旗<br>故宫</p>
-<h4 id="郑州"><a href="#郑州" class="headerlink" title="郑州"></a>郑州</h4><p>现场看足球</p>
-<h2 id="计划"><a href="#计划" class="headerlink" title="计划"></a>计划</h2><h4 id="计划回顾"><a href="#计划回顾" class="headerlink" title="计划回顾"></a>计划回顾</h4>]]></content>
-      
-        <categories>
-            
-            <category> 总结 </category>
-            
-        </categories>
-        
-        
-        <tags>
-            
-            <tag> 2019 </tag>
-            
-        </tags>
-        
-    </entry>
-    
-    <entry>
       <title><![CDATA[mongodb常用命令]]></title>
       <url>https://muxiaobai.github.io/2019/01/11/mongodb%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/</url>
       <content type="html"><![CDATA[<p>常用的mongo语句，汇总，以便之后查阅。<br><a id="more"></a></p>
@@ -963,7 +989,7 @@ hashMap.put(&quot;abc&quot;,&quot;1&quot;);
 <p>–打包<br>tar -czvf  /db/mongo_bak/jy_db20181207.tar.gz /db/mongo_bak/test_db</p>
 <p>–导入<br>/db/mongodb-3.4.7/bin/mongodump –host 127.0.0.1 –port 9430 -d test_db -u test_use -p test_pwd -o /db/mongo_bak/</p>
 <h3 id="启动-登录，创建用户"><a href="#启动-登录，创建用户" class="headerlink" title="启动 登录，创建用户"></a>启动 登录，创建用户</h3><p>修改配置文件<br><code>vi /db/mongodb-3.4.7/mongodb.conf</code><br>常用配置：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">后台启动</span><br><span class="line">`/db/mongodb-3.4.7/bin/mongod -f /db/mongodb-3.4.7/mongodb.conf `</span><br><span class="line">登录：</span><br><span class="line">`/db/mongodb-3.4.7/bin/mongo  --host 127.0.0.1 --port 9430 -u root -p FpTH2a`</span><br><span class="line"></span><br><span class="line">show dbs;//展示所有数据库</span><br><span class="line"></span><br><span class="line">use test_db;//创建数据库.切换到本数据库</span><br><span class="line"></span><br><span class="line">/db/mongodb-3.4.7/bin/mongod -f /db/mongodb-3.4.7/mongodb.conf  --shutdown</span><br><span class="line"></span><br><span class="line">db.createUser(&#123;user:&apos;name&apos;,pwd:&apos;123456&apos;,roles: [&#123; role:&quot;readWrite&quot;,db:&quot;name&quot;&#125;]&#125;);</span><br><span class="line"></span><br><span class="line">db.getCollection(&apos;system.users&apos;).find(&#123;&#125;)</span><br><span class="line"></span><br><span class="line">db.getCollection(&apos;system.users&apos;).remove(&#123;user:&quot;name&quot;&#125;);</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">后台启动</span><br><span class="line">`/db/mongodb-3.4.7/bin/mongod -f /db/mongodb-3.4.7/mongodb.conf `</span><br><span class="line">登录：</span><br><span class="line">`/db/mongodb-3.4.7/bin/mongo  --host 127.0.0.1 --port 9430 -u root -p FpTH2a`</span><br><span class="line"></span><br><span class="line">show dbs;//展示所有数据库</span><br><span class="line"></span><br><span class="line">use test_db;//创建数据库.切换到本数据库</span><br><span class="line"></span><br><span class="line">/db/mongodb-3.4.7/bin/mongod -f /db/mongodb-3.4.7/mongodb.conf  --shutdown</span><br><span class="line"></span><br><span class="line">db.createUser(&#123;user:&apos;name&apos;,pwd:&apos;123456&apos;,roles: [&#123; role:&quot;readWrite&quot;,db:&quot;name&quot;&#125;]&#125;);</span><br><span class="line"># 写密码校验方式</span><br><span class="line">db.createUser(&#123;user:&quot;name&quot;,pwd:&quot;123456&quot;,roles:[&#123;role:&quot;readWrite&quot;,db:&quot;name&quot;&#125;],mechanisms : [&quot;SCRAM-SHA-1&quot;]&#125;)</span><br><span class="line"></span><br><span class="line">db.getCollection(&apos;system.users&apos;).find(&#123;&#125;)</span><br><span class="line"></span><br><span class="line">db.getCollection(&apos;system.users&apos;).remove(&#123;user:&quot;name&quot;&#125;);</span><br></pre></td></tr></table></figure>
 <p>查询用户：</p>
 <h3 id="数据库"><a href="#数据库" class="headerlink" title="数据库"></a>数据库</h3><p>use test_db;//</p>
 <p>db.repairDatabase();//释放空间</p>
@@ -4166,9 +4192,8 @@ hashMap.put(&quot;abc&quot;,&quot;1&quot;);
 <p>历史命令</p>
 <p>~/.bash_history</p>
 <h2 id="正则表达式"><a href="#正则表达式" class="headerlink" title="正则表达式"></a>正则表达式</h2><h2 id="流程控制语句"><a href="#流程控制语句" class="headerlink" title="流程控制语句"></a>流程控制语句</h2><p>常用的shell</p>
-<h4 id="判断文件存在"><a href="#判断文件存在" class="headerlink" title="判断文件存在"></a>判断文件存在</h4><p>if [ -e file ] then</p>
-<p>fi</p>
-]]></content>
+<h5 id="判断文件存在"><a href="#判断文件存在" class="headerlink" title="判断文件存在"></a>判断文件存在</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">if [ -e file ] then</span><br><span class="line"></span><br><span class="line">fi</span><br></pre></td></tr></table></figure>
+<h5 id="判断容器是否启动成功"><a href="#判断容器是否启动成功" class="headerlink" title="判断容器是否启动成功"></a>判断容器是否启动成功</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">if docker ps  | grep $&#123;PROJECT_NAME&#125;; then</span><br><span class="line">	echo &quot;Start Docker Container: $&#123;PROJECT_NAME&#125;-$&#123;PROJECT_VERSION&#125; Success&quot;</span><br><span class="line">else </span><br><span class="line">	echo &quot;Start Docker Container: $&#123;PROJECT_NAME&#125;-$&#123;PROJECT_VERSION&#125; Error&quot;</span><br><span class="line">	return 1</span><br><span class="line">fi</span><br></pre></td></tr></table></figure>]]></content>
       
         <categories>
             

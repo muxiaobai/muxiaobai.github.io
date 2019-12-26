@@ -128,9 +128,20 @@ $! 返回后台运行的最后一个进程的PID号
 
 常用的shell
 
-#### 判断文件存在
-
-
+##### 判断文件存在
+```
 if [ -e file ] then
 
 fi
+```
+
+##### 判断容器是否启动成功
+
+```
+if docker ps  | grep ${PROJECT_NAME}; then
+	echo "Start Docker Container: ${PROJECT_NAME}-${PROJECT_VERSION} Success"
+else 
+	echo "Start Docker Container: ${PROJECT_NAME}-${PROJECT_VERSION} Error"
+	return 1
+fi
+```

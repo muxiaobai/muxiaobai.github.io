@@ -52,6 +52,8 @@ use test_db;//创建数据库.切换到本数据库
 /db/mongodb-3.4.7/bin/mongod -f /db/mongodb-3.4.7/mongodb.conf  --shutdown
 
 db.createUser({user:'name',pwd:'123456',roles: [{ role:"readWrite",db:"name"}]});
+# 写密码校验方式
+db.createUser({user:"name",pwd:"123456",roles:[{role:"readWrite",db:"name"}],mechanisms : ["SCRAM-SHA-1"]})
 
 db.getCollection('system.users').find({})
 

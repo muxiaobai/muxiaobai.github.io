@@ -43,4 +43,7 @@ description: "shell快捷件键，常用命令"
 - free -h 查询内存文件
 - /var/log/messages 系统日志，
 - service /etc/init.d  启动脚本位置
+- netstat -ano | grep 端口占用
+wget 判断端口
 
+![wget](Linux-基础命令总结4/wget测试端口.png)
