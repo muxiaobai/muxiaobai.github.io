@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://muxiaobai.github.io/"/>
-  <updated>2019-12-23T05:12:50.045Z</updated>
+  <updated>2019-12-26T01:31:49.505Z</updated>
   <id>https://muxiaobai.github.io/</id>
   
   <author>
@@ -15,6 +15,48 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>2019年个人总结</title>
+    <link href="https://muxiaobai.github.io/2020/01/13/2019%E5%B9%B4%E4%B8%AA%E4%BA%BA%E6%80%BB%E7%BB%93/"/>
+    <id>https://muxiaobai.github.io/2020/01/13/2019年个人总结/</id>
+    <published>2020-01-13T11:59:49.000Z</published>
+    <updated>2019-12-26T01:31:49.505Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="工作-技能"><a href="#工作-技能" class="headerlink" title="工作 技能"></a>工作 技能</h2><h4 id="认清自己的位置"><a href="#认清自己的位置" class="headerlink" title="认清自己的位置"></a>认清自己的位置</h4><p>心心念的微服务可以落地，心心念的持续集成可以试验。</p><p>#### </p><h2 id="去过的地方"><a href="#去过的地方" class="headerlink" title="去过的地方"></a>去过的地方</h2><h4 id="渭南-华山"><a href="#渭南-华山" class="headerlink" title="渭南-华山"></a>渭南-华山</h4><p>认识彼此，冲突产生，</p><h4 id="北京"><a href="#北京" class="headerlink" title="北京"></a>北京</h4><p>升国旗<br>故宫</p><h4 id="郑州"><a href="#郑州" class="headerlink" title="郑州"></a>郑州</h4><p>现场看足球</p><h2 id="计划"><a href="#计划" class="headerlink" title="计划"></a>计划</h2><h4 id="计划回顾"><a href="#计划回顾" class="headerlink" title="计划回顾"></a>计划回顾</h4>]]></content>
+    
+    <summary type="html">
+    
+      2019年已经过去，总结一下。
+    
+    </summary>
+    
+      <category term="总结" scheme="https://muxiaobai.github.io/categories/%E6%80%BB%E7%BB%93/"/>
+    
+    
+      <category term="2019" scheme="https://muxiaobai.github.io/tags/2019/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>tools-需要开启自启动的应用配置</title>
+    <link href="https://muxiaobai.github.io/2019/12/26/tools-%E9%9C%80%E8%A6%81%E5%BC%80%E5%90%AF%E8%87%AA%E5%90%AF%E5%8A%A8%E7%9A%84%E5%BA%94%E7%94%A8%E9%85%8D%E7%BD%AE/"/>
+    <id>https://muxiaobai.github.io/2019/12/26/tools-需要开启自启动的应用配置/</id>
+    <published>2019-12-26T06:58:37.000Z</published>
+    <updated>2019-12-26T07:16:28.208Z</updated>
+    
+    <content type="html"><![CDATA[<p><code>C:\Users\Administrator\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup</code>每个人对应的目录可能不一致，<br>可以用 win +r  <code>shell:startup</code><br>把需要启动的bat文件创建快捷方式，到此文件夹下<br><img src="/2019/12/26/tools-需要开启自启动的应用配置/自启动目录.png" alt="自启动目录"><br>一开机就启动必须的应用 IDEA VS Code  Chrome CloudMusic,自己写的脚本必须启动的内容</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">echo start </span><br><span class="line"></span><br><span class="line">echo idea START</span><br><span class="line">start /d &quot;E:\Program Files\JetBrains\IntelliJ IDEA 2019.1.2\bin&quot; idea64.exe</span><br><span class="line"></span><br><span class="line">echo VS CODE START</span><br><span class="line">start /d &quot;E:\tools\Microsoft VS Code&quot; code.exe</span><br><span class="line"></span><br><span class="line">echo Chrome START</span><br><span class="line">start /d &quot;C:\Program Files (x86)\Google\Chrome\Application&quot; chrome.exe</span><br><span class="line"></span><br><span class="line">echo cloudmusic START</span><br><span class="line">start /d &quot;C:\Program Files (x86)\Netease\CloudMusic&quot; cloudmusic.exe</span><br><span class="line"></span><br><span class="line">echo javaw START</span><br><span class="line">start /d  &quot;E:\workspace\idea\cloud\&quot; taskrunjavaw.bat</span><br><span class="line"></span><br><span class="line">exit</span><br></pre></td></tr></table></figure><p>切换到对应目录然后执行exe</p><p>taskrunjavaw.bat 中是需要启动的平台<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">@echo off</span><br><span class="line"></span><br><span class="line">start javaw -jar ./app-core/app-register/target/app-register-0.0.1.jar   &amp;</span><br><span class="line">ping -n 8 127.0.0.1 1&gt;null</span><br><span class="line">rem 等待8秒</span><br><span class="line">echo &quot;app-register&quot;</span><br><span class="line">start javaw -jar ./app-core/app-config/target/app-config-0.0.1.jar &amp;</span><br><span class="line">pause</span><br></pre></td></tr></table></figure></p><p>对于一些不经常变动的，定式启动内容可以如此处理。</p>]]></content>
+    
+    <summary type="html">
+    
+      每一次开机都要开启很多软件，在这里就找到解决办法，晚上可以关机，早上可以开机，然后就可以去接开水喝了，静待启动。
+    
+    </summary>
+    
+      <category term="工具" scheme="https://muxiaobai.github.io/categories/%E5%B7%A5%E5%85%B7/"/>
+    
+    
+  </entry>
   
   <entry>
     <title>devops之jenkins持续集成</title>
@@ -165,7 +207,7 @@
     <link href="https://muxiaobai.github.io/2019/08/31/devops%E4%B9%8Bdocker/"/>
     <id>https://muxiaobai.github.io/2019/08/31/devops之docker/</id>
     <published>2019-08-31T08:45:53.000Z</published>
-    <updated>2019-12-21T05:28:59.478Z</updated>
+    <updated>2019-12-26T07:15:33.086Z</updated>
     
     <content type="html"><![CDATA[<hr><p>官网 hub.docker.com</p><p>docker login/logout</p><h4 id="远程镜像"><a href="#远程镜像" class="headerlink" title="远程镜像"></a>远程镜像</h4><p>docker pull mysql<br>docker push<br>docker search </p><h3 id="本地镜像-image"><a href="#本地镜像-image" class="headerlink" title="本地镜像 image"></a>本地镜像 image</h3><p>docker images<br>docker rmi</p><h3 id="网络-network"><a href="#网络-network" class="headerlink" title="网络 network"></a>网络 network</h3><p>172.17.0.1/16 以下都可以是使用</p><p>docker network ls<br>docker network inspect mysql-net<br>docker network create –subnet=172.19.0.0/24 mysql-net</p><h3 id="volume"><a href="#volume" class="headerlink" title="volume"></a>volume</h3><p>docker volume create –name v1<br>docker volumn inspect</p><h3 id="容器-container"><a href="#容器-container" class="headerlink" title="容器 container"></a>容器 container</h3><p>docker run -d --name mmmysql -p 3300:3306 -m 500M<br>-v v1:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=123456 --privileged --net=mysql-net –ip 172.19.0.2 mysql:latest</p><p>mvn clean clean package docker:build -Dmaven.test.skip=true</p><p>docker run -d --name tomcat1 -p 3300:3306 --net mysql-net --ip 172.19.0.2 -v v1:/var/lib/mysql mytomcat:latest</p><h3 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h3><p>docker ps -a<br>docker ps<br>docker exec -it mmmysql /bin/bash<br>docker logs -f –tail=100 mmmysql  最新的100行<br>docker inspect mmmysql</p><hr><p>docker-compose.yml docker 编排</p><p><img src="/2019/08/31/devops之docker/docker.PNG" alt="docker请求"></p><p>K8s</p><h4 id="Pod"><a href="#Pod" class="headerlink" title="Pod"></a>Pod</h4><p>Pod  (container-mysql1,container-mysql2,container-mysql3)<br>一个Pod包含一类的container</p><h4 id="Node"><a href="#Node" class="headerlink" title="Node"></a>Node</h4><p>Node一台机器多个Pod<br>Kubelet操作Pod<br>docker<br><img src="/2019/08/31/devops之docker/Node.PNG" alt="Node Pod"></p><h4 id="Service"><a href="#Service" class="headerlink" title="Service"></a>Service</h4><p>label:不同的Node内部的Pod，同一个label 叫Service<br>mysql1  mysql2<br><img src="/2019/08/31/devops之docker/Service.PNG" alt="Service label"></p><p>####<br>master Node Worker Node 调度算法：Scheduler APIServer ControllerManager<br><img src="/2019/08/31/devops之docker/kub.PNG" alt="kub结构"><br>ReplicaSet 对Pod进行扩缩容</p><p>对Pod滚动更新：Deployment</p><p>分布式ETCD数据存储</p><p>使用者通过Kubectl操作K8s和docker<br><img src="/2019/08/31/devops之docker/useropera.PNG" alt="Node Pod"></p><hr>]]></content>
     
@@ -207,9 +249,9 @@
     <link href="https://muxiaobai.github.io/2019/07/29/git%E7%9A%84%E4%B8%80%E4%BA%9B%E5%85%B6%E5%AE%83%E6%93%8D%E4%BD%9C/"/>
     <id>https://muxiaobai.github.io/2019/07/29/git的一些其它操作/</id>
     <published>2019-07-29T11:21:25.000Z</published>
-    <updated>2019-12-23T05:15:59.546Z</updated>
+    <updated>2019-12-26T07:25:36.633Z</updated>
     
-    <content type="html"><![CDATA[<h4 id="git-diff"><a href="#git-diff" class="headerlink" title="git diff"></a>git diff</h4><p>先把vscode作为git默认编辑器</p><p>git config –global core.editor “code –wait”</p><p>用vscode 打开 .gitconfig文件</p><p>git config –global -e</p><p>在里面加上</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[diff]</span><br><span class="line">    tool = default-difftool</span><br><span class="line">[difftool &quot;default-difftool&quot;]</span><br><span class="line">    cmd = code --wait --diff $LOCAL $REMOTE</span><br></pre></td></tr></table></figure><p>这时候运行git difftool，vscode 就作为默认difftool打开了</p><h4 id="git-add-回退"><a href="#git-add-回退" class="headerlink" title="git add 回退"></a>git add 回退</h4><p>git status 先看一下add 中的文件<br>git reset HEAD 如果后面什么都不跟的话 就是上一次add 里面的全部撤销了<br>git reset HEAD XXX/XXX/XXX.java 就是对某个文件进行撤销了</p><h4 id="git-commit-回退"><a href="#git-commit-回退" class="headerlink" title="git commit 回退"></a>git commit 回退</h4><p><code>git reset --soft HEAD^</code>这样就成功的撤销了你的commit<br>注意，仅仅是撤回commit操作，您写的代码仍然保留。</p><p>HEAD^的意思是上一个版本，也可以写成HEAD~1</p><p>如果你进行了2次commit，想都撤回，可以使用HEAD~2</p><p>–soft<br>不删除工作空间改动代码，撤销commit，不撤销git add . </p><h4 id="修改远程仓库-origin，更换地址"><a href="#修改远程仓库-origin，更换地址" class="headerlink" title="修改远程仓库 origin，更换地址"></a>修改远程仓库 origin，更换地址</h4><p>查看远程地址</p><p>git remote -v  </p><p>移除origin远程地址</p><p>git remote rm origin</p><p>添加origin 远程地址</p><p>git remote add origin <a href="https://github.com/muxiaobai/xxx" target="_blank" rel="noopener">https://github.com/muxiaobai/xxx</a></p><p>拉取origin下的代码</p><p>git fetch origin</p><h3 id="已存在的git仓库更换地址"><a href="#已存在的git仓库更换地址" class="headerlink" title="已存在的git仓库更换地址"></a>已存在的git仓库更换地址</h3><p>cd existing_repo<br>git remote rename origin old-origin<br>git remote add origin <a href="http://192.168.120.63/xxx/xxx.git" target="_blank" rel="noopener">http://192.168.120.63/xxx/xxx.git</a><br>git push -u origin –all<br>git push -u origin –tags</p><h4 id="切换分支"><a href="#切换分支" class="headerlink" title="切换分支"></a>切换分支</h4><p>查看远程和本地分支<br>git branch -a</p><p>创建并切换dev 分支<br>git checkout -b dev</p><p>切换到dev分支<br>git checkout dev</p><p>删除远程xxx分支<br>git remote rm xxx</p><p>#### </p><p>首先，git fetch –all  取回远程库的所有修改；<br>然后，git reset –hard origin/master<br>指向远程库origin的master</p><h4 id="回滚上次提交"><a href="#回滚上次提交" class="headerlink" title="回滚上次提交"></a>回滚上次提交</h4><p>git reset --hard HEAD^<br>git log<br>git reset commit_id</p><h3 id="每个人的数据库连接信息不一样，可以选择忽略"><a href="#每个人的数据库连接信息不一样，可以选择忽略" class="headerlink" title="每个人的数据库连接信息不一样，可以选择忽略"></a>每个人的数据库连接信息不一样，可以选择忽略</h3><p>具体操作如下：</p><p>在命令行中输入</p><p>git update-index –assume-unchanged [file-path]<br>命令中的file-path 就是需要忽略提价的文件的路径</p><p>如果需要恢复提交，使用：</p><p>git update-index –no-assume-unchanged [file-path]</p>]]></content>
+    <content type="html"><![CDATA[<h4 id="git-拉取代码失败"><a href="#git-拉取代码失败" class="headerlink" title="git 拉取代码失败"></a>git 拉取代码失败</h4><p>解决方法很简单，在git clone时加上–depth=1即可解决</p><blockquote><p>depth用于指定克隆深度，为1即表示只克隆最近一次commit.</p></blockquote><p>这种方法克隆的项目只包含最近的一次commit的一个分支，体积很小，即可解决文章开头提到的项目过大导致Timeout的问题，但会产生另外一个问题，他只会把默认分支clone下来，其他远程分支并不在本地，所以这种情况下，需要用如下方法拉取其他分支：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">$ git clone --depth 1 https://github.com/dogescript/xxxxxxx.git</span><br><span class="line">$ git remote set-branches origin &apos;remote_branch_name&apos;</span><br><span class="line">$ git fetch --depth 1 origin remote_branch_name</span><br><span class="line">$ git checkout remote_branch_name</span><br></pre></td></tr></table></figure></p><h4 id="git-diff"><a href="#git-diff" class="headerlink" title="git diff"></a>git diff</h4><p>先把vscode作为git默认编辑器</p><p>git config –global core.editor “code –wait”</p><p>用vscode 打开 .gitconfig文件</p><p>git config –global -e</p><p>在里面加上</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[diff]</span><br><span class="line">    tool = default-difftool</span><br><span class="line">[difftool &quot;default-difftool&quot;]</span><br><span class="line">    cmd = code --wait --diff $LOCAL $REMOTE</span><br></pre></td></tr></table></figure><p>这时候运行git difftool，vscode 就作为默认difftool打开了</p><h4 id="git-add-回退"><a href="#git-add-回退" class="headerlink" title="git add 回退"></a>git add 回退</h4><p>git status 先看一下add 中的文件<br>git reset HEAD 如果后面什么都不跟的话 就是上一次add 里面的全部撤销了<br>git reset HEAD XXX/XXX/XXX.java 就是对某个文件进行撤销了</p><h4 id="git-commit-回退"><a href="#git-commit-回退" class="headerlink" title="git commit 回退"></a>git commit 回退</h4><p><code>git reset --soft HEAD^</code>这样就成功的撤销了你的commit<br>注意，仅仅是撤回commit操作，您写的代码仍然保留。</p><p>HEAD^的意思是上一个版本，也可以写成HEAD~1</p><p>如果你进行了2次commit，想都撤回，可以使用HEAD~2</p><p>–soft<br>不删除工作空间改动代码，撤销commit，不撤销git add . </p><h4 id="修改远程仓库-origin，更换地址"><a href="#修改远程仓库-origin，更换地址" class="headerlink" title="修改远程仓库 origin，更换地址"></a>修改远程仓库 origin，更换地址</h4><p>查看远程地址</p><p>git remote -v  </p><p>移除origin远程地址</p><p>git remote rm origin</p><p>添加origin 远程地址</p><p>git remote add origin <a href="https://github.com/muxiaobai/xxx" target="_blank" rel="noopener">https://github.com/muxiaobai/xxx</a></p><p>拉取origin下的代码</p><p>git fetch origin</p><h3 id="已存在的git仓库更换地址"><a href="#已存在的git仓库更换地址" class="headerlink" title="已存在的git仓库更换地址"></a>已存在的git仓库更换地址</h3><p>cd existing_repo<br>git remote rename origin old-origin<br>git remote add origin <a href="http://192.168.120.63/xxx/xxx.git" target="_blank" rel="noopener">http://192.168.120.63/xxx/xxx.git</a><br>git push -u origin –all<br>git push -u origin –tags</p><h4 id="切换分支"><a href="#切换分支" class="headerlink" title="切换分支"></a>切换分支</h4><p>查看远程和本地分支<br>git branch -a</p><p>创建并切换dev 分支<br>git checkout -b dev</p><p>切换到dev分支<br>git checkout dev</p><p>删除远程xxx分支<br>git remote rm xxx</p><p>#### </p><p>首先，git fetch –all  取回远程库的所有修改；<br>然后，git reset –hard origin/master<br>指向远程库origin的master</p><h4 id="回滚上次提交"><a href="#回滚上次提交" class="headerlink" title="回滚上次提交"></a>回滚上次提交</h4><p>git reset --hard HEAD^<br>git log<br>git reset commit_id</p><h3 id="每个人的数据库连接信息不一样，可以选择忽略"><a href="#每个人的数据库连接信息不一样，可以选择忽略" class="headerlink" title="每个人的数据库连接信息不一样，可以选择忽略"></a>每个人的数据库连接信息不一样，可以选择忽略</h3><p>具体操作如下：</p><p>在命令行中输入</p><p>git update-index –assume-unchanged [file-path]<br>命令中的file-path 就是需要忽略提价的文件的路径</p><p>如果需要恢复提交，使用：</p><p>git update-index –no-assume-unchanged [file-path]</p>]]></content>
     
     <summary type="html">
     
@@ -299,9 +341,9 @@
     <link href="https://muxiaobai.github.io/2019/04/01/Linux-%E5%9F%BA%E7%A1%80%E5%91%BD%E4%BB%A4%E6%80%BB%E7%BB%934/"/>
     <id>https://muxiaobai.github.io/2019/04/01/Linux-基础命令总结4/</id>
     <published>2019-03-31T21:19:12.000Z</published>
-    <updated>2019-12-21T05:41:41.022Z</updated>
+    <updated>2019-12-26T07:18:18.755Z</updated>
     
-    <content type="html"><![CDATA[<h4 id="shell-常用快捷键"><a href="#shell-常用快捷键" class="headerlink" title="shell 常用快捷键"></a>shell 常用快捷键</h4><p><a href="https://blog.csdn.net/weixin_42256178/article/details/80392077" target="_blank" rel="noopener">常用shell快捷键</a></p><ul><li>ctrl + a 命令行首</li><li>ctrl + e 命令行尾（end）</li><li>ctrl + b 相当于方向键左←（）</li><li>ctrl + f 相当于方向键右→</li><li></li><li>ctrl + u 剪切光标到行首</li><li>ctrl + k 剪切光标到行尾</li><li>ctrl + w 剪切光标前一个单词</li><li>ctrl + y 粘贴上面三个的复制</li><li>ctrl + z 挂起当前命令 jobs bg fg  唤醒</li><li></li><li>ctrl + r 搜索之前的命令</li><li>ctrl + g 取消搜索<br>-</li><li>ctrl + s 锁屏，挂起当前shell</li><li>ctrl + q 取消锁屏，重新启用当前shell</li><li><p>ctrl + l clear 清屏</p></li><li><p>ctrl + insert 插入</p></li></ul><h4 id="其他常用命令"><a href="#其他常用命令" class="headerlink" title="其他常用命令"></a>其他常用命令</h4><ul><li>ps -ef | grep tomcat </li><li>ps -aux | sort -k4nr |head -h 10 内存前十的进程</li><li>du -sh *   当前路径（disk usage）</li><li>df -hP  整个磁盘（disk free）</li><li>df -k /tmp 查看磁盘使用</li><li>crontab -l 定时任务</li><li>tail -f -n 200 /root/file.log 查看实时日志文件</li><li>free -h 查询内存文件</li><li>/var/log/messages 系统日志，</li><li>service /etc/init.d  启动脚本位置</li></ul>]]></content>
+    <content type="html"><![CDATA[<h4 id="shell-常用快捷键"><a href="#shell-常用快捷键" class="headerlink" title="shell 常用快捷键"></a>shell 常用快捷键</h4><p><a href="https://blog.csdn.net/weixin_42256178/article/details/80392077" target="_blank" rel="noopener">常用shell快捷键</a></p><ul><li>ctrl + a 命令行首</li><li>ctrl + e 命令行尾（end）</li><li>ctrl + b 相当于方向键左←（）</li><li>ctrl + f 相当于方向键右→</li><li></li><li>ctrl + u 剪切光标到行首</li><li>ctrl + k 剪切光标到行尾</li><li>ctrl + w 剪切光标前一个单词</li><li>ctrl + y 粘贴上面三个的复制</li><li>ctrl + z 挂起当前命令 jobs bg fg  唤醒</li><li></li><li>ctrl + r 搜索之前的命令</li><li>ctrl + g 取消搜索<br>-</li><li>ctrl + s 锁屏，挂起当前shell</li><li>ctrl + q 取消锁屏，重新启用当前shell</li><li><p>ctrl + l clear 清屏</p></li><li><p>ctrl + insert 插入</p></li></ul><h4 id="其他常用命令"><a href="#其他常用命令" class="headerlink" title="其他常用命令"></a>其他常用命令</h4><ul><li>ps -ef | grep tomcat </li><li>ps -aux | sort -k4nr |head -h 10 内存前十的进程</li><li>du -sh *   当前路径（disk usage）</li><li>df -hP  整个磁盘（disk free）</li><li>df -k /tmp 查看磁盘使用</li><li>crontab -l 定时任务</li><li>tail -f -n 200 /root/file.log 查看实时日志文件</li><li>free -h 查询内存文件</li><li>/var/log/messages 系统日志，</li><li>service /etc/init.d  启动脚本位置</li><li>netstat -ano | grep 端口占用<br>wget 判断端口</li></ul><p><img src="/2019/04/01/Linux-基础命令总结4/wget测试端口.png" alt="wget"></p>]]></content>
     
     <summary type="html">
     
@@ -361,35 +403,13 @@
   </entry>
   
   <entry>
-    <title>2019年个人总结</title>
-    <link href="https://muxiaobai.github.io/2019/01/13/2019%E5%B9%B4%E4%B8%AA%E4%BA%BA%E6%80%BB%E7%BB%93/"/>
-    <id>https://muxiaobai.github.io/2019/01/13/2019年个人总结/</id>
-    <published>2019-01-13T11:59:49.000Z</published>
-    <updated>2019-12-23T12:06:59.832Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="工作-技能"><a href="#工作-技能" class="headerlink" title="工作 技能"></a>工作 技能</h2><h4 id="认清自己的位置"><a href="#认清自己的位置" class="headerlink" title="认清自己的位置"></a>认清自己的位置</h4><p>心心念的微服务可以落地，心心念的持续集成可以试验。</p><p>#### </p><h2 id="去过的地方"><a href="#去过的地方" class="headerlink" title="去过的地方"></a>去过的地方</h2><h4 id="渭南-华山"><a href="#渭南-华山" class="headerlink" title="渭南-华山"></a>渭南-华山</h4><p>认识彼此，冲突产生，</p><h4 id="北京"><a href="#北京" class="headerlink" title="北京"></a>北京</h4><p>升国旗<br>故宫</p><h4 id="郑州"><a href="#郑州" class="headerlink" title="郑州"></a>郑州</h4><p>现场看足球</p><h2 id="计划"><a href="#计划" class="headerlink" title="计划"></a>计划</h2><h4 id="计划回顾"><a href="#计划回顾" class="headerlink" title="计划回顾"></a>计划回顾</h4>]]></content>
-    
-    <summary type="html">
-    
-      2019年已经过去，总结一下。
-    
-    </summary>
-    
-      <category term="总结" scheme="https://muxiaobai.github.io/categories/%E6%80%BB%E7%BB%93/"/>
-    
-    
-      <category term="2019" scheme="https://muxiaobai.github.io/tags/2019/"/>
-    
-  </entry>
-  
-  <entry>
     <title>mongodb常用命令</title>
     <link href="https://muxiaobai.github.io/2019/01/11/mongodb%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/"/>
     <id>https://muxiaobai.github.io/2019/01/11/mongodb常用命令/</id>
     <published>2019-01-10T19:07:27.000Z</published>
-    <updated>2019-04-19T06:30:46.000Z</updated>
+    <updated>2019-12-26T07:14:24.592Z</updated>
     
-    <content type="html"><![CDATA[<p>常用的mongo语句，汇总，以便之后查阅。<br><a id="more"></a></p><h2 id="全局、数据库级别"><a href="#全局、数据库级别" class="headerlink" title="全局、数据库级别"></a>全局、数据库级别</h2><p>默认根目录：/db/mongodb-3.4.7/</p><h3 id="导入导出"><a href="#导入导出" class="headerlink" title="导入导出"></a>导入导出</h3><p>–导入<br>/db/mongodb-3.4.7/bin/mongorestore –host=127.0.0.1 -u test_user -p test_pwd –port 27017 –db jy_db /db/mongo_bak/test_db</p><p>–强制删除<br>–drop：先删除所有的记录，然后恢复.<br>/db/mongodb-3.4.7/bin/mongorestore –host=127.0.0.1 -u test_user -p test_pwd –port 27017 –db test_db –drop /db/mongo_bak/test_db</p><p>–导出<br>/db/mongodb-3.4.7/bin/mongodump –host 127.0.0.1 –port 9430 -d test_db -u test_user -p 123456 -o /db/mongo_bak/test_db</p><p>/db/mongodb-3.4.7/bin/mongodump –host 127.0.0.1 –port 9430 -d test_db  -o /db/mongo_bak/test_db</p><p>–打包<br>tar -czvf  /db/mongo_bak/jy_db20181207.tar.gz /db/mongo_bak/test_db</p><p>–导入<br>/db/mongodb-3.4.7/bin/mongodump –host 127.0.0.1 –port 9430 -d test_db -u test_use -p test_pwd -o /db/mongo_bak/</p><h3 id="启动-登录，创建用户"><a href="#启动-登录，创建用户" class="headerlink" title="启动 登录，创建用户"></a>启动 登录，创建用户</h3><p>修改配置文件<br><code>vi /db/mongodb-3.4.7/mongodb.conf</code><br>常用配置：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">后台启动</span><br><span class="line">`/db/mongodb-3.4.7/bin/mongod -f /db/mongodb-3.4.7/mongodb.conf `</span><br><span class="line">登录：</span><br><span class="line">`/db/mongodb-3.4.7/bin/mongo  --host 127.0.0.1 --port 9430 -u root -p FpTH2a`</span><br><span class="line"></span><br><span class="line">show dbs;//展示所有数据库</span><br><span class="line"></span><br><span class="line">use test_db;//创建数据库.切换到本数据库</span><br><span class="line"></span><br><span class="line">/db/mongodb-3.4.7/bin/mongod -f /db/mongodb-3.4.7/mongodb.conf  --shutdown</span><br><span class="line"></span><br><span class="line">db.createUser(&#123;user:&apos;name&apos;,pwd:&apos;123456&apos;,roles: [&#123; role:&quot;readWrite&quot;,db:&quot;name&quot;&#125;]&#125;);</span><br><span class="line"></span><br><span class="line">db.getCollection(&apos;system.users&apos;).find(&#123;&#125;)</span><br><span class="line"></span><br><span class="line">db.getCollection(&apos;system.users&apos;).remove(&#123;user:&quot;name&quot;&#125;);</span><br></pre></td></tr></table></figure><p>查询用户：</p><h3 id="数据库"><a href="#数据库" class="headerlink" title="数据库"></a>数据库</h3><p>use test_db;//</p><p>db.repairDatabase();//释放空间</p><p>db.runCommand({“distinct”:”fs.files”, “key”:”metadata.type”});//所有的集合</p><h2 id="集合级别-collection"><a href="#集合级别-collection" class="headerlink" title="集合级别 collection"></a>集合级别 collection</h2><ul><li>所有  show collections;</li><li>创建  db.createCollection(“test”);</li><li>添加  db.getCollection(“test”).insert({“name”:”test”});</li><li>清空  db.getCollection(“test”).remove({});</li><li>删除  db.getCollection(“test”).drop();</li><li>查询  db.getCollection(“test”).find({“name”:”test”});</li></ul>]]></content>
+    <content type="html"><![CDATA[<p>常用的mongo语句，汇总，以便之后查阅。<br><a id="more"></a></p><h2 id="全局、数据库级别"><a href="#全局、数据库级别" class="headerlink" title="全局、数据库级别"></a>全局、数据库级别</h2><p>默认根目录：/db/mongodb-3.4.7/</p><h3 id="导入导出"><a href="#导入导出" class="headerlink" title="导入导出"></a>导入导出</h3><p>–导入<br>/db/mongodb-3.4.7/bin/mongorestore –host=127.0.0.1 -u test_user -p test_pwd –port 27017 –db jy_db /db/mongo_bak/test_db</p><p>–强制删除<br>–drop：先删除所有的记录，然后恢复.<br>/db/mongodb-3.4.7/bin/mongorestore –host=127.0.0.1 -u test_user -p test_pwd –port 27017 –db test_db –drop /db/mongo_bak/test_db</p><p>–导出<br>/db/mongodb-3.4.7/bin/mongodump –host 127.0.0.1 –port 9430 -d test_db -u test_user -p 123456 -o /db/mongo_bak/test_db</p><p>/db/mongodb-3.4.7/bin/mongodump –host 127.0.0.1 –port 9430 -d test_db  -o /db/mongo_bak/test_db</p><p>–打包<br>tar -czvf  /db/mongo_bak/jy_db20181207.tar.gz /db/mongo_bak/test_db</p><p>–导入<br>/db/mongodb-3.4.7/bin/mongodump –host 127.0.0.1 –port 9430 -d test_db -u test_use -p test_pwd -o /db/mongo_bak/</p><h3 id="启动-登录，创建用户"><a href="#启动-登录，创建用户" class="headerlink" title="启动 登录，创建用户"></a>启动 登录，创建用户</h3><p>修改配置文件<br><code>vi /db/mongodb-3.4.7/mongodb.conf</code><br>常用配置：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">后台启动</span><br><span class="line">`/db/mongodb-3.4.7/bin/mongod -f /db/mongodb-3.4.7/mongodb.conf `</span><br><span class="line">登录：</span><br><span class="line">`/db/mongodb-3.4.7/bin/mongo  --host 127.0.0.1 --port 9430 -u root -p FpTH2a`</span><br><span class="line"></span><br><span class="line">show dbs;//展示所有数据库</span><br><span class="line"></span><br><span class="line">use test_db;//创建数据库.切换到本数据库</span><br><span class="line"></span><br><span class="line">/db/mongodb-3.4.7/bin/mongod -f /db/mongodb-3.4.7/mongodb.conf  --shutdown</span><br><span class="line"></span><br><span class="line">db.createUser(&#123;user:&apos;name&apos;,pwd:&apos;123456&apos;,roles: [&#123; role:&quot;readWrite&quot;,db:&quot;name&quot;&#125;]&#125;);</span><br><span class="line"># 写密码校验方式</span><br><span class="line">db.createUser(&#123;user:&quot;name&quot;,pwd:&quot;123456&quot;,roles:[&#123;role:&quot;readWrite&quot;,db:&quot;name&quot;&#125;],mechanisms : [&quot;SCRAM-SHA-1&quot;]&#125;)</span><br><span class="line"></span><br><span class="line">db.getCollection(&apos;system.users&apos;).find(&#123;&#125;)</span><br><span class="line"></span><br><span class="line">db.getCollection(&apos;system.users&apos;).remove(&#123;user:&quot;name&quot;&#125;);</span><br></pre></td></tr></table></figure><p>查询用户：</p><h3 id="数据库"><a href="#数据库" class="headerlink" title="数据库"></a>数据库</h3><p>use test_db;//</p><p>db.repairDatabase();//释放空间</p><p>db.runCommand({“distinct”:”fs.files”, “key”:”metadata.type”});//所有的集合</p><h2 id="集合级别-collection"><a href="#集合级别-collection" class="headerlink" title="集合级别 collection"></a>集合级别 collection</h2><ul><li>所有  show collections;</li><li>创建  db.createCollection(“test”);</li><li>添加  db.getCollection(“test”).insert({“name”:”test”});</li><li>清空  db.getCollection(“test”).remove({});</li><li>删除  db.getCollection(“test”).drop();</li><li>查询  db.getCollection(“test”).find({“name”:”test”});</li></ul>]]></content>
     
     <summary type="html">
     
@@ -427,28 +447,6 @@
       <category term="mongo" scheme="https://muxiaobai.github.io/tags/mongo/"/>
     
       <category term="设计" scheme="https://muxiaobai.github.io/tags/%E8%AE%BE%E8%AE%A1/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>前言技术之OCR识别</title>
-    <link href="https://muxiaobai.github.io/2018/12/21/%E5%89%8D%E8%A8%80%E6%8A%80%E6%9C%AF%E4%B9%8BOCR%E8%AF%86%E5%88%AB/"/>
-    <id>https://muxiaobai.github.io/2018/12/21/前言技术之OCR识别/</id>
-    <published>2018-12-21T01:10:12.000Z</published>
-    <updated>2018-12-24T02:07:07.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>OCR技术是光学字符识别的缩写(Optical Character Recognition)，是通过扫描等光学输入方式将各种票据、报刊、书籍、文稿及其它印刷品的文字转化为图像信息，再利用文字识别技术将图像信息转化为可以使用的计算机输入技术。</p><p>主要是两个步骤，先获取输入源数据，例如扫描仪、相机等，然后进行识别，目前流行的识别技术主要是RNN循环神经网络、LSTM等，传统的OCR<br><a id="more"></a><br>tesseract-ocr 识别，当前使用版本4.0，下载的时候,直接在github中的wiki即可。</p><p>win</p><p>环境变量</p><p>增加一个PATH变量名，变量值还是我的安装路径C:\Program Files (x86)\Tesseract-OCR;</p><p>增加一个TESSDATA_PREFIX变量名，变量值还是我的安装路径C:\Program Files (x86)\Tesseract-OCR\tessdata;</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">tesseract -v</span><br><span class="line"></span><br><span class="line">tesseract test.png output_1 –l eng</span><br></pre></td></tr></table></figure><p><a href="https://github.com/tesseract-ocr/tesseract/wiki" target="_blank" rel="noopener">wiki</a><br><a href="https://www.cnblogs.com/jianqingwang/p/6978724.html" target="_blank" rel="noopener">安装</a><br><a href="https://www.cnblogs.com/cnlian/p/5765871.html" target="_blank" rel="noopener">使用</a></p>]]></content>
-    
-    <summary type="html">
-    
-      OCR,文字识别技术
-    
-    </summary>
-    
-      <category term="OCR" scheme="https://muxiaobai.github.io/categories/OCR/"/>
-    
-    
-      <category term="前沿技术" scheme="https://muxiaobai.github.io/tags/%E5%89%8D%E6%B2%BF%E6%8A%80%E6%9C%AF/"/>
     
   </entry>
   

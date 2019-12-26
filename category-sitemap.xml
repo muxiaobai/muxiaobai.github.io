@@ -140,13 +140,6 @@
     </url>
 
     <url>
-        <loc>https://muxiaobai.github.io/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/</loc>
-        <lastmod>2019-04-19T06:30:46.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
         <loc>https://muxiaobai.github.io/categories/SQL/</loc>
         <lastmod>2019-04-24T06:43:43.000Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -203,29 +196,36 @@
     </url>
 
     <url>
-        <loc>https://muxiaobai.github.io/categories/devops/</loc>
-        <lastmod>2019-12-23T05:12:50.045Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://muxiaobai.github.io/categories/Linux/</loc>
-        <lastmod>2019-12-23T11:57:14.570Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
         <loc>https://muxiaobai.github.io/categories/%E6%80%BB%E7%BB%93/</loc>
-        <lastmod>2019-12-23T12:06:59.832Z</lastmod>
+        <lastmod>2019-12-26T01:31:49.505Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://muxiaobai.github.io/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/</loc>
+        <lastmod>2019-12-26T07:14:24.592Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://muxiaobai.github.io/categories/devops/</loc>
+        <lastmod>2019-12-26T07:15:33.086Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
         <loc>https://muxiaobai.github.io/categories/%E5%B7%A5%E5%85%B7/</loc>
-        <lastmod>2019-12-25T02:04:12.465Z</lastmod>
+        <lastmod>2019-12-26T07:25:36.633Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://muxiaobai.github.io/categories/Linux/</loc>
+        <lastmod>2019-12-26T07:25:46.163Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
