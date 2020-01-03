@@ -1,4 +1,5 @@
 https://muxiaobai.github.io/2020/01/13/2019年个人总结/
+https://muxiaobai.github.io/2020/01/02/SpringBoot之https请求/
 https://muxiaobai.github.io/2019/12/26/tools-需要开启自启动的应用配置/
 https://muxiaobai.github.io/2019/12/21/devops之jenkins持续集成/
 https://muxiaobai.github.io/2019/10/31/Thinking-in-java-基础之AQS和应用/

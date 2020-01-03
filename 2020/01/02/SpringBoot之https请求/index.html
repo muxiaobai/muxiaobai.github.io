@@ -16,20 +16,17 @@
 
 
 
-<meta name="description" content="jdk的juc中的AQS和应用，各种锁的比较">
-<meta name="keywords" content="Thread">
+<meta name="description" content="https和http，实际上和之前我们配置tomcat 的https一个道理">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Thinking in java 基础之AQS和应用">
-<meta property="og:url" content="https://muxiaobai.github.io/2019/10/31/Thinking-in-java-基础之AQS和应用/index.html">
+<meta property="og:title" content="SpringBoot之https请求">
+<meta property="og:url" content="https://muxiaobai.github.io/2020/01/02/SpringBoot之https请求/index.html">
 <meta property="og:site_name" content="技术笔记">
-<meta property="og:description" content="jdk的juc中的AQS和应用，各种锁的比较">
+<meta property="og:description" content="https和http，实际上和之前我们配置tomcat 的https一个道理">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://muxiaobai.github.io/2019/10/31/Thinking-in-java-基础之AQS和应用/state.png">
-<meta property="og:updated_time" content="2019-11-07T01:48:20.595Z">
+<meta property="og:updated_time" content="2020-01-02T07:04:58.837Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Thinking in java 基础之AQS和应用">
-<meta name="twitter:description" content="jdk的juc中的AQS和应用，各种锁的比较">
-<meta name="twitter:image" content="https://muxiaobai.github.io/2019/10/31/Thinking-in-java-基础之AQS和应用/state.png">
+<meta name="twitter:title" content="SpringBoot之https请求">
+<meta name="twitter:description" content="https和http，实际上和之前我们配置tomcat 的https一个道理">
 
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
@@ -61,7 +58,7 @@
 <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
 
 
-<title>Thinking in java 基础之AQS和应用 | 技术笔记</title>
+<title>SpringBoot之https请求 | 技术笔记</title>
 
 <script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
 <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
@@ -293,12 +290,12 @@
     </div>
     <link class="menu-list" tags="标签" friends="友情链接" about="关于我">
 </nav>
-      <div class="body-wrap"><article id="post-Thinking-in-java-基础之AQS和应用" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-SpringBoot之https请求" class="article article-type-post" itemscope itemprop="blogPost">
  
   
     <div class="article-meta">
-      <a href="/2019/10/31/Thinking-in-java-基础之AQS和应用/" class="article-date">
-      <time datetime="2019-10-31T05:12:44.000Z" itemprop="datePublished">2019-10-31</time>
+      <a href="/2020/01/02/SpringBoot之https请求/" class="article-date">
+      <time datetime="2020-01-02T06:26:33.000Z" itemprop="datePublished">2020-01-02</time>
 </a>
     </div>
   
@@ -312,7 +309,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      Thinking in java 基础之AQS和应用
+      SpringBoot之https请求
     </h1>
   
 
@@ -326,10 +323,6 @@
 
 
         
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Thread/">Thread</a></li></ul>
-    </div>
-
         <div class="clearfix"></div>
       </div>
       
@@ -338,35 +331,26 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <p>使用锁的时候我们直接<code>ReentrantLock lock = new ReentrantLock();lock.lock();</code>,这中间究竟有什么内容,<br>lock的时候，其它线程为什么不能执行，unlook()的时候其它的线程究竟从哪个线程能执行？本文主要分析lock的各种情况。</p>
-<h2 id="j-u-c-locks-AbstractQueuedSynchronizer"><a href="#j-u-c-locks-AbstractQueuedSynchronizer" class="headerlink" title="j.u.c.locks.AbstractQueuedSynchronizer"></a>j.u.c.locks.AbstractQueuedSynchronizer</h2><p>有共享和独占两种状态，SHARE，EXCLUSIVE 这两个在AQS中对应两个Node节点{state:1,thread:Thread.CurrentThread()},节点里面的内容。<br>从名字里面就能知道，共享锁，每一个线程来都可以拿到锁，简单的来说，就是可以运行lock和unlock内的代码，独占锁，一个线程lock，其它线程必须等到unlock之后，再去抢占锁。</p>
-<blockquote>
-<p>排队接水喝，我的杯子放在这里，当前这个饮水机就我能用。其它人来了，不好意思，排队。</p>
-</blockquote>
-<p>至于怎么抢占，又分为公平锁，和非公平锁，公平锁：先来后到，非公平：随机获取。</p>
-<blockquote>
-<p>排队接水喝， 先后顺序，公平，来了个领导，他先接水，不公平，但合理。</p>
-</blockquote>
-<p>AbstractOwnableSynchronizer</p>
-<p><img src="/2019/10/31/Thinking-in-java-基础之AQS和应用/state.png" alt="图"><br>CLH锁也是一种基于链表的可扩展、高性能、公平的自旋锁，申请线程仅仅在本地变量上自旋，它不断轮询前驱的状态，假设发现前驱释放了锁就结束自旋。</p>
-<p>资源state使用volatile标识，保证所有的线程来的时候都是确定的值。详细查看<a href>volatile</a>，其它线程在队列里。</p>
-<p>protected boolean tryAcquire(int arg) : 独占式获取同步状态，试着获取，成功返回true，反之为false<br>protected boolean tryRelease(int arg) ：独占式释放同步状态，等待中的其他线程此时将有机会获取到同步状态；<br>protected int tryAcquireShared(int arg) ：共享式获取同步状态，返回值大于等于0，代表获取成功；反之获取失败；<br>protected boolean tryReleaseShared(int arg) ：共享式释放同步状态，成功为true，失败为false<br>protected boolean isHeldExclusively() ： 是否在独占模式下被线程占用。</p>
-<h2 id="CountDownLatch-倒计时器"><a href="#CountDownLatch-倒计时器" class="headerlink" title="CountDownLatch 倒计时器"></a>CountDownLatch 倒计时器</h2><p>它允许一个或多个线程一直等待，直到其他线程的操作执行完后再执行</p>
-<p>CountDownLatch，任务分为N个子线程去执行，state也初始化为N（注意N要与线程个数一致）。这N个子线程是并行执行的，每个子线程执行完后countDown()一次，state会CAS(Compare and Swap)减1。等到所有子线程都执行完后(即state=0)，会unpark()主调用线程，然后主调用线程就会从await()函数返回，继续后余动作。</p>
-<h2 id="CyclicBarrier-循环栅栏"><a href="#CyclicBarrier-循环栅栏" class="headerlink" title="CyclicBarrier 循环栅栏"></a>CyclicBarrier 循环栅栏</h2><p>让一组线程到达一个屏障（也可以叫同步点）时被阻塞，直到最后一个线程到达屏障时，屏障才会开门，所有被屏障拦截的线程才会继续干活。</p>
-<blockquote>
-<p>CountDownLatch: A synchronization aid that allows one or more threads to wait until a set of operations being performed in other threads completes. (CountDownLatch: 一个或者多个线程，等待其他多个线程完成某件事情之后才能执行；) CyclicBarrier : A synchronization aid that allows a set of threads to all wait for each other to reach a common barrier point.(CyclicBarrier : 多个线程互相等待，直到到达同一个同步点，再继续一起执行。)</p>
-</blockquote>
-<p>对于CountDownLatch来说，重点是“一个线程（多个线程）等待”，而其他的N个线程在完成“某件事情”之后，可以终止，也可以等待。而对于CyclicBarrier，重点是多个线程，在任意一个线程没有完成，所有的线程都必须等待。</p>
-<h2 id="Semaphore-信号量"><a href="#Semaphore-信号量" class="headerlink" title="Semaphore 信号量"></a>Semaphore 信号量</h2><p>synchronized 和 ReentrantLock 都是一次只允许一个线程访问某个资源,可以指定多个线程同时访问某个资源</p>
-<h2 id="ReentrantLock-重入锁"><a href="#ReentrantLock-重入锁" class="headerlink" title="ReentrantLock 重入锁"></a>ReentrantLock 重入锁</h2><blockquote>
-<p>排队接水喝，水杯太大，杯子放着接，我先干别的事，干完了回来，直接就能拿杯子，重入。</p>
-</blockquote>
-<p>ReentrantLock，state初始化为0，表示未锁定状态。A线程lock()时，会调用tryAcquire()独占该锁并将state+1。此后，其他线程再tryAcquire()时就会失败，直到A线程unlock()到state=0（即释放锁）为止，其它线程才有机会获取该锁。当然，释放锁之前，A线程自己是可以重复获取此锁的（state会累加），这就是可重入的概念。但要注意，获取多少次就要释放多么次，这样才能保证state是能回到零态的。</p>
-<h2 id="tomcat的-LimitLatch"><a href="#tomcat的-LimitLatch" class="headerlink" title="tomcat的 LimitLatch"></a>tomcat的 LimitLatch</h2><ul>
-<li><a href="https://www.cnblogs.com/waterystone/p/4920797.html" target="_blank" rel="noopener">Java并发之AQS详解</a></li>
-<li><a href="https://www.cnblogs.com/chengxiao/archive/2017/07/24/7141160.html" target="_blank" rel="noopener">Java并发包基石-AQS详解</a></li>
-<li><a href="https://github.com/Snailclimb/JavaGuide/blob/master/docs/java/Multithread/AQS.md#41-countdownlatch-%E7%9A%84%E4%B8%89%E7%A7%8D%E5%85%B8%E5%9E%8B%E7%94%A8%E6%B3%95" target="_blank" rel="noopener">JavaGuide</a></li>
+        <h2 id="生成证书"><a href="#生成证书" class="headerlink" title="生成证书"></a>生成证书</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">keytool -genkey -alias spring -keypass 123456 -keyalg RSA -keysize 1024 -validity 365 -keystore E:/spring.keystore -storepass 123456</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">-genkey      在用户主目录中创建一个默认文件&quot;.keystore&quot;,还会产生一个mykey的别名，mykey中包含用户的公钥、私钥和证书</span><br><span class="line">(在没有指定生成位置的情况下,keystore会存在用户系统默认目录，如：对于window xp系统，会生成在系统的C:/Documents and Settings/UserName/文件名为“.keystore”)</span><br><span class="line">-alias       产生别名</span><br><span class="line">-keystore    指定密钥库的名称(产生的各类信息将不在.keystore文件中)</span><br><span class="line">-keyalg      指定密钥的算法 (如 RSA  DSA（如果不指定默认采用DSA）)</span><br><span class="line">-validity    指定创建的证书有效期多少天</span><br><span class="line">-keysize     指定密钥长度</span><br><span class="line">-storepass   指定密钥库的密码(获取keystore信息所需的密码)</span><br><span class="line">-keypass     指定别名条目的密码(私钥的密码)</span><br><span class="line">-dname       指定证书拥有者信息 例如：  &quot;CN=名字与姓氏,OU=组织单位名称,O=组织名称,L=城市或区域名称,ST=州或省份名称,C=单位的两字母国家代码&quot;</span><br><span class="line">-list        显示密钥库中的证书信息      keytool -list -v -keystore 指定keystore -storepass 密码</span><br><span class="line">-v           显示密钥库中的证书详细信息</span><br><span class="line">-export      将别名指定的证书导出到文件  keytool -export -alias 需要导出的别名 -keystore 指定keystore -file 指定导出的证书位置及证书名称 -storepass 密码</span><br><span class="line">-file        参数指定导出到文件的文件名</span><br><span class="line">-delete      删除密钥库中某条目          keytool -delete -alias 指定需删除的别  -keystore 指定keystore  -storepass 密码</span><br><span class="line">-printcert   查看导出的证书信息          keytool -printcert -file yushan.crt</span><br><span class="line">-keypasswd   修改密钥库中指定条目口令    keytool -keypasswd -alias 需修改的别名 -keypass 旧密码 -new  新密码  -storepass keystore密码  -keystore sage</span><br><span class="line">-storepasswd 修改keystore口令      keytool -storepasswd -keystore e:/yushan.keystore(需修改口令的keystore) -storepass 123456(原始密码) -new yushan(新密码)</span><br><span class="line">-import      将已签名数字证书导入密钥库  keytool -import -alias 指定导入条目的别名 -keystore 指定keystore -file 需导入的证书</span><br></pre></td></tr></table></figure>
+<p>默认参数：</p>
+<p>下面是各选项的缺省值。<br>-alias “mykey”</p>
+<p>-keyalg “DSA”</p>
+<p>-keysize 1024</p>
+<p>-validity 90</p>
+<p>-keystore 用户宿主目录中名为 .keystore 的文件</p>
+<p>-file 读时为标准输入，写时为标准输</p>
+<h2 id="修改yaml配置文件"><a href="#修改yaml配置文件" class="headerlink" title="修改yaml配置文件"></a>修改yaml配置文件</h2><p>把E盘下的spring.keystore证书文件拷贝到项目中的resources目录中 , 然后在application.yml中配置<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">server:</span><br><span class="line">  ssl:</span><br><span class="line">    key-alias: spring</span><br><span class="line">    key-password: 123456</span><br><span class="line">    key-store: classpath:spring.keystore</span><br></pre></td></tr></table></figure></p>
+<p>和生成的证书的参数对应，</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">server:</span><br><span class="line">  port: 8443</span><br><span class="line">  servlet:</span><br><span class="line">    context-path: /</span><br><span class="line">  ssl:</span><br><span class="line">    key-store: classpath:spring.keystore</span><br><span class="line">    key-password: 123456</span><br><span class="line">    key-alias: spring</span><br><span class="line">    key-store-type:</span><br><span class="line">    key-store-password:</span><br><span class="line">    key-store-provider:</span><br><span class="line">http:</span><br><span class="line">  port: 8080</span><br></pre></td></tr></table></figure>
+<h2 id="添加http和https同时监听"><a href="#添加http和https同时监听" class="headerlink" title="添加http和https同时监听"></a>添加http和https同时监听</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line">import org.apache.catalina.Context;</span><br><span class="line">import org.apache.catalina.connector.Connector;</span><br><span class="line">import org.apache.tomcat.util.descriptor.web.SecurityCollection;</span><br><span class="line">import org.apache.tomcat.util.descriptor.web.SecurityConstraint;</span><br><span class="line">import org.springframework.beans.factory.annotation.Value;</span><br><span class="line">import org.springframework.boot.web.embedded.tomcat.TomcatServletWebServerFactory;</span><br><span class="line">import org.springframework.context.annotation.Bean;</span><br><span class="line">import org.springframework.context.annotation.Configuration;</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * @date 2020/1/2/002 13:52</span><br><span class="line"> * @TODO Http支持</span><br><span class="line"> */</span><br><span class="line">@Configuration</span><br><span class="line">public class TomcatConfig &#123;</span><br><span class="line">    @Bean</span><br><span class="line">    TomcatServletWebServerFactory tomcatServletWebServerFactory() &#123;</span><br><span class="line">        TomcatServletWebServerFactory factory = new TomcatServletWebServerFactory()&#123;</span><br><span class="line">            @Override</span><br><span class="line">            protected void postProcessContext(Context context) &#123;</span><br><span class="line">                SecurityConstraint constraint = new SecurityConstraint();</span><br><span class="line">                constraint.setUserConstraint(&quot;CONFIDENTIAL&quot;);</span><br><span class="line">                SecurityCollection collection = new SecurityCollection();</span><br><span class="line">                collection.addPattern(&quot;/*&quot;);</span><br><span class="line">                constraint.addCollection(collection);</span><br><span class="line">                context.addConstraint(constraint);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;;</span><br><span class="line">        factory.addAdditionalTomcatConnectors(createTomcatConnector());</span><br><span class="line">        return factory;</span><br><span class="line">    &#125;</span><br><span class="line">    private Connector createTomcatConnector() &#123;</span><br><span class="line">        // 默认协议为 TomcatServletWebServerFactory.DEFAULT_PROTOCOL=org.apache.coyote.http11.Http11NioProtocol</span><br><span class="line">        Connector connector = new</span><br><span class="line">                Connector(TomcatServletWebServerFactory.DEFAULT_PROTOCOL);</span><br><span class="line">        connector.setScheme(&quot;http&quot;);</span><br><span class="line">        connector.setPort(port);</span><br><span class="line">        connector.setSecure(false);</span><br><span class="line">        connector.setRedirectPort(httpsPort);//请求8080转到8443端口</span><br><span class="line">        return connector;</span><br><span class="line">    &#125;</span><br><span class="line">    //8080 请求8080转到8443端口</span><br><span class="line">    @Value(&quot;$&#123;http.port&#125;&quot;)</span><br><span class="line">    private Integer port;</span><br><span class="line">    </span><br><span class="line">    //8443</span><br><span class="line">    @Value(&quot;$&#123;server.port&#125;&quot;)</span><br><span class="line">    private Integer httpsPort;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>日志<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">2020-01-02 14:17:43.303  INFO 10076 --- [           main] o.s.cloud.commons.util.InetUtils         : Cannot determine local hostname</span><br><span class="line">2020-01-02 14:17:44.394  INFO 10076 --- [           main] o.s.cloud.commons.util.InetUtils         : Cannot determine local hostname</span><br><span class="line">2020-01-02 14:17:44.629  INFO 10076 --- [           main] o.s.c.n.eureka.InstanceInfoFactory       : Setting initial instance status as: STARTING</span><br><span class="line">2020-01-02 14:17:44.667  INFO 10076 --- [           main] com.netflix.discovery.DiscoveryClient    : Initializing Eureka in region us-east-1</span><br><span class="line">2020-01-02 14:17:44.719  INFO 10076 --- [           main] c.n.d.provider.DiscoveryJerseyProvider   : Using JSON encoding codec LegacyJacksonJson</span><br><span class="line">2020-01-02 14:17:44.720  INFO 10076 --- [           main] c.n.d.provider.DiscoveryJerseyProvider   : Using JSON decoding codec LegacyJacksonJson</span><br><span class="line">2020-01-02 14:17:44.873  INFO 10076 --- [           main] c.n.d.provider.DiscoveryJerseyProvider   : Using XML encoding codec XStreamXml</span><br><span class="line">2020-01-02 14:17:44.874  INFO 10076 --- [           main] c.n.d.provider.DiscoveryJerseyProvider   : Using XML decoding codec XStreamXml</span><br><span class="line">2020-01-02 14:17:45.066  INFO 10076 --- [           main] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration</span><br><span class="line">2020-01-02 14:17:45.122  INFO 10076 --- [           main] com.netflix.discovery.DiscoveryClient    : Disable delta property : false</span><br><span class="line">2020-01-02 14:17:45.123  INFO 10076 --- [           main] com.netflix.discovery.DiscoveryClient    : Single vip registry refresh property : null</span><br><span class="line">2020-01-02 14:17:45.123  INFO 10076 --- [           main] com.netflix.discovery.DiscoveryClient    : Force full registry fetch : false</span><br><span class="line">2020-01-02 14:17:45.123  INFO 10076 --- [           main] com.netflix.discovery.DiscoveryClient    : Application is null : false</span><br><span class="line">2020-01-02 14:17:45.123  INFO 10076 --- [           main] com.netflix.discovery.DiscoveryClient    : Registered Applications size is zero : true</span><br><span class="line">2020-01-02 14:17:45.123  INFO 10076 --- [           main] com.netflix.discovery.DiscoveryClient    : Application version is -1: true</span><br><span class="line">2020-01-02 14:17:45.123  INFO 10076 --- [           main] com.netflix.discovery.DiscoveryClient    : Getting all instance registry info from the eureka server</span><br><span class="line">2020-01-02 14:17:45.316  INFO 10076 --- [           main] com.netflix.discovery.DiscoveryClient    : The response status is 200</span><br><span class="line">2020-01-02 14:17:45.319  INFO 10076 --- [           main] com.netflix.discovery.DiscoveryClient    : Starting heartbeat executor: renew interval is: 10</span><br><span class="line">2020-01-02 14:17:45.322  INFO 10076 --- [           main] c.n.discovery.InstanceInfoReplicator     : InstanceInfoReplicator onDemand update allowed rate per min is 4</span><br><span class="line">2020-01-02 14:17:45.327  INFO 10076 --- [           main] com.netflix.discovery.DiscoveryClient    : Discovery Client initialized at timestamp 1577945865325 with initial instances count: 5</span><br><span class="line">2020-01-02 14:17:45.330  INFO 10076 --- [           main] o.s.c.n.e.s.EurekaServiceRegistry        : Registering application APP-SEARCH with eureka with status UP</span><br><span class="line">2020-01-02 14:17:45.330  INFO 10076 --- [           main] com.netflix.discovery.DiscoveryClient    : Saw local status change event StatusChangeEvent [timestamp=1577945865330, current=UP, previous=STARTING]</span><br><span class="line">2020-01-02 14:17:45.333  INFO 10076 --- [nfoReplicator-0] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_APP-SEARCH/192.168.170.1:8443: registering service...</span><br><span class="line">2020-01-02 14:17:45.375  INFO 10076 --- [nfoReplicator-0] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_APP-SEARCH/192.168.170.1:8443 - registration status: 204</span><br><span class="line">2020-01-02 14:17:45.398  INFO 10076 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8443 (https) 8080 (http) with context path &apos;&apos;</span><br></pre></td></tr></table></figure></p>
+<p>最终日志启动监听：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">2020-01-02 14:17:45.398  INFO 10076 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8443 (https) 8080 (http) with context path &apos;&apos;</span><br></pre></td></tr></table></figure></p>
+<p>参考：</p>
+<ul>
+<li><a href="https://blog.csdn.net/Smile__1/article/details/99848578" target="_blank" rel="noopener">证书生成</a></li>
+<li><a href="https://blog.csdn.net/qq_36699423/article/details/93481187" target="_blank" rel="noopener">SpringBoot配置同时支持http和https</a></li>
+<li><a href="https://segmentfault.com/a/1190000020052375" target="_blank" rel="noopener">SpringBoot支持https</a></li>
 </ul>
 
       
@@ -457,13 +441,13 @@
   
     
     <div class="copyright">
-        <p><span>本文标题:</span><a href="/2019/10/31/Thinking-in-java-基础之AQS和应用/">Thinking in java 基础之AQS和应用</a></p>
+        <p><span>本文标题:</span><a href="/2020/01/02/SpringBoot之https请求/">SpringBoot之https请求</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">Mu Xiaobai(慕小白)</a></p>
-        <p><span>发布时间:</span>2019-10-31, 13:12:44</p>
-        <p><span>最后更新:</span>2019-11-07, 09:48:20</p>
+        <p><span>发布时间:</span>2020-01-02, 14:26:33</p>
+        <p><span>最后更新:</span>2020-01-02, 15:04:58</p>
         <p>
-            <span>原始链接:</span><a class="post-url" href="/2019/10/31/Thinking-in-java-基础之AQS和应用/" title="Thinking in java 基础之AQS和应用">https://muxiaobai.github.io/2019/10/31/Thinking-in-java-基础之AQS和应用/</a>
-            <span class="copy-path" data-clipboard-text="原文: https://muxiaobai.github.io/2019/10/31/Thinking-in-java-基础之AQS和应用/　　作者: Mu Xiaobai(慕小白)" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <span>原始链接:</span><a class="post-url" href="/2020/01/02/SpringBoot之https请求/" title="SpringBoot之https请求">https://muxiaobai.github.io/2020/01/02/SpringBoot之https请求/</a>
+            <span class="copy-path" data-clipboard-text="原文: https://muxiaobai.github.io/2020/01/02/SpringBoot之https请求/　　作者: Mu Xiaobai(慕小白)" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
             <script> var clipboard = new Clipboard('.copy-path'); </script>
         </p>
         <p>
@@ -476,15 +460,15 @@
     <nav id="article-nav">
         
             <div id="article-nav-newer" class="article-nav-title">
-                <a href="/2019/12/21/devops之jenkins持续集成/">
-                    devops之jenkins持续集成
+                <a href="/2020/01/13/2019年个人总结/">
+                    2019年个人总结
                 </a>
             </div>
         
         
             <div id="article-nav-older" class="article-nav-title">
-                <a href="/2019/10/21/Thinking-in-java-基础之类加载顺序-初始化/">
-                    Thinking in java 基础之类加载顺序&amp;初始化
+                <a href="/2019/12/26/tools-需要开启自启动的应用配置/">
+                    tools-需要开启自启动的应用配置
                 </a>
             </div>
         
@@ -497,7 +481,7 @@
     <!--左侧-->
     <div id="toc" class="toc-article">
     <strong class="toc-title">文章目录</strong>
-    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#j-u-c-locks-AbstractQueuedSynchronizer"><span class="toc-number">1.</span> <span class="toc-text">j.u.c.locks.AbstractQueuedSynchronizer</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CountDownLatch-倒计时器"><span class="toc-number">2.</span> <span class="toc-text">CountDownLatch 倒计时器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CyclicBarrier-循环栅栏"><span class="toc-number">3.</span> <span class="toc-text">CyclicBarrier 循环栅栏</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Semaphore-信号量"><span class="toc-number">4.</span> <span class="toc-text">Semaphore 信号量</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ReentrantLock-重入锁"><span class="toc-number">5.</span> <span class="toc-text">ReentrantLock 重入锁</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#tomcat的-LimitLatch"><span class="toc-number">6.</span> <span class="toc-text">tomcat的 LimitLatch</span></a></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#生成证书"><span class="toc-number">1.</span> <span class="toc-text">生成证书</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#修改yaml配置文件"><span class="toc-number">2.</span> <span class="toc-text">修改yaml配置文件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#添加http和https同时监听"><span class="toc-number">3.</span> <span class="toc-text">添加http和https同时监听</span></a></li></ol>
 </div>
 <style>
     .left-col .switch-btn,
@@ -538,7 +522,7 @@
     <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
     <script>
     var gitment = new Gitment({
-      id: 'Thinking in java 基础之AQS和应用',
+      id: 'SpringBoot之https请求',
       owner: 'muxiaobai',
       repo: 'muxiaobai.github.io',
       oauth: {
@@ -556,7 +540,7 @@
 
     <div class="scroll" id="post-nav-button">
         
-            <a href="/2019/12/21/devops之jenkins持续集成/" title="上一篇: devops之jenkins持续集成">
+            <a href="/2020/01/13/2019年个人总结/" title="上一篇: 2019年个人总结">
                 <i class="fa fa-angle-left"></i>
             </a>
         
@@ -564,7 +548,7 @@
         <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
 
         
-            <a href="/2019/10/21/Thinking-in-java-基础之类加载顺序-初始化/" title="下一篇: Thinking in java 基础之类加载顺序&amp;初始化">
+            <a href="/2019/12/26/tools-需要开启自启动的应用配置/" title="下一篇: tools-需要开启自启动的应用配置">
                 <i class="fa fa-angle-right"></i>
             </a>
         
