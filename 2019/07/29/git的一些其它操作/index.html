@@ -24,7 +24,7 @@
 <meta property="og:site_name" content="技术笔记">
 <meta property="og:description" content="git常见操作">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-12-26T07:25:36.633Z">
+<meta property="og:updated_time" content="2020-01-04T06:18:13.887Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="git的一些其它操作">
 <meta name="twitter:description" content="git常见操作">
@@ -341,6 +341,13 @@
 <p>depth用于指定克隆深度，为1即表示只克隆最近一次commit.</p>
 </blockquote>
 <p>这种方法克隆的项目只包含最近的一次commit的一个分支，体积很小，即可解决文章开头提到的项目过大导致Timeout的问题，但会产生另外一个问题，他只会把默认分支clone下来，其他远程分支并不在本地，所以这种情况下，需要用如下方法拉取其他分支：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">$ git clone --depth 1 https://github.com/dogescript/xxxxxxx.git</span><br><span class="line">$ git remote set-branches origin &apos;remote_branch_name&apos;</span><br><span class="line">$ git fetch --depth 1 origin remote_branch_name</span><br><span class="line">$ git checkout remote_branch_name</span><br></pre></td></tr></table></figure></p>
+<p>压缩代码<br><code>git config  --add  core.compression -1</code><br>或者<br><code>git config  --global  core.compression -1</code></p>
+<p>compression 是压缩的意思，从 clone 的终端输出就知道，服务器会压缩目标文件，然后传输到客户端，客户端再解压。取值为 [-1, 9]，-1 以 zlib 为默认压缩库，0 表示不进行压缩，1..9 是压缩速度与最终获得文件大小的不同程度的权衡，数字越大，压缩越慢，当然得到的文件会越小。</p>
+<h4 id="或者使用git-clone"><a href="#或者使用git-clone" class="headerlink" title="或者使用git@  clone"></a>或者使用git@  clone</h4><p>-t 指定密钥类型，默认是 rsa ，可以省略。<br>-C 设置注释文字，比如邮箱。<br>-f 指定密钥文件存储文件名。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen.exe -t rsa -C &quot;xxxx@gmail.com&quot;</span><br><span class="line">Enter file in which to save the key (/c/Users/Administrator/.ssh/id_rsa):</span><br><span class="line">Enter passphrase (empty for no passphrase):</span><br><span class="line">Enter same passphrase again:</span><br><span class="line">输入密码，push 的时候的密码</span><br></pre></td></tr></table></figure>
+<p>验证：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">xxx@xxx MINGW64 ~/.ssh</span><br><span class="line">$ ssh -T git@github.com</span><br><span class="line">Hi xxx! You&apos;ve successfully authenticated, but GitHub does not provide shell access.</span><br></pre></td></tr></table></figure>
+<p>再使用 <code>git clone git@github.com:xxxx/xxxx.git</code></p>
 <h4 id="git-diff"><a href="#git-diff" class="headerlink" title="git diff"></a>git diff</h4><p>先把vscode作为git默认编辑器</p>
 <p>git config –global core.editor “code –wait”</p>
 <p>用vscode 打开 .gitconfig文件</p>
@@ -466,7 +473,7 @@
         <p><span>本文标题:</span><a href="/2019/07/29/git的一些其它操作/">git的一些其它操作</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">Mu Xiaobai(慕小白)</a></p>
         <p><span>发布时间:</span>2019-07-29, 19:21:25</p>
-        <p><span>最后更新:</span>2019-12-26, 15:25:36</p>
+        <p><span>最后更新:</span>2020-01-04, 14:18:13</p>
         <p>
             <span>原始链接:</span><a class="post-url" href="/2019/07/29/git的一些其它操作/" title="git的一些其它操作">https://muxiaobai.github.io/2019/07/29/git的一些其它操作/</a>
             <span class="copy-path" data-clipboard-text="原文: https://muxiaobai.github.io/2019/07/29/git的一些其它操作/　　作者: Mu Xiaobai(慕小白)" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
@@ -503,7 +510,7 @@
     <!--左侧-->
     <div id="toc" class="toc-article">
     <strong class="toc-title">文章目录</strong>
-    <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#git-拉取代码失败"><span class="toc-number">1.</span> <span class="toc-text">git 拉取代码失败</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#git-diff"><span class="toc-number">2.</span> <span class="toc-text">git diff</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#git-add-回退"><span class="toc-number">3.</span> <span class="toc-text">git add 回退</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#git-commit-回退"><span class="toc-number">4.</span> <span class="toc-text">git commit 回退</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#修改远程仓库-origin，更换地址"><span class="toc-number">5.</span> <span class="toc-text">修改远程仓库 origin，更换地址</span></a></li></ol><li class="toc-item toc-level-3"><a class="toc-link" href="#已存在的git仓库更换地址"><span class="toc-number"></span> <span class="toc-text">已存在的git仓库更换地址</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#切换分支"><span class="toc-number">1.</span> <span class="toc-text">切换分支</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#回滚上次提交"><span class="toc-number">2.</span> <span class="toc-text">回滚上次提交</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#每个人的数据库连接信息不一样，可以选择忽略"><span class="toc-number"></span> <span class="toc-text">每个人的数据库连接信息不一样，可以选择忽略</span></a>
+    <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#git-拉取代码失败"><span class="toc-number">1.</span> <span class="toc-text">git 拉取代码失败</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#或者使用git-clone"><span class="toc-number">2.</span> <span class="toc-text">或者使用git@  clone</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#git-diff"><span class="toc-number">3.</span> <span class="toc-text">git diff</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#git-add-回退"><span class="toc-number">4.</span> <span class="toc-text">git add 回退</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#git-commit-回退"><span class="toc-number">5.</span> <span class="toc-text">git commit 回退</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#修改远程仓库-origin，更换地址"><span class="toc-number">6.</span> <span class="toc-text">修改远程仓库 origin，更换地址</span></a></li></ol><li class="toc-item toc-level-3"><a class="toc-link" href="#已存在的git仓库更换地址"><span class="toc-number"></span> <span class="toc-text">已存在的git仓库更换地址</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#切换分支"><span class="toc-number">1.</span> <span class="toc-text">切换分支</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#回滚上次提交"><span class="toc-number">2.</span> <span class="toc-text">回滚上次提交</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#每个人的数据库连接信息不一样，可以选择忽略"><span class="toc-number"></span> <span class="toc-text">每个人的数据库连接信息不一样，可以选择忽略</span></a>
 </li></div>
 <style>
     .left-col .switch-btn,
