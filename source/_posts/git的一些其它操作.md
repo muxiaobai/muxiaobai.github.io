@@ -19,8 +19,39 @@ $ git clone --depth 1 https://github.com/dogescript/xxxxxxx.git
 $ git remote set-branches origin 'remote_branch_name'
 $ git fetch --depth 1 origin remote_branch_name
 $ git checkout remote_branch_name
+ 
+```
+压缩代码
+`git config  --add  core.compression -1`
+或者
+`git config  --global  core.compression -1`
+
+compression 是压缩的意思，从 clone 的终端输出就知道，服务器会压缩目标文件，然后传输到客户端，客户端再解压。取值为 [-1, 9]，-1 以 zlib 为默认压缩库，0 表示不进行压缩，1..9 是压缩速度与最终获得文件大小的不同程度的权衡，数字越大，压缩越慢，当然得到的文件会越小。
+
+####  或者使用git@  clone
+
+-t 指定密钥类型，默认是 rsa ，可以省略。
+-C 设置注释文字，比如邮箱。
+-f 指定密钥文件存储文件名。
 
 ```
+ssh-keygen.exe -t rsa -C "xxxx@gmail.com"
+Enter file in which to save the key (/c/Users/Administrator/.ssh/id_rsa):
+Enter passphrase (empty for no passphrase):
+Enter same passphrase again:
+输入密码，push 的时候的密码
+```
+
+验证：
+
+```
+xxx@xxx MINGW64 ~/.ssh
+$ ssh -T git@github.com
+Hi xxx! You've successfully authenticated, but GitHub does not provide shell access.
+```
+
+再使用 `git clone git@github.com:xxxx/xxxx.git`
+
 #### git diff
 
 先把vscode作为git默认编辑器
