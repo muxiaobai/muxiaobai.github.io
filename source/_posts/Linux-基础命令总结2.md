@@ -1,5 +1,5 @@
 ---
-title: Linux 基础命令总结2
+title: Linux 基础命令总结2 用户 权限 服务
 date: 2016-07-07 13:02:34
 tags: [基础命令,系统]
 categories: Linux
@@ -145,12 +145,29 @@ passwd  username
 
 cat /etc/group  查看所有所属组
 
-chmod -R g+w 
+change owner  change modified
 
-chown -R bid:bids /home/newname  把/home/newname的所有者改为bid，所属组改为bids
+chmod -R g+w  group增加 write权限
 
-读r=4  写w=2  执行x=1  用户，组，其他用户
+chown -R owner:group /home/newname  把/home/newname的所有者改为owner，所属组改为group
 
+-R 递归
+
+读r=4  写w=2  执行x=1  用户u，组g，其他用户o
+
+常见 文件644 -rx-r--r--   drwxr-xr-x 文件夹755
+
+- u 代表所有者（user）
+- g 代表所有者所在的组群（group）
+- o 代表其他人，但不是u和g （other）
+- a 代表全部的人，也就是包括u，g和o
+- r 表示文件可以被读（read）
+- w 表示文件可以被写（write）
+- x 表示文件可以被执行（如果它是程序的话）
+
+
+
+`chmod go-rw xxx.xxx`
 
 ## 网络和连接登录，上传下载文件
 
@@ -360,6 +377,8 @@ CPU | 用户us| 系统sy|  改变过优先级的用户ni|空闲率id|  等待输
 |SWAP（交换分区KB）|总total |空闲free| 使用used | 
 
 -d  每隔几秒更新一次
+
+-c 显示全命令
 
 ?h：交互模式帮助
 

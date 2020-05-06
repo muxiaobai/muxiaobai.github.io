@@ -1,5 +1,5 @@
 ---
-title: Linux 基础命令总结4
+title: Linux 基础命令总结4 shell 快捷键 ps 
 date: 2019-04-01 05:19:12
 tags: 基础命令
 categories: Linux

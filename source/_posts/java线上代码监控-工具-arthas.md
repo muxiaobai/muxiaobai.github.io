@@ -1,5 +1,5 @@
 ---
-title: java线上代码监控-工具(汇总)
+title: java线上代码监控-工具-arthas
 date: 2019-08-16 13:32:13
 tags:
 categories: java
@@ -102,6 +102,24 @@ JRebel和JProfiler同时运行
 CATALINA_OPTS=-agentpath:E:\tools\jprofiler_windows-x64_9_2_1\jprofiler9\bin\windows-x64\jprofilerti.dll=port=8849,nowait,id=81,config=C:\Users\Administrator\.jprofiler9\config.xml
 
 调用请求: curl -w "@curl-time.txt" http://127.0.0.1:8080/hello
+
+###常用
+
+thread -n 5
+2）查看某个函数的调用堆栈 打印前五名最消耗CPU的线程，可以及时找到CPU过高的代码位置
+
+stack <类全包名> <函数名>
+3）查看某个函数的哪个子调用最慢，耗时最久的调用会标红显示，可以方便找出某个功能中最耗时的操作
+
+trace <类全包名> <函数名>
+4）监控某个函数的调用统计数据，包括总调用次数，平均运行时间，成功率等信息
+
+monitor <类全包名> <函数名>
+
+###  热更新代码
+
+
+[热更新](https://mp.weixin.qq.com/s/um6XQVv1JvHM3n7NslzB0Q)
 
 ## 常用和spring有关的
 

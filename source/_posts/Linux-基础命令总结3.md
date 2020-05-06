@@ -1,5 +1,5 @@
 ---
-title: Linux 基础命令总结3
+title: Linux 基础命令总结3 yum vim 问题
 date: 2017-09-17 00:43:52
 tags: 基础命令
 categories: Linux
@@ -253,3 +253,7 @@ awk '{print $0}'
 [CMD快捷键](https://www.cnblogs.com/webzhangnan/p/3221410.html)
 
 [scp](https://www.cnblogs.com/webnote/p/5877920.html)
+
+scp root@192.168.120.204:/opt/soft/nginx-0.5.38.tar.gz /opt/soft/
+
+scp root@192.168.120.204:/opt/soft/nginx-0.5.38.tar.gz /opt/soft/

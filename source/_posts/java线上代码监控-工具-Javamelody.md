@@ -1,5 +1,5 @@
 ---
-title: Javamelody 工具
+title: java线上代码监控-工具-Javamelody
 date: 2017-08-02 09:05:00
 tags: 工具
 categories: [java]
@@ -46,7 +46,7 @@ javamelody.war   javamelody.jar 和 jrobin-1.5.9.jar
 <context>是你的web应用的名字。
 
 
-![效果](Javamelody-工具/20170802.PNG)
+![效果](java线上代码监控-工具-Javamelody/20170802.PNG)
 
 
 [javamylody github ](https://github.com/javamelody/javamelody)
