@@ -4,6 +4,81 @@
   
     
     <entry>
+      <title><![CDATA[java线上代码监控-linux分析线上问题]]></title>
+      <url>https://muxiaobai.github.io/2020/04/29/java%E7%BA%BF%E4%B8%8A%E4%BB%A3%E7%A0%81%E7%9B%91%E6%8E%A7-linux%E5%88%86%E6%9E%90%E7%BA%BF%E4%B8%8A%E9%97%AE%E9%A2%98/</url>
+      <content type="html"><![CDATA[<p>jps(Java Virtual Machine Process Status Tool)<br>jstack(查看线程)、jmap(查看内存)和jstat(性能分析)</p>
+<h3 id="jps"><a href="#jps" class="headerlink" title="jps"></a>jps</h3><p>jps 找到对应的进程ID</p>
+<p><code>jps -m -l</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">-q 不输出类名、Jar名和传入main方法的参数</span><br><span class="line">-m 输出传入main方法的参数</span><br><span class="line">-l 输出main类或Jar的全限名</span><br><span class="line">-v 输出传入JVM的参数</span><br></pre></td></tr></table></figure>
+<h2 id="未重启的话，分析现在的时候"><a href="#未重启的话，分析现在的时候" class="headerlink" title="未重启的话，分析现在的时候:"></a>未重启的话，分析现在的时候:</h2><h3 id="jstack-线程问题"><a href="#jstack-线程问题" class="headerlink" title="jstack 线程问题"></a>jstack 线程问题</h3><p>ps -mp [pid] -o THREAD,tid,time |sort -rn 打印CPU最高的线程<br>top -Hp [pid] </p>
+<p>printf “%x\n” 22338 把线程ID转换成16进制<br>5742</p>
+<p>jstack [pid] | grep 5742 -A 30 打印堆栈信息</p>
+<p>-l long listings，会打印出额外的锁信息，在发生死锁时可以用jstack -l pid来观察锁持有情况<br>-m mixed mode，不仅会输出Java堆栈信息，还会输出C/C++堆栈信息（比如Native方法）</p>
+<p>-F  to force a thread dump. Use when jstack <pid> does not respond (process is hung)<br>-m  to print both java and native frames (mixed mode)<br>-l  long listing. Prints additional information about locks<br>-h or -help to print this help message</pid></p>
+<p><a href="https://www.cnblogs.com/zhengyun_ustc/archive/2013/01/06/dumpanalysis.html" target="_blank" rel="noopener">jstack Dump 日志文件中的线程状态</a></p>
+<p>线程死锁：<br>jstack –l pid | grep -i –E ‘BLOCKED | deadlock’</p>
+<h3 id="jmap-堆问题"><a href="#jmap-堆问题" class="headerlink" title="jmap 堆问题"></a>jmap 堆问题</h3><p>jmap -heap [pid] 先查看堆栈</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost bin]# ./jmap -heap 22327</span><br><span class="line">Attaching to process ID 22327, please wait...</span><br><span class="line">Debugger attached successfully.</span><br><span class="line">Server compiler detected.</span><br><span class="line">JVM version is 25.201-b09</span><br><span class="line"></span><br><span class="line">using thread-local object allocation.</span><br><span class="line">Parallel GC with 4 thread(s)</span><br><span class="line"></span><br><span class="line">Heap Configuration:</span><br><span class="line">   MinHeapFreeRatio         = 0</span><br><span class="line">   MaxHeapFreeRatio         = 100</span><br><span class="line">   MaxHeapSize              = 2147483648 (2048.0MB)</span><br><span class="line">   NewSize                  = 89128960 (85.0MB)</span><br><span class="line">   MaxNewSize               = 715653120 (682.5MB)</span><br><span class="line">   OldSize                  = 179306496 (171.0MB)</span><br><span class="line">   NewRatio                 = 2</span><br><span class="line">   SurvivorRatio            = 8</span><br><span class="line">   MetaspaceSize            = 21807104 (20.796875MB)</span><br><span class="line">   CompressedClassSpaceSize = 1073741824 (1024.0MB)</span><br><span class="line">   MaxMetaspaceSize         = 17592186044415 MB</span><br><span class="line">   G1HeapRegionSize         = 0 (0.0MB)</span><br><span class="line"></span><br><span class="line">Heap Usage:</span><br><span class="line">PS Young Generation</span><br><span class="line">Eden Space:</span><br><span class="line">   capacity = 671612928 (640.5MB)</span><br><span class="line">   used     = 349908376 (333.6986312866211MB)</span><br><span class="line">   free     = 321704552 (306.8013687133789MB)</span><br><span class="line">   52.0997082414709% used</span><br><span class="line">From Space:</span><br><span class="line">   capacity = 12582912 (12.0MB)</span><br><span class="line">   used     = 12566640 (11.984481811523438MB)</span><br><span class="line">   free     = 16272 (0.0155181884765625MB)</span><br><span class="line">   99.87068176269531% used</span><br><span class="line">To Space:</span><br><span class="line">   capacity = 22020096 (21.0MB)</span><br><span class="line">   used     = 0 (0.0MB)</span><br><span class="line">   free     = 22020096 (21.0MB)</span><br><span class="line">   0.0% used</span><br><span class="line">PS Old Generation</span><br><span class="line">   capacity = 236978176 (226.0MB)</span><br><span class="line">   used     = 45630600 (43.51673126220703MB)</span><br><span class="line">   free     = 191347576 (182.48326873779297MB)</span><br><span class="line">   19.255190823985412% used</span><br><span class="line"></span><br><span class="line">38073 interned Strings occupying 3725472 bytes.</span><br></pre></td></tr></table></figure>
+<p>查看对象</p>
+<p>用jmap -histo[:live] pid查看堆内存中的对象数目、大小统计直方图，如果带上live则只统计活对象，如下：</p>
+<p>数量和容量</p>
+<p>实例数量前十的类：jmap -histo pid | sort -n -r -k 2 | head -10</p>
+<p>实例容量前十的类：jmap -histo pid | sort -n -r -k 3 | head -10</p>
+<h4 id="生成hprof文件（hprof（Heap-CPU-Profiling-Tool））"><a href="#生成hprof文件（hprof（Heap-CPU-Profiling-Tool））" class="headerlink" title="生成hprof文件（hprof（Heap/CPU Profiling Tool））"></a>生成hprof文件（hprof（Heap/CPU Profiling Tool））</h4><p><code>./jmap -dump:live,format=b,file=dump.dump [pid]</code></p>
+<p>可以用：<code>./jhat -port 9998 dump.dump</code>  <code>./jhat -J-Xmx512m -port 9998 dump.dump</code><br>jhat -port 7401 -J-Xmx4G dump.dump</p>
+<p>或者dump文件修改为dump.hprof,可以加到jprofiler</p>
+<p>作用：主要分析内部当时的对象。</p>
+<h3 id="jstat"><a href="#jstat" class="headerlink" title="jstat"></a>jstat</h3><p>jstat（JVM统计监测工具）</p>
+<p>每隔250ms采集4次<code>./jstat -gc 30359 250 4</code><br>S0C    S1C    S0U    S1U      EC       EU        OC         OU       MC     MU    CCSC   CCSU   YGC     YGCT    FGC    FGCT     GCT<br>区容量（Capacity）和使用量（Used）<br>S0 S1 Survivor E O Eden Old M MetaspaceSize CCS CompressedClassSpaceSize  YG young gc FG  full gc T time FCT full gc time</p>
+<p><code>./jstat -options</code> 参数 -gc  </p>
+<p>250ms调用4次</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost bin]# ./jstat -gc 22327  250 4</span><br><span class="line"> S0C    S1C    S0U    S1U      EC       EU        OC         OU            MC     MU     CCSC   CCSU      YGC     YGCT    FGC    FGCT     GCT   </span><br><span class="line">12288.0 21504.0 12272.1  0.0   655872.0 341707.4  231424.0   44561.1   87384.0 83940.7 11352.0 10729.1     18    0.238   3      0.254    0.492</span><br><span class="line">12288.0 21504.0 12272.1  0.0   655872.0 341707.4  231424.0   44561.1   87384.0 83940.7 11352.0 10729.1     18    0.238   3      0.254    0.492</span><br><span class="line">12288.0 21504.0 12272.1  0.0   655872.0 341707.4  231424.0   44561.1   87384.0 83940.7 11352.0 10729.1     18    0.238   3      0.254    0.492</span><br><span class="line">12288.0 21504.0 12272.1  0.0   655872.0 341707.4  231424.0   44561.1   87384.0 83940.7 11352.0 10729.1     18    0.238   3      0.254    0.492</span><br></pre></td></tr></table></figure>
+<h2 id="准备重启复现的话："><a href="#准备重启复现的话：" class="headerlink" title="准备重启复现的话："></a>准备重启复现的话：</h2><p>第一步 加参数 ：</p>
+<p>gc日志 配置Catalina.bat JAVA_OPTS</p>
+<p><code>-Xloggc:..\logs\gc.log -XX:+HeapDumpOnOutOfMemoryError -XX:+PrintGCDetails -XX:+PrintGCDateStamps -XX:+PrintTenuringDistribution -XX:+PrintHeapAtGC</code></p>
+<ul>
+<li><a href="https://mp.weixin.qq.com/s?__biz=MzIzOTU0NTQ0MA==&amp;mid=2247495546&amp;idx=1&amp;sn=f435f56c3b92802ef649cd14bb60711b&amp;chksm=e92ad275de5d5b63b9fc1e48463044ea1b234a4f28d0ad8d7964c42516f1cf7cae47c60162dc&amp;scene=0&amp;xtrack=1&amp;exportkey=AeNCSm6QS4EwNcRCTNfXDUs%3D&amp;pass_ticket=sHf4d8XsExleK1yRet7Gq5oJd6I%2FDOYRgopyFK8gH%2B81%2FhlGHzeiSrSlgR9oXDlk#rd" target="_blank" rel="noopener">步骤:线上问题定位，重启大法好！线上常见问题排查手册</a></li>
+<li><a href="https://blog.csdn.net/muyimo/article/details/52837323?utm_source=distribute.pc_relevant.none-task-blog-baidujs-8" target="_blank" rel="noopener">VM性能调优监控工具jps、jstack、jmap、jhat、jstat、hprof使用详解</a></li>
+</ul>
+<p>一  线上常见问题定位</p>
+<p>常见问题 1：CPU 利用率高</p>
+<p>CPU 使用率是衡量系统繁忙程度的重要指标，一般情况下单纯的 CPU 高并没有问题，它代表系统正在不断的处理我们的任务，但是如果 CPU 过高，导致任务处理不过来，从而引起 load 高，这个是非常危险需要关注的。 CPU 使用率的安全值没有一个标准值，取决于你的系统是计算密集型还是 IO 密集型，一般计算密集型应用 CPU 使用率偏高 load 偏低，IO 密集型相反。</p>
+<p>问题原因及定位：</p>
+<p>1  频繁 FullGC/YongGC</p>
+<p>2  代码消耗，如死循环，md5 等内存态操作</p>
+<p>常见问题 2：load 高</p>
+<p>load 指单位时间内活跃进程数，包含运行态（runnable 和 running）和不可中断态（ IO、内核态锁）。关键字是运行态和不可中断态，运行态可以联想到 Java 线程的 6 种状态，如下，线程 new 之后处于 NEW 状态，执行 start 进入 runnable 等待 CPU 调度，因此如果 CPU 很忙会导致 runnable 进程数增加；不可中断态主要包含网络 IO、磁盘 IO 以及内核态的锁，如 synchronized 等。</p>
+<p>问题原因及定位：</p>
+<p>1  CPU 利用率高，可运行态进程数多</p>
+<p>2  iowait，等待 IO</p>
+<p>3  等待内核态锁，如 synchronized</p>
+<p>常见问题 3：持续 FullGC</p>
+<p>问题原因及定位：</p>
+<p>1  prommotion failed</p>
+<p>从S区晋升的对象在老年代也放不下导致 FullGC（fgc 回收无效则抛 OOM）。</p>
+<p>1）survivor 区太小，对象过早进入老年代。</p>
+<p>2）大对象分配，没有足够的内存。</p>
+<p>日志查找关键字 “allocating large”；</p>
+<p>2  concurrent mode failed</p>
+<p>在 CMS GC 过程中业务线程将对象放入老年代（并发收集的特点）内存不足。详细原因：</p>
+<p>1）fgc 触发比例过大，导致老年代占用过多，并发收集时用户线程持续产生对象导致达到触发 FGC 比例。</p>
+<p>jinfo  查看 CMSInitiatingOccupancyFraction 参数，一般 70~80 即可</p>
+<p>2）老年代存在内存碎片。</p>
+<p>jinfo  查看 UseCMSCompactAtFullCollection 参数，在 FullGC 后整理内存</p>
+<p>常见问题 4：线程池满</p>
+<p>Java 线程池以有界队列的线程池为例，当新任务提交时，如果运行的线程少于 corePoolSize，则创建新线程来处理请求。如果正在运行的线程数等于 corePoolSize 时，则新任务被添加到队列中，直到队列满。当队列满了后，会继续开辟新线程来处理任务，但不超过 maximumPoolSize。当任务队列满了并且已开辟了最大线程数，此时又来了新任务，ThreadPoolExecutor 会拒绝服务。</p>
+<p>问题原因及定位：</p>
+<p>2  数据库慢 sql 或者数据库死锁</p>
+<p>日志关键字 “Deadlock found when trying to get lock”</p>
+<p>Jstack 或 zprofiler 查看阻塞态线程</p>
+<p>3  Java 代码死锁</p>
+<p>jstack –l pid | grep -i –E ‘BLOCKED | deadlock’</p>
+]]></content>
+      
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[2019年个人总结]]></title>
       <url>https://muxiaobai.github.io/2020/01/13/2019%E5%B9%B4%E4%B8%AA%E4%BA%BA%E6%80%BB%E7%BB%93/</url>
       <content type="html"><![CDATA[<h2 id="工作-技能"><a href="#工作-技能" class="headerlink" title="工作 技能"></a>工作 技能</h2><h4 id="认清自己的位置"><a href="#认清自己的位置" class="headerlink" title="认清自己的位置"></a>认清自己的位置</h4><p>微服务可以落地，持续集成可以试验。这点和公司的形势有关，至少是自己愿意做的内容。</p>
@@ -19,8 +94,7 @@
 <h4 id="疫情"><a href="#疫情" class="headerlink" title="疫情"></a>疫情</h4><p>工作，收入来源的重要性，停工停产，待岗降薪，有太多的不确定性。<br>身体，健康无比重要，活得久，也能说是一种幸福呢？<br>家人，有时候，陪伴在他们身边，也感觉没有那么多害怕，要说来工作的路上，还是有些心惊胆战，<br>意外，啥时候都不会也不可能全部如你所愿，做好准备，plan B，既是现在失去一切，也要有所打算，不要抱怨，不要忧虑，只需正视前方，勇往直前，无悔。</p>
 <p>虽然晚来上班，不过还是按正常时间开工了，只不是换了一种方式而已，</p>
 <p>今年的疫情，会让网课也来越来越普及，有自己喜欢的圈子，看自己感兴趣的直播，找到自己的生活方式。</p>
-<p>#### </p>
-<p>逐渐处于稳定状态，除了工作已经不愿走动，也无法走动，生活已经快将我禁锢到了这里。</p>
+<h4 id="探索"><a href="#探索" class="headerlink" title="探索"></a>探索</h4><p>逐渐处于稳定状态，除了工作已经不愿走动，也无法走动，生活已经快将我禁锢到了这里。</p>
 <h2 id="计划"><a href="#计划" class="headerlink" title="计划"></a>计划</h2><h4 id="2019年计划完成情况"><a href="#2019年计划完成情况" class="headerlink" title="2019年计划完成情况"></a>2019年计划完成情况</h4><ul>
 <li>听讲座，参加技术，文化，社会论坛等，扩展知识广度。</li>
 <li>心理学知识，受益匪浅，需要继续学习。</li>
@@ -399,8 +473,8 @@ hashMap.put(&quot;abc&quot;,&quot;1&quot;);
     </entry>
     
     <entry>
-      <title><![CDATA[java线上代码监控jprofiler]]></title>
-      <url>https://muxiaobai.github.io/2019/09/26/java%E7%BA%BF%E4%B8%8A%E4%BB%A3%E7%A0%81%E7%9B%91%E6%8E%A7jprofiler/</url>
+      <title><![CDATA[java线上代码监控-工具-jprofiler]]></title>
+      <url>https://muxiaobai.github.io/2019/09/26/java%E7%BA%BF%E4%B8%8A%E4%BB%A3%E7%A0%81%E7%9B%91%E6%8E%A7-%E5%B7%A5%E5%85%B7-jprofiler/</url>
       <content type="html"><![CDATA[<p>启动一个jvm进程</p>
 <p>java -jar xxx.0.0.1.jar</p>
 <p>服务器解压<a href="https://download-gcdn.ej-technologies.com/jprofiler/jprofiler_linux_11_0_2.tar.gz" target="_blank" rel="noopener">服务器端</a><br><a href="https://download-gcdn.ej-technologies.com/jprofiler/jprofiler_windows-x64_11_0_2.zip" target="_blank" rel="noopener">window客户端</a></p>
@@ -414,6 +488,11 @@ hashMap.put(&quot;abc&quot;,&quot;1&quot;);
 </ul>
 <p>客户端</p>
 <p>新建一个remote Session</p>
+<h3 id="分析-dump—-gt-hprof"><a href="#分析-dump—-gt-hprof" class="headerlink" title="分析 dump—-&gt;hprof"></a>分析 dump—-&gt;hprof</h3><p><img src="/2019/09/26/java线上代码监控-工具-jprofiler/filter.png" alt><br><img src="/2019/09/26/java线上代码监控-工具-jprofiler/java.util.png" alt><br><img src="/2019/09/26/java线上代码监控-工具-jprofiler/class.png" alt></p>
+<p>主要筛选自 java.util集合包中或者java.lang或者自己写的包.类</p>
+<p>class 按类寻找，Biggest Objects 大对象</p>
+<p>1、打开hprof文件:进入classes视图，根据（instance count和Size）基本可以确定哪个类的对象出现问题。比如(java.util.LinkedList$Entry类有2731062个实例)。<br>2、根据常识，应该java.util.LinkedList类有个对象的Size应该很大。<br>3、查看java.util.LinkedList，右键 use Selected Instance<br>4、选择Outgoing reference 视图(可以查看对象拥有的其他对象句柄,也就是对象属性)。看Retained size列（或者size属性）（有的时候Retained size不灵光），看大小就能确定是哪个对象内存溢出了。<br>5、找到对应的对象，右键use Selected Instance<br>6、选择Incoming refrences视图（该视图显示哪些对象拥有本对象的句柄），在这个视图下有个show Paths To GC Root的按钮，点击，基本能确定我们哪开代码有问题了。</p>
+<p>最终找到大对象的或者多对象的类，优化类的代码</p>
 ]]></content>
       
         <categories>
@@ -470,8 +549,8 @@ hashMap.put(&quot;abc&quot;,&quot;1&quot;);
     </entry>
     
     <entry>
-      <title><![CDATA[java线上代码监控-工具(汇总)]]></title>
-      <url>https://muxiaobai.github.io/2019/08/16/java%E7%BA%BF%E4%B8%8A%E4%BB%A3%E7%A0%81%E7%9B%91%E6%8E%A7-%E5%B7%A5%E5%85%B7-%E6%B1%87%E6%80%BB/</url>
+      <title><![CDATA[java线上代码监控-工具-arthas]]></title>
+      <url>https://muxiaobai.github.io/2019/08/16/java%E7%BA%BF%E4%B8%8A%E4%BB%A3%E7%A0%81%E7%9B%91%E6%8E%A7-%E5%B7%A5%E5%85%B7-arthas/</url>
       <content type="html"><![CDATA[<p>强力推荐alibaba的arthas</p>
 <h2 id="arthas"><a href="#arthas" class="headerlink" title="arthas"></a>arthas</h2><p>官网<a href="https://alibaba.github.io/arthas" target="_blank" rel="noopener">https://alibaba.github.io/arthas</a></p>
 <p>教程<a href="https://alibaba.github.io/arthas/arthas-tutorials?language=cn&amp;id=arthas-basics" target="_blank" rel="noopener">Arthas 基础教程</a></p>
@@ -514,6 +593,12 @@ hashMap.put(&quot;abc&quot;,&quot;1&quot;);
 <p>JRebel和JProfiler同时运行</p>
 <p>如果IDEA中配置了JRebel热部署，要想JRebel和JProfiler同时运行，就要改手动管理JProfiler session了。<br>在 Run–Debug Configurations窗口JRebel Debug tab页中配置Environment Variables属性 CATALINA_OPTS：<br>使用springboot不成功，<br>CATALINA_OPTS=-agentpath:E:\tools\jprofiler_windows-x64_9_2_1\jprofiler9\bin\windows-x64\jprofilerti.dll=port=8849,nowait,id=81,config=C:\Users\Administrator.jprofiler9\config.xml</p>
 <p>调用请求: curl -w “@curl-time.txt” <a href="http://127.0.0.1:8080/hello" target="_blank" rel="noopener">http://127.0.0.1:8080/hello</a></p>
+<p>###常用</p>
+<p>thread -n 5<br>2）查看某个函数的调用堆栈 打印前五名最消耗CPU的线程，可以及时找到CPU过高的代码位置</p>
+<p>stack &lt;类全包名&gt; &lt;函数名&gt;<br>3）查看某个函数的哪个子调用最慢，耗时最久的调用会标红显示，可以方便找出某个功能中最耗时的操作</p>
+<p>trace &lt;类全包名&gt; &lt;函数名&gt;<br>4）监控某个函数的调用统计数据，包括总调用次数，平均运行时间，成功率等信息</p>
+<p>monitor &lt;类全包名&gt; &lt;函数名&gt;</p>
+<h3 id="热更新代码"><a href="#热更新代码" class="headerlink" title="热更新代码"></a>热更新代码</h3><p><a href="https://mp.weixin.qq.com/s/um6XQVv1JvHM3n7NslzB0Q" target="_blank" rel="noopener">热更新</a></p>
 <h2 id="常用和spring有关的"><a href="#常用和spring有关的" class="headerlink" title="常用和spring有关的"></a>常用和spring有关的</h2><p>从spring-mvc入手</p>
 <h3 id="内部："><a href="#内部：" class="headerlink" title="内部："></a>内部：</h3><p>trace 方法内部调用路径，并输出方法路径上的每个节点上耗时 -j跳过jdkclass<br>Servlet Filter 转发 哪一个Controller</p>
 <p>trace javax.servlet.Servlet <em><br>trace javax.servlet.Filter </em><br>trace org.springframework.web.servlet.DispatcherServlet *</p>
@@ -842,7 +927,7 @@ hashMap.put(&quot;abc&quot;,&quot;1&quot;);
     </entry>
     
     <entry>
-      <title><![CDATA[Linux 基础命令总结4]]></title>
+      <title><![CDATA[Linux 基础命令总结4 shell 快捷键 ps]]></title>
       <url>https://muxiaobai.github.io/2019/04/01/Linux-%E5%9F%BA%E7%A1%80%E5%91%BD%E4%BB%A4%E6%80%BB%E7%BB%934/</url>
       <content type="html"><![CDATA[<h4 id="shell-常用快捷键"><a href="#shell-常用快捷键" class="headerlink" title="shell 常用快捷键"></a>shell 常用快捷键</h4><p><a href="https://blog.csdn.net/weixin_42256178/article/details/80392077" target="_blank" rel="noopener">常用shell快捷键</a></p>
 <ul>
@@ -1158,8 +1243,8 @@ hashMap.put(&quot;abc&quot;,&quot;1&quot;);
     </entry>
     
     <entry>
-      <title><![CDATA[深入理解JVM之远程监控]]></title>
-      <url>https://muxiaobai.github.io/2018/11/22/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3JVM%E4%B9%8B%E8%BF%9C%E7%A8%8B%E7%9B%91%E6%8E%A7/</url>
+      <title><![CDATA[java线上代码监控-工具-jconsole和jvisualvm]]></title>
+      <url>https://muxiaobai.github.io/2018/11/22/java%E7%BA%BF%E4%B8%8A%E4%BB%A3%E7%A0%81%E7%9B%91%E6%8E%A7-%E5%B7%A5%E5%85%B7-jconsole%E5%92%8Cjvisualvm/</url>
       <content type="html"><![CDATA[<p>远程监控jconsole和jvisualvm<br><a id="more"></a></p>
 <p>修改服务器tomcat的bin/catalina.bat文件,</p>
 <p>新建setenv.sh,给权限</p>
@@ -1681,9 +1766,9 @@ hashMap.put(&quot;abc&quot;,&quot;1&quot;);
         
         <tags>
             
-            <tag> 工具 </tag>
-            
             <tag> 前端 </tag>
+            
+            <tag> 工具 </tag>
             
         </tags>
         
@@ -1784,9 +1869,9 @@ hashMap.put(&quot;abc&quot;,&quot;1&quot;);
         
         <tags>
             
-            <tag> 工具 </tag>
-            
             <tag> 前端 </tag>
+            
+            <tag> 工具 </tag>
             
         </tags>
         
@@ -2327,7 +2412,7 @@ hashMap.put(&quot;abc&quot;,&quot;1&quot;);
     </entry>
     
     <entry>
-      <title><![CDATA[Linux 基础命令总结3]]></title>
+      <title><![CDATA[Linux 基础命令总结3 yum vim 问题]]></title>
       <url>https://muxiaobai.github.io/2017/09/17/Linux-%E5%9F%BA%E7%A1%80%E5%91%BD%E4%BB%A4%E6%80%BB%E7%BB%933/</url>
       <content type="html"><![CDATA[<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><h4 id="yum"><a href="#yum" class="headerlink" title="yum"></a>yum</h4><p><code>yum list</code> </p>
 <p><code>yum install</code></p>
@@ -2366,6 +2451,8 @@ hashMap.put(&quot;abc&quot;,&quot;1&quot;);
 <p><code>ruby</code>: ruby程序,语言Ruby</p>
 <p><a href="https://www.cnblogs.com/webzhangnan/p/3221410.html" target="_blank" rel="noopener">CMD快捷键</a></p>
 <p><a href="https://www.cnblogs.com/webnote/p/5877920.html" target="_blank" rel="noopener">scp</a></p>
+<p>scp <a href="mailto:root@192.168.120.204" target="_blank" rel="noopener">root@192.168.120.204</a>:/opt/soft/nginx-0.5.38.tar.gz /opt/soft/</p>
+<p>scp <a href="mailto:root@192.168.120.204" target="_blank" rel="noopener">root@192.168.120.204</a>:/opt/soft/nginx-0.5.38.tar.gz /opt/soft/</p>
 ]]></content>
       
         <categories>
@@ -2613,7 +2700,7 @@ hashMap.put(&quot;abc&quot;,&quot;1&quot;);
 </tr>
 </tbody>
 </table>
-<p>其他功能，方便之后查找问题</p>
+<p>其他功能，方便之后查找问题<br><code>java -X</code>展示-X参数<br><code>java -XX:+PrintFlagsFinal</code> 打印所有的-XX：参数</p>
 <table>
 <thead>
 <tr>
@@ -2915,8 +3002,8 @@ hashMap.put(&quot;abc&quot;,&quot;1&quot;);
     </entry>
     
     <entry>
-      <title><![CDATA[Javamelody 工具]]></title>
-      <url>https://muxiaobai.github.io/2017/08/02/Javamelody-%E5%B7%A5%E5%85%B7/</url>
+      <title><![CDATA[java线上代码监控-工具-Javamelody]]></title>
+      <url>https://muxiaobai.github.io/2017/08/02/java%E7%BA%BF%E4%B8%8A%E4%BB%A3%E7%A0%81%E7%9B%91%E6%8E%A7-%E5%B7%A5%E5%85%B7-Javamelody/</url>
       <content type="html"><![CDATA[<h2 id="只为监控而生"><a href="#只为监控而生" class="headerlink" title="只为监控而生"></a>只为监控而生</h2><p>它并不是一个模拟请求类似JMeter的压力测试工具，而是一个衡量并且计算在应用上的操作信息的工具，<br>也就是说，<code>它只负责对行为进行监控，而不负责触发操作</code>。</p>
 <h2 id="版本"><a href="#版本" class="headerlink" title="版本"></a>版本</h2><p>Java version required for execution: 1.6 or later (JDK or JRE or JRockit from Oracle or J9 from IBM)<br>Server version required for execution: servlet api 2.4 at least (or JavaEE 1.4), like Tomcat 5.5 or +, GlassFish v2+, JBoss 4+, Jetty 6+, WebLogic 9+<br>Required dependency: jrobin 1.5.9+</p>
 <p>##两种方式 ：项目监控所有的其他正在运行的  和jar直接放在项目中配置</p>
@@ -2926,7 +3013,7 @@ hashMap.put(&quot;abc&quot;,&quot;1&quot;);
 <p>现在就可以启动应用服务器打开网址查看监控效果了。网址：<code>http://&lt;host&gt;/&lt;context&gt;/monitoring</code></p>
 <p><host>是web应用服务器的部署IP，通常是localhost:8080 或者127.0.0.1:8080具体看你自己的应用服务器</host></p>
 <p><context>是你的web应用的名字。</context></p>
-<p><img src="/2017/08/02/Javamelody-工具/20170802.PNG" alt="效果"></p>
+<p><img src="/2017/08/02/java线上代码监控-工具-Javamelody/20170802.PNG" alt="效果"></p>
 <p><a href="https://github.com/javamelody/javamelody" target="_blank" rel="noopener">javamylody github </a></p>
 ]]></content>
       
@@ -4278,7 +4365,7 @@ hashMap.put(&quot;abc&quot;,&quot;1&quot;);
     </entry>
     
     <entry>
-      <title><![CDATA[Linux 基础命令总结2]]></title>
+      <title><![CDATA[Linux 基础命令总结2 用户 权限 服务]]></title>
       <url>https://muxiaobai.github.io/2016/07/07/Linux-%E5%9F%BA%E7%A1%80%E5%91%BD%E4%BB%A4%E6%80%BB%E7%BB%932/</url>
       <content type="html"><![CDATA[<h2 id="打印、输出"><a href="#打印、输出" class="headerlink" title="打印、输出"></a>打印、输出</h2><h4 id="打印"><a href="#打印" class="headerlink" title="打印"></a>打印</h4><p><code>lpr</code>  <code>lpq</code> <code>lprm</code></p>
 <h4 id="输出"><a href="#输出" class="headerlink" title="输出"></a>输出</h4><p><code>echo</code>  <code>printf</code> <code>yes</code> <code>seq</code> <code>clear</code><br><a id="more"></a></p>
@@ -4367,9 +4454,22 @@ hashMap.put(&quot;abc&quot;,&quot;1&quot;);
 <p>useradd usenmae –g usenmae  –p ora123 </p>
 <p>passwd  username</p>
 <p>cat /etc/group  查看所有所属组</p>
-<p>chmod -R g+w </p>
-<p>chown -R bid:bids /home/newname  把/home/newname的所有者改为bid，所属组改为bids</p>
-<p>读r=4  写w=2  执行x=1  用户，组，其他用户</p>
+<p>change owner  change modified</p>
+<p>chmod -R g+w  group增加 write权限</p>
+<p>chown -R owner:group /home/newname  把/home/newname的所有者改为owner，所属组改为group</p>
+<p>-R 递归</p>
+<p>读r=4  写w=2  执行x=1  用户u，组g，其他用户o</p>
+<p>常见 文件644 -rx-r–r–   drwxr-xr-x 文件夹755</p>
+<ul>
+<li>u 代表所有者（user）</li>
+<li>g 代表所有者所在的组群（group）</li>
+<li>o 代表其他人，但不是u和g （other）</li>
+<li>a 代表全部的人，也就是包括u，g和o</li>
+<li>r 表示文件可以被读（read）</li>
+<li>w 表示文件可以被写（write）</li>
+<li>x 表示文件可以被执行（如果它是程序的话）</li>
+</ul>
+<p><code>chmod go-rw xxx.xxx</code></p>
 <h2 id="网络和连接登录，上传下载文件"><a href="#网络和连接登录，上传下载文件" class="headerlink" title="网络和连接登录，上传下载文件"></a>网络和连接登录，上传下载文件</h2><p><code>arp</code>: 硬件地址(IP —-&gt; MAC地址)</p>
 <p><code>traceroute</code>: 到某一个地址的路由信息</p>
 <p><code>route</code>: 路由表</p>
@@ -4467,6 +4567,7 @@ hashMap.put(&quot;abc&quot;,&quot;1&quot;);
 <p>当前时间|运行时间|用户|平均负载load average： 1min 5min 15min<br>总数| 状态（运行、睡眠、停止、僵尸：正在停止但是没有完全停止）<br>CPU | 用户us| 系统sy|  改变过优先级的用户ni|空闲率id|  等待输入/输出wa|硬中断hi |软中断si| 虚拟时间st（steal time）</p>
 <p>|MEM（物理内存KB） |总total |空闲free| 使用used | 缓冲buff/cache<br>|SWAP（交换分区KB）|总total |空闲free| 使用used | </p>
 <p>-d  每隔几秒更新一次</p>
+<p>-c 显示全命令</p>
 <p>?h：交互模式帮助</p>
 <p>P：CPU使用率排序（默认）</p>
 <p>M：内存使用率排序</p>
@@ -4753,7 +4854,7 @@ hashMap.put(&quot;abc&quot;,&quot;1&quot;);
     </entry>
     
     <entry>
-      <title><![CDATA[Linux 基础命令总结]]></title>
+      <title><![CDATA[Linux 基础命令总结 基本操作 文件 目录]]></title>
       <url>https://muxiaobai.github.io/2016/06/27/Linux-%E5%9F%BA%E7%A1%80%E5%91%BD%E4%BB%A4%E6%80%BB%E7%BB%93/</url>
       <content type="html"><![CDATA[<h2 id="目录-文件夹directory-文件-file-相关"><a href="#目录-文件夹directory-文件-file-相关" class="headerlink" title="目录(文件夹directory)/文件(file)相关"></a>目录(文件夹directory)/文件(file)相关</h2><p><code>ls</code>: 列出所有内容(list) -l 详细信息 -h 文件大小</p>
 <p><code>touch</code>: 新建(实际上是触摸一下,会更改文件时间戳)</p>
@@ -4785,7 +4886,14 @@ hashMap.put(&quot;abc&quot;,&quot;1&quot;);
 <h5 id="R-递归"><a href="#R-递归" class="headerlink" title="-R 递归"></a>-R 递归</h5><p><code>chattr</code>: 改变文件属性(Change file attributes)</p>
 <p><code>lsattr</code>: 显示<code>chattr</code>改变的属性(List file attributes)</p>
 <h4 id="文件的文本性操作"><a href="#文件的文本性操作" class="headerlink" title="文件的文本性操作"></a>文件的文本性操作</h4><p><code>sort</code>: 排序</p>
-<p><code>wc</code>: 统计(Word Count)(行  词  字节)</p>
+<p>用法：sort [选项]… [文件]…<br>串联排序所有指定文件并将结果写到标准输出。</p>
+<p>排序选项：</p>
+<p>-b, –ignore-leading-blanks 忽略前导的空白区域<br>-d, –dictionary-order 只考虑空白区域和字母字符<br>-f, –ignore-case 忽略字母大小写<br>-g, –general-numeric-sort 按照常规数值排序<br>-i, –ignore-nonprinting 只排序可打印字符<br>-n, –numeric-sort 根据字符串数值比较<br>-r, –reverse 逆序输出排序结果</p>
+<p>其他选项：</p>
+<p>-c, –check, –check=diagnose-first 检查输入是否已排序，若已有序则不进行操作<br>-k, –key=位置1[,位置2] 在位置1 开始一个key，在位置2 终止(默认为行尾)<br>-m, –merge 合并已排序的文件，不再进行排序<br>-o, –output=文件 将结果写入到文件而非标准输出<br>-t, –field-separator=分隔符 使用指定的分隔符代替非空格到空格的转换<br>-u, –unique 配合-c，严格校验排序；不配合-c，则只输出一次排序结果</p>
+<p>sort -n -r -k 2 </p>
+<p>sort -rn</p>
+<p><code>wc</code>: 统计(Word Count)(行  词  字节) -l line -w word -m chars</p>
 <p><code>grep</code> <code>egrep</code> <code>fgrep</code>: 匹配正则/扩展正则/文本</p>
 <p><code>cut</code>: 提取特定列</p>
 <p><code>paste</code>: 合并</p>
