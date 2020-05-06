@@ -14,7 +14,7 @@ description: "从volatile到内存屏障"
 ![无volatile](Thinking-in-java-基础之volatile/1.png)
 
 有volatile
-![有volatile](Thinking-in-java-基础之volatile/1.png)
+![有volatile](Thinking-in-java-基础之volatile/2.png)
 
 看一下汇编是啥样子的
 

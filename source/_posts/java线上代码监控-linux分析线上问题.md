@@ -2,8 +2,8 @@
 title: java线上代码监控-linux分析线上问题
 date: 2020-04-29 16:41:41
 tags:
-categories:
-description:
+categories: java
+description: 总结CPU怎么处理load 怎么处理
 ---
 
 jps(Java Virtual Machine Process Status Tool)
