@@ -1,3 +1,4 @@
+https://muxiaobai.github.io/2020/05/07/Thinking-in-java-高级之synchronized/
 https://muxiaobai.github.io/2020/04/29/java线上代码监控-linux分析线上问题/
 https://muxiaobai.github.io/2020/01/13/2019年个人总结/
 https://muxiaobai.github.io/2020/01/02/SpringBoot之https请求/
@@ -6,7 +7,7 @@ https://muxiaobai.github.io/2019/12/21/devops之jenkins持续集成/
 https://muxiaobai.github.io/2019/10/31/Thinking-in-java-基础之AQS和应用/
 https://muxiaobai.github.io/2019/10/21/Thinking-in-java-基础之类加载顺序-初始化/
 https://muxiaobai.github.io/2019/10/17/Thinking-in-java-基础之HashMap/
-https://muxiaobai.github.io/2019/10/12/Thinking-in-java-基础之volatile/
+https://muxiaobai.github.io/2019/10/12/Thinking-in-java-高级之volatile/
 https://muxiaobai.github.io/2019/09/29/java-常用代码2-future等/
 https://muxiaobai.github.io/2019/09/26/java线上代码监控-工具-jprofiler/
 https://muxiaobai.github.io/2019/08/31/devops之docker/

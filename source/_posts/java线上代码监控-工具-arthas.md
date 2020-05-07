@@ -47,6 +47,7 @@ java -jar arthas-boot.jar --target-ip 0.0.0.0
 - redefine 热更新代码
 - ognl 动态执行代码
 - tt 可以记录下指定方法每次调用的入参和返回信息，并能对这些不同的时间下调用进行观测
+
 ```
 反编译 修改 编译 热更新
 jad --source-only com.example.demo.arthas.user.UserController > /tmp/UserController.java
@@ -55,6 +56,7 @@ sc com.example.demo.arthas.user.UserController -d
 mc /tmp/UserController.java -d /tmp -c [classLoaderHash]
 redefine /tmp/com/example/demo/arthas/user/UserController.class
 ```
+
 实际上可以直接把本机的class redefine 线上的很可能编译不通过，不过要保证本机代码和线上的代码同步
 
 ### 暂存运行状态文件hpof
@@ -204,8 +206,9 @@ stack 输出当前方法被调用的调用路径
 
 ## 其它监控
 
-Druid连接池 数据库监控 参考 [数据库监控-Druid监控配置](https://muxiaobai.github.io/2018/11/22/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9B%91%E6%8E%A7-Druid%E7%9B%91%E6%8E%A7%E9%85%8D%E7%BD%AE/)
-Javamelody 传统应用 参考 [Javamelody 工具](https://muxiaobai.github.io/2017/08/02/Javamelody-%E5%B7%A5%E5%85%B7/)
-jre自带的工具 jconsole jvisualvm参考 [深入理解JVM之远程监控](https://muxiaobai.github.io/2018/11/22/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3JVM%E4%B9%8B%E8%BF%9C%E7%A8%8B%E7%9B%91%E6%8E%A7/)
+- Druid连接池 数据库监控 参考 [数据库监控-Druid监控配置](https://muxiaobai.github.io/2018/11/22/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9B%91%E6%8E%A7-Druid%E7%9B%91%E6%8E%A7%E9%85%8D%E7%BD%AE/)
+- Javamelody 传统应用 参考 [Javamelody 工具](https://muxiaobai.github.io/2017/08/02/Javamelody-%E5%B7%A5%E5%85%B7/)
+- jre自带的工具 jconsole jvisualvm参考 [深入理解JVM之远程监控](https://muxiaobai.github.io/2018/11/22/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3JVM%E4%B9%8B%E8%BF%9C%E7%A8%8B%E7%9B%91%E6%8E%A7/)
 
 
+![参考](java线上代码监控-工具-arthas/arthas.png)

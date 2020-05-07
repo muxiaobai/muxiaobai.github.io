@@ -4,11 +4,33 @@
   
     
     <entry>
+      <title><![CDATA[Thinking in java 高级之synchronized]]></title>
+      <url>https://muxiaobai.github.io/2020/05/07/Thinking-in-java-%E9%AB%98%E7%BA%A7%E4%B9%8Bsynchronized/</url>
+      <content type="html"><![CDATA[<h3 id="先从内核态和用户态说起"><a href="#先从内核态和用户态说起" class="headerlink" title="先从内核态和用户态说起"></a>先从内核态和用户态说起</h3><p>0x80 软中断 频繁切换会耗时</p>
+<h3 id="从DCL到锁升级"><a href="#从DCL到锁升级" class="headerlink" title="从DCL到锁升级"></a>从DCL到锁升级</h3><p>普通 偏向锁 轻量级锁 重量级锁</p>
+<p>升级过程</p>
+<p>### </p>
+<p>### </p>
+<p>### </p>
+]]></content>
+      
+        <categories>
+            
+            <category> java </category>
+            
+        </categories>
+        
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[java线上代码监控-linux分析线上问题]]></title>
       <url>https://muxiaobai.github.io/2020/04/29/java%E7%BA%BF%E4%B8%8A%E4%BB%A3%E7%A0%81%E7%9B%91%E6%8E%A7-linux%E5%88%86%E6%9E%90%E7%BA%BF%E4%B8%8A%E9%97%AE%E9%A2%98/</url>
       <content type="html"><![CDATA[<p>jps(Java Virtual Machine Process Status Tool)<br>jstack(查看线程)、jmap(查看内存)和jstat(性能分析)</p>
 <h3 id="jps"><a href="#jps" class="headerlink" title="jps"></a>jps</h3><p>jps 找到对应的进程ID</p>
 <p><code>jps -m -l</code></p>
+<p><code>ll /proc/[pid]/ | grep exe</code></p>
+<p>可以查到时哪一个后台进程在执行</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">-q 不输出类名、Jar名和传入main方法的参数</span><br><span class="line">-m 输出传入main方法的参数</span><br><span class="line">-l 输出main类或Jar的全限名</span><br><span class="line">-v 输出传入JVM的参数</span><br></pre></td></tr></table></figure>
 <h2 id="未重启的话，分析现在的时候"><a href="#未重启的话，分析现在的时候" class="headerlink" title="未重启的话，分析现在的时候:"></a>未重启的话，分析现在的时候:</h2><h3 id="jstack-线程问题"><a href="#jstack-线程问题" class="headerlink" title="jstack 线程问题"></a>jstack 线程问题</h3><p>ps -mp [pid] -o THREAD,tid,time |sort -rn 打印CPU最高的线程<br>top -Hp [pid] </p>
 <p>printf “%x\n” 22338 把线程ID转换成16进制<br>5742</p>
@@ -35,7 +57,7 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost bin]# ./jstat -gc 22327  250 4</span><br><span class="line"> S0C    S1C    S0U    S1U      EC       EU        OC         OU            MC     MU     CCSC   CCSU      YGC     YGCT    FGC    FGCT     GCT   </span><br><span class="line">12288.0 21504.0 12272.1  0.0   655872.0 341707.4  231424.0   44561.1   87384.0 83940.7 11352.0 10729.1     18    0.238   3      0.254    0.492</span><br><span class="line">12288.0 21504.0 12272.1  0.0   655872.0 341707.4  231424.0   44561.1   87384.0 83940.7 11352.0 10729.1     18    0.238   3      0.254    0.492</span><br><span class="line">12288.0 21504.0 12272.1  0.0   655872.0 341707.4  231424.0   44561.1   87384.0 83940.7 11352.0 10729.1     18    0.238   3      0.254    0.492</span><br><span class="line">12288.0 21504.0 12272.1  0.0   655872.0 341707.4  231424.0   44561.1   87384.0 83940.7 11352.0 10729.1     18    0.238   3      0.254    0.492</span><br></pre></td></tr></table></figure>
 <h2 id="准备重启复现的话："><a href="#准备重启复现的话：" class="headerlink" title="准备重启复现的话："></a>准备重启复现的话：</h2><p>第一步 加参数 ：</p>
 <p>gc日志 配置Catalina.bat JAVA_OPTS</p>
-<p><code>-Xloggc:..\logs\gc.log -XX:+HeapDumpOnOutOfMemoryError -XX:+PrintGCDetails -XX:+PrintGCDateStamps -XX:+PrintTenuringDistribution -XX:+PrintHeapAtGC</code></p>
+<p><code>-Xloggc:./logs/gc.log -XX:+HeapDumpOnOutOfMemoryError -XX:+PrintGCDetails -XX:+PrintGCDateStamps -XX:+PrintTenuringDistribution -XX:+PrintHeapAtGC</code></p>
 <ul>
 <li><a href="https://mp.weixin.qq.com/s?__biz=MzIzOTU0NTQ0MA==&amp;mid=2247495546&amp;idx=1&amp;sn=f435f56c3b92802ef649cd14bb60711b&amp;chksm=e92ad275de5d5b63b9fc1e48463044ea1b234a4f28d0ad8d7964c42516f1cf7cae47c60162dc&amp;scene=0&amp;xtrack=1&amp;exportkey=AeNCSm6QS4EwNcRCTNfXDUs%3D&amp;pass_ticket=sHf4d8XsExleK1yRet7Gq5oJd6I%2FDOYRgopyFK8gH%2B81%2FhlGHzeiSrSlgR9oXDlk#rd" target="_blank" rel="noopener">步骤:线上问题定位，重启大法好！线上常见问题排查手册</a></li>
 <li><a href="https://blog.csdn.net/muyimo/article/details/52837323?utm_source=distribute.pc_relevant.none-task-blog-baidujs-8" target="_blank" rel="noopener">VM性能调优监控工具jps、jstack、jmap、jhat、jstat、hprof使用详解</a></li>
@@ -410,22 +432,36 @@ hashMap.put(&quot;abc&quot;,&quot;1&quot;);
     </entry>
     
     <entry>
-      <title><![CDATA[Thinking in java 基础之volatile]]></title>
-      <url>https://muxiaobai.github.io/2019/10/12/Thinking-in-java-%E5%9F%BA%E7%A1%80%E4%B9%8Bvolatile/</url>
+      <title><![CDATA[Thinking in java 高级之volatile]]></title>
+      <url>https://muxiaobai.github.io/2019/10/12/Thinking-in-java-%E9%AB%98%E7%BA%A7%E4%B9%8Bvolatile/</url>
       <content type="html"><![CDATA[<p>显性的作用就是： 这个变量在修改之后，可以及时更新到另外一个线程。</p>
-<h3 id="两个代码"><a href="#两个代码" class="headerlink" title="两个代码"></a>两个代码</h3><p>无volatile<br><img src="/2019/10/12/Thinking-in-java-基础之volatile/1.png" alt="无volatile"></p>
-<p>有volatile<br><img src="/2019/10/12/Thinking-in-java-基础之volatile/2.png" alt="有volatile"></p>
+<h3 id="两个代码"><a href="#两个代码" class="headerlink" title="两个代码"></a>两个代码</h3><p>无volatile<br><img src="/2019/10/12/Thinking-in-java-高级之volatile/1.png" alt="无volatile"></p>
+<p>有volatile<br><img src="/2019/10/12/Thinking-in-java-高级之volatile/2.png" alt="有volatile"></p>
 <p>看一下汇编是啥样子的</p>
 <p><a href="https://sourceforge.net/projects/fcml/files/fcml-1.1.1/hsdis-1.1.1-win32-amd64.zip/download" target="_blank" rel="noopener">下载</a><br>hsdis-1.1.1-win32-amd64.zip放到${JAVA_HOME}\jdk1.8.0_171\jre\bin\server下,先<code>javac xxx.java</code> 编译成xxx.class<br><code>java -XX:+UnlockDiagnosticVMOptions -XX:+PrintAssembly  xxx.class &gt;a.txt</code><br>生成汇编文件<br>给jvm添加参数<br><code>-server -Xcomp -XX:+UnlockDiagnosticVMOptions -XX:+PrintAssembly -XX:CompileCommand=compileonly,*Test.getInstance</code></p>
-<p><img src="/2019/10/12/Thinking-in-java-基础之volatile/3.png" alt="汇编"><br>在修改有volatile修饰的属性，加有lock add第八行。</p>
+<p><img src="/2019/10/12/Thinking-in-java-高级之volatile/3.png" alt="汇编"></p>
+<p>在修改有volatile修饰的属性，加有lock add第八行。这个有lock 会刷新缓存</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">public class Test &#123;</span><br><span class="line">    public static volatile boolean stop = false ;</span><br><span class="line">    public static void main(String[] args) throws InterruptedException &#123;</span><br><span class="line">        Thread thread = new Thread(()-&gt;&#123;</span><br><span class="line">            int i=0;</span><br><span class="line">            while (!stop)&#123;</span><br><span class="line">                i++;</span><br><span class="line">            &#125;</span><br><span class="line">            System.out.println(i);</span><br><span class="line">        &#125;);</span><br><span class="line">        thread.start();</span><br><span class="line">        System.out.println(&quot;begin start thread&quot;);</span><br><span class="line">        Thread.sleep(1000);</span><br><span class="line">        stop = true;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>锁提供了原子性和可见性<br>volatile具有锁的可见性，</p>
+<h3 id="JMM"><a href="#JMM" class="headerlink" title="JMM"></a>JMM</h3><p><img src="/2019/10/12/Thinking-in-java-高级之volatile/L0.png" alt="CPU三级缓存架构图"></p>
+<p>因为CPU高速运转，直接读内存会很慢，又开辟一级二级三级缓存，多核CPU下每一个有独立的一级二级缓存；如果现在来了一个数据存在三级缓存中，第一个Thread读取之后，并修改了值，但没有同步到三级缓存中；这时候第二个线程要读值，他还是只从三级缓存中读取内容，；但有了内存屏障，在第三个读的时候，</p>
+<p>volatile 会触发lock add ,触发刷新屏障，Cache</p>
+<p>从.java———–&gt;.class编译完成，然后.class 在不同的平台上，对于volatile来说，JVM有不同的实现，一次编写，到处运行<code>Write once, run anywhere</code>,JVM屏蔽各种架构的指令集，例如x86 MMX，SSE等，在window系统上使用window指令，在linux上使用linux指令，最终Java实现了，程序员不用关系各个平台的差异。<br>但对于.net ，需要安装其他的中间件等，才能在非window系统运行。</p>
+<p><img src="/2019/10/12/Thinking-in-java-高级之volatile/CPU.PNG" alt="总结适配器模式"></p>
+<h3 id="继续"><a href="#继续" class="headerlink" title="继续"></a>继续</h3><p> 锁提供了原子性和可见性</p>
+<p>因为某一个线程进入synchronized代码块前后，线程会获得锁，清空工作内存，从主内存拷贝共享变量最新的值到工作内存成为副本，执行代码，将修改后的副本的值刷新回主内存中，线程释放锁。</p>
+<p>而获取不到锁的线程会阻塞等待，所以变量的值肯定一直都是最新的。</p>
+<p>volatile具有锁的可见性，</p>
+<p>每个线程操作数据的时候会把数据从主内存读取到自己的工作内存，如果他操作了数据并且写会了，他其他已经读取的线程的变量副本就会失效了，需要都数据进行操作又要再次去主内存中读取了。<br>volatile保证不同线程对共享变量操作的可见性，也就是说一个线程修改了volatile修饰的变量，当修改写回主内存时，另外一个线程立即看到最新的值。上面的JMM缓存刷新。</p>
+<p>为了解决一致性的问题，需要各个处理器访问缓存时都遵循一些协议，在读写时要根据协议来进行操作，这类协议有MSI、MESI（IllinoisProtocol）、MOSI、Synapse、Firefly及DragonProtocol等。</p>
 <p>指令重排序（本是为了优化代码，对最终的结果无影响）</p>
 <p>有序性：即程序执行的顺序按照代码的先后顺序执行。举个简单的例子，看下面这段代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">int i = 0;              </span><br><span class="line">boolean flag = false;</span><br><span class="line">i = 1;                //语句1  </span><br><span class="line">flag = true;          //语句2</span><br></pre></td></tr></table></figure></p>
 <p>从代码顺序上看，语句1是在语句2前面的，那么JVM在真正执行这段代码的时候会保证语句1一定会在语句2前面执行吗？不一定，为什么呢？这里可能会发生指令重排序（Instruction Reorder）。</p>
 <h2 id="指令重排序"><a href="#指令重排序" class="headerlink" title="指令重排序:"></a>指令重排序:</h2><p>一般来说，处理器为了提高程序运行效率，可能会对输入代码进行优化，它不保证程序中各个语句的执行先后顺序同代码中的顺序一致，但是它会保证程序最终执行结果和代码顺序执行的结果是一致的。</p>
 <p>比如上面的代码中，语句1和语句2谁先执行对最终的程序结果并没有影响，那么就有可能在执行过程中，语句2先执行而语句1后执行。虽然处理器会对指令进行重排序，但是它会保证程序最终结果会和代码顺序执行结果相同，那么它靠什么保证的呢？靠的是数据依赖性：</p>
 <p>编译器和处理器在重排序时，会遵守数据依赖性，编译器和处理器不会改变存在数据依赖关系的两个操作的执行顺序。</p>
+<p>不管怎么重排序，单线程下的执行结果不能被改变。</p>
+<p>编译器、runtime和处理器都必须遵守as-if-serial语义 ，最终一致。</p>
+<p>volatile使用内存屏障保证最终一致。</p>
 <h2 id="内存屏障"><a href="#内存屏障" class="headerlink" title="内存屏障"></a>内存屏障</h2><p>内存屏障分为两种：Load Barrier 和 Store Barrier即读屏障和写屏障。</p>
 <p>内存屏障有两个作用：</p>
 <ul>
@@ -445,11 +481,7 @@ hashMap.put(&quot;abc&quot;,&quot;1&quot;);
 <li>在每个volatile读操作前插入LoadLoad屏障，在读操作后插入LoadStore屏障；</li>
 </ul>
 <p>由于内存屏障的作用，避免了volatile变量和其它指令重排序、线程之间实现了通信，使得volatile表现出了锁的特性。</p>
-<p><img src="/2019/10/12/Thinking-in-java-基础之volatile/L0.png" alt="CPU三级缓存架构图"></p>
-<p>因为CPU高速运转，直接读内存会很慢，又开辟一级二级三级缓存，多核CPU下每一个有独立的一级二级缓存；如果现在来了一个数据存在三级缓存中，第一个Thread读取之后，并修改了值，但没有同步到三级缓存中；这时候第二个线程要读值，他还是只从三级缓存中读取内容，；但有了内存屏障，在第三个读的时候，</p>
-<p>从.java———–&gt;.class编译完成，然后.class 在不同的平台上，对于volatile来说，JVM有不同的实现，一次编写，到处运行<code>Write once, run anywhere</code>,JVM屏蔽各种架构的指令集，例如x86 MMX，SSE等，在window系统上使用window指令，在linux上使用linux指令，最终Java实现了，程序员不用关系各个平台的差异。<br>但对于.net ，需要安装其他的中间件等，才能在非window系统运行。</p>
-<p><img src="/2019/10/12/Thinking-in-java-基础之volatile/CPU.PNG" alt="总结适配器模式"></p>
-<p><a href="https://mrbird.cc/Java-Memory-model.html#more" target="_blank" rel="noopener">参考Java 内存模型</a></p>
+<p><a href="https://mrbird.cc/Java-Memory-model.html#more" target="_blank" rel="noopener">参考Java 内存模型</a><br><a href="https://juejin.im/post/5ea913d35188256d4576d199?utm_source=gold_browser_extension" target="_blank" rel="noopener">volatile</a></p>
 ]]></content>
       
         <categories>
@@ -575,16 +607,21 @@ hashMap.put(&quot;abc&quot;,&quot;1&quot;);
 <li>dashboard 实时看板</li>
 <li>thread 查线程</li>
 <li>jvm 当前jvm信息</li>
+<li>classloader</li>
 <li>sysprop(sysenv) 系统参数(System Property)(System Environment Variables)</li>
 <li>jad 反编译</li>
+<li>stack 调用栈</li>
+<li>trace 调用时间</li>
+<li>watch 方法执行数据观测（实时调用）</li>
 <li>sc (search class)查jvm加载的类 -d 加载的信息 classLoaderHash 哪一个ClassLoader加载的类</li>
 <li>sm (search method) 查class方法</li>
-<li>mc (Memory Compiler) 使用指定的ClassLoader编译java</li>
+<li>mc (Memory Compiler) -c 使用指定的ClassLoader编译java javac编译</li>
 <li>redefine 热更新代码</li>
-<li>watch 方法执行数据观测（实时调用）</li>
 <li>ognl 动态执行代码</li>
+<li>tt 可以记录下指定方法每次调用的入参和返回信息，并能对这些不同的时间下调用进行观测</li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">反编译 修改 编译 热更新</span><br><span class="line">jad --source-only com.example.demo.arthas.user.UserController &gt; /tmp/UserController.java</span><br><span class="line">vim /tmp/UserController.java</span><br><span class="line">mc /tmp/UserController.java -d /tmp </span><br><span class="line">redefine /tmp/com/example/demo/arthas/user/UserController.class</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">反编译 修改 编译 热更新</span><br><span class="line">jad --source-only com.example.demo.arthas.user.UserController &gt; /tmp/UserController.java</span><br><span class="line">vim /tmp/UserController.java</span><br><span class="line">sc com.example.demo.arthas.user.UserController -d </span><br><span class="line">mc /tmp/UserController.java -d /tmp -c [classLoaderHash]</span><br><span class="line">redefine /tmp/com/example/demo/arthas/user/UserController.class</span><br></pre></td></tr></table></figure>
+<p>实际上可以直接把本机的class redefine 线上的很可能编译不通过，不过要保证本机代码和线上的代码同步</p>
 <h3 id="暂存运行状态文件hpof"><a href="#暂存运行状态文件hpof" class="headerlink" title="暂存运行状态文件hpof"></a>暂存运行状态文件hpof</h3><p>类似jmap命令的heap dump功能。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">heapdump /tmp/dump.hprof</span><br></pre></td></tr></table></figure>
 <p>只dump live对象</p>
@@ -601,16 +638,21 @@ hashMap.put(&quot;abc&quot;,&quot;1&quot;);
 <p>调用请求: curl -w “@curl-time.txt” <a href="http://127.0.0.1:8080/hello" target="_blank" rel="noopener">http://127.0.0.1:8080/hello</a></p>
 <p>###常用</p>
 <p>thread -n 5<br>2）查看某个函数的调用堆栈 打印前五名最消耗CPU的线程，可以及时找到CPU过高的代码位置</p>
-<p>stack &lt;类全包名&gt; &lt;函数名&gt;<br>3）查看某个函数的哪个子调用最慢，耗时最久的调用会标红显示，可以方便找出某个功能中最耗时的操作</p>
-<p>trace &lt;类全包名&gt; &lt;函数名&gt;<br>4）监控某个函数的调用统计数据，包括总调用次数，平均运行时间，成功率等信息</p>
+<p>stack &lt;类全包名&gt; &lt;函数名&gt; 往来的地方查找 调用栈<br>3）查看某个函数的哪个子调用最慢，耗时最久的调用会标红显示，可以方便找出某个功能中最耗时的操作</p>
+<p>trace &lt;类全包名&gt; &lt;函数名&gt; 继续往下查找 追溯追踪<br>4）监控某个函数的调用统计数据，包括总调用次数，平均运行时间，成功率等信息</p>
 <p>monitor &lt;类全包名&gt; &lt;函数名&gt;</p>
 <h3 id="热更新代码"><a href="#热更新代码" class="headerlink" title="热更新代码"></a>热更新代码</h3><p><a href="https://mp.weixin.qq.com/s/um6XQVv1JvHM3n7NslzB0Q" target="_blank" rel="noopener">热更新</a></p>
 <h2 id="常用和spring有关的"><a href="#常用和spring有关的" class="headerlink" title="常用和spring有关的"></a>常用和spring有关的</h2><p>从spring-mvc入手</p>
 <h3 id="内部："><a href="#内部：" class="headerlink" title="内部："></a>内部：</h3><p>trace 方法内部调用路径，并输出方法路径上的每个节点上耗时 -j跳过jdkclass<br>Servlet Filter 转发 哪一个Controller</p>
-<p>trace javax.servlet.Servlet <em><br>trace javax.servlet.Filter </em><br>trace org.springframework.web.servlet.DispatcherServlet *</p>
+<p>trace javax.servlet.Servlet <em><br>trace javax.servlet.Filter </em><br>trace org.springframework.web.servlet.DispatcherServlet *<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line">[arthas@31978]$ trace  org.springframework.web.servlet.DispatcherServlet *</span><br><span class="line">Press Q or Ctrl+C to abort.</span><br><span class="line">Affect(class-cnt:1 , method-cnt:48) cost in 214 ms.</span><br><span class="line">`---ts=2020-05-07 11:28:07;thread_name=http-nio-18201-exec-5;id=40;is_daemon=true;priority=5;TCCL=org.springframework.boot.web.embedded.tomcat.TomcatEmbeddedWebappClassLoader@73a2e526</span><br><span class="line">    `---[196.804639ms] org.springframework.web.servlet.DispatcherServlet:doService()</span><br><span class="line">        +---[0.025295ms] org.springframework.web.servlet.DispatcherServlet:logRequest() #910</span><br><span class="line">        |   `---[0.013937ms] org.springframework.web.servlet.DispatcherServlet:logRequest()</span><br><span class="line">        |       `---[0.001864ms] org.springframework.core.log.LogFormatUtils:traceDebug() #955</span><br><span class="line">        +---[0.001121ms] org.springframework.web.util.WebUtils:isIncludeRequest() #915</span><br><span class="line">        +---[7.43E-4ms] org.springframework.web.servlet.DispatcherServlet:getWebApplicationContext() #927</span><br><span class="line">        +---[0.001808ms] javax.servlet.http.HttpServletRequest:setAttribute() #927</span><br><span class="line">        +---[5.21E-4ms] javax.servlet.http.HttpServletRequest:setAttribute() #928</span><br><span class="line">        +---[6.67E-4ms] javax.servlet.http.HttpServletRequest:setAttribute() #929</span><br><span class="line">        +---[0.017824ms] org.springframework.web.servlet.DispatcherServlet:getThemeSource() #930</span><br><span class="line">        |   `---[0.009355ms] org.springframework.web.servlet.DispatcherServlet:getThemeSource()</span><br><span class="line">        |       `---[min=3.26E-4ms,max=4.25E-4ms,total=7.51E-4ms,count=2] org.springframework.web.servlet.DispatcherServlet:getWebApplicationContext() #803</span><br><span class="line">        +---[8.34E-4ms] javax.servlet.http.HttpServletRequest:setAttribute() #930</span><br><span class="line">        +---[0.002303ms] org.springframework.web.servlet.FlashMapManager:retrieveAndUpdate() #933</span><br><span class="line">        +---[0.001279ms] org.springframework.web.servlet.FlashMap:&lt;init&gt;() #937</span><br><span class="line">        +---[5.06E-4ms] javax.servlet.http.HttpServletRequest:setAttribute() #937</span><br><span class="line">        +---[4.63E-4ms] javax.servlet.http.HttpServletRequest:setAttribute() #938</span><br><span class="line">        +---[196.6798ms] org.springframework.web.servlet.DispatcherServlet:doDispatch() #942 这里时间最长196ms doDispatch</span><br><span class="line">        |   `---[196.653121ms] org.springframework.web.servlet.DispatcherServlet:doDispatch()</span><br><span class="line">        |       +---[0.001231ms] org.springframework.web.context.request.async.WebAsyncUtils:getAsyncManager() #1004</span><br><span class="line">        |       +---[0.074447ms] org.springframework.web.servlet.DispatcherServlet:checkMultipart() #1011</span><br><span class="line">        |       |   `---[0.049658ms] org.springframework.web.servlet.DispatcherServlet:checkMultipart()</span><br><span class="line">        |       |       `---[0.03953ms] org.springframework.web.multipart.MultipartResolver:isMultipart() #1164</span><br><span class="line">        |       +---[0.095085ms] org.springframework.web.servlet.DispatcherServlet:getHandler() #1015</span><br><span class="line">        |       |   `---[0.081615ms] org.springframework.web.servlet.DispatcherServlet:getHandler()</span><br><span class="line">        |       |       `---[min=0.010315ms,max=0.056882ms,total=0.067197ms,count=2] org.springframework.web.servlet.HandlerMapping:getHandler() #1232</span><br><span class="line">        |       +---[7.93E-4ms] org.springframework.web.servlet.HandlerExecutionChain:getHandler() #1022</span><br><span class="line">        |       +---[0.02294ms] org.springframework.web.servlet.DispatcherServlet:getHandlerAdapter() #1022</span><br><span class="line">        |       |   `---[0.010588ms] org.springframework.web.servlet.DispatcherServlet:getHandlerAdapter()</span><br><span class="line">        |       |       `---[0.00129ms] org.springframework.web.servlet.HandlerAdapter:supports() #1268</span><br><span class="line">        |       +---[8.17E-4ms] javax.servlet.http.HttpServletRequest:getMethod() #1025</span><br><span class="line">        |       +---[6.104335ms] org.springframework.web.servlet.HandlerExecutionChain:applyPreHandle() #1034</span><br><span class="line">        |       +---[7.69E-4ms] org.springframework.web.servlet.HandlerExecutionChain:getHandler() #1039</span><br><span class="line">        |       +---[190.13169ms] org.springframework.web.servlet.HandlerAdapter:handle() #1039   最终落在handle中</span><br><span class="line">        |       +---[0.001149ms] org.springframework.web.context.request.async.WebAsyncManager:isConcurrentHandlingStarted() #1041</span><br><span class="line">        |       +---[0.087605ms] org.springframework.web.servlet.DispatcherServlet:applyDefaultViewName() #1045</span><br><span class="line">        |       |   `---[0.019858ms] org.springframework.web.servlet.DispatcherServlet:applyDefaultViewName()</span><br><span class="line">        |       +---[0.004415ms] org.springframework.web.servlet.HandlerExecutionChain:applyPostHandle() #1046</span><br><span class="line">        |       +---[0.075878ms] org.springframework.web.servlet.DispatcherServlet:processDispatchResult() #1056</span><br><span class="line">        |       |   `---[0.034479ms] org.springframework.web.servlet.DispatcherServlet:processDispatchResult()</span><br><span class="line">        |       |       +---[0.001589ms] org.apache.commons.logging.Log:isTraceEnabled() #1123</span><br><span class="line">        |       |       +---[0.002227ms] org.springframework.web.context.request.async.WebAsyncUtils:getAsyncManager() #1128</span><br><span class="line">        |       |       +---[4.4E-4ms] org.springframework.web.context.request.async.WebAsyncManager:isConcurrentHandlingStarted() #1128</span><br><span class="line">        |       |       `---[0.002093ms] org.springframework.web.servlet.HandlerExecutionChain:triggerAfterCompletion() #1134</span><br><span class="line">        |       `---[3.93E-4ms] org.springframework.web.context.request.async.WebAsyncManager:isConcurrentHandlingStarted() #1066</span><br><span class="line">        +---[7.31E-4ms] org.springframework.web.context.request.async.WebAsyncUtils:getAsyncManager() #945</span><br><span class="line">        `---[3.94E-4ms] org.springframework.web.context.request.async.WebAsyncManager:isConcurrentHandlingStarted() #945</span><br></pre></td></tr></table></figure></p>
 <p>watch org.springframework.web.servlet.DispatcherServlet getHandler returnObj<br>是哪一个controller调用</p>
-<p>外部：<br>stack org.springframework.web.servlet.DispatcherServlet *<br>stack 输出当前方法被调用的调用路径<br>很多时候我们都知道一个方法被执行，但这个方法被执行的路径非常多，或者你根本就不知道这个方法是从那里被执行了，此时你需要的是 stack 命令。</p>
-<h2 id="其它监控"><a href="#其它监控" class="headerlink" title="其它监控"></a>其它监控</h2><p>Druid连接池 数据库监控 参考 <a href="https://muxiaobai.github.io/2018/11/22/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9B%91%E6%8E%A7-Druid%E7%9B%91%E6%8E%A7%E9%85%8D%E7%BD%AE/">数据库监控-Druid监控配置</a><br>Javamelody 传统应用 参考 <a href="https://muxiaobai.github.io/2017/08/02/Javamelody-%E5%B7%A5%E5%85%B7/">Javamelody 工具</a><br>jre自带的工具 jconsole jvisualvm参考 <a href="https://muxiaobai.github.io/2018/11/22/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3JVM%E4%B9%8B%E8%BF%9C%E7%A8%8B%E7%9B%91%E6%8E%A7/">深入理解JVM之远程监控</a></p>
+<h3 id="外部："><a href="#外部：" class="headerlink" title="外部："></a>外部：</h3><p>stack org.springframework.web.servlet.DispatcherServlet *<br>stack 输出当前方法被调用的调用路径<br>很多时候我们都知道一个方法被执行，但这个方法被执行的路径非常多，或者你根本就不知道这个方法是从那里被执行了，此时你需要的是 stack 命令。</p>
+<h2 id="其它监控"><a href="#其它监控" class="headerlink" title="其它监控"></a>其它监控</h2><ul>
+<li>Druid连接池 数据库监控 参考 <a href="https://muxiaobai.github.io/2018/11/22/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9B%91%E6%8E%A7-Druid%E7%9B%91%E6%8E%A7%E9%85%8D%E7%BD%AE/">数据库监控-Druid监控配置</a></li>
+<li>Javamelody 传统应用 参考 <a href="https://muxiaobai.github.io/2017/08/02/Javamelody-%E5%B7%A5%E5%85%B7/">Javamelody 工具</a></li>
+<li>jre自带的工具 jconsole jvisualvm参考 <a href="https://muxiaobai.github.io/2018/11/22/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3JVM%E4%B9%8B%E8%BF%9C%E7%A8%8B%E7%9B%91%E6%8E%A7/">深入理解JVM之远程监控</a></li>
+</ul>
+<p><img src="/2019/08/16/java线上代码监控-工具-arthas/arthas.png" alt="参考"></p>
 ]]></content>
       
         <categories>
