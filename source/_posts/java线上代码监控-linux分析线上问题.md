@@ -158,7 +158,7 @@ S0 S1 Survivor E O Eden Old M MetaspaceSize CCS CompressedClassSpaceSize  YG you
 
 gc日志 配置Catalina.bat JAVA_OPTS
 
-` -Xloggc:./logs/gc.log -XX:+HeapDumpOnOutOfMemoryError -XX:+PrintGCDetails -XX:+PrintGCDateStamps -XX:+PrintTenuringDistribution -XX:+PrintHeapAtGC`
+`-Xloggc:./logs/gc.log -XX:+PrintGCDetails -XX:+PrintGCDateStamps -XX:+PrintGCApplicationStoppedTime -XX:+PrintTenuringDistribution -XX:+PrintHeapAtGC -XX:+UseGCLogFileRotation -XX:NumberOfGCLogFiles=32  -XX:GCLogFileSize=64m -XX:+HeapDumpOnOutOfMemoryError `
 
 - [步骤:线上问题定位，重启大法好！线上常见问题排查手册](https://mp.weixin.qq.com/s?__biz=MzIzOTU0NTQ0MA==&mid=2247495546&idx=1&sn=f435f56c3b92802ef649cd14bb60711b&chksm=e92ad275de5d5b63b9fc1e48463044ea1b234a4f28d0ad8d7964c42516f1cf7cae47c60162dc&scene=0&xtrack=1&exportkey=AeNCSm6QS4EwNcRCTNfXDUs%3D&pass_ticket=sHf4d8XsExleK1yRet7Gq5oJd6I%2FDOYRgopyFK8gH%2B81%2FhlGHzeiSrSlgR9oXDlk#rd)
 - [VM性能调优监控工具jps、jstack、jmap、jhat、jstat、hprof使用详解](https://blog.csdn.net/muyimo/article/details/52837323?utm_source=distribute.pc_relevant.none-task-blog-baidujs-8)
