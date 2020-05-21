@@ -366,13 +366,6 @@
     </url>
 
     <url>
-        <loc>https://muxiaobai.github.io/tags/devops/</loc>
-        <lastmod>2019-12-26T07:15:33.086Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
         <loc>https://muxiaobai.github.io/tags/Shell/</loc>
         <lastmod>2019-12-26T07:25:46.163Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -410,20 +403,6 @@
     <url>
         <loc>https://muxiaobai.github.io/tags/%E5%B7%A5%E5%85%B7/</loc>
         <lastmod>2020-05-06T01:23:38.487Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://muxiaobai.github.io/tags/tomcat/</loc>
-        <lastmod>2020-05-06T01:24:55.287Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://muxiaobai.github.io/tags/jvm/</loc>
-        <lastmod>2020-05-06T01:24:55.287Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
@@ -473,6 +452,27 @@
     <url>
         <loc>https://muxiaobai.github.io/tags/%E7%B3%BB%E7%BB%9F/</loc>
         <lastmod>2020-05-06T07:02:15.060Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://muxiaobai.github.io/tags/tomcat/</loc>
+        <lastmod>2020-05-19T09:20:46.641Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://muxiaobai.github.io/tags/jvm/</loc>
+        <lastmod>2020-05-19T09:20:46.641Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://muxiaobai.github.io/tags/devops/</loc>
+        <lastmod>2020-05-21T12:23:06.248Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
