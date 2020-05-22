@@ -123,11 +123,12 @@ PS Old Generation
 `./jmap -dump:live,format=b,file=dump.dump [pid]`
 
 可以用：`./jhat -port 9998 dump.dump`  `./jhat -J-Xmx512m -port 9998 dump.dump`
-jhat -port 7401 -J-Xmx4G dump.dump
+jhat -port 7401 -J -Xmx4G dump.dump
 
 或者dump文件修改为dump.hprof,可以加到jprofiler
 
 作用：主要分析内部当时的对象。
+
 ### jstat
 
 jstat（JVM统计监测工具）

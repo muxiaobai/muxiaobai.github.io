@@ -46,8 +46,51 @@ docker run -d \--name tomcat1 -p 3300:3306 \--net mysql-net \--ip 172.19.0.2 -v 
 docker ps -a
 docker ps 
 docker exec -it mmmysql /bin/bash
-docker logs -f --tail=100 mmmysql  最新的100行
+docker logs -f -t  --tail=100 mmmysql  最新的100行
 docker inspect mmmysql
+
+
+
+----------------------------------------------------------------------------
+
+#### 修改挂载目录
+
+docker添加挂载目录:先在docker容器里创建目录/import
+1.关闭docker:/etc/init.d/docker stop
+2.sudo su切换到root身份，cd /var/lib/docker/containers/容器id/，进入对应容器目录
+3.vi hostconfig.json，修改如下，将容器目录/import绑定到主机/data 目录:
+
+"Binds": ["/data:/import"],
+
+4.vi config.v2.json,修改如下，添加MountPoints:
+
+"MountPoints": {
+
+"/import": {
+            "Source": "/data",
+            "Destination": "/import",
+            "RW": true,
+            "Name": "",
+            "Driver": "",
+            "Type": "bind",
+            "Propagation": "rprivate",
+            "Spec": {
+                "Type": "bind",
+                "Source": "/data",
+                "Target": "/import"
+            },
+            "SkipMountpointCreation": false
+        }
+},  
+
+5.启动docker:/etc/init.d/docker start
+
+最后docker ecec -it 容器id /bin/bash进入ls -l /就可以看见import目录
+
+
+--------------------------------------------------------------
+
+
 
 -----------------------------------------
 docker-compose.yml docker 编排
