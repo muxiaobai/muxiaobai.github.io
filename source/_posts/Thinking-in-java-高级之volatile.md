@@ -22,6 +22,8 @@ description: "从volatile到内存屏障"
 hsdis-1.1.1-win32-amd64.zip放到${JAVA_HOME}\jdk1.8.0_171\jre\bin\server下,先`javac xxx.java` 编译成xxx.class
 `java -XX:+UnlockDiagnosticVMOptions -XX:+PrintAssembly  xxx.class >a.txt `
 生成汇编文件
+
+`java -XX:+UnlockDiagnosticVMOptions -XX:+PrintAssembly -version` 测试是否安装成功
 给jvm添加参数
 `-server -Xcomp -XX:+UnlockDiagnosticVMOptions -XX:+PrintAssembly -XX:CompileCommand=compileonly,*Test.getInstance`
 

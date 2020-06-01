@@ -14,14 +14,16 @@ description: 从synchronized到汇编,结合锁升级,探究背后的本质，
 ### 从DCL到锁升级
 Double Check Lock 单例[参考Singleton.java](https://github.com/muxiaobai/java-demo/blob/master/test-java-demo/src/main/java/io/github/muxiaobai/java/java/threadTest/Singleton.java)
 
+
 普通 偏向锁 轻量级锁 重量级锁
 
 升级过程
 
+
 ### 需要_markword信息 标记有哪一种锁
 ![java 对象大小](Thinking-in-java-高级之synchronized/锁偏向.png)
 
-### java汇编指令
+### java字节码指令
 ```
   private static sync classSync = new sync();
  public void doSth(){
@@ -83,6 +85,9 @@ sync锁对象，一个是锁class对象，一个是锁object对象。
 ```
 注意 monitorenter 和monitorexit  ，每一个sync关键字，对应 一个enter和两个exit，正常退出和异常退出。
 
+![exec](Thinking-in-java-高级之synchronized/execjava.png)
+`lock cmpxchg`
+
 方法上的锁调用方法的对象
 
 ```
@@ -111,5 +116,5 @@ public synchronized doSth1()V
 
 
 
-[Synchronized解析——如果你愿意一层一层剥开我的心](https://juejin.im/post/5d5374076fb9a06ac76da894#heading-18)
-[【转载】Java中的锁机制 synchronized & 偏向锁 & 轻量级锁 & 重量级锁 & 各自优缺点及场景 & AtomicReference](https://www.cnblogs.com/charlesblc/p/5994162.html)
+- [Synchronized解析——如果你愿意一层一层剥开我的心](https://juejin.im/post/5d5374076fb9a06ac76da894#heading-18)
+- [【转载】Java中的锁机制 synchronized & 偏向锁 & 轻量级锁 & 重量级锁 & 各自优缺点及场景 & AtomicReference](https://www.cnblogs.com/charlesblc/p/5994162.html)
