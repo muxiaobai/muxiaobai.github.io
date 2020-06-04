@@ -85,7 +85,9 @@ sync锁对象，一个是锁class对象，一个是锁object对象。
 ```
 注意 monitorenter 和monitorexit  ，每一个sync关键字，对应 一个enter和两个exit，正常退出和异常退出。
 
-![exec](Thinking-in-java-高级之synchronized/execjava.png)
+### JIT 
+即时编译JIT只在代码段执行足够次数才会进行优化，在执行过程中不断收集各种数据，作为优化的决策; 什么代码会被即时编译 JIT，？
+
 `lock cmpxchg`
 
 方法上的锁调用方法的对象
