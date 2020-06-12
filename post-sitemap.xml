@@ -7,8 +7,24 @@
     </url>
 
     <url>
+        <loc>https://muxiaobai.github.io/2016/08/03/Spring%E4%B8%AD%E7%9A%84Session%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/</loc>
+        <lastmod>2020-06-12T07:31:22.077Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://muxiaobai.github.io/2018/06/22/Spring%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB%E4%B9%8BIoc%E6%8E%A7%E5%88%B6%E5%8F%8D%E8%BD%AC/</loc>
+        <lastmod>2020-06-12T07:31:01.292Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
         <loc>https://muxiaobai.github.io/2020/05/07/Thinking-in-java-%E9%AB%98%E7%BA%A7%E4%B9%8Bsynchronized/</loc>
-        <lastmod>2020-06-06T02:51:34.907Z</lastmod>
+        <lastmod>2020-06-12T07:30:19.712Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
@@ -16,7 +32,7 @@
 
     <url>
         <loc>https://muxiaobai.github.io/2020/06/04/Thinking-in-java-%E9%AB%98%E7%BA%A7%E4%B9%8BJIT%E5%8D%B3%E6%97%B6%E7%BC%96%E8%AF%91/</loc>
-        <lastmod>2020-06-04T09:24:45.024Z</lastmod>
+        <lastmod>2020-06-12T07:29:53.201Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
@@ -455,14 +471,6 @@
     </url>
 
     <url>
-        <loc>https://muxiaobai.github.io/2018/06/22/Spring%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB%E4%B9%8BIoc%E6%8E%A7%E5%88%B6%E5%8F%8D%E8%BD%AC/</loc>
-        <lastmod>2018-06-25T03:08:03.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
         <loc>https://muxiaobai.github.io/2018/06/07/%E6%B5%8F%E8%A7%88%E5%99%A8%E7%9A%84%E8%AF%B7%E6%B1%82%E4%B8%8E%E5%93%8D%E5%BA%94%E8%BF%87%E7%A8%8B/</loc>
         <lastmod>2018-06-11T09:47:01.000Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -632,14 +640,6 @@
 
     <url>
         <loc>https://muxiaobai.github.io/2016/06/19/Linux-%E4%B8%8B%E5%AE%89%E8%A3%85SVN%E6%9C%8D%E5%8A%A1%E5%99%A8/</loc>
-        <lastmod>2016-08-31T12:24:36.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>https://muxiaobai.github.io/2016/08/03/Spring%E4%B8%AD%E7%9A%84Session%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/</loc>
         <lastmod>2016-08-31T12:24:36.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
