@@ -1,3 +1,5 @@
+https://muxiaobai.github.io/2020/06/04/Thinking-in-java-高级之JIT即时编译/
+https://muxiaobai.github.io/2020/05/26/https是如何保护我们的隐私/
 https://muxiaobai.github.io/2020/05/19/Thinking-in-java-高级之对象内存模型/
 https://muxiaobai.github.io/2020/05/07/Thinking-in-java-高级之synchronized/
 https://muxiaobai.github.io/2020/04/29/java线上代码监控-linux分析线上问题/

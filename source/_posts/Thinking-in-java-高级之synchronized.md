@@ -9,13 +9,14 @@ description: 从synchronized到汇编,结合锁升级,探究背后的本质，
 本文主要
 
 ### 先从内核态和用户态说起
-0x80 软中断 频繁切换会耗时
+0x80 软中断 频繁切换会耗时，切换到内核态，调用内核方法。
 
 ### 从DCL到锁升级
 Double Check Lock 单例[参考Singleton.java](https://github.com/muxiaobai/java-demo/blob/master/test-java-demo/src/main/java/io/github/muxiaobai/java/java/threadTest/Singleton.java)
 
 
 普通 偏向锁 轻量级锁 重量级锁
+
 
 升级过程
 

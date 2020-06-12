@@ -58,20 +58,6 @@
     </url>
 
     <url>
-        <loc>https://muxiaobai.github.io/tags/Session/</loc>
-        <lastmod>2016-08-31T12:24:36.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://muxiaobai.github.io/tags/Hibernate/</loc>
-        <lastmod>2016-08-31T12:24:36.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
         <loc>https://muxiaobai.github.io/tags/%E7%9B%AE%E5%BD%95/</loc>
         <lastmod>2016-08-31T12:24:36.000Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -193,13 +179,6 @@
     <url>
         <loc>https://muxiaobai.github.io/tags/%E8%BD%AF%E4%BB%B6/</loc>
         <lastmod>2018-06-08T03:54:02.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://muxiaobai.github.io/tags/Spring/</loc>
-        <lastmod>2018-06-28T03:44:11.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
@@ -380,13 +359,6 @@
     </url>
 
     <url>
-        <loc>https://muxiaobai.github.io/tags/2019/</loc>
-        <lastmod>2020-04-21T03:22:57.196Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
         <loc>https://muxiaobai.github.io/tags/%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/</loc>
         <lastmod>2020-05-03T02:38:16.577Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -457,13 +429,6 @@
     </url>
 
     <url>
-        <loc>https://muxiaobai.github.io/tags/tomcat/</loc>
-        <lastmod>2020-05-19T09:20:46.641Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
         <loc>https://muxiaobai.github.io/tags/jvm/</loc>
         <lastmod>2020-05-19T09:20:46.641Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -473,6 +438,48 @@
     <url>
         <loc>https://muxiaobai.github.io/tags/devops/</loc>
         <lastmod>2020-05-21T12:23:06.248Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://muxiaobai.github.io/tags/tomcat/</loc>
+        <lastmod>2020-06-01T06:11:00.128Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://muxiaobai.github.io/tags/2019/</loc>
+        <lastmod>2020-06-01T07:09:55.041Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://muxiaobai.github.io/tags/%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8/</loc>
+        <lastmod>2020-06-01T07:15:31.337Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://muxiaobai.github.io/tags/Spring/</loc>
+        <lastmod>2020-06-12T07:31:22.077Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://muxiaobai.github.io/tags/Session/</loc>
+        <lastmod>2020-06-12T07:31:22.077Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://muxiaobai.github.io/tags/Hibernate/</loc>
+        <lastmod>2020-06-12T07:31:22.077Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
