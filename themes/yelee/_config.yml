@@ -80,7 +80,7 @@ preload_comment: true
 ## false: load comment's section until u click/hover on the bar/icon
 
 gitment:
-  on: true
+  on: false
   gitment_GitHub_id: muxiaobai
   gitment_repo: muxiaobai.github.io
   gitment_client_id: 5e496d32f02cb04c1ccf
@@ -103,7 +103,6 @@ duoshuo:
   # 是否开启多说评论，http://duoshuo.com/create-site/
   # 使用上面网址登陆你的多说，然后创建站点，在 domain 中填入你设定的域名前半部分
   # http://<要填的部分>.duoshuo.com (domain只填上<>里的内容，不要填整个网址)
-
 youyan:
   on: false
   id: 2105584
@@ -111,6 +110,21 @@ youyan:
   # 是否开启友言评论，http://www.uyan.cc/index.php
   # id 中填写你的友言用户数字ID，注册后进入后台管理即可查看
   # 友言服务在 Web 环境下运行，普通本地环境无法查看，请部署后在线上测试。
+
+
+  #6、Valine https://valine.js.org
+# valine comment system. https://valine.js.org
+valine:
+  on: true # if you want use valine,please set this value is ture
+  appId: DKpXRrI8oJIhGWgCOaJEVpz0-gzGzoHsz # leancloud application app id
+  appKey: IJDYdpACN50cG079hzARidMX # leancloud application app key
+  notify: false # valine mail notify (true/false) https://github.com/xCss/Valine/wiki
+  verify: false # valine verify code (true/false)
+  pageSize: 10 # comment list page size
+  avatar: mm # gravatar style https://valine.js.org/#/avatar
+  lang: zh-cn # i18n: zh-cn/en
+  placeholder: Just go go # valine comment input placeholder(like: Please leave your footprints )
+  guest_info: nick,mail,link #valine comment header info
 
 
 # >>> Style Customisation 样式自定义 <<<

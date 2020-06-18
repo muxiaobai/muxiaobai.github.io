@@ -78,29 +78,9 @@
 
 <% if (!index && post.comments){ %>
     <!--评论-->
-    <% if (theme.gitment.on) { %>
-      <%- partial('comments/gitment', {
-          key: post.path,
-          title: post.title,
-          url: config.url+url_for(post.path),
-          }) %>
-    <% } else if (theme.duoshuo.on) { %>
-      <%- partial('comments/duoshuo', {
-          key: post.path,
-          title: post.title,
-          url: config.url+url_for(post.path),
-          }) %>
-    <% } else if (theme.youyan.on) { %>
-        <%- partial('comments/youyan') %>
-    <% } else if (theme.disqus.on) { %>
-        <%- partial('comments/disqus', {
-            shortname: theme.disqus.shortname
-          }) %>
-    <% } else if (config.disqus_shortname) { %>
-        <%- partial('comments/disqus', {
-            shortname: config.disqus_shortname
-          }) %>
-    <% } %>
+    <% if (theme.valine.on) { %>
+      <%- partial('comments/valine', {}) %>
+  <% } %>
 <% } %>
 
 <%- partial('_partial/post-nav-button') %>

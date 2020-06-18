@@ -1,0 +1,68 @@
+<% if(theme.valine.on && theme.valine.appId && theme.valine.appKey){ %>
+    <section class="gitment">
+    <div class="valine-container" style="background: white;">
+        <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+        <div class="valine" id="comments"></div>
+    <!-- <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script> -->
+  <script>
+      var GUEST_INFO = ['nick','mail','link'];
+      var guest_info = '<%= theme.valine.guest_info %>'.split(',').filter(function(item){
+          return GUEST_INFO.indexOf(item) > -1
+      });
+      var notify = '<%= theme.valine.notify %>' == true;
+      var verify = '<%= theme.valine.verify %>' == true;
+      var localeName = 'ja',
+      localeMode = {
+          head:{
+              nick:'ニックネーム',
+              mail:'メールアドレス',
+              link:'サイト(http://)',
+          },
+          tips:{
+              comments:'コメント',
+              sofa:'コメントはありません・',
+              busy:'混雑中です、お待ちください……',
+              again:'申し訳ありません、エラーが発生しました。',
+              limit:'コメントは最大%d文字までです。'
+          },
+          ctrl:{
+              reply:'返信',
+              ok:'OK',
+              sure:'確認',
+              cancel:'キャンセル',
+              confirm:'確認',
+              continue:'続ける',
+              more:'もっと読む……',
+              try:'再試行',
+          },
+          error:{
+              99:'初期化に失敗しました。initメソッドの`el`要素を確認してください。',
+              100:'初期化に失敗しました。appIdとappKeyを確認してください。',
+              401:'操作が許可されていません。appIdとappKeyを確認してください。',
+              403:'アクセスが拒否されました。セキュリティドメインを確認してください。',
+          },
+          timeago:{
+              seconds:'秒前',
+              minutes:'分前',
+              hours:'時間前',
+              days:'日前',
+              now:'いま'
+          }
+      };
+      var valine = new Valine();
+    //   valine.installLocale(localeName,localeMode)
+      valine.init({
+          el: '#comments',
+          notify: notify,
+          verify: verify,
+          appId: "<%= theme.valine.appId %>",
+          appKey: "<%= theme.valine.appKey %>",
+          placeholder: "<%= theme.valine.placeholder %>",
+          pageSize:'<%= theme.valine.pageSize %>',
+          avatar:'<%= theme.valine.avatar %>',
+          lang:'<%= theme.valine.lang %>'
+      });
+  </script>
+  </div> 
+</section>
+  <% } %>
