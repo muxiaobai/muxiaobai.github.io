@@ -485,7 +485,7 @@
 <!-- 添加捐赠图标 -->
 <div class="post-donate">
     <div id="donate_board" class="donate_bar center">
-        <a id="btn_donate" class="btn_donate" href="javascript:;" title="打赏"></a>
+        <a id="btn_donate" class="btn_donate" href="javascript:void(0);" title="打赏"></a>
         <span class="donate_txt">
            &uarr;<br>
 		   坚持原创技术分享，您的支持将鼓励我继续创作！
@@ -592,25 +592,73 @@
 
 
     <!--评论-->
+   
     
-      <section class="gitment" id="comments">
-    <div id="gitment" class="article article-type-post"></div>
-    <link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
-    <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
-    <script>
-    var gitment = new Gitment({
-      id: '2018年个人总结',
-      owner: 'muxiaobai',
-      repo: 'muxiaobai.github.io',
-      oauth: {
-        client_id: '5e496d32f02cb04c1ccf',
-        client_secret: 'a98d21d1cc8b690a45fc996c62572247fdc5d7f3',
-      },
-    })
-    gitment.render('gitment')
-    </script>
-</section>
-    
+      
+    <section class id="vcomment"></section>
+    <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+    <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  <script>
+      var GUEST_INFO = ['nick','mail','link'];
+      var guest_info = 'nick,mail,link'.split(',').filter(function(item){
+          return GUEST_INFO.indexOf(item) > -1
+      });
+      var notify = 'false' == true;
+      var verify = 'false' == true;
+      var localeName = 'ja',
+      localeMode = {
+          head:{
+              nick:'ニックネーム',
+              mail:'メールアドレス',
+              link:'サイト(http://)',
+          },
+          tips:{
+              comments:'コメント',
+              sofa:'コメントはありません・',
+              busy:'混雑中です、お待ちください……',
+              again:'申し訳ありません、エラーが発生しました。',
+              limit:'コメントは最大%d文字までです。'
+          },
+          ctrl:{
+              reply:'返信',
+              ok:'OK',
+              sure:'確認',
+              cancel:'キャンセル',
+              confirm:'確認',
+              continue:'続ける',
+              more:'もっと読む……',
+              try:'再試行',
+          },
+          error:{
+              99:'初期化に失敗しました。initメソッドの`el`要素を確認してください。',
+              100:'初期化に失敗しました。appIdとappKeyを確認してください。',
+              401:'操作が許可されていません。appIdとappKeyを確認してください。',
+              403:'アクセスが拒否されました。セキュリティドメインを確認してください。',
+          },
+          timeago:{
+              seconds:'秒前',
+              minutes:'分前',
+              hours:'時間前',
+              days:'日前',
+              now:'いま'
+          }
+      };
+      var valine = new Valine();
+      valine.installLocale(localeName,localeMode)
+      valine.init({
+          el: '.vcomment',
+          notify: notify,
+          verify: verify,
+          appId: "DKpXRrI8oJIhGWgCOaJEVpz0-gzGzoHsz",
+          appKey: "IJDYdpACN50cG079hzARidMX",
+          placeholder: "Just go go",
+          pageSize:'10',
+          avatar:'mm',
+          lang:'zh-cn'
+      });
+  </script>
+  
+  
 
 
 
