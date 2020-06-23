@@ -2,7 +2,7 @@
 title: mongodb主从架构设计
 date: 2019-01-11 02:49:11
 tags: [mongo,设计]
-categories: [数据库]
+categories: [集群]
 description: "设计mongo的主从架构"
 ---
 

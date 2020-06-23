@@ -15,9 +15,6 @@ jps 找到对应的进程ID
 
 `jps -m -l `
 
-`ll /proc/[pid]/ | grep exe`
-
-可以查到时哪一个后台进程在执行
 
 ```
 -q 不输出类名、Jar名和传入main方法的参数
@@ -25,6 +22,9 @@ jps 找到对应的进程ID
 -l 输出main类或Jar的全限名
 -v 输出传入JVM的参数
 ```
+`ll /proc/[pid]/ | grep exe`
+
+可以查到时哪一个后台进程在执行
 
 ## 未重启的话，分析现在的时候:
 

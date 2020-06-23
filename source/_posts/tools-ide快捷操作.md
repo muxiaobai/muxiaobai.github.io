@@ -70,7 +70,19 @@ E627DDBA 960A2153 69A2D98A C87C0607
 
 Editor-----> General-----> Change font size(Zoom) with Ctrl+Mouse Wheel
 
+#### 跳转
 
+ctrl + B   使用了本方法或者类的地方
+ctrl + E  最近光标出现的地方
+ctrl + shift + E 最近修改的地方
+
+shift + shift 查询所有的地方  再次双击，勾选，也能查询jar包内的搜索
+ctrl + shift + A action查询 
+
+ctrl + 
+
+Alt + 1 跳转到项目目录
+ESC 回到编辑窗口
 
 #### 自动导包
 
