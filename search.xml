@@ -4,6 +4,65 @@
   
     
     <entry>
+      <title><![CDATA[Elasticsearch集群化部署方案]]></title>
+      <url>https://muxiaobai.github.io/2020/06/23/%E9%9B%86%E7%BE%A4%E4%B9%8BElasticsearch%E9%83%A8%E7%BD%B2%E6%96%B9%E6%A1%88/</url>
+      <content type="html"><![CDATA[<p>应用服务IP为:192.168.1.2,ES_HOME为安装目录</p>
+<h3 id="1-修改elasticsearch-yml配置："><a href="#1-修改elasticsearch-yml配置：" class="headerlink" title="1.修改elasticsearch.yml配置："></a>1.修改elasticsearch.yml配置：</h3><p>修改ES_HOME/config.elasticsearch.yml<br>network.host: 192.168.1.2 # 对外暴露的IP，本机IP<br>http.port: 9200 #设置对外服务的http端口号<br>transport.tcp.port: 9300 #设置节点之间交互的端口号<br>discovery.zen.ping.unicast.hosts: [“192.168.1.2:9300”,”192.168.1.2:9301”,”192.168.1.2:9302”]</p>
+<p>#集群IP其它可以是主节点的IP加transport.tcp.port端口</p>
+<p>修改ES_HOME/config/analysis-hanlp/hanlp.properties<br>root 为ES_HOME绝对路径</p>
+<p>修改ES_HOME/config/analysis-hanlp/hanlp-remote.xml<br>remote_ext_dict和remote_ext_stopwords</p>
+<entry key="remote_ext_dict"><a href="http://192.168.1.2:8080/dict" target="_blank" rel="noopener">http://192.168.1.2:8080/dict</a></entry><br><entry key="remote_ext_stopwords"><a href="http://192.168.1.2:8080/stop_words" target="_blank" rel="noopener">http://192.168.1.2:8080/stop_words</a></entry>
+
+<p>可以添加hanlp插件或者ik插件 并配置远程更新词库</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">@Logs(&quot;分词热更新到分词器中接口&quot;)</span><br><span class="line">@RequestMapping(&quot;/dict&quot;)</span><br><span class="line">public ResponseEntity dict(WebRequest request, HttpServletResponse response) &#123;</span><br><span class="line">    // 1. 应用相关的方式计算得到(application-specific calculation)</span><br><span class="line">    Date date = new Date();</span><br><span class="line">    if (request.checkNotModified(date)) &#123;</span><br><span class="line">        return null;</span><br><span class="line">    &#125;</span><br><span class="line">    List&lt;String&gt; list= new ArrayList();</span><br><span class="line">    return ResponseEntity.ok().lastModified(date).body(String.join(&quot;\n&quot;,list));</span><br><span class="line">&#125;</span><br><span class="line">@Logs(&quot;停顿词热更新到分词器中接口&quot;)</span><br><span class="line">@RequestMapping(&quot;/stop_words&quot;)</span><br><span class="line">public ResponseEntity stopWords(WebRequest request, HttpServletResponse response) &#123;</span><br><span class="line">    // 1. 应用相关的方式计算得到(application-specific calculation)</span><br><span class="line">    Date date = new Date();</span><br><span class="line">    if (request.checkNotModified(date)) &#123;</span><br><span class="line">        return null;</span><br><span class="line">    &#125;</span><br><span class="line">    List&lt;String&gt; list= new ArrayList();</span><br><span class="line">    return ResponseEntity.ok().lastModified(date).body(String.join(&quot;\n&quot;,list));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="2-修改下面三个配置"><a href="#2-修改下面三个配置" class="headerlink" title="2.    修改下面三个配置"></a>2.    修改下面三个配置</h3><h4 id="vim-etc-security-limits-conf"><a href="#vim-etc-security-limits-conf" class="headerlink" title="vim /etc/security/limits.conf"></a>vim /etc/security/limits.conf</h4><p>错误1：max file descriptors [65535] for elasticsearch process is too low, increase to at least [65536]<br>这个问题是无法创建本地文件,用户最大可创建文件数太小<br>解决：只需要修改创建文件的最大数目为65536就行了<br>root用户修改<br>vim /etc/security/limits.conf</p>
+<pre><code>root soft nofile 65536
+root hard nofile 65536
+* soft nofile 65536
+* hard nofile 65536
+</code></pre><p>保存、退出、重新登录才可生效</p>
+<p>参数解释：</p>
+<ul>
+<li>soft nproc:可打开的文件描述符的最大数(软限制)</li>
+<li>hard nproc:可打开的文件描述符的最大数(硬限制)</li>
+<li>soft nofile:单个用户可用的最大进程数量(软限制)</li>
+<li>hard nofile:单个用户可用的最大进程数量(硬限制)<h4 id="vim-etc-sysctl-conf"><a href="#vim-etc-sysctl-conf" class="headerlink" title="vim /etc/sysctl.conf"></a>vim /etc/sysctl.conf</h4></li>
+</ul>
+<p>错误2：max virtual memory areas vm.max_map_count [65530] is too low, increase to at least [262144]<br>虚拟内存太小<br>切换到root用户修改</p>
+<p>vim /etc/sysctl.conf</p>
+<p>vm.max_map_count=262144<br>执行命令：</p>
+<p> sysctl -p</p>
+<h4 id="vim-ES-HOME-config-jvm-options"><a href="#vim-ES-HOME-config-jvm-options" class="headerlink" title="vim ES_HOME/config/jvm.options"></a>vim ES_HOME/config/jvm.options</h4><p>错误3：Java HotSpot(TM) 64-Bit Server VM warning: INFO: os::commit_memory(0x0000000085330000, 2060255232, 0) failed; error=’Cannot allocate memory’ (errno=12)<br>jvm需要分配的内存太大<br>vim ES_HOME/config/jvm.options</p>
+<p>设置 –Xmx2g和-Xms2g</p>
+<p>推荐单机版16g<br>单机不得超过32G，否则会引发指针膨胀，虽然堆内存变大了，但是所能指向的实际对象会减少。</p>
+<h3 id="3-不能使用root启动，必须创建用户"><a href="#3-不能使用root启动，必须创建用户" class="headerlink" title="3.    不能使用root启动，必须创建用户"></a>3.    不能使用root启动，必须创建用户</h3><p>添加用户：useradd -m 用户名  然后设置密码  passwd 用户名<br>useradd -m admin<br>passwd admin<br>修改文件夹权限<br>chown -R  admin elasticsearch</p>
+<p>启动可能出现的错误</p>
+<h3 id="4-启动"><a href="#4-启动" class="headerlink" title="4.    启动"></a>4.    启动</h3><p>ES_HOME/bin/elasticsearch -d</p>
+<h3 id="5-无法形成集群"><a href="#5-无法形成集群" class="headerlink" title="5.    无法形成集群"></a>5.    无法形成集群</h3><p>删除elsticsearch文件夹下的data文件夹下的节点数据<br>调整 discovery.zen.minimum_master_nodes: 2 （N  master节点/2）+1</p>
+<h3 id="6-设置密码X-pack"><a href="#6-设置密码X-pack" class="headerlink" title="6.    设置密码X-pack"></a>6.    设置密码X-pack</h3><p>1、    安全配置<br>默认情况下，拥有安全免费许可证时，Elasticsearch安全功能被禁用。 要启用安全功能，需要设置xpack.security.enabled。<br>在每个节点(包括node-1、node-2、node-3)的elasticsearch.yml配置文件中，新增：<br>xpack.security.enabled: true<br>2、    为节点间通信配置传输层安全性(TLS/SSL)<br>借助elasticsearch-certutil命令生成证书<br>cd ES_HOME/bin/<br>./elasticsearch-certutil ca -out /etc/elasticsearch/elastic-certificates.p12 -pass “”</p>
+<p>Root用户<br>chown -R elasticsearch:elasticsearch   /etc/elasticsearch/elastic-certificates.p12<br>将证书拷贝到其他节点，放入 /etc/elasticsearch 目录下<br>cd /etc/elasticsearch/<br>scp elastic-certificates.p12  172.168.201.77:/etc/elasticsearch/<br>scp elastic-certificates.p12  172.168.201.78:/etc/elasticsearch/<br>3、    配置加密通信<br>启用安全功能后，必须使用TLS来确保节点之间的通信已加密。<br>在elasticsearch.yml中心新增配置如下：(其他节点相同配置)<br>xpack.security.transport.ssl.enabled: true<br>xpack.security.transport.ssl.verification_mode: certificate<br>xpack.security.transport.ssl.keystore.path: elastic-certificates.p12<br>xpack.security.transport.ssl.truststore.path: elastic-certificates.p12<br>重启elasticsearch服务<br>4、    设置集群密码<br>因为你上面已经做了SSL通信，所以只需要在第一台es(master)上设置用户名和密码就可以了，其他的2台es就会是相同的用户名密码<br>[elastic@es-node1 bin]$ cd /usr/share/elasticsearch/bin<br>[elastic@es-node1 bin]$ ./elasticsearch-setup-passwords -h  #查看命令帮助<br>Sets the passwords for reserved users</p>
+<h2 id="Commands"><a href="#Commands" class="headerlink" title="Commands"></a>Commands</h2><p>auto - Uses randomly generated passwords          #主要命令选项，表示系统将使用随机字符串设置密码<br>interactive - Uses passwords entered by a user    #主要命令选项，表示使用用户输入的字符串作为密码</p>
+<p>Non-option arguments:<br>command            </p>
+<p>Option         Description      </p>
+<hr>
+<p>-h, –help     show help<br>-s, –silent   show minimal output<br>-v, –verbose  show verbose output<br>[elastic@es-node1 bin]$ ./elasticsearch-setup-passwords auto  #为了演示效果，这里我们使用系统自动创建<br>Initiating the setup of passwords for reserved users elastic,kibana,logstash_system,beats_system.<br>The passwords will be randomly generated and printed to the console.<br>Please confirm that you would like to continue [y/N]y     #选择y<br>Changed password for user kibana                   #kibana角色和密码<br>PASSWORD kibana = 4VXPRYIVibyAbjugK6Ok<br>Changed password for user logstash_system          #logstash角色和密码<br>PASSWORD logstash_system = 2m4uVdSzDzpt9OEmNin5<br>Changed password for user beats_system             #beast角色和密码<br>PASSWORD beats_system = O8VOzAaD3fO6bstCGDyQ<br>Changed password for user elastic                  #elasticsearch角色和密码<br>PASSWORD elastic = 1TWVMeN8tiBy917thUxq<br>核心：<br>auto - 随机生成密码。<br>interactive - 自定义不同用户的密码。<br>附：elasticsearch-setup-passwords此脚本只能运行一次，如要修改密码可以在kibana 中设置密码</p>
+<p>验证是否正常<br><a href="http://192.168.1.2:9200" target="_blank" rel="noopener">http://192.168.1.2:9200</a></p>
+<p>输入上一步生成的elastic和密码</p>
+<p><a href="http://192.168.1.2:9200/_cluster/health" target="_blank" rel="noopener">http://192.168.1.2:9200/_cluster/health</a></p>
+<p><a href="http://192.168.160.23:9100/?auth_user=elastic&amp;auth_password=123123" target="_blank" rel="noopener">http://192.168.160.23:9100/?auth_user=elastic&amp;auth_password=123123</a><br>curl -u elastic ‘<a href="http://192.168.1.2:9200/_xpack/security/_authenticate?pretty’" target="_blank" rel="noopener">http://192.168.1.2:9200/_xpack/security/_authenticate?pretty’</a> </p>
+<h3 id="7-重置密码-非必须，如忘记密码"><a href="#7-重置密码-非必须，如忘记密码" class="headerlink" title="7.    重置密码(非必须，如忘记密码)"></a>7.    重置密码(非必须，如忘记密码)</h3><p>创建本地超级账户，然后使用api接口本地超级账户重置elastic账户的密码<br>(1) 停止elasticsearch服务<br>(2) 确保你的配置文件中支持本地账户认证支持，如果你使用的是xpack的默认配置则无需做特殊修改；如果你配置了其他认证方式则需要确保配置本地认证方式在ES_HOME/config/elasticsearch.yml中；<br>(3) 使用命令ES_HOME/bin/ elasticsearch-users 建一个基于本地问价认证的超级管理员<br>bin/elasticsearch-users useradd my_admin -p my_password -r superuser<br>(4) 启动elasticsearch服务<br>(5) 通过api重置elastic超级管理员的密码<br>curl -H “Content-Type:application/json” -XPOST -u my_admin ‘<a href="http://192.168.1.2:9200/_xpack/security/user/elastic/_password&#39;" target="_blank" rel="noopener">http://192.168.1.2:9200/_xpack/security/user/elastic/_password&#39;</a> -d ‘{ “password” : “123123” }’<br>(6) 校验下密码是否重置成功<br>curl -u elastic ‘<a href="http://192.168.1.2:9200/_xpack/security/_authenticate?pretty&#39;" target="_blank" rel="noopener">http://192.168.1.2:9200/_xpack/security/_authenticate?pretty&#39;</a><br>(7)删除my_admin账号<br>bin/elasticsearch-users userdel my_admin</p>
+<h2 id="附：默认集群配置："><a href="#附：默认集群配置：" class="headerlink" title="附：默认集群配置："></a>附：默认集群配置：</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">http.cors.enabled: true  #跨域连接相关设置</span><br><span class="line">http.cors.allow-origin: &quot;*&quot;  #跨域连接相关设置  </span><br><span class="line">http.cors.allow-headers: Authorization,content-type</span><br><span class="line"></span><br><span class="line">cluster.name: elasticsearch #集群的名称，同一个集群该值必须设置成相同的</span><br><span class="line">node.name: master #该节点的名字</span><br><span class="line">node.master: true #该节点有机会成为master节点</span><br><span class="line">node.data: true #该节点可以存储数据</span><br><span class="line"></span><br><span class="line">#network.bind_host: 0.0.0.0 #设置绑定的IP地址，可以是IPV4或者IPV6</span><br><span class="line">#network.publish_host: 192.168.1.2 #设置其他节点与该节点交互的IP地址</span><br><span class="line">network.host: 192.168.1.2 #该参数用于同时设置bind_host和publish_host</span><br><span class="line"></span><br><span class="line">http.port: 9200 #设置对外服务的http端口号</span><br><span class="line">http.max_content_length: 100mb #设置http内容的最大大小</span><br><span class="line">http.enabled: true #是否开启http服务对外提供服务</span><br><span class="line">transport.tcp.port: 9300 #设置节点之间交互的端口号</span><br><span class="line">transport.tcp.compress: true #设置是否压缩tcp上交互传输的数据</span><br><span class="line"></span><br><span class="line">cluster.initial_master_nodes: [&quot;master&quot;]</span><br><span class="line">discovery.zen.minimum_master_nodes: 2 #设置这个参数来保证集群中的节点可以知道其它N个有master资格的节点。官方推荐（N/2）+1</span><br><span class="line">discovery.zen.ping_timeout: 120s #设置集群中自动发现其他节点时ping连接的超时时间</span><br><span class="line">discovery.zen.ping.unicast.hosts: [&quot;192.168.1.2:9300&quot;,&quot;192.168.1.2:9500&quot;,&quot;192.168.1.2:9700&quot;] #设置集群中的Master节点的初始列表，可以通过这些节点来自动发现其他新加入集群的节点</span><br><span class="line">#discovery.zen.ping.unicast.hosts 使用network.host. transport.tcp.port</span><br><span class="line"></span><br><span class="line">#开启x-pack安全验证</span><br><span class="line">xpack.security.enabled: true</span><br><span class="line">xpack.license.self_generated.type: basic</span><br><span class="line">##如果是basic license的话需要加入下面这一行，不然的话restart elasticsearch之后会报错。</span><br><span class="line">xpack.security.transport.ssl.enabled: true</span><br><span class="line">xpack.security.transport.ssl.verification_mode: certificate</span><br><span class="line">xpack.security.transport.ssl.keystore.path: elastic-certificates.p12</span><br><span class="line">xpack.security.transport.ssl.truststore.path: elastic-certificates.p12</span><br></pre></td></tr></table></figure>]]></content>
+      
+        <categories>
+            
+            <category> 集群 </category>
+            
+        </categories>
+        
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[Thinking in java 高级之JIT即时编译]]></title>
       <url>https://muxiaobai.github.io/2020/06/04/Thinking-in-java-%E9%AB%98%E7%BA%A7%E4%B9%8BJIT%E5%8D%B3%E6%97%B6%E7%BC%96%E8%AF%91/</url>
       <content type="html"><![CDATA[<p>以synchronized为例：<br><img src="/2020/06/04/Thinking-in-java-高级之JIT即时编译/execjava.png" alt="exec"></p>
@@ -191,9 +250,9 @@
       <content type="html"><![CDATA[<p>jps(Java Virtual Machine Process Status Tool)<br>jstack(查看线程)、jmap(查看内存)和jstat(性能分析)</p>
 <h3 id="jps"><a href="#jps" class="headerlink" title="jps"></a>jps</h3><p>jps 找到对应的进程ID</p>
 <p><code>jps -m -l</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">-q 不输出类名、Jar名和传入main方法的参数</span><br><span class="line">-m 输出传入main方法的参数</span><br><span class="line">-l 输出main类或Jar的全限名</span><br><span class="line">-v 输出传入JVM的参数</span><br></pre></td></tr></table></figure>
 <p><code>ll /proc/[pid]/ | grep exe</code></p>
 <p>可以查到时哪一个后台进程在执行</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">-q 不输出类名、Jar名和传入main方法的参数</span><br><span class="line">-m 输出传入main方法的参数</span><br><span class="line">-l 输出main类或Jar的全限名</span><br><span class="line">-v 输出传入JVM的参数</span><br></pre></td></tr></table></figure>
 <h2 id="未重启的话，分析现在的时候"><a href="#未重启的话，分析现在的时候" class="headerlink" title="未重启的话，分析现在的时候:"></a>未重启的话，分析现在的时候:</h2><h3 id="jstack-线程问题"><a href="#jstack-线程问题" class="headerlink" title="jstack 线程问题"></a>jstack 线程问题</h3><p>ps -mp [pid] -o THREAD,tid,time |sort -rn 打印CPU最高的线程<br>top -Hp [pid] </p>
 <p>printf “%x\n” 22338 把线程ID转换成16进制<br>5742</p>
 <p>jstack [pid] | grep 5742 -A 30 打印堆栈信息</p>
@@ -838,7 +897,7 @@ hashMap.put(&quot;abc&quot;,&quot;1&quot;);
     
     <entry>
       <title><![CDATA[git的一些其它操作]]></title>
-      <url>https://muxiaobai.github.io/2019/07/29/git%E7%9A%84%E4%B8%80%E4%BA%9B%E5%85%B6%E5%AE%83%E6%93%8D%E4%BD%9C/</url>
+      <url>https://muxiaobai.github.io/2019/07/29/%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E4%B9%8Bgit%E7%9A%84%E4%B8%80%E4%BA%9B%E6%93%8D%E4%BD%9C/</url>
       <content type="html"><![CDATA[<h4 id="git-拉取代码失败"><a href="#git-拉取代码失败" class="headerlink" title="git 拉取代码失败"></a>git 拉取代码失败</h4><p>解决方法很简单，在git clone时加上–depth=1即可解决</p>
 <blockquote>
 <p>depth用于指定克隆深度，为1即表示只克隆最近一次commit.</p>
@@ -914,6 +973,10 @@ hashMap.put(&quot;abc&quot;,&quot;1&quot;);
 <p>ZYNGA INC.<br>50 User License<br>EA7E-811825<br>927BA117 84C9300F 4A0CCBC4 34A56B44<br>985E4562 59F2B63B CCCFF92F 0E646B83<br>0FD6487D 1507AE29 9CC4F9F5 0A6F32E3<br>0343D868 C18E2CD5 27641A71 25475648<br>309705B3 E468DDC4 1B766A18 7952D28C<br>E627DDBA 960A2153 69A2D98A C87C0607<br>45DC6049 8C04EC29 D18DFA40 442C680B<br>1342224D 44D90641 33A3B9F2 46AADB8F</p>
 <h2 id="IDEA"><a href="#IDEA" class="headerlink" title="IDEA"></a>IDEA</h2><p>###默认配置</p>
 <h4 id="滚轮字体大小"><a href="#滚轮字体大小" class="headerlink" title="滚轮字体大小"></a>滚轮字体大小</h4><p>Editor—–&gt; General—–&gt; Change font size(Zoom) with Ctrl+Mouse Wheel</p>
+<h4 id="跳转"><a href="#跳转" class="headerlink" title="跳转"></a>跳转</h4><p>ctrl + B   使用了本方法或者类的地方<br>ctrl + E  最近光标出现的地方<br>ctrl + shift + E 最近修改的地方</p>
+<p>shift + shift 查询所有的地方  再次双击，勾选，也能查询jar包内的搜索<br>ctrl + shift + A action查询 </p>
+<p>ctrl + </p>
+<p>Alt + 1 跳转到项目目录<br>ESC 回到编辑窗口</p>
 <h4 id="自动导包"><a href="#自动导包" class="headerlink" title="自动导包"></a>自动导包</h4><p><img src="/2019/06/27/tools-ide快捷操作/AutoImport.png" alt="自动导包"></p>
 <p>勾选标注第1个选项，IntelliJ IDEA 将在我们书写代码的时候自动帮我们导入需要用到的包。但是对于那些同名的包，还是需要手动 Alt + Enter 进行导入的</p>
 <p>勾选标注 第2个选项，IntelliJ IDEA 将在我们书写代码的时候自动帮我们优化导入的包，比如自动去掉一些没有用到的包。</p>
@@ -1351,7 +1414,7 @@ hashMap.put(&quot;abc&quot;,&quot;1&quot;);
     
     <entry>
       <title><![CDATA[mongodb常用命令]]></title>
-      <url>https://muxiaobai.github.io/2019/01/11/mongodb%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/</url>
+      <url>https://muxiaobai.github.io/2019/01/11/%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E4%B9%8Bmongodb/</url>
       <content type="html"><![CDATA[<p>常用的mongo语句，汇总，以便之后查阅。<br><a id="more"></a></p>
 <h2 id="全局、数据库级别"><a href="#全局、数据库级别" class="headerlink" title="全局、数据库级别"></a>全局、数据库级别</h2><p>默认根目录：/db/mongodb-3.4.7/</p>
 <h3 id="导入导出"><a href="#导入导出" class="headerlink" title="导入导出"></a>导入导出</h3><p>–导入<br>/db/mongodb-3.4.7/bin/mongorestore –host=127.0.0.1 -u test_user -p test_pwd –port 27017 –db jy_db /db/mongo_bak/test_db</p>
@@ -1385,9 +1448,9 @@ hashMap.put(&quot;abc&quot;,&quot;1&quot;);
         
         <tags>
             
-            <tag> 常用命令 </tag>
-            
             <tag> mongo </tag>
+            
+            <tag> 常用命令 </tag>
             
         </tags>
         
@@ -1395,7 +1458,7 @@ hashMap.put(&quot;abc&quot;,&quot;1&quot;);
     
     <entry>
       <title><![CDATA[mongodb主从架构设计]]></title>
-      <url>https://muxiaobai.github.io/2019/01/11/mongodb%E4%B8%BB%E4%BB%8E%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/</url>
+      <url>https://muxiaobai.github.io/2019/01/11/%E9%9B%86%E7%BE%A4%E4%B9%8Bmongodb%E4%B8%BB%E4%BB%8E%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/</url>
       <content type="html"><![CDATA[<p>基本的MongoDB主从搭建语句，汇总，以便之后查阅。<br><a id="more"></a></p>
 <p>带参数启动MongoDB：<code>./mongod -f mongo-master.conf</code></p>
 <p>基本单机配置文件</p>
@@ -1419,7 +1482,7 @@ hashMap.put(&quot;abc&quot;,&quot;1&quot;);
       
         <categories>
             
-            <category> 数据库 </category>
+            <category> 集群 </category>
             
         </categories>
         

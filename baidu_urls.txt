@@ -1,3 +1,4 @@
+https://muxiaobai.github.io/2020/06/23/集群之Elasticsearch部署方案/
 https://muxiaobai.github.io/2020/06/04/Thinking-in-java-高级之JIT即时编译/
 https://muxiaobai.github.io/2020/05/26/https是如何保护我们的隐私/
 https://muxiaobai.github.io/2020/05/19/Thinking-in-java-高级之对象内存模型/
@@ -15,15 +16,15 @@ https://muxiaobai.github.io/2019/09/29/java-常用代码2-future等/
 https://muxiaobai.github.io/2019/09/26/java线上代码监控-工具-jprofiler/
 https://muxiaobai.github.io/2019/08/31/devops之docker/
 https://muxiaobai.github.io/2019/08/16/java线上代码监控-工具-arthas/
-https://muxiaobai.github.io/2019/07/29/git的一些其它操作/
+https://muxiaobai.github.io/2019/07/29/常用命令之git的一些操作/
 https://muxiaobai.github.io/2019/06/27/tools-ide快捷操作/
 https://muxiaobai.github.io/2019/05/21/高并发之缓存、限流、降级/
 https://muxiaobai.github.io/2019/05/18/使用ELK分析日志/
 https://muxiaobai.github.io/2019/04/01/Linux-基础命令总结4/
 https://muxiaobai.github.io/2019/02/16/性能优化之redis储存计算值/
 https://muxiaobai.github.io/2019/01/15/2018年个人总结/
-https://muxiaobai.github.io/2019/01/11/mongodb常用命令/
-https://muxiaobai.github.io/2019/01/11/mongodb主从架构设计/
+https://muxiaobai.github.io/2019/01/11/常用命令之mongodb/
+https://muxiaobai.github.io/2019/01/11/集群之mongodb主从架构设计/
 https://muxiaobai.github.io/2018/12/21/前言技术之OCR识别/
 https://muxiaobai.github.io/2018/11/22/java线上代码监控-工具-jconsole和jvisualvm/
 https://muxiaobai.github.io/2018/11/22/数据库监控-Druid监控配置/
