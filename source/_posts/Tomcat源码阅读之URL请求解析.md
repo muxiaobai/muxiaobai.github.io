@@ -26,7 +26,7 @@ http://localhost:8080/examples/composite.jsp
 - 显示资源内容
 
 
-![流程主要代码](/Tomcat源码阅读之URL请求解析/Connector.png)
+![流程主要代码](Tomcat源码阅读之URL请求解析/Connector.png)
 
 ## Connector到Container
 Connector 中的init和start 都是对应service调用的参考上一篇[Tomcat组件生命周期]()
@@ -419,7 +419,7 @@ AbstractProtocol.ConnectionHandler.process()方法内部
         SocketState state = SocketState.CLOSED;
         Iterator<DispatchType> dispatches = null;
         do {
-                       // There may be pipe-lined data to read. If the data isn't
+                    // There may be pipe-lined data to read. If the data isn't
                     // processed now, execution will exit this loop and call
                     // release() which will recycle the processor (and input
                     // buffer) deleting any pipe-lined data. To avoid this,

@@ -7,7 +7,7 @@ description: "研究tomcat系列,组件之间是怎么组合的，生命周期"
 ---
 
 
-![start&stop](/Tomcat源码阅读之组件生命周期/Lifecycle.PNG)
+![start&stop](Tomcat源码阅读之组件生命周期/Lifecycle.PNG)
 
 上篇说道Catalina中的load 和init 方法,提到了getServer().init(),和getServer().start(),这两个方法，本文主要通过这两个方法，进一步研究组件之间的关系和各种状态，希望先看一下server.xml配置文件中的组件关系图。
 
@@ -130,12 +130,12 @@ Lifecycle有四个基本的方法，init start stop destroy 外加一个addLifec
 在内部加一个initInternal方法调用,这里就用到了模板方法，在调用init的时候，前后做一些操作，判断当前状态啊，日志啊，等等。
 另外这里又有一个方法fireLifecycleEvent，触发生命周期事件。
 
-![start&stop](/Tomcat源码阅读之组件生命周期/LifecycleBaseinit.PNG)
+![start&stop](Tomcat源码阅读之组件生命周期/LifecycleBaseinit.PNG)
 
 一般所有的组件是实现的org.apache.catalina.util.LifecycleMBeanBase这个BaseBean的生命周期，重写了initInternal，然后在使用组件的时候对生命周期做得操作，init等就直接调用LifecycleMBeanBase，又调用本组件的initInternal.
 
 见图StandardService中的initInternal方法:
-![start&stop](/Tomcat源码阅读之组件生命周期/StandardService.PNG)
+![start&stop](Tomcat源码阅读之组件生命周期/StandardService.PNG)
 
 
                              

@@ -12,8 +12,8 @@ description: "研究tomcat系列,Container内部怎么进行请求处理？"
 接上文的CoyoteAdapter.service()`connector.getService().getContainer().getPipeline().getFirst().invoke(request, response);`,
 
 如图如图
-![请求流图](/Tomcat源码阅读之Container责任链/665375-20160119184923890-1995839223.png)
-![请求流图](/Tomcat源码阅读之Container责任链/818454-20161025170804984-654825756.png)
+![请求流图](Tomcat源码阅读之Container责任链/665375-20160119184923890-1995839223.png)
+![请求流图](Tomcat源码阅读之Container责任链/818454-20161025170804984-654825756.png)
 默认的Engine是StandardEngine，这个是在EngineRuleSet中通过digester设置的，
 ```
 

@@ -165,22 +165,22 @@ tomcat 启动的时候打印的日志可以借助这个来分析一下
 ```
 从Bootstrap 到 Catalina 总体流程  main  init load start&stop
 
-![main](/Tomcat源码阅读之从server-xml看组件关系/main.PNG)
+![main](Tomcat源码阅读之从server-xml看组件关系/main.PNG)
 
 main中一上来就调用 init，init是为了产生Catalina实例,然后是load 和start 等。
 
-![init](/Tomcat源码阅读之从server-xml看组件关系/init.PNG)
+![init](Tomcat源码阅读之从server-xml看组件关系/init.PNG)
 
 main 调用 init ` Class<?> startupClass = catalinaLoader.loadClass("org.apache.catalina.startup.Catalina");`
 ` Object startupInstance = startupClass.getConstructor().newInstance();` 反射获取类的实例，
 之后` catalinaDaemon = startupInstance;`  赋值给catalinaDaemon, laod和start、getServer等方法都是从这个对象中执行的，实际上就是执行的Catalina的方法
 
-![load](/Tomcat源码阅读之从server-xml看组件关系/load.PNG)
+![load](Tomcat源码阅读之从server-xml看组件关系/load.PNG)
 
 这个和 `method.invoke(catalinaDaemon, param);`  相当于catalina.load(param);
 
 中间加一个Catalina的laod方法重点代码
-![start&stop](/Tomcat源码阅读之从server-xml看组件关系/catalinaload.PNG)
+![start&stop](Tomcat源码阅读之从server-xml看组件关系/catalinaload.PNG)
 `getServer().init();`
 
 `log.info("Initialization processed in " + ((t2 - t1) / 1000000) + " ms");`
@@ -190,7 +190,7 @@ main 调用 init ` Class<?> startupClass = catalinaLoader.loadClass("org.apache.
 这个时候是生命周期的NEW init初始化，如果执行的是启动的命令，就会调用下面Bootstrap中
 
 
-![start&stop](/Tomcat源码阅读之从server-xml看组件关系/start&stop.PNG)
+![start&stop](Tomcat源码阅读之从server-xml看组件关系/start&stop.PNG)
 `Method method = catalinaDaemon.getClass().getMethod("start", (Class [] )null); method.invoke(catalinaDaemon, (Object [])null);` 反射,一样调用Catalina中的start方法和对应的stop方法。
 
 
@@ -200,7 +200,7 @@ main 调用 init ` Class<?> startupClass = catalinaLoader.loadClass("org.apache.
 这个只是简单的初始化和启动的问题，下一个就会说具体的生命周期主要类`Lifecycle`
 
 先放个图吧
-![start&stop](/Tomcat源码阅读之从server-xml看组件关系/Lifecycle.PNG)
+![start&stop](Tomcat源码阅读之从server-xml看组件关系/Lifecycle.PNG)
 
 参考下一篇 [Tomcat源码阅读之组件生命周期](http://muxiaobai.github.io/2018/04/16/Tomcat%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB%E4%B9%8B%E7%BB%84%E4%BB%B6%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/)                                                                                        
 系列文章
