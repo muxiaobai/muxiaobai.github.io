@@ -401,13 +401,6 @@
     </url>
 
     <url>
-        <loc>https://muxiaobai.github.io/tags/tomcat/</loc>
-        <lastmod>2020-06-01T06:11:00.128Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
         <loc>https://muxiaobai.github.io/tags/2019/</loc>
         <lastmod>2020-06-01T07:09:55.041Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -480,6 +473,13 @@
     <url>
         <loc>https://muxiaobai.github.io/tags/%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/</loc>
         <lastmod>2020-06-23T12:52:15.866Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://muxiaobai.github.io/tags/tomcat/</loc>
+        <lastmod>2020-06-24T07:19:24.364Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>

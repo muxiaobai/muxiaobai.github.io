@@ -1,6 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://muxiaobai.github.io/2020/01/02/SpringBoot%E4%B9%8Bhttps%E8%AF%B7%E6%B1%82/</loc>
+    <lastmod>2020-07-01</lastmod>
+  </url>  <url>
+    <loc>https://muxiaobai.github.io/2018/04/17/Tomcat%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB%E4%B9%8BURL%E8%AF%B7%E6%B1%82%E8%A7%A3%E6%9E%90/</loc>
+    <lastmod>2020-06-24</lastmod>
+  </url>  <url>
+    <loc>https://muxiaobai.github.io/2018/04/20/Tomcat%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB%E4%B9%8BContainer%E8%B4%A3%E4%BB%BB%E9%93%BE/</loc>
+    <lastmod>2020-06-24</lastmod>
+  </url>  <url>
+    <loc>https://muxiaobai.github.io/2018/04/16/Tomcat%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB%E4%B9%8B%E7%BB%84%E4%BB%B6%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/</loc>
+    <lastmod>2020-06-24</lastmod>
+  </url>  <url>
+    <loc>https://muxiaobai.github.io/2018/04/16/Tomcat%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB%E4%B9%8B%E4%BB%8Eserver-xml%E7%9C%8B%E7%BB%84%E4%BB%B6%E5%85%B3%E7%B3%BB/</loc>
+    <lastmod>2020-06-24</lastmod>
+  </url>  <url>
     <loc>https://muxiaobai.github.io/2019/07/29/%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E4%B9%8Bgit%E7%9A%84%E4%B8%80%E4%BA%9B%E6%93%8D%E4%BD%9C/</loc>
     <lastmod>2020-06-23</lastmod>
   </url>  <url>
@@ -43,9 +58,6 @@
     <loc>https://muxiaobai.github.io/2020/01/13/2019%E5%B9%B4%E4%B8%AA%E4%BA%BA%E6%80%BB%E7%BB%93/</loc>
     <lastmod>2020-06-01</lastmod>
   </url>  <url>
-    <loc>https://muxiaobai.github.io/2018/04/17/Tomcat%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB%E4%B9%8BURL%E8%AF%B7%E6%B1%82%E8%A7%A3%E6%9E%90/</loc>
-    <lastmod>2020-06-01</lastmod>
-  </url>  <url>
     <loc>https://muxiaobai.github.io/2019/10/12/Thinking-in-java-%E9%AB%98%E7%BA%A7%E4%B9%8Bvolatile/</loc>
     <lastmod>2020-05-26</lastmod>
   </url>  <url>
@@ -85,9 +97,6 @@
     <loc>https://muxiaobai.github.io/2019/01/15/2018%E5%B9%B4%E4%B8%AA%E4%BA%BA%E6%80%BB%E7%BB%93/</loc>
     <lastmod>2020-04-20</lastmod>
   </url>  <url>
-    <loc>https://muxiaobai.github.io/2020/01/02/SpringBoot%E4%B9%8Bhttps%E8%AF%B7%E6%B1%82/</loc>
-    <lastmod>2020-01-02</lastmod>
-  </url>  <url>
     <loc>https://muxiaobai.github.io/2016/07/09/Linux-%E5%9F%BA%E7%A1%80Shell%E8%84%9A%E6%9C%AC/</loc>
     <lastmod>2019-12-26</lastmod>
   </url>  <url>
@@ -102,9 +111,6 @@
   </url>  <url>
     <loc>https://muxiaobai.github.io/2019/10/31/Thinking-in-java-%E5%9F%BA%E7%A1%80%E4%B9%8BAQS%E5%92%8C%E5%BA%94%E7%94%A8/</loc>
     <lastmod>2019-11-07</lastmod>
-  </url>  <url>
-    <loc>https://muxiaobai.github.io/2018/04/16/Tomcat%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB%E4%B9%8B%E7%BB%84%E4%BB%B6%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/</loc>
-    <lastmod>2019-10-31</lastmod>
   </url>  <url>
     <loc>https://muxiaobai.github.io/2016/08/09/Thinking-in-java-%E5%9F%BA%E7%A1%80%E4%B9%8B%E7%BA%BF%E7%A8%8B%E5%92%8C%E5%B9%B6%E5%8F%91/</loc>
     <lastmod>2019-10-30</lastmod>
@@ -190,12 +196,6 @@
     <loc>https://muxiaobai.github.io/2016/12/17/%E7%AD%89%E5%BE%85-%E7%AD%89%E5%BE%85-%E7%AD%89%E5%BE%85/</loc>
     <lastmod>2018-06-08</lastmod>
   </url>  <url>
-    <loc>https://muxiaobai.github.io/2018/04/20/Tomcat%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB%E4%B9%8BContainer%E8%B4%A3%E4%BB%BB%E9%93%BE/</loc>
-    <lastmod>2018-05-14</lastmod>
-  </url>  <url>
-    <loc>https://muxiaobai.github.io/2018/04/16/Tomcat%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB%E4%B9%8B%E4%BB%8Eserver-xml%E7%9C%8B%E7%BB%84%E4%BB%B6%E5%85%B3%E7%B3%BB/</loc>
-    <lastmod>2018-04-20</lastmod>
-  </url>  <url>
     <loc>https://muxiaobai.github.io/2017/08/09/javascript%E5%86%8D%E5%AD%A6%E4%B9%A0%E4%B9%8BEvent/</loc>
     <lastmod>2018-01-24</lastmod>
   </url>  <url>
@@ -247,13 +247,13 @@
     <loc>https://muxiaobai.github.io/2016/06/19/Linux-%E4%B8%8B%E5%AE%89%E8%A3%85SVN%E6%9C%8D%E5%8A%A1%E5%99%A8/</loc>
     <lastmod>2016-08-31</lastmod>
   </url>  <url>
-    <loc>https://muxiaobai.github.io/2016/08/20/HTML5-API-%E6%96%B0%E7%89%B9%E6%80%A7/</loc>
+    <loc>https://muxiaobai.github.io/2016/07/19/JavaEE-%E8%B5%84%E6%BA%90%E8%B7%AF%E5%BE%84%E9%97%AE%E9%A2%98/</loc>
     <lastmod>2016-08-31</lastmod>
   </url>  <url>
     <loc>https://muxiaobai.github.io/2016/06/17/GitHub%20Hexo/</loc>
     <lastmod>2016-08-31</lastmod>
   </url>  <url>
-    <loc>https://muxiaobai.github.io/2016/07/19/JavaEE-%E8%B5%84%E6%BA%90%E8%B7%AF%E5%BE%84%E9%97%AE%E9%A2%98/</loc>
+    <loc>https://muxiaobai.github.io/2016/08/20/HTML5-API-%E6%96%B0%E7%89%B9%E6%80%A7/</loc>
     <lastmod>2016-08-31</lastmod>
   </url>
 </urlset>
