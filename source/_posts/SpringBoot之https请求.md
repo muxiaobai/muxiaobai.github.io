@@ -167,8 +167,12 @@ public class TomcatConfig {
 ```
 2020-01-02 14:17:45.398  INFO 10076 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8443 (https) 8080 (http) with context path ''
 ```
+### 免费证书 失效最多一年
+
+ [https://freessl.cn/](https://freessl.cn/)
 
 参考：
 - [证书生成](https://blog.csdn.net/Smile__1/article/details/99848578)
 - [SpringBoot配置同时支持http和https](https://blog.csdn.net/qq_36699423/article/details/93481187)
 - [SpringBoot支持https](https://segmentfault.com/a/1190000020052375)
+- [证书](https://juejin.im/post/5efa9c9e6fb9a07e5a1c2705)
