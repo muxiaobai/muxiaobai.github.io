@@ -1450,9 +1450,9 @@ hashMap.put(&quot;abc&quot;,&quot;1&quot;);
         
         <tags>
             
-            <tag> mongo </tag>
-            
             <tag> 常用命令 </tag>
+            
+            <tag> mongo </tag>
             
         </tags>
         
@@ -4784,6 +4784,8 @@ hashMap.put(&quot;abc&quot;,&quot;1&quot;);
 <p><code>nbtstat</code>:  无</p>
 <p><code>wget</code>: 下载资源</p>
 <p><code>curl</code> : </p>
+<p>[url]</p>
+<p>-X POST  方法<br>-H “Content-Type:application/json” 请求头Header<br>-F “filename=@/home/test/file.tar.gz;type=application/octet-stream”  file文件上传<br>-d “action=del&amp;name=archer” form data<br>-u 用户<br>-v 查看请求</p>
 <p>远程连接：<code>ssh</code> <code>scp</code> <code>sftp</code> <code>telnet</code>(一般禁用) <code>ftp</code>(不常用)</p>
 <p><code>sz</code> file 下载文件到本机</p>
 <p><code>rz</code> 上传</p>
