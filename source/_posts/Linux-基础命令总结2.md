@@ -218,6 +218,15 @@ chown -R owner:group /home/newname  把/home/newname的所有者改为owner，�
 
 `curl` : 
 
+[url]
+
+-X POST  方法
+-H "Content-Type:application/json" 请求头Header
+-F "filename=@/home/test/file.tar.gz;type=application/octet-stream"  file文件上传
+-d "action=del&name=archer" form data
+-u 用户
+-v 查看请求
+
 远程连接：`ssh` `scp` `sftp` `telnet`(一般禁用) `ftp`(不常用)
 
 `sz` file 下载文件到本机
