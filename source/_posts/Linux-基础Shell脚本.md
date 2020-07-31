@@ -145,3 +145,66 @@ else
 	return 1
 fi
 ```
+
+判断8080端口是否正常监听中：
+
+```
+started=0
+n=1
+echo "try $n times  service starting"
+while true
+do
+	if test $n -gt 20
+	then
+		echo " service failed"
+		started=1
+		break
+	fi
+	sleep 10
+	n=$(($n+1))
+	echo "try $n times  service starting "
+	port=`netstat -lntp | egrep "8080" | wc -l`
+	if [ ${port} -gt 0 ]; then
+		echo " service is started"
+		break;
+	fi
+done
+
+```
+
+#### ssh免登陆
+
+1.客户端生成公私钥
+本地客户端生成公私钥：（一路回车默认即可）
+
+ssh-keygen
+
+上面这个命令会在用户目录.ssh文件夹下创建公私钥
+
+cd ~/.ssh
+
+ls
+下创建两个密钥：
+
+id_rsa （私钥）
+id_rsa.pub (公钥)
+
+2.上传公钥到服务器
+这里测试用的服务器地址为：192.168.235.22
+用户为：root
+
+ssh-copy-id -i ~/.ssh/id_rsa.pub root@192.168.235.22
+
+上面这条命令是写到服务器上的ssh目录下去了
+cd ~/.ssh
+vim authorized_keys
+可以看到客户端写入到服务器的 id_rsa.pub （公钥）内容。
+
+3.测试免密登录
+客户端通过ssh连接远程服务器，就可以免密登录了。
+ssh root@192.168.235.22
+exit
+同时也可sftp
+
+
+[导入导出pg数据库，修改jar包内的某一个文件](https://github.com/muxiaobai/shell/tree/master/linux)
