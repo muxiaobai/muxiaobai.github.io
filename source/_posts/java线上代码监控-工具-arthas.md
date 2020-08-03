@@ -48,17 +48,6 @@ java -jar arthas-boot.jar --target-ip 0.0.0.0
 - ognl 动态执行代码
 - tt 可以记录下指定方法每次调用的入参和返回信息，并能对这些不同的时间下调用进行观测
 
-```
-反编译 修改 编译 热更新
-jad --source-only com.example.demo.arthas.user.UserController > /tmp/UserController.java
-vim /tmp/UserController.java
-sc com.example.demo.arthas.user.UserController -d 
-mc /tmp/UserController.java -d /tmp -c [classLoaderHash]
-redefine /tmp/com/example/demo/arthas/user/UserController.class
-```
-
-实际上可以直接把本机的class redefine 线上的很可能编译不通过，不过要保证本机代码和线上的代码同步
-
 ### 暂存运行状态文件hpof
 
 类似jmap命令的heap dump功能。
@@ -126,6 +115,49 @@ monitor <类全包名> <函数名>
 
 ###  热更新代码
 
+sc -d xxx 查找该类的classloader
+
+redfine -d  hash  xxx 更新该类， 注明：不能添加和修改方法，只能修改方法体内部的代码
+
+
+```
+反编译 修改 编译 热更新
+jad --source-only com.example.demo.arthas.user.UserController > /tmp/UserController.java
+vim /tmp/UserController.java
+sc com.example.demo.arthas.user.UserController -d 
+mc /tmp/UserController.java -d /tmp -c [classLoaderHash]
+redefine /tmp/com/example/demo/arthas/user/UserController.class
+```
+
+实际上可以直接把本机的class redefine 线上的很可能编译不通过，不过要保证本机代码和线上的代码同步
+
+可以使用changejarfile.sh 只更新class类
+./changejarfile xxx.jar xxx.class
+```
+#!/bin/bash
+#需要替换的包名称
+bmc=$1
+#需要替换的文件名称
+hhwjmc=$2
+#找到替换文件路径
+thwjlj=`jar -tvf \$bmc|grep \$hhwjmc|awk '{print \$NF}'`
+
+echo $bmc
+echo $hhwjmc
+echo $thwjlj
+#把要替换的文件解压出来
+jar -xvf $bmc $thwjlj
+#删掉原文件
+rm -f $thwjlj
+#换掉文件
+cp thwj/$hhwjmc $thwjlj
+#重新将文件加入到jar包中
+jar -uvf $bmc $thwjlj
+echo '替换完成'
+#删除解压文件
+rm -rf $thwjlj
+
+```
 
 [热更新](https://mp.weixin.qq.com/s/um6XQVv1JvHM3n7NslzB0Q)
 
@@ -134,7 +166,7 @@ monitor <类全包名> <函数名>
 从spring-mvc入手
 
 
-### 内部：
+### 内部：（该方法内部继续调用其他方法）
 trace 方法内部调用路径，并输出方法路径上的每个节点上耗时 -j跳过jdkclass
 Servlet Filter 转发 哪一个Controller
 
@@ -196,13 +228,20 @@ Affect(class-cnt:1 , method-cnt:48) cost in 214 ms.
 
 ```
 
-watch org.springframework.web.servlet.DispatcherServlet getHandler returnObj
-是哪一个controller调用
 
-### 外部：
+### 外部：（其他方法调用该方法的路径）
+
 stack org.springframework.web.servlet.DispatcherServlet *
 stack 输出当前方法被调用的调用路径
 很多时候我们都知道一个方法被执行，但这个方法被执行的路径非常多，或者你根本就不知道这个方法是从那里被执行了，此时你需要的是 stack 命令。
+
+### watch 查看当前方法的输入，输出，异常等
+
+watch org.springframework.web.servlet.DispatcherServlet getHandler returnObj
+是哪一个controller调用,查url对应的controller
+
+tt  -t org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter invokeHandlerMethod
+tt -i 1000 -w 'target.getApplicationContext()'
 
 ## 其它监控
 
