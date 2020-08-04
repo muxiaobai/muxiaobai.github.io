@@ -220,7 +220,7 @@ chown -R owner:group /home/newname  把/home/newname的所有者改为owner，�
 
 [url]
 
--X POST  方法
+-X POST GET  方法
 -H "Content-Type:application/json" 请求头Header
 -F "filename=@/home/test/file.tar.gz;type=application/octet-stream"  file文件上传
 -d "action=del&name=archer" form data

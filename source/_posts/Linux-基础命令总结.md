@@ -53,7 +53,7 @@ description: "文件、文件内容、目录、压缩打包、帮助"
 
 `tail`: 显示文件尾10行(-N/-nN 参数N为要显示的行号) tail -fn 300 /th/log.log  实时查看log文件
 
-`nl`: `cat -n`的加强版(Number of Lines)
+`nl`: `cat -n`的加强版(Number of Lines)  展示行号
 
 `strings/od/xxd/`: 二进制文件
 
@@ -109,9 +109,11 @@ description: "文件、文件内容、目录、压缩打包、帮助"
 -t, --field-separator=分隔符 使用指定的分隔符代替非空格到空格的转换
 -u, --unique 配合-c，严格校验排序；不配合-c，则只输出一次排序结果
 
-sort -n -r -k 2 
+sort -n -r -k 2  第二列
 
-sort -rn
+sort -rn  数字倒序排序
+
+sort -hr 根据K、M、G排序
 
 `wc`: 统计(Word Count)(行  词  字节) -l line -w word -m chars
 
@@ -138,7 +140,7 @@ sort -rn
 __________________
 ##### -c 创建归档文件(Create)
 
-##### -t 列出文件()
+##### -t 列出文件(list)
 
 ##### -x 解压()
 
@@ -198,6 +200,8 @@ tar -czvf xxx.tar.gz -C /usr/local/tomcat/web-apps ROOT/
 
 `find`: 在当前目录树中查找文件
 
+ find ./ -mtime +10 -name "*.log" | xargs ls -lh | sort -hr | head 10 查找当前文件夹下前十个最大的以log结尾最近20天的文件
+
 `whereis`: 查找文件或者命令的源文件在哪里
 
 `type`: 查找shell命令的类型(bash shell内部命令)
@@ -219,10 +223,11 @@ i ESC :  !qw quit write  ！强制
 
 ## 帮助
 
-`man`: (manual)
+`man`: (manual) 详细描述内容
 
 `help`:
 
 `info`: 
 
+cmd --help 命令参数 --help 一般有简单描述介绍使用
 
