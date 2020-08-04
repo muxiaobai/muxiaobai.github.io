@@ -4803,7 +4803,7 @@ hashMap.put(&quot;abc&quot;,&quot;1&quot;);
 <p><code>wget</code>: 下载资源</p>
 <p><code>curl</code> : </p>
 <p>[url]</p>
-<p>-X POST  方法<br>-H “Content-Type:application/json” 请求头Header<br>-F “filename=@/home/test/file.tar.gz;type=application/octet-stream”  file文件上传<br>-d “action=del&amp;name=archer” form data<br>-u 用户<br>-v 查看请求</p>
+<p>-X POST GET  方法<br>-H “Content-Type:application/json” 请求头Header<br>-F “filename=@/home/test/file.tar.gz;type=application/octet-stream”  file文件上传<br>-d “action=del&amp;name=archer” form data<br>-u 用户<br>-v 查看请求</p>
 <p>远程连接：<code>ssh</code> <code>scp</code> <code>sftp</code> <code>telnet</code>(一般禁用) <code>ftp</code>(不常用)</p>
 <p><code>sz</code> file 下载文件到本机</p>
 <p><code>rz</code> 上传</p>
@@ -5068,9 +5068,7 @@ hashMap.put(&quot;abc&quot;,&quot;1&quot;);
 <p>另外，有些目录初学者容易混淆，这里简单区分一下：<br>/bin,/sbin与/usr/bin,/usr/sbin:<br>/bin一般存放对于用户和系统来说“必须”的程序（二进制文件）。<br>/sbin一般存放用于系统管理的“必需”的程序（二进制文件），一般普通用户不会使用，根用户使用。<br>/usr/bin一般存放的只是对用户和系统来说“不是必需的”程序（二进制文件）。<br>/usr/sbin一般存放用于系统管理的系统管理的不是必需的程序（二进制文件）。</p>
 <p>/lib与/usr/lib:<br>/lib和/usr/lib的区别类似/bin,/sbin与/usr/bin,/usr/sbin。<br>/lib一般存放对于用户和系统来说“必须”的库（二进制文件）。<br>/usr/lib一般存放的只是对用户和系统来说“不是必需的”库（二进制文件）。</p>
 <p>linux下的文件结构，看看每个文件夹都是干吗用的<br>/bin 二进制可执行命令<br>/dev 设备特殊文件<br>/etc 系统管理和配置文件<br>/etc/rc.d 启动的配置文件和脚本<br>/home 用户主目录的基点，比如用户user的主目录就是/home/user，可以用~user表示<br>/lib 标准程序设计库，又叫动态链接共享库，作用类似windows里的.dll文件<br>/sbin 系统管理命令，这里存放的是系统管理员使用的管理程序<br>/tmp 公用的临时文件存储点<br>/root 系统管理员的主目录（呵呵，特权阶级）<br>/mnt 系统提供这个目录是让用户临时挂载其他的文件系统。<br>/lost+found 这个目录平时是空的，系统非正常关机而留下“无家可归”的文件（windows下叫什么.chk）就在这里<br>/proc 虚拟的目录，是系统内存的映射。可直接访问这个目录来获取系统信息。<br>/var 某些大文件的溢出区，比方说各种服务的日志文件<br>/usr 最庞大的目录，要用到的应用程序和文件几乎都在这个目录。其中包含：<br>/usr/x11r6 存放x window的目录<br>/usr/bin 众多的应用程序<br>/usr/sbin 超级用户的一些管理程序<br>/usr/doc linux文档<br>/usr/include linux下开发和编译应用程序所需要的头文件<br>/usr/lib 常用的动态链接库和软件包的配置文件<br>/usr/man 帮助文档<br>/usr/src 源代码，linux内核的源代码就放在/usr/src/linux里<br>/usr/local/bin 本地增加的命令<br>/usr/local/lib 本地增加的库</p>
-<ol start="10">
-<li>/mnt目录<br>/ m n t目录是系统管理员临时安装( m o u n t )文件系统的安装点。程序并不自动支持安装到<br>/mnt 。/mnt 下面可以分为许多子目录，例如/mnt/dosa 可能是使用m s d o s文件系统的软驱，<br>而/mnt/exta 可能是使用e x t 2文件系统的软驱，/mnt/cdrom 光驱等等。 </li>
-</ol>
+<p>/mnt目录<br>/ m n t目录是系统管理员临时安装( m o u n t )文件系统的安装点。程序并不自动支持安装到<br>/mnt 。/mnt 下面可以分为许多子目录，例如/mnt/dosa 可能是使用m s d o s文件系统的软驱，<br>而/mnt/exta 可能是使用e x t 2文件系统的软驱，/mnt/cdrom 光驱等等。 </p>
 <p>下面详细介绍； </p>
 <p>/etc文件系统<br>/etc 目录包含各种系统配置文件，下面说明其中的一些。其他的你应该知道它们属于哪个<br>程序，并阅读该程序的m a n页。许多网络配置文件也在/etc 中。 </p>
 <ol>
@@ -5081,15 +5079,15 @@ hashMap.put(&quot;abc&quot;,&quot;1&quot;);
 <li>/etc/group<br>类似/etc/passwd ，但说明的不是用户信息而是组的信息。包括组的各种数据。 </li>
 <li>/etc/inittab<br>init 的配置文件。 </li>
 <li>/etc/issue<br>包括用户在登录提示符前的输出信息。通常包括系统的一段短说明或欢迎信息。具体内<br>容由系统管理员确定。 </li>
-<li>/etc/magic<br>“f i l e”的配置文件。包含不同文件格式的说明，“f i l e”基于它猜测文件类型。 </li>
-<li>/etc/motd<br>m o t d是message of the day的缩写，用户成功登录后自动输出。内容由系统管理员确定。<br>常用于通告信息，如计划关机时间的警告等。 </li>
-<li>/etc/mtab<br>当前安装的文件系统列表。由脚本( s c r i t p )初始化，并由mount 命令自动更新。当需要一<br>个当前安装的文件系统的列表时使用(例如df 命令)。 </li>
-<li>/etc/shadow<br>在安装了影子( s h a d o w )口令软件的系统上的影子口令文件。影子口令文件将/ e t c / p a s s w d<br>文件中的加密口令移动到/ e t c / s h a d o w中，而后者只对超级用户( r o o t )可读。这使破译口令更困<br>难，以此增加系统的安全性。 </li>
+<li>/etc/magic<br>“file”的配置文件。包含不同文件格式的说明，“f i l e”基于它猜测文件类型。 </li>
+<li>/etc/motd<br>motd是message of the day的缩写，用户成功登录后自动输出。内容由系统管理员确定。<br>常用于通告信息，如计划关机时间的警告等。 </li>
+<li>/etc/mtab<br>当前安装的文件系统列表。由脚本( scritp )初始化，并由mount 命令自动更新。当需要一<br>个当前安装的文件系统的列表时使用(例如df 命令)。 </li>
+<li>/etc/shadow<br>在安装了影子( shadow )口令软件的系统上的影子口令文件。影子口令文件将/ etc / passwd<br>文件中的加密口令移动到/ etc / shadow中，而后者只对超级用户( root )可读。这使破译口令更困<br>难，以此增加系统的安全性。 </li>
 <li>/etc/login.defs<br>l o g i n命令的配置文件。 </li>
 <li>/etc/printcap<br>类似/etc/termcap ，但针对打印机。语法不同。 </li>
 <li>/etc/profile 、/ e t c / c s h . l o g i n、/etc/csh.cshrc<br>登录或启动时b o u r n e或c shells执行的文件。这允许系统管理员为所有用户建立全局缺省环境。 </li>
 <li>/etc/securetty<br>确认安全终端，即哪个终端允许超级用户( r o o t )登录。一般只列出虚拟控制台，这样就不<br>可能(至少很困难)通过调制解调器( m o d e m )或网络闯入系统并得到超级用户特权。 </li>
-<li>/etc/shells<br>列出可以使用的s h e l l。chsh 命令允许用户在本文件指定范围内改变登录的s h e l l。提供一<br>台机器f t p服务的服务进程ftpd 检查用户s h e l l是否列在/etc/shells 文件中，如果不是，将不允<br>许该用户登录。 </li>
+<li>/etc/shells<br>列出可以使用的shell。chsh 命令允许用户在本文件指定范围内改变登录的shell。提供一<br>台机器f t p服务的服务进程ftpd 检查用户s h e l l是否列在/etc/shells 文件中，如果不是，将不允<br>许该用户登录。 </li>
 <li>/etc/termcap<br>终端性能数据库。说明不同的终端用什么“转义序列”控制。写程序时不直接输出转义<br>序列(这样只能工作于特定品牌的终端)，而是从/etc/termcap 中查找要做的工作的正确序列。<br>这样，多数的程序可以在多数终端上运行。 </li>
 </ol>
 <p>/dev文件系统<br>/dev 目录包括所有设备的设备文件。设备文件用特定的约定命名，这在设备列表中说明。<br>设备文件在安装时由系统产生，以后可以用/dev/makedev 描述。/dev/makedev.local是<br>系统管理员为本地设备文件(或连接)写的描述文稿(即如一些非标准设备驱动不是标准<br>makedev的一部分)。下面简要介绍/dev下一些常用文件。<br>1./dev/console<br>系统控制台，也就是直接和系统连接的监视器。 </p>
@@ -5125,12 +5123,12 @@ hashMap.put(&quot;abc&quot;,&quot;1&quot;);
 <li>/proc/x<br>关于进程x的信息目录，这一x是这一进程的标识号。每个进程在/proc 下有一个名为自<br>己进程号的目录。 </li>
 <li>/proc/cpuinfo<br>存放处理器( c p u )的信息，如c p u的类型、制造商、型号和性能等。 </li>
 <li>/proc/devices<br>当前运行的核心配置的设备驱动的列表。 </li>
-<li>/proc/dma<br>显示当前使用的d m a通道。 </li>
+<li>/proc/dma<br>显示当前使用的dma通道。 </li>
 <li>/proc/filesystems<br>核心配置的文件系统信息。 </li>
 <li>/proc/interrupts<br>显示被占用的中断信息和占用者的信息，以及被占用的数量。 </li>
 <li>/proc/ioports<br>当前使用的i / o端口。 </li>
 <li>/proc/kcore<br>系统物理内存映像。与物理内存大小完全一样，然而实际上没有占用这么多内存；它仅<br>仅是在程序访问它时才被创建。(注意：除非你把它拷贝到什么地方，否则/proc 下没有任何<br>东西占用任何磁盘空间。) </li>
-<li>/proc/kmsg<br>核心输出的消息。也会被送到s y s l o g。 </li>
+<li>/proc/kmsg<br>核心输出的消息。也会被送到syslog。 </li>
 <li>/proc/ksyms<br>核心符号表。 </li>
 <li>/proc/loadavg<br>系统“平均负载”； 3个没有意义的指示器指出系统当前的工作量。 </li>
 <li>/proc/meminfo<br>各种存储器使用信息，包括物理内存和交换分区( s w a p )。 </li>
@@ -5179,7 +5177,7 @@ hashMap.put(&quot;abc&quot;,&quot;1&quot;);
 <p><code>more</code>: 和less功能相似，但是没有less强大</p>
 <p><code>head</code>: 显示文件前10行(-N/-nN 参数N为要显示的行号)</p>
 <p><code>tail</code>: 显示文件尾10行(-N/-nN 参数N为要显示的行号) tail -fn 300 /th/log.log  实时查看log文件</p>
-<p><code>nl</code>: <code>cat -n</code>的加强版(Number of Lines)</p>
+<p><code>nl</code>: <code>cat -n</code>的加强版(Number of Lines)  展示行号</p>
 <p><code>strings/od/xxd/</code>: 二进制文件</p>
 <p><code>acroread/gv/</code>: pdf文件和PostScript文件(Adobe Reader/Adobe PostScript/Ghostview)(大部分不支持)</p>
 <p><code>xdvi</code>: (TeX文本处理器输出二进制文件)(大部分不支持)</p>
@@ -5196,8 +5194,9 @@ hashMap.put(&quot;abc&quot;,&quot;1&quot;);
 <p>-b, –ignore-leading-blanks 忽略前导的空白区域<br>-d, –dictionary-order 只考虑空白区域和字母字符<br>-f, –ignore-case 忽略字母大小写<br>-g, –general-numeric-sort 按照常规数值排序<br>-i, –ignore-nonprinting 只排序可打印字符<br>-n, –numeric-sort 根据字符串数值比较<br>-r, –reverse 逆序输出排序结果</p>
 <p>其他选项：</p>
 <p>-c, –check, –check=diagnose-first 检查输入是否已排序，若已有序则不进行操作<br>-k, –key=位置1[,位置2] 在位置1 开始一个key，在位置2 终止(默认为行尾)<br>-m, –merge 合并已排序的文件，不再进行排序<br>-o, –output=文件 将结果写入到文件而非标准输出<br>-t, –field-separator=分隔符 使用指定的分隔符代替非空格到空格的转换<br>-u, –unique 配合-c，严格校验排序；不配合-c，则只输出一次排序结果</p>
-<p>sort -n -r -k 2 </p>
-<p>sort -rn</p>
+<p>sort -n -r -k 2  第二列</p>
+<p>sort -rn  数字倒序排序</p>
+<p>sort -hr 根据K、M、G排序</p>
 <p><code>wc</code>: 统计(Word Count)(行  词  字节) -l line -w word -m chars</p>
 <p><code>grep</code> <code>egrep</code> <code>fgrep</code>: 匹配正则/扩展正则/文本</p>
 <p><code>cut</code>: 提取特定列</p>
@@ -5208,7 +5207,7 @@ hashMap.put(&quot;abc&quot;,&quot;1&quot;);
 <p><code>printf</code>：</p>
 <h2 id="归档-打包、压缩-相关-一般情况下-用tar-☆"><a href="#归档-打包、压缩-相关-一般情况下-用tar-☆" class="headerlink" title="归档(打包、压缩)相关(一般情况下,用tar)☆"></a>归档(打包、压缩)相关(一般情况下,用<code>tar</code>)☆</h2><p><code>tar</code>: 打包(tape Archive)<code>tar -cf</code>代替(.tar)</p>
 <hr>
-<h5 id="c-创建归档文件-Create"><a href="#c-创建归档文件-Create" class="headerlink" title="-c 创建归档文件(Create)"></a>-c 创建归档文件(Create)</h5><h5 id="t-列出文件"><a href="#t-列出文件" class="headerlink" title="-t 列出文件()"></a>-t 列出文件()</h5><h5 id="x-解压"><a href="#x-解压" class="headerlink" title="-x 解压()"></a>-x 解压()</h5><h5 id="r-在已有的归档文件后添加新的文件"><a href="#r-在已有的归档文件后添加新的文件" class="headerlink" title="-r 在已有的归档文件后添加新的文件"></a>-r 在已有的归档文件后添加新的文件</h5><h5 id="u-在已有的归档文件后添加新的文件或者修改原有归档文件"><a href="#u-在已有的归档文件后添加新的文件或者修改原有归档文件" class="headerlink" title="-u 在已有的归档文件后添加新的文件或者修改原有归档文件"></a>-u 在已有的归档文件后添加新的文件或者修改原有归档文件</h5><hr>
+<h5 id="c-创建归档文件-Create"><a href="#c-创建归档文件-Create" class="headerlink" title="-c 创建归档文件(Create)"></a>-c 创建归档文件(Create)</h5><h5 id="t-列出文件-list"><a href="#t-列出文件-list" class="headerlink" title="-t 列出文件(list)"></a>-t 列出文件(list)</h5><h5 id="x-解压"><a href="#x-解压" class="headerlink" title="-x 解压()"></a>-x 解压()</h5><h5 id="r-在已有的归档文件后添加新的文件"><a href="#r-在已有的归档文件后添加新的文件" class="headerlink" title="-r 在已有的归档文件后添加新的文件"></a>-r 在已有的归档文件后添加新的文件</h5><h5 id="u-在已有的归档文件后添加新的文件或者修改原有归档文件"><a href="#u-在已有的归档文件后添加新的文件或者修改原有归档文件" class="headerlink" title="-u 在已有的归档文件后添加新的文件或者修改原有归档文件"></a>-u 在已有的归档文件后添加新的文件或者修改原有归档文件</h5><hr>
 <h5 id="z-gzip"><a href="#z-gzip" class="headerlink" title="-z (gzip)"></a>-z (gzip)</h5><h5 id="j-bzip2"><a href="#j-bzip2" class="headerlink" title="-j (bzip2)"></a>-j (bzip2)</h5><h5 id="Z-Unix传统格式compress"><a href="#Z-Unix传统格式compress" class="headerlink" title="-Z (Unix传统格式compress)"></a>-Z (Unix传统格式compress)</h5><hr>
 <h5 id="v-打印详细信息-View"><a href="#v-打印详细信息-View" class="headerlink" title="-v 打印详细信息(View)"></a>-v 打印详细信息(View)</h5><h5 id="f-从文件下打包-File"><a href="#f-从文件下打包-File" class="headerlink" title="-f 从文件下打包(File)"></a>-f 从文件下打包(File)</h5><hr>
 <ul>
@@ -5237,6 +5236,7 @@ hashMap.put(&quot;abc&quot;,&quot;1&quot;);
 <p>注意:打包和压缩是两个步骤。</p>
 </blockquote>
 <h4 id="查找文件"><a href="#查找文件" class="headerlink" title="查找文件"></a>查找文件</h4><p><code>find</code>: 在当前目录树中查找文件</p>
+<p> find ./ -mtime +10 -name “*.log” | xargs ls -lh | sort -hr | head 10 查找当前文件夹下前十个最大的以log结尾最近20天的文件</p>
 <p><code>whereis</code>: 查找文件或者命令的源文件在哪里</p>
 <p><code>type</code>: 查找shell命令的类型(bash shell内部命令)</p>
 <p><code>which</code>: 查找shell命令所在的位置</p>
@@ -5245,9 +5245,10 @@ hashMap.put(&quot;abc&quot;,&quot;1&quot;);
 <p>hjkl 左下上右<br>i ESC :  !qw quit write  ！强制</p>
 <p><a href>参考Linux基础命令总结3</a></p>
 <p><code>vimtutor</code>: Vim帮助</p>
-<h2 id="帮助"><a href="#帮助" class="headerlink" title="帮助"></a>帮助</h2><p><code>man</code>: (manual)</p>
+<h2 id="帮助"><a href="#帮助" class="headerlink" title="帮助"></a>帮助</h2><p><code>man</code>: (manual) 详细描述内容</p>
 <p><code>help</code>:</p>
 <p><code>info</code>: </p>
+<p>cmd –help 命令参数 –help 一般有简单描述介绍使用</p>
 ]]></content>
       
         <categories>

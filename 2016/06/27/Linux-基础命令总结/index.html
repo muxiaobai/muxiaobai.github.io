@@ -24,7 +24,7 @@
 <meta property="og:site_name" content="技术笔记">
 <meta property="og:description" content="文件、文件内容、目录、压缩打包、帮助">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2020-05-06T06:45:33.895Z">
+<meta property="og:updated_time" content="2020-08-03T09:16:52.692Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Linux 基础命令总结 基本操作 文件 目录">
 <meta name="twitter:description" content="文件、文件内容、目录、压缩打包、帮助">
@@ -352,7 +352,7 @@
 <p><code>more</code>: 和less功能相似，但是没有less强大</p>
 <p><code>head</code>: 显示文件前10行(-N/-nN 参数N为要显示的行号)</p>
 <p><code>tail</code>: 显示文件尾10行(-N/-nN 参数N为要显示的行号) tail -fn 300 /th/log.log  实时查看log文件</p>
-<p><code>nl</code>: <code>cat -n</code>的加强版(Number of Lines)</p>
+<p><code>nl</code>: <code>cat -n</code>的加强版(Number of Lines)  展示行号</p>
 <p><code>strings/od/xxd/</code>: 二进制文件</p>
 <p><code>acroread/gv/</code>: pdf文件和PostScript文件(Adobe Reader/Adobe PostScript/Ghostview)(大部分不支持)</p>
 <p><code>xdvi</code>: (TeX文本处理器输出二进制文件)(大部分不支持)</p>
@@ -369,8 +369,9 @@
 <p>-b, –ignore-leading-blanks 忽略前导的空白区域<br>-d, –dictionary-order 只考虑空白区域和字母字符<br>-f, –ignore-case 忽略字母大小写<br>-g, –general-numeric-sort 按照常规数值排序<br>-i, –ignore-nonprinting 只排序可打印字符<br>-n, –numeric-sort 根据字符串数值比较<br>-r, –reverse 逆序输出排序结果</p>
 <p>其他选项：</p>
 <p>-c, –check, –check=diagnose-first 检查输入是否已排序，若已有序则不进行操作<br>-k, –key=位置1[,位置2] 在位置1 开始一个key，在位置2 终止(默认为行尾)<br>-m, –merge 合并已排序的文件，不再进行排序<br>-o, –output=文件 将结果写入到文件而非标准输出<br>-t, –field-separator=分隔符 使用指定的分隔符代替非空格到空格的转换<br>-u, –unique 配合-c，严格校验排序；不配合-c，则只输出一次排序结果</p>
-<p>sort -n -r -k 2 </p>
-<p>sort -rn</p>
+<p>sort -n -r -k 2  第二列</p>
+<p>sort -rn  数字倒序排序</p>
+<p>sort -hr 根据K、M、G排序</p>
 <p><code>wc</code>: 统计(Word Count)(行  词  字节) -l line -w word -m chars</p>
 <p><code>grep</code> <code>egrep</code> <code>fgrep</code>: 匹配正则/扩展正则/文本</p>
 <p><code>cut</code>: 提取特定列</p>
@@ -381,7 +382,7 @@
 <p><code>printf</code>：</p>
 <h2 id="归档-打包、压缩-相关-一般情况下-用tar-☆"><a href="#归档-打包、压缩-相关-一般情况下-用tar-☆" class="headerlink" title="归档(打包、压缩)相关(一般情况下,用tar)☆"></a>归档(打包、压缩)相关(一般情况下,用<code>tar</code>)☆</h2><p><code>tar</code>: 打包(tape Archive)<code>tar -cf</code>代替(.tar)</p>
 <hr>
-<h5 id="c-创建归档文件-Create"><a href="#c-创建归档文件-Create" class="headerlink" title="-c 创建归档文件(Create)"></a>-c 创建归档文件(Create)</h5><h5 id="t-列出文件"><a href="#t-列出文件" class="headerlink" title="-t 列出文件()"></a>-t 列出文件()</h5><h5 id="x-解压"><a href="#x-解压" class="headerlink" title="-x 解压()"></a>-x 解压()</h5><h5 id="r-在已有的归档文件后添加新的文件"><a href="#r-在已有的归档文件后添加新的文件" class="headerlink" title="-r 在已有的归档文件后添加新的文件"></a>-r 在已有的归档文件后添加新的文件</h5><h5 id="u-在已有的归档文件后添加新的文件或者修改原有归档文件"><a href="#u-在已有的归档文件后添加新的文件或者修改原有归档文件" class="headerlink" title="-u 在已有的归档文件后添加新的文件或者修改原有归档文件"></a>-u 在已有的归档文件后添加新的文件或者修改原有归档文件</h5><hr>
+<h5 id="c-创建归档文件-Create"><a href="#c-创建归档文件-Create" class="headerlink" title="-c 创建归档文件(Create)"></a>-c 创建归档文件(Create)</h5><h5 id="t-列出文件-list"><a href="#t-列出文件-list" class="headerlink" title="-t 列出文件(list)"></a>-t 列出文件(list)</h5><h5 id="x-解压"><a href="#x-解压" class="headerlink" title="-x 解压()"></a>-x 解压()</h5><h5 id="r-在已有的归档文件后添加新的文件"><a href="#r-在已有的归档文件后添加新的文件" class="headerlink" title="-r 在已有的归档文件后添加新的文件"></a>-r 在已有的归档文件后添加新的文件</h5><h5 id="u-在已有的归档文件后添加新的文件或者修改原有归档文件"><a href="#u-在已有的归档文件后添加新的文件或者修改原有归档文件" class="headerlink" title="-u 在已有的归档文件后添加新的文件或者修改原有归档文件"></a>-u 在已有的归档文件后添加新的文件或者修改原有归档文件</h5><hr>
 <h5 id="z-gzip"><a href="#z-gzip" class="headerlink" title="-z (gzip)"></a>-z (gzip)</h5><h5 id="j-bzip2"><a href="#j-bzip2" class="headerlink" title="-j (bzip2)"></a>-j (bzip2)</h5><h5 id="Z-Unix传统格式compress"><a href="#Z-Unix传统格式compress" class="headerlink" title="-Z (Unix传统格式compress)"></a>-Z (Unix传统格式compress)</h5><hr>
 <h5 id="v-打印详细信息-View"><a href="#v-打印详细信息-View" class="headerlink" title="-v 打印详细信息(View)"></a>-v 打印详细信息(View)</h5><h5 id="f-从文件下打包-File"><a href="#f-从文件下打包-File" class="headerlink" title="-f 从文件下打包(File)"></a>-f 从文件下打包(File)</h5><hr>
 <ul>
@@ -410,6 +411,7 @@
 <p>注意:打包和压缩是两个步骤。</p>
 </blockquote>
 <h4 id="查找文件"><a href="#查找文件" class="headerlink" title="查找文件"></a>查找文件</h4><p><code>find</code>: 在当前目录树中查找文件</p>
+<p> find ./ -mtime +10 -name “*.log” | xargs ls -lh | sort -hr | head 10 查找当前文件夹下前十个最大的以log结尾最近20天的文件</p>
 <p><code>whereis</code>: 查找文件或者命令的源文件在哪里</p>
 <p><code>type</code>: 查找shell命令的类型(bash shell内部命令)</p>
 <p><code>which</code>: 查找shell命令所在的位置</p>
@@ -418,9 +420,10 @@
 <p>hjkl 左下上右<br>i ESC :  !qw quit write  ！强制</p>
 <p><a href>参考Linux基础命令总结3</a></p>
 <p><code>vimtutor</code>: Vim帮助</p>
-<h2 id="帮助"><a href="#帮助" class="headerlink" title="帮助"></a>帮助</h2><p><code>man</code>: (manual)</p>
+<h2 id="帮助"><a href="#帮助" class="headerlink" title="帮助"></a>帮助</h2><p><code>man</code>: (manual) 详细描述内容</p>
 <p><code>help</code>:</p>
 <p><code>info</code>: </p>
+<p>cmd –help 命令参数 –help 一般有简单描述介绍使用</p>
 
       
     </div>
@@ -513,7 +516,7 @@
         <p><span>本文标题:</span><a href="/2016/06/27/Linux-基础命令总结/">Linux 基础命令总结 基本操作 文件 目录</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">Mu Xiaobai(慕小白)</a></p>
         <p><span>发布时间:</span>2016-06-27, 20:47:05</p>
-        <p><span>最后更新:</span>2020-05-06, 14:45:33</p>
+        <p><span>最后更新:</span>2020-08-03, 17:16:52</p>
         <p>
             <span>原始链接:</span><a class="post-url" href="/2016/06/27/Linux-基础命令总结/" title="Linux 基础命令总结 基本操作 文件 目录">https://muxiaobai.github.io/2016/06/27/Linux-基础命令总结/</a>
             <span class="copy-path" data-clipboard-text="原文: https://muxiaobai.github.io/2016/06/27/Linux-基础命令总结/　　作者: Mu Xiaobai(慕小白)" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
@@ -550,7 +553,7 @@
     <!--左侧-->
     <div id="toc" class="toc-article">
     <strong class="toc-title">文章目录</strong>
-    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#目录-文件夹directory-文件-file-相关"><span class="toc-number">1.</span> <span class="toc-text">目录(文件夹directory)/文件(file)相关</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#r-递归"><span class="toc-number">1.0.0.1.</span> <span class="toc-text">-r: 递归</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#f-强制-不询问覆盖或删除"><span class="toc-number">1.0.0.2.</span> <span class="toc-text">-f: 强制(不询问覆盖或删除)</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#p-递归创建-删除非空目录"><span class="toc-number">1.0.0.3.</span> <span class="toc-text">-p: 递归创建/删除非空目录</span></a></li></ol></li></ol><li class="toc-item toc-level-2"><a class="toc-link" href="#文件内容相关"><span class="toc-number">2.</span> <span class="toc-text">文件内容相关</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#查看内容"><span class="toc-number">2.0.1.</span> <span class="toc-text">查看内容</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#n-N-行"><span class="toc-number">2.0.1.1.</span> <span class="toc-text">-n/N:行</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#h-H-帮助"><span class="toc-number">2.0.1.2.</span> <span class="toc-text">-h/H:帮助</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#文件属性相关"><span class="toc-number">2.0.2.</span> <span class="toc-text">文件属性相关</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#R-递归"><span class="toc-number">2.0.2.1.</span> <span class="toc-text">-R 递归</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#文件的文本性操作"><span class="toc-number">2.0.3.</span> <span class="toc-text">文件的文本性操作</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#归档-打包、压缩-相关-一般情况下-用tar-☆"><span class="toc-number">3.</span> <span class="toc-text">归档(打包、压缩)相关(一般情况下,用tar)☆</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#c-创建归档文件-Create"><span class="toc-number">3.0.0.1.</span> <span class="toc-text">-c 创建归档文件(Create)</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#t-列出文件"><span class="toc-number">3.0.0.2.</span> <span class="toc-text">-t 列出文件()</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#x-解压"><span class="toc-number">3.0.0.3.</span> <span class="toc-text">-x 解压()</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#r-在已有的归档文件后添加新的文件"><span class="toc-number">3.0.0.4.</span> <span class="toc-text">-r 在已有的归档文件后添加新的文件</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#u-在已有的归档文件后添加新的文件或者修改原有归档文件"><span class="toc-number">3.0.0.5.</span> <span class="toc-text">-u 在已有的归档文件后添加新的文件或者修改原有归档文件</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#z-gzip"><span class="toc-number">3.0.0.6.</span> <span class="toc-text">-z (gzip)</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#j-bzip2"><span class="toc-number">3.0.0.7.</span> <span class="toc-text">-j (bzip2)</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Z-Unix传统格式compress"><span class="toc-number">3.0.0.8.</span> <span class="toc-text">-Z (Unix传统格式compress)</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#v-打印详细信息-View"><span class="toc-number">3.0.0.9.</span> <span class="toc-text">-v 打印详细信息(View)</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#f-从文件下打包-File"><span class="toc-number">3.0.0.10.</span> <span class="toc-text">-f 从文件下打包(File)</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#查找文件"><span class="toc-number">3.0.1.</span> <span class="toc-text">查找文件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#修改内容"><span class="toc-number">3.0.2.</span> <span class="toc-text">修改内容</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#帮助"><span class="toc-number">4.</span> <span class="toc-text">帮助</span></a></li>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#目录-文件夹directory-文件-file-相关"><span class="toc-number">1.</span> <span class="toc-text">目录(文件夹directory)/文件(file)相关</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#r-递归"><span class="toc-number">1.0.0.1.</span> <span class="toc-text">-r: 递归</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#f-强制-不询问覆盖或删除"><span class="toc-number">1.0.0.2.</span> <span class="toc-text">-f: 强制(不询问覆盖或删除)</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#p-递归创建-删除非空目录"><span class="toc-number">1.0.0.3.</span> <span class="toc-text">-p: 递归创建/删除非空目录</span></a></li></ol></li></ol><li class="toc-item toc-level-2"><a class="toc-link" href="#文件内容相关"><span class="toc-number">2.</span> <span class="toc-text">文件内容相关</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#查看内容"><span class="toc-number">2.0.1.</span> <span class="toc-text">查看内容</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#n-N-行"><span class="toc-number">2.0.1.1.</span> <span class="toc-text">-n/N:行</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#h-H-帮助"><span class="toc-number">2.0.1.2.</span> <span class="toc-text">-h/H:帮助</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#文件属性相关"><span class="toc-number">2.0.2.</span> <span class="toc-text">文件属性相关</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#R-递归"><span class="toc-number">2.0.2.1.</span> <span class="toc-text">-R 递归</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#文件的文本性操作"><span class="toc-number">2.0.3.</span> <span class="toc-text">文件的文本性操作</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#归档-打包、压缩-相关-一般情况下-用tar-☆"><span class="toc-number">3.</span> <span class="toc-text">归档(打包、压缩)相关(一般情况下,用tar)☆</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#c-创建归档文件-Create"><span class="toc-number">3.0.0.1.</span> <span class="toc-text">-c 创建归档文件(Create)</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#t-列出文件-list"><span class="toc-number">3.0.0.2.</span> <span class="toc-text">-t 列出文件(list)</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#x-解压"><span class="toc-number">3.0.0.3.</span> <span class="toc-text">-x 解压()</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#r-在已有的归档文件后添加新的文件"><span class="toc-number">3.0.0.4.</span> <span class="toc-text">-r 在已有的归档文件后添加新的文件</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#u-在已有的归档文件后添加新的文件或者修改原有归档文件"><span class="toc-number">3.0.0.5.</span> <span class="toc-text">-u 在已有的归档文件后添加新的文件或者修改原有归档文件</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#z-gzip"><span class="toc-number">3.0.0.6.</span> <span class="toc-text">-z (gzip)</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#j-bzip2"><span class="toc-number">3.0.0.7.</span> <span class="toc-text">-j (bzip2)</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Z-Unix传统格式compress"><span class="toc-number">3.0.0.8.</span> <span class="toc-text">-Z (Unix传统格式compress)</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#v-打印详细信息-View"><span class="toc-number">3.0.0.9.</span> <span class="toc-text">-v 打印详细信息(View)</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#f-从文件下打包-File"><span class="toc-number">3.0.0.10.</span> <span class="toc-text">-f 从文件下打包(File)</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#查找文件"><span class="toc-number">3.0.1.</span> <span class="toc-text">查找文件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#修改内容"><span class="toc-number">3.0.2.</span> <span class="toc-text">修改内容</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#帮助"><span class="toc-number">4.</span> <span class="toc-text">帮助</span></a></li>
 </div>
 <style>
     .left-col .switch-btn,
