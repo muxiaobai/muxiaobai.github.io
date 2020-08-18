@@ -98,20 +98,6 @@
     </url>
 
     <url>
-        <loc>https://muxiaobai.github.io/categories/Linux/java/</loc>
-        <lastmod>2019-01-22T08:13:43.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://muxiaobai.github.io/categories/Linux/java/hadoop/</loc>
-        <lastmod>2019-01-22T08:13:43.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
         <loc>https://muxiaobai.github.io/categories/%E5%89%8D%E7%AB%AF/</loc>
         <lastmod>2019-02-16T04:39:29.000Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -182,29 +168,8 @@
     </url>
 
     <url>
-        <loc>https://muxiaobai.github.io/categories/devops/</loc>
-        <lastmod>2020-05-21T12:23:06.248Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://muxiaobai.github.io/categories/%E6%80%BB%E7%BB%93/</loc>
-        <lastmod>2020-06-01T07:09:55.041Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
         <loc>https://muxiaobai.github.io/categories/deploy/</loc>
         <lastmod>2020-06-01T07:15:31.337Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://muxiaobai.github.io/categories/%E9%9B%86%E7%BE%A4/</loc>
-        <lastmod>2020-06-23T12:40:22.685Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
@@ -224,15 +189,50 @@
     </url>
 
     <url>
-        <loc>https://muxiaobai.github.io/categories/Linux/</loc>
-        <lastmod>2020-08-03T09:16:52.692Z</lastmod>
+        <loc>https://muxiaobai.github.io/categories/java/</loc>
+        <lastmod>2020-08-04T01:41:34.085Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
-        <loc>https://muxiaobai.github.io/categories/java/</loc>
-        <lastmod>2020-08-04T01:41:34.085Z</lastmod>
+        <loc>https://muxiaobai.github.io/categories/%E6%80%BB%E7%BB%93/</loc>
+        <lastmod>2020-08-04T10:01:42.393Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://muxiaobai.github.io/categories/devops/</loc>
+        <lastmod>2020-08-05T01:06:31.362Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://muxiaobai.github.io/categories/Linux/java/</loc>
+        <lastmod>2020-08-11T02:11:56.256Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://muxiaobai.github.io/categories/Linux/java/hadoop/</loc>
+        <lastmod>2020-08-11T02:11:56.256Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://muxiaobai.github.io/categories/Linux/</loc>
+        <lastmod>2020-08-14T08:50:55.602Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://muxiaobai.github.io/categories/%E9%9B%86%E7%BE%A4/</loc>
+        <lastmod>2020-08-18T05:33:22.286Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
