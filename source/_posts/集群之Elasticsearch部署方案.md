@@ -241,3 +241,8 @@ xpack.security.transport.ssl.verification_mode: certificate
 xpack.security.transport.ssl.keystore.path: elastic-certificates.p12
 xpack.security.transport.ssl.truststore.path: elastic-certificates.p12
 ```
+
+
+参考：[github 集群脚本](https://github.com/muxiaobai/shell/tree/master/linux/elasticsearch)
+
+自动化部署，包含单机多节点和多机多节点，其中，多机需要ssh自动登录。

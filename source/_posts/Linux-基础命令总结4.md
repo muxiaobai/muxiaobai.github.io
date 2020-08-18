@@ -46,6 +46,8 @@ description: "shell快捷件键，常用命令"
 - netstat -ano | grep 端口占用
 - netstat -tlnp | grep 端口占用
 
+nap
+
 wget 判断端口
 curl
 

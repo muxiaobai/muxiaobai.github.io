@@ -59,3 +59,5 @@ systemctl stop firewalld.service #停止firewall
 systemctl disable firewalld.service #禁止firewall开机启动
 firewall-cmd --state #查看默认防火墙状态（关闭后显示notrunning，开启后显示running）
 ```
+
+ iptables -I INPUT 4 -p tcp -m state --state NEW -m tcp --dport 19200 -j ACCEPT

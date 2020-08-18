@@ -115,6 +115,8 @@ vim的一些默认配置
 /.vimrc
 https://www.cnblogs.com/qiyuexin/p/6398606.html
 
+nohlsearch
+
 "显示行号, 或set number
 set nu
 

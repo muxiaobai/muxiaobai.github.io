@@ -227,6 +227,12 @@ chown -R owner:group /home/newname  把/home/newname的所有者改为owner，�
 -u 用户
 -v 查看请求
 
+curl -XPOST http://ip:port -H "Content-Type=multipart/form-data"  -F "file=@app-search-component.zip"
+
+curl -u elastic:123123 http://ip:port
+
+curl -H 'Content-Type: application/json' -XPOST  -u my_admin::my_pwd 'http://localhost:8080/' -d '{"password" : "123123"}'
+
 远程连接：`ssh` `scp` `sftp` `telnet`(一般禁用) `ftp`(不常用)
 
 `sz` file 下载文件到本机
