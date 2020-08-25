@@ -77,7 +77,7 @@ https://muxiaobai.github.io/2016/07/07/Linux-基础命令总结2/
 https://muxiaobai.github.io/2016/07/01/好软件-靠机遇/
 https://muxiaobai.github.io/2016/06/29/好网站-天天记/
 https://muxiaobai.github.io/2016/06/29/hello-world/
-https://muxiaobai.github.io/2016/06/27/Linux下各目录的默认含义/
+https://muxiaobai.github.io/2016/06/27/Linux-下各目录的默认含义/
 https://muxiaobai.github.io/2016/06/27/Linux-基础命令总结/
 https://muxiaobai.github.io/2016/06/25/Thinking-in-java-基础之集合框架/
 https://muxiaobai.github.io/2016/06/25/Thinking-in-java-基础之I-O/

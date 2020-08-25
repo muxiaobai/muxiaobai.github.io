@@ -422,13 +422,6 @@
     </url>
 
     <url>
-        <loc>https://muxiaobai.github.io/tags/%E7%9B%AE%E5%BD%95/</loc>
-        <lastmod>2020-08-03T07:15:51.113Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
         <loc>https://muxiaobai.github.io/tags/file/</loc>
         <lastmod>2020-08-03T09:16:52.692Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -471,15 +464,22 @@
     </url>
 
     <url>
-        <loc>https://muxiaobai.github.io/tags/%E5%9F%BA%E7%A1%80%E5%91%BD%E4%BB%A4/</loc>
+        <loc>https://muxiaobai.github.io/tags/%E7%B3%BB%E7%BB%9F/</loc>
         <lastmod>2020-08-14T08:50:55.602Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
-        <loc>https://muxiaobai.github.io/tags/%E7%B3%BB%E7%BB%9F/</loc>
-        <lastmod>2020-08-14T08:50:55.602Z</lastmod>
+        <loc>https://muxiaobai.github.io/tags/%E7%9B%AE%E5%BD%95/</loc>
+        <lastmod>2020-08-18T07:14:29.238Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://muxiaobai.github.io/tags/%E5%9F%BA%E7%A1%80%E5%91%BD%E4%BB%A4/</loc>
+        <lastmod>2020-08-20T08:07:01.066Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>

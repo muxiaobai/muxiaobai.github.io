@@ -1230,9 +1230,12 @@ hashMap.put(&quot;abc&quot;,&quot;1&quot;);
 <li></li>
 <li>ctrl + u 剪切光标到行首</li>
 <li>ctrl + k 剪切光标到行尾</li>
-<li>ctrl + w 剪切光标前一个单词</li>
-<li>ctrl + y 粘贴上面三个的复制</li>
-<li>ctrl + z 挂起当前命令 jobs bg fg  唤醒</li>
+<li><p>ctrl + w 剪切光标前一个单词</p>
+</li>
+<li><p>ctrl + y 粘贴上面三个的复制</p>
+</li>
+<li><p>ctrl + z 挂起当前命令 jobs bg fg  唤醒</p>
+</li>
 <li></li>
 <li>ctrl + r 搜索之前的命令</li>
 <li>ctrl + g 取消搜索<br>-</li>
@@ -1246,7 +1249,7 @@ hashMap.put(&quot;abc&quot;,&quot;1&quot;);
 <h4 id="其他常用命令"><a href="#其他常用命令" class="headerlink" title="其他常用命令"></a>其他常用命令</h4><ul>
 <li>ps -ef | grep tomcat </li>
 <li>ps -aux | sort -k4nr |head -h 10 内存前十的进程</li>
-<li>du -sh *   当前路径（disk usage）</li>
+<li>du -sh *   当前路径（disk usage）  sort -hr 倒序    du -hd1</li>
 <li>df -hP  整个磁盘（disk free）</li>
 <li>df -k /tmp 查看磁盘使用</li>
 <li>crontab -l 定时任务</li>
@@ -1257,7 +1260,6 @@ hashMap.put(&quot;abc&quot;,&quot;1&quot;);
 <li>netstat -ano | grep 端口占用</li>
 <li>netstat -tlnp | grep 端口占用</li>
 </ul>
-<p>nap</p>
 <p>wget 判断端口<br>curl</p>
 <p><img src="/2019/04/01/Linux-基础命令总结4/wget测试端口.png" alt="wget"></p>
 ]]></content>
@@ -2718,12 +2720,27 @@ hashMap.put(&quot;abc&quot;,&quot;1&quot;);
 <li>复制yy 3yy 复制光标行，复制光标及下面两行（yank拉取）</li>
 <li>粘贴p 光标处粘贴复制内容（put paste放置）</li>
 <li>删除dd 3dd 删除光标行，删除光标及以下三行（delete）</li>
-<li>u 撤销（undo）  Ctrl +R 回撤</li>
-<li>Ctrl f 下一页 Ctrl b 上一页（）</li>
-<li>行头行尾 0/^行首 $ 行尾</li>
+<li><p>u 撤销（undo）  Ctrl +R 回撤</p>
+</li>
+<li><p>行内词跳转  w 词首 e 词尾   b 向前词首 W E B 空白分隔    fx 向后找x  F 向左 Find  “;” 命令重复</p>
+</li>
+<li>行头行尾 0/^行首 $ 行尾 行首列 | </li>
+<li>前一行首 - 后一行首 + </li>
+<li>块 句段 () {}  % 对应括号</li>
+<li>半屏 ctrl + u 向上 up ctrl + d 向下down</li>
+<li>屏页  Ctrl f 下一页 forward  Ctrl b 上一页（backward）  H 屏首行 M 屏中间行 L 屏尾行  “H” 表示 Home (头)，”M” 表示 Middle (中) 而 “L” 表示 Last (尾)。</li>
 <li>文件头文件尾 gg/1G 文件头部  3G 第三行 G 文件尾部 </li>
-<li>光标跳转上一个位置Ctrl + O  Ctrl + I</li>
-<li>/查找匹配 n 下一个</li>
+<li><p>两个位置相互跳转 <code></code> 反引号 光标跳转上一个位置Ctrl + O  后一个位置  Ctrl + I</p>
+</li>
+<li><p>/查找匹配 n 下一个 gd 搜索高亮当前词</p>
+</li>
+<li>执行命令 :!ls  执行 ls 命令  :r !pwd 把当前的文件夹路径输入到光标行</li>
+<li><p>分屏 :sp/vsp   :split   :diffsplit</p>
+</li>
+<li><p>切换屏  ctrl +w +w</p>
+</li>
+<li>c change d delete c2whello 修改当前光标后的两个词变为hello  d2w 删除光标后的两个词 d$ 删除到行尾</li>
+<li>编辑模式  Ctrl + N/P 自动提示</li>
 </ul>
 <h3 id="查找高亮："><a href="#查找高亮：" class="headerlink" title="查找高亮："></a>查找高亮：</h3><p>在查找模式中加入\c表示大小写不敏感查找，\C表示大小写敏感查找。例如：  /foo\c  将会查找所有的”foo”,”FOO”,”Foo”等字符串</p>
 <p>一，全匹配：</p>
@@ -5071,8 +5088,8 @@ hashMap.put(&quot;abc&quot;,&quot;1&quot;);
     </entry>
     
     <entry>
-      <title><![CDATA[Linux下各目录的默认含义]]></title>
-      <url>https://muxiaobai.github.io/2016/06/27/Linux%E4%B8%8B%E5%90%84%E7%9B%AE%E5%BD%95%E7%9A%84%E9%BB%98%E8%AE%A4%E5%90%AB%E4%B9%89/</url>
+      <title><![CDATA[Linux 下各目录的默认含义]]></title>
+      <url>https://muxiaobai.github.io/2016/06/27/Linux-%E4%B8%8B%E5%90%84%E7%9B%AE%E5%BD%95%E7%9A%84%E9%BB%98%E8%AE%A4%E5%90%AB%E4%B9%89/</url>
       <content type="html"><![CDATA[<p>常用的文件目录,以及文件位置,文件夹默认的作用等的总结。<br>例如：/etc/init.d,/usr/local等<br><a id="more"></a></p>
 <p>根:/<br>/etc<br>全局的配置文件存放目录。<br>系统和程序一般都可以通过修改相应的配置文件，来进行配置。例如，要配置系统开机的时候启动那些程序，配置某个程序启动的时候显示什么样的风格等等。通常这些配置文件都集中存放在/etc目录中，所以想要配置什么东西的话，可以在/etc下面寻找我们可能需要修改的文件。一些大型套件，如X11，在 /etc 下它们自己的子目录。系统配置文件可以放在这里或在 /usr/etc。 不过所程序总是在 /etc 目录下查找所需的配置文件，你也可以将这些文件链接到目录 /usr/etc。另外，还一个需要注意的常见现象就是，当某个程序在某个用户下运行的时候，可能会在该用户的家目录中生成一个配置文件（一般这个文件最开始就是/etc下相应配置文件的拷贝，存放相应于“当前用户”的配置，这样当前用户可以通过配置这个家目录的配置文件，来改变程序的行为，并且这个行为只是该用户特的。原因就是：一般来说一个程序启动，如果需要读取一些配置文件的话，它会首先读取当前用户家目录的配置文件，如果存在就使用；如果不存在它就到/etc下读取全局的配置文件进而启动程序。就是这个配置文件不自动生成，我们手动在自己的家目录中创建一个文件的话，也有许多程序会首先读取到这个家目录的文件并且以它的配置作为启动的选项（例如我们可以在家目录中创建vim程序的配置文件.vimrc，来配置自己的vim程序。 </p>
 <p>/boot<br>引导程序，内核等存放的目录。<br>这个目录，包括了在引导过程中所必需的文件，引导程序的相关文件（例如grub，lilo以及相应的配置文件以及Linux操作系统内核相关文件（例如vmlinuz等一般都存放在这里。在最开始的启动阶段，通过引导程序将内核加载到内存，完成内核的启动（这个时候，虚拟文件系统还不存在，加载的内核虽然是从硬盘读取的，但是没经过Linux的虚拟文件系统，这是比较底层的东西来实现的。然后内核自己创建好虚拟文件系统，并且从虚拟文件系统的其他子目录中（例如/sbin 和 /etc加载需要在开机启动的其他程序或者服务或者特定的动作（部分可以由用户自己在相应的目录中修改相应的文件来配制。如果我们的机器中包含多个操作系统，那么可以通过修改这个目录中的某个配置文件（例如grub.conf来调整启动的默认操作系统，系统启动的择菜单，以及启动延迟等参数。</p>
