@@ -57,11 +57,23 @@ deplist：显示rpm软件包的所有依赖关系。
 - 粘贴p 光标处粘贴复制内容（put paste放置）
 - 删除dd 3dd 删除光标行，删除光标及以下三行（delete）
 - u 撤销（undo）  Ctrl +R 回撤
-- Ctrl f 下一页 Ctrl b 上一页（）
-- 行头行尾 0/^行首 $ 行尾
+
+- 行内词跳转  w 词首 e 词尾   b 向前词首 W E B 空白分隔    fx 向后找x  F 向左 Find  ";" 命令重复
+- 行头行尾 0/^行首 $ 行尾 行首列 | 
+- 前一行首 - 后一行首 + 
+- 块 句段 () {}  % 对应括号
+- 半屏 ctrl + u 向上 up ctrl + d 向下down
+- 屏页  Ctrl f 下一页 forward  Ctrl b 上一页（backward）  H 屏首行 M 屏中间行 L 屏尾行  "H" 表示 Home (头)，"M" 表示 Middle (中) 而 "L" 表示 Last (尾)。
 - 文件头文件尾 gg/1G 文件头部  3G 第三行 G 文件尾部 
-- 光标跳转上一个位置Ctrl + O  Ctrl + I
-- /查找匹配 n 下一个
+- 两个位置相互跳转 `` 反引号 光标跳转上一个位置Ctrl + O  后一个位置  Ctrl + I
+
+- /查找匹配 n 下一个 gd 搜索高亮当前词
+- 执行命令 :!ls  执行 ls 命令  :r !pwd 把当前的文件夹路径输入到光标行
+- 分屏 :sp/vsp   :split   :diffsplit
+
+- 切换屏  ctrl +w +w
+- c change d delete c2whello 修改当前光标后的两个词变为hello  d2w 删除光标后的两个词 d$ 删除到行尾
+- 编辑模式  Ctrl + N/P 自动提示
 
 ### 查找高亮：
 

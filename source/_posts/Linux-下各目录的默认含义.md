@@ -1,5 +1,5 @@
 ---
-title: Linux下各目录的默认含义
+title: Linux 下各目录的默认含义
 date: 2016-06-27 21:09:58
 tags: 目录
 categories: Linux

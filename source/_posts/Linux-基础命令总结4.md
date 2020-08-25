@@ -19,7 +19,9 @@ description: "shell快捷件键，常用命令"
 - ctrl + u 剪切光标到行首
 - ctrl + k 剪切光标到行尾
 - ctrl + w 剪切光标前一个单词
+
 - ctrl + y 粘贴上面三个的复制
+
 - ctrl + z 挂起当前命令 jobs bg fg  唤醒
 - 
 - ctrl + r 搜索之前的命令
@@ -35,7 +37,7 @@ description: "shell快捷件键，常用命令"
 
 - ps -ef | grep tomcat 
 - ps -aux | sort -k4nr |head -h 10 内存前十的进程
-- du -sh *   当前路径（disk usage）
+- du -sh *   当前路径（disk usage）  sort -hr 倒序    du -hd1
 - df -hP  整个磁盘（disk free）
 - df -k /tmp 查看磁盘使用
 - crontab -l 定时任务
@@ -45,8 +47,6 @@ description: "shell快捷件键，常用命令"
 - service /etc/init.d  启动脚本位置
 - netstat -ano | grep 端口占用
 - netstat -tlnp | grep 端口占用
-
-nap
 
 wget 判断端口
 curl
