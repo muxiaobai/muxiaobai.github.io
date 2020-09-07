@@ -87,6 +87,19 @@ nginx -s quit
 #user  nobody;
 worker_processes  1;
 
+worker_processes，工作进程数
+1.默认：worker_processes: 1
+2.调大：worker_processes: CPU核心数，(双核4线程，可以设置为4)
+
+worker_connections，单个工作进程可以允许同时建立外部连接的数量
+数字越大，能同时处理的连接越多
+1.默认：worker_connections: 1024
+2.调大：worker_connections: 100000，（调大到10万连接）
+
+worker_rlimit_nofile 65535;
+
+nginx提供了worker_rlimit_nofile指令，这是除了ulimit的一种设置可用的描述符的方式。 该指令与使用ulimit对用户的设置是同样的效果。此指令的值将覆盖ulimit的值，如：worker_rlimit_nofile 20960;设置ulimits：ulimit -SHn 65535
+
 #error_log  logs/error.log;
 #error_log  logs/error.log  notice;
 #error_log  logs/error.log  info;
@@ -95,7 +108,7 @@ worker_processes  1;
 
 
 events {
-    worker_connections  1024;
+    worker_connections  65535;
 }
 
 
