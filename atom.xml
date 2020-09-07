@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-  <title>技术笔记</title>
+  <title>慕小白的博客</title>
   
   <subtitle>有输入,有输出</subtitle>
   <link href="/atom.xml" rel="self"/>
