@@ -7,6 +7,46 @@
     </url>
 
     <url>
+        <loc>https://muxiaobai.github.io/2017/09/02/%E5%BA%94%E7%94%A8%E9%83%A8%E7%BD%B2%E4%B9%8Bnginx%E8%B4%9F%E8%BD%BD/</loc>
+        <lastmod>2020-08-28T05:43:41.516Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://muxiaobai.github.io/2019/06/27/tools-ide%E5%BF%AB%E6%8D%B7%E6%93%8D%E4%BD%9C/</loc>
+        <lastmod>2020-08-27T01:47:52.079Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://muxiaobai.github.io/2016/06/29/%E5%A5%BD%E7%BD%91%E7%AB%99-%E5%A4%A9%E5%A4%A9%E8%AE%B0/</loc>
+        <lastmod>2020-08-27T01:47:22.056Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://muxiaobai.github.io/2018/09/04/%E6%95%B0%E6%8D%AE%E5%BA%93%E6%93%8D%E4%BD%9C%E8%AF%AD%E5%8F%A52/</loc>
+        <lastmod>2020-08-25T09:32:26.377Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://muxiaobai.github.io/2019/01/11/%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E4%B9%8Bmongodb/</loc>
+        <lastmod>2020-08-25T09:30:54.031Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
         <loc>https://muxiaobai.github.io/2017/09/17/Linux-%E5%9F%BA%E7%A1%80%E5%91%BD%E4%BB%A4%E6%80%BB%E7%BB%933/</loc>
         <lastmod>2020-08-20T08:07:01.066Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -153,22 +193,6 @@
     <url>
         <loc>https://muxiaobai.github.io/2017/10/23/%E5%89%8D%E7%AB%AF%E5%B0%8Ftips/</loc>
         <lastmod>2020-06-23T12:51:41.198Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>https://muxiaobai.github.io/2019/06/27/tools-ide%E5%BF%AB%E6%8D%B7%E6%93%8D%E4%BD%9C/</loc>
-        <lastmod>2020-06-23T12:49:59.566Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>https://muxiaobai.github.io/2019/01/11/%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E4%B9%8Bmongodb/</loc>
-        <lastmod>2020-06-23T12:40:36.742Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
@@ -415,22 +439,6 @@
     </url>
 
     <url>
-        <loc>https://muxiaobai.github.io/2018/09/04/%E6%95%B0%E6%8D%AE%E5%BA%93%E6%93%8D%E4%BD%9C%E8%AF%AD%E5%8F%A52/</loc>
-        <lastmod>2019-04-10T08:24:49.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>https://muxiaobai.github.io/2017/09/02/%E5%BA%94%E7%94%A8%E9%83%A8%E7%BD%B2%E4%B9%8Bnginx%E8%B4%9F%E8%BD%BD/</loc>
-        <lastmod>2019-04-01T05:54:51.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
         <loc>https://muxiaobai.github.io/2019/02/16/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E4%B9%8Bredis%E5%82%A8%E5%AD%98%E8%AE%A1%E7%AE%97%E5%80%BC/</loc>
         <lastmod>2019-02-16T05:01:42.000Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -489,14 +497,6 @@
     <url>
         <loc>https://muxiaobai.github.io/2018/11/15/%E5%BA%94%E7%94%A8%E9%83%A8%E7%BD%B2%E4%B9%8Bnginx%E5%8F%82%E6%95%B0%E9%85%8D%E7%BD%AE/</loc>
         <lastmod>2018-11-23T03:43:18.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>https://muxiaobai.github.io/2016/06/29/%E5%A5%BD%E7%BD%91%E7%AB%99-%E5%A4%A9%E5%A4%A9%E8%AE%B0/</loc>
-        <lastmod>2018-11-08T11:46:11.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 

@@ -177,13 +177,6 @@
     </url>
 
     <url>
-        <loc>https://muxiaobai.github.io/tags/%E7%BD%91%E7%AB%99/</loc>
-        <lastmod>2018-11-08T11:46:11.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
         <loc>https://muxiaobai.github.io/tags/%E5%89%8D%E6%B2%BF%E6%8A%80%E6%9C%AF/</loc>
         <lastmod>2018-12-24T02:07:07.000Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -214,20 +207,6 @@
     <url>
         <loc>https://muxiaobai.github.io/tags/redis/</loc>
         <lastmod>2019-02-16T05:01:42.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://muxiaobai.github.io/tags/nginx/</loc>
-        <lastmod>2019-04-01T05:54:51.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://muxiaobai.github.io/tags/%E5%B8%B8%E7%94%A8%E4%BB%A3%E7%A0%81/</loc>
-        <lastmod>2019-04-24T06:43:43.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
@@ -380,43 +359,8 @@
     </url>
 
     <url>
-        <loc>https://muxiaobai.github.io/tags/mongo/</loc>
-        <lastmod>2020-06-23T12:40:36.742Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://muxiaobai.github.io/tags/%E5%B7%A5%E5%85%B7/</loc>
-        <lastmod>2020-06-23T12:49:59.566Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://muxiaobai.github.io/tags/%E6%8F%92%E4%BB%B6/</loc>
-        <lastmod>2020-06-23T12:49:59.566Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
         <loc>https://muxiaobai.github.io/tags/%E5%89%8D%E7%AB%AF/</loc>
         <lastmod>2020-06-23T12:51:41.198Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://muxiaobai.github.io/tags/%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/</loc>
-        <lastmod>2020-06-23T12:52:15.866Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://muxiaobai.github.io/tags/tomcat/</loc>
-        <lastmod>2020-06-24T08:56:44.517Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
@@ -480,6 +424,62 @@
     <url>
         <loc>https://muxiaobai.github.io/tags/%E5%9F%BA%E7%A1%80%E5%91%BD%E4%BB%A4/</loc>
         <lastmod>2020-08-20T08:07:01.066Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://muxiaobai.github.io/tags/%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/</loc>
+        <lastmod>2020-08-25T09:30:54.031Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://muxiaobai.github.io/tags/mongo/</loc>
+        <lastmod>2020-08-25T09:30:54.031Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://muxiaobai.github.io/tags/%E5%B8%B8%E7%94%A8%E4%BB%A3%E7%A0%81/</loc>
+        <lastmod>2020-08-25T09:32:26.377Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://muxiaobai.github.io/tags/%E7%BD%91%E7%AB%99/</loc>
+        <lastmod>2020-08-27T01:47:22.056Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://muxiaobai.github.io/tags/%E5%B7%A5%E5%85%B7/</loc>
+        <lastmod>2020-08-27T01:47:52.079Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://muxiaobai.github.io/tags/%E6%8F%92%E4%BB%B6/</loc>
+        <lastmod>2020-08-27T01:47:52.079Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://muxiaobai.github.io/tags/tomcat/</loc>
+        <lastmod>2020-08-28T05:43:41.516Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://muxiaobai.github.io/tags/nginx/</loc>
+        <lastmod>2020-08-28T05:43:41.516Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
