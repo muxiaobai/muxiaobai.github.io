@@ -4,6 +4,45 @@
   
     
     <entry>
+      <title><![CDATA[Linux-基础命令总结之systemctl]]></title>
+      <url>https://muxiaobai.github.io/2020/09/23/Linux-%E5%9F%BA%E7%A1%80%E5%91%BD%E4%BB%A4%E6%80%BB%E7%BB%93%E4%B9%8Bsystemctl/</url>
+      <content type="html"><![CDATA[<p>systemctl也会去/etc/init.d目录下，查看，执行相关程序</p>
+<ul>
+<li>systemctl status firewalld</li>
+<li>systemctl list-unit-files</li>
+<li>systemctl list-units</li>
+</ul>
+]]></content>
+      
+        <categories>
+            
+            <category> Linux </category>
+            
+        </categories>
+        
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[CentOS网络设置]]></title>
+      <url>https://muxiaobai.github.io/2020/09/23/CentOS%E7%BD%91%E7%BB%9C%E8%AE%BE%E7%BD%AE/</url>
+      <content type="html"><![CDATA[<p>查看硬件的编号</p>
+<p><code>ip a</code></p>
+<p><img src="/2020/09/23/CentOS网络设置/ip.png" alt="获取硬件编号"></p>
+<p>路径：<code>/etc/sysconfig/network-scripts/ifcfg-ens33</code><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">TYPE=Ethernet</span><br><span class="line">PROXY_METHOD=none</span><br><span class="line">BROWSER_ONLY=no</span><br><span class="line">#BOOTPROTO=dhcp</span><br><span class="line">IPADDR=192.168.160.74</span><br><span class="line">NETMASK=255.255.255.0</span><br><span class="line">GATEWAY=192.168.160.254</span><br><span class="line">DNS1=114.114.114.114</span><br><span class="line">DNS2=8.8.8.8</span><br><span class="line">DEFROUTE=yes</span><br><span class="line">IPV4_FAILURE_FATAL=no</span><br><span class="line">IPV6INIT=yes</span><br><span class="line">IPV6_AUTOCONF=yes</span><br><span class="line">IPV6_DEFROUTE=yes</span><br><span class="line">IPV6_FAILURE_FATAL=no</span><br><span class="line">IPV6_ADDR_GEN_MODE=stable-privacy</span><br><span class="line">NAME=ens33</span><br><span class="line">UUID=3187afee-d4cd-4047-a498-e63f00570e53</span><br><span class="line">DEVICE=ens33</span><br><span class="line">ONBOOT=yes</span><br><span class="line">HWADDR=00:0C:29:86:ef:a3</span><br></pre></td></tr></table></figure></p>
+<p><img src="/2020/09/23/CentOS网络设置/ifcfg-ens33.png" alt="图解命令"></p>
+]]></content>
+      
+        <categories>
+            
+            <category> Linux </category>
+            
+        </categories>
+        
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[Elasticsearch集群化部署方案]]></title>
       <url>https://muxiaobai.github.io/2020/06/23/%E9%9B%86%E7%BE%A4%E4%B9%8BElasticsearch%E9%83%A8%E7%BD%B2%E6%96%B9%E6%A1%88/</url>
       <content type="html"><![CDATA[<p>应用服务IP为:192.168.1.2,ES_HOME为安装目录</p>
@@ -4801,8 +4840,7 @@ hashMap.put(&quot;abc&quot;,&quot;1&quot;);
 <h4 id="所属组："><a href="#所属组：" class="headerlink" title="所属组："></a>所属组：</h4><p><code>groups</code> <code>groupadd</code> <code>groupdel</code> <code>groupmod</code></p>
 <p>useradd 用户名 -g 组名–G 组名-d Home 目录名-p 密码</p>
 <p>useradd usenmae –g usenmae  –p ora123 </p>
-<p>passwd  username</p>
-<p>cat /etc/group  查看所有所属组</p>
+<p>passwd  username<br>/etc/passwd<br>cat /etc/group  查看所有所属组</p>
 <p>change owner  change modified</p>
 <p>chmod -R g+w  group增加 write权限</p>
 <p>chown -R owner:group /home/newname  把/home/newname的所有者改为owner，所属组改为group</p>
