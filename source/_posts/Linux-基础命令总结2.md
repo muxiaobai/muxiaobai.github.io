@@ -142,7 +142,7 @@ useradd 用户名 -g 组名–G 组名-d Home 目录名-p 密码
 useradd usenmae –g usenmae  –p ora123 
 
 passwd  username
-
+/etc/passwd
 cat /etc/group  查看所有所属组
 
 change owner  change modified
