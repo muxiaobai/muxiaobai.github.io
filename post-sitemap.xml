@@ -8,7 +8,15 @@
 
     <url>
         <loc>https://muxiaobai.github.io/2020/09/23/Linux-%E5%9F%BA%E7%A1%80%E5%91%BD%E4%BB%A4%E6%80%BB%E7%BB%93%E4%B9%8Bsystemctl/</loc>
-        <lastmod>2020-09-23T08:14:48.938Z</lastmod>
+        <lastmod>2020-09-25T09:25:10.642Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://muxiaobai.github.io/2019/06/27/tools-ide%E5%BF%AB%E6%8D%B7%E6%93%8D%E4%BD%9C/</loc>
+        <lastmod>2020-09-24T12:50:56.750Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
@@ -41,14 +49,6 @@
     <url>
         <loc>https://muxiaobai.github.io/2017/09/02/%E5%BA%94%E7%94%A8%E9%83%A8%E7%BD%B2%E4%B9%8Bnginx%E8%B4%9F%E8%BD%BD/</loc>
         <lastmod>2020-08-28T05:43:41.516Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>https://muxiaobai.github.io/2019/06/27/tools-ide%E5%BF%AB%E6%8D%B7%E6%93%8D%E4%BD%9C/</loc>
-        <lastmod>2020-08-27T01:47:52.079Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 

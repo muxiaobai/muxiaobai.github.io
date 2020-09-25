@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://muxiaobai.github.io/"/>
-  <updated>2020-09-23T08:14:48.938Z</updated>
+  <updated>2020-09-25T09:25:10.642Z</updated>
   <id>https://muxiaobai.github.io/</id>
   
   <author>
@@ -21,9 +21,9 @@
     <link href="https://muxiaobai.github.io/2020/09/23/Linux-%E5%9F%BA%E7%A1%80%E5%91%BD%E4%BB%A4%E6%80%BB%E7%BB%93%E4%B9%8Bsystemctl/"/>
     <id>https://muxiaobai.github.io/2020/09/23/Linux-基础命令总结之systemctl/</id>
     <published>2020-09-23T06:47:30.000Z</published>
-    <updated>2020-09-23T08:14:48.938Z</updated>
+    <updated>2020-09-25T09:25:10.642Z</updated>
     
-    <content type="html"><![CDATA[<p>systemctl也会去/etc/init.d目录下，查看，执行相关程序</p><ul><li>systemctl status firewalld</li><li>systemctl list-unit-files</li><li>systemctl list-units</li></ul>]]></content>
+    <content type="html"><![CDATA[<p>systemctl也会去/etc/init.d目录下，查看，执行相关程序</p><ul><li>systemctl status firewalld</li><li>systemctl list-unit-files 所有的资源</li><li>systemctl list-units  –type=service 正在运行的   type 类型</li></ul><p>unit 为资源</p><ul><li>Service unit：系统服务</li><li>Target unit：多个 Unit 构成的一个组</li><li>Device Unit：硬件设备</li><li>Mount Unit：文件系统的挂载点</li><li>Automount Unit：自动挂载点</li><li>Path Unit：文件或路径</li><li>Scope Unit：不是由 Systemd 启动的外部进程</li><li>Slice Unit：进程组</li><li>Snapshot Unit：Systemd 快照，可以切回某个快照</li><li>Socket Unit：进程间通信的 socket</li><li>Swap Unit：swap 文件</li><li>Timer Unit：定时器</li></ul><p>最常用的就是service unit</p><p>文件位置</p><p>Systemd 默认从目录/etc/systemd/system/读取配置文件。但是，里面存放的大部分文件都是符号链接，指向目录/usr/lib/systemd/system/，真正的<br>配置文件存放在那个目录</p><p><code>journalctl</code> 日志</p><p>Systemd 统一管理所有 Unit 的启动日志。带来的好处就是，可以只用journalctl一个命令，查看所有日志（内核日志和应用日志）。日志的配置文件是/etc/systemd/journald.conf。</p><p><a href="http://www.ruanyifeng.com/blog/2016/03/systemd-tutorial-commands.html" target="_blank" rel="noopener">阮一峰</a></p>]]></content>
     
     <summary type="html">
     

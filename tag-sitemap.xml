@@ -443,20 +443,6 @@
     </url>
 
     <url>
-        <loc>https://muxiaobai.github.io/tags/%E5%B7%A5%E5%85%B7/</loc>
-        <lastmod>2020-08-27T01:47:52.079Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://muxiaobai.github.io/tags/%E6%8F%92%E4%BB%B6/</loc>
-        <lastmod>2020-08-27T01:47:52.079Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
         <loc>https://muxiaobai.github.io/tags/tomcat/</loc>
         <lastmod>2020-08-28T05:43:41.516Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -480,6 +466,20 @@
     <url>
         <loc>https://muxiaobai.github.io/tags/%E5%9F%BA%E7%A1%80%E5%91%BD%E4%BB%A4/</loc>
         <lastmod>2020-09-23T06:48:09.398Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://muxiaobai.github.io/tags/%E5%B7%A5%E5%85%B7/</loc>
+        <lastmod>2020-09-24T12:50:56.750Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://muxiaobai.github.io/tags/%E6%8F%92%E4%BB%B6/</loc>
+        <lastmod>2020-09-24T12:50:56.750Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>

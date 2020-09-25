@@ -9,9 +9,30 @@
       <content type="html"><![CDATA[<p>systemctl也会去/etc/init.d目录下，查看，执行相关程序</p>
 <ul>
 <li>systemctl status firewalld</li>
-<li>systemctl list-unit-files</li>
-<li>systemctl list-units</li>
+<li>systemctl list-unit-files 所有的资源</li>
+<li>systemctl list-units  –type=service 正在运行的   type 类型</li>
 </ul>
+<p>unit 为资源</p>
+<ul>
+<li>Service unit：系统服务</li>
+<li>Target unit：多个 Unit 构成的一个组</li>
+<li>Device Unit：硬件设备</li>
+<li>Mount Unit：文件系统的挂载点</li>
+<li>Automount Unit：自动挂载点</li>
+<li>Path Unit：文件或路径</li>
+<li>Scope Unit：不是由 Systemd 启动的外部进程</li>
+<li>Slice Unit：进程组</li>
+<li>Snapshot Unit：Systemd 快照，可以切回某个快照</li>
+<li>Socket Unit：进程间通信的 socket</li>
+<li>Swap Unit：swap 文件</li>
+<li>Timer Unit：定时器</li>
+</ul>
+<p>最常用的就是service unit</p>
+<p>文件位置</p>
+<p>Systemd 默认从目录/etc/systemd/system/读取配置文件。但是，里面存放的大部分文件都是符号链接，指向目录/usr/lib/systemd/system/，真正的<br>配置文件存放在那个目录</p>
+<p><code>journalctl</code> 日志</p>
+<p>Systemd 统一管理所有 Unit 的启动日志。带来的好处就是，可以只用journalctl一个命令，查看所有日志（内核日志和应用日志）。日志的配置文件是/etc/systemd/journald.conf。</p>
+<p><a href="http://www.ruanyifeng.com/blog/2016/03/systemd-tutorial-commands.html" target="_blank" rel="noopener">阮一峰</a></p>
 ]]></content>
       
         <categories>
@@ -1102,9 +1123,11 @@ hashMap.put(&quot;abc&quot;,&quot;1&quot;);
 <p>参考:</p>
 <ul>
 <li><a href="https://github.com/judasn/IntelliJ-IDEA-Tutorial/blob/master/keymap-introduce.md" target="_blank" rel="noopener">IntelliJ-IDEA-Tutorial</a></li>
-<li><a href="https://blog.csdn.net/deniro_li/article/details/72902621" target="_blank" rel="noopener">IntelliJ IDEA 快捷键说明大全（中英对照、带图示详解）</a><h2 id="navicat"><a href="#navicat" class="headerlink" title="navicat"></a>navicat</h2></li>
+<li><a href="https://blog.csdn.net/deniro_li/article/details/72902621" target="_blank" rel="noopener">IntelliJ IDEA 快捷键说明大全（中英对照、带图示详解）</a></li>
+<li><a href="https://github.com/xiaoxiunique/tool-tips" target="_blank" rel="noopener">常用操作</a></li>
+<li><a href="https://github.com/muxiaobai/intelliJ-settings" target="_blank" rel="noopener">IDEA settigns 更新仓库</a></li>
 </ul>
-<p>ctrl + shift + r  选中内容执行<br>ctrl + r 执行当期窗口所有<br>ctrl + q 打开新执行窗口<br>ctrl + w 关闭当期窗口</p>
+<h2 id="navicat"><a href="#navicat" class="headerlink" title="navicat"></a>navicat</h2><p>ctrl + shift + r  选中内容执行<br>ctrl + r 执行当期窗口所有<br>ctrl + q 打开新执行窗口<br>ctrl + w 关闭当期窗口</p>
 <h2 id="plsql"><a href="#plsql" class="headerlink" title="plsql"></a>plsql</h2><p>F8 执行选中</p>
 <p>设置AutoReplace<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sf = select t.* ,t.rowid from </span><br><span class="line">s = select * from</span><br></pre></td></tr></table></figure></p>
 <p>打开PL/SQL，在Tools-&gt;Perferences-&gt;Editor中Autoreplace，勾选Enabled，选择配置的AutoReplace.txt文件，点击OK即可。</p>

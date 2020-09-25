@@ -23,7 +23,7 @@
 <meta property="og:site_name" content="慕小白的博客">
 <meta property="og:description" content="服务命令">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2020-09-23T08:14:48.938Z">
+<meta property="og:updated_time" content="2020-09-25T09:25:10.642Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Linux-基础命令总结之systemctl">
 <meta name="twitter:description" content="服务命令">
@@ -334,9 +334,30 @@
         <p>systemctl也会去/etc/init.d目录下，查看，执行相关程序</p>
 <ul>
 <li>systemctl status firewalld</li>
-<li>systemctl list-unit-files</li>
-<li>systemctl list-units</li>
+<li>systemctl list-unit-files 所有的资源</li>
+<li>systemctl list-units  –type=service 正在运行的   type 类型</li>
 </ul>
+<p>unit 为资源</p>
+<ul>
+<li>Service unit：系统服务</li>
+<li>Target unit：多个 Unit 构成的一个组</li>
+<li>Device Unit：硬件设备</li>
+<li>Mount Unit：文件系统的挂载点</li>
+<li>Automount Unit：自动挂载点</li>
+<li>Path Unit：文件或路径</li>
+<li>Scope Unit：不是由 Systemd 启动的外部进程</li>
+<li>Slice Unit：进程组</li>
+<li>Snapshot Unit：Systemd 快照，可以切回某个快照</li>
+<li>Socket Unit：进程间通信的 socket</li>
+<li>Swap Unit：swap 文件</li>
+<li>Timer Unit：定时器</li>
+</ul>
+<p>最常用的就是service unit</p>
+<p>文件位置</p>
+<p>Systemd 默认从目录/etc/systemd/system/读取配置文件。但是，里面存放的大部分文件都是符号链接，指向目录/usr/lib/systemd/system/，真正的<br>配置文件存放在那个目录</p>
+<p><code>journalctl</code> 日志</p>
+<p>Systemd 统一管理所有 Unit 的启动日志。带来的好处就是，可以只用journalctl一个命令，查看所有日志（内核日志和应用日志）。日志的配置文件是/etc/systemd/journald.conf。</p>
+<p><a href="http://www.ruanyifeng.com/blog/2016/03/systemd-tutorial-commands.html" target="_blank" rel="noopener">阮一峰</a></p>
 
       
     </div>
@@ -429,7 +450,7 @@
         <p><span>本文标题:</span><a href="/2020/09/23/Linux-基础命令总结之systemctl/">Linux-基础命令总结之systemctl</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">Mu Xiaobai(慕小白)</a></p>
         <p><span>发布时间:</span>2020-09-23, 14:47:30</p>
-        <p><span>最后更新:</span>2020-09-23, 16:14:48</p>
+        <p><span>最后更新:</span>2020-09-25, 17:25:10</p>
         <p>
             <span>原始链接:</span><a class="post-url" href="/2020/09/23/Linux-基础命令总结之systemctl/" title="Linux-基础命令总结之systemctl">https://muxiaobai.github.io/2020/09/23/Linux-基础命令总结之systemctl/</a>
             <span class="copy-path" data-clipboard-text="原文: https://muxiaobai.github.io/2020/09/23/Linux-基础命令总结之systemctl/　　作者: Mu Xiaobai(慕小白)" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
