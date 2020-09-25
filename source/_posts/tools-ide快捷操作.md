@@ -224,6 +224,9 @@ ctrl +alt +shift + s 本项目设置 打包
 参考:
 - [IntelliJ-IDEA-Tutorial](https://github.com/judasn/IntelliJ-IDEA-Tutorial/blob/master/keymap-introduce.md)
 - [IntelliJ IDEA 快捷键说明大全（中英对照、带图示详解）](https://blog.csdn.net/deniro_li/article/details/72902621)
+- [常用操作](https://github.com/xiaoxiunique/tool-tips)
+- [IDEA settigns 更新仓库](https://github.com/muxiaobai/intelliJ-settings)
+
 ## navicat
 
 ctrl + shift + r  选中内容执行

@@ -11,6 +11,35 @@ description: "服务命令"
 systemctl也会去/etc/init.d目录下，查看，执行相关程序
 
 - systemctl status firewalld
-- systemctl list-unit-files
-- systemctl list-units
+- systemctl list-unit-files 所有的资源
+- systemctl list-units  --type=service 正在运行的   type 类型
 
+unit 为资源
+
+- Service unit：系统服务
+- Target unit：多个 Unit 构成的一个组
+- Device Unit：硬件设备
+- Mount Unit：文件系统的挂载点
+- Automount Unit：自动挂载点
+- Path Unit：文件或路径
+- Scope Unit：不是由 Systemd 启动的外部进程
+- Slice Unit：进程组
+- Snapshot Unit：Systemd 快照，可以切回某个快照
+- Socket Unit：进程间通信的 socket
+- Swap Unit：swap 文件
+- Timer Unit：定时器
+
+最常用的就是service unit
+
+文件位置
+
+Systemd 默认从目录/etc/systemd/system/读取配置文件。但是，里面存放的大部分文件都是符号链接，指向目录/usr/lib/systemd/system/，真正的
+配置文件存放在那个目录
+
+
+`journalctl` 日志
+
+Systemd 统一管理所有 Unit 的启动日志。带来的好处就是，可以只用journalctl一个命令，查看所有日志（内核日志和应用日志）。日志的配置文件是/etc/systemd/journald.conf。
+
+
+[阮一峰](http://www.ruanyifeng.com/blog/2016/03/systemd-tutorial-commands.html)
