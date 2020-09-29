@@ -36,4 +36,9 @@ DEVICE=ens33
 ONBOOT=yes
 HWADDR=00:0C:29:86:ef:a3
 ```
+
 ![图解命令](CentOS网络设置/ifcfg-ens33.png)
+
+
+重启网络
+`systemctl restart network`
