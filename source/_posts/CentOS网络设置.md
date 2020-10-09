@@ -3,12 +3,12 @@ title: CentOS网络设置
 date: 2020-09-23 13:58:22
 tags:
 categories: Linux
-description: "网络配置 ip a, ifcfg-ens33"
+description: "网络配置 ip addr, ifcfg-ens33"
 ---
 
 查看硬件的编号
 
-`ip a`
+`ip addr`
 
 ![获取硬件编号](CentOS网络设置/ip.png)
 
