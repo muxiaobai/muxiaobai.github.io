@@ -133,7 +133,17 @@ git checkout dev
 删除远程xxx分支
 git remote rm xxx
 
+### 新分支 
+新分支
+git branch -b newbranch
 
+提交,创建远程分支
+git push origin newbranch:remotebranch
+
+修改指向
+git push --set-upstream origin newbranch
+
+git branch --set-upstream-to=origin/remote_branch newbranch
 
 #### 
 
