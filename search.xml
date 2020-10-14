@@ -48,7 +48,7 @@
       <title><![CDATA[CentOS网络设置]]></title>
       <url>https://muxiaobai.github.io/2020/09/23/CentOS%E7%BD%91%E7%BB%9C%E8%AE%BE%E7%BD%AE/</url>
       <content type="html"><![CDATA[<p>查看硬件的编号</p>
-<p><code>ip a</code></p>
+<p><code>ip addr</code></p>
 <p><img src="/2020/09/23/CentOS网络设置/ip.png" alt="获取硬件编号"></p>
 <p>路径：<code>/etc/sysconfig/network-scripts/ifcfg-ens33</code><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">TYPE=Ethernet</span><br><span class="line">PROXY_METHOD=none</span><br><span class="line">BROWSER_ONLY=no</span><br><span class="line">#BOOTPROTO=dhcp</span><br><span class="line">IPADDR=192.168.160.74</span><br><span class="line">NETMASK=255.255.255.0</span><br><span class="line">GATEWAY=192.168.160.254</span><br><span class="line">DNS1=114.114.114.114</span><br><span class="line">DNS2=8.8.8.8</span><br><span class="line">DEFROUTE=yes</span><br><span class="line">IPV4_FAILURE_FATAL=no</span><br><span class="line">IPV6INIT=yes</span><br><span class="line">IPV6_AUTOCONF=yes</span><br><span class="line">IPV6_DEFROUTE=yes</span><br><span class="line">IPV6_FAILURE_FATAL=no</span><br><span class="line">IPV6_ADDR_GEN_MODE=stable-privacy</span><br><span class="line">NAME=ens33</span><br><span class="line">UUID=3187afee-d4cd-4047-a498-e63f00570e53</span><br><span class="line">DEVICE=ens33</span><br><span class="line">ONBOOT=yes</span><br><span class="line">HWADDR=00:0C:29:86:ef:a3</span><br></pre></td></tr></table></figure></p>
 <p><img src="/2020/09/23/CentOS网络设置/ifcfg-ens33.png" alt="图解命令"></p>
@@ -1005,6 +1005,10 @@ hashMap.put(&quot;abc&quot;,&quot;1&quot;);
 <p>创建并切换dev 分支<br>git checkout -b dev</p>
 <p>切换到dev分支<br>git checkout dev</p>
 <p>删除远程xxx分支<br>git remote rm xxx</p>
+<h3 id="新分支"><a href="#新分支" class="headerlink" title="新分支"></a>新分支</h3><p>新分支<br>git branch -b newbranch</p>
+<p>提交,创建远程分支<br>git push origin newbranch:remotebranch</p>
+<p>修改指向<br>git push –set-upstream origin newbranch</p>
+<p>git branch –set-upstream-to=origin/remote_branch newbranch</p>
 <p>#### </p>
 <p>首先，git fetch –all  取回远程库的所有修改；<br>然后，git reset –hard origin/master<br>指向远程库origin的master</p>
 <h4 id="回滚上次提交"><a href="#回滚上次提交" class="headerlink" title="回滚上次提交"></a>回滚上次提交</h4><p>git reset --hard HEAD^<br>git log<br>git reset commit_id</p>

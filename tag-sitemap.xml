@@ -415,13 +415,6 @@
     </url>
 
     <url>
-        <loc>https://muxiaobai.github.io/tags/%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/</loc>
-        <lastmod>2020-08-25T09:30:54.031Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
         <loc>https://muxiaobai.github.io/tags/mongo/</loc>
         <lastmod>2020-08-25T09:30:54.031Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -480,6 +473,13 @@
     <url>
         <loc>https://muxiaobai.github.io/tags/%E6%8F%92%E4%BB%B6/</loc>
         <lastmod>2020-09-25T09:29:38.572Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://muxiaobai.github.io/tags/%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/</loc>
+        <lastmod>2020-10-14T02:07:28.914Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
