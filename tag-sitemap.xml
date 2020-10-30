@@ -443,13 +443,6 @@
     </url>
 
     <url>
-        <loc>https://muxiaobai.github.io/tags/nginx/</loc>
-        <lastmod>2020-08-28T05:43:41.516Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
         <loc>https://muxiaobai.github.io/tags/%E7%B3%BB%E7%BB%9F/</loc>
         <lastmod>2020-09-22T09:00:21.462Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -480,6 +473,13 @@
     <url>
         <loc>https://muxiaobai.github.io/tags/%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/</loc>
         <lastmod>2020-10-14T02:07:28.914Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://muxiaobai.github.io/tags/nginx/</loc>
+        <lastmod>2020-10-30T02:49:06.423Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>

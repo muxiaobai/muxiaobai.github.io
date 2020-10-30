@@ -7,8 +7,8 @@
     </url>
 
     <url>
-        <loc>https://muxiaobai.github.io/2019/07/29/%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E4%B9%8Bgit%E7%9A%84%E4%B8%80%E4%BA%9B%E6%93%8D%E4%BD%9C/</loc>
-        <lastmod>2020-10-14T02:07:28.914Z</lastmod>
+        <loc>https://muxiaobai.github.io/2020/10/30/%E5%BA%94%E7%94%A8%E9%83%A8%E7%BD%B2%E4%B9%8Bnginx%E7%9A%84https%E9%85%8D%E7%BD%AE%E5%8F%8A%E8%87%AA%E5%8A%A8%E7%94%9F%E6%88%90%E8%AF%81%E4%B9%A6/</loc>
+        <lastmod>2020-10-30T02:49:06.423Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
@@ -16,7 +16,15 @@
 
     <url>
         <loc>https://muxiaobai.github.io/2020/09/23/CentOS%E7%BD%91%E7%BB%9C%E8%AE%BE%E7%BD%AE/</loc>
-        <lastmod>2020-10-09T05:07:20.491Z</lastmod>
+        <lastmod>2020-10-30T02:43:10.849Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://muxiaobai.github.io/2019/07/29/%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E4%B9%8Bgit%E7%9A%84%E4%B8%80%E4%BA%9B%E6%93%8D%E4%BD%9C/</loc>
+        <lastmod>2020-10-14T02:07:28.914Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 

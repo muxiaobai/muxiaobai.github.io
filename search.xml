@@ -4,6 +4,43 @@
   
     
     <entry>
+      <title><![CDATA[应用部署之nginx的https配置及自动生成证书]]></title>
+      <url>https://muxiaobai.github.io/2020/10/30/%E5%BA%94%E7%94%A8%E9%83%A8%E7%BD%B2%E4%B9%8Bnginx%E7%9A%84https%E9%85%8D%E7%BD%AE%E5%8F%8A%E8%87%AA%E5%8A%A8%E7%94%9F%E6%88%90%E8%AF%81%E4%B9%A6/</url>
+      <content type="html"><![CDATA[<h3 id="模块"><a href="#模块" class="headerlink" title="模块"></a>模块</h3><p>运行nginx -V命令查看已经安装的nginx模块</p>
+<p>./configure –prefix=/usr/local/nginx –with-http_stub_status_module –with-http_ssl_module</p>
+<p>需要添加ssl模块</p>
+<h3 id="nginx-配置"><a href="#nginx-配置" class="headerlink" title="nginx 配置"></a>nginx 配置</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">	listen          8080;</span><br><span class="line">	listen       8443 ssl;</span><br><span class="line">	server_name  localhost;</span><br><span class="line">	#ssl on;</span><br><span class="line">	root html/app-layui/src;</span><br><span class="line">	index login.html index.htm;</span><br><span class="line">	ssl_certificate    ../cert/zhang.pem;</span><br><span class="line">	ssl_certificate_key ../cert/zhang.key;</span><br><span class="line">	ssl_session_timeout 5m;</span><br><span class="line">	ssl_ciphers ECDHE-RSA-AES128-GCM-SHA256:ECDHE:ECDH:AES:HIGH:!NULL:!aNULL:!MD5:!ADH:!RC4;</span><br><span class="line">	ssl_protocols TLSv1 TLSv1.1 TLSv1.2;</span><br><span class="line">	ssl_prefer_server_ciphers on;</span><br><span class="line">	#charset koi8-r;</span><br><span class="line">	#access_log  logs/host.access.log  main;</span><br><span class="line">	location / &#123;</span><br><span class="line">	    root   html;</span><br><span class="line">	    index  login.html login.thm;</span><br><span class="line">	&#125;</span><br><span class="line">    proxy_set_header Host $host;</span><br><span class="line">	proxy_set_header X-Real-IP $remote_addr;</span><br><span class="line">	proxy_set_header REMOTE-HOST $remote_addr;</span><br><span class="line">	proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="证书"><a href="#证书" class="headerlink" title="证书"></a>证书</h3><p>证书区分<br><img src="应用部署之nginx的https配置及自动生成证书/cert.png" alt="cert.png"></p>
+<p>tomcat keytool 免费证书<br>win&amp;linux 脚本</p>
+<ul>
+<li><a href="https://github.com/muxiaobai/shell/blob/master/winsh/gen_cert.bat" target="_blank" rel="noopener">https://github.com/muxiaobai/shell/blob/master/winsh/gen_cert.bat</a></li>
+<li><a href="https://github.com/muxiaobai/shell/blob/master/linux/gen_cert.sh" target="_blank" rel="noopener">https://github.com/muxiaobai/shell/blob/master/linux/gen_cert.sh</a></li>
+</ul>
+<p>免费安全证书  1year<br><a href="https://freessl.cn/" target="_blank" rel="noopener">https://freessl.cn/</a></p>
+<p>安全证书 </p>
+<p><a href="https://github.com/certbot/certbot" target="_blank" rel="noopener">https://github.com/certbot/certbot</a>   90day</p>
+<p>参考:</p>
+<ul>
+<li><a href="https://blog.csdn.net/achenyuan/article/details/83340179" target="_blank" rel="noopener">keytool和openssl生成证书，应用tomcat和nginx</a></li>
+</ul>
+]]></content>
+      
+        <categories>
+            
+            <category> deploy </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> nginx </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[Linux-基础命令总结之systemctl]]></title>
       <url>https://muxiaobai.github.io/2020/09/23/Linux-%E5%9F%BA%E7%A1%80%E5%91%BD%E4%BB%A4%E6%80%BB%E7%BB%93%E4%B9%8Bsystemctl/</url>
       <content type="html"><![CDATA[<p>systemctl也会去/etc/init.d目录下，查看，执行相关程序</p>

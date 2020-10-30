@@ -16,24 +16,20 @@
 
 
 
-<meta name="description" content="Hibernate的Session生命周期，以及Session在Spring中的使用，事务的Session范围">
-<meta name="keywords" content="Spring,Session,Hibernate">
+<meta name="description" content="部署https 脚本生成证书">
+<meta name="keywords" content="nginx">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Spring中的Session生命周期">
-<meta property="og:url" content="https://muxiaobai.github.io/2016/08/03/Spring中的Session生命周期/index.html">
+<meta property="og:title" content="应用部署之nginx的https配置及自动生成证书">
+<meta property="og:url" content="https://muxiaobai.github.io/2020/10/30/应用部署之nginx的https配置及自动生成证书/index.html">
 <meta property="og:site_name" content="慕小白的博客">
-<meta property="og:description" content="Hibernate的Session生命周期，以及Session在Spring中的使用，事务的Session范围">
+<meta property="og:description" content="部署https 脚本生成证书">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://muxiaobai.github.io/2016/08/03/Spring中的Session生命周期/201608051337CurrentSessionContext.PNG">
-<meta property="og:image" content="https://muxiaobai.github.io/2016/08/03/Spring中的Session生命周期/201608051345SpringSessionContext.PNG">
-<meta property="og:image" content="https://muxiaobai.github.io/2016/08/03/Spring中的Session生命周期/201608051437LocalSessionFactoryBean.PNG">
-<meta property="og:image" content="https://muxiaobai.github.io/2016/08/03/Spring中的Session生命周期/201608051454LocalSessionFactoryBuilder.PNG">
-<meta property="og:image" content="https://muxiaobai.github.io/2016/08/03/Spring中的Session生命周期/201608051457AvailableSettings.PNG">
-<meta property="og:updated_time" content="2020-06-15T09:17:26.830Z">
+<meta property="og:image" content="https://muxiaobai.github.io/2020/10/30/应用部署之nginx的https配置及自动生成证书/应用部署之nginx的https配置及自动生成证书/cert.png">
+<meta property="og:updated_time" content="2020-10-30T02:49:06.423Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Spring中的Session生命周期">
-<meta name="twitter:description" content="Hibernate的Session生命周期，以及Session在Spring中的使用，事务的Session范围">
-<meta name="twitter:image" content="https://muxiaobai.github.io/2016/08/03/Spring中的Session生命周期/201608051337CurrentSessionContext.PNG">
+<meta name="twitter:title" content="应用部署之nginx的https配置及自动生成证书">
+<meta name="twitter:description" content="部署https 脚本生成证书">
+<meta name="twitter:image" content="https://muxiaobai.github.io/2020/10/30/应用部署之nginx的https配置及自动生成证书/应用部署之nginx的https配置及自动生成证书/cert.png">
 
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
@@ -65,7 +61,7 @@
 <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
 
 
-<title>Spring中的Session生命周期 | 慕小白的博客</title>
+<title>应用部署之nginx的https配置及自动生成证书 | 慕小白的博客</title>
 
 <script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
 <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
@@ -297,12 +293,12 @@
     </div>
     <link class="menu-list" tags="标签" friends="友情链接" about="关于我">
 </nav>
-      <div class="body-wrap"><article id="post-Spring中的Session生命周期" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-应用部署之nginx的https配置及自动生成证书" class="article article-type-post" itemscope itemprop="blogPost">
  
   
     <div class="article-meta">
-      <a href="/2016/08/03/Spring中的Session生命周期/" class="article-date">
-      <time datetime="2016-08-03T06:44:24.000Z" itemprop="datePublished">2016-08-03</time>
+      <a href="/2020/10/30/应用部署之nginx的https配置及自动生成证书/" class="article-date">
+      <time datetime="2020-10-30T02:28:48.000Z" itemprop="datePublished">2020-10-30</time>
 </a>
     </div>
   
@@ -316,7 +312,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      Spring中的Session生命周期
+      应用部署之nginx的https配置及自动生成证书
     </h1>
   
 
@@ -325,13 +321,13 @@
       <div class="article-info article-info-post">
         
     <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/java/">java</a>
+    <a class="article-category-link" href="/categories/deploy/">deploy</a>
     </div>
 
 
         
     <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Hibernate/">Hibernate</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Session/">Session</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Spring/">Spring</a></li></ul>
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/nginx/">nginx</a></li></ul>
     </div>
 
         <div class="clearfix"></div>
@@ -342,58 +338,23 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <h2 id="Session是Hiberante中SessionFactory创建的Session，和Cookie、Session是两个东西。"><a href="#Session是Hiberante中SessionFactory创建的Session，和Cookie、Session是两个东西。" class="headerlink" title="Session是Hiberante中SessionFactory创建的Session，和Cookie、Session是两个东西。"></a>Session是Hiberante中SessionFactory创建的Session，和Cookie、Session是两个东西。</h2><h2 id="事务"><a href="#事务" class="headerlink" title="事务"></a>事务</h2><h4 id="事务相关的特性就不说了。ACID"><a href="#事务相关的特性就不说了。ACID" class="headerlink" title="事务相关的特性就不说了。ACID"></a>事务相关的特性就不说了。ACID</h4><h4 id="事务必须在Session中。"><a href="#事务必须在Session中。" class="headerlink" title="事务必须在Session中。"></a>事务必须在Session中。</h4><p>Hibernate事例</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">// 实例化Configuration，</span><br><span class="line">Configuration conf = new Configuration()</span><br><span class="line">// 不带参数的configure()方法默认加载hibernate.cfg.xml文件，</span><br><span class="line">// 如果传入abc.xml作为参数，则不再加载hibernate.cfg.xml，改为加载abc.xml</span><br><span class="line">	.configure();</span><br><span class="line">ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder()</span><br><span class="line">	.applySettings(conf.getProperties()).build();</span><br><span class="line">// 以Configuration实例创建SessionFactory实例</span><br><span class="line">SessionFactory sf = conf.buildSessionFactory(serviceRegistry);</span><br><span class="line">// 创建Session</span><br><span class="line">Session sess = sf.openSession();</span><br><span class="line">// 开始事务</span><br><span class="line">Transaction tx = sess.beginTransaction();</span><br><span class="line">User n = new User();</span><br><span class="line">n.setName(&quot;muxiaobai&quot;);</span><br><span class="line">n.setPassword(&quot;sosiiillliii&quot;);</span><br><span class="line">// 保存消息</span><br><span class="line">sess.save(n);</span><br><span class="line">// 提交事务</span><br><span class="line">tx.commit();</span><br><span class="line">// 关闭Session</span><br><span class="line">sess.close();</span><br><span class="line">sf.close();</span><br></pre></td></tr></table></figure>
-<p>提交Transaction的时候，Session还开启着，save()方法虽然使用的是Session对象。但是在提交事务之前，Session是不能关闭的。</p>
-<p>applicationContext.xml文件中(Spring文件)</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">&lt;bean id=&quot;transactionManager&quot;</span><br><span class="line">		class=&quot;org.springframework.orm.hibernate5.HibernateTransactionManager&quot;</span><br><span class="line">		p:sessionFactory-ref=&quot;sessionFactory&quot; /&gt;</span><br><span class="line"></span><br><span class="line">	&lt;!-- 配置事务增强处理Bean,指定事务管理器 --&gt;</span><br><span class="line">	&lt;tx:advice id=&quot;txAdvice&quot; transaction-manager=&quot;transactionManager&quot;&gt;</span><br><span class="line">		&lt;tx:attributes&gt;</span><br><span class="line">			&lt;tx:method name=&quot;get*&quot; read-only=&quot;true&quot; propagation=&quot;REQUIRED&quot; /&gt;</span><br><span class="line">			&lt;tx:method name=&quot;find*&quot; read-only=&quot;true&quot;  propagation=&quot;REQUIRED&quot;/&gt;</span><br><span class="line">			&lt;tx:method name=&quot;*&quot; isolation=&quot;DEFAULT&quot; propagation=&quot;REQUIRED&quot;/&gt;</span><br><span class="line">		&lt;/tx:attributes&gt;</span><br><span class="line">	&lt;/tx:advice&gt;</span><br><span class="line">	&lt;aop:config&gt;</span><br><span class="line">		&lt;aop:pointcut id=&quot;Pointcut&quot; expression=&quot;execution(* *.*.Service.*.*.*(..))&quot; /&gt;</span><br><span class="line">		&lt;aop:advisor advice-ref=&quot;txAdvice&quot; pointcut-ref=&quot;Pointcut&quot; /&gt;</span><br><span class="line">	&lt;/aop:config&gt;</span><br></pre></td></tr></table></figure>
-<p>先明白一点：事务是切在Service中的方法，为什么呢？Service中的方法是一个完整业务操作，然后被Action或者Servlet调用。<br>事务为了保证一个业务场景的数据一致性，所以要切在Service中。</p>
-<p>用化学中的原子分子来解释就是：Dao属于原子性操作，Service属于分子性操作。就像你喝水一样，吸收的是水分子而不是原子？你喝的是氢原子、氧原子。还是喝得水分子。(这个地方原子并不是对应事务的原子性，要正确理解原子性)。</p>
-<p>一般情况下运用Spring的AOP来配置事务，但是此时的就牵扯到参数”hibernate.current_session_context_class”了，到下面再说。</p>
-<h2 id="Hibernate的Session在Spring中的常见配置"><a href="#Hibernate的Session在Spring中的常见配置" class="headerlink" title="Hibernate的Session在Spring中的常见配置"></a>Hibernate的Session在Spring中的常见配置</h2><h4 id="Hibernate的Session的关闭与开启问题"><a href="#Hibernate的Session的关闭与开启问题" class="headerlink" title="Hibernate的Session的关闭与开启问题"></a>Hibernate的Session的关闭与开启问题</h4><p>如果没有Spring,Hibernate会让我们手动管理Session，<br>开启:<strong>Session sess = sf.openSession();</strong> 关闭：<strong>sess.close();</strong>这是比较好的，但是人嘛，总是懒嘛，所以就给Spring管理了，然后呢,我们就不想管它了，Spring就把Session给下面这个参数了”hibernate.current_session_context_class”,然后使用者就只用<strong>this.sessionFactory.getCurrentSession();</strong>来获取Session，也不用处理关闭了，Spring处理了。</p>
-<p>就如没有Hibernate的时候，我们使用JDBC，JDBC会用者/能用好者，实际上比Hibernate的性能好很多，但是，开发效率，开发时间就比较慢了。另一个原因，人嘛，总是懒嘛，就使用框架来工作，实际上在大量数据的添加/更新上，还是使用JDBC更好一点。使用了Hibernate后，就不用管连接<strong>Connection</strong>了，而且还使用了连接池，<strong>C3P0</strong>，所以一般开发者（或者高效开发者）使用框架来工作，这也是工作的需要，时间，效率问题。说多了。</p>
-<h4 id="hibernate-current-session-context-class"><a href="#hibernate-current-session-context-class" class="headerlink" title="hibernate.current_session_context_class"></a>hibernate.current_session_context_class</h4><p>重点来了，Spring到底是怎样控制Hibernate Session的生命周期或者叫范围的？</p>
-<p>applicationContext.xml文件中</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;prop key=&quot;hibernate.current_session_context_class&quot;&gt;org.springframework.orm.hibernate5.SpringSessionContext&lt;/prop&gt;</span><br><span class="line">#hibernate.current_session_context_class=thread/jta/managed/org.springframework.orm.hibernate5.SpringSessionContext</span><br></pre></td></tr></table></figure>
-<p>hibernate.current_session_context_class解释：<br><img src="/2016/08/03/Spring中的Session生命周期/201608051337CurrentSessionContext.PNG" alt="hibernate默认的三种session上下文"><br>可以看到Hibernate下，CurrentSessionContext下面有三种上下文的实现，     JTASessionContext、ThreadLocalSessionContext 、ManagedSessionContext。</p>
+        <h3 id="模块"><a href="#模块" class="headerlink" title="模块"></a>模块</h3><p>运行nginx -V命令查看已经安装的nginx模块</p>
+<p>./configure –prefix=/usr/local/nginx –with-http_stub_status_module –with-http_ssl_module</p>
+<p>需要添加ssl模块</p>
+<h3 id="nginx-配置"><a href="#nginx-配置" class="headerlink" title="nginx 配置"></a>nginx 配置</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">	listen          8080;</span><br><span class="line">	listen       8443 ssl;</span><br><span class="line">	server_name  localhost;</span><br><span class="line">	#ssl on;</span><br><span class="line">	root html/app-layui/src;</span><br><span class="line">	index login.html index.htm;</span><br><span class="line">	ssl_certificate    ../cert/zhang.pem;</span><br><span class="line">	ssl_certificate_key ../cert/zhang.key;</span><br><span class="line">	ssl_session_timeout 5m;</span><br><span class="line">	ssl_ciphers ECDHE-RSA-AES128-GCM-SHA256:ECDHE:ECDH:AES:HIGH:!NULL:!aNULL:!MD5:!ADH:!RC4;</span><br><span class="line">	ssl_protocols TLSv1 TLSv1.1 TLSv1.2;</span><br><span class="line">	ssl_prefer_server_ciphers on;</span><br><span class="line">	#charset koi8-r;</span><br><span class="line">	#access_log  logs/host.access.log  main;</span><br><span class="line">	location / &#123;</span><br><span class="line">	    root   html;</span><br><span class="line">	    index  login.html login.thm;</span><br><span class="line">	&#125;</span><br><span class="line">    proxy_set_header Host $host;</span><br><span class="line">	proxy_set_header X-Real-IP $remote_addr;</span><br><span class="line">	proxy_set_header REMOTE-HOST $remote_addr;</span><br><span class="line">	proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="证书"><a href="#证书" class="headerlink" title="证书"></a>证书</h3><p>证书区分<br><img src="应用部署之nginx的https配置及自动生成证书/cert.png" alt="cert.png"></p>
+<p>tomcat keytool 免费证书<br>win&amp;linux 脚本</p>
 <ul>
-<li><p>org.hibernate.context.JTASessionContext - 当前session根据JTA来跟踪和界定。这和以前的仅支持JTA的方法是完全一样的。</p>
-</li>
-<li><p>org.hibernate.context.ThreadLocalSessionContext - 当前session通过当前执行的线程来跟踪和界定。 </p>
-</li>
-<li><p>org.hibernate.context.ManagedSessionContext - 当前session通过当前执行的线程来跟踪和界定，但是需要静态方法来绑定和取消绑定Session。 </p>
-</li>
+<li><a href="https://github.com/muxiaobai/shell/blob/master/winsh/gen_cert.bat" target="_blank" rel="noopener">https://github.com/muxiaobai/shell/blob/master/winsh/gen_cert.bat</a></li>
+<li><a href="https://github.com/muxiaobai/shell/blob/master/linux/gen_cert.sh" target="_blank" rel="noopener">https://github.com/muxiaobai/shell/blob/master/linux/gen_cert.sh</a></li>
 </ul>
-<p>因此被Spring管理的Session中也有这三种Context上下文。同时Spring也实现了CurrentSessionContext，见下图：</p>
-<p><img src="/2016/08/03/Spring中的Session生命周期/201608051345SpringSessionContext.PNG" alt="Spring对CurrentSessionContext的实现类SpringSessionContext"><br>要在配置文件里进行如下设置：</p>
-<p>如果使用的是本地事务（jdbc事务）</p>
-<p>&lt;property name=”hibernate.current_session_context_class”>thread&lt;/property></p>
-<p>如果使用的是全局事务（jta事务）</p>
-<p>&lt;property name=”hibernate.current_session_context_class”>jta&lt;/property> </p>
-<p>hibernate.current_session_context_class 配置参数定义了应该采用哪个org.hibernate.context.CurrentSessionContext实现。注意，为了向下兼容，如果未 配置此参数，但是存在org.hibernate.transaction.TransactionManagerLookup的配 置，Hibernate会采用org.hibernate.context.JTASessionContext。一般而言，此参数的值指明了要使用的实 现类的全名，但那两个内置的实现可以使用简写，即”jta”和”thread”。</p>
-<p>附上两篇很好的解释。<br><a href="http://www.blogjava.net/wangxinsh55/archive/2012/10/16/389664.html" target="_blank" rel="noopener">hibernate.current_session_context_class属性配置</a><br><a href="http://blog.csdn.net/baple/article/details/39957499" target="_blank" rel="noopener">hibernate的current_session_context_class配置</a></p>
-<p>下面来看看Spring的SessionFactory是怎么获取Session的。</p>
-<p>我们在使用session的时候大都是这样得到的吧。</p>
-<p>applicationContext.xml</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;bean id=&quot;sessionFactory&quot;</span><br><span class="line">	class=&quot;org.springframework.orm.hibernate5.LocalSessionFactoryBean&quot;</span><br><span class="line">	p:dataSource-ref=&quot;dataSource&quot;&gt;</span><br><span class="line">		&lt;property name=&quot;hibernateProperties&quot;&gt;</span><br><span class="line">		&lt;props&gt;</span><br><span class="line">			&lt;prop key=&quot;hibernate.current_session_context_class&quot;&gt;$&#123;hibernate.current_session_context_class&#125;&lt;/prop&gt;</span><br><span class="line">		&lt;/props&gt;</span><br><span class="line">	&lt;/property&gt;</span><br><span class="line">&lt;/bean&gt;</span><br></pre></td></tr></table></figure>
-<p>先来找”hibernate.current_session_context_class”,在什么地方被注入，bean是SessionFactory，class是<strong>org.springframework.orm.hibernate5.LocalSessionFactoryBean</strong>我们发现其中并没有但是我们找到了这个<strong>buildSessionFactory(LocalSessionFactoryBuilder sfb)</strong>其中传递的参数LocalSessionFactoryBuilder<br><img src="/2016/08/03/Spring中的Session生命周期/201608051437LocalSessionFactoryBean.PNG" alt="Spring中SessionFactory的实现类LocalSessionFactoryBean"><br><img src="/2016/08/03/Spring中的Session生命周期/201608051454LocalSessionFactoryBuilder.PNG" alt="LocalSessionFactoryBuilder"><br>然后就开心了，看到熟悉的东西了，<strong>Environment.CURRENT_SESSION_CONTEXT_CLASS</strong>.最终在AvailableSettings中找到CURRENT_SESSION_CONTEXT_CLASS.<br><img src="/2016/08/03/Spring中的Session生命周期/201608051457AvailableSettings.PNG" alt="CURRENT_SESSION_CONTEXT_CLASS"><br>而回过头来看<strong>Environment.CURRENT_SESSION_CONTEXT_CLASS</strong>的值是：SpringSessionContext.class.getName()，如果我们没有写这个属性的话，默认就是SpringSessionContext。</p>
-<p>applicationContext.xml文件中</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;bean id=&quot;baseDaoImpl&quot; abstract=&quot;true&quot;  lazy-init=&quot;true&quot; p:sessionFactory-ref=&quot;sessionFactory&quot; /&gt;</span><br><span class="line">&lt;bean id=&quot;userDaoImpl&quot; class=&quot;DaoImpl.UserDaoImpl&quot; parent=&quot;baseDaoImpl&quot; /&gt;</span><br></pre></td></tr></table></figure>
-<p>BaseDaoImpl中会取得</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * 依赖注入SessionFactory所需的setter方法</span><br><span class="line"> * </span><br><span class="line"> * @param sessionFactory</span><br><span class="line"> */</span><br><span class="line">public void setSessionFactory(SessionFactory sessionFactory) &#123;</span><br><span class="line">		this.sessionFactory = sessionFactory;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * 取得Session.</span><br><span class="line"> * </span><br><span class="line"> * @return CurrentSession</span><br><span class="line"> */</span><br><span class="line">public Session getSession() &#123;</span><br><span class="line">	  return this.sessionFactory.getCurrentSession();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>然后就用 <strong>getCurrentSession</strong> 得到Session并对应相应的上下文。</p>
-<p>但是<strong>this.sessionFactory.getCurrentSession();</strong>这个方法得到的session，会随着get开启,随着事务的提交而关闭。</p>
-<p>因此在SSH中就出现常见的问题，如下：</p>
-<h4 id="常见的几种问题"><a href="#常见的几种问题" class="headerlink" title="常见的几种问题"></a>常见的几种问题</h4><h5 id="AOP事务中Session的生命周期"><a href="#AOP事务中Session的生命周期" class="headerlink" title="AOP事务中Session的生命周期"></a>AOP事务中Session的生命周期</h5><p>正常情况下，事务提交，Session关闭。</p>
-<h5 id="“org-hibernate-LazyInitializationException-could-not-initialize-proxy-no-Session”问题"><a href="#“org-hibernate-LazyInitializationException-could-not-initialize-proxy-no-Session”问题" class="headerlink" title="“org.hibernate.LazyInitializationException: could not initialize proxy - no Session”问题"></a>“org.hibernate.LazyInitializationException: could not initialize proxy - no Session”问题</h5><h5 id="“org-hibernate-LazyInitializationException-failed-to-lazily-initialize-a-collection-of-role-Model-User-no-session-or-session-was-closed”"><a href="#“org-hibernate-LazyInitializationException-failed-to-lazily-initialize-a-collection-of-role-Model-User-no-session-or-session-was-closed”" class="headerlink" title="“org.hibernate.LazyInitializationException: failed to lazily initialize a collection of role: Model.User, no session or session was closed”"></a>“org.hibernate.LazyInitializationException: failed to lazily initialize a collection of role: Model.User, no session or session was closed”</h5><p>以上两种错误属于同一类，no Session</p>
-<p>解释一下：因为Session会随着事务的提交而关闭，但是内存中的对象并没有你要访问的属性，在你要访问的时候，就会出现no Session 或者Session closed等问题。<br>但是，我们不可能把事务的范围扩大，因此就想着不让session关闭。在网上找到了这个openSessionInViewFilter。详解在下面。</p>
-<h5 id="“save-is-not-valid-without-active-transaction”-问题"><a href="#“save-is-not-valid-without-active-transaction”-问题" class="headerlink" title="“save is not valid without active transaction” 问题"></a>“save is not valid without active transaction” 问题</h5><p>正常情况下Hibernate没有问题，关键是整合Spring后，配置AOP，切面在Service，测试Dao的时候就出问题了，这个目前为止没有发现好的解决办法，我是在开发的时候Dao也配置事务，生产环境下去掉Dao事务。</p>
-<h4 id="OpenSessionInViewFilter"><a href="#OpenSessionInViewFilter" class="headerlink" title="OpenSessionInViewFilter"></a>OpenSessionInViewFilter</h4><p>为了延长Session的生命周期，Spring中引入OpenSessionInviewFilter。</p>
-<p>在web.xml文件中添加如下代码</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">&lt;filter&gt;</span><br><span class="line">    &lt;filter-name&gt;openSessionInViewFilter&lt;/filter-name&gt;</span><br><span class="line">    &lt;filter-class&gt;org.springframework.orm.hibernate5.support.OpenSessionInViewFilter&lt;/filter-class&gt;</span><br><span class="line">    &lt;init-param&gt;</span><br><span class="line">      &lt;param-name&gt;singleSession&lt;/param-name&gt;</span><br><span class="line">      &lt;param-value&gt;true&lt;/param-value&gt;</span><br><span class="line">    &lt;/init-param&gt;</span><br><span class="line">    &lt;init-param&gt;</span><br><span class="line">      &lt;param-name&gt;sessionFactoryBean&lt;/param-name&gt;</span><br><span class="line">      &lt;param-value&gt;sessionFactory&lt;/param-value&gt;</span><br><span class="line">    &lt;/init-param&gt;</span><br><span class="line">  &lt;/filter&gt;</span><br><span class="line">  &lt;filter-mapping&gt;</span><br><span class="line">    &lt;filter-name&gt;openSessionInViewFilter&lt;/filter-name&gt;</span><br><span class="line">    &lt;url-pattern&gt;/*&lt;/url-pattern&gt;</span><br><span class="line">  &lt;/filter-mapping&gt;</span><br></pre></td></tr></table></figure>
-<p>OpenSessionInViewFilter是Spring提供的一个针对Hibernate的一个支持类，其主要意思是在发起一个页面请求时打开Hibernate的Session，一直保持这个Session，直到这个请求结束，具体是通过一个Filter来实现的。</p>
-<p>由于Hibernate引入了Lazy Load特性，使得脱离Hibernate的Session周期的对象如果再想通过getter方法取到其关联对象的值，Hibernate会抛出一个LazyLoad的Exception。所以为了解决这个问题，Spring引入了这个Filter，使得Hibernate的Session的生命周期变长。这样不论是Servlet、JSP还是Action都可以获取Session。</p>
-<p><a href="http://blog.csdn.net/a5489888/article/details/9015375" target="_blank" rel="noopener">解决Hibernate的Session的关闭与开启问题</a><br><a href="http://blog.csdn.net/ggibenben1314/article/details/46289411" target="_blank" rel="noopener">OpenSessionInViewFilter的作用及原理</a></p>
+<p>免费安全证书  1year<br><a href="https://freessl.cn/" target="_blank" rel="noopener">https://freessl.cn/</a></p>
+<p>安全证书 </p>
+<p><a href="https://github.com/certbot/certbot" target="_blank" rel="noopener">https://github.com/certbot/certbot</a>   90day</p>
+<p>参考:</p>
+<ul>
+<li><a href="https://blog.csdn.net/achenyuan/article/details/83340179" target="_blank" rel="noopener">keytool和openssl生成证书，应用tomcat和nginx</a></li>
+</ul>
 
       
     </div>
@@ -483,13 +444,13 @@
   
     
     <div class="copyright">
-        <p><span>本文标题:</span><a href="/2016/08/03/Spring中的Session生命周期/">Spring中的Session生命周期</a></p>
+        <p><span>本文标题:</span><a href="/2020/10/30/应用部署之nginx的https配置及自动生成证书/">应用部署之nginx的https配置及自动生成证书</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">Mu Xiaobai(慕小白)</a></p>
-        <p><span>发布时间:</span>2016-08-03, 14:44:24</p>
-        <p><span>最后更新:</span>2020-06-15, 17:17:26</p>
+        <p><span>发布时间:</span>2020-10-30, 10:28:48</p>
+        <p><span>最后更新:</span>2020-10-30, 10:49:06</p>
         <p>
-            <span>原始链接:</span><a class="post-url" href="/2016/08/03/Spring中的Session生命周期/" title="Spring中的Session生命周期">https://muxiaobai.github.io/2016/08/03/Spring中的Session生命周期/</a>
-            <span class="copy-path" data-clipboard-text="原文: https://muxiaobai.github.io/2016/08/03/Spring中的Session生命周期/　　作者: Mu Xiaobai(慕小白)" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <span>原始链接:</span><a class="post-url" href="/2020/10/30/应用部署之nginx的https配置及自动生成证书/" title="应用部署之nginx的https配置及自动生成证书">https://muxiaobai.github.io/2020/10/30/应用部署之nginx的https配置及自动生成证书/</a>
+            <span class="copy-path" data-clipboard-text="原文: https://muxiaobai.github.io/2020/10/30/应用部署之nginx的https配置及自动生成证书/　　作者: Mu Xiaobai(慕小白)" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
             <script> var clipboard = new Clipboard('.copy-path'); </script>
         </p>
         <p>
@@ -501,16 +462,10 @@
 
     <nav id="article-nav">
         
-            <div id="article-nav-newer" class="article-nav-title">
-                <a href="/2016/08/04/Thinking-in-java-基础之异常/">
-                    Thinking in java 基础之异常
-                </a>
-            </div>
-        
         
             <div id="article-nav-older" class="article-nav-title">
-                <a href="/2016/07/20/前后台数据交互方式总结/">
-                    前后台数据交互方式总结
+                <a href="/2020/09/23/Linux-基础命令总结之systemctl/">
+                    Linux-基础命令总结之systemctl
                 </a>
             </div>
         
@@ -523,7 +478,7 @@
     <!--左侧-->
     <div id="toc" class="toc-article">
     <strong class="toc-title">文章目录</strong>
-    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Session是Hiberante中SessionFactory创建的Session，和Cookie、Session是两个东西。"><span class="toc-number">1.</span> <span class="toc-text">Session是Hiberante中SessionFactory创建的Session，和Cookie、Session是两个东西。</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#事务"><span class="toc-number">2.</span> <span class="toc-text">事务</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#事务相关的特性就不说了。ACID"><span class="toc-number">2.0.1.</span> <span class="toc-text">事务相关的特性就不说了。ACID</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#事务必须在Session中。"><span class="toc-number">2.0.2.</span> <span class="toc-text">事务必须在Session中。</span></a></li></ol></li></ol><li class="toc-item toc-level-2"><a class="toc-link" href="#Hibernate的Session在Spring中的常见配置"><span class="toc-number">3.</span> <span class="toc-text">Hibernate的Session在Spring中的常见配置</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Hibernate的Session的关闭与开启问题"><span class="toc-number">3.0.1.</span> <span class="toc-text">Hibernate的Session的关闭与开启问题</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#hibernate-current-session-context-class"><span class="toc-number">3.0.2.</span> <span class="toc-text">hibernate.current_session_context_class</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#常见的几种问题"><span class="toc-number">3.0.3.</span> <span class="toc-text">常见的几种问题</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#AOP事务中Session的生命周期"><span class="toc-number">3.0.3.1.</span> <span class="toc-text">AOP事务中Session的生命周期</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#“org-hibernate-LazyInitializationException-could-not-initialize-proxy-no-Session”问题"><span class="toc-number">3.0.3.2.</span> <span class="toc-text">“org.hibernate.LazyInitializationException: could not initialize proxy - no Session”问题</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#“org-hibernate-LazyInitializationException-failed-to-lazily-initialize-a-collection-of-role-Model-User-no-session-or-session-was-closed”"><span class="toc-number">3.0.3.3.</span> <span class="toc-text">“org.hibernate.LazyInitializationException: failed to lazily initialize a collection of role: Model.User, no session or session was closed”</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#“save-is-not-valid-without-active-transaction”-问题"><span class="toc-number">3.0.3.4.</span> <span class="toc-text">“save is not valid without active transaction” 问题</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#OpenSessionInViewFilter"><span class="toc-number">3.0.4.</span> <span class="toc-text">OpenSessionInViewFilter</span></a></li></ol></li>
+    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#模块"><span class="toc-number">1.</span> <span class="toc-text">模块</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#nginx-配置"><span class="toc-number">2.</span> <span class="toc-text">nginx 配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#证书"><span class="toc-number">3.</span> <span class="toc-text">证书</span></a></li></ol>
 </div>
 <style>
     .left-col .switch-btn,
@@ -631,15 +586,13 @@
 
     <div class="scroll" id="post-nav-button">
         
-            <a href="/2016/08/04/Thinking-in-java-基础之异常/" title="上一篇: Thinking in java 基础之异常">
-                <i class="fa fa-angle-left"></i>
-            </a>
+            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
         
 
         <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
 
         
-            <a href="/2016/07/20/前后台数据交互方式总结/" title="下一篇: 前后台数据交互方式总结">
+            <a href="/2020/09/23/Linux-基础命令总结之systemctl/" title="下一篇: Linux-基础命令总结之systemctl">
                 <i class="fa fa-angle-right"></i>
             </a>
         
