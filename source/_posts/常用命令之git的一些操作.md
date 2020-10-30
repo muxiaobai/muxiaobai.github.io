@@ -19,14 +19,24 @@ $ git clone --depth 1 https://github.com/dogescript/xxxxxxx.git
 $ git remote set-branches origin 'remote_branch_name'
 $ git fetch --depth 1 origin remote_branch_name
 $ git checkout remote_branch_name
- 
+
 ```
+只克隆master 分支 深度为1
+`git clone -b master  --depth 1 https://github.com/dogescript/xxxxxxx.git`
+
 压缩代码
 `git config  --add  core.compression -1`
 或者
 `git config  --global  core.compression -1`
 
 compression 是压缩的意思，从 clone 的终端输出就知道，服务器会压缩目标文件，然后传输到客户端，客户端再解压。取值为 [-1, 9]，-1 以 zlib 为默认压缩库，0 表示不进行压缩，1..9 是压缩速度与最终获得文件大小的不同程度的权衡，数字越大，压缩越慢，当然得到的文件会越小。
+
+可以增加git的缓存大小
+
+`git config --global http.postBuffer 1048576000`
+
+将http.postBuffer设置的尽量大，例如git config --global http.postBuffer 524288000 （500M）
+git config --global http.postBuffer 1048576000 (1G)。再大的应该是依次类推吧
 
 ####  或者使用git@  clone
 
