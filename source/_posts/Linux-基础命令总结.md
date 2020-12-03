@@ -25,7 +25,7 @@ description: "文件、文件内容、目录、压缩打包、帮助"
 
 ##### -f: 强制(不询问覆盖或删除)
 <!--more-->
-`cd`:  切换目录(Change directory)
+`cd`:  切换目录(Change directory)   cd -   切换到上一个目录
 
 `mkdir`: 新建目录(Make directory)
 

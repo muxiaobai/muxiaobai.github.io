@@ -12,6 +12,7 @@ description: " 部署https 脚本生成证书"
 ./configure --prefix=/usr/local/nginx --with-http_stub_status_module --with-http_ssl_module
 
 需要添加ssl模块
+make && make install
 
 ### nginx 配置
 

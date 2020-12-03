@@ -10,6 +10,13 @@ description: "每一次开机都要开启很多软件，在这里就找到解决
 可以用 win +r  `shell:startup`
 把需要启动的bat文件创建快捷方式，到此文件夹下
 ![自启动目录](tools-需要开启自启动的应用配置/自启动目录.png)
+
+或者开机启动脚本
+
+win+r  gpedit.msc
+
+用户配置----> Windows设置---->脚本（登陆/注销）----> 登陆---->添加---->start.bat
+
 一开机就启动必须的应用 IDEA VS Code  Chrome CloudMusic,自己写的脚本必须启动的内容
 
 ```
@@ -22,16 +29,32 @@ start /d "E:\Program Files\JetBrains\IntelliJ IDEA 2019.1.2\bin" idea64.exe
 echo VS CODE START
 start /d "E:\tools\Microsoft VS Code" code.exe
 
+echo sublime START
+start /d "E:\Program Files\Sublime Text 3" sublime_text.exe
+
 echo Chrome START
 start /d "C:\Program Files (x86)\Google\Chrome\Application" chrome.exe
 
 echo cloudmusic START
-start /d "C:\Program Files (x86)\Netease\CloudMusic" cloudmusic.exe
+start /d "E:\Program Files (x86)\Netease\CloudMusic" cloudmusic.exe
 
 echo javaw START
-start /d  "E:\workspace\idea\cloud\" taskrunjavaw.bat
+start /d  "E:\workspace\idea\app-cloud\" taskrunjavaw.bat
 
-exit
+echo nginx START
+start /d  "E:\tools\nginx-1.14.2\" nginx.exe  -c conf/nginx.conf
+
+echo dbeaver START
+start /d  "E:\tools\dbeaver-ce-7.0.4-win32.win32.x86_64\dbeaver" dbeaver.exe
+
+echo vmware START
+"E:\Program Files (x86)\VMware\VMware Workstation\vmrun.exe" start "E:\Users\Administrator\Documents\Virtual Machines\CentOS-192.168.160.75\CentOS-192.168.160.75.vmx"
+
+
+rem start /d "E:\Program Files (x86)\VMware\VMware Workstation"  vmware.exe
+rem "E:\Program Files (x86)\VMware\VMware Workstation\vmrun.exe" stop "E:\Users\Administrator\Documents\Virtual Machines\CentOS-192.168.160.75\CentOS-192.168.160.75.vmx"
+
+pause
 
 ```
 切换到对应目录然后执行exe

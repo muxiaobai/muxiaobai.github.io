@@ -450,14 +450,15 @@ cat /proc/cpuinfo | grep name | cut -f2 -d: | uniq -c
 
 
 磁盘空间：
-`du` estimates and displays the disk space used by files
-`df`  df -h 查看存储大小
+`du` estimates and displays the disk space used by files    du  -h
+
+`df`  df -sh 查看存储大小
 
 `dmesg`
 
 ##### dmesg 开机内核监测信息 | grep CPU
 
-`free`
+`free`  free -m 
 
 ##### free 查看内存-b –k –m –g
 
