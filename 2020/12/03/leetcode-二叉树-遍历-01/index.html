@@ -16,18 +16,17 @@
 
 
 
-<meta name="description" content="高并发下保证可用性的三大神器，缓存，限流，降级">
-<meta name="keywords" content="基础">
+<meta name="description" content="leetcode 二叉树刷题遍历">
 <meta property="og:type" content="article">
-<meta property="og:title" content="高并发之缓存、限流、降级">
-<meta property="og:url" content="https://muxiaobai.github.io/2019/05/21/高并发之缓存、限流、降级/index.html">
+<meta property="og:title" content="leetcode-二叉树-遍历-01">
+<meta property="og:url" content="https://muxiaobai.github.io/2020/12/03/leetcode-二叉树-遍历-01/index.html">
 <meta property="og:site_name" content="慕小白的博客">
-<meta property="og:description" content="高并发下保证可用性的三大神器，缓存，限流，降级">
+<meta property="og:description" content="leetcode 二叉树刷题遍历">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-05-21T12:52:54.000Z">
+<meta property="og:updated_time" content="2020-12-03T12:37:52.803Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="高并发之缓存、限流、降级">
-<meta name="twitter:description" content="高并发下保证可用性的三大神器，缓存，限流，降级">
+<meta name="twitter:title" content="leetcode-二叉树-遍历-01">
+<meta name="twitter:description" content="leetcode 二叉树刷题遍历">
 
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
@@ -59,7 +58,7 @@
 <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
 
 
-<title>高并发之缓存、限流、降级 | 慕小白的博客</title>
+<title>leetcode-二叉树-遍历-01 | 慕小白的博客</title>
 
 <script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
 <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
@@ -291,12 +290,12 @@
     </div>
     <link class="menu-list" tags="标签" friends="友情链接" about="关于我">
 </nav>
-      <div class="body-wrap"><article id="post-高并发之缓存、限流、降级" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-leetcode-二叉树-遍历-01" class="article article-type-post" itemscope itemprop="blogPost">
  
   
     <div class="article-meta">
-      <a href="/2019/05/21/高并发之缓存、限流、降级/" class="article-date">
-      <time datetime="2019-05-21T03:54:24.000Z" itemprop="datePublished">2019-05-21</time>
+      <a href="/2020/12/03/leetcode-二叉树-遍历-01/" class="article-date">
+      <time datetime="2020-12-03T09:28:04.000Z" itemprop="datePublished">2020-12-03</time>
 </a>
     </div>
   
@@ -310,7 +309,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      高并发之缓存、限流、降级
+      leetcode-二叉树-遍历-01
     </h1>
   
 
@@ -318,16 +317,8 @@
       
       <div class="article-info article-info-post">
         
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/高并发/">高并发</a>
-    </div>
-
 
         
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/基础/">基础</a></li></ul>
-    </div>
-
         <div class="clearfix"></div>
       </div>
       
@@ -336,31 +327,9 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <p>首先必须要从代码层面上提升性能，利用缓存等，如果在访问量大，确实无法处理的情况下就要考虑限流，或者防刷也是要考虑限流，然后如果服务确实不可用的话就把服务进行降级，比如当无法获取评论信息的时候，但是写的朋友圈是要正常返回的。不能因为评论服务无法提供，连朋友圈也不能看了。</p>
-<h2 id="缓存"><a href="#缓存" class="headerlink" title="缓存"></a>缓存</h2><p>可以通过注解把技术相关的，读缓存，写日志，写缓存的功能，使用注解加反射来进行操作。</p>
-<p>伪代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">Cache cache =getCache();</span><br><span class="line"></span><br><span class="line">if(cache!=null)&#123;</span><br><span class="line">    return cache;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Data result= getDatabase();</span><br><span class="line">lg.info(&quot;获取数据&quot;);</span><br><span class="line">if(result!=null)&#123;</span><br><span class="line">    setCacheData(result)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">return result;</span><br></pre></td></tr></table></figure></p>
-<p>业务上，实际只有getDatabase才有用。</p>
-<p>伪代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">@getCache()</span><br><span class="line">@setCache()</span><br><span class="line">@log()</span><br><span class="line">public getData()&#123;</span><br><span class="line">    Data result= getDatabase();</span><br><span class="line">    return result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>通过注解反射如果有getCache的话直接使用缓存中的数据，如果有直接返回，如果有log写日志，如果有set则把获取到的数据写到cache中。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<h2 id="限流"><a href="#限流" class="headerlink" title="限流"></a>限流</h2><h4 id="限流瞬时流量"><a href="#限流瞬时流量" class="headerlink" title="限流瞬时流量"></a>限流瞬时流量</h4><p>双11，秒杀，之类的属于瞬时流量很大，平时相对稳定。</p>
-<h4 id="限流总并发量"><a href="#限流总并发量" class="headerlink" title="限流总并发量"></a>限流总并发量</h4><h4 id="限流平均流量"><a href="#限流平均流量" class="headerlink" title="限流平均流量"></a>限流平均流量</h4><ul>
-<li><p>滑动窗口</p>
-</li>
-<li><p>令牌桶，每秒生成n个，限制平均流量</p>
-</li>
-<li><p>漏桶，这个是应对瞬时流量过大的一种方法，一定的速率进行消费，MQ，削峰，解耦，异步。但是能解决的瞬时流量也是有一个最大值。</p>
-</li>
-<li><p>计数器，限制总的并发数，比如说每秒钟只能请求100次，是限制总并发量。通常可用redis缓存，请求增加incr来实现。</p>
-</li>
-</ul>
-<p>采用：Google开源工具包Guava提供了限流工具类RateLimiter，该类基于令牌桶算法来完成限流，非常易于使用。</p>
-<h2 id="降级"><a href="#降级" class="headerlink" title="降级"></a>降级</h2><p>当服务调用者使用同步调用的时候，会产生大量的等待线程占用系统资源，一旦线程资源被耗尽，<br>服务调用者提供的服务也将处于不可用状态，于是服务雪崩效应产生了！<br>这时候就需要比如说：当失败了多少次之后，</p>
-<p>1，超时机制<br>2，服务限流<br>3，服务熔断<br>4，服务降级</p>
-<p>超时机制<br>如果我们加入超时机制，例如2s，那么超过2s就会直接返回了，那么这样就在一定程度上可以抑制消费者资源耗尽的问题</p>
-<p>服务限流<br>通过线程池+队列的方式，通过信号量的方式。比如商品评论比较慢，最大能同时处理10个线程，队列待处理5个，那么如果同时20个线程到达的话，其中就有5个线程被限流了，其中10个先被执行，另外5个在队列中</p>
-<p>服务熔断<br>这个熔断可以理解为我们自己家里的电闸。<br>当依赖的服务有大量超时时，在让新的请求去访问根本没有意义，只会无畏的消耗现有资源，比如我们设置了超时时间为1s，如果短时间内有大量请求在1s内都得不到响应，就意味着这个服务出现了异常，此时就没有必要再让其他的请求去访问这个服务了，这个时候就应该使用熔断器避免资源浪费</p>
-<p>服务降级<br>有服务熔断，必然要有服务降级。<br>所谓降级，就是当某个服务熔断之后，服务将不再被调用，此时客户端可以自己准备一个本地的fallback（回退）回调，返回一个缺省值。 例如：(备用接口/缓存/mock数据)，这样做，虽然服务水平下降，但好歹可用，比直接挂掉要强，当然这也要看适合的业务场景</p>
+        <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">void traverse(TreeNode root) &#123;</span><br><span class="line">    // 前序遍历</span><br><span class="line">    traverse(root.left)</span><br><span class="line">    // 中序遍历</span><br><span class="line">    traverse(root.right)</span><br><span class="line">    // 后序遍历</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * 先序遍历</span><br><span class="line"> *144</span><br><span class="line"> *</span><br><span class="line"> 作者：LeetCode-Solution</span><br><span class="line"> 链接：https://leetcode-cn.com/problems/binary-tree-preorder-traversal</span><br><span class="line"> 来源：力扣（LeetCode）</span><br><span class="line"> 著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</span><br><span class="line"> * @param root</span><br><span class="line"> * @return</span><br><span class="line"> */</span><br><span class="line">public static String traverseb(TreeNode root) &#123;</span><br><span class="line">    // 对于空节点，可以用一个特殊字符表示</span><br><span class="line">    if (root == null) &#123;</span><br><span class="line">        return &quot;#&quot;;</span><br><span class="line">    &#125;</span><br><span class="line">    // 将左右子树序列化成字符串</span><br><span class="line">    String left = traverseb(root.left);</span><br><span class="line">    String right = traverseb(root.right);</span><br><span class="line">    /* 先序遍历代码位置 */</span><br><span class="line">    // 左右子树加上自己，就是以自己为根的二叉树序列化结果</span><br><span class="line">    String subTree = root.val + &quot;,&quot; + left + &quot;,&quot; + right;</span><br><span class="line">    return subTree;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>参考:<a href="https://github.com/muxiaobai/java-demo/blob/master/test-java-demo/src/main/java/io/github/muxiaobai/labuladong/hhh.java" target="_blank" rel="noopener">遍历二叉树</a></p>
 
       
     </div>
@@ -450,13 +419,13 @@
   
     
     <div class="copyright">
-        <p><span>本文标题:</span><a href="/2019/05/21/高并发之缓存、限流、降级/">高并发之缓存、限流、降级</a></p>
+        <p><span>本文标题:</span><a href="/2020/12/03/leetcode-二叉树-遍历-01/">leetcode-二叉树-遍历-01</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">Mu Xiaobai(慕小白)</a></p>
-        <p><span>发布时间:</span>2019-05-21, 11:54:24</p>
-        <p><span>最后更新:</span>2019-05-21, 20:52:54</p>
+        <p><span>发布时间:</span>2020-12-03, 17:28:04</p>
+        <p><span>最后更新:</span>2020-12-03, 20:37:52</p>
         <p>
-            <span>原始链接:</span><a class="post-url" href="/2019/05/21/高并发之缓存、限流、降级/" title="高并发之缓存、限流、降级">https://muxiaobai.github.io/2019/05/21/高并发之缓存、限流、降级/</a>
-            <span class="copy-path" data-clipboard-text="原文: https://muxiaobai.github.io/2019/05/21/高并发之缓存、限流、降级/　　作者: Mu Xiaobai(慕小白)" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <span>原始链接:</span><a class="post-url" href="/2020/12/03/leetcode-二叉树-遍历-01/" title="leetcode-二叉树-遍历-01">https://muxiaobai.github.io/2020/12/03/leetcode-二叉树-遍历-01/</a>
+            <span class="copy-path" data-clipboard-text="原文: https://muxiaobai.github.io/2020/12/03/leetcode-二叉树-遍历-01/　　作者: Mu Xiaobai(慕小白)" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
             <script> var clipboard = new Clipboard('.copy-path'); </script>
         </p>
         <p>
@@ -468,16 +437,10 @@
 
     <nav id="article-nav">
         
-            <div id="article-nav-newer" class="article-nav-title">
-                <a href="/2019/06/27/tools-ide快捷操作/">
-                    tools-ide快捷操作
-                </a>
-            </div>
-        
         
             <div id="article-nav-older" class="article-nav-title">
-                <a href="/2019/05/18/使用ELK分析日志/">
-                    使用ELK分析日志
+                <a href="/2020/10/30/应用部署之nginx的https配置及自动生成证书/">
+                    应用部署之nginx的https配置及自动生成证书
                 </a>
             </div>
         
@@ -490,7 +453,7 @@
     <!--左侧-->
     <div id="toc" class="toc-article">
     <strong class="toc-title">文章目录</strong>
-    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#缓存"><span class="toc-number">1.</span> <span class="toc-text">缓存</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#限流"><span class="toc-number">2.</span> <span class="toc-text">限流</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#限流瞬时流量"><span class="toc-number">2.0.1.</span> <span class="toc-text">限流瞬时流量</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#限流总并发量"><span class="toc-number">2.0.2.</span> <span class="toc-text">限流总并发量</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#限流平均流量"><span class="toc-number">2.0.3.</span> <span class="toc-text">限流平均流量</span></a></li></ol></li></ol><li class="toc-item toc-level-2"><a class="toc-link" href="#降级"><span class="toc-number">3.</span> <span class="toc-text">降级</span></a></li>
+    
 </div>
 <style>
     .left-col .switch-btn,
@@ -598,15 +561,13 @@
 
     <div class="scroll" id="post-nav-button">
         
-            <a href="/2019/06/27/tools-ide快捷操作/" title="上一篇: tools-ide快捷操作">
-                <i class="fa fa-angle-left"></i>
-            </a>
+            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
         
 
         <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
 
         
-            <a href="/2019/05/18/使用ELK分析日志/" title="下一篇: 使用ELK分析日志">
+            <a href="/2020/10/30/应用部署之nginx的https配置及自动生成证书/" title="下一篇: 应用部署之nginx的https配置及自动生成证书">
                 <i class="fa fa-angle-right"></i>
             </a>
         
