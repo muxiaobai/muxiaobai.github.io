@@ -21,6 +21,7 @@ win+r  gpedit.msc
 
 ```
 
+
 echo start 
 
 echo idea START
@@ -45,14 +46,21 @@ echo nginx START
 start /d  "E:\tools\nginx-1.14.2\" nginx.exe  -c conf/nginx.conf
 
 echo dbeaver START
-start /d  "E:\tools\dbeaver-ce-7.0.4-win32.win32.x86_64\dbeaver" dbeaver.exe
+start /d  "E:\tools\dbeaver-ee-7.2.0-win32.win32.x86_64\dbeaver" dbeaver.exe
+
+echo redis START
+start /d  "E:\tools\Redis-x64-3.2.100\" redis-server.exe --service-install redis.windows-service.conf --loglevel verbose
+
+echo ssr START
+start /d "E:\tools\ssr-win-4.9.0\ShadowsocksR-win-4.9.0" ShadowsocksR-dotnet4.0.exe
+
+echo Ditto START
+start /d "E:\tools\DittoPortable_64bit_3_23_124_0剪贴板\Ditto" Ditto.exe
+
 
 echo vmware START
 "E:\Program Files (x86)\VMware\VMware Workstation\vmrun.exe" start "E:\Users\Administrator\Documents\Virtual Machines\CentOS-192.168.160.75\CentOS-192.168.160.75.vmx"
 
-
-rem start /d "E:\Program Files (x86)\VMware\VMware Workstation"  vmware.exe
-rem "E:\Program Files (x86)\VMware\VMware Workstation\vmrun.exe" stop "E:\Users\Administrator\Documents\Virtual Machines\CentOS-192.168.160.75\CentOS-192.168.160.75.vmx"
 
 pause
 
