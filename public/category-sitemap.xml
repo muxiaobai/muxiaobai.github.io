@@ -56,27 +56,6 @@
     </url>
 
     <url>
-        <loc>https://muxiaobai.github.io/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/</loc>
-        <lastmod>2017-09-19T07:10:41.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://muxiaobai.github.io/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E7%AE%97%E6%B3%95/</loc>
-        <lastmod>2017-09-19T07:10:41.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://muxiaobai.github.io/categories/%E8%B5%84%E6%BA%90/</loc>
-        <lastmod>2018-11-08T11:46:11.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
         <loc>https://muxiaobai.github.io/categories/OCR/</loc>
         <lastmod>2018-12-24T02:07:07.000Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -98,20 +77,6 @@
     </url>
 
     <url>
-        <loc>https://muxiaobai.github.io/categories/Linux/java/</loc>
-        <lastmod>2019-01-22T08:13:43.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://muxiaobai.github.io/categories/Linux/java/hadoop/</loc>
-        <lastmod>2019-01-22T08:13:43.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
         <loc>https://muxiaobai.github.io/categories/%E5%89%8D%E7%AB%AF/</loc>
         <lastmod>2019-02-16T04:39:29.000Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -128,20 +93,6 @@
     <url>
         <loc>https://muxiaobai.github.io/categories/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/</loc>
         <lastmod>2019-02-16T05:01:42.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://muxiaobai.github.io/categories/SQL/</loc>
-        <lastmod>2019-04-24T06:43:43.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://muxiaobai.github.io/categories/SQL/%E6%95%B0%E6%8D%AE%E5%BA%93/</loc>
-        <lastmod>2019-04-24T06:43:43.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
@@ -175,27 +126,6 @@
     </url>
 
     <url>
-        <loc>https://muxiaobai.github.io/categories/%E5%B7%A5%E5%85%B7/</loc>
-        <lastmod>2020-01-04T06:18:13.887Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://muxiaobai.github.io/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/</loc>
-        <lastmod>2020-05-03T02:38:16.577Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://muxiaobai.github.io/categories/Linux/</loc>
-        <lastmod>2020-05-06T07:02:15.060Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
         <loc>https://muxiaobai.github.io/categories/java/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/</loc>
         <lastmod>2020-05-19T09:20:46.641Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -204,28 +134,105 @@
 
     <url>
         <loc>https://muxiaobai.github.io/categories/devops/</loc>
-        <lastmod>2020-05-21T12:23:06.248Z</lastmod>
+        <lastmod>2020-08-05T01:06:31.362Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
-        <loc>https://muxiaobai.github.io/categories/%E6%80%BB%E7%BB%93/</loc>
-        <lastmod>2020-06-01T07:09:55.041Z</lastmod>
+        <loc>https://muxiaobai.github.io/categories/Linux/java/</loc>
+        <lastmod>2020-08-11T02:11:56.256Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://muxiaobai.github.io/categories/Linux/java/hadoop/</loc>
+        <lastmod>2020-08-11T02:11:56.256Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://muxiaobai.github.io/categories/%E9%9B%86%E7%BE%A4/</loc>
+        <lastmod>2020-08-18T05:33:22.286Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://muxiaobai.github.io/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/</loc>
+        <lastmod>2020-08-25T09:30:54.031Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://muxiaobai.github.io/categories/SQL/</loc>
+        <lastmod>2020-08-25T09:32:26.377Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://muxiaobai.github.io/categories/SQL/%E6%95%B0%E6%8D%AE%E5%BA%93/</loc>
+        <lastmod>2020-08-25T09:32:26.377Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
         <loc>https://muxiaobai.github.io/categories/deploy/</loc>
-        <lastmod>2020-06-01T07:15:31.337Z</lastmod>
+        <lastmod>2020-12-01T07:09:17.574Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://muxiaobai.github.io/categories/Linux/</loc>
+        <lastmod>2020-12-03T09:19:35.177Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://muxiaobai.github.io/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/</loc>
+        <lastmod>2020-12-03T09:22:28.712Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://muxiaobai.github.io/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E7%AE%97%E6%B3%95/</loc>
+        <lastmod>2020-12-03T09:22:28.712Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://muxiaobai.github.io/categories/%E6%80%BB%E7%BB%93/</loc>
+        <lastmod>2020-12-03T09:22:46.554Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
         <loc>https://muxiaobai.github.io/categories/java/</loc>
-        <lastmod>2020-06-15T09:17:26.830Z</lastmod>
+        <lastmod>2020-12-03T09:24:25.595Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://muxiaobai.github.io/categories/%E5%B7%A5%E5%85%B7/</loc>
+        <lastmod>2020-12-28T02:09:32.516Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://muxiaobai.github.io/categories/%E8%B5%84%E6%BA%90/</loc>
+        <lastmod>2021-01-06T08:01:20.521Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
