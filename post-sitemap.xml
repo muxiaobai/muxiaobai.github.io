@@ -7,6 +7,22 @@
     </url>
 
     <url>
+        <loc>https://muxiaobai.github.io/2016/07/01/%E5%A5%BD%E8%BD%AF%E4%BB%B6-%E9%9D%A0%E6%9C%BA%E9%81%87/</loc>
+        <lastmod>2021-01-06T08:01:20.521Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://muxiaobai.github.io/2019/12/26/tools-%E9%9C%80%E8%A6%81%E5%BC%80%E5%90%AF%E8%87%AA%E5%90%AF%E5%8A%A8%E7%9A%84%E5%BA%94%E7%94%A8%E9%85%8D%E7%BD%AE/</loc>
+        <lastmod>2020-12-28T02:09:32.516Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
         <loc>https://muxiaobai.github.io/2020/12/03/leetcode-%E4%BA%8C%E5%8F%89%E6%A0%91-%E9%81%8D%E5%8E%86-01/</loc>
         <lastmod>2020-12-03T12:37:52.803Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -17,14 +33,6 @@
     <url>
         <loc>https://muxiaobai.github.io/2018/04/17/Tomcat%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB%E4%B9%8BURL%E8%AF%B7%E6%B1%82%E8%A7%A3%E6%9E%90/</loc>
         <lastmod>2020-12-03T09:24:25.595Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>https://muxiaobai.github.io/2019/12/26/tools-%E9%9C%80%E8%A6%81%E5%BC%80%E5%90%AF%E8%87%AA%E5%90%AF%E5%8A%A8%E7%9A%84%E5%BA%94%E7%94%A8%E9%85%8D%E7%BD%AE/</loc>
-        <lastmod>2020-12-03T09:24:22.715Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
@@ -561,14 +569,6 @@
     <url>
         <loc>https://muxiaobai.github.io/2018/06/07/%E6%B5%8F%E8%A7%88%E5%99%A8%E7%9A%84%E8%AF%B7%E6%B1%82%E4%B8%8E%E5%93%8D%E5%BA%94%E8%BF%87%E7%A8%8B/</loc>
         <lastmod>2018-06-11T09:47:01.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>https://muxiaobai.github.io/2016/07/01/%E5%A5%BD%E8%BD%AF%E4%BB%B6-%E9%9D%A0%E6%9C%BA%E9%81%87/</loc>
-        <lastmod>2018-06-08T03:54:02.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
