@@ -1,5 +1,5 @@
 ---
-title: '好软件,靠机遇'
+title: '测试Travis CI'
 date: 2016-08-27 17:58:39
 tags: CI
 categories: Travis

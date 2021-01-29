@@ -233,6 +233,8 @@ curl -u elastic:123123 http://ip:port
 
 curl -H 'Content-Type: application/json' -XPOST  -u my_admin::my_pwd 'http://localhost:8080/' -d '{"password" : "123123"}'
 
+curl -u 'u:p' -H 'Content-type:application/json' -XPOST -d '@xxx.json' http://ip:port/path > result.txt
+
 远程连接：`ssh` `scp` `sftp` `telnet`(一般禁用) `ftp`(不常用)
 
 `sz` file 下载文件到本机

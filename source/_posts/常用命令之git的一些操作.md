@@ -152,7 +152,8 @@ git push origin newbranch:remotebranch
 
 修改指向
 git push --set-upstream origin newbranch
-
+ 
+ 关联本地分支指向
 git branch --set-upstream-to=origin/remote_branch newbranch
 
 #### 
