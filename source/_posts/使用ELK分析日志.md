@@ -183,9 +183,9 @@ discovery.zen.ping.unicast.hosts: ["127.0.0.1"]
 ##### 使用elastic-head 图形化工具查看运行情况
 [elastic-head github](https://github.com/mobz/elasticsearch-head)
 需要node环境
-`npm install` ` npm run start`默认9100端口 访问http://127.0.0.1:9100
+`npm install` ` npm run start`默认9100端口 访问http://127.0.0.1:9100 带有帐户密码的访问：http://127.0.0.1:9100/?auth_user=elastic&auth_password=elasticsearch_2017@*))
 
-![Logstash日志进入ElasticSearch](/使用ELK分析日志/elasticsearch-init.png)
+![Logstash日志进入ElasticSearch](使用ELK分析日志/elasticsearch-init.png)
 
 
 
@@ -201,20 +201,20 @@ discovery.zen.ping.unicast.hosts: ["127.0.0.1"]
 
 然后可以看到Logstash窗口输出的日志
 
-![ElasticSearch控制台](/使用ELK分析日志/logstash-nginx.png)
+![ElasticSearch控制台](使用ELK分析日志/logstash-nginx.png)
 
 http://localhost:9100,中，可以看到访问日志的内容
 效果如下：
-![Logstash日志进入ElasticSearch](/使用ELK分析日志/elasticsearch-header.png)
+![Logstash日志进入ElasticSearch](使用ELK分析日志/elasticsearch-header.png)
 具体切分的数据
 ![Logstash日志进入ElasticSearch](/使用ELK分析日志/data1.png)
 
 ![Logstash日志进入ElasticSearch](/使用ELK分析日志/data2.png)
 
 创建了索引后，
-![Logstash日志进入ElasticSearch](/使用ELK分析日志/kibaba2.png)
+![Logstash日志进入ElasticSearch](使用ELK分析日志/kibaba2.png)
 在kibaba中有默认的时间线，访问次数，即可展示
-![Logstash日志进入ElasticSearch](/使用ELK分析日志/kibaba4.png)
+![Logstash日志进入ElasticSearch](使用ELK分析日志/kibaba4.png)
 
 ### 使用filebeat
 
