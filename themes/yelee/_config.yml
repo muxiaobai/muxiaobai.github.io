@@ -113,7 +113,7 @@ youyan:
 
 
   #6、Valine https://valine.js.org
-# valine comment system. https://valine.js.org
+  #评论 valine comment system. https://valine.js.org
 valine:
   on: true # if you want use valine,please set this value is ture
   appId: DKpXRrI8oJIhGWgCOaJEVpz0-gzGzoHsz # leancloud application app id
