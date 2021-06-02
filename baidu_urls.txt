@@ -1,3 +1,4 @@
+https://muxiaobai.github.io/2021/06/02/SpringBoot之自动装配/
 https://muxiaobai.github.io/2021/01/27/机器学习之总览全局/
 https://muxiaobai.github.io/2020/12/03/leetcode-二叉树-遍历-01/
 https://muxiaobai.github.io/2020/10/30/应用部署之nginx的https配置及自动生成证书/
