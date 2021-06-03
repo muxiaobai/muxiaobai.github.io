@@ -6,11 +6,16 @@
     <entry>
       <title><![CDATA[SpringBoot之自动装配]]></title>
       <url>https://muxiaobai.github.io/2021/06/02/SpringBoot%E4%B9%8B%E8%87%AA%E5%8A%A8%E8%A3%85%E9%85%8D/</url>
-      <content type="html"><![CDATA[<p>主图是spring和mybatis的相关内容</p>
+      <content type="html"><![CDATA[<p>主图是spring和mybatis的结合的内容</p>
 <p><img src="http://assets.processon.com/chart_image/5c8b1387e4b02b2ce4995739.png" alt="图片"></p>
 <p>此为主要部分spring @Import</p>
 <p><img src="/2021/06/02/SpringBoot之自动装配/import.png" alt="图片"></p>
 <p>一点点分析：</p>
+<p>@Import({xxx.class})直接来的</p>
+<p>@EnableAutoConfiguration中的@Import(AutoConfigurationImportSelector.class)扫描 <code>META-INF/spring.factories</code>中的</p>
+<p>@AutoConfigurationPackage中的@Import(AutoConfigurationPackages.Registrar.class)<br>注册包中的</p>
+<p>这些配置都存在 ，在run中读取放入Spring中</p>
+<p><a href="https://mp.weixin.qq.com/s?__biz=MzA3MjMwMzg2Nw==&amp;mid=2247493911&amp;idx=1&amp;sn=1e3a08d74795a5019ad75aeb96e6d03f&amp;chksm=9f22fc83a855759508466fd2b688b84596322c5cf09544d8c131a82b050519863130abb2861d&amp;mpshare=1&amp;scene=1&amp;srcid=0413hiUoUrSnubWmvPrjhtEb&amp;sharer_sharetime=1618283761073&amp;sharer_shareid=76ce302a154389434cac572dafac93a9&amp;exportkey=AWeI%2BZ6voGgk7zqHOgEJWv4%3D&amp;pass_ticket=kIMvV2YwZ%2FHhNKTNMAeYQZjH1J5ya%2BLtLS4VTLEYVerq1bu1Os1JaaImGAR8cIvz&amp;wx_header=0#rd" target="_blank" rel="noopener">Spring Boot 注解原理，自动装配原理，图文并茂，万字长文！</a></p>
 ]]></content>
       
         <categories>

@@ -25,7 +25,7 @@
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://assets.processon.com/chart_image/5c8b1387e4b02b2ce4995739.png">
 <meta property="og:image" content="https://muxiaobai.github.io/2021/06/02/SpringBoot之自动装配/import.png">
-<meta property="og:updated_time" content="2021-06-02T10:17:52.630Z">
+<meta property="og:updated_time" content="2021-06-03T03:04:57.428Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="SpringBoot之自动装配">
 <meta name="twitter:description" content="解释自动装配机制，">
@@ -334,11 +334,16 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <p>主图是spring和mybatis的相关内容</p>
+        <p>主图是spring和mybatis的结合的内容</p>
 <p><img src="http://assets.processon.com/chart_image/5c8b1387e4b02b2ce4995739.png" alt="图片"></p>
 <p>此为主要部分spring @Import</p>
 <p><img src="/2021/06/02/SpringBoot之自动装配/import.png" alt="图片"></p>
 <p>一点点分析：</p>
+<p>@Import({xxx.class})直接来的</p>
+<p>@EnableAutoConfiguration中的@Import(AutoConfigurationImportSelector.class)扫描 <code>META-INF/spring.factories</code>中的</p>
+<p>@AutoConfigurationPackage中的@Import(AutoConfigurationPackages.Registrar.class)<br>注册包中的</p>
+<p>这些配置都存在 ，在run中读取放入Spring中</p>
+<p><a href="https://mp.weixin.qq.com/s?__biz=MzA3MjMwMzg2Nw==&amp;mid=2247493911&amp;idx=1&amp;sn=1e3a08d74795a5019ad75aeb96e6d03f&amp;chksm=9f22fc83a855759508466fd2b688b84596322c5cf09544d8c131a82b050519863130abb2861d&amp;mpshare=1&amp;scene=1&amp;srcid=0413hiUoUrSnubWmvPrjhtEb&amp;sharer_sharetime=1618283761073&amp;sharer_shareid=76ce302a154389434cac572dafac93a9&amp;exportkey=AWeI%2BZ6voGgk7zqHOgEJWv4%3D&amp;pass_ticket=kIMvV2YwZ%2FHhNKTNMAeYQZjH1J5ya%2BLtLS4VTLEYVerq1bu1Os1JaaImGAR8cIvz&amp;wx_header=0#rd" target="_blank" rel="noopener">Spring Boot 注解原理，自动装配原理，图文并茂，万字长文！</a></p>
 
       
     </div>
@@ -431,7 +436,7 @@
         <p><span>本文标题:</span><a href="/2021/06/02/SpringBoot之自动装配/">SpringBoot之自动装配</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">Mu Xiaobai(慕小白)</a></p>
         <p><span>发布时间:</span>2021-06-02, 17:30:47</p>
-        <p><span>最后更新:</span>2021-06-02, 10:17:52</p>
+        <p><span>最后更新:</span>2021-06-03, 03:04:57</p>
         <p>
             <span>原始链接:</span><a class="post-url" href="/2021/06/02/SpringBoot之自动装配/" title="SpringBoot之自动装配">https://muxiaobai.github.io/2021/06/02/SpringBoot之自动装配/</a>
             <span class="copy-path" data-clipboard-text="原文: https://muxiaobai.github.io/2021/06/02/SpringBoot之自动装配/　　作者: Mu Xiaobai(慕小白)" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
