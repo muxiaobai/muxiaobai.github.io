@@ -57,10 +57,21 @@ start /d "E:\tools\ssr-win-4.9.0\ShadowsocksR-win-4.9.0" ShadowsocksR-dotnet4.0.
 echo Ditto START
 start /d "E:\tools\DittoPortable_64bit_3_23_124_0剪贴板\Ditto" Ditto.exe
 
+echo pg_sql START
+"E:\Program Files\pgsql\bin\pg_ctl.exe"  -D "E:\Program Files\pgsql\data" start
 
 echo vmware START
 "E:\Program Files (x86)\VMware\VMware Workstation\vmrun.exe" start "E:\Users\Administrator\Documents\Virtual Machines\CentOS-192.168.160.75\CentOS-192.168.160.75.vmx"
 
+echo ES START
+start /d "E:\tools\elk\elasticsearch-7.5.1-master\bin"  elasticsearch.bat
+
+start /d "E:\tools\elk\elasticsearch-7.5.1-slave1\bin"  elasticsearch.bat
+
+start /d "E:\tools\elk\kibana-7.5.1-windows-x86_64\bin"  kibana.bat
+
+echo jupyter START
+start  E:\ProgramData\Anaconda3\python.exe E:\ProgramData\Anaconda3\cwp.py E:\ProgramData\Anaconda3\envs\tensorflow E:\ProgramData\Anaconda3\envs\tensorflow\python.exe E:\ProgramData\Anaconda3\envs\tensorflow\Scripts\jupyter-notebook-script.py E:\workspace\git
 
 pause
 
