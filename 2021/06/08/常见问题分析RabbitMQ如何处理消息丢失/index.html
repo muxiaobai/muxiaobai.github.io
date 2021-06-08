@@ -16,18 +16,17 @@
 
 
 
-<meta name="description" content="监控Druid连接池运行情况，配合其他的Web URL Spring 等监控">
-<meta name="keywords" content="连接池">
+<meta name="description" content="常见问题分析---rabbitmq如何处理丢消息">
 <meta property="og:type" content="article">
-<meta property="og:title" content="数据库监控-Druid监控配置">
-<meta property="og:url" content="https://muxiaobai.github.io/2018/11/22/数据库监控-Druid监控配置/index.html">
+<meta property="og:title" content="常见问题分析RabbitMQ如何处理消息丢失">
+<meta property="og:url" content="https://muxiaobai.github.io/2021/06/08/常见问题分析RabbitMQ如何处理消息丢失/index.html">
 <meta property="og:site_name" content="慕小白的博客">
-<meta property="og:description" content="监控Druid连接池运行情况，配合其他的Web URL Spring 等监控">
+<meta property="og:description" content="常见问题分析---rabbitmq如何处理丢消息">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2021-06-08T06:18:20.500Z">
+<meta property="og:updated_time" content="2021-06-08T06:18:20.496Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="数据库监控-Druid监控配置">
-<meta name="twitter:description" content="监控Druid连接池运行情况，配合其他的Web URL Spring 等监控">
+<meta name="twitter:title" content="常见问题分析RabbitMQ如何处理消息丢失">
+<meta name="twitter:description" content="常见问题分析---rabbitmq如何处理丢消息">
 
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
@@ -59,7 +58,7 @@
 <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
 
 
-<title>数据库监控-Druid监控配置 | 慕小白的博客</title>
+<title>常见问题分析RabbitMQ如何处理消息丢失 | 慕小白的博客</title>
 
 <script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
 <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
@@ -291,12 +290,12 @@
     </div>
     <link class="menu-list" tags="标签" friends="友情链接" about="关于我">
 </nav>
-      <div class="body-wrap"><article id="post-数据库监控-Druid监控配置" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-常见问题分析RabbitMQ如何处理消息丢失" class="article article-type-post" itemscope itemprop="blogPost">
  
   
     <div class="article-meta">
-      <a href="/2018/11/22/数据库监控-Druid监控配置/" class="article-date">
-      <time datetime="2018-11-22T02:22:41.000Z" itemprop="datePublished">2018-11-22</time>
+      <a href="/2021/06/08/常见问题分析RabbitMQ如何处理消息丢失/" class="article-date">
+      <time datetime="2021-06-08T14:15:00.000Z" itemprop="datePublished">2021-06-08</time>
 </a>
     </div>
   
@@ -310,7 +309,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      数据库监控-Druid监控配置
+      常见问题分析RabbitMQ如何处理消息丢失
     </h1>
   
 
@@ -319,15 +318,11 @@
       <div class="article-info article-info-post">
         
     <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/SQL/">SQL</a><a class="article-category-link" href="/categories/SQL/系统监控优化/">系统监控优化</a><a class="article-category-link" href="/categories/SQL/系统监控优化/数据库/">数据库</a>
+    <a class="article-category-link" href="/categories/工具/">工具</a>
     </div>
 
 
         
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/连接池/">连接池</a></li></ul>
-    </div>
-
         <div class="clearfix"></div>
       </div>
       
@@ -336,23 +331,18 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <p>Druid连接池监控问题，主要包括，配置，记录慢SQL等。<br><a id="more"></a></p>
-<p><a href="https://github.com/alibaba/druid" target="_blank" rel="noopener">Github repo</a><br><a href="https://github.com/alibaba/druid/wiki/%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98" target="_blank" rel="noopener">Github Druid Wiki</a></p>
-<h2 id="添加监控页面"><a href="#添加监控页面" class="headerlink" title="添加监控页面"></a>添加监控页面</h2><h2 id="WEB应用-URI监控-Spring监控"><a href="#WEB应用-URI监控-Spring监控" class="headerlink" title="WEB应用 URI监控 Spring监控"></a>WEB应用 URI监控 Spring监控</h2><p>web.xml,放在前面的，URI监控filter，</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"> &lt;!-- druid监控 http://host:port/druid/sql.html --&gt;</span><br><span class="line">&lt;filter&gt;</span><br><span class="line">		&lt;filter-name&gt;DruidWebStatFilter&lt;/filter-name&gt;</span><br><span class="line">		&lt;filter-class&gt;com.alibaba.druid.support.http.WebStatFilter&lt;/filter-class&gt;</span><br><span class="line">		&lt;init-param&gt;</span><br><span class="line">			&lt;!-- 经常需要排除一些不必要的url，比如.js,/jslib/等等。配置在init-param中 --&gt;</span><br><span class="line">			&lt;param-name&gt;exclusions&lt;/param-name&gt;</span><br><span class="line">			&lt;param-value&gt;*.js,*.gif,*.jpg,*.png,*.css,*.ico,/druid/*&lt;/param-value&gt;</span><br><span class="line">		&lt;/init-param&gt;</span><br><span class="line">		&lt;!-- 缺省sessionStatMaxCount是1000个。你可以按需要进行配置 --&gt;</span><br><span class="line">		&lt;init-param&gt;</span><br><span class="line">			&lt;param-name&gt;sessionStatMaxCount&lt;/param-name&gt;</span><br><span class="line">			&lt;param-value&gt;1000&lt;/param-value&gt;</span><br><span class="line">		&lt;/init-param&gt;</span><br><span class="line">		&lt;!-- druid 0.2.7版本开始支持profile，配置profileEnable能够监控单个url调用的sql列表 --&gt;</span><br><span class="line">		&lt;init-param&gt;</span><br><span class="line">			&lt;param-name&gt;profileEnable&lt;/param-name&gt;</span><br><span class="line">			&lt;param-value&gt;true&lt;/param-value&gt;</span><br><span class="line">		&lt;/init-param&gt;</span><br><span class="line">		&lt;init-param&gt;</span><br><span class="line">	  		&lt;param-name&gt;principalCookieName&lt;/param-name&gt;</span><br><span class="line">  			&lt;param-value&gt;userName&lt;/param-value&gt;</span><br><span class="line">  		&lt;/init-param&gt;</span><br><span class="line">		&lt;init-param&gt;</span><br><span class="line">			&lt;param-name&gt;principalSessionName&lt;/param-name&gt;</span><br><span class="line">			&lt;param-value&gt;session_user&lt;/param-value&gt;</span><br><span class="line">		&lt;/init-param&gt;</span><br><span class="line">		&lt;!-- 你可以关闭session统计功能 </span><br><span class="line">		&lt;init-param&gt; </span><br><span class="line">			&lt;param-name&gt;sessionStatEnable&lt;/param-name&gt; </span><br><span class="line">			&lt;param-value&gt;true&lt;/param-value&gt;</span><br><span class="line">		&lt;/init-param&gt; --&gt;</span><br><span class="line">	&lt;/filter&gt;</span><br><span class="line">	&lt;filter-mapping&gt;</span><br><span class="line">  		&lt;filter-name&gt;DruidWebStatFilter&lt;/filter-name&gt;</span><br><span class="line">  		&lt;url-pattern&gt;/*&lt;/url-pattern&gt;</span><br><span class="line">  	&lt;/filter-mapping&gt; </span><br><span class="line">  	</span><br><span class="line">	&lt;servlet&gt;</span><br><span class="line">		&lt;servlet-name&gt;DruidStatView&lt;/servlet-name&gt;</span><br><span class="line">		&lt;servlet-class&gt;com.alibaba.druid.support.http.StatViewServlet&lt;/servlet-class&gt;</span><br><span class="line">		&lt;!-- </span><br><span class="line">			deny优先于allow，如果在deny列表中，就算在allow列表中，也会被拒绝。</span><br><span class="line">			如果allow没有配置或者为空，则允许所有访问</span><br><span class="line">		 --&gt;</span><br><span class="line">		&lt;init-param&gt;</span><br><span class="line">			&lt;param-name&gt;allow&lt;/param-name&gt;</span><br><span class="line">			&lt;param-value&gt;10.38.94.201,127.0.0.1&lt;/param-value&gt;</span><br><span class="line">		&lt;/init-param&gt;</span><br><span class="line">&lt;!-- 		&lt;init-param&gt; --&gt;</span><br><span class="line">&lt;!-- 			&lt;param-name&gt;deny&lt;/param-name&gt; --&gt;</span><br><span class="line">&lt;!-- 			&lt;param-value&gt;10.38.94.201&lt;/param-value&gt; --&gt;</span><br><span class="line">&lt;!-- 		&lt;/init-param&gt; --&gt;</span><br><span class="line">		&lt;!-- 在StatViewSerlvet输出的html页面中，有一个功能是Reset All，执行这个操作之后，会导致所有计数器清零，重新计数 --&gt;</span><br><span class="line">	   &lt;span style=&quot;white-space:pre&quot;&gt;	&lt;/span&gt;&lt;init-param&gt;</span><br><span class="line">	        &lt;span style=&quot;white-space:pre&quot;&gt;	&lt;/span&gt;&lt;param-name&gt;resetEnable&lt;/param-name&gt;</span><br><span class="line">	        &lt;span style=&quot;white-space:pre&quot;&gt;	&lt;/span&gt;&lt;param-value&gt;false&lt;/param-value&gt;</span><br><span class="line">	    &lt;span style=&quot;white-space:pre&quot;&gt;	&lt;/span&gt;&lt;/init-param&gt;</span><br><span class="line">	    &lt;span style=&quot;white-space:pre&quot;&gt;	&lt;/span&gt;&lt;!--  用户名和密码 --&gt;</span><br><span class="line">	    &lt;span style=&quot;white-space:pre&quot;&gt;	&lt;/span&gt;&lt;init-param&gt;</span><br><span class="line">			&lt;param-name&gt;loginUsername&lt;/param-name&gt;</span><br><span class="line">			&lt;param-value&gt;druid&lt;/param-value&gt;</span><br><span class="line">		&lt;/init-param&gt;</span><br><span class="line">		&lt;init-param&gt;</span><br><span class="line">			&lt;param-name&gt;loginPassword&lt;/param-name&gt;</span><br><span class="line">			&lt;param-value&gt;druid&lt;/param-value&gt;</span><br><span class="line">		&lt;/init-param&gt;</span><br><span class="line">	&lt;/servlet&gt;</span><br><span class="line">	&lt;servlet-mapping&gt;</span><br><span class="line">		&lt;servlet-name&gt;DruidStatView&lt;/servlet-name&gt;</span><br><span class="line">		&lt;url-pattern&gt;/druid/*&lt;/url-pattern&gt;</span><br><span class="line">	&lt;/servlet-mapping&gt;</span><br></pre></td></tr></table></figure>
-<p>spring.xml 监控Spring</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- spring 监控 --&gt;</span><br><span class="line">   &lt;bean id=&quot;druid-stat-interceptor&quot;</span><br><span class="line">         class=&quot;com.alibaba.druid.support.spring.stat.DruidStatInterceptor&quot;&gt;</span><br><span class="line">   &lt;/bean&gt;</span><br><span class="line"></span><br><span class="line">   &lt;bean id=&quot;druid-stat-pointcut&quot; class=&quot;org.springframework.aop.support.JdkRegexpMethodPointcut&quot;</span><br><span class="line">         scope=&quot;prototype&quot;&gt;</span><br><span class="line">       &lt;property name=&quot;patterns&quot;&gt;</span><br><span class="line">           &lt;list&gt;</span><br><span class="line">               &lt;value&gt;cn.forp.*.service.*.*(..)&lt;/value&gt;</span><br><span class="line">               &lt;value&gt;cn.forp.*.controller.*.*(..)&lt;/value&gt;</span><br><span class="line">           &lt;/list&gt;</span><br><span class="line">       &lt;/property&gt;</span><br><span class="line">   &lt;/bean&gt;</span><br><span class="line"></span><br><span class="line">   &lt;aop:config&gt;</span><br><span class="line">       &lt;aop:advisor advice-ref=&quot;druid-stat-interceptor&quot; pointcut-ref=&quot;druid-stat-pointcut&quot;/&gt;</span><br><span class="line">   &lt;/aop:config&gt;</span><br></pre></td></tr></table></figure>
-<h2 id="慢SQL日志记录"><a href="#慢SQL日志记录" class="headerlink" title="慢SQL日志记录"></a>慢SQL日志记录</h2><p>spring.xml的 dataSource bean</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&lt;bean id=&quot;dataSource&quot; class=&quot;com.alibaba.druid.pool.DruidDataSource&quot; init-method=&quot;init&quot; destroy-method=&quot;close&quot;&gt; </span><br><span class="line"></span><br><span class="line">	&lt;property name=&quot;url&quot; value=&quot;jdbc:oracle:thin:@host:port/orcl&quot;/&gt;</span><br><span class="line">	&lt;property name=&quot;username&quot; value=&quot;&quot;/&gt;</span><br><span class="line">	&lt;property name=&quot;password&quot; value=&quot;&quot;/&gt;</span><br><span class="line"></span><br><span class="line">	&lt;property name=&quot;validationQuery&quot; value=&quot;select &apos;x&apos; from dual&quot;/&gt;</span><br><span class="line"></span><br><span class="line">	&lt;!-- 配置初始化大小、最小、最大 --&gt;</span><br><span class="line">	&lt;property name=&quot;initialSize&quot; value=&quot;2&quot;/&gt;</span><br><span class="line">	&lt;property name=&quot;minIdle&quot; value=&quot;1&quot;/&gt; </span><br><span class="line">	&lt;property name=&quot;maxActive&quot; value=&quot;5&quot;/&gt;</span><br><span class="line">	&lt;!-- 配置获取连接等待超时的时间，单位是毫秒 --&gt;</span><br><span class="line">	&lt;property name=&quot;maxWait&quot; value=&quot;60000&quot;/&gt;</span><br><span class="line">	&lt;!-- 配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒 --&gt;</span><br><span class="line">	&lt;property name=&quot;timeBetweenEvictionRunsMillis&quot; value=&quot;60000&quot;/&gt;</span><br><span class="line">	&lt;!-- 配置一个连接在池中最小生存的时间，单位是毫秒 --&gt;</span><br><span class="line">	&lt;property name=&quot;minEvictableIdleTimeMillis&quot; value=&quot;300000&quot;/&gt;</span><br><span class="line">	&lt;property name=&quot;testWhileIdle&quot; value=&quot;true&quot;/&gt;</span><br><span class="line">	&lt;property name=&quot;testOnBorrow&quot; value=&quot;false&quot;/&gt;</span><br><span class="line">	&lt;property name=&quot;testOnReturn&quot; value=&quot;false&quot;/&gt;</span><br><span class="line">	&lt;!-- 打开PSCache，并且指定每个连接上PSCache的大小 --&gt;</span><br><span class="line">	&lt;property name=&quot;poolPreparedStatements&quot; value=&quot;true&quot;/&gt;</span><br><span class="line">	&lt;property name=&quot;maxPoolPreparedStatementPerConnectionSize&quot; value=&quot;20&quot;/&gt;</span><br><span class="line">	&lt;!-- 启用拦截的filters：sql注入，监控统计 --&gt;</span><br><span class="line">		&lt;property name=&quot;filters&quot; value=&quot;wall,stat&quot;/&gt;</span><br><span class="line"></span><br><span class="line">	&lt;property name=&quot;removeAbandoned&quot; value=&quot;true&quot; /&gt; &lt;!-- 打开removeAbandoned功能 --&gt;</span><br><span class="line">  	&lt;property name=&quot;removeAbandonedTimeout&quot; value=&quot;1800&quot; /&gt; &lt;!-- 1800秒，也就是30分钟 --&gt;</span><br><span class="line"> 		&lt;property name=&quot;logAbandoned&quot; value=&quot;true&quot; /&gt; &lt;!-- 关闭abanded连接时输出错误日志 --&gt;</span><br><span class="line"></span><br><span class="line">	&lt;property name=&quot;proxyFilters&quot;&gt;</span><br><span class="line">           &lt;list&gt;</span><br><span class="line">               &lt;ref bean=&quot;stat-filter&quot;/&gt;</span><br><span class="line">               &lt;ref bean=&quot;log-filter&quot;/&gt;</span><br><span class="line">           &lt;/list&gt;</span><br><span class="line">       &lt;/property&gt;</span><br><span class="line">&lt;/bean&gt;</span><br><span class="line">    &lt;!-- 慢SQL记录 --&gt;</span><br><span class="line">   &lt;bean id=&quot;stat-filter&quot; class=&quot;com.alibaba.druid.filter.stat.StatFilter&quot;&gt;</span><br><span class="line">       &lt;!-- 慢sql时间设置,即执行时间大于200毫秒的都是慢sql --&gt;</span><br><span class="line">       &lt;property name=&quot;slowSqlMillis&quot; value=&quot;200&quot;/&gt;</span><br><span class="line">       &lt;property name=&quot;logSlowSql&quot; value=&quot;true&quot;/&gt;</span><br><span class="line">   &lt;/bean&gt;</span><br><span class="line"></span><br><span class="line">   &lt;bean id=&quot;log-filter&quot; class=&quot;com.alibaba.druid.filter.logging.Log4jFilter&quot;&gt;</span><br><span class="line">       &lt;property name=&quot;dataSourceLogEnabled&quot; value=&quot;true&quot; /&gt;</span><br><span class="line">       &lt;property name=&quot;statementExecutableSqlLogEnable&quot; value=&quot;true&quot; /&gt;</span><br><span class="line">   &lt;/bean&gt;</span><br></pre></td></tr></table></figure>
-<p>log4j.properties</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"># ROOT Logger</span><br><span class="line">log4j.rootLogger = INFO, console, druid</span><br><span class="line"></span><br><span class="line"># log4j.category.org.springframework = DEBUG</span><br><span class="line">log4j.category.cn.forp = DEBUG</span><br><span class="line"></span><br><span class="line"># Console</span><br><span class="line">log4j.appender.console = org.apache.log4j.ConsoleAppender</span><br><span class="line">log4j.appender.console.layout = org.apache.log4j.PatternLayout</span><br><span class="line">log4j.appender.console.layout.ConversionPattern = [%d&#123;yyyy-MM-dd HH:mm:ss&#125;] %5p %c&#123;1&#125; %m%n</span><br><span class="line"></span><br><span class="line"># File</span><br><span class="line">log4j.appender.file = org.apache.log4j.DailyRollingFileAppender</span><br><span class="line">log4j.appender.file.file = $&#123;catalina.home&#125;/logs/forp-pitaya.log</span><br><span class="line">log4j.appender.file.DatePattern = &apos;.&apos;yyyy-MM-dd</span><br><span class="line">log4j.appender.file.layout = org.apache.log4j.PatternLayout</span><br><span class="line">log4j.appender.file.layout.conversionPattern = [%d&#123;yyyy-MM-dd HH:mm:ss&#125;] %5p %c&#123;1&#125; %m%n</span><br><span class="line">log4j.appender.file.append =false</span><br><span class="line"></span><br><span class="line"># Druid</span><br><span class="line">log4j.logger.druid.sql=WARN,druid</span><br><span class="line">log4j.logger.druid.sql.DataSource=WARN,druid</span><br><span class="line">log4j.logger.druid.sql.Connection=WARN,druid</span><br><span class="line">log4j.logger.druid.sql.Statement=WARN,druid</span><br><span class="line"></span><br><span class="line">log4j.appender.druid=org.apache.log4j.DailyRollingFileAppender</span><br><span class="line">log4j.appender.druid.layout=org.apache.log4j.PatternLayout</span><br><span class="line">log4j.appender.druid.layout.ConversionPattern= [%d&#123;yyyy-MM-dd HH\:mm\:ss&#125;] %c&#123;1&#125; - %m%n</span><br><span class="line">log4j.appender.druid.datePattern=&apos;.&apos;yyyy-MM-dd</span><br><span class="line">log4j.appender.druid.Threshold = WARN</span><br><span class="line">log4j.appender.druid.append=true</span><br><span class="line">log4j.appender.druid.File=$&#123;catalina.home&#125;/logs/druid-slow-sql.log</span><br></pre></td></tr></table></figure>
-<p>参考：</p>
-<ul>
-<li><a href="https://my.oschina.net/wangmengjun/blog/788386" target="_blank" rel="noopener">使用Druid监控SQL执行状态</a></li>
-<li><a href="https://blog.csdn.net/haiyang4988/article/details/73740700" target="_blank" rel="noopener">druid监控及慢sql记录</a></li>
-<li><a href="https://blog.csdn.net/binglovezi/article/details/50610269#" target="_blank" rel="noopener">Druid Monitor监控JavaSE和JavaWeb</a></li>
-<li><a href="https://github.com/alibaba/druid/blob/master/src/main/scripts/druidStat.sh" target="_blank" rel="noopener">JavaSE 监控</a></li>
-</ul>
+        <h2 id="首先明确一点-一条消息的传送流程：生产者-gt-MQ-gt-消费者"><a href="#首先明确一点-一条消息的传送流程：生产者-gt-MQ-gt-消费者" class="headerlink" title="首先明确一点 一条消息的传送流程：生产者-&gt;MQ-&gt;消费者"></a>首先明确一点 一条消息的传送流程：生产者-&gt;MQ-&gt;消费者</h2><p>所以有三个地方都会丢失数据：</p>
+<p>生产者发送给MQ的途中出现网络问题<br>MQ自己没保管好弄丢了<br>消费者拿到数据后出错了没有最终完成任务<br>依次分析</p>
+<h3 id="1）生产者弄丢了数据"><a href="#1）生产者弄丢了数据" class="headerlink" title="1）生产者弄丢了数据"></a>1）生产者弄丢了数据</h3><p>生产者将数据发送到rabbitmq的时候，可能因为网络问题导致数据就在半路给搞丢了。</p>
+<p>1.使用事务（性能差）<br>可以选择用rabbitmq提供的事务功能，在生产者发送数据之前开启rabbitmq事务（channel.txSelect），然后发送消息，如果消息没有成功被rabbitmq接收到，那么生产者会收到异常报错，此时就可以回滚事务（channel.txRollback），然后重试发送消息；如果收到了消息，那么可以提交事务（channel.txCommit）。但是问题是，开始rabbitmq事务机制，基本上吞吐量会下来，因为太耗性能。</p>
+<p>2.发送回执确认（推荐）<br>可以开启confirm模式，在生产者那里设置开启confirm模式之后，你每次写的消息都会分配一个唯一的id，然后如果写入了rabbitmq中，rabbitmq会给你回传一个ack消息，告诉你说这个消息ok了。如果rabbitmq没能处理这个消息，会回调你一个nack接口，告诉你这个消息接收失败，你可以重试。而且你可以结合这个机制自己在内存里维护每个消息id的状态，如果超过一定时间还没接收到这个消息的回调，那么你可以重发。<br>　　事务机制和cnofirm机制最大的不同在于，事务机制是同步的，你提交一个事务之后会阻塞在那儿，但是confirm机制是异步的，你发送个消息之后就可以发送下一个消息，然后那个消息rabbitmq接收了之后会异步回调你一个接口通知你这个消息接收到了。</p>
+<p>所以一般在生产者这块避免数据丢失，都是用confirm机制的。</p>
+<h3 id="2）RabbitMQ弄丢了数据-开启RabbitMQ的数据持久化"><a href="#2）RabbitMQ弄丢了数据-开启RabbitMQ的数据持久化" class="headerlink" title="2）RabbitMQ弄丢了数据-开启RabbitMQ的数据持久化"></a>2）RabbitMQ弄丢了数据-开启RabbitMQ的数据持久化</h3><p>　　为了防止rabbitmq自己弄丢了数据，这个你必须开启rabbitmq的持久化，就是消息写入之后会持久化到磁盘，哪怕是rabbitmq自己挂了，恢复之后会自动读取之前存储的数据，一般数据不会丢。除非极其罕见的是，rabbitmq还没持久化，自己就挂了，可能导致少量数据会丢失的，但是这个概率较小。</p>
+<p>　　设置持久化有两个步骤，第一个是创建queue的时候将其设置为持久化的，这样就可以保证rabbitmq持久化queue的元数据，但是不会持久化queue里的数据；第二个是发送消息的时候将消息的deliveryMode设置为2，就是将消息设置为持久化的，此时rabbitmq就会将消息持久化到磁盘上去。必须要同时设置这两个持久化才行，rabbitmq哪怕是挂了，再次重启，也会从磁盘上重启恢复queue，恢复这个queue里的数据。</p>
+<p>　　而且持久化可以跟生产者那边的confirm机制配合起来，只有消息被持久化到磁盘之后，才会通知生产者ack了，所以哪怕是在持久化到磁盘之前，rabbitmq挂了，数据丢了，生产者收不到ack，你也是可以自己重发的。</p>
+<p>　　若生产者那边的confirm机制未开启的情况下，哪怕是你给rabbitmq开启了持久化机制，也有一种可能，就是这个消息写到了rabbitmq中，但是还没来得及持久化到磁盘上，结果不巧，此时rabbitmq挂了，就会导致内存里的一点点数据会丢失。</p>
+<h3 id="3）消费端弄丢了数据"><a href="#3）消费端弄丢了数据" class="headerlink" title="3）消费端弄丢了数据"></a>3）消费端弄丢了数据</h3><p>　　主要是因为你消费的时候，刚消费到，还没处理，结果进程挂了比如重启了，那么就尴尬了，RabbitMQ认为你都消费了，这数据就丢了。或者消费者拿到数据之后挂了，这时候需要MQ重新指派另一个消费者去执行任务（一块肉，刚用筷子夹起来，发地震抖了一下，肉掉了）</p>
+<p>　　这个时候得用RabbitMQ提供的ack机制，也是一种处理完成发送回执确认的机制。如果MQ等待一段时间后你没有发送过来处理完成 那么RabbitMQ就认为你还没处理完，这个时候RabbitMQ会把这个消费分配给别的consumer去处理，消息是不会丢的。</p>
 
       
     </div>
@@ -442,13 +432,13 @@
   
     
     <div class="copyright">
-        <p><span>本文标题:</span><a href="/2018/11/22/数据库监控-Druid监控配置/">数据库监控-Druid监控配置</a></p>
+        <p><span>本文标题:</span><a href="/2021/06/08/常见问题分析RabbitMQ如何处理消息丢失/">常见问题分析RabbitMQ如何处理消息丢失</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">Mu Xiaobai(慕小白)</a></p>
-        <p><span>发布时间:</span>2018-11-22, 02:22:41</p>
+        <p><span>发布时间:</span>2021-06-08, 14:15:00</p>
         <p><span>最后更新:</span>2021-06-08, 06:18:20</p>
         <p>
-            <span>原始链接:</span><a class="post-url" href="/2018/11/22/数据库监控-Druid监控配置/" title="数据库监控-Druid监控配置">https://muxiaobai.github.io/2018/11/22/数据库监控-Druid监控配置/</a>
-            <span class="copy-path" data-clipboard-text="原文: https://muxiaobai.github.io/2018/11/22/数据库监控-Druid监控配置/　　作者: Mu Xiaobai(慕小白)" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <span>原始链接:</span><a class="post-url" href="/2021/06/08/常见问题分析RabbitMQ如何处理消息丢失/" title="常见问题分析RabbitMQ如何处理消息丢失">https://muxiaobai.github.io/2021/06/08/常见问题分析RabbitMQ如何处理消息丢失/</a>
+            <span class="copy-path" data-clipboard-text="原文: https://muxiaobai.github.io/2021/06/08/常见问题分析RabbitMQ如何处理消息丢失/　　作者: Mu Xiaobai(慕小白)" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
             <script> var clipboard = new Clipboard('.copy-path'); </script>
         </p>
         <p>
@@ -460,16 +450,10 @@
 
     <nav id="article-nav">
         
-            <div id="article-nav-newer" class="article-nav-title">
-                <a href="/2018/11/22/java线上代码监控-工具-jconsole和jvisualvm/">
-                    java线上代码监控-工具-jconsole和jvisualvm
-                </a>
-            </div>
-        
         
             <div id="article-nav-older" class="article-nav-title">
-                <a href="/2018/11/15/应用部署之nginx参数配置/">
-                    应用部署之nginx参数配置
+                <a href="/2021/06/02/SpringBoot之自动装配/">
+                    SpringBoot之自动装配
                 </a>
             </div>
         
@@ -482,7 +466,7 @@
     <!--左侧-->
     <div id="toc" class="toc-article">
     <strong class="toc-title">文章目录</strong>
-    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#添加监控页面"><span class="toc-number">1.</span> <span class="toc-text">添加监控页面</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#WEB应用-URI监控-Spring监控"><span class="toc-number">2.</span> <span class="toc-text">WEB应用 URI监控 Spring监控</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#慢SQL日志记录"><span class="toc-number">3.</span> <span class="toc-text">慢SQL日志记录</span></a></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#首先明确一点-一条消息的传送流程：生产者-gt-MQ-gt-消费者"><span class="toc-number">1.</span> <span class="toc-text">首先明确一点 一条消息的传送流程：生产者-&gt;MQ-&gt;消费者</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1）生产者弄丢了数据"><span class="toc-number">1.1.</span> <span class="toc-text">1）生产者弄丢了数据</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2）RabbitMQ弄丢了数据-开启RabbitMQ的数据持久化"><span class="toc-number">1.2.</span> <span class="toc-text">2）RabbitMQ弄丢了数据-开启RabbitMQ的数据持久化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3）消费端弄丢了数据"><span class="toc-number">1.3.</span> <span class="toc-text">3）消费端弄丢了数据</span></a></li></ol></li></ol>
 </div>
 <style>
     .left-col .switch-btn,
@@ -590,15 +574,13 @@
 
     <div class="scroll" id="post-nav-button">
         
-            <a href="/2018/11/22/java线上代码监控-工具-jconsole和jvisualvm/" title="上一篇: java线上代码监控-工具-jconsole和jvisualvm">
-                <i class="fa fa-angle-left"></i>
-            </a>
+            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
         
 
         <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
 
         
-            <a href="/2018/11/15/应用部署之nginx参数配置/" title="下一篇: 应用部署之nginx参数配置">
+            <a href="/2021/06/02/SpringBoot之自动装配/" title="下一篇: SpringBoot之自动装配">
                 <i class="fa fa-angle-right"></i>
             </a>
         
