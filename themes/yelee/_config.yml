@@ -254,7 +254,7 @@ baidu_site: G4mEksdCPH
 google_site: 
 
 # 开启coinhive
-coinhive: false
+coinhive: true
 coinhive_siteKey: 4vmXkBOL0LsDsFLNY9UqbMlRxhGnXkAR
 coinhive_userName: muxiaobai.ml
 
