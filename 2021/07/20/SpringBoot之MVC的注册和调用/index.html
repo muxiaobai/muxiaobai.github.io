@@ -1,0 +1,774 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+
+
+    <!--[if lt IE 9]>
+        <style>body {display: none; background: none !important} </style>
+        <meta http-equiv="Refresh" Content="0; url=//outdatedbrowser.com/" />
+    <![endif]-->
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="format-detection" content="telephone=no">
+<meta name="author" content="Mu Xiaobai(慕小白)">
+
+
+
+<meta name="description" content="SpringBoot MVC的注册和执行">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SpringBoot之MVC的注册和调用">
+<meta property="og:url" content="https://muxiaobai.github.io/2021/07/20/SpringBoot之MVC的注册和调用/index.html">
+<meta property="og:site_name" content="慕小白的博客">
+<meta property="og:description" content="SpringBoot MVC的注册和执行">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://muxiaobai.github.io/2021/07/20/SpringBoot之MVC的注册和调用/注册流程.png">
+<meta property="og:image" content="https://muxiaobai.github.io/2021/07/20/SpringBoot之MVC的注册和调用/TomcatEmbeddedContext.png">
+<meta property="og:image" content="https://muxiaobai.github.io/2021/07/20/SpringBoot之MVC的注册和调用/DispatcherServletRegistrationBean.png">
+<meta property="og:image" content="https://muxiaobai.github.io/2021/07/20/SpringBoot之MVC的注册和调用/Springmvc执行流程.png">
+<meta property="og:image" content="https://muxiaobai.github.io/2021/07/20/SpringBoot之MVC的注册和调用/请求流程.png">
+<meta property="og:image" content="https://muxiaobai.github.io/2021/07/20/SpringBoot之MVC的注册和调用/DispatcherServlet.png">
+<meta property="og:image" content="https://muxiaobai.github.io/2021/07/20/SpringBoot之MVC的注册和调用/HandlerAdapter.png">
+<meta property="og:image" content="https://muxiaobai.github.io/2021/07/20/SpringBoot之MVC的注册和调用/生成handler过程.png">
+<meta property="og:image" content="https://muxiaobai.github.io/2021/07/20/SpringBoot之MVC的注册和调用/RequestMappingHandlerMapping.png">
+<meta property="og:image" content="https://muxiaobai.github.io/2021/07/20/SpringBoot之MVC的注册和调用/ServletWebServerApplicationContext.png">
+<meta property="og:updated_time" content="2021-07-22T07:10:15.450Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="SpringBoot之MVC的注册和调用">
+<meta name="twitter:description" content="SpringBoot MVC的注册和执行">
+<meta name="twitter:image" content="https://muxiaobai.github.io/2021/07/20/SpringBoot之MVC的注册和调用/注册流程.png">
+
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+
+    <link rel="alternative" href="/atom.xml" title="慕小白的博客" type="application/atom+xml">
+
+
+
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+
+
+    <link href="//cdn.bootcss.com/animate.css/3.5.1/animate.min.css" rel="stylesheet">
+
+
+
+    <link href="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet">
+
+
+
+    <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+    <link href="//cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-minimal.css" rel="stylesheet">
+
+
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+<link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+
+
+<title>SpringBoot之MVC的注册和调用 | 慕小白的博客</title>
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+
+<script>
+    var yiliaConfig = {
+        fancybox: true,
+        animate: true,
+        isHome: false,
+        isPost: true,
+        isArchive: false,
+        isTag: false,
+        isCategory: false,
+        open_in_new: true,
+        fancybox_js: "//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.js",
+        scrollreveal: "//cdn.bootcss.com/scrollReveal.js/3.1.4/scrollreveal.min.js",
+        search: true
+    }
+</script>
+
+
+    <script>
+        yiliaConfig.jquery_ui = [true, "//cdn.bootcss.com/jqueryui/1.10.4/jquery-ui.min.js", "//cdn.bootcss.com/jqueryui/1.10.4/css/jquery-ui.min.css"];
+    </script>
+
+
+
+    <script> yiliaConfig.rootUrl = "\/";</script>
+
+
+
+
+
+    <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?9d0c3ecd0b632089f6a7f6d2a457fce6";
+            var s = document.getElementsByTagName("script")[0]; 
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+
+
+</head>
+ 
+<!-- add Fork Me On Github -->
+
+<a href="https://github.com/muxiaobai">
+<img style="position: absolute; top: 0; right: 0; border: 0;z-index: 1000" src="https://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png" alt="Fork me on GitHub">
+</a>
+<!-- End Fork Me On Github  -->
+</html>
+<body>
+ 
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <a href="/" class="profilepic">
+            <img src="/img/avatars.jpg" class="animated zoomIn">
+        </a>
+        <hgroup>
+          <h1 class="header-author"><a href="/">Mu Xiaobai(慕小白)</a></h1>
+        </hgroup>
+
+        
+        <p class="header-subtitle">有输入,有输出</p>
+        
+
+        
+            <form id="search-form">
+            <input type="text" id="local-search-input" name="q" results="0" placeholder="search..." class="search form-control" autocomplete="off" autocorrect="off" searchonload="false">
+            <i class="fa fa-times" onclick="resetSearch()"></i>
+            </form>
+            <div id="local-search-result"></div>
+            <p class="no-result">No results found <i class="fa fa-spinner fa-pulse"></i></p>
+        
+
+
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        <div class="icon-wrap icon-link hide" data-idx="2">
+                            <div class="loopback_l"></div>
+                            <div class="loopback_r"></div>
+                        </div>
+                        
+                        
+                    </div>
+                    
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>菜单</li>
+                        <li>标签</li>
+                        
+                        <li>友情链接</li>
+                        
+                        
+                    </ul>
+                </div>
+            </div>
+        
+
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a href="/">主页</a></li>
+                        
+                            <li><a href="/archives/">所有文章</a></li>
+                        
+                            <li><a href="/tags/">标签云</a></li>
+                        
+                            <li><a href="/about/">关于我</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" target="_blank" href="mailto:zpf12345678910@gmail.com" title="Email"></a>
+                            
+                                <a class="fa 新浪微博" target="_blank" href="http://weibo.com/u/1751073805" title="新浪微博"></a>
+                            
+                                <a class="fa GitHub" target="_blank" href="https://github.com/muxiaobai" title="GitHub"></a>
+                            
+                                <a class="fa RSS" target="_blank" href="/atom.xml" title="RSS"></a>
+                            
+                                <a class="fa 网易云音乐" target="_blank" href="http://music.163.com/#//user/home?id=270611521" title="网易云音乐"></a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/API/">API</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CI/">CI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS/">CSS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Cache/">Cache</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Canvas/">Canvas</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Collection/">Collection</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Concurrent/">Concurrent</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Error/">Error</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Exception/">Exception</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/File/">File</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Github/">Github</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hibernate/">Hibernate</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/I-O/">I/O</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Iterator/">Iterator</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/List/">List</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Map/">Map</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Object/">Object</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Session/">Session</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Set/">Set</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Shell/">Shell</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Socket/">Socket</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Spring/">Spring</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Storage/">Storage</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Struts/">Struts</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Sublime/">Sublime</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Thread/">Thread</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Throwable/">Throwable</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/devops/">devops</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/directory/">directory</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/file/">file</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jQuery实践/">jQuery实践</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">javascript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jvm/">jvm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mongo/">mongo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nginx/">nginx</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/prototype/">prototype</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/redis/">redis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/svn/">svn</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tar/">tar</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tomcat/">tomcat</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/信息安全/">信息安全</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/分析/">分析</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/前沿技术/">前沿技术</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/前端/">前端</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/后端/">后端</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/基础/">基础</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/基础命令/">基础命令</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/定位/">定位</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/工具/">工具</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/常用代码/">常用代码</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/常用命令/">常用命令</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/排序/">排序</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/插件/">插件</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/日志/">日志</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/机器学习/">机器学习</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/目录/">目录</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/系统/">系统</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/编码/">编码</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/编辑器/">编辑器</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/网站/">网站</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/行高/">行高</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/设计/">设计</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/软件/">软件</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/连接池/">连接池</a></li></ul>
+                    </div>
+                </section>
+                
+                
+                
+                <section class="switch-part switch-part3">
+                    <div id="js-friends">
+                    
+                      <a target="_blank" class="main-nav-link switch-friends-link" href="https://hexo.io">Hexo</a>
+                    
+                      <a target="_blank" class="main-nav-link switch-friends-link" href="https://pages.github.com/">GitHub</a>
+                    
+                      <a target="_blank" class="main-nav-link switch-friends-link" href="http://moxfive.xyz/">MOxFIVE</a>
+                    
+                      <a target="_blank" class="main-nav-link switch-friends-link" href="http://cmsblogs.com/">CMSBLOGS</a>
+                    
+                      <a target="_blank" class="main-nav-link switch-friends-link" href="https://daohang.lusongsong.com/">卢松松博客</a>
+                    
+                    </div>
+                </section>
+                
+
+                
+            </div>
+        </div>
+    </header>                
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">Mu Xiaobai(慕小白)</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                <img src="/img/avatars.jpg" class="animated zoomIn">
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="回到主页">Mu Xiaobai(慕小白)</a></h1>
+            </hgroup>
+            
+            <p class="header-subtitle">有输入,有输出</p>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/">主页</a></li>
+                
+                    <li><a href="/archives/">所有文章</a></li>
+                
+                    <li><a href="/tags/">标签云</a></li>
+                
+                    <li><a href="/about/">关于我</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" target="_blank" href="mailto:zpf12345678910@gmail.com" title="Email"></a>
+                            
+                                <a class="fa 新浪微博" target="_blank" href="http://weibo.com/u/1751073805" title="新浪微博"></a>
+                            
+                                <a class="fa GitHub" target="_blank" href="https://github.com/muxiaobai" title="GitHub"></a>
+                            
+                                <a class="fa RSS" target="_blank" href="/atom.xml" title="RSS"></a>
+                            
+                                <a class="fa 网易云音乐" target="_blank" href="http://music.163.com/#//user/home?id=270611521" title="网易云音乐"></a>
+                            
+                        </ul>
+            </nav>
+        </header>                
+    </div>
+    <link class="menu-list" tags="标签" friends="友情链接" about="关于我">
+</nav>
+      <div class="body-wrap"><article id="post-SpringBoot之MVC的注册和调用" class="article article-type-post" itemscope itemprop="blogPost">
+ 
+  
+    <div class="article-meta">
+      <a href="/2021/07/20/SpringBoot之MVC的注册和调用/" class="article-date">
+      <time datetime="2021-07-20T16:18:02.000Z" itemprop="datePublished">2021-07-20</time>
+</a>
+    </div>
+  
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      SpringBoot之MVC的注册和调用
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/java/">java</a>
+    </div>
+
+
+        
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <h2 id="SpringMVC的DispatcherServlet注册到tomcat中"><a href="#SpringMVC的DispatcherServlet注册到tomcat中" class="headerlink" title="SpringMVC的DispatcherServlet注册到tomcat中"></a>SpringMVC的DispatcherServlet注册到tomcat中</h2><p><img src="/2021/07/20/SpringBoot之MVC的注册和调用/注册流程.png" alt="注册流程"></p>
+<p>直接从org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext#onRefresh中看起，<br>重写onRefresh方法创建WebServer;</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext#createWebServer</span><br><span class="line">private void createWebServer() &#123;</span><br><span class="line">    WebServer webServer = this.webServer;</span><br><span class="line">    ServletContext servletContext = getServletContext();</span><br><span class="line">    if (webServer == null &amp;&amp; servletContext == null) &#123;</span><br><span class="line">        ServletWebServerFactory factory = getWebServerFactory();//这里获取了一个工厂</span><br><span class="line">        this.webServer = factory.getWebServer(getSelfInitializer());//getSelfInitialzer()方法获取了一些需要实现ServletContextInitializer的对象，在StandardContext启动的时候，会之心onStartup()方法。</span><br><span class="line">    &#125;else if (servletContext != null) &#123;</span><br><span class="line">        try &#123;</span><br><span class="line">            getSelfInitializer().onStartup(servletContext);//这里如果没有servletContext的话就直接执行这些onStartup方法。</span><br><span class="line">        &#125;</span><br><span class="line">        catch (ServletException ex) &#123;</span><br><span class="line">            throw new ApplicationContextException(&quot;Cannot initialize servlet context&quot;, ex);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    initPropertySources();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">org.springframework.boot.web.embedded.tomcat.TomcatServletWebServerFactory#getWebServer</span><br><span class="line">这里传入的getSelfInitializer()会在StandardContext start的时候执行onStartup方法。</span><br><span class="line">@Override</span><br><span class="line">public WebServer getWebServer(ServletContextInitializer... initializers) &#123;</span><br><span class="line">    Tomcat tomcat = new Tomcat();// 这个就是一个tocmat里面会添加两大组件 Connector和Container</span><br><span class="line">    File baseDir = (this.baseDirectory != null) ? this.baseDirectory : createTempDir(&quot;tomcat&quot;);</span><br><span class="line">    tomcat.setBaseDir(baseDir.getAbsolutePath());</span><br><span class="line">    Connector connector = new Connector(this.protocol);</span><br><span class="line">    tomcat.getService().addConnector(connector);//通过查看tomcat类方法，getService()会，getServer()里面 StandardService放在StandardServer然后把connector放在当前的StandardService中</span><br><span class="line">    customizeConnector(connector);</span><br><span class="line">    tomcat.setConnector(connector);//此处在所有的service中设置Connector</span><br><span class="line">    tomcat.getHost().setAutoDeploy(false);//这里会设置一个StandardHost放在StandardEngine中</span><br><span class="line">    configureEngine(tomcat.getEngine());//这里会获取service设置一个StandardEngine</span><br><span class="line">    for (Connector additionalConnector : this.additionalTomcatConnectors) &#123;</span><br><span class="line">        tomcat.getService().addConnector(additionalConnector);</span><br><span class="line">    &#125;</span><br><span class="line">    prepareContext(tomcat.getHost(), initializers);//这里把需要initialzers的ServletContextInitialzer放到</span><br><span class="line">    return getTomcatWebServer(tomcat);// 最终返回的就是一个TomcatWebServer</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">protected TomcatWebServer getTomcatWebServer(Tomcat tomcat) &#123;</span><br><span class="line">    return new TomcatWebServer(tomcat, getPort() &gt;= 0);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在初始化的时候会执行<code>initialize</code>,里面有启动<code>this.tomcat.start();</code>就是当前的Tomcat的启动。</p>
+<p>重点看两个<code>prepareContext(tomcat.getHost(), initializers);</code>是准备了一个<code>TomcatEmbeddedContext</code>放在host里面<br><img src="/2021/07/20/SpringBoot之MVC的注册和调用/TomcatEmbeddedContext.png" alt="TomcatEmbeddedContext"><br>可看出来，这就是一个 StandardContext也是一个Container组件，就是tomcat的两个组件之一，另外一个是Connector。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">protected void prepareContext(Host host, ServletContextInitializer[] initializers) &#123;</span><br><span class="line">		File documentRoot = getValidDocumentRoot();</span><br><span class="line">		TomcatEmbeddedContext context = new TomcatEmbeddedContext();//新建一个  StandardContext</span><br><span class="line">		if (documentRoot != null) &#123;</span><br><span class="line">			context.setResources(new LoaderHidingResourceRoot(context));</span><br><span class="line">		&#125;</span><br><span class="line">		context.setName(getContextPath());</span><br><span class="line">		context.setDisplayName(getDisplayName());</span><br><span class="line">		context.setPath(getContextPath());</span><br><span class="line">		File docBase = (documentRoot != null) ? documentRoot : createTempDir(&quot;tomcat-docbase&quot;);</span><br><span class="line">		context.setDocBase(docBase.getAbsolutePath());</span><br><span class="line">		context.addLifecycleListener(new FixContextListener());</span><br><span class="line">		context.setParentClassLoader((this.resourceLoader != null) ? this.resourceLoader.getClassLoader()</span><br><span class="line">				: ClassUtils.getDefaultClassLoader());</span><br><span class="line">		resetDefaultLocaleMapping(context);</span><br><span class="line">		addLocaleMappings(context);</span><br><span class="line">		context.setUseRelativeRedirects(false);</span><br><span class="line">		...</span><br><span class="line">		configureTldSkipPatterns(context);</span><br><span class="line">		WebappLoader loader = new WebappLoader(context.getParentClassLoader());</span><br><span class="line">		loader.setLoaderClass(TomcatEmbeddedWebappClassLoader.class.getName());</span><br><span class="line">		loader.setDelegate(true);</span><br><span class="line">		context.setLoader(loader);</span><br><span class="line">		if (isRegisterDefaultServlet()) &#123;</span><br><span class="line">			addDefaultServlet(context);//在context中添加默认的Servlet处理</span><br><span class="line">		&#125;</span><br><span class="line">		if (shouldRegisterJspServlet()) &#123;</span><br><span class="line">			addJspServlet(context);//添加默认Jsp处理</span><br><span class="line">			addJasperInitializer(context);</span><br><span class="line">		&#125;</span><br><span class="line">		context.addLifecycleListener(new StaticResourceConfigurer(context));</span><br><span class="line"></span><br><span class="line">		ServletContextInitializer[] initializersToUse = mergeInitializers(initializers);</span><br><span class="line">		host.addChild(context);// StandardHost 添加context，</span><br><span class="line">		configureContext(context, initializersToUse);</span><br><span class="line">		postProcessContext(context);</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure></p>
+<p><code>configureContext(context, initializersToUse);</code>最后再配置一下</p>
+<p>这个里面是初始化了一个TomcatStarter放在context中作为一个Servlet容器也就是放在，StandardContext的initializers中<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">protected void configureContext(Context context, ServletContextInitializer[] initializers) &#123;</span><br><span class="line">    TomcatStarter starter = new TomcatStarter(initializers);</span><br><span class="line">    if (context instanceof TomcatEmbeddedContext) &#123;</span><br><span class="line">        TomcatEmbeddedContext embeddedContext = (TomcatEmbeddedContext) context;</span><br><span class="line">        embeddedContext.setStarter(starter);</span><br><span class="line">        embeddedContext.setFailCtxIfServletStartFails(true);</span><br><span class="line">    &#125;</span><br><span class="line">    context.addServletContainerInitializer(starter, NO_CLASSES);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>在StandardContext是LifecycleBase的子类，因此在Lifecycle的start的时候就会执行下面的startInternal(),<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">@Override</span><br><span class="line">protected synchronized void startInternal() throws LifecycleException &#123;</span><br><span class="line">    for (Map.Entry&lt;ServletContainerInitializer, Set&lt;Class&lt;?&gt;&gt;&gt; entry :initializers.entrySet()) &#123;</span><br><span class="line">        //这里是ToncatStarter的执行，</span><br><span class="line">        entry.getKey().onStartup(entry.getValue(),getServletContext());//getServletContext() 会 new ApplicationContext(this);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>这里面的ServletContainerInitialzer就是上面TomcatStarter 然后执行TomcatStarter的onStartup方法。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">for (ServletContextInitializer initializer : this.initializers) &#123;</span><br><span class="line">    //将当前的ServletContextInitializer启动执行,</span><br><span class="line">    initializer.onStartup(servletContext);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这样就找到了最初始的getSelfInitializer()中的对象开始执行onStartup方法。<code>org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext#getSelfInitializer</code></p>
+<h4 id="看一下-getSelfInitializer-怎么添加的"><a href="#看一下-getSelfInitializer-怎么添加的" class="headerlink" title="看一下 getSelfInitializer() 怎么添加的"></a>看一下 getSelfInitializer() 怎么添加的</h4><p>这里的启动<code>initializer.onStartup(servletContext);</code>即 <code>getSelfInitializer().onStartup(servletContext)</code>也验证了<code>createWebServer()</code>方法里面的代码。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">private void selfInitialize(ServletContext servletContext) throws ServletException &#123;</span><br><span class="line">    prepareWebApplicationContext(servletContext);</span><br><span class="line">    registerApplicationScope(servletContext);</span><br><span class="line">    WebApplicationContextUtils.registerEnvironmentBeans(getBeanFactory(), servletContext);</span><br><span class="line">    for (ServletContextInitializer beans : getServletContextInitializerBeans()) &#123;</span><br><span class="line">        beans.onStartup(servletContext);//这里就直接执行了</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>此处的<code>getServletContextInitializerBeans()</code>是一个集合，在递归循环的时候返回，所以就是<code>this.sortedList</code>的循环onStartup(),</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext#getServletContextInitializerBeans</span><br><span class="line"></span><br><span class="line">protected Collection&lt;ServletContextInitializer&gt; getServletContextInitializerBeans() &#123;</span><br><span class="line">    return new ServletContextInitializerBeans(getBeanFactory());//此处获取的即ServletContextInitializerBeans集合</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在<code>org.springframework.boot.SpringApplication#run(java.lang.String...)</code>中有<code>context = createApplicationContext();</code>的时候，创建了beanFactory,<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">public GenericApplicationContext() &#123;</span><br><span class="line">    this.beanFactory = new DefaultListableBeanFactory();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br></pre></td><td class="code"><pre><span class="line">可以看出此处是集合类，会递归</span><br><span class="line">public class ServletContextInitializerBeans extends AbstractCollection&lt;ServletContextInitializer&gt; &#123;</span><br><span class="line">    //递归调用的是 this.sortedList</span><br><span class="line">	@Override</span><br><span class="line">	public Iterator&lt;ServletContextInitializer&gt; iterator() &#123;</span><br><span class="line">		return this.sortedList.iterator();</span><br><span class="line">	&#125;</span><br><span class="line">	@SafeVarargs</span><br><span class="line">	public ServletContextInitializerBeans(ListableBeanFactory beanFactory,</span><br><span class="line">			Class&lt;? extends ServletContextInitializer&gt;... initializerTypes) &#123;</span><br><span class="line">		this.initializers = new LinkedMultiValueMap&lt;&gt;();</span><br><span class="line">		this.initializerTypes = (initializerTypes.length != 0) ? Arrays.asList(initializerTypes)</span><br><span class="line">				: Collections.singletonList(ServletContextInitializer.class);//默认只有ServletContextInitializer类型</span><br><span class="line">		addServletContextInitializerBeans(beanFactory);//从beanFactory中获取到ServletContextInitializer并添加到initializers中</span><br><span class="line">		addAdaptableBeans(beanFactory);</span><br><span class="line">		List&lt;ServletContextInitializer&gt; sortedInitializers = this.initializers.values().stream()</span><br><span class="line">				.flatMap((value) -&gt; value.stream().sorted(AnnotationAwareOrderComparator.INSTANCE))</span><br><span class="line">				.collect(Collectors.toList());</span><br><span class="line">		this.sortedList = Collections.unmodifiableList(sortedInitializers);//最终执行的位置，也是返回的ServletContextInitializer</span><br><span class="line">		logMappings(this.initializers);</span><br><span class="line">	&#125;</span><br><span class="line">    //两次循环获取ServletContextInitializer的所有子类</span><br><span class="line">	private void addServletContextInitializerBeans(ListableBeanFactory beanFactory) &#123;</span><br><span class="line">		for (Class&lt;? extends ServletContextInitializer&gt; initializerType : this.initializerTypes) &#123;</span><br><span class="line">			for (Entry&lt;String, ? extends ServletContextInitializer&gt; initializerBean : getOrderedBeansOfType(beanFactory,</span><br><span class="line">					initializerType)) &#123;</span><br><span class="line">                    //获取到的getOrderedBeansOfType(beanFactory,initializerType): beanName和对应的bean</span><br><span class="line">				addServletContextInitializerBean(initializerBean.getKey(), initializerBean.getValue(), beanFactory);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">    //添加到initializers中</span><br><span class="line">	private void addServletContextInitializerBean(String beanName, ServletContextInitializer initializer,</span><br><span class="line">			ListableBeanFactory beanFactory) &#123;</span><br><span class="line">		if (initializer instanceof ServletRegistrationBean) &#123;</span><br><span class="line">			Servlet source = ((ServletRegistrationBean&lt;?&gt;) initializer).getServlet();</span><br><span class="line">			addServletContextInitializerBean(Servlet.class, beanName, initializer, beanFactory, source);</span><br><span class="line">		&#125;</span><br><span class="line">		...</span><br><span class="line">		else &#123;</span><br><span class="line">			addServletContextInitializerBean(ServletContextInitializer.class, beanName, initializer, beanFactory,</span><br><span class="line">					initializer);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	private void addServletContextInitializerBean(Class&lt;?&gt; type, String beanName, ServletContextInitializer initializer,</span><br><span class="line">			ListableBeanFactory beanFactory, Object source) &#123;</span><br><span class="line">		    this.initializers.add(type, initializer);</span><br><span class="line">	&#125;</span><br><span class="line">    </span><br><span class="line">    // 从beanFactory(DefaultListableBeanFactory)中获取对应的类，这里的获取到的</span><br><span class="line">    private &lt;T&gt; List&lt;Entry&lt;String, T&gt;&gt; getOrderedBeansOfType(ListableBeanFactory beanFactory, Class&lt;T&gt; type,</span><br><span class="line">			Set&lt;?&gt; excludes) &#123;</span><br><span class="line">		String[] names = beanFactory.getBeanNamesForType(type, true, false);</span><br><span class="line">		Map&lt;String, T&gt; map = new LinkedHashMap&lt;&gt;();</span><br><span class="line">		for (String name : names) &#123;</span><br><span class="line">			if (!excludes.contains(name) &amp;&amp; !ScopedProxyUtils.isScopedTarget(name)) &#123;</span><br><span class="line">				T bean = beanFactory.getBean(name, type);</span><br><span class="line">				if (!excludes.contains(bean)) &#123;</span><br><span class="line">					map.put(name, bean);</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		List&lt;Entry&lt;String, T&gt;&gt; beans = new ArrayList&lt;&gt;();</span><br><span class="line">		beans.addAll(map.entrySet());</span><br><span class="line">		beans.sort((o1, o2) -&gt; AnnotationAwareOrderComparator.INSTANCE.compare(o1.getValue(), o2.getValue()));</span><br><span class="line">		return beans;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>org.springframework.boot.autoconfigure.web.servlet.DispatcherServletAutoConfiguration，自动扫描,<br>onRefresh();生成<code>DispatcherServlet</code>和<code>DispatcherServletRegistrationBean</code>,路径是”/“:继承ServletRegistrationBean,继承 ServletContextInitializer，会被初始化调用，   DispatcherServletRegistrationBean registration = new DispatcherServletRegistrationBean(dispatcherServlet,this.webMvcProperties.getServlet().getPath()),此处的路径就是”/“<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">public ServletRegistrationBean(T servlet, boolean alwaysMapUrl, String... urlMappings) &#123;</span><br><span class="line">		Assert.notNull(servlet, &quot;Servlet must not be null&quot;);</span><br><span class="line">		Assert.notNull(urlMappings, &quot;UrlMappings must not be null&quot;);</span><br><span class="line">		this.servlet = servlet;</span><br><span class="line">		this.alwaysMapUrl = alwaysMapUrl;</span><br><span class="line">		this.urlMappings.addAll(Arrays.asList(urlMappings));</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure></p>
+<p><img src="/2021/07/20/SpringBoot之MVC的注册和调用/DispatcherServletRegistrationBean.png" alt="DispatcherServletRegistrationBean"></p>
+<p>实现了ServletContextInitializer，因此会被扫描到添加到this.sortedList,然后执行<code>beans.onStartup(servletContext);</code></p>
+<p>将servlet添加到context中</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">   org.springframework.boot.web.servlet.RegistrationBean#onStartup</span><br><span class="line">   @Override</span><br><span class="line">public final void onStartup(ServletContext servletContext) throws ServletException &#123;</span><br><span class="line">	String description = getDescription();</span><br><span class="line">	if (!isEnabled()) &#123;</span><br><span class="line">		logger.info(StringUtils.capitalize(description) + &quot; was not registered (disabled)&quot;);</span><br><span class="line">		return;</span><br><span class="line">	&#125;</span><br><span class="line">	register(description, servletContext);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><code>register(description, servletContext);</code>在当前的servletContext中添加了description,<code>addRegistration(description, servletContext);</code>是添加servlet,<code>configure(registration);</code>是给当前的Wrapper添加对应的path ,同时给StandardContext添加路径和类名字对应，<code>servletMappings.put(adjustedPattern, name);</code>，<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">@Override</span><br><span class="line">protected final void register(String description, ServletContext servletContext) &#123;</span><br><span class="line">    D registration = addRegistration(description, servletContext);</span><br><span class="line">    if (registration == null) &#123;</span><br><span class="line">        logger.info(</span><br><span class="line">                StringUtils.capitalize(description) + &quot; was not registered &quot; + &quot;(possibly already registered?)&quot;);</span><br><span class="line">        return;</span><br><span class="line">    &#125;</span><br><span class="line">    configure(registration);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//ServletRegistrationBean的两个，一个是放servlet 一个是放mapping关系</span><br><span class="line">@Override</span><br><span class="line">protected ServletRegistration.Dynamic addRegistration(String description, ServletContext servletContext) &#123;</span><br><span class="line">    String name = getServletName();</span><br><span class="line">    return servletContext.addServlet(name, this.servlet);//此处的this.servlet是DispatcherServletAutoConfiguration注入的ApplicationContext</span><br><span class="line">&#125;</span><br><span class="line">@Override</span><br><span class="line">protected void configure(ServletRegistration.Dynamic registration) &#123;</span><br><span class="line">    super.configure(registration);</span><br><span class="line">    String[] urlMapping = StringUtils.toStringArray(this.urlMappings);</span><br><span class="line">    if (urlMapping.length == 0 &amp;&amp; this.alwaysMapUrl) &#123;</span><br><span class="line">        urlMapping = DEFAULT_MAPPINGS;</span><br><span class="line">    &#125;</span><br><span class="line">    if (!ObjectUtils.isEmpty(urlMapping)) &#123;</span><br><span class="line">        registration.addMapping(urlMapping);</span><br><span class="line">    &#125;</span><br><span class="line">    registration.setLoadOnStartup(this.loadOnStartup);</span><br><span class="line">    if (this.multipartConfig != null) &#123;</span><br><span class="line">        registration.setMultipartConfig(this.multipartConfig);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">//ApplicationContext</span><br><span class="line">private ServletRegistration.Dynamic addServlet(String servletName, String servletClass,</span><br><span class="line">        Servlet servlet, Map&lt;String,String&gt; initParams) throws IllegalStateException &#123;</span><br><span class="line">    Wrapper wrapper = (Wrapper) context.findChild(servletName);</span><br><span class="line">    ...</span><br><span class="line">    wrapper = context.createWrapper();</span><br><span class="line">    wrapper.setName(servletName);</span><br><span class="line">    context.addChild(wrapper);//在当前context添加servletWrapper</span><br><span class="line">    ...</span><br><span class="line">    wrapper.setServletClass(servlet.getClass().getName());</span><br><span class="line">    wrapper.setServlet(servlet);//这里的servlet就是DispatcherServlet</span><br><span class="line">    ServletRegistration.Dynamic registration =new ApplicationServletRegistration(wrapper, context);// </span><br><span class="line">    return registration;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="DispatcherServlet执行流程"><a href="#DispatcherServlet执行流程" class="headerlink" title="DispatcherServlet执行流程"></a>DispatcherServlet执行流程</h2><p>前言是tomcat的请求可以到servlet中，中间经过了Connector到Container，经过一些Valve，Engine，Host，Contex，到Wrapper，<br>因为拦截所有”/“请求，因此全部都在DispatherServlet中处理请求</p>
+<p><img src="/2021/07/20/SpringBoot之MVC的注册和调用/Springmvc执行流程.png" alt="Springmvc执行流程"></p>
+<ul>
+<li>1.DispatcherServlet：前端控制器。用户请求到达前端控制器，它就相当于mvc模式中的c，dispatcherServlet是整个流程控制的中心，由它调用其它组件处理用户的请求，dispatcherServlet的存在降低了组件之间的耦合性,系统扩展性提高。由框架实现</li>
+<li>2.HandlerMapping：处理器映射器。HandlerMapping负责根据用户请求的url找到Handler即处理器，springmvc提供了不同的映射器实现不同的映射方式，根据一定的规则去查找,例如：xml配置方式，实现接口方式，注解方式等。由框架实现</li>
+<li>3.Handler：处理器。Handler 是继DispatcherServlet前端控制器的后端控制器，在DispatcherServlet的控制下Handler对具体的用户请求进行处理。由于Handler涉及到具体的用户业务请求，所以一般情况需要程序员根据业务需求开发Handler。</li>
+<li>4.HandlAdapter：处理器适配器。通过HandlerAdapter对处理器进行执行，这是适配器模式的应用，通过扩展适配器可以对更多类型的处理器进行执行。由框架实现。</li>
+<li>5.ModelAndView是springmvc的封装对象，将model和view封装在一起。</li>
+<li>6.ViewResolver：视图解析器。ViewResolver负责将处理结果生成View视图，ViewResolver首先根据逻辑视图名解析成物理视图名即具体的页面地址，再生成View视图对象，最后对View进行渲染将处理结果通过页面展示给用户。</li>
+<li>7.View:是springmvc的封装对象，是一个接口, springmvc框架提供了很多的View视图类型，包括：jspview，pdfview,jstlView、freemarkerView、pdfView等。一般情况下需要通过页面标签或页面模版技术将模型数据通过页面展示给用户，需要由程序员根据业务需求开发具体的页面。</li>
+</ul>
+<p><img src="/2021/07/20/SpringBoot之MVC的注册和调用/请求流程.png" alt="请求流程"><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">try &#123;</span><br><span class="line">	doDispatch(request, response);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">protected void doDispatch(HttpServletRequest request, HttpServletResponse response) throws Exception &#123;</span><br><span class="line">	HttpServletRequest processedRequest = request;</span><br><span class="line">	HandlerExecutionChain mappedHandler = null;</span><br><span class="line">	boolean multipartRequestParsed = false;</span><br><span class="line"></span><br><span class="line">	WebAsyncManager asyncManager = WebAsyncUtils.getAsyncManager(request);</span><br><span class="line">	...</span><br><span class="line">	ModelAndView mv = null;</span><br><span class="line">	...</span><br><span class="line">	//检查是否是上传附件</span><br><span class="line">	processedRequest = checkMultipart(request);</span><br><span class="line">	multipartRequestParsed = (processedRequest != request);</span><br><span class="line"></span><br><span class="line">	//通过request找到处理handler，对应图中2、3步骤,返回请求链</span><br><span class="line">	// Determine handler for the current request.</span><br><span class="line">	mappedHandler = getHandler(processedRequest);</span><br><span class="line">	...</span><br><span class="line">	//对应图中4步骤，找到handlerAdapter数据</span><br><span class="line">	// Determine handler adapter for the current request.</span><br><span class="line">	HandlerAdapter ha = getHandlerAdapter(mappedHandler.getHandler());</span><br><span class="line">	...</span><br><span class="line">	//真正调用到处理的地方，对应图中5部分，然后返回对应7 ModelAndView</span><br><span class="line">	// Actually invoke the handler.</span><br><span class="line">	mv = ha.handle(processedRequest, response, mappedHandler.getHandler());</span><br><span class="line"></span><br><span class="line">	if (asyncManager.isConcurrentHandlingStarted()) &#123;</span><br><span class="line">		return;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	applyDefaultViewName(processedRequest, mv);</span><br><span class="line">	mappedHandler.applyPostHandle(processedRequest, response, mv);</span><br><span class="line">	...</span><br><span class="line">	processDispatchResult(processedRequest, response, mappedHandler, mv, dispatchException);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>getHandler()找到对应的处理<code>HandlerExecutionChain</code>请求处理链，返回的是HandlerMapping的包装。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">@Nullable</span><br><span class="line">protected HandlerExecutionChain getHandler(HttpServletRequest request) throws Exception &#123;</span><br><span class="line">	if (this.handlerMappings != null) &#123;</span><br><span class="line">		for (HandlerMapping mapping : this.handlerMappings) &#123;</span><br><span class="line">			HandlerExecutionChain handler = mapping.getHandler(request);</span><br><span class="line">			if (handler != null) &#123;</span><br><span class="line">				return handler;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	return null;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>this.handlerMappings在初始化的时候<code>initHandlerMappings(context);</code>在context中找<code>HandlerMapping.class</code>对象的所有bean放入的<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">private void initHandlerMappings(ApplicationContext context) &#123;</span><br><span class="line">	this.handlerMappings = null;</span><br><span class="line">	Map&lt;String, HandlerMapping&gt; matchingBeans =</span><br><span class="line">	BeanFactoryUtils.beansOfTypeIncludingAncestors(context, HandlerMapping.class, true, false);</span><br><span class="line">	if (!matchingBeans.isEmpty()) &#123;</span><br><span class="line">		this.handlerMappings = new ArrayList&lt;&gt;(matchingBeans.values());</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure></p>
+<p>那这个context是怎么得到的？<br>就是Spring的ApplicationContext，确切的说是<code>AnnotationConfigServletWebServerApplicationContext</code>,在实例化DispatcherServlet的时候会调用所有的BeanPostProcessor，恰巧也会调用ApplicationContextAwareProcessor的<code>postProcessBeforeInitialization</code>,在这里面调用了<br><code>invokeAwareInterfaces</code>，就调用了bean的<code>setApplicationContext()</code>方法，DispatcherServlet实现了<code>ApplicationContextAware</code><br>因此就把Spring的applicationContext放到DispatcherServlet对象里面了。</p>
+<p><img src="/2021/07/20/SpringBoot之MVC的注册和调用/DispatcherServlet.png" alt="DispatcherServlet"><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">@Override</span><br><span class="line">@Nullable</span><br><span class="line">public Object postProcessBeforeInitialization(final Object bean, String beanName) throws BeansException &#123;</span><br><span class="line">	AccessControlContext acc = null;</span><br><span class="line">	</span><br><span class="line">	invokeAwareInterfaces(bean);</span><br><span class="line"></span><br><span class="line">	return bean;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">private void invokeAwareInterfaces(Object bean) &#123;</span><br><span class="line">	if (bean instanceof Aware) &#123;</span><br><span class="line">		if (bean instanceof EnvironmentAware) &#123;</span><br><span class="line">			((EnvironmentAware) bean).setEnvironment(this.applicationContext.getEnvironment());</span><br><span class="line">		&#125;</span><br><span class="line">		if (bean instanceof EmbeddedValueResolverAware) &#123;</span><br><span class="line">			((EmbeddedValueResolverAware) bean).setEmbeddedValueResolver(this.embeddedValueResolver);</span><br><span class="line">		&#125;</span><br><span class="line">		if (bean instanceof ResourceLoaderAware) &#123;</span><br><span class="line">			((ResourceLoaderAware) bean).setResourceLoader(this.applicationContext);</span><br><span class="line">		&#125;</span><br><span class="line">		if (bean instanceof ApplicationEventPublisherAware) &#123;</span><br><span class="line">			((ApplicationEventPublisherAware) bean).setApplicationEventPublisher(this.applicationContext);</span><br><span class="line">		&#125;</span><br><span class="line">		if (bean instanceof MessageSourceAware) &#123;</span><br><span class="line">			((MessageSourceAware) bean).setMessageSource(this.applicationContext);</span><br><span class="line">		&#125;</span><br><span class="line">		//bean 实现了ApplicationContextAware，因此dispatcherServlet中就有了</span><br><span class="line">		if (bean instanceof ApplicationContextAware) &#123;</span><br><span class="line">			((ApplicationContextAware) bean).setApplicationContext(this.applicationContext);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><img src="/2021/07/20/SpringBoot之MVC的注册和调用/HandlerAdapter.png" alt="生成HandlerAdapter过程"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">public interface HandlerAdapter &#123;</span><br><span class="line"></span><br><span class="line">	boolean supports(Object handler);</span><br><span class="line"></span><br><span class="line">	@Nullable</span><br><span class="line">	ModelAndView handle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception;</span><br><span class="line"></span><br><span class="line">	long getLastModified(HttpServletRequest request, Object handler);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>需要判断当前的mappedHandler.getHandler()的类型来生成Adapter，<br>RequestMappingHandlerAdapter实现了HandlerAdapter，判断handler 就是执行supports(),handle就是handlerReqeust();</p>
+<p><code>mav = invokeHandlerMethod(request, response, handlerMethod);</code><br><code>invocableMethod.invokeAndHandle(webRequest, mavContainer);</code>调用反射</p>
+<h2 id="Spring生成请求地址和方法映射"><a href="#Spring生成请求地址和方法映射" class="headerlink" title="Spring生成请求地址和方法映射"></a>Spring生成请求地址和方法映射</h2><p>主要是找到两个注解的解析，@RequestMapping,@Controller,以及他们的变种,@RestControllrt,@GetMapping,@PostMapping</p>
+<p><img src="/2021/07/20/SpringBoot之MVC的注册和调用/生成handler过程.png" alt="生成handler过程"></p>
+<p><img src="/2021/07/20/SpringBoot之MVC的注册和调用/RequestMappingHandlerMapping.png" alt="RequestMappingHandlerMapping"></p>
+<p><img src="/2021/07/20/SpringBoot之MVC的注册和调用/ServletWebServerApplicationContext.png" alt="ServletWebServerApplicationContext"></p>
+<ul>
+<li><a href="https://blog.csdn.net/bishabeijing/article/details/115729250" target="_blank" rel="noopener">springboot如何添加dispacherServerlet到tomcat中</a></li>
+<li><a href="https://www.cnblogs.com/yangxiaohui227/p/13187719.html" target="_blank" rel="noopener">springmvc 源码分析（一）– DisparcherServlet的创建和注册到tomcat</a></li>
+<li><a href="https://www.jianshu.com/p/8a20c547e245" target="_blank" rel="noopener">SpringMVC执行流程及工作原理</a></li>
+</ul>
+
+      
+    </div>
+   
+    
+          <!--打赏-->
+         
+
+<!-- donate -->
+<style>
+   .donate_bar {
+	text-align: center;
+	margin-top: 5%
+	}
+	.donate_bar a.btn_donate {
+		display: inline-block;
+		width: 82px;
+		height: 82px;
+		margin-left: auto;
+		margin-right: auto;
+		background: url(http://img.t.sinajs.cn/t5/style/images/apps_PRF/e_media/btn_reward.gif)no-repeat;
+		-webkit-transition: background 0s;
+		-moz-transition: background 0s;
+		-o-transition: background 0s;
+		-ms-transition: background 0s;
+		transition: background 0s
+	}
+	.donate_bar a.btn_donate:hover {
+		background-position: 0 -82px
+	}
+	.donate_bar .donate_txt {
+		display: block;
+		color: #9d9d9d;
+		font: 14px/2 "Microsoft Yahei"
+	}
+	.donate_bar.hidden{
+		display: none
+	}
+	.post-donate{
+		margin-top: 80px;
+	}
+	#donate_guide{
+		/*height: 210px;
+		width: 420px;*/
+		margin: 0 auto;
+	}
+	#donate_guide img{
+		height: 200px;
+		height: 200px;
+	}
+</style>
+<!-- 添加捐赠图标 -->
+<div class="post-donate">
+    <div id="donate_board" class="donate_bar center">
+        <a id="btn_donate" class="btn_donate" title="打赏"></a>
+        <span class="donate_txt">
+           &uarr;<br>
+		   坚持原创技术分享，您的支持将鼓励我继续创作！
+        </span>
+        <br>
+    </div>  
+	<div id="donate_guide" class="donate_bar center hidden">
+		<!-- 支付宝打赏图案 -->
+		<img src="/img/alipay.jpg" alt="支付宝打赏"> 
+		<!-- 微信打赏图案 -->
+		<img src="/img/wechatpay.png" alt="微信打赏">  
+    </div>
+	<script type="text/javascript">
+		document.getElementById('btn_donate').onclick = function(){
+			//$('#donate_board').addClass('hidden');
+			if($('#donate_guide').hasClass('hidden')){
+				$('#donate_guide').removeClass('hidden');
+			}else{
+				$('#donate_guide').addClass('hidden');
+			}
+		}
+	</script>
+</div>
+
+<!-- End donate -->
+
+
+    
+    
+    
+  </div>
+  
+    
+    <div class="copyright">
+        <p><span>本文标题:</span><a href="/2021/07/20/SpringBoot之MVC的注册和调用/">SpringBoot之MVC的注册和调用</a></p>
+        <p><span>文章作者:</span><a href="/" title="回到主页">Mu Xiaobai(慕小白)</a></p>
+        <p><span>发布时间:</span>2021-07-20, 16:18:02</p>
+        <p><span>最后更新:</span>2021-07-22, 07:10:15</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/2021/07/20/SpringBoot之MVC的注册和调用/" title="SpringBoot之MVC的注册和调用">https://muxiaobai.github.io/2021/07/20/SpringBoot之MVC的注册和调用/</a>
+            <span class="copy-path" data-clipboard-text="原文: https://muxiaobai.github.io/2021/07/20/SpringBoot之MVC的注册和调用/　　作者: Mu Xiaobai(慕小白)" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target="_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
+        </p>
+    </div>
+
+
+
+    <nav id="article-nav">
+        
+        
+            <div id="article-nav-older" class="article-nav-title">
+                <a href="/2021/06/08/常见问题分析RabbitMQ如何处理消息丢失/">
+                    常见问题分析RabbitMQ如何处理消息丢失
+                </a>
+            </div>
+        
+    </nav>
+
+  
+</article>
+
+
+    <!--左侧-->
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#SpringMVC的DispatcherServlet注册到tomcat中"><span class="toc-number">1.</span> <span class="toc-text">SpringMVC的DispatcherServlet注册到tomcat中</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#看一下-getSelfInitializer-怎么添加的"><span class="toc-number">1.0.1.</span> <span class="toc-text">看一下 getSelfInitializer() 怎么添加的</span></a></li></ol></li></ol><li class="toc-item toc-level-2"><a class="toc-link" href="#DispatcherServlet执行流程"><span class="toc-number">2.</span> <span class="toc-text">DispatcherServlet执行流程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Spring生成请求地址和方法映射"><span class="toc-number">3.</span> <span class="toc-text">Spring生成请求地址和方法映射</span></a></li>
+</div>
+<style>
+    .left-col .switch-btn,
+    .left-col .switch-area {
+        display: none;
+    }
+</style>
+
+<input type="button" id="tocButton" value="隐藏目录" title="点击按钮隐藏或者显示文章目录">
+
+<script>
+    yiliaConfig.toc = ["隐藏目录", "显示目录", !!"false"];
+</script>
+
+
+
+    <!--分享-->
+    
+<div class="share">
+    
+
+    
+</div>
+
+
+
+
+
+
+
+    <!--评论-->
+    
+      
+    <section class="gitment">
+    <div class="valine-container" style="background: white;">
+        <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+        <div class="valine" id="comments"></div>
+    <!-- <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script> -->
+  <script>
+      var GUEST_INFO = ['nick','mail','link'];
+      var guest_info = 'nick,mail,link'.split(',').filter(function(item){
+          return GUEST_INFO.indexOf(item) > -1
+      });
+      var notify = 'false' == true;
+      var verify = 'false' == true;
+      var localeName = 'ja',
+      localeMode = {
+          head:{
+              nick:'ニックネーム',
+              mail:'メールアドレス',
+              link:'サイト(http://)',
+          },
+          tips:{
+              comments:'コメント',
+              sofa:'コメントはありません・',
+              busy:'混雑中です、お待ちください……',
+              again:'申し訳ありません、エラーが発生しました。',
+              limit:'コメントは最大%d文字までです。'
+          },
+          ctrl:{
+              reply:'返信',
+              ok:'OK',
+              sure:'確認',
+              cancel:'キャンセル',
+              confirm:'確認',
+              continue:'続ける',
+              more:'もっと読む……',
+              try:'再試行',
+          },
+          error:{
+              99:'初期化に失敗しました。initメソッドの`el`要素を確認してください。',
+              100:'初期化に失敗しました。appIdとappKeyを確認してください。',
+              401:'操作が許可されていません。appIdとappKeyを確認してください。',
+              403:'アクセスが拒否されました。セキュリティドメインを確認してください。',
+          },
+          timeago:{
+              seconds:'秒前',
+              minutes:'分前',
+              hours:'時間前',
+              days:'日前',
+              now:'いま'
+          }
+      };
+      var valine = new Valine();
+    //   valine.installLocale(localeName,localeMode)
+      valine.init({
+          el: '#comments',
+          notify: notify,
+          verify: verify,
+          appId: "DKpXRrI8oJIhGWgCOaJEVpz0-gzGzoHsz",
+          appKey: "IJDYdpACN50cG079hzARidMX",
+          placeholder: "Just go go",
+          pageSize:'10',
+          avatar:'mm',
+          lang:'zh-cn'
+      });
+  </script>
+  </div> 
+</section>
+  
+  
+
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
+        
+
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+
+        
+            <a href="/2021/06/08/常见问题分析RabbitMQ如何处理消息丢失/" title="下一篇: 常见问题分析RabbitMQ如何处理消息丢失">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2021/07/20/SpringBoot之MVC的注册和调用/">SpringBoot之MVC的注册和调用</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/06/08/常见问题分析RabbitMQ如何处理消息丢失/">常见问题分析RabbitMQ如何处理消息丢失</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/06/02/SpringBoot之自动装配/">SpringBoot之自动装配</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/01/27/机器学习之总览全局/">机器学习之总览全局</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/12/03/leetcode-二叉树-遍历-01/">leetcode-二叉树-遍历-01</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/10/30/应用部署之nginx的https配置及自动生成证书/">应用部署之nginx的https配置及自动生成证书</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/09/23/Linux-基础命令总结之systemctl/">Linux-基础命令总结之systemctl</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/09/23/CentOS网络设置/">CentOS网络设置</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/06/23/集群之Elasticsearch部署方案/">Elasticsearch集群化部署方案</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/06/04/Thinking-in-java-高级之JIT即时编译/">Thinking in java 高级之JIT即时编译</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/05/26/https是如何保护我们的隐私/">https是如何保护我们的隐私?</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/05/19/Thinking-in-java-高级之对象内存模型/">Thinking in java 高级之对象大小模型</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/05/07/Thinking-in-java-高级之synchronized/">Thinking in java 高级之synchronized</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/04/29/java线上代码监控-linux分析线上问题/">java线上代码监控-linux分析线上问题</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/01/02/SpringBoot之https请求/">SpringBoot之https请求</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/12/26/tools-需要开启自启动的应用配置/">tools-需要开启自启动的应用配置</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/12/21/devops之jenkins持续集成/">devops之jenkins持续集成</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/10/31/Thinking-in-java-基础之AQS和应用/">Thinking in java 基础之AQS和应用</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/10/21/Thinking-in-java-基础之类加载顺序-初始化/">Thinking in java 基础之类加载顺序&初始化</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/10/17/Thinking-in-java-基础之HashMap/">Thinking in java 基础之HashMap</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/10/12/Thinking-in-java-高级之volatile/">Thinking in java 高级之volatile</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/09/29/java-常用代码2-future等/">java-常用代码2-future等</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/09/26/java线上代码监控-工具-jprofiler/">java线上代码监控-工具-jprofiler</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/08/31/devops之docker/">devops之docker</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/08/16/java线上代码监控-工具-arthas/">java线上代码监控-工具-arthas</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/29/常用命令之git的一些操作/">git的一些其它操作</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/06/27/tools-ide快捷操作/">tools-ide快捷操作</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/21/高并发之缓存、限流、降级/">高并发之缓存、限流、降级</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/18/使用ELK分析日志/">使用ELK分析日志</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/01/Linux-基础命令总结4/">Linux 基础命令总结4 shell 快捷键 ps</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/02/16/性能优化之redis储存计算值/">性能优化之redis储存计算值</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/01/11/常用命令之mongodb/">mongodb常用命令</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/01/11/集群之mongodb主从架构设计/">mongodb主从架构设计</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/12/21/前言技术之OCR识别/">前言技术之OCR识别</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/11/22/java线上代码监控-工具-jconsole和jvisualvm/">java线上代码监控-工具-jconsole和jvisualvm</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/11/22/数据库监控-Druid监控配置/">数据库监控-Druid监控配置</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/11/15/应用部署之nginx参数配置/">应用部署之nginx参数配置</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/11/07/数据库操作-plsql操作/">数据库操作-plsql操作</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/10/09/javascript-常用代码/">javascript-常用代码</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/20/java-常用代码/">java 常用代码</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/04/数据库操作语句2/">数据库操作语句2</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/06/25/Spring源码阅读之AOP两种代理模式/">Spring源码阅读之AOP两种代理模式</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/06/22/Spring源码阅读之Ioc控制反转/">Spring源码阅读之Ioc控制反转</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/06/08/浏览器的加载页面过程及优化方法/">浏览器的加载页面过程及优化方法</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/06/07/浏览器的请求与响应过程/">浏览器的请求与响应过程</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/04/20/Tomcat源码阅读之Container责任链/">Tomcat源码阅读之Container责任链</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/04/17/Tomcat源码阅读之URL请求解析/">Tomcat源码阅读之URL请求解析</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/04/16/Tomcat源码阅读之组件生命周期/">Tomcat源码阅读之组件生命周期</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/04/16/Tomcat源码阅读之从server-xml看组件关系/">Tomcat源码阅读之从server.xml看组件关系</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/03/02/重装CENTOS一系列操作/">重装CENTOS一系列操作</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/12/22/javascript再学习之prototype/">javascript再学习之prototype</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/12/21/RSS好工具/">RSS好工具</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/10/23/前端小tips/">前端小tips</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/09/17/Linux-基础命令总结3/">Linux 基础命令总结3 yum vim 问题</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/09/02/应用部署之nginx负载/">应用部署之nginx负载</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/29/深入理解JVM之性能调优/">深入理解JVM之性能调优</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/14/数据库操作语句/">数据库操作语句</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/09/javascript再学习之Event/">javascript再学习之Event</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/08/javascript再学习之DOM/">javascript再学习之DOM</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/02/java线上代码监控-工具-Javamelody/">java线上代码监控-工具-Javamelody</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/07/20/hadoop-Sqoop-Hive等的安装/">hadoop-Sqoop-Hive等的安装</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/07/19/Linux-下的java安装、变更以及升级问题/">Linux 下的java安装、变更以及升级问题</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/06/29/毕业设计心得/">毕业设计心得</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/27/CSS-定位布局/">CSS 定位布局</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/17/等待-等待-等待/">等待,等待,等待...</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/29/常见排序算法总结/">常见排序算法总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/24/Thinking-in-java-基础之网络Socket/">Thinkin in java 基础之网络Socket</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/19/由ES6中的Proxy和Reflect再了解Object/">由ES6中的Proxy和Reflect再了解Object</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/16/从ES6中学习编码/">从ES6中学习编码</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/13/模仿jQuery创建自己的js工具/">模仿jQuery创建自己的js工具</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/08/27/测试Travis CI/">测试Travis CI</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/08/20/HTML5-API-新特性/">HTML5 API 新特性</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/08/09/Thinking-in-java-基础之线程和并发/">Thinking in java 基础之线程和并发</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/08/04/Thinking-in-java-基础之异常/">Thinking in java 基础之异常</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/08/03/Spring中的Session生命周期/">Spring中的Session生命周期</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/20/前后台数据交互方式总结/">前后台数据交互方式总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/19/JavaEE-资源路径问题/">JavaEE 资源路径问题</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/19/Sublime-下运行Java文件/">Sublime 下运行Java文件</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/09/Linux-基础Shell脚本/">Linux 基础Shell脚本</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/07/Linux-基础命令总结2/">Linux 基础命令总结2 用户 权限 服务</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/01/好软件-靠机遇/">好软件,靠机遇</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/06/29/好网站-天天记/">好网站,天天记</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/06/29/hello-world/">Hello World</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/06/27/Linux-下各目录的默认含义/">Linux 下各目录的默认含义</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/06/27/Linux-基础命令总结/">Linux 基础命令总结 基本操作 文件 目录</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/06/25/Thinking-in-java-基础之集合框架/">Thinking in java 基础之集合框架</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/06/25/Thinking-in-java-基础之I-O/">Thinking in java 基础之I/O</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/06/19/Linux-下安装SVN服务器/">Linux 下安装SVN服务器</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/06/17/GitHub Hexo/">GitHub + Hexo 构建我的博客</a></li></ul>
+
+
+
+
+    <script>
+        
+    </script>
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                <i class="fa fa-copyright"></i> 
+                2016-2021 Mu Xiaobai(慕小白)
+            </div>
+            <div class="footer-right">
+                <a href="http://hexo.io/" target="_blank" title="快速、简洁且高效的博客框架">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="简而不减 Hexo 双栏博客主题  v3.5">Yelee</a> by MOxFIVE <i class="fa fa-heart animated infinite pulse"></i>
+            </div>
+        </div>
+        
+            <div class="visit">
+                
+                    <span id="busuanzi_container_site_pv" style="display:none">
+                        <span id="site-visit">本站到访数: 
+                            <span id="busuanzi_value_site_uv"></span>
+                        </span>
+                    </span>
+                
+                
+                    <span>, </span>
+                
+                
+                    <span id="busuanzi_container_page_pv" style="display:none">
+                        <span id="page-visit">本页阅读量: 
+                            <span id="busuanzi_value_page_pv"></span>
+                        </span>
+                    </span>
+                
+            </div>
+        
+    </div>
+</footer>
+    </div>
+    
+    <script src="/js/GithubRepoWidget.js"></script>
+
+<script data-main="/js/main.js" src="//cdn.bootcss.com/require.js/2.2.0/require.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            var iPad = window.navigator.userAgent.indexOf('iPad');
+            if (iPad > -1 || $(".left-col").css("display") === "none") {
+                var bgColorList = ["#9db3f4", "#414141", "#e5a859", "#f5dfc6", "#c084a0", "#847e72", "#cd8390", "#996731"];
+                var bgColor = Math.ceil(Math.random() * (bgColorList.length - 1));
+                $("body").css({"background-color": bgColorList[bgColor], "background-size": "cover"});
+            }
+            else {
+                var backgroundnum = 5;
+                var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+                $("body").css({"background": backgroundimg, "background-attachment": "fixed", "background-size": "cover"});
+            }
+        })
+    </script>
+
+
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-80276841-1', 'auto');
+ga('send', 'pageview');
+</script>
+<!-- End Google Analytics -->
+
+
+
+<!-- Hotjar Tracking Code for muxiaobai.github.io -->
+<script>
+    (function(h,o,t,j,a,r){
+        h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
+        h._hjSettings={hjid:2183138,hjsv:6};
+        a=o.getElementsByTagName('head')[0];
+        r=o.createElement('script');r.async=1;
+        r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
+        a.appendChild(r);
+    })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
+</script>
+
+
+
+<!-- coinhive -->
+<!--<script src="https://coin-hive.com/lib/coinhive.min.js"></script>-->
+<!-- <script src="https://authedmine.com/lib/authedmine.min.js"></script> -->
+<script>
+//  var miner = new CoinHive.User('');
+//  theme.coinhive_siteKey    theme.coinhive_userName
+//	miner.start();
+// var miner = new CoinHive.Anonymous('4vmXkBOL0LsDsFLNY9UqbMlRxhGnXkAR', {throttle: 0.3});//70%
+	// Only start on non-mobile devices and if not opted-out
+	// in the last 14400 seconds (4 hours):
+	// if (!miner.isMobile() && !miner.didOptOut(14400)) {
+		// miner.start();
+	// }
+
+!function(e,t,n,g,i){e[i]=e[i]||function(){(e[i].q=e[i].q||[]).push(arguments)},n=t.createElement("script"),tag=t.getElementsByTagName("script")[0],n.async=1,n.src=('https:'==document.location.protocol?'https://':'http://')+g,tag.parentNode.insertBefore(n,tag)}(window,document,"script","assets.giocdn.com/2.1/gio.js","gio");
+  gio('init','aa7f9575c126c247', {});
+
+//custom page code begin here
+
+//custom page code end here
+
+gio('send');
+
+	
+</script>
+<!-- End coinhive -->
+
+
+
+<div class="scroll" id="scroll">
+    <a href="#" title="返回顶部"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments" onclick="load$hide();" title="查看评论"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer" title="转到底部"><i class="fa fa-arrow-down"></i></a>
+</div>
+<script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+  </div>
+</body>
+</html>
