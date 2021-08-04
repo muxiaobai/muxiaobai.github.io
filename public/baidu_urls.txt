@@ -1,3 +1,6 @@
+https://muxiaobai.github.io/2021/07/20/SpringBoot之MVC的注册和调用/
+https://muxiaobai.github.io/2021/06/08/常见问题分析RabbitMQ如何处理消息丢失/
+https://muxiaobai.github.io/2021/06/02/SpringBoot之自动装配/
 https://muxiaobai.github.io/2021/01/27/机器学习之总览全局/
 https://muxiaobai.github.io/2020/12/03/leetcode-二叉树-遍历-01/
 https://muxiaobai.github.io/2020/10/30/应用部署之nginx的https配置及自动生成证书/
@@ -9,7 +12,6 @@ https://muxiaobai.github.io/2020/05/26/https是如何保护我们的隐私/
 https://muxiaobai.github.io/2020/05/19/Thinking-in-java-高级之对象内存模型/
 https://muxiaobai.github.io/2020/05/07/Thinking-in-java-高级之synchronized/
 https://muxiaobai.github.io/2020/04/29/java线上代码监控-linux分析线上问题/
-https://muxiaobai.github.io/2020/01/13/2019年个人总结/
 https://muxiaobai.github.io/2020/01/02/SpringBoot之https请求/
 https://muxiaobai.github.io/2019/12/26/tools-需要开启自启动的应用配置/
 https://muxiaobai.github.io/2019/12/21/devops之jenkins持续集成/
@@ -27,7 +29,6 @@ https://muxiaobai.github.io/2019/05/21/高并发之缓存、限流、降级/
 https://muxiaobai.github.io/2019/05/18/使用ELK分析日志/
 https://muxiaobai.github.io/2019/04/01/Linux-基础命令总结4/
 https://muxiaobai.github.io/2019/02/16/性能优化之redis储存计算值/
-https://muxiaobai.github.io/2019/01/15/2018年个人总结/
 https://muxiaobai.github.io/2019/01/11/常用命令之mongodb/
 https://muxiaobai.github.io/2019/01/11/集群之mongodb主从架构设计/
 https://muxiaobai.github.io/2018/12/21/前言技术之OCR识别/
@@ -47,7 +48,6 @@ https://muxiaobai.github.io/2018/04/17/Tomcat源码阅读之URL请求解析/
 https://muxiaobai.github.io/2018/04/16/Tomcat源码阅读之组件生命周期/
 https://muxiaobai.github.io/2018/04/16/Tomcat源码阅读之从server-xml看组件关系/
 https://muxiaobai.github.io/2018/03/02/重装CENTOS一系列操作/
-https://muxiaobai.github.io/2018/01/05/2017年个人总结/
 https://muxiaobai.github.io/2017/12/22/javascript再学习之prototype/
 https://muxiaobai.github.io/2017/12/21/RSS好工具/
 https://muxiaobai.github.io/2017/10/23/前端小tips/
@@ -61,7 +61,6 @@ https://muxiaobai.github.io/2017/08/02/java线上代码监控-工具-Javamelody/
 https://muxiaobai.github.io/2017/07/20/hadoop-Sqoop-Hive等的安装/
 https://muxiaobai.github.io/2017/07/19/Linux-下的java安装、变更以及升级问题/
 https://muxiaobai.github.io/2017/06/29/毕业设计心得/
-https://muxiaobai.github.io/2017/01/23/2016年个人总结/
 https://muxiaobai.github.io/2016/12/27/CSS-定位布局/
 https://muxiaobai.github.io/2016/12/17/等待-等待-等待/
 https://muxiaobai.github.io/2016/09/29/常见排序算法总结/

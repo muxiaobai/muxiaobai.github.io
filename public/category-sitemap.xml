@@ -42,13 +42,6 @@
     </url>
 
     <url>
-        <loc>https://muxiaobai.github.io/categories/%E6%90%AD%E5%BB%BA%E7%BD%91%E7%AB%99/</loc>
-        <lastmod>2017-06-29T07:48:32.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
         <loc>https://muxiaobai.github.io/categories/%E5%89%8D%E7%AB%AF/CSS/</loc>
         <lastmod>2017-08-09T06:39:03.000Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -196,15 +189,8 @@
     </url>
 
     <url>
-        <loc>https://muxiaobai.github.io/categories/java/</loc>
-        <lastmod>2020-12-03T09:24:25.595Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://muxiaobai.github.io/categories/%E8%B5%84%E6%BA%90/</loc>
-        <lastmod>2021-01-06T08:01:20.521Z</lastmod>
+        <loc>https://muxiaobai.github.io/categories/%E6%80%BB%E7%BB%93/</loc>
+        <lastmod>2020-12-03T09:22:46.554Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
@@ -224,22 +210,36 @@
     </url>
 
     <url>
-        <loc>https://muxiaobai.github.io/categories/%E6%80%BB%E7%BB%93/</loc>
-        <lastmod>2021-02-06T08:31:30.529Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://muxiaobai.github.io/categories/%E5%B7%A5%E5%85%B7/</loc>
-        <lastmod>2021-02-18T09:08:27.365Z</lastmod>
+        <loc>https://muxiaobai.github.io/categories/%E6%90%AD%E5%BB%BA%E7%BD%91%E7%AB%99/</loc>
+        <lastmod>2021-02-20T02:57:03.290Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
         <loc>https://muxiaobai.github.io/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/</loc>
-        <lastmod>2021-02-19T09:57:29.548Z</lastmod>
+        <lastmod>2021-03-29T08:26:33.348Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://muxiaobai.github.io/categories/%E5%B7%A5%E5%85%B7/</loc>
+        <lastmod>2021-06-08T06:16:47.240Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://muxiaobai.github.io/categories/java/</loc>
+        <lastmod>2021-08-04T07:50:28.715Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://muxiaobai.github.io/categories/%E8%B5%84%E6%BA%90/</loc>
+        <lastmod>2021-08-04T07:58:34.606Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
