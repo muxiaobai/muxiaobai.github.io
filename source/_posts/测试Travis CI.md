@@ -13,12 +13,12 @@ description: "Travis CI"
 
 
 Git global setup
-git config --global user.name "zhangpf"
-git config --global user.email "zpf12345678910@gmail.com"
+git config --global user.name "xxx"
+git config --global user.email "xxx@gmail.com"
 
 Create a new repository
-git clone git@123.57.34.235:zhangpf/vsb.git
-cd vsb
+git clone git@127.0.0.1:xxx/xxx.git
+cd xxx
 touch README.md
 git add README.md
 git commit -m "add README"
@@ -27,7 +27,7 @@ git push -u origin master
 Push an existing folder
 cd existing_folder
 git init
-git remote add origin git@123.57.34.235:zhangpf/vsb.git
+git remote add origin git@127.0.0.1:xxx/xxx.git
 git add .
 git commit -m "Initial commit"
 git push -u origin master
@@ -35,6 +35,6 @@ git push -u origin master
 Push an existing Git repository
 cd existing_repo
 git remote rename origin old-origin
-git remote add origin git@123.57.34.235:zhangpf/vsb.git
+git remote add origin git@127.0.0.1:xxx/xxx.git
 git push -u origin --all
 git push -u origin --tags
