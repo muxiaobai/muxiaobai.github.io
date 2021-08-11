@@ -3976,10 +3976,10 @@ hashMap.put(&quot;abc&quot;,&quot;1&quot;);
       <title><![CDATA[测试Travis CI]]></title>
       <url>https://muxiaobai.github.io/2016/08/27/%E6%B5%8B%E8%AF%95Travis%20CI/</url>
       <content type="html"><![CDATA[<hr>
-<h2 id="自动线上构建博客Travis-CI"><a href="#自动线上构建博客Travis-CI" class="headerlink" title="自动线上构建博客Travis CI"></a>自动线上构建博客Travis CI</h2><h5 id="其他的已经完成"><a href="#其他的已经完成" class="headerlink" title="其他的已经完成"></a>其他的已经完成</h5><p>Git global setup<br>git config –global user.name “zhangpf”<br>git config –global user.email “<a href="mailto:zpf12345678910@gmail.com" target="_blank" rel="noopener">zpf12345678910@gmail.com</a>“</p>
-<p>Create a new repository<br>git clone <a href="mailto:git@123.57.34.235" target="_blank" rel="noopener">git@123.57.34.235</a>:zhangpf/vsb.git<br>cd vsb<br>touch README.md<br>git add README.md<br>git commit -m “add README”<br>git push -u origin master</p>
-<p>Push an existing folder<br>cd existing_folder<br>git init<br>git remote add origin <a href="mailto:git@123.57.34.235" target="_blank" rel="noopener">git@123.57.34.235</a>:zhangpf/vsb.git<br>git add .<br>git commit -m “Initial commit”<br>git push -u origin master</p>
-<p>Push an existing Git repository<br>cd existing_repo<br>git remote rename origin old-origin<br>git remote add origin <a href="mailto:git@123.57.34.235" target="_blank" rel="noopener">git@123.57.34.235</a>:zhangpf/vsb.git<br>git push -u origin –all<br>git push -u origin –tags</p>
+<h2 id="自动线上构建博客Travis-CI"><a href="#自动线上构建博客Travis-CI" class="headerlink" title="自动线上构建博客Travis CI"></a>自动线上构建博客Travis CI</h2><h5 id="其他的已经完成"><a href="#其他的已经完成" class="headerlink" title="其他的已经完成"></a>其他的已经完成</h5><p>Git global setup<br>git config –global user.name “xxx”<br>git config –global user.email “<a href="mailto:xxx@gmail.com" target="_blank" rel="noopener">xxx@gmail.com</a>“</p>
+<p>Create a new repository<br>git clone <a href="mailto:git@127.0.0.1" target="_blank" rel="noopener">git@127.0.0.1</a>:xxx/xxx.git<br>cd xxx<br>touch README.md<br>git add README.md<br>git commit -m “add README”<br>git push -u origin master</p>
+<p>Push an existing folder<br>cd existing_folder<br>git init<br>git remote add origin <a href="mailto:git@127.0.0.1" target="_blank" rel="noopener">git@127.0.0.1</a>:xxx/xxx.git<br>git add .<br>git commit -m “Initial commit”<br>git push -u origin master</p>
+<p>Push an existing Git repository<br>cd existing_repo<br>git remote rename origin old-origin<br>git remote add origin <a href="mailto:git@127.0.0.1" target="_blank" rel="noopener">git@127.0.0.1</a>:xxx/xxx.git<br>git push -u origin –all<br>git push -u origin –tags</p>
 ]]></content>
       
         <categories>
@@ -4440,11 +4440,11 @@ hashMap.put(&quot;abc&quot;,&quot;1&quot;);
         
         <tags>
             
-            <tag> Spring </tag>
-            
             <tag> Session </tag>
             
             <tag> Hibernate </tag>
+            
+            <tag> Spring </tag>
             
         </tags>
         
