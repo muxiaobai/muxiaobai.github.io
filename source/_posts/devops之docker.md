@@ -23,6 +23,10 @@ docker search
 docker images
 docker rmi
 
+导入导出镜像
+docker load -i base.tar
+docker save -o base.tar  hub.docker.com:latest
+
 ### 网络 network
 172.17.0.1/16 以下都可以是使用
 
@@ -85,7 +89,7 @@ docker添加挂载目录:先在docker容器里创建目录/import
 
 5.启动docker:/etc/init.d/docker start
 
-最后docker ecec -it 容器id /bin/bash进入ls -l /就可以看见import目录
+最后docker exec -it 容器id /bin/bash进入ls -l /就可以看见import目录
 
 
 --------------------------------------------------------------
