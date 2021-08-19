@@ -61,6 +61,16 @@ Hi xxx! You've successfully authenticated, but GitHub does not provide shell acc
 ```
 
 再使用 `git clone git@github.com:xxxx/xxxx.git`
+#### git config
+
+git config --global user.name
+git config --global user.email
+
+
+git config -l
+git config  --global -l  全局
+git config  --local -l 本仓库
+
 
 #### git diff
 
