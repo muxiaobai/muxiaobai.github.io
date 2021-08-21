@@ -4,6 +4,33 @@
   
     
     <entry>
+      <title><![CDATA[devops之k8s]]></title>
+      <url>https://muxiaobai.github.io/2021/08/19/devops%E4%B9%8Bk8s/</url>
+      <content type="html"><![CDATA[<p>kubectl apply -f kuboard_2021_01_29_11_27_09.yaml</p>
+<p>kubectl get svc –all-namespaces</p>
+<p>kubectl get pods –namespace ns | grep app<br>kubectl get pv -A</p>
+<p>进入执行<br>kubectl -n ns  exec -it svc-app-877df6545-j7dzd sh<br>获取日志<br>kubectl -n ns  logs  -f svc-app-877df6545-j7dzd</p>
+<p>kubectl -n ns  logs –tail=200  -f svc-app-877df6545-j7dzd</p>
+<p>拷贝文件<br>kubectl cp ns/svc-app-search-fb47d75bb-xz8pd:var/d/application.yml application.yaml<br>kubectl cp application.yaml ns/svc-app-search-fb47d75bb-xz8pd:var/d/application.yml</p>
+<p>kubectl patch pv pvc-8477bd20-ffbe-4fa2-85b9-f864d7b3690c  -p ‘{“metadata”:{“finalizers”:null}}’ –type=merge<br>kubectl patch pvc elasticsearch-master-db-elasticsearch-0 -p ‘{“metadata”:{“finalizers”:null}}’ –type=merge</p>
+]]></content>
+      
+        <categories>
+            
+            <category> devops </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> devops </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[SpringBoot之MVC的注册和调用]]></title>
       <url>https://muxiaobai.github.io/2021/07/20/SpringBoot%E4%B9%8BMVC%E7%9A%84%E6%B3%A8%E5%86%8C%E5%92%8C%E8%B0%83%E7%94%A8/</url>
       <content type="html"><![CDATA[<h2 id="SpringMVC的DispatcherServlet注册到tomcat中"><a href="#SpringMVC的DispatcherServlet注册到tomcat中" class="headerlink" title="SpringMVC的DispatcherServlet注册到tomcat中"></a>SpringMVC的DispatcherServlet注册到tomcat中</h2><p><img src="/2021/07/20/SpringBoot之MVC的注册和调用/注册流程.png" alt="注册流程"></p>
@@ -1000,6 +1027,7 @@ hashMap.put(&quot;abc&quot;,&quot;1&quot;);
 <p>docker login/logout</p>
 <h4 id="远程镜像"><a href="#远程镜像" class="headerlink" title="远程镜像"></a>远程镜像</h4><p>docker pull mysql<br>docker push<br>docker search </p>
 <h3 id="本地镜像-image"><a href="#本地镜像-image" class="headerlink" title="本地镜像 image"></a>本地镜像 image</h3><p>docker images<br>docker rmi</p>
+<p>导入导出镜像<br>docker load -i base.tar<br>docker save -o base.tar  hub.docker.com:latest</p>
 <h3 id="网络-network"><a href="#网络-network" class="headerlink" title="网络 network"></a>网络 network</h3><p>172.17.0.1/16 以下都可以是使用</p>
 <p>docker network ls<br>docker network inspect mysql-net<br>docker network create –subnet=172.19.0.0/24 mysql-net</p>
 <h3 id="volume"><a href="#volume" class="headerlink" title="volume"></a>volume</h3><p>docker volume create –name v1<br>docker volumn inspect</p>
@@ -1014,7 +1042,7 @@ hashMap.put(&quot;abc&quot;,&quot;1&quot;);
 <p>“MountPoints”: {</p>
 <p>“/import”: {<br>            “Source”: “/data”,<br>            “Destination”: “/import”,<br>            “RW”: true,<br>            “Name”: “”,<br>            “Driver”: “”,<br>            “Type”: “bind”,<br>            “Propagation”: “rprivate”,<br>            “Spec”: {<br>                “Type”: “bind”,<br>                “Source”: “/data”,<br>                “Target”: “/import”<br>            },<br>            “SkipMountpointCreation”: false<br>        }<br>},  </p>
 <p>5.启动docker:/etc/init.d/docker start</p>
-<p>最后docker ecec -it 容器id /bin/bash进入ls -l /就可以看见import目录</p>
+<p>最后docker exec -it 容器id /bin/bash进入ls -l /就可以看见import目录</p>
 <hr>
 <hr>
 <p>docker-compose.yml docker 编排</p>
@@ -1146,6 +1174,10 @@ hashMap.put(&quot;abc&quot;,&quot;1&quot;);
 <p>验证：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">xxx@xxx MINGW64 ~/.ssh</span><br><span class="line">$ ssh -T git@github.com</span><br><span class="line">Hi xxx! You&apos;ve successfully authenticated, but GitHub does not provide shell access.</span><br></pre></td></tr></table></figure>
 <p>再使用 <code>git clone git@github.com:xxxx/xxxx.git</code></p>
+<h4 id="git-config"><a href="#git-config" class="headerlink" title="git config"></a>git config</h4><p>git config –global user.name<br>git config –global user.email</p>
+<p>git config -l<br>git config  –global -l  全局 展示<br>git config  –local -l 本仓库</p>
+<p>清除账号密码<br>git config –local –unset credential.helper</p>
+<p>git config  –local  credential.helper store</p>
 <h4 id="git-diff"><a href="#git-diff" class="headerlink" title="git diff"></a>git diff</h4><p>先把vscode作为git默认编辑器</p>
 <p>git config –global core.editor “code –wait”</p>
 <p>用vscode 打开 .gitconfig文件</p>
