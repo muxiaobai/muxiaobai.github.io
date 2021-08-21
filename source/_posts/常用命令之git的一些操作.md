@@ -67,10 +67,14 @@ git config --global user.name
 git config --global user.email
 
 
-git config -l
-git config  --global -l  全局
+git config -l 
+git config  --global -l  全局 展示
 git config  --local -l 本仓库
 
+清除账号密码
+git config --local --unset credential.helper
+
+git config  --local  credential.helper store
 
 #### git diff
 
