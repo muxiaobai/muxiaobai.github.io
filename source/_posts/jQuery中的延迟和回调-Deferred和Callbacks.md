@@ -1,10 +1,11 @@
 ---
 title: jQuery中的延迟和回调(Deferred和Callbacks)
-date: 2017-10-23 06:28:09
 tags: jQuery实践
 categories: jQuery
-description: "读源码，了解回调和延迟对象"
+description: 读源码，了解回调和延迟对象
+date: 2017-10-23 06:28:09
 ---
+
 
 
 ## Callbacks
