@@ -69,7 +69,7 @@ deplist：显示rpm软件包的所有依赖关系。
 
 - /查找匹配 n 下一个 gd 搜索高亮当前词
 - 执行命令 :!ls  执行 ls 命令  :r !pwd 把当前的文件夹路径输入到光标行
-- 分屏 :sp/vsp   :split   :diffsplit
+- 分屏 :sp/vsp   :split   :diffsplit  后跟文件名
 
 - 切换屏  ctrl +w +w
 - c change d delete c2whello 修改当前光标后的两个词变为hello  d2w 删除光标后的两个词 d$ 删除到行尾

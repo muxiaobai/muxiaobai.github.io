@@ -231,4 +231,4 @@ Jstack 或 zprofiler 查看阻塞态线程
 
 3  Java 代码死锁
 
-jstack –l pid | grep -i –E 'BLOCKED | deadlock'
+jstack –l pid | grep -i -E 'BLOCKED | deadlock'
