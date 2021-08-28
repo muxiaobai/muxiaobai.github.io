@@ -611,7 +611,7 @@ root hard nofile 65536
 <p>日志关键字 “Deadlock found when trying to get lock”</p>
 <p>Jstack 或 zprofiler 查看阻塞态线程</p>
 <p>3  Java 代码死锁</p>
-<p>jstack –l pid | grep -i –E ‘BLOCKED | deadlock’</p>
+<p>jstack –l pid | grep -i -E ‘BLOCKED | deadlock’</p>
 ]]></content>
       
         <categories>
@@ -1610,9 +1610,9 @@ hashMap.put(&quot;abc&quot;,&quot;1&quot;);
         
         <tags>
             
-            <tag> 常用命令 </tag>
-            
             <tag> mongo </tag>
+            
+            <tag> 常用命令 </tag>
             
         </tags>
         
@@ -2735,6 +2735,54 @@ hashMap.put(&quot;abc&quot;,&quot;1&quot;);
     </entry>
     
     <entry>
+      <title><![CDATA[jQuery中的延迟和回调(Deferred和Callbacks)]]></title>
+      <url>https://muxiaobai.github.io/2017/10/23/jQuery%E4%B8%AD%E7%9A%84%E5%BB%B6%E8%BF%9F%E5%92%8C%E5%9B%9E%E8%B0%83-Deferred%E5%92%8CCallbacks/</url>
+      <content type="html"><![CDATA[<h2 id="Callbacks"><a href="#Callbacks" class="headerlink" title="Callbacks"></a>Callbacks</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">var abc=$.Callbacks();</span><br><span class="line">function a(n)&#123;   console.log(&quot;a:&quot;+n);&#125;</span><br><span class="line">function b(x)&#123;   console.log(&quot;b:&quot;+x);&#125;</span><br><span class="line">abc.add(a);</span><br><span class="line">abc.add(b);</span><br><span class="line">abc.fire(3);</span><br><span class="line">abc.fire(5);</span><br><span class="line">console.log(abc);</span><br></pre></td></tr></table></figure>
+<p><img src="/2017/10/23/jQuery中的延迟和回调-Deferred和Callbacks/2017102409Callbacks.png" alt="结果"></p>
+<p>/*</p>
+<ul>
+<li>Create a callback list using the following parameters:<br>*</li>
+<li>options: an optional list of space-separated options that will change how</li>
+<li>the callback list behaves or a more traditional option object<br>*</li>
+<li>By default a callback list will act like an event callback list and can be</li>
+<li>“fired” multiple times.</li>
+<li>//默认为false，当有参数的时候为true</li>
+<li>Possible options:</li>
+<li>//重复调用fire(),只执行一次 option.once =true</li>
+<li>once:            will ensure the callback list can only be fired once (like a Deferred)</li>
+<li>//add后继续执行fire() option.menory =true 针对add再一次调用fire</li>
+<li>memory:            will keep track of previous values and will call any callback added</li>
+<li>after the list has been fired right away with the latest “memorized”</li>
+<li>values (like a Deferred)</li>
+<li>//唯一的 函数名不能重复 针对add添加的时候</li>
+<li>unique:            will ensure a callback can only be added once (no duplicate in the list)</li>
+<li>//遇到返回false就停止</li>
+<li>stopOnFalse:    interrupt callings when a callback returns false<br><em>
+</em>/</li>
+</ul>
+<p>add() 添加<br>fire() 触发</p>
+<p>$.Callbacks();</p>
+<h2 id="Deferred"><a href="#Deferred" class="headerlink" title="Deferred"></a>Deferred</h2><p>状态表格tulps</p>
+<h2 id="when-promise"><a href="#when-promise" class="headerlink" title="when promise"></a>when promise</h2><p>$.when().done();</p>
+<h2 id="ajax-ready"><a href="#ajax-ready" class="headerlink" title="ajax ready"></a>ajax ready</h2><p>$.post().success().fail();<br>$.get().then();</p>
+]]></content>
+      
+        <categories>
+            
+            <category> jQuery </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> jQuery实践 </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[前端小tips]]></title>
       <url>https://muxiaobai.github.io/2017/10/23/%E5%89%8D%E7%AB%AF%E5%B0%8Ftips/</url>
       <content type="html"><![CDATA[<p>button默认的type 是submit<br>textarea固定，不可拖拽： textarea{ resize:none;}</p>
@@ -2795,7 +2843,7 @@ hashMap.put(&quot;abc&quot;,&quot;1&quot;);
 <li><p>/查找匹配 n 下一个 gd 搜索高亮当前词</p>
 </li>
 <li>执行命令 :!ls  执行 ls 命令  :r !pwd 把当前的文件夹路径输入到光标行</li>
-<li><p>分屏 :sp/vsp   :split   :diffsplit</p>
+<li><p>分屏 :sp/vsp   :split   :diffsplit  后跟文件名</p>
 </li>
 <li><p>切换屏  ctrl +w +w</p>
 </li>

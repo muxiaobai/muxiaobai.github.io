@@ -16,23 +16,20 @@
 
 
 
-<meta name="description" content="从volatile到内存屏障">
+<meta name="description" content="读源码，了解回调和延迟对象">
+<meta name="keywords" content="jQuery实践">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Thinking in java 高级之volatile">
-<meta property="og:url" content="https://muxiaobai.github.io/2019/10/12/Thinking-in-java-高级之volatile/index.html">
+<meta property="og:title" content="jQuery中的延迟和回调(Deferred和Callbacks)">
+<meta property="og:url" content="https://muxiaobai.github.io/2017/10/23/jQuery中的延迟和回调-Deferred和Callbacks/index.html">
 <meta property="og:site_name" content="慕小白的博客">
-<meta property="og:description" content="从volatile到内存屏障">
+<meta property="og:description" content="读源码，了解回调和延迟对象">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://muxiaobai.github.io/2019/10/12/Thinking-in-java-高级之volatile/1.png">
-<meta property="og:image" content="https://muxiaobai.github.io/2019/10/12/Thinking-in-java-高级之volatile/2.png">
-<meta property="og:image" content="https://muxiaobai.github.io/2019/10/12/Thinking-in-java-高级之volatile/3.png">
-<meta property="og:image" content="https://muxiaobai.github.io/2019/10/12/Thinking-in-java-高级之volatile/L0.png">
-<meta property="og:image" content="https://muxiaobai.github.io/2019/10/12/Thinking-in-java-高级之volatile/CPU.PNG">
-<meta property="og:updated_time" content="2021-08-28T07:50:54.160Z">
+<meta property="og:image" content="https://muxiaobai.github.io/2017/10/23/jQuery中的延迟和回调-Deferred和Callbacks/2017102409Callbacks.png">
+<meta property="og:updated_time" content="2021-08-28T07:50:54.176Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Thinking in java 高级之volatile">
-<meta name="twitter:description" content="从volatile到内存屏障">
-<meta name="twitter:image" content="https://muxiaobai.github.io/2019/10/12/Thinking-in-java-高级之volatile/1.png">
+<meta name="twitter:title" content="jQuery中的延迟和回调(Deferred和Callbacks)">
+<meta name="twitter:description" content="读源码，了解回调和延迟对象">
+<meta name="twitter:image" content="https://muxiaobai.github.io/2017/10/23/jQuery中的延迟和回调-Deferred和Callbacks/2017102409Callbacks.png">
 
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
@@ -64,7 +61,7 @@
 <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
 
 
-<title>Thinking in java 高级之volatile | 慕小白的博客</title>
+<title>jQuery中的延迟和回调(Deferred和Callbacks) | 慕小白的博客</title>
 
 <script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
 <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
@@ -296,12 +293,12 @@
     </div>
     <link class="menu-list" tags="标签" friends="友情链接" about="关于我">
 </nav>
-      <div class="body-wrap"><article id="post-Thinking-in-java-高级之volatile" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-jQuery中的延迟和回调-Deferred和Callbacks" class="article article-type-post" itemscope itemprop="blogPost">
  
   
     <div class="article-meta">
-      <a href="/2019/10/12/Thinking-in-java-高级之volatile/" class="article-date">
-      <time datetime="2019-10-12T10:41:58.000Z" itemprop="datePublished">2019-10-12</time>
+      <a href="/2017/10/23/jQuery中的延迟和回调-Deferred和Callbacks/" class="article-date">
+      <time datetime="2017-10-23T06:28:09.000Z" itemprop="datePublished">2017-10-23</time>
 </a>
     </div>
   
@@ -315,7 +312,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      Thinking in java 高级之volatile
+      jQuery中的延迟和回调(Deferred和Callbacks)
     </h1>
   
 
@@ -324,11 +321,15 @@
       <div class="article-info article-info-post">
         
     <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/java/">java</a>
+    <a class="article-category-link" href="/categories/jQuery/">jQuery</a>
     </div>
 
 
         
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/jQuery实践/">jQuery实践</a></li></ul>
+    </div>
+
         <div class="clearfix"></div>
       </div>
       
@@ -337,55 +338,34 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <p>显性的作用就是： 这个变量在修改之后，可以及时更新到另外一个线程。</p>
-<h3 id="两个代码"><a href="#两个代码" class="headerlink" title="两个代码"></a>两个代码</h3><p>无volatile<br><img src="/2019/10/12/Thinking-in-java-高级之volatile/1.png" alt="无volatile"></p>
-<p>有volatile<br><img src="/2019/10/12/Thinking-in-java-高级之volatile/2.png" alt="有volatile"></p>
-<p>看一下汇编是啥样子的</p>
-<p><a href="https://sourceforge.net/projects/fcml/files/fcml-1.1.1/hsdis-1.1.1-win32-amd64.zip/download" target="_blank" rel="noopener">下载</a><br>hsdis-1.1.1-win32-amd64.zip放到${JAVA_HOME}\jdk1.8.0_171\jre\bin\server下,先<code>javac xxx.java</code> 编译成xxx.class<br><code>java -XX:+UnlockDiagnosticVMOptions -XX:+PrintAssembly  xxx.class &gt;a.txt</code><br>生成汇编文件</p>
-<p><code>java -XX:+UnlockDiagnosticVMOptions -XX:+PrintAssembly -version</code> 测试是否安装成功<br>给jvm添加参数<br><code>-server -Xcomp -XX:+UnlockDiagnosticVMOptions -XX:+PrintAssembly -XX:CompileCommand=compileonly,*Test.getInstance</code></p>
-<p><img src="/2019/10/12/Thinking-in-java-高级之volatile/3.png" alt="汇编"></p>
-<p>在修改有volatile修饰的属性，加有lock add第八行。这个有lock 会刷新缓存</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">public class Test &#123;</span><br><span class="line">    public static volatile boolean stop = false ;</span><br><span class="line">    public static void main(String[] args) throws InterruptedException &#123;</span><br><span class="line">        Thread thread = new Thread(()-&gt;&#123;</span><br><span class="line">            int i=0;</span><br><span class="line">            while (!stop)&#123;</span><br><span class="line">                i++;</span><br><span class="line">            &#125;</span><br><span class="line">            System.out.println(i);</span><br><span class="line">        &#125;);</span><br><span class="line">        thread.start();</span><br><span class="line">        System.out.println(&quot;begin start thread&quot;);</span><br><span class="line">        Thread.sleep(1000);</span><br><span class="line">        stop = true;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="JMM"><a href="#JMM" class="headerlink" title="JMM"></a>JMM</h3><p><img src="/2019/10/12/Thinking-in-java-高级之volatile/L0.png" alt="CPU三级缓存架构图"></p>
-<p>因为CPU高速运转，直接读内存会很慢，又开辟一级二级三级缓存，多核CPU下每一个有独立的一级二级缓存；如果现在来了一个数据存在三级缓存中，第一个Thread读取之后，并修改了值，但没有同步到三级缓存中；这时候第二个线程要读值，他还是只从三级缓存中读取内容，；但有了内存屏障，在第三个读的时候，</p>
-<p>volatile 会触发lock add ,触发刷新屏障，Cache</p>
-<p>从.java———–&gt;.class编译完成，然后.class 在不同的平台上，对于volatile来说，JVM有不同的实现，一次编写，到处运行<code>Write once, run anywhere</code>,JVM屏蔽各种架构的指令集，例如x86 MMX，SSE等，在window系统上使用window指令，在linux上使用linux指令，最终Java实现了，程序员不用关系各个平台的差异。<br>但对于.net ，需要安装其他的中间件等，才能在非window系统运行。</p>
-<p><img src="/2019/10/12/Thinking-in-java-高级之volatile/CPU.PNG" alt="总结适配器模式"></p>
-<h3 id="继续"><a href="#继续" class="headerlink" title="继续"></a>继续</h3><p> 锁提供了原子性和可见性</p>
-<p>因为某一个线程进入synchronized代码块前后，线程会获得锁，清空工作内存，从主内存拷贝共享变量最新的值到工作内存成为副本，执行代码，将修改后的副本的值刷新回主内存中，线程释放锁。</p>
-<p>而获取不到锁的线程会阻塞等待，所以变量的值肯定一直都是最新的。</p>
-<p>volatile具有锁的可见性，</p>
-<p>每个线程操作数据的时候会把数据从主内存读取到自己的工作内存，如果他操作了数据并且写会了，他其他已经读取的线程的变量副本就会失效了，需要都数据进行操作又要再次去主内存中读取了。<br>volatile保证不同线程对共享变量操作的可见性，也就是说一个线程修改了volatile修饰的变量，当修改写回主内存时，另外一个线程立即看到最新的值。上面的JMM缓存刷新。</p>
-<p>为了解决一致性的问题，需要各个处理器访问缓存时都遵循一些协议，在读写时要根据协议来进行操作，这类协议有MSI、MESI（IllinoisProtocol）、MOSI、Synapse、Firefly及DragonProtocol等。</p>
-<p>指令重排序（本是为了优化代码，对最终的结果无影响）</p>
-<p>有序性：即程序执行的顺序按照代码的先后顺序执行。举个简单的例子，看下面这段代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">int i = 0;              </span><br><span class="line">boolean flag = false;</span><br><span class="line">i = 1;                //语句1  </span><br><span class="line">flag = true;          //语句2</span><br></pre></td></tr></table></figure></p>
-<p>从代码顺序上看，语句1是在语句2前面的，那么JVM在真正执行这段代码的时候会保证语句1一定会在语句2前面执行吗？不一定，为什么呢？这里可能会发生指令重排序（Instruction Reorder）。</p>
-<h2 id="指令重排序"><a href="#指令重排序" class="headerlink" title="指令重排序:"></a>指令重排序:</h2><p>一般来说，处理器为了提高程序运行效率，可能会对输入代码进行优化，它不保证程序中各个语句的执行先后顺序同代码中的顺序一致，但是它会保证程序最终执行结果和代码顺序执行的结果是一致的。</p>
-<p>比如上面的代码中，语句1和语句2谁先执行对最终的程序结果并没有影响，那么就有可能在执行过程中，语句2先执行而语句1后执行。虽然处理器会对指令进行重排序，但是它会保证程序最终结果会和代码顺序执行结果相同，那么它靠什么保证的呢？靠的是数据依赖性：</p>
-<p>编译器和处理器在重排序时，会遵守数据依赖性，编译器和处理器不会改变存在数据依赖关系的两个操作的执行顺序。</p>
-<p>不管怎么重排序，单线程下的执行结果不能被改变。</p>
-<p>编译器、runtime和处理器都必须遵守as-if-serial语义 ，最终一致。</p>
-<p>volatile使用内存屏障保证最终一致。</p>
-<h2 id="内存屏障"><a href="#内存屏障" class="headerlink" title="内存屏障"></a>内存屏障</h2><p>内存屏障分为两种：Load Barrier 和 Store Barrier即读屏障和写屏障。</p>
-<p>内存屏障有两个作用：</p>
+        <h2 id="Callbacks"><a href="#Callbacks" class="headerlink" title="Callbacks"></a>Callbacks</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">var abc=$.Callbacks();</span><br><span class="line">function a(n)&#123;   console.log(&quot;a:&quot;+n);&#125;</span><br><span class="line">function b(x)&#123;   console.log(&quot;b:&quot;+x);&#125;</span><br><span class="line">abc.add(a);</span><br><span class="line">abc.add(b);</span><br><span class="line">abc.fire(3);</span><br><span class="line">abc.fire(5);</span><br><span class="line">console.log(abc);</span><br></pre></td></tr></table></figure>
+<p><img src="/2017/10/23/jQuery中的延迟和回调-Deferred和Callbacks/2017102409Callbacks.png" alt="结果"></p>
+<p>/*</p>
 <ul>
-<li>1.阻止屏障两侧的指令重排序；</li>
-<li>2.强制把写缓冲区/高速缓存中的脏数据等写回主内存，让缓存中相应的数据失效。</li>
+<li>Create a callback list using the following parameters:<br>*</li>
+<li>options: an optional list of space-separated options that will change how</li>
+<li>the callback list behaves or a more traditional option object<br>*</li>
+<li>By default a callback list will act like an event callback list and can be</li>
+<li>“fired” multiple times.</li>
+<li>//默认为false，当有参数的时候为true</li>
+<li>Possible options:</li>
+<li>//重复调用fire(),只执行一次 option.once =true</li>
+<li>once:            will ensure the callback list can only be fired once (like a Deferred)</li>
+<li>//add后继续执行fire() option.menory =true 针对add再一次调用fire</li>
+<li>memory:            will keep track of previous values and will call any callback added</li>
+<li>after the list has been fired right away with the latest “memorized”</li>
+<li>values (like a Deferred)</li>
+<li>//唯一的 函数名不能重复 针对add添加的时候</li>
+<li>unique:            will ensure a callback can only be added once (no duplicate in the list)</li>
+<li>//遇到返回false就停止</li>
+<li>stopOnFalse:    interrupt callings when a callback returns false<br><em>
+</em>/</li>
 </ul>
-<p>对于Load Barrier来说，在指令前插入Load Barrier，可以让高速缓存中的数据失效，强制从新从主内存加载数据；<br>对于Store Barrier来说，在指令后插入Store Barrier，能让写入缓存中的最新数据更新写入主内存，让其他线程可见。<br>java的内存屏障通常所谓的四种即LoadLoad,StoreStore,LoadStore,StoreLoad实际上也是上述两种的组合，完成一系列的屏障和数据同步功能。</p>
-<ul>
-<li>LoadLoad屏障：对于这样的语句Load1; LoadLoad; Load2，在Load2及后续读取操作要读取的数据被访问前，保证Load1要读取的数据被读取完毕。</li>
-<li>StoreStore屏障：对于这样的语句Store1; StoreStore; Store2，在Store2及后续写入操作执行前，保证Store1的写入操作对其它处理器可见。</li>
-<li>LoadStore屏障：对于这样的语句Load1; LoadStore; Store2，在Store2及后续写入操作被刷出前，保证Load1要读取的数据被读取完毕。</li>
-<li>StoreLoad屏障：对于这样的语句Store1; StoreLoad; Load2，在Load2及后续所有读取操作执行前，保证Store1的写入对所有处理器可见。它的开销是四种屏障中最大的。在大多数处理器的实现中，这个屏障是个万能屏障，兼具其它三种内存屏障的功能</li>
-</ul>
-<p>volatile的内存屏障策略非常严格保守，非常悲观且毫无安全感的心态：</p>
-<ul>
-<li>在每个volatile写操作前插入StoreStore屏障，在写操作后插入StoreLoad屏障；</li>
-<li>在每个volatile读操作前插入LoadLoad屏障，在读操作后插入LoadStore屏障；</li>
-</ul>
-<p>由于内存屏障的作用，避免了volatile变量和其它指令重排序、线程之间实现了通信，使得volatile表现出了锁的特性。</p>
-<p><a href="https://mrbird.cc/Java-Memory-model.html#more" target="_blank" rel="noopener">参考Java 内存模型</a><br><a href="https://juejin.im/post/5ea913d35188256d4576d199?utm_source=gold_browser_extension" target="_blank" rel="noopener">volatile</a></p>
+<p>add() 添加<br>fire() 触发</p>
+<p>$.Callbacks();</p>
+<h2 id="Deferred"><a href="#Deferred" class="headerlink" title="Deferred"></a>Deferred</h2><p>状态表格tulps</p>
+<h2 id="when-promise"><a href="#when-promise" class="headerlink" title="when promise"></a>when promise</h2><p>$.when().done();</p>
+<h2 id="ajax-ready"><a href="#ajax-ready" class="headerlink" title="ajax ready"></a>ajax ready</h2><p>$.post().success().fail();<br>$.get().then();</p>
 
       
     </div>
@@ -475,13 +455,13 @@
   
     
     <div class="copyright">
-        <p><span>本文标题:</span><a href="/2019/10/12/Thinking-in-java-高级之volatile/">Thinking in java 高级之volatile</a></p>
+        <p><span>本文标题:</span><a href="/2017/10/23/jQuery中的延迟和回调-Deferred和Callbacks/">jQuery中的延迟和回调(Deferred和Callbacks)</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">Mu Xiaobai(慕小白)</a></p>
-        <p><span>发布时间:</span>2019-10-12, 10:41:58</p>
+        <p><span>发布时间:</span>2017-10-23, 06:28:09</p>
         <p><span>最后更新:</span>2021-08-28, 07:50:54</p>
         <p>
-            <span>原始链接:</span><a class="post-url" href="/2019/10/12/Thinking-in-java-高级之volatile/" title="Thinking in java 高级之volatile">https://muxiaobai.github.io/2019/10/12/Thinking-in-java-高级之volatile/</a>
-            <span class="copy-path" data-clipboard-text="原文: https://muxiaobai.github.io/2019/10/12/Thinking-in-java-高级之volatile/　　作者: Mu Xiaobai(慕小白)" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <span>原始链接:</span><a class="post-url" href="/2017/10/23/jQuery中的延迟和回调-Deferred和Callbacks/" title="jQuery中的延迟和回调(Deferred和Callbacks)">https://muxiaobai.github.io/2017/10/23/jQuery中的延迟和回调-Deferred和Callbacks/</a>
+            <span class="copy-path" data-clipboard-text="原文: https://muxiaobai.github.io/2017/10/23/jQuery中的延迟和回调-Deferred和Callbacks/　　作者: Mu Xiaobai(慕小白)" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
             <script> var clipboard = new Clipboard('.copy-path'); </script>
         </p>
         <p>
@@ -494,15 +474,15 @@
     <nav id="article-nav">
         
             <div id="article-nav-newer" class="article-nav-title">
-                <a href="/2019/10/17/Thinking-in-java-基础之HashMap/">
-                    Thinking in java 基础之HashMap
+                <a href="/2017/12/21/RSS好工具/">
+                    RSS好工具
                 </a>
             </div>
         
         
             <div id="article-nav-older" class="article-nav-title">
-                <a href="/2019/09/29/java-常用代码2-future等/">
-                    java-常用代码2-future等
+                <a href="/2017/10/23/前端小tips/">
+                    前端小tips
                 </a>
             </div>
         
@@ -515,8 +495,8 @@
     <!--左侧-->
     <div id="toc" class="toc-article">
     <strong class="toc-title">文章目录</strong>
-    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#两个代码"><span class="toc-number">1.</span> <span class="toc-text">两个代码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#JMM"><span class="toc-number">2.</span> <span class="toc-text">JMM</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#继续"><span class="toc-number">3.</span> <span class="toc-text">继续</span></a></li></ol><li class="toc-item toc-level-2"><a class="toc-link" href="#指令重排序"><span class="toc-number"></span> <span class="toc-text">指令重排序:</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#内存屏障"><span class="toc-number"></span> <span class="toc-text">内存屏障</span></a>
-</li></div>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Callbacks"><span class="toc-number">1.</span> <span class="toc-text">Callbacks</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Deferred"><span class="toc-number">2.</span> <span class="toc-text">Deferred</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#when-promise"><span class="toc-number">3.</span> <span class="toc-text">when promise</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ajax-ready"><span class="toc-number">4.</span> <span class="toc-text">ajax ready</span></a></li></ol>
+</div>
 <style>
     .left-col .switch-btn,
     .left-col .switch-area {
@@ -623,7 +603,7 @@
 
     <div class="scroll" id="post-nav-button">
         
-            <a href="/2019/10/17/Thinking-in-java-基础之HashMap/" title="上一篇: Thinking in java 基础之HashMap">
+            <a href="/2017/12/21/RSS好工具/" title="上一篇: RSS好工具">
                 <i class="fa fa-angle-left"></i>
             </a>
         
@@ -631,7 +611,7 @@
         <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
 
         
-            <a href="/2019/09/29/java-常用代码2-future等/" title="下一篇: java-常用代码2-future等">
+            <a href="/2017/10/23/前端小tips/" title="下一篇: 前端小tips">
                 <i class="fa fa-angle-right"></i>
             </a>
         

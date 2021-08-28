@@ -51,6 +51,7 @@ https://muxiaobai.github.io/2018/04/16/Tomcat源码阅读之从server-xml看组�
 https://muxiaobai.github.io/2018/03/02/重装CENTOS一系列操作/
 https://muxiaobai.github.io/2017/12/22/javascript再学习之prototype/
 https://muxiaobai.github.io/2017/12/21/RSS好工具/
+https://muxiaobai.github.io/2017/10/23/jQuery中的延迟和回调-Deferred和Callbacks/
 https://muxiaobai.github.io/2017/10/23/前端小tips/
 https://muxiaobai.github.io/2017/09/17/Linux-基础命令总结3/
 https://muxiaobai.github.io/2017/09/02/应用部署之nginx负载/
