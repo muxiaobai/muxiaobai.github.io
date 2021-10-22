@@ -5329,6 +5329,7 @@ hashMap.put(&quot;abc&quot;,&quot;1&quot;);
 <h4 id="查找文件"><a href="#查找文件" class="headerlink" title="查找文件"></a>查找文件</h4><p><code>find</code>: 在当前目录树中查找文件</p>
 <p> find ./ -mtime +10 -name “*.log” | xargs ls -lh | sort -hr | head 10 查找当前文件夹下前十个最大的以log结尾最近20天的文件</p>
 <p> find ./ -name “*.log” | xargs grep error 查找当前文件夹下以log结尾包含error字符的行</p>
+<p><a href="https://www.cnblogs.com/xudong-bupt/archive/2013/03/23/2976793.html" target="_blank" rel="noopener">https://www.cnblogs.com/xudong-bupt/archive/2013/03/23/2976793.html</a></p>
 <p><code>whereis</code>: 查找文件或者命令的源文件在哪里</p>
 <p><code>type</code>: 查找shell命令的类型(bash shell内部命令)</p>
 <p><code>which</code>: 查找shell命令所在的位置</p>
