@@ -4985,10 +4985,12 @@ hashMap.put(&quot;abc&quot;,&quot;1&quot;);
 <p>cat /proc/cpuinfo| grep “processor”| wc -l</p>
 <p>查看CPU信息（型号）<br>cat /proc/cpuinfo | grep name | cut -f2 -d: | uniq -c</p>
 <h4 id="磁盘"><a href="#磁盘" class="headerlink" title="磁盘"></a>磁盘</h4><p>挂载卸载：<code>mount</code> <code>umount</code> </p>
-<p>磁盘空间：<br><code>du</code> estimates and displays the disk space used by files    du  -h</p>
-<p><code>df</code>  df -sh 查看存储大小</p>
+<p>磁盘空间：<br><code>du</code> estimates and displays the disk space used by files<br><code>du -csh xxx</code> -c  展示total -h –human-readable  -s display only a total for each argument<br><code>df</code>  df -sh 查看存储大小</p>
 <p><code>dmesg</code></p>
 <h5 id="dmesg-开机内核监测信息-grep-CPU"><a href="#dmesg-开机内核监测信息-grep-CPU" class="headerlink" title="dmesg 开机内核监测信息 | grep CPU"></a>dmesg 开机内核监测信息 | grep CPU</h5><p><code>free</code>  free -m </p>
+<pre><code>total       used       free     shared    buffers     cached
+</code></pre><p>Mem:          3072       2459        612          0        207       1803 对应OS来说只有618free buffer和cached都是已经分配，到应用还是可以使用的<br>-/+ buffers/cache:        447       2624    对于应用来说只使用了447,还有free 2624<br>Swap:         1913          0       1913</p>
+<p>最终可以使用的内存为2624</p>
 <h5 id="free-查看内存-b-–k-–m-–g"><a href="#free-查看内存-b-–k-–m-–g" class="headerlink" title="free 查看内存-b –k –m –g"></a>free 查看内存-b –k –m –g</h5><p><code>parted</code> <code>sfdisk</code> <code>fdisk</code> </p>
 <p><code>mkfs</code> </p>
 <p><code>floppy</code> </p>
