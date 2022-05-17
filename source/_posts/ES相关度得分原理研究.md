@@ -11,6 +11,12 @@ description: "ES的得分研究"
 
 #### match
 
+```
+{
+query:{}
+}
+```
+
 #### term
 
 #### muti_match
