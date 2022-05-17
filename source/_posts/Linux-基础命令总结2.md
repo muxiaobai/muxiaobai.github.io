@@ -452,8 +452,8 @@ cat /proc/cpuinfo | grep name | cut -f2 -d: | uniq -c
 
 
 磁盘空间：
-`du` estimates and displays the disk space used by files    du  -h
-
+`du` estimates and displays the disk space used by files 
+`du -csh xxx  ` -c  展示total -h --human-readable  -s display only a total for each argument
 `df`  df -sh 查看存储大小
 
 `dmesg`
@@ -461,6 +461,13 @@ cat /proc/cpuinfo | grep name | cut -f2 -d: | uniq -c
 ##### dmesg 开机内核监测信息 | grep CPU
 
 `free`  free -m 
+
+           total       used       free     shared    buffers     cached
+Mem:          3072       2459        612          0        207       1803 对应OS来说只有618free buffer和cached都是已经分配，到应用还是可以使用的
+-/+ buffers/cache:        447       2624    对于应用来说只使用了447,还有free 2624
+Swap:         1913          0       1913
+
+最终可以使用的内存为2624
 
 ##### free 查看内存-b –k –m –g
 

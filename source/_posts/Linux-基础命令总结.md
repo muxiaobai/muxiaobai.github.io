@@ -202,6 +202,10 @@ tar -czvf xxx.tar.gz -C /usr/local/tomcat/web-apps ROOT/
 
  find ./ -mtime +10 -name "*.log" | xargs ls -lh | sort -hr | head 10 查找当前文件夹下前十个最大的以log结尾最近20天的文件
 
+ find ./ -name "*.log" | xargs grep error 查找当前文件夹下以log结尾包含error字符的行
+
+https://www.cnblogs.com/xudong-bupt/archive/2013/03/23/2976793.html
+
 `whereis`: 查找文件或者命令的源文件在哪里
 
 `type`: 查找shell命令的类型(bash shell内部命令)
