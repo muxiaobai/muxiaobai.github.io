@@ -24,7 +24,7 @@
 <meta property="og:site_name" content="慕小白的博客">
 <meta property="og:description" content="Kubernetes常用命令">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2022-05-30T09:54:24.915Z">
+<meta property="og:updated_time" content="2022-09-09T08:30:52.160Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="devops之k8s">
 <meta name="twitter:description" content="Kubernetes常用命令">
@@ -336,13 +336,21 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <p>kubectl apply -f kuboard_2021_01_29_11_27_09.yaml</p>
+        <h1 id="限制日志大小"><a href="#限制日志大小" class="headerlink" title="限制日志大小"></a>限制日志大小</h1><p>cat &gt; /etc/docker/daemon.json &lt;&lt; EOF<br>{<br>    “registry-mirrors”: [<br>        “<a href="https://1nj0zren.mirror.aliyuncs.com&quot;" target="_blank" rel="noopener">https://1nj0zren.mirror.aliyuncs.com&quot;</a>,<br>        “<a href="https://docker.mirrors.ustc.edu.cn&quot;" target="_blank" rel="noopener">https://docker.mirrors.ustc.edu.cn&quot;</a>,<br>        “<a href="http://f1361db2.m.daocloud.io&quot;" target="_blank" rel="noopener">http://f1361db2.m.daocloud.io&quot;</a>,<br>        “<a href="https://registry.docker-cn.com&quot;" target="_blank" rel="noopener">https://registry.docker-cn.com&quot;</a><br>    ],<br>        “log-driver”: “json-file”,<br>        “log-opts”: {<br>                “max-size”: “20m”,<br>                “max-file”: “50”<br>        }<br>}<br>EOF</p>
+<p>添加工作pod<br>kubectl apply -f kuboard_2021_01_29_11_27_09.yaml</p>
 <p>kubectl get svc –all-namespaces</p>
 <p>kubectl get pods –namespace ns | grep app<br>kubectl get pv -A</p>
-<p>进入执行<br>kubectl -n ns  exec -it svc-app-877df6545-j7dzd sh<br>获取日志<br>kubectl -n ns  logs  -f svc-app-877df6545-j7dzd</p>
-<p>kubectl -n ns  logs –tail=200  -f svc-app-877df6545-j7dzd</p>
+<p>几种类型 configmap pod service deployment statefulset</p>
+<p>编辑ymal</p>
+<p>kubectl -n ns-elasticsearch  edit statefulset elasticsearch-master</p>
+<p>kubectl -n ns  edit deployment svc-app-search<br>kubectl -n ns  edit deployment db-elasticsearch<br>kubectl -n ns  edit configmap app-search-conf</p>
+<p>查看pod<br>kubectl get pods -A </p>
+<p>删除pod 删除后自动重启<br>kubectl -n openapp delete pod  pod名称<br>删除无用的pod<br>kubectl get pods -A  | egrep ‘Error’ | awk ‘{print $2}’ | xrgs kubectl  -n openapp delete pod   </p>
+<p>查看pod网络<br>kubectl -n openapp get pods -o wide<br>查看pod的ymal<br>kubectl -n openapp get pod db-elasticsearch-8687d9d95c-gp7tn  -o yaml  </p>
+<p>详细信息<br>kubectl -n openapp describe pod db-elasticsearch-8684c44cb8-lv5wn </p>
+<p>进入执行<br>kubectl -n openapp  exec -it db-elasticsearch-8684c44cb8-lv5wn – sh</p>
+<p>获取日志<br>kubectl -n openapp  logs –tail=200  -f svc-app-search-877df6545-j7dzd </p>
 <p>拷贝文件<br>kubectl cp ns/svc-app-search-fb47d75bb-xz8pd:var/d/application.yml application.yaml<br>kubectl cp application.yaml ns/svc-app-search-fb47d75bb-xz8pd:var/d/application.yml</p>
-<p>kubectl patch pv pvc-8477bd20-ffbe-4fa2-85b9-f864d7b3690c  -p ‘{“metadata”:{“finalizers”:null}}’ –type=merge<br>kubectl patch pvc elasticsearch-master-db-elasticsearch-0 -p ‘{“metadata”:{“finalizers”:null}}’ –type=merge</p>
 
       
     </div>
@@ -435,7 +443,7 @@
         <p><span>本文标题:</span><a href="/2021/08/19/devops之k8s/">devops之k8s</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">Mu Xiaobai(慕小白)</a></p>
         <p><span>发布时间:</span>2021-08-19, 09:35:35</p>
-        <p><span>最后更新:</span>2022-05-30, 09:54:24</p>
+        <p><span>最后更新:</span>2022-09-09, 08:30:52</p>
         <p>
             <span>原始链接:</span><a class="post-url" href="/2021/08/19/devops之k8s/" title="devops之k8s">https://muxiaobai.github.io/2021/08/19/devops之k8s/</a>
             <span class="copy-path" data-clipboard-text="原文: https://muxiaobai.github.io/2021/08/19/devops之k8s/　　作者: Mu Xiaobai(慕小白)" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
@@ -472,7 +480,7 @@
     <!--左侧-->
     <div id="toc" class="toc-article">
     <strong class="toc-title">文章目录</strong>
-    
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#限制日志大小"><span class="toc-number">1.</span> <span class="toc-text">限制日志大小</span></a></li></ol>
 </div>
 <style>
     .left-col .switch-btn,
