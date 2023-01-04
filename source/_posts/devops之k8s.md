@@ -32,7 +32,7 @@ kubectl get pods --namespace ns | grep app
 kubectl get pv -A
 
 
-几种类型 configmap pod service deployment statefulset
+几种类型 configmap cm pod service svc deployment  deploy statefulset sts
 
 编辑ymal
 
@@ -48,23 +48,24 @@ kubectl get pods -A
 删除pod 删除后自动重启
 kubectl -n openapp delete pod  pod名称
 删除无用的pod
-kubectl get pods -A  | egrep 'Error' | awk '{print $2}' | xrgs kubectl  -n openapp delete pod   
+kubectl get pods -A  | egrep 'Error|CrashLoopBackOff|Evicted' | awk '{print $2}' | xargs kubectl  -n openapp delete pod   
 
 查看pod网络
 kubectl -n openapp get pods -o wide 
+
 查看pod的ymal
-kubectl -n openapp get pod db-elasticsearch-8687d9d95c-gp7tn  -o yaml  
+kubectl -n openapp get pod [podName]  -o yaml  
 
 详细信息
-kubectl -n openapp describe pod db-elasticsearch-8684c44cb8-lv5wn 
+kubectl -n openapp describe pod [podName]
 
 进入执行
-kubectl -n openapp  exec -it db-elasticsearch-8684c44cb8-lv5wn -- sh
+kubectl -n openapp  exec -it [podName] -- sh
 
 获取日志
-kubectl -n openapp  logs --tail=200  -f svc-app-search-877df6545-j7dzd 
+kubectl -n openapp  logs --tail=200  -f [podName]
 
 
 拷贝文件
-kubectl cp ns/svc-app-search-fb47d75bb-xz8pd:var/d/application.yml application.yaml
-kubectl cp application.yaml ns/svc-app-search-fb47d75bb-xz8pd:var/d/application.yml
+kubectl cp ns/svc-app-fb47d75bb-xz8pd:var/d/application.yml application.yaml
+kubectl cp application.yaml ns/svc-app-fb47d75bb-xz8pd:var/d/application.yml
