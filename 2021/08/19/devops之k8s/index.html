@@ -24,7 +24,7 @@
 <meta property="og:site_name" content="慕小白的博客">
 <meta property="og:description" content="Kubernetes常用命令">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2022-09-09T08:30:52.160Z">
+<meta property="og:updated_time" content="2023-01-04T07:06:21.678Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="devops之k8s">
 <meta name="twitter:description" content="Kubernetes常用命令">
@@ -340,17 +340,18 @@
 <p>添加工作pod<br>kubectl apply -f kuboard_2021_01_29_11_27_09.yaml</p>
 <p>kubectl get svc –all-namespaces</p>
 <p>kubectl get pods –namespace ns | grep app<br>kubectl get pv -A</p>
-<p>几种类型 configmap pod service deployment statefulset</p>
+<p>几种类型 configmap cm pod service svc deployment  deploy statefulset sts</p>
 <p>编辑ymal</p>
 <p>kubectl -n ns-elasticsearch  edit statefulset elasticsearch-master</p>
 <p>kubectl -n ns  edit deployment svc-app-search<br>kubectl -n ns  edit deployment db-elasticsearch<br>kubectl -n ns  edit configmap app-search-conf</p>
 <p>查看pod<br>kubectl get pods -A </p>
-<p>删除pod 删除后自动重启<br>kubectl -n openapp delete pod  pod名称<br>删除无用的pod<br>kubectl get pods -A  | egrep ‘Error’ | awk ‘{print $2}’ | xrgs kubectl  -n openapp delete pod   </p>
-<p>查看pod网络<br>kubectl -n openapp get pods -o wide<br>查看pod的ymal<br>kubectl -n openapp get pod db-elasticsearch-8687d9d95c-gp7tn  -o yaml  </p>
-<p>详细信息<br>kubectl -n openapp describe pod db-elasticsearch-8684c44cb8-lv5wn </p>
-<p>进入执行<br>kubectl -n openapp  exec -it db-elasticsearch-8684c44cb8-lv5wn – sh</p>
-<p>获取日志<br>kubectl -n openapp  logs –tail=200  -f svc-app-search-877df6545-j7dzd </p>
-<p>拷贝文件<br>kubectl cp ns/svc-app-search-fb47d75bb-xz8pd:var/d/application.yml application.yaml<br>kubectl cp application.yaml ns/svc-app-search-fb47d75bb-xz8pd:var/d/application.yml</p>
+<p>删除pod 删除后自动重启<br>kubectl -n openapp delete pod  pod名称<br>删除无用的pod<br>kubectl get pods -A  | egrep ‘Error|CrashLoopBackOff|Evicted’ | awk ‘{print $2}’ | xargs kubectl  -n openapp delete pod   </p>
+<p>查看pod网络<br>kubectl -n openapp get pods -o wide </p>
+<p>查看pod的ymal<br>kubectl -n openapp get pod [podName]  -o yaml  </p>
+<p>详细信息<br>kubectl -n openapp describe pod [podName]</p>
+<p>进入执行<br>kubectl -n openapp  exec -it [podName] – sh</p>
+<p>获取日志<br>kubectl -n openapp  logs –tail=200  -f [podName]</p>
+<p>拷贝文件<br>kubectl cp ns/svc-app-fb47d75bb-xz8pd:var/d/application.yml application.yaml<br>kubectl cp application.yaml ns/svc-app-fb47d75bb-xz8pd:var/d/application.yml</p>
 
       
     </div>
@@ -443,7 +444,7 @@
         <p><span>本文标题:</span><a href="/2021/08/19/devops之k8s/">devops之k8s</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">Mu Xiaobai(慕小白)</a></p>
         <p><span>发布时间:</span>2021-08-19, 09:35:35</p>
-        <p><span>最后更新:</span>2022-09-09, 08:30:52</p>
+        <p><span>最后更新:</span>2023-01-04, 07:06:21</p>
         <p>
             <span>原始链接:</span><a class="post-url" href="/2021/08/19/devops之k8s/" title="devops之k8s">https://muxiaobai.github.io/2021/08/19/devops之k8s/</a>
             <span class="copy-path" data-clipboard-text="原文: https://muxiaobai.github.io/2021/08/19/devops之k8s/　　作者: Mu Xiaobai(慕小白)" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
@@ -616,7 +617,7 @@
         <div id="footer-info">
             <div class="footer-left">
                 <i class="fa fa-copyright"></i> 
-                2016-2022 Mu Xiaobai(慕小白)
+                2016-2023 Mu Xiaobai(慕小白)
             </div>
             <div class="footer-right">
                 <a href="http://hexo.io/" target="_blank" title="快速、简洁且高效的博客框架">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="简而不减 Hexo 双栏博客主题  v3.5">Yelee</a> by MOxFIVE <i class="fa fa-heart animated infinite pulse"></i>
