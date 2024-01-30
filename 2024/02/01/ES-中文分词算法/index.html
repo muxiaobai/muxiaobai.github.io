@@ -16,19 +16,17 @@
 
 
 
-<meta name="description" content="从synchronized到汇编,结合锁升级,探究背后的本质，">
+<meta name="description" content="隐马尔可夫和viterbi算法">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Thinking in java 高级之synchronized">
-<meta property="og:url" content="https://muxiaobai.github.io/2020/05/07/Thinking-in-java-高级之synchronized/index.html">
+<meta property="og:title" content="ES-中文分词算法">
+<meta property="og:url" content="https://muxiaobai.github.io/2024/02/01/ES-中文分词算法/index.html">
 <meta property="og:site_name" content="慕小白的博客">
-<meta property="og:description" content="从synchronized到汇编,结合锁升级,探究背后的本质，">
+<meta property="og:description" content="隐马尔可夫和viterbi算法">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://muxiaobai.github.io/2020/05/07/Thinking-in-java-高级之synchronized/锁偏向.png">
-<meta property="og:updated_time" content="2024-01-30T06:33:51.398Z">
+<meta property="og:updated_time" content="2024-01-30T06:33:51.366Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Thinking in java 高级之synchronized">
-<meta name="twitter:description" content="从synchronized到汇编,结合锁升级,探究背后的本质，">
-<meta name="twitter:image" content="https://muxiaobai.github.io/2020/05/07/Thinking-in-java-高级之synchronized/锁偏向.png">
+<meta name="twitter:title" content="ES-中文分词算法">
+<meta name="twitter:description" content="隐马尔可夫和viterbi算法">
 
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
@@ -60,7 +58,7 @@
 <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
 
 
-<title>Thinking in java 高级之synchronized | 慕小白的博客</title>
+<title>ES-中文分词算法 | 慕小白的博客</title>
 
 <script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
 <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
@@ -292,12 +290,12 @@
     </div>
     <link class="menu-list" tags="标签" friends="友情链接" about="关于我">
 </nav>
-      <div class="body-wrap"><article id="post-Thinking-in-java-高级之synchronized" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-ES-中文分词算法" class="article article-type-post" itemscope itemprop="blogPost">
  
   
     <div class="article-meta">
-      <a href="/2020/05/07/Thinking-in-java-高级之synchronized/" class="article-date">
-      <time datetime="2020-05-07T16:39:25.000Z" itemprop="datePublished">2020-05-07</time>
+      <a href="/2024/02/01/ES-中文分词算法/" class="article-date">
+      <time datetime="2024-02-01T09:20:02.000Z" itemprop="datePublished">2024-02-01</time>
 </a>
     </div>
   
@@ -311,7 +309,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      Thinking in java 高级之synchronized
+      ES-中文分词算法
     </h1>
   
 
@@ -320,7 +318,7 @@
       <div class="article-info article-info-post">
         
     <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/java/">java</a>
+    <a class="article-category-link" href="/categories/elasticsearch/">elasticsearch</a>
     </div>
 
 
@@ -333,25 +331,7 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <p>本文主要</p>
-<h3 id="先从内核态和用户态说起"><a href="#先从内核态和用户态说起" class="headerlink" title="先从内核态和用户态说起"></a>先从内核态和用户态说起</h3><p>0x80 软中断 频繁切换会耗时，切换到内核态，调用内核方法。</p>
-<h3 id="从DCL到锁升级"><a href="#从DCL到锁升级" class="headerlink" title="从DCL到锁升级"></a>从DCL到锁升级</h3><p>Double Check Lock 单例<a href="https://github.com/muxiaobai/java-demo/blob/master/test-java-demo/src/main/java/io/github/muxiaobai/java/java/threadTest/Singleton.java" target="_blank" rel="noopener">参考Singleton.java</a></p>
-<p>普通 偏向锁 轻量级锁 重量级锁</p>
-<p>升级过程</p>
-<h3 id="需要-markword信息-标记有哪一种锁"><a href="#需要-markword信息-标记有哪一种锁" class="headerlink" title="需要_markword信息 标记有哪一种锁"></a>需要_markword信息 标记有哪一种锁</h3><p><img src="/2020/05/07/Thinking-in-java-高级之synchronized/锁偏向.png" alt="java 对象大小"></p>
-<h3 id="java字节码指令"><a href="#java字节码指令" class="headerlink" title="java字节码指令"></a>java字节码指令</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"> private static sync classSync = new sync();</span><br><span class="line">public void doSth()&#123;</span><br><span class="line">       synchronized (sync.class)&#123;</span><br><span class="line">           System.out.println(&quot;test Synchronized 锁的是 class对象 因此this不会标记&quot; );</span><br><span class="line">           System.out.println(ClassLayout.parseInstance(this).toPrintable());</span><br><span class="line">       &#125;</span><br><span class="line">       synchronized (classSync)&#123;</span><br><span class="line">           System.out.println(&quot;test Synchronized 锁的是 private classSync对象 因此this会标记&quot; );</span><br><span class="line">           System.out.println(ClassLayout.parseInstance(this).toPrintable());</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
-<p>sync锁对象，一个是锁class对象，一个是锁object对象。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"> 0 ldc #2 &lt;io/github/muxiaobai/java/java/threadTest/base/sync&gt;</span><br><span class="line"> 2 dup</span><br><span class="line"> 3 astore_1</span><br><span class="line"> 4 monitorenter   sync进入</span><br><span class="line"> 5 getstatic #6 &lt;java/lang/System.out&gt;</span><br><span class="line"> 8 ldc #12 &lt;test Synchronized 锁的是 class对象 因此this不会标记&gt;</span><br><span class="line">10 invokevirtual #8 &lt;java/io/PrintStream.println&gt;</span><br><span class="line">13 getstatic #6 &lt;java/lang/System.out&gt;</span><br><span class="line">16 aload_0</span><br><span class="line">17 invokestatic #10 &lt;org/openjdk/jol/info/ClassLayout.parseInstance&gt;</span><br><span class="line">20 invokevirtual #11 &lt;org/openjdk/jol/info/ClassLayout.toPrintable&gt;</span><br><span class="line">23 invokevirtual #8 &lt;java/io/PrintStream.println&gt;</span><br><span class="line">26 aload_1</span><br><span class="line">27 monitorexit   sync退出</span><br><span class="line">28 goto 36 (+8)  异常退出 跳到36行，aload_0 继续往下执行，下一个sync</span><br><span class="line">31 astore_2</span><br><span class="line">32 aload_1</span><br><span class="line">33 monitorexit    sync退出</span><br><span class="line">34 aload_2</span><br><span class="line">35 athrow</span><br><span class="line">36 aload_0</span><br><span class="line">37 getfield #4 &lt;io/github/muxiaobai/java/java/threadTest/base/sync.classSync&gt;</span><br><span class="line">40 dup</span><br><span class="line">41 astore_1</span><br><span class="line">42 monitorenter  sync进入</span><br><span class="line">43 getstatic #6 &lt;java/lang/System.out&gt;</span><br><span class="line">46 ldc #13 &lt;test Synchronized 锁的是 private classSync对象 因此this会标记&gt;</span><br><span class="line">48 invokevirtual #8 &lt;java/io/PrintStream.println&gt;</span><br><span class="line">51 getstatic #6 &lt;java/lang/System.out&gt;</span><br><span class="line">54 aload_0</span><br><span class="line">55 invokestatic #10 &lt;org/openjdk/jol/info/ClassLayout.parseInstance&gt;</span><br><span class="line">58 invokevirtual #11 &lt;org/openjdk/jol/info/ClassLayout.toPrintable&gt;</span><br><span class="line">61 invokevirtual #8 &lt;java/io/PrintStream.println&gt;</span><br><span class="line">64 aload_1</span><br><span class="line">65 monitorexit   sync退出</span><br><span class="line">66 goto 74 (+8)  异常直接跳到 74行return</span><br><span class="line">69 astore_3</span><br><span class="line">70 aload_1</span><br><span class="line">71 monitorexit  sync退出</span><br><span class="line">72 aload_3</span><br><span class="line">73 athrow</span><br><span class="line">74 return</span><br></pre></td></tr></table></figure></p>
-<p>注意 monitorenter 和monitorexit  ，每一个sync关键字，对应 一个enter和两个exit，正常退出和异常退出。</p>
-<h3 id="JIT"><a href="#JIT" class="headerlink" title="JIT"></a>JIT</h3><p>即时编译JIT只在代码段执行足够次数才会进行优化，在执行过程中不断收集各种数据，作为优化的决策; 什么代码会被即时编译 JIT，？</p>
-<p><code>lock cmpxchg</code></p>
-<p>方法上的锁调用方法的对象</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">public synchronized void doSth1()&#123;</span><br><span class="line">       System.out.println(&quot;test Synchronized method，sync调用这个方法，方法上的，会锁this对象 ，也就是main方法中 new的sync&quot; );</span><br><span class="line">       System.out.println(ClassLayout.parseInstance(this).toPrintable());</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
-<p>// access flags 0x21<br>public synchronized doSth1()V<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"> 0 getstatic #6 &lt;java/lang/System.out&gt;</span><br><span class="line"> 3 ldc #14 &lt;test Synchronized method，sync调用这个方法，方法上的，会锁this对象 ，也就是main方法中 new的sync&gt;</span><br><span class="line"> 5 invokevirtual #8 &lt;java/io/PrintStream.println&gt;</span><br><span class="line"> 8 getstatic #6 &lt;java/lang/System.out&gt;</span><br><span class="line">11 aload_0</span><br><span class="line">12 invokestatic #10 &lt;org/openjdk/jol/info/ClassLayout.parseInstance&gt;</span><br><span class="line">15 invokevirtual #11 &lt;org/openjdk/jol/info/ClassLayout.toPrintable&gt;</span><br><span class="line">18 invokevirtual #8 &lt;java/io/PrintStream.println&gt;</span><br><span class="line">21 return</span><br></pre></td></tr></table></figure></p>
-<p>### </p>
-<ul>
-<li><a href="https://juejin.im/post/5d5374076fb9a06ac76da894#heading-18" target="_blank" rel="noopener">Synchronized解析——如果你愿意一层一层剥开我的心</a></li>
-<li><a href="https://www.cnblogs.com/charlesblc/p/5994162.html" target="_blank" rel="noopener">【转载】Java中的锁机制 synchronized &amp; 偏向锁 &amp; 轻量级锁 &amp; 重量级锁 &amp; 各自优缺点及场景 &amp; AtomicReference</a></li>
-</ul>
+        <h2 id="朴素贝叶斯"><a href="#朴素贝叶斯" class="headerlink" title="朴素贝叶斯"></a>朴素贝叶斯</h2><h2 id="隐马尔可夫"><a href="#隐马尔可夫" class="headerlink" title="隐马尔可夫"></a>隐马尔可夫</h2><h2 id="动态规划-dp问题"><a href="#动态规划-dp问题" class="headerlink" title="动态规划 dp问题"></a>动态规划 dp问题</h2><h2 id="viterbi算法"><a href="#viterbi算法" class="headerlink" title="viterbi算法"></a>viterbi算法</h2><p><a href="https://www.cnblogs.com/Renyi-Fan/p/7865985.html" target="_blank" rel="noopener">维特比算法（Viterbi）</a><br><a href="https://www.hankcs.com/nlp/general-java-implementation-of-the-viterbi-algorithm.html#google_vignette" target="_blank" rel="noopener">通用维特比算法的Java实现</a></p>
 
       
     </div>
@@ -441,13 +421,13 @@
   
     
     <div class="copyright">
-        <p><span>本文标题:</span><a href="/2020/05/07/Thinking-in-java-高级之synchronized/">Thinking in java 高级之synchronized</a></p>
+        <p><span>本文标题:</span><a href="/2024/02/01/ES-中文分词算法/">ES-中文分词算法</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">Mu Xiaobai(慕小白)</a></p>
-        <p><span>发布时间:</span>2020-05-07, 16:39:25</p>
+        <p><span>发布时间:</span>2024-02-01, 09:20:02</p>
         <p><span>最后更新:</span>2024-01-30, 06:33:51</p>
         <p>
-            <span>原始链接:</span><a class="post-url" href="/2020/05/07/Thinking-in-java-高级之synchronized/" title="Thinking in java 高级之synchronized">https://muxiaobai.github.io/2020/05/07/Thinking-in-java-高级之synchronized/</a>
-            <span class="copy-path" data-clipboard-text="原文: https://muxiaobai.github.io/2020/05/07/Thinking-in-java-高级之synchronized/　　作者: Mu Xiaobai(慕小白)" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <span>原始链接:</span><a class="post-url" href="/2024/02/01/ES-中文分词算法/" title="ES-中文分词算法">https://muxiaobai.github.io/2024/02/01/ES-中文分词算法/</a>
+            <span class="copy-path" data-clipboard-text="原文: https://muxiaobai.github.io/2024/02/01/ES-中文分词算法/　　作者: Mu Xiaobai(慕小白)" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
             <script> var clipboard = new Clipboard('.copy-path'); </script>
         </p>
         <p>
@@ -459,16 +439,10 @@
 
     <nav id="article-nav">
         
-            <div id="article-nav-newer" class="article-nav-title">
-                <a href="/2020/05/19/Thinking-in-java-高级之对象内存模型/">
-                    Thinking in java 高级之对象大小模型
-                </a>
-            </div>
-        
         
             <div id="article-nav-older" class="article-nav-title">
-                <a href="/2020/04/29/java线上代码监控-linux分析线上问题/">
-                    java线上代码监控-linux分析线上问题
+                <a href="/2024/01/30/ES操作得分/">
+                    ES操作得分
                 </a>
             </div>
         
@@ -481,7 +455,7 @@
     <!--左侧-->
     <div id="toc" class="toc-article">
     <strong class="toc-title">文章目录</strong>
-    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#先从内核态和用户态说起"><span class="toc-number">1.</span> <span class="toc-text">先从内核态和用户态说起</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#从DCL到锁升级"><span class="toc-number">2.</span> <span class="toc-text">从DCL到锁升级</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#需要-markword信息-标记有哪一种锁"><span class="toc-number">3.</span> <span class="toc-text">需要_markword信息 标记有哪一种锁</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#java字节码指令"><span class="toc-number">4.</span> <span class="toc-text">java字节码指令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#JIT"><span class="toc-number">5.</span> <span class="toc-text">JIT</span></a></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#朴素贝叶斯"><span class="toc-number">1.</span> <span class="toc-text">朴素贝叶斯</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#隐马尔可夫"><span class="toc-number">2.</span> <span class="toc-text">隐马尔可夫</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#动态规划-dp问题"><span class="toc-number">3.</span> <span class="toc-text">动态规划 dp问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#viterbi算法"><span class="toc-number">4.</span> <span class="toc-text">viterbi算法</span></a></li></ol>
 </div>
 <style>
     .left-col .switch-btn,
@@ -589,15 +563,13 @@
 
     <div class="scroll" id="post-nav-button">
         
-            <a href="/2020/05/19/Thinking-in-java-高级之对象内存模型/" title="上一篇: Thinking in java 高级之对象大小模型">
-                <i class="fa fa-angle-left"></i>
-            </a>
+            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
         
 
         <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
 
         
-            <a href="/2020/04/29/java线上代码监控-linux分析线上问题/" title="下一篇: java线上代码监控-linux分析线上问题">
+            <a href="/2024/01/30/ES操作得分/" title="下一篇: ES操作得分">
                 <i class="fa fa-angle-right"></i>
             </a>
         
