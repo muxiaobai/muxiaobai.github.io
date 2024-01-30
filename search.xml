@@ -4,6 +4,42 @@
   
     
     <entry>
+      <title><![CDATA[ES操作得分]]></title>
+      <url>https://muxiaobai.github.io/2024/01/30/ES%E6%93%8D%E4%BD%9C%E5%BE%97%E5%88%86/</url>
+      <content type="html"><![CDATA[<h2 id="可以修改的"><a href="#可以修改的" class="headerlink" title="可以修改的"></a>可以修改的</h2><p><code>POST /index_name/_search?explain=true</code> 每一查询结果就有计算的过程，_explanation节点为计算过程</p>
+<h2 id="相关度基础查询"><a href="#相关度基础查询" class="headerlink" title="相关度基础查询"></a>相关度基础查询</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    &quot;query&quot;: &#123;</span><br><span class="line">        &quot;match&quot;: &#123;</span><br><span class="line">        &quot;title.hanLP&quot;: &quot;测试文章&quot;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>默认查询形式</p>
+<p><img src="/2024/01/30/ES操作得分/%E9%BB%98%E8%AE%A4%E5%BE%97%E5%88%86%E7%BB%93%E6%9E%9C.png" alt="默认图片"></p>
+<h3 id="仅查询一个字段"><a href="#仅查询一个字段" class="headerlink" title="仅查询一个字段"></a>仅查询一个字段</h3><p>默认的得分为 score(freq=1.0), computed as boost <em> idf </em> tf from</p>
+<p>boost 为查询时候的boost*2.2，此处2.2还不清楚为什么要这么设置。</p>
+<blockquote>
+<p>idf, computed as log(1 + (N - n + 0.5) / (n + 0.5)) from:</p>
+</blockquote>
+<p>n 当前文档包含的分词数，N 总共的文档数 </p>
+<blockquote>
+<p>tf, computed as freq / (freq + k1 <em> (1 - b + b </em> dl / avgdl)) from:</p>
+</blockquote>
+<p>freq 为该文档上出现的所查词的频数。一些默认值 k1=1.2 b=0.75,<br>d1 当前文档长度 avgdl 平均文档长度</p>
+<p>此处查询出来是一个字段在一个词上的得分。</p>
+<p>然后默认时候，比如检索查询的词是 “测试文章”，会出现 两个结果 然后相加得出最终得分。</p>
+<h3 id="如果match了两个分词的时候会在这个字段上相加两个词的和"><a href="#如果match了两个分词的时候会在这个字段上相加两个词的和" class="headerlink" title="如果match了两个分词的时候会在这个字段上相加两个词的和"></a>如果match了两个分词的时候会在这个字段上相加两个词的和</h3><h3 id="term和match-一样会有得分"><a href="#term和match-一样会有得分" class="headerlink" title="term和match 一样会有得分"></a>term和match 一样会有得分</h3><h3 id="multi-match"><a href="#multi-match" class="headerlink" title="multi_match"></a>multi_match</h3><p>max plus 0.3 times others of: 在多个字段时候档类型为 best 的时候，在设置了 tie_breaker 的时候使用 max + others * 0.3,为该字段的最后得分。</p>
+<h3 id="filter是不影响得分的"><a href="#filter是不影响得分的" class="headerlink" title="filter是不影响得分的"></a>filter是不影响得分的</h3><p>如果无需相关度，直接用filter过滤,一般为固定条件。</p>
+<h2 id="调整得分结果"><a href="#调整得分结果" class="headerlink" title="调整得分结果"></a>调整得分结果</h2><h3 id="通过方法"><a href="#通过方法" class="headerlink" title="通过方法"></a>通过方法</h3><h4 id="替换-相乘-相加"><a href="#替换-相乘-相加" class="headerlink" title="替换 相乘 相加"></a>替换 相乘 相加</h4><h3 id="访问记录影响（数字型）"><a href="#访问记录影响（数字型）" class="headerlink" title="访问记录影响（数字型）"></a>访问记录影响（数字型）</h3><p>使用log1p函数<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&quot;field_value_factor&quot;: &#123;</span><br><span class="line">  &quot;field&quot;:    &quot;votes&quot;,</span><br><span class="line">  &quot;modifier&quot;: &quot;log1p&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>将field_value_factor设为对数计算，计算公式：new_score = old_score * log(1 + number_of_votes)。</p>
+<h3 id="（坐标型）"><a href="#（坐标型）" class="headerlink" title="（坐标型）"></a>（坐标型）</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;gauss&quot;: &#123;</span><br><span class="line">    &quot;lat_lon&quot;: &#123; </span><br><span class="line">      &quot;origin&quot;: &#123; &quot;lat&quot;: 51.5, &quot;lon&quot;: 0.12 &#125;,</span><br><span class="line">      &quot;offset&quot;: &quot;2km&quot;,</span><br><span class="line">      &quot;scale&quot;:  &quot;3km&quot;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
+<p>距离中心点( “lat”: 51.5, “lon”: 0.12),offset 2km内的都是1.0，之后每相差scale 3km得分逐渐减小。</p>
+]]></content>
+      
+        <categories>
+            
+            <category> elasticsearch </category>
+            
+        </categories>
+        
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[ES相关度得分原理研究]]></title>
       <url>https://muxiaobai.github.io/2022/05/17/ES%E7%9B%B8%E5%85%B3%E5%BA%A6%E5%BE%97%E5%88%86%E5%8E%9F%E7%90%86%E7%A0%94%E7%A9%B6/</url>
       <content type="html"><![CDATA[<h2 id="常规查询结果"><a href="#常规查询结果" class="headerlink" title="常规查询结果"></a>常规查询结果</h2><p><code>POST /index_name/_search?explain=true</code> 每一查询结果就有计算的过程，_explanation节点为计算过程</p>
