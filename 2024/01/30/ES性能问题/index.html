@@ -16,22 +16,17 @@
 
 
 
-<meta name="description" content="研究tomcat系列,组件之间是怎么组合的，生命周期">
-<meta name="keywords" content="tomcat">
+<meta name="description" content="ES研究">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Tomcat源码阅读之组件生命周期">
-<meta property="og:url" content="https://muxiaobai.github.io/2018/04/16/Tomcat源码阅读之组件生命周期/index.html">
+<meta property="og:title" content="ES性能问题">
+<meta property="og:url" content="https://muxiaobai.github.io/2024/01/30/ES性能问题/index.html">
 <meta property="og:site_name" content="慕小白的博客">
-<meta property="og:description" content="研究tomcat系列,组件之间是怎么组合的，生命周期">
+<meta property="og:description" content="ES研究">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://muxiaobai.github.io/2018/04/16/Tomcat源码阅读之组件生命周期/Lifecycle.PNG">
-<meta property="og:image" content="https://muxiaobai.github.io/2018/04/16/Tomcat源码阅读之组件生命周期/LifecycleBaseinit.PNG">
-<meta property="og:image" content="https://muxiaobai.github.io/2018/04/16/Tomcat源码阅读之组件生命周期/StandardService.PNG">
-<meta property="og:updated_time" content="2024-02-01T08:40:21.425Z">
+<meta property="og:updated_time" content="2024-02-01T08:40:21.381Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Tomcat源码阅读之组件生命周期">
-<meta name="twitter:description" content="研究tomcat系列,组件之间是怎么组合的，生命周期">
-<meta name="twitter:image" content="https://muxiaobai.github.io/2018/04/16/Tomcat源码阅读之组件生命周期/Lifecycle.PNG">
+<meta name="twitter:title" content="ES性能问题">
+<meta name="twitter:description" content="ES研究">
 
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
@@ -63,7 +58,7 @@
 <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
 
 
-<title>Tomcat源码阅读之组件生命周期 | 慕小白的博客</title>
+<title>ES性能问题 | 慕小白的博客</title>
 
 <script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
 <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
@@ -295,12 +290,12 @@
     </div>
     <link class="menu-list" tags="标签" friends="友情链接" about="关于我">
 </nav>
-      <div class="body-wrap"><article id="post-Tomcat源码阅读之组件生命周期" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-ES性能问题" class="article article-type-post" itemscope itemprop="blogPost">
  
   
     <div class="article-meta">
-      <a href="/2018/04/16/Tomcat源码阅读之组件生命周期/" class="article-date">
-      <time datetime="2018-04-16T10:39:09.000Z" itemprop="datePublished">2018-04-16</time>
+      <a href="/2024/01/30/ES性能问题/" class="article-date">
+      <time datetime="2024-01-30T09:20:02.000Z" itemprop="datePublished">2024-01-30</time>
 </a>
     </div>
   
@@ -314,7 +309,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      Tomcat源码阅读之组件生命周期
+      ES性能问题
     </h1>
   
 
@@ -323,15 +318,11 @@
       <div class="article-info article-info-post">
         
     <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/java/">java</a>
+    <a class="article-category-link" href="/categories/elasticsearch/">elasticsearch</a>
     </div>
 
 
         
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/tomcat/">tomcat</a></li></ul>
-    </div>
-
         <div class="clearfix"></div>
       </div>
       
@@ -340,45 +331,20 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <p><img src="/2018/04/16/Tomcat源码阅读之组件生命周期/Lifecycle.PNG" alt="start&amp;stop"></p>
-<p>上篇说道Catalina中的load 和init 方法,提到了getServer().init(),和getServer().start(),这两个方法，本文主要通过这两个方法，进一步研究组件之间的关系和各种状态，希望先看一下server.xml配置文件中的组件关系图。</p>
-<p>需要先了解一个知识点digester，讲xml文件转换成java对象，<br>常用的几个方法</p>
+        <h2 id="线程池"><a href="#线程池" class="headerlink" title="线程池"></a>线程池</h2><p>es 改 内存大小 8g  内核 24核 search process数(3*24/2+1) 37 队列数 2000</p>
+<p>429 rejected TOO_MANY_REQUESTS   主要就是线程池和队列 无法响应</p>
+<p>GET /_cat/thread_pool?v=true&amp;h=id,node_name,name,active,queue,rejected,completed</p>
+<p><a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/modules-threadpool.html" target="_blank" rel="noopener">ES 线程池配置</a></p>
+<h2 id="优化逻辑-方向"><a href="#优化逻辑-方向" class="headerlink" title="优化逻辑-方向"></a>优化逻辑-方向</h2><p>主要就是在</p>
+<h2 id="分片"><a href="#分片" class="headerlink" title="分片"></a>分片</h2><p>索引 一个分片 ,一个segement<br>PUT index/_settings<br>{<br>  “index.blocks.write”:”false”<br>}<br>POST index/_shrink/index_shrink </p>
+<p>不要副本<br>PUT /index_shrink/_settings<br>{<br>  “settings”:{<br>    “number_of_replicas”:0<br>  }<br>}</p>
+<h4 id="变为一个段"><a href="#变为一个段" class="headerlink" title="变为一个段"></a>变为一个段</h4><p>POST index_shrink/_forcemerge?max_num_segments=1</p>
+<p>GET /_cat/segments/index_shrink?v<br>GET index_shrink/_segments</p>
+<h4 id="减少字段-减少IO"><a href="#减少字段-减少IO" class="headerlink" title="减少字段 减少IO"></a>减少字段 减少IO</h4><p>POST /_reindex<br>{<br>  “source”: {<br>    “index”: “index”,<br>    “_source”: [“title”,”createDate”,”id”],<br>    “query”: {<br>      “exists”: {“field”: “createDate”}<br>    }<br>  },<br>  “dest”: {<br>    “index”: “index_similarity_boost”<br>  },<br>  “script”: {<br>    “source”: “ ctx._source.title = ctx._source.title;”<br>  },<br>  “size”:100000000<br>}</p>
 <ul>
-<li>digester.addObjectCreate(“Server”,”org.apache.catalina.core.StandardServer”,”className”);</li>
-<li>digester.addSetProperties(“Server”);</li>
-<li>digester.addSetNext(“Server”,”setServer”,”org.apache.catalina.Server”);</li>
-</ul>
-<h2 id="Catalina中的load方法"><a href="#Catalina中的load方法" class="headerlink" title="Catalina中的load方法"></a>Catalina中的load方法</h2><p>重点代码</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">Digester digester = createStartDigester();</span><br><span class="line">....</span><br><span class="line">....</span><br><span class="line">....</span><br><span class="line">file = configFile();</span><br><span class="line">inputStream = new FileInputStream(file);</span><br><span class="line">inputSource = new InputSource(file.toURI().toURL().toString());</span><br><span class="line">......</span><br><span class="line">......</span><br><span class="line">......</span><br><span class="line">inputSource.setByteStream(inputStream);</span><br><span class="line">digester.push(this);</span><br><span class="line">digester.parse(inputSource);</span><br><span class="line">....</span><br><span class="line">....</span><br><span class="line">....</span><br><span class="line">getServer().setCatalina(this);</span><br><span class="line">getServer().setCatalinaHome(Bootstrap.getCatalinaHomeFile());</span><br><span class="line">getServer().setCatalinaBase(Bootstrap.getCatalinaBaseFile());</span><br><span class="line">// Stream redirection</span><br><span class="line">initStreams();</span><br><span class="line">// Start the new server</span><br><span class="line">getServer().init();</span><br><span class="line">···</span><br><span class="line">···</span><br><span class="line">···</span><br><span class="line">log.info(&quot;Initialization processed in &quot; + ((t2 - t1) / 1000000) + &quot; ms&quot;);</span><br></pre></td></tr></table></figure>
-<p>createStartDigester()设置规则，找到xml节点执行对应的方法，configFile()这里就是读取具体的配置文件server.xml,<code>protected String configFile = &quot;conf/server.xml&quot;;</code>然后就是digester把Catalina  push进来，parse进行解析xml。这里说明的是中间有一段  digester.addSetNext(“Server”,”setServer”,”org.apache.catalina.Server”);,这句就是执行setServer方法，对应的参数是org.apache.catalina.Server这种类型，然后上面还有一句，addObjectCreate，org.apache.catalina.core.StandardServer这个就是实际创建的对象类，这样就可以通过Catalina把Server联系起来的，之后的init()等这种方法，就都是调用的getServer()，上面这个对象了。</p>
-<h2 id="Standard其他类中的方法Server-Service-Connector-Engine等"><a href="#Standard其他类中的方法Server-Service-Connector-Engine等" class="headerlink" title="Standard其他类中的方法Server Service Connector Engine等"></a>Standard其他类中的方法Server Service Connector Engine等</h2><p>StandardServer.addService() 方法<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">public void addService(Service service) &#123;</span><br><span class="line"></span><br><span class="line">    service.setServer(this);</span><br><span class="line"></span><br><span class="line">    synchronized (servicesLock) &#123;</span><br><span class="line">        Service results[] = new Service[services.length + 1];</span><br><span class="line">        System.arraycopy(services, 0, results, 0, services.length);</span><br><span class="line">        results[services.length] = service;</span><br><span class="line">        services = results;</span><br><span class="line"></span><br><span class="line">        if (getState().isAvailable()) &#123;</span><br><span class="line">            try &#123;</span><br><span class="line">                service.start();</span><br><span class="line">            &#125; catch (LifecycleException e) &#123;</span><br><span class="line">                // Ignore</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        // Report this property change to interested listeners</span><br><span class="line">        support.firePropertyChange(&quot;service&quot;, null, service);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>每一个Server可以包含多个Service，一样通过Catalina的digester来调用addService方法，这里维护了一个数组，这也是神奇的地方，一对多的关系是用数组来维护的，虽然说java中没有所谓的动态数组概念，但是，这里通过<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Service results[] = new Service[services.length + 1];</span><br><span class="line">System.arraycopy(services, 0, results, 0, services.length);</span><br><span class="line">results[services.length] = service;</span><br><span class="line">services = results;</span><br></pre></td></tr></table></figure></p>
-<p>这四句话，System.arraycopy是native的方法，比较奇特。另外这个synchronized 了一个空对象<code>private final Object servicesLock = new Object();</code>来保证对services的操作是线程安全。其他的findService,findServices,removeService等都是如此操作，remove用的是for循环。</p>
-<h4 id="其他容器的关系调用方法"><a href="#其他容器的关系调用方法" class="headerlink" title="其他容器的关系调用方法"></a>其他容器的关系调用方法</h4><ul>
-<li>StandardService 中的  setContainer(是一个Engine，在EngineRuleSet中)  addConnector addExecutor  digester规则在Catalina里面对应  还有一个await方法没有讲☆</li>
-<li>Connector 中的 addSslHostConfig</li>
-<li>StandardEngine 中的 addChild(HostRuleSet)只添加Host、setCluster、addValve digester规则在EngineRuleSet里面对应</li>
-<li>StandardHost 中的 addChild只添加Host，setCluster、addValve  digester规则在HostRuleSet里面对应<br>等等之类的调用关系，都在digester中</li>
-</ul>
-<h2 id="Lifecycle类"><a href="#Lifecycle类" class="headerlink" title="Lifecycle类"></a>Lifecycle类</h2><p>通过上面的init(),找到StandredServer,可发现这没有init方法，继续<code>public final class StandardServer extends LifecycleMBeanBase implements Server</code>，<code>public abstract class LifecycleMBeanBase extends LifecycleBase implements JmxEnabled</code>,<code>public abstract class LifecycleBase implements Lifecycle</code>,最终我们在这个抽象类LifecycleBase中发现了这个方法.然后就发现，这个init里面中会调用一个<code>initInternal</code>方法，这个在LifecycleBase中是一个抽象方法，这些集成了它的类都重写了，因此我们在getServer.init(),实际上就相当于调用initInternal。</p>
-<h3 id="模板方法"><a href="#模板方法" class="headerlink" title="模板方法"></a>模板方法</h3><p>org.apache.catalina.LifecycleState  和 org.apache.catalina.Lifecycle 看最上面的图(此图也是在Lifecycle内)：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">NEW(false, null),</span><br><span class="line">INITIALIZING(false, Lifecycle.BEFORE_INIT_EVENT),</span><br><span class="line">INITIALIZED(false, Lifecycle.AFTER_INIT_EVENT),</span><br><span class="line">STARTING_PREP(false, Lifecycle.BEFORE_START_EVENT),</span><br><span class="line">STARTING(true, Lifecycle.START_EVENT),</span><br><span class="line">STARTED(true, Lifecycle.AFTER_START_EVENT),</span><br><span class="line">STOPPING_PREP(true, Lifecycle.BEFORE_STOP_EVENT),</span><br><span class="line">STOPPING(false, Lifecycle.STOP_EVENT),</span><br><span class="line">STOPPED(false, Lifecycle.AFTER_STOP_EVENT),</span><br><span class="line">DESTROYING(false, Lifecycle.BEFORE_DESTROY_EVENT),</span><br><span class="line">DESTROYED(false, Lifecycle.AFTER_DESTROY_EVENT),</span><br><span class="line">FAILED(false, null);</span><br></pre></td></tr></table></figure></p>
-<p>12种状态: new(1)  init(2)  start(3)  stop(3)  destroy(2)  failed(1)<br>Lifecycle有四个基本的方法，init start stop destroy 外加一个addLifecycleListener()事件监听<br><code>public abstract class LifecycleBase implements Lifecycle</code> 这个org.apache.catalina.util.LifecycleBean中重写了上面四个方法(synchronized)，然后这里又<br>在内部加一个initInternal方法调用,这里就用到了模板方法，在调用init的时候，前后做一些操作，判断当前状态啊，日志啊，等等。<br>另外这里又有一个方法fireLifecycleEvent，触发生命周期事件。</p>
-<p><img src="/2018/04/16/Tomcat源码阅读之组件生命周期/LifecycleBaseinit.PNG" alt="start&amp;stop"></p>
-<p>一般所有的组件是实现的org.apache.catalina.util.LifecycleMBeanBase这个BaseBean的生命周期，重写了initInternal，然后在使用组件的时候对生命周期做得操作，init等就直接调用LifecycleMBeanBase，又调用本组件的initInternal.</p>
-<p>见图StandardService中的initInternal方法:<br><img src="/2018/04/16/Tomcat源码阅读之组件生命周期/StandardService.PNG" alt="start&amp;stop"></p>
-<p>系列文章</p>
-<ul>
-<li><a href="http://muxiaobai.github.io/2018/04/16/Tomcat%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB%E4%B9%8B%E4%BB%8Eserver-xml%E7%9C%8B%E7%BB%84%E4%BB%B6%E5%85%B3%E7%B3%BB/">Tomcat源码阅读之从server.xml看组件关系</a></li>
-<li><a href="http://muxiaobai.github.io/2018/04/16/Tomcat%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB%E4%B9%8B%E7%BB%84%E4%BB%B6%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/">Tomcat源码阅读之组件生命周期</a></li>
-<li><a href="http://muxiaobai.github.io/2018/04/17/Tomcat%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB%E4%B9%8BURL%E8%AF%B7%E6%B1%82%E8%A7%A3%E6%9E%90/">Tomcat源码阅读之URL请求解析</a></li>
-<li><a href="https://muxiaobai.github.io/2018/04/20/Tomcat%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB%E4%B9%8BContainer%E8%B4%A3%E4%BB%BB%E9%93%BE/">Tomcat源码阅读之Container责任链</a></li>
-</ul>
-<p>参看文献:</p>
-<ul>
-<li>《深入剖析Tomcat》</li>
-<li><a href="https://www.ibm.com/developerworks/cn/java/j-lo-tomcat1/" target="_blank" rel="noopener">Tomcat 系统架构与设计模式</a></li>
-<li><a href="http://mirrors.tuna.tsinghua.edu.cn/apache/tomcat/tomcat-8/v8.5.30/src/apache-tomcat-8.5.30-src.zip" target="_blank" rel="noopener">tomcat8.5.30源码</a></li>
-<li><a href="https://my.oschina.net/liughDevelop/blog/1790893#comment-list" target="_blank" rel="noopener">手写一个简化版Tomcat</a></li>
+<li><a href="https://www.cnblogs.com/zhq1007/p/11744102.html" target="_blank" rel="noopener">Elasticsearch慢查询故障诊断</a></li>
+<li><a href="https://www.cnblogs.com/hahaha111122222/p/16048771.html" target="_blank" rel="noopener">Elasticsearch 磁盘使用率超过警戒水位线</a></li>
+<li><a href="https://zhuanlan.zhihu.com/p/647279604?utm_id=0" target="_blank" rel="noopener">让你的ES查询性能起飞：Elasticsearch 查询优化攻略“一网打尽”</a></li>
 </ul>
 
       
@@ -469,13 +435,13 @@
   
     
     <div class="copyright">
-        <p><span>本文标题:</span><a href="/2018/04/16/Tomcat源码阅读之组件生命周期/">Tomcat源码阅读之组件生命周期</a></p>
+        <p><span>本文标题:</span><a href="/2024/01/30/ES性能问题/">ES性能问题</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">Mu Xiaobai(慕小白)</a></p>
-        <p><span>发布时间:</span>2018-04-16, 10:39:09</p>
+        <p><span>发布时间:</span>2024-01-30, 09:20:02</p>
         <p><span>最后更新:</span>2024-02-01, 08:40:21</p>
         <p>
-            <span>原始链接:</span><a class="post-url" href="/2018/04/16/Tomcat源码阅读之组件生命周期/" title="Tomcat源码阅读之组件生命周期">https://muxiaobai.github.io/2018/04/16/Tomcat源码阅读之组件生命周期/</a>
-            <span class="copy-path" data-clipboard-text="原文: https://muxiaobai.github.io/2018/04/16/Tomcat源码阅读之组件生命周期/　　作者: Mu Xiaobai(慕小白)" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <span>原始链接:</span><a class="post-url" href="/2024/01/30/ES性能问题/" title="ES性能问题">https://muxiaobai.github.io/2024/01/30/ES性能问题/</a>
+            <span class="copy-path" data-clipboard-text="原文: https://muxiaobai.github.io/2024/01/30/ES性能问题/　　作者: Mu Xiaobai(慕小白)" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
             <script> var clipboard = new Clipboard('.copy-path'); </script>
         </p>
         <p>
@@ -488,15 +454,15 @@
     <nav id="article-nav">
         
             <div id="article-nav-newer" class="article-nav-title">
-                <a href="/2018/04/17/Tomcat源码阅读之URL请求解析/">
-                    Tomcat源码阅读之URL请求解析
+                <a href="/2024/02/01/ES-中文分词算法/">
+                    ES-中文分词算法
                 </a>
             </div>
         
         
             <div id="article-nav-older" class="article-nav-title">
-                <a href="/2018/04/16/Tomcat源码阅读之从server-xml看组件关系/">
-                    Tomcat源码阅读之从server.xml看组件关系
+                <a href="/2024/01/30/ES操作得分/">
+                    ES操作得分
                 </a>
             </div>
         
@@ -509,7 +475,7 @@
     <!--左侧-->
     <div id="toc" class="toc-article">
     <strong class="toc-title">文章目录</strong>
-    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Catalina中的load方法"><span class="toc-number">1.</span> <span class="toc-text">Catalina中的load方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Standard其他类中的方法Server-Service-Connector-Engine等"><span class="toc-number">2.</span> <span class="toc-text">Standard其他类中的方法Server Service Connector Engine等</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#其他容器的关系调用方法"><span class="toc-number">2.0.1.</span> <span class="toc-text">其他容器的关系调用方法</span></a></li></ol></li></ol><li class="toc-item toc-level-2"><a class="toc-link" href="#Lifecycle类"><span class="toc-number">3.</span> <span class="toc-text">Lifecycle类</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#模板方法"><span class="toc-number">3.1.</span> <span class="toc-text">模板方法</span></a></li></ol></li>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#线程池"><span class="toc-number">1.</span> <span class="toc-text">线程池</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#优化逻辑-方向"><span class="toc-number">2.</span> <span class="toc-text">优化逻辑-方向</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#分片"><span class="toc-number">3.</span> <span class="toc-text">分片</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#变为一个段"><span class="toc-number">3.0.1.</span> <span class="toc-text">变为一个段</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#减少字段-减少IO"><span class="toc-number">3.0.2.</span> <span class="toc-text">减少字段 减少IO</span></a></li></ol></li></ol>
 </div>
 <style>
     .left-col .switch-btn,
@@ -617,7 +583,7 @@
 
     <div class="scroll" id="post-nav-button">
         
-            <a href="/2018/04/17/Tomcat源码阅读之URL请求解析/" title="上一篇: Tomcat源码阅读之URL请求解析">
+            <a href="/2024/02/01/ES-中文分词算法/" title="上一篇: ES-中文分词算法">
                 <i class="fa fa-angle-left"></i>
             </a>
         
@@ -625,7 +591,7 @@
         <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
 
         
-            <a href="/2018/04/16/Tomcat源码阅读之从server-xml看组件关系/" title="下一篇: Tomcat源码阅读之从server.xml看组件关系">
+            <a href="/2024/01/30/ES操作得分/" title="下一篇: ES操作得分">
                 <i class="fa fa-angle-right"></i>
             </a>
         

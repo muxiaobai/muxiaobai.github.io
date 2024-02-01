@@ -8,7 +8,42 @@
       <url>https://muxiaobai.github.io/2024/02/01/ES-%E4%B8%AD%E6%96%87%E5%88%86%E8%AF%8D%E7%AE%97%E6%B3%95/</url>
       <content type="html"><![CDATA[<h2 id="朴素贝叶斯"><a href="#朴素贝叶斯" class="headerlink" title="朴素贝叶斯"></a>朴素贝叶斯</h2><h2 id="隐马尔可夫"><a href="#隐马尔可夫" class="headerlink" title="隐马尔可夫"></a>隐马尔可夫</h2><h2 id="动态规划-dp问题"><a href="#动态规划-dp问题" class="headerlink" title="动态规划 dp问题"></a>动态规划 dp问题</h2><h2 id="viterbi算法"><a href="#viterbi算法" class="headerlink" title="viterbi算法"></a>viterbi算法</h2><p>viterbi标记分词串</p>
 <p>使用AC算法识别标记串，组成人名、地名、机构名</p>
-<p><a href="https://www.cnblogs.com/Renyi-Fan/p/7865985.html" target="_blank" rel="noopener">维特比算法（Viterbi）</a><br><a href="https://www.hankcs.com/nlp/general-java-implementation-of-the-viterbi-algorithm.html#google_vignette" target="_blank" rel="noopener">通用维特比算法的Java实现</a><br><a href="https://www.hankcs.com/nlp/ner/place-name-recognition-model-of-the-stacked-hmm-viterbi-role-labeling.html#google_vignette" target="_blank" rel="noopener">层叠HMM-Viterbi角色标注模型下的机构名识别</a><br><a href="https://www.hankcs.com/nlp/ner/place-names-to-identify-actual-hmm-viterbi-role-labeling.html" target="_blank" rel="noopener">实战HMM-Viterbi角色标注地名识别</a><br><a href="https://www.hankcs.com/program/algorithm/implementation-and-analysis-of-aho-corasick-algorithm-in-java.html#google_vignette" target="_blank" rel="noopener">Aho-Corasick算法的Java实现与分析</a></p>
+<ul>
+<li><a href="https://www.cnblogs.com/Renyi-Fan/p/7865985.html" target="_blank" rel="noopener">维特比算法（Viterbi）</a></li>
+<li><a href="https://www.hankcs.com/nlp/general-java-implementation-of-the-viterbi-algorithm.html#google_vignette" target="_blank" rel="noopener">通用维特比算法的Java实现</a></li>
+<li><a href="https://www.hankcs.com/nlp/ner/place-name-recognition-model-of-the-stacked-hmm-viterbi-role-labeling.html#google_vignette" target="_blank" rel="noopener">层叠HMM-Viterbi角色标注模型下的机构名识别</a></li>
+<li><a href="https://www.hankcs.com/nlp/ner/place-names-to-identify-actual-hmm-viterbi-role-labeling.html" target="_blank" rel="noopener">实战HMM-Viterbi角色标注地名识别</a></li>
+<li><a href="https://www.hankcs.com/program/algorithm/implementation-and-analysis-of-aho-corasick-algorithm-in-java.html#google_vignette" target="_blank" rel="noopener">Aho-Corasick算法的Java实现与分析</a></li>
+</ul>
+]]></content>
+      
+        <categories>
+            
+            <category> elasticsearch </category>
+            
+        </categories>
+        
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[ES性能问题]]></title>
+      <url>https://muxiaobai.github.io/2024/01/30/ES%E6%80%A7%E8%83%BD%E9%97%AE%E9%A2%98/</url>
+      <content type="html"><![CDATA[<h2 id="线程池"><a href="#线程池" class="headerlink" title="线程池"></a>线程池</h2><p>es 改 内存大小 8g  内核 24核 search process数(3*24/2+1) 37 队列数 2000</p>
+<p>429 rejected TOO_MANY_REQUESTS   主要就是线程池和队列 无法响应</p>
+<p>GET /_cat/thread_pool?v=true&amp;h=id,node_name,name,active,queue,rejected,completed</p>
+<p><a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/modules-threadpool.html" target="_blank" rel="noopener">ES 线程池配置</a></p>
+<h2 id="优化逻辑-方向"><a href="#优化逻辑-方向" class="headerlink" title="优化逻辑-方向"></a>优化逻辑-方向</h2><p>主要就是在</p>
+<h2 id="分片"><a href="#分片" class="headerlink" title="分片"></a>分片</h2><p>索引 一个分片 ,一个segement<br>PUT index/_settings<br>{<br>  “index.blocks.write”:”false”<br>}<br>POST index/_shrink/index_shrink </p>
+<p>不要副本<br>PUT /index_shrink/_settings<br>{<br>  “settings”:{<br>    “number_of_replicas”:0<br>  }<br>}</p>
+<h4 id="变为一个段"><a href="#变为一个段" class="headerlink" title="变为一个段"></a>变为一个段</h4><p>POST index_shrink/_forcemerge?max_num_segments=1</p>
+<p>GET /_cat/segments/index_shrink?v<br>GET index_shrink/_segments</p>
+<h4 id="减少字段-减少IO"><a href="#减少字段-减少IO" class="headerlink" title="减少字段 减少IO"></a>减少字段 减少IO</h4><p>POST /_reindex<br>{<br>  “source”: {<br>    “index”: “index”,<br>    “_source”: [“title”,”createDate”,”id”],<br>    “query”: {<br>      “exists”: {“field”: “createDate”}<br>    }<br>  },<br>  “dest”: {<br>    “index”: “index_similarity_boost”<br>  },<br>  “script”: {<br>    “source”: “ ctx._source.title = ctx._source.title;”<br>  },<br>  “size”:100000000<br>}</p>
+<ul>
+<li><a href="https://www.cnblogs.com/zhq1007/p/11744102.html" target="_blank" rel="noopener">Elasticsearch慢查询故障诊断</a></li>
+<li><a href="https://www.cnblogs.com/hahaha111122222/p/16048771.html" target="_blank" rel="noopener">Elasticsearch 磁盘使用率超过警戒水位线</a></li>
+<li><a href="https://zhuanlan.zhihu.com/p/647279604?utm_id=0" target="_blank" rel="noopener">让你的ES查询性能起飞：Elasticsearch 查询优化攻略“一网打尽”</a></li>
+</ul>
 ]]></content>
       
         <categories>
@@ -4637,11 +4672,11 @@ hashMap.put(&quot;abc&quot;,&quot;1&quot;);
         
         <tags>
             
+            <tag> Spring </tag>
+            
             <tag> Session </tag>
             
             <tag> Hibernate </tag>
-            
-            <tag> Spring </tag>
             
         </tags>
         
