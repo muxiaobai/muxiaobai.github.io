@@ -19,6 +19,8 @@ viterbi标记分词串
 
 
 - [维特比算法（Viterbi）](https://www.cnblogs.com/Renyi-Fan/p/7865985.html)
+- [维特比算法通俗案例](https://www.cnblogs.com/Renyi-Fan/p/14087815.html)
+- [隐马尔可夫模型（HMM）总结](https://www.cnblogs.com/Renyi-Fan/p/14003220.html)
 - [通用维特比算法的Java实现](https://www.hankcs.com/nlp/general-java-implementation-of-the-viterbi-algorithm.html#google_vignette)
 - [层叠HMM-Viterbi角色标注模型下的机构名识别](https://www.hankcs.com/nlp/ner/place-name-recognition-model-of-the-stacked-hmm-viterbi-role-labeling.html#google_vignette)
 - [实战HMM-Viterbi角色标注地名识别](https://www.hankcs.com/nlp/ner/place-names-to-identify-actual-hmm-viterbi-role-labeling.html)
