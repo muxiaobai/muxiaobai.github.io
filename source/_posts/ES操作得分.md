@@ -371,25 +371,3 @@ sort 分层
 
 
 ```
-
-## 另优化ES:
-
-ES方面
-es 改 内存大小 8g  内核 24核 search process数(3*24/2+1) 37 队列数 2000
-
-索引 一个分片 ,一个segement
-PUT index/_settings
-{
-  "index.blocks.write":"false"
-}
-POST index/_shrink/index_shrink 
-
-不要副本
-PUT /index_shrink/_settings
-{
-  "settings":{
-    "number_of_replicas":0
-  }
-}
-
-POST index_shrink/_forcemerge?max_num_segments=1

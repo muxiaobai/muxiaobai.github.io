@@ -23,12 +23,17 @@ GET /_cat/thread_pool?v=true&h=id,node_name,name,active,queue,rejected,completed
 
 ## 分片
 
-索引 一个分片 ,一个segement
-PUT index/_settings
+索引 一个分片
+
+false 是可以写入
+
+PUT index_name/_settings
 {
   "index.blocks.write":"false"
 }
-POST index/_shrink/index_shrink 
+
+变为1个分片
+POST index_name/_shrink/index_shrink 
 
 不要副本
 PUT /index_shrink/_settings
@@ -38,7 +43,8 @@ PUT /index_shrink/_settings
   }
 }
 
-#### 变为一个段
+
+#### 变为一个段 一个segement
 
 POST index_shrink/_forcemerge?max_num_segments=1
 
