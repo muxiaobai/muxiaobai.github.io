@@ -1,0 +1,800 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+
+
+    <!--[if lt IE 9]>
+        <style>body {display: none; background: none !important} </style>
+        <meta http-equiv="Refresh" Content="0; url=//outdatedbrowser.com/" />
+    <![endif]-->
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="format-detection" content="telephone=no">
+<meta name="author" content="Mu Xiaobai(慕小白)">
+
+
+
+<meta name="description" content="Lucene">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ES之Lucene保存索引">
+<meta property="og:url" content="https://muxiaobai.github.io/2024/03/08/ES之Lucene保存索引/index.html">
+<meta property="og:site_name" content="慕小白的博客">
+<meta property="og:description" content="Lucene">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://muxiaobai.github.io/2024/03/08/ES之Lucene保存索引/初始空的只有一个文件.png">
+<meta property="og:image" content="https://muxiaobai.github.io/2024/03/08/ES之Lucene保存索引/fieldInfosFormat.png">
+<meta property="og:image" content="https://muxiaobai.github.io/2024/03/08/ES之Lucene保存索引/保存完后变成完整的数据.png">
+<meta property="og:updated_time" content="2024-03-08T09:24:20.264Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="ES之Lucene保存索引">
+<meta name="twitter:description" content="Lucene">
+<meta name="twitter:image" content="https://muxiaobai.github.io/2024/03/08/ES之Lucene保存索引/初始空的只有一个文件.png">
+
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+
+    <link rel="alternative" href="/atom.xml" title="慕小白的博客" type="application/atom+xml">
+
+
+
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+
+
+    <link href="//cdn.bootcss.com/animate.css/3.5.1/animate.min.css" rel="stylesheet">
+
+
+
+    <link href="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet">
+
+
+
+    <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+    <link href="//cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-minimal.css" rel="stylesheet">
+
+
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+<link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+
+
+<title>ES之Lucene保存索引 | 慕小白的博客</title>
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+
+<script>
+    var yiliaConfig = {
+        fancybox: true,
+        animate: true,
+        isHome: false,
+        isPost: true,
+        isArchive: false,
+        isTag: false,
+        isCategory: false,
+        open_in_new: true,
+        fancybox_js: "//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.js",
+        scrollreveal: "//cdn.bootcss.com/scrollReveal.js/3.1.4/scrollreveal.min.js",
+        search: true
+    }
+</script>
+
+
+    <script>
+        yiliaConfig.jquery_ui = [true, "//cdn.bootcss.com/jqueryui/1.10.4/jquery-ui.min.js", "//cdn.bootcss.com/jqueryui/1.10.4/css/jquery-ui.min.css"];
+    </script>
+
+
+
+    <script> yiliaConfig.rootUrl = "\/";</script>
+
+
+
+
+
+    <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?9d0c3ecd0b632089f6a7f6d2a457fce6";
+            var s = document.getElementsByTagName("script")[0]; 
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+
+
+</head>
+ 
+<!-- add Fork Me On Github -->
+
+<a href="https://github.com/muxiaobai">
+<img style="position: absolute; top: 0; right: 0; border: 0;z-index: 1000" src="https://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png" alt="Fork me on GitHub">
+</a>
+<!-- End Fork Me On Github  -->
+</html>
+<body>
+ 
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <a href="/" class="profilepic">
+            <img src="/img/avatars.jpg" class="animated zoomIn">
+        </a>
+        <hgroup>
+          <h1 class="header-author"><a href="/">Mu Xiaobai(慕小白)</a></h1>
+        </hgroup>
+
+        
+        <p class="header-subtitle">有输入,有输出</p>
+        
+
+        
+            <form id="search-form">
+            <input type="text" id="local-search-input" name="q" results="0" placeholder="search..." class="search form-control" autocomplete="off" autocorrect="off" searchonload="false">
+            <i class="fa fa-times" onclick="resetSearch()"></i>
+            </form>
+            <div id="local-search-result"></div>
+            <p class="no-result">No results found <i class="fa fa-spinner fa-pulse"></i></p>
+        
+
+
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        <div class="icon-wrap icon-link hide" data-idx="2">
+                            <div class="loopback_l"></div>
+                            <div class="loopback_r"></div>
+                        </div>
+                        
+                        
+                    </div>
+                    
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>菜单</li>
+                        <li>标签</li>
+                        
+                        <li>友情链接</li>
+                        
+                        
+                    </ul>
+                </div>
+            </div>
+        
+
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a href="/">主页</a></li>
+                        
+                            <li><a href="/archives/">所有文章</a></li>
+                        
+                            <li><a href="/tags/">标签云</a></li>
+                        
+                            <li><a href="/about/">关于我</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" target="_blank" href="mailto:zpf12345678910@gmail.com" title="Email"></a>
+                            
+                                <a class="fa 新浪微博" target="_blank" href="http://weibo.com/u/1751073805" title="新浪微博"></a>
+                            
+                                <a class="fa GitHub" target="_blank" href="https://github.com/muxiaobai" title="GitHub"></a>
+                            
+                                <a class="fa RSS" target="_blank" href="/atom.xml" title="RSS"></a>
+                            
+                                <a class="fa 网易云音乐" target="_blank" href="http://music.163.com/#//user/home?id=270611521" title="网易云音乐"></a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/API/">API</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CI/">CI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS/">CSS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Cache/">Cache</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Canvas/">Canvas</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Collection/">Collection</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Concurrent/">Concurrent</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Error/">Error</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Exception/">Exception</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/File/">File</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Github/">Github</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hibernate/">Hibernate</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/I-O/">I/O</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Iterator/">Iterator</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/List/">List</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Map/">Map</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Object/">Object</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Session/">Session</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Set/">Set</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Shell/">Shell</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Socket/">Socket</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Spring/">Spring</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Storage/">Storage</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Struts/">Struts</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Sublime/">Sublime</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Thread/">Thread</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Throwable/">Throwable</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/devops/">devops</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/directory/">directory</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/file/">file</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jQuery实践/">jQuery实践</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">javascript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jvm/">jvm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mongo/">mongo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nginx/">nginx</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/prototype/">prototype</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/redis/">redis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/svn/">svn</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tar/">tar</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tomcat/">tomcat</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/信息安全/">信息安全</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/分析/">分析</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/前沿技术/">前沿技术</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/前端/">前端</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/后端/">后端</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/基础/">基础</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/基础命令/">基础命令</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/定位/">定位</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/工具/">工具</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/常用代码/">常用代码</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/常用命令/">常用命令</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/排序/">排序</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/插件/">插件</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/日志/">日志</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/机器学习/">机器学习</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/目录/">目录</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/系统/">系统</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/编码/">编码</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/编辑器/">编辑器</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/网站/">网站</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/行高/">行高</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/设计/">设计</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/软件/">软件</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/连接池/">连接池</a></li></ul>
+                    </div>
+                </section>
+                
+                
+                
+                <section class="switch-part switch-part3">
+                    <div id="js-friends">
+                    
+                      <a target="_blank" class="main-nav-link switch-friends-link" href="https://hexo.io">Hexo</a>
+                    
+                      <a target="_blank" class="main-nav-link switch-friends-link" href="https://pages.github.com/">GitHub</a>
+                    
+                      <a target="_blank" class="main-nav-link switch-friends-link" href="http://moxfive.xyz/">MOxFIVE</a>
+                    
+                      <a target="_blank" class="main-nav-link switch-friends-link" href="http://cmsblogs.com/">CMSBLOGS</a>
+                    
+                      <a target="_blank" class="main-nav-link switch-friends-link" href="https://daohang.lusongsong.com/">卢松松博客</a>
+                    
+                    </div>
+                </section>
+                
+
+                
+            </div>
+        </div>
+    </header>                
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">Mu Xiaobai(慕小白)</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                <img src="/img/avatars.jpg" class="animated zoomIn">
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="回到主页">Mu Xiaobai(慕小白)</a></h1>
+            </hgroup>
+            
+            <p class="header-subtitle">有输入,有输出</p>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/">主页</a></li>
+                
+                    <li><a href="/archives/">所有文章</a></li>
+                
+                    <li><a href="/tags/">标签云</a></li>
+                
+                    <li><a href="/about/">关于我</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" target="_blank" href="mailto:zpf12345678910@gmail.com" title="Email"></a>
+                            
+                                <a class="fa 新浪微博" target="_blank" href="http://weibo.com/u/1751073805" title="新浪微博"></a>
+                            
+                                <a class="fa GitHub" target="_blank" href="https://github.com/muxiaobai" title="GitHub"></a>
+                            
+                                <a class="fa RSS" target="_blank" href="/atom.xml" title="RSS"></a>
+                            
+                                <a class="fa 网易云音乐" target="_blank" href="http://music.163.com/#//user/home?id=270611521" title="网易云音乐"></a>
+                            
+                        </ul>
+            </nav>
+        </header>                
+    </div>
+    <link class="menu-list" tags="标签" friends="友情链接" about="关于我">
+</nav>
+      <div class="body-wrap"><article id="post-ES之Lucene保存索引" class="article article-type-post" itemscope itemprop="blogPost">
+ 
+  
+    <div class="article-meta">
+      <a href="/2024/03/08/ES之Lucene保存索引/" class="article-date">
+      <time datetime="2024-03-08T09:20:02.000Z" itemprop="datePublished">2024-03-08</time>
+</a>
+    </div>
+  
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      ES之Lucene保存索引
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/elasticsearch/">elasticsearch</a>
+    </div>
+
+
+        
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <p>IndexWriter 保存一个文档到落盘</p>
+<p>会创建一个段</p>
+<p>new IndexWriter()里面创建一个空段<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">docWriter = new DocumentsWriter(flushNotifications, segmentInfos.getIndexCreatedVersionMajor(), pendingNumDocs,</span><br><span class="line">          enableTestPoints, this::newSegmentName,</span><br><span class="line">          config, directoryOrig, directory, globalFieldNumberMap);</span><br><span class="line"></span><br><span class="line">new DocumentsWriter() 里面的ThreadPool里面有一个 DocumentsWriterPerThread(),</span><br><span class="line"></span><br><span class="line"> this.perThreadPool = new DocumentsWriterPerThreadPool(() -&gt; &#123;</span><br><span class="line">      final FieldInfos.Builder infos = new FieldInfos.Builder(globalFieldNumberMap);</span><br><span class="line">      return new DocumentsWriterPerThread(indexCreatedVersionMajor,</span><br><span class="line">          segmentNameSupplier.get(), directoryOrig,</span><br><span class="line">          directory, config, deleteQueue, infos,</span><br><span class="line">          pendingNumDocs, enableTestPoints);</span><br><span class="line">    &#125;);</span><br><span class="line"></span><br><span class="line">new DocumentsWriterPerThread()这个里面创建段  和执行flush 的对象；</span><br><span class="line"></span><br><span class="line">segmentInfo = new SegmentInfo(directoryOrig, Version.LATEST, Version.LATEST, segmentName, -1, false, codec, Collections.emptyMap(), StringHelper.randomId(), Collections.emptyMap(), indexWriterConfig.getIndexSort());</span><br><span class="line">consumer = indexWriterConfig.getIndexingChain().getChain(indexVersionCreated, segmentInfo, this.directory, fieldInfos, indexWriterConfig, this::onAbortingException);</span><br></pre></td></tr></table></figure></p>
+<p><img src="/2024/03/08/ES之Lucene保存索引/初始空的只有一个文件.png" alt="初始空的只有一个文件"></p>
+<p>IndexWriter.prepareCommitInternal 预提交</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">private long prepareCommitInternal() throws IOException &#123;</span><br><span class="line">  startCommitTime = System.nanoTime();</span><br><span class="line">  synchronized(commitLock) &#123;</span><br><span class="line">    ensureOpen(false);</span><br><span class="line">    if (infoStream.isEnabled(&quot;IW&quot;)) &#123;</span><br><span class="line">      infoStream.message(&quot;IW&quot;, &quot;prepareCommit: flush&quot;);</span><br><span class="line">      infoStream.message(&quot;IW&quot;, &quot;  index before flush &quot; + segString());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    if (tragedy.get() != null) &#123;</span><br><span class="line">      throw new IllegalStateException(&quot;this writer hit an unrecoverable error; cannot commit&quot;, tragedy.get());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    if (pendingCommit != null) &#123;</span><br><span class="line">      throw new IllegalStateException(&quot;prepareCommit was already called with no corresponding call to commit&quot;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    doBeforeFlush();</span><br><span class="line">    testPoint(&quot;startDoFlush&quot;);</span><br><span class="line">    SegmentInfos toCommit = null;</span><br><span class="line">    boolean anyChanges = false;</span><br><span class="line">    long seqNo;</span><br><span class="line">    MergePolicy.MergeSpecification pointInTimeMerges = null;</span><br><span class="line">    AtomicBoolean stopAddingMergedSegments = new AtomicBoolean(false);</span><br><span class="line">    final long maxCommitMergeWaitMillis = config.getMaxFullFlushMergeWaitMillis();</span><br><span class="line">    // This is copied from doFlush, except it&apos;s modified to</span><br><span class="line">    // clone &amp; incRef the flushed SegmentInfos inside the</span><br><span class="line">    // sync block:</span><br><span class="line"></span><br><span class="line">    try &#123;</span><br><span class="line"></span><br><span class="line">      synchronized (fullFlushLock) &#123;</span><br><span class="line">        boolean flushSuccess = false;</span><br><span class="line">        boolean success = false;</span><br><span class="line">        try &#123;</span><br><span class="line">          //写文件，执行所有的flush</span><br><span class="line">          seqNo = docWriter.flushAllThreads();</span><br><span class="line">          if (seqNo &lt; 0) &#123;</span><br><span class="line">            anyChanges = true;</span><br><span class="line">            seqNo = -seqNo;</span><br><span class="line">          &#125;</span><br><span class="line">          if (anyChanges == false) &#123;</span><br><span class="line">            // prevent double increment since docWriter#doFlush increments the flushcount</span><br><span class="line">            // if we flushed anything.</span><br><span class="line">            flushCount.incrementAndGet();</span><br><span class="line">          &#125;</span><br><span class="line">          publishFlushedSegments(true);</span><br><span class="line">          // cannot pass triggerMerges=true here else it can lead to deadlock:</span><br><span class="line">          processEvents(false);</span><br><span class="line">          </span><br><span class="line">          flushSuccess = true;</span><br><span class="line"></span><br><span class="line">          applyAllDeletesAndUpdates();</span><br><span class="line">          synchronized(this) &#123;</span><br><span class="line">            writeReaderPool(true);</span><br><span class="line">            if (changeCount.get() != lastCommitChangeCount) &#123;</span><br><span class="line">              // There are changes to commit, so we will write a new segments_N in startCommit.</span><br><span class="line">              // The act of committing is itself an NRT-visible change (an NRT reader that was</span><br><span class="line">              // just opened before this should see it on reopen) so we increment changeCount</span><br><span class="line">              // and segments version so a future NRT reopen will see the change:</span><br><span class="line">              changeCount.incrementAndGet();</span><br><span class="line">              segmentInfos.changed();</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            if (commitUserData != null) &#123;</span><br><span class="line">              Map&lt;String,String&gt; userData = new HashMap&lt;&gt;();</span><br><span class="line">              for(Map.Entry&lt;String,String&gt; ent : commitUserData) &#123;</span><br><span class="line">                userData.put(ent.getKey(), ent.getValue());</span><br><span class="line">              &#125;</span><br><span class="line">              segmentInfos.setUserData(userData, false);</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            // Must clone the segmentInfos while we still</span><br><span class="line">            // hold fullFlushLock and while sync&apos;d so that</span><br><span class="line">            // no partial changes (eg a delete w/o</span><br><span class="line">            // corresponding add from an updateDocument) can</span><br><span class="line">            // sneak into the commit point:</span><br><span class="line">            toCommit = segmentInfos.clone();</span><br><span class="line">            pendingCommitChangeCount = changeCount.get();</span><br><span class="line">            // This protects the segmentInfos we are now going</span><br><span class="line">            // to commit.  This is important in case, eg, while</span><br><span class="line">            // we are trying to sync all referenced files, a</span><br><span class="line">            // merge completes which would otherwise have</span><br><span class="line">            // removed the files we are now syncing.</span><br><span class="line">            deleter.incRef(toCommit.files(false));</span><br><span class="line">            if (anyChanges &amp;&amp; maxCommitMergeWaitMillis &gt; 0) &#123;</span><br><span class="line">              </span><br><span class="line">              // we can safely call preparePointInTimeMerge since writeReaderPool(true) above wrote all</span><br><span class="line">              // necessary files to disk and checkpointed them.</span><br><span class="line">              pointInTimeMerges = preparePointInTimeMerge(toCommit, stopAddingMergedSegments::get, MergeTrigger.COMMIT, sci-&gt;&#123;&#125;);</span><br><span class="line">            &#125;</span><br><span class="line">          &#125;</span><br><span class="line">          success = true;</span><br><span class="line">        &#125; finally &#123;</span><br><span class="line">          if (!success) &#123;</span><br><span class="line">            if (infoStream.isEnabled(&quot;IW&quot;)) &#123;</span><br><span class="line">              infoStream.message(&quot;IW&quot;, &quot;hit exception during prepareCommit&quot;);</span><br><span class="line">            &#125;</span><br><span class="line">          &#125;</span><br><span class="line">          assert Thread.holdsLock(fullFlushLock);</span><br><span class="line">          // Done: finish the full flush!</span><br><span class="line">          docWriter.finishFullFlush(flushSuccess);</span><br><span class="line">          doAfterFlush();</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125; catch (VirtualMachineError tragedy) &#123;</span><br><span class="line">      tragicEvent(tragedy, &quot;prepareCommit&quot;);</span><br><span class="line">      throw tragedy;</span><br><span class="line">    &#125; finally &#123;</span><br><span class="line">      maybeCloseOnTragicEvent();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    // 进行段合并   是在条件下执行</span><br><span class="line">    if (pointInTimeMerges != null) &#123;</span><br><span class="line">      if (infoStream.isEnabled(&quot;IW&quot;)) &#123;</span><br><span class="line">        infoStream.message(&quot;IW&quot;, &quot;now run merges during commit: &quot; + pointInTimeMerges.segString(directory));</span><br><span class="line">      &#125;</span><br><span class="line">      mergeScheduler.merge(mergeSource, MergeTrigger.COMMIT);</span><br><span class="line">      pointInTimeMerges.await(maxCommitMergeWaitMillis, TimeUnit.MILLISECONDS);</span><br><span class="line">      if (infoStream.isEnabled(&quot;IW&quot;)) &#123;</span><br><span class="line">        infoStream.message(&quot;IW&quot;, &quot;done waiting for merges during commit&quot;);</span><br><span class="line">      &#125;</span><br><span class="line">      synchronized (this) &#123;</span><br><span class="line">        // we need to call this under lock since mergeFinished above is also called under the IW lock</span><br><span class="line">        stopAddingMergedSegments.set(true);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    // do this after handling any pointInTimeMerges since the files will have changed if any merges</span><br><span class="line">    // did complete</span><br><span class="line">    filesToCommit = toCommit.files(false);</span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">    try &#123;</span><br><span class="line">      if (anyChanges) &#123;</span><br><span class="line">        maybeMerge.set(true);</span><br><span class="line">      &#125;</span><br><span class="line">      // 写segments_N文件</span><br><span class="line">      startCommit(toCommit);</span><br><span class="line">      if (pendingCommit == null) &#123;</span><br><span class="line">        return -1;</span><br><span class="line">      &#125; else &#123;</span><br><span class="line">        return seqNo;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125; catch (Throwable t) &#123;</span><br><span class="line">      synchronized (this) &#123;</span><br><span class="line">        if (filesToCommit != null) &#123;</span><br><span class="line">          try &#123;</span><br><span class="line">            deleter.decRef(filesToCommit);</span><br><span class="line">          &#125; catch (Throwable t1) &#123;</span><br><span class="line">            t.addSuppressed(t1);</span><br><span class="line">          &#125; finally &#123;</span><br><span class="line">            filesToCommit = null;</span><br><span class="line">          &#125;</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">      throw t;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这段代码是Apache Lucene中IndexWriter类的一个方法实现，名为prepareCommitInternal()。这个方法的主要目的是准备提交索引的更改到磁盘，包括将内存中的文档和更新操作刷新到磁盘、创建一个新的段信息文件（segments_N）、处理合并策略，并确保在提交过程中数据的一致性和完整性。</p>
+<p>以下是步骤分解：</p>
+<ol>
+<li>记录开始执行commit的时间戳。</li>
+<li>检查IndexWriter是否已打开且未遇到任何不可恢复错误。</li>
+<li>检查是否有正在进行的但尚未提交的commit操作，如果有则抛出异常。</li>
+<li>执行flush前的操作，例如清理缓冲区等。</li>
+<li>同步执行真正的flush操作，包括：<ul>
+<li>刷新所有线程的文档写入器（docWriter），获取最新的序列号seqNo，并判断是否有任何更改发生。</li>
+<li>发布已刷新的段信息。</li>
+<li>应用所有删除和更新操作。</li>
+<li>写入reader池状态。</li>
+<li>如果有变更，则增加版本号并标记segmentInfos为已更改。</li>
+<li>复制当前的segmentInfos实例（toCommit），用于后续的提交操作。</li>
+<li>增加对即将提交的索引文件的引用计数，防止在同步期间被删除。</li>
+<li>根据配置检查是否需要在commit时进行合并，并生成一个MergeSpecification（如果需要的话）。</li>
+</ul>
+</li>
+<li>在finally块中，确保无论成功与否都会正确结束flush操作，并释放锁资源。</li>
+<li>如果存在pointInTimeMerges（即在commit阶段需要执行的合并），则启动合并并在给定时间内等待其完成。</li>
+<li>设置要提交的文件列表（filesToCommit）。</li>
+<li>调用startCommit(toCommit)方法来开始实际的提交过程，包括写入新的segments_N文件。</li>
+<li>如果一切正常，返回序列号seqNo；否则，在捕获到异常时，解除对提交文件的引用，并重新抛出异常。</li>
+</ol>
+<p>总体来说，此方法负责管理Lucene索引提交的整个生命周期，从内部状态刷新、变更追踪、文件引用计数管理到合并策略的应用以及最终的文件系统提交。</p>
+<p>在flush完成后会进行合并操作</p>
+<p> pointInTimeMerges = preparePointInTimeMerge(toCommit, stopAddingMergedSegments::get, MergeTrigger.COMMIT, sci-&gt;{});<br> 合并段</p>
+<p> seqNo = docWriter.flushAllThreads();</p>
+<p>DocumentWriter.flushAllThreads() </p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><span class="line"> </span><br><span class="line"> </span><br><span class="line">/*</span><br><span class="line"> * FlushAllThreads is synced by IW fullFlushLock. Flushing all threads is a</span><br><span class="line"> * two stage operation; the caller must ensure (in try/finally) that finishFlush</span><br><span class="line"> * is called after this method, to release the flush lock in DWFlushControl</span><br><span class="line"> */</span><br><span class="line">long flushAllThreads()</span><br><span class="line">  throws IOException &#123;</span><br><span class="line">  final DocumentsWriterDeleteQueue flushingDeleteQueue;</span><br><span class="line">  if (infoStream.isEnabled(&quot;DW&quot;)) &#123;</span><br><span class="line">    infoStream.message(&quot;DW&quot;, &quot;startFullFlush&quot;);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  long seqNo;</span><br><span class="line">  synchronized (this) &#123;</span><br><span class="line">    pendingChangesInCurrentFullFlush = anyChanges();</span><br><span class="line">    flushingDeleteQueue = deleteQueue;</span><br><span class="line">    /* Cutover to a new delete queue.  This must be synced on the flush control</span><br><span class="line">     * otherwise a new DWPT could sneak into the loop with an already flushing</span><br><span class="line">     * delete queue */</span><br><span class="line">    seqNo = flushControl.markForFullFlush(); // swaps this.deleteQueue synced on FlushControl</span><br><span class="line">    assert setFlushingDeleteQueue(flushingDeleteQueue);</span><br><span class="line">  &#125;</span><br><span class="line">  assert currentFullFlushDelQueue != null;</span><br><span class="line">  assert currentFullFlushDelQueue != deleteQueue;</span><br><span class="line">  </span><br><span class="line">  boolean anythingFlushed = false;</span><br><span class="line">  try &#123;</span><br><span class="line">    DocumentsWriterPerThread flushingDWPT;</span><br><span class="line">    // Help out with flushing:</span><br><span class="line">    //遍历所有等待刷新的DocumentsWriterPerThread</span><br><span class="line">    while ((flushingDWPT = flushControl.nextPendingFlush()) != null) &#123;</span><br><span class="line">      anythingFlushed |= doFlush(flushingDWPT);</span><br><span class="line">    &#125;</span><br><span class="line">    // If a concurrent flush is still in flight wait for it</span><br><span class="line">    flushControl.waitForFlush();  </span><br><span class="line">    if (anythingFlushed == false &amp;&amp; flushingDeleteQueue.anyChanges()) &#123; // apply deletes if we did not flush any document</span><br><span class="line">      if (infoStream.isEnabled(&quot;DW&quot;)) &#123;</span><br><span class="line">        infoStream.message(&quot;DW&quot;, Thread.currentThread().getName() + &quot;: flush naked frozen global deletes&quot;);</span><br><span class="line">      &#125;</span><br><span class="line">      assert assertTicketQueueModification(flushingDeleteQueue);</span><br><span class="line">      ticketQueue.addDeletes(flushingDeleteQueue);</span><br><span class="line">    &#125;</span><br><span class="line">    // we can&apos;t assert that we don&apos;t have any tickets in teh queue since we might add a DocumentsWriterDeleteQueue</span><br><span class="line">    // concurrently if we have very small ram buffers this happens quite frequently</span><br><span class="line">    assert !flushingDeleteQueue.anyChanges();</span><br><span class="line">  &#125; finally &#123;</span><br><span class="line">    assert flushingDeleteQueue == currentFullFlushDelQueue;</span><br><span class="line">    flushingDeleteQueue.close(); // all DWPT have been processed and this queue has been fully flushed to the ticket-queue</span><br><span class="line">  &#125;</span><br><span class="line">  if (anythingFlushed) &#123;</span><br><span class="line">    return -seqNo;</span><br><span class="line">  &#125; else &#123;</span><br><span class="line">    return seqNo;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这段代码是Apache Lucene中DocumentsWriterFlushControl类的一个方法flushAllThreads()的实现，这个方法负责将所有线程中的文档写入操作落盘。以下是代码逻辑的简要解释：</p>
+<ol>
+<li>获取当前待刷新的删除队列（flushingDeleteQueue），并切换到新的删除队列，以确保在刷新过程中不会接收新的删除请求。</li>
+<li>调用flushControl.markForFullFlush()标记进行全量刷新，并返回一个序列号（seqNo）。</li>
+<li>遍历所有等待刷新的DocumentsWriterPerThread实例（每个实例通常对应一个线程的索引缓冲区），调用doFlush(flushingDWPT)逐个执行实际的文档数据落盘操作。</li>
+<li>在所有待刷新的DocumentsWriterPerThread都处理完毕后，通过waitForFlush()方法确保没有并发刷新任务还在进行中。</li>
+<li>如果在刷新过程中没有真正写入任何文档内容，但有全局删除变更，则将这些删除操作应用到ticketQueue中，以便在后续搜索时能够正确反映删除情况。</li>
+<li>最后，关闭已完全刷新的删除队列（flushingDeleteQueue）。</li>
+</ol>
+<p>根据return -seqNo和return seqNo的条件判断，如果在这个过程中有任何文档被成功刷新到磁盘，则返回负数形式的序列号；否则返回正数形式的序列号。这可能是Lucene内部的一种约定，用于标识是否进行了实际的数据更新操作。</p>
+<p>此处有获取到了最开始的DocumentsWriterPerThread  下面要用它进行 flush()<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">// Help out with flushing:</span><br><span class="line">     while ((flushingDWPT = flushControl.nextPendingFlush()) != null) &#123;</span><br><span class="line">       anythingFlushed |= doFlush(flushingDWPT);</span><br><span class="line">     &#125;</span><br></pre></td></tr></table></figure></p>
+<p>当前执行doFlush();</p>
+<p>循环处理待刷新的DWPT：</p>
+<ul>
+<li>首先检查当前flushingDWPT是否已经完成过刷新，并设置hasEvents为true表示有事件发生。</li>
+<li>尝试获取一个刷新票证（FlushTicket），并确保删除队列正确无误。</li>
+<li>添加该DWPT到刷新队列，并获取其在内存中的文档数量</li>
+</ul>
+<p>下面方法负责了将内存中待写入的文档数据完整地刷新至磁盘上的新索引段，并生成描述新段状态的对象。 主要是在  sortMap = consumer.flush(flushState);</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">/** Flush all pending docs to a new segment */</span><br><span class="line">FlushedSegment flush(DocumentsWriter.FlushNotifications flushNotifications) throws IOException &#123;</span><br><span class="line">  assert flushPending.get() == Boolean.TRUE;</span><br><span class="line">  assert numDocsInRAM &gt; 0;</span><br><span class="line">  assert deleteSlice.isEmpty() : &quot;all deletes must be applied in prepareFlush&quot;;</span><br><span class="line">  segmentInfo.setMaxDoc(numDocsInRAM);</span><br><span class="line">  final SegmentWriteState flushState = new SegmentWriteState(infoStream, directory, segmentInfo, fieldInfos.finish(),</span><br><span class="line">      pendingUpdates, new IOContext(new FlushInfo(numDocsInRAM, lastCommittedBytesUsed)));</span><br><span class="line">  final double startMBUsed = lastCommittedBytesUsed / 1024. / 1024.;</span><br><span class="line"></span><br><span class="line">  // Apply delete-by-docID now (delete-byDocID only</span><br><span class="line">  // happens when an exception is hit processing that</span><br><span class="line">  // doc, eg if analyzer has some problem w/ the text):</span><br><span class="line">  if (numDeletedDocIds &gt; 0) &#123;</span><br><span class="line">    flushState.liveDocs = new FixedBitSet(numDocsInRAM);</span><br><span class="line">    flushState.liveDocs.set(0, numDocsInRAM);</span><br><span class="line">    for (int i = 0; i &lt; numDeletedDocIds; i++) &#123;</span><br><span class="line">      flushState.liveDocs.clear(deleteDocIDs[i]);</span><br><span class="line">    &#125;</span><br><span class="line">    flushState.delCountOnFlush = numDeletedDocIds;</span><br><span class="line">    deleteDocIDs = new int[0];</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  if (aborted) &#123;</span><br><span class="line">    if (infoStream.isEnabled(&quot;DWPT&quot;)) &#123;</span><br><span class="line">      infoStream.message(&quot;DWPT&quot;, &quot;flush: skip because aborting is set&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">    return null;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  long t0 = System.nanoTime();</span><br><span class="line"></span><br><span class="line">  if (infoStream.isEnabled(&quot;DWPT&quot;)) &#123;</span><br><span class="line">    infoStream.message(&quot;DWPT&quot;, &quot;flush postings as segment &quot; + flushState.segmentInfo.name + &quot; numDocs=&quot; + numDocsInRAM);</span><br><span class="line">  &#125;</span><br><span class="line">  final Sorter.DocMap sortMap;</span><br><span class="line">  try &#123;</span><br><span class="line">    DocIdSetIterator softDeletedDocs;</span><br><span class="line">    if (indexWriterConfig.getSoftDeletesField() != null) &#123;</span><br><span class="line">      softDeletedDocs = consumer.getHasDocValues(indexWriterConfig.getSoftDeletesField());</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">      softDeletedDocs = null;</span><br><span class="line">    &#125;</span><br><span class="line">    // 将文档数据和索引结构写入磁盘</span><br><span class="line">    sortMap = consumer.flush(flushState);</span><br><span class="line">    if (softDeletedDocs == null) &#123;</span><br><span class="line">      flushState.softDelCountOnFlush = 0;</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">      flushState.softDelCountOnFlush = PendingSoftDeletes.countSoftDeletes(softDeletedDocs, flushState.liveDocs);</span><br><span class="line">      assert flushState.segmentInfo.maxDoc() &gt;= flushState.softDelCountOnFlush + flushState.delCountOnFlush;</span><br><span class="line">    &#125;</span><br><span class="line">    // We clear this here because we already resolved them (private to this segment) when writing postings:</span><br><span class="line">    pendingUpdates.clearDeleteTerms();</span><br><span class="line">    segmentInfo.setFiles(new HashSet&lt;&gt;(directory.getCreatedFiles()));</span><br><span class="line"></span><br><span class="line">    final SegmentCommitInfo segmentInfoPerCommit = new SegmentCommitInfo(segmentInfo, 0, flushState.softDelCountOnFlush, -1L, -1L, -1L, StringHelper.randomId());</span><br><span class="line">    if (infoStream.isEnabled(&quot;DWPT&quot;)) &#123;</span><br><span class="line">      infoStream.message(&quot;DWPT&quot;, &quot;new segment has &quot; + (flushState.liveDocs == null ? 0 : flushState.delCountOnFlush) + &quot; deleted docs&quot;);</span><br><span class="line">      infoStream.message(&quot;DWPT&quot;, &quot;new segment has &quot; + flushState.softDelCountOnFlush + &quot; soft-deleted docs&quot;);</span><br><span class="line">      infoStream.message(&quot;DWPT&quot;, &quot;new segment has &quot; +</span><br><span class="line">          (flushState.fieldInfos.hasVectors() ? &quot;vectors&quot; : &quot;no vectors&quot;) + &quot;; &quot; +</span><br><span class="line">          (flushState.fieldInfos.hasNorms() ? &quot;norms&quot; : &quot;no norms&quot;) + &quot;; &quot; +</span><br><span class="line">          (flushState.fieldInfos.hasDocValues() ? &quot;docValues&quot; : &quot;no docValues&quot;) + &quot;; &quot; +</span><br><span class="line">          (flushState.fieldInfos.hasProx() ? &quot;prox&quot; : &quot;no prox&quot;) + &quot;; &quot; +</span><br><span class="line">          (flushState.fieldInfos.hasFreq() ? &quot;freqs&quot; : &quot;no freqs&quot;));</span><br><span class="line">      infoStream.message(&quot;DWPT&quot;, &quot;flushedFiles=&quot; + segmentInfoPerCommit.files());</span><br><span class="line">      infoStream.message(&quot;DWPT&quot;, &quot;flushed codec=&quot; + codec);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    final BufferedUpdates segmentDeletes;</span><br><span class="line">    if (pendingUpdates.deleteQueries.isEmpty() &amp;&amp; pendingUpdates.numFieldUpdates.get() == 0) &#123;</span><br><span class="line">      pendingUpdates.clear();</span><br><span class="line">      segmentDeletes = null;</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">      segmentDeletes = pendingUpdates;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    if (infoStream.isEnabled(&quot;DWPT&quot;)) &#123;</span><br><span class="line">      final double newSegmentSize = segmentInfoPerCommit.sizeInBytes() / 1024. / 1024.;</span><br><span class="line">      infoStream.message(&quot;DWPT&quot;, &quot;flushed: segment=&quot; + segmentInfo.name +</span><br><span class="line">          &quot; ramUsed=&quot; + nf.format(startMBUsed) + &quot; MB&quot; +</span><br><span class="line">          &quot; newFlushedSize=&quot; + nf.format(newSegmentSize) + &quot; MB&quot; +</span><br><span class="line">          &quot; docs/MB=&quot; + nf.format(flushState.segmentInfo.maxDoc() / newSegmentSize));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    assert segmentInfo != null;</span><br><span class="line"></span><br><span class="line">    FlushedSegment fs = new FlushedSegment(infoStream, segmentInfoPerCommit, flushState.fieldInfos,</span><br><span class="line">        segmentDeletes, flushState.liveDocs, flushState.delCountOnFlush, sortMap);</span><br><span class="line">    sealFlushedSegment(fs, sortMap, flushNotifications);</span><br><span class="line">    if (infoStream.isEnabled(&quot;DWPT&quot;)) &#123;</span><br><span class="line">      infoStream.message(&quot;DWPT&quot;, &quot;flush time &quot; + ((System.nanoTime() - t0) / 1000000.0) + &quot; msec&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">    return fs;</span><br><span class="line">  &#125; catch (Throwable t) &#123;</span><br><span class="line">    onAbortingException(t);</span><br><span class="line">    throw t;</span><br><span class="line">  &#125; finally &#123;</span><br><span class="line">    maybeAbort(&quot;flush&quot;, flushNotifications);</span><br><span class="line">    hasFlushed.set(Boolean.TRUE);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这段代码是Apache Lucene中DocumentsWriterPerThread类的一个方法，名为flush(DocumentsWriter.FlushNotifications flushNotifications)。该方法的主要功能是将当前线程中的所有待处理文档数据刷新到一个新的索引段（segment）中，并返回一个FlushedSegment对象。</p>
+<p>以下是该方法的详细步骤：</p>
+<ol>
+<li>检查当前是否有待刷新的数据（flushPending.get() == Boolean.TRUE），并且确保内存中存在未写入磁盘的文档(numDocsInRAM &gt; 0)。</li>
+<li>初始化新的SegmentWriteState对象，它包含了用于构建新段所需的各种信息，如目录路径、段信息、字段信息、待更新项等。</li>
+<li>处理删除操作：<ul>
+<li>如果有按docID的删除操作，创建一个FixedBitSet表示有效的文档集合（live docs），并应用这些删除。</li>
+<li>计算硬删除（hard deletes）的数量，并清空内部删除记录数组。</li>
+</ul>
+</li>
+<li>检查是否已触发中断标志（aborted）。如果是，则跳过本次刷新，并返回null。</li>
+<li>开始执行实际的文档数据和倒排索引刷新过程：<ul>
+<li>使用consumer.flush(flushState)方法将文档数据和索引结构写入磁盘，同时获取排序映射（sortMap）。</li>
+<li>如果启用了软删除功能，计算并记录软删除文档的数量。</li>
+<li>清除已解决的删除术语。</li>
+</ul>
+</li>
+<li>创建新的SegmentCommitInfo实例，记录新段的相关元数据，如最大文档数、软删除数量等。</li>
+<li>根据刷新结果创建一个FlushedSegment对象，其中包含新段的信息、字段信息、可能存在的段级删除信息、有效的文档集合（live docs）、硬删除数量以及排序映射。</li>
+<li>调用sealFlushedSegment(fs, sortMap, flushNotifications)方法完成新段的封装，并通知外部组件刷新完成。</li>
+<li>在整个刷新过程中进行日志输出，包括开始时间、刷新耗时、新段大小、文档密度等信息。</li>
+<li>最后，设置hasFlushed标志为true，并在遇到异常或正常结束时调用maybeAbort方法来处理可能的清理工作。</li>
+</ol>
+<p>consumer.flush(flushState) 是直接落盘的操作。</p>
+<p>调用到 DefaultIndexingChain<br>indexWriterConfig.getCodec().fieldInfosFormat().write(state.directory, state.segmentInfo, “”, state.fieldInfos, IOContext.DEFAULT);</p>
+<p>indexWriterConfig.getCodec().fieldInfosFormat() 这个有两个 新版用Lucene60FieldInfosFormat</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">@Override</span><br><span class="line">public void write(Directory directory, SegmentInfo segmentInfo, String segmentSuffix, FieldInfos infos, IOContext context) throws IOException &#123;</span><br><span class="line">  final String fileName = IndexFileNames.segmentFileName(segmentInfo.name, segmentSuffix, EXTENSION);</span><br><span class="line">  try (IndexOutput output = directory.createOutput(fileName, context)) &#123;</span><br><span class="line">    CodecUtil.writeIndexHeader(output, Lucene60FieldInfosFormat.CODEC_NAME, Lucene60FieldInfosFormat.FORMAT_CURRENT, segmentInfo.getId(), segmentSuffix);</span><br><span class="line">    output.writeVInt(infos.size());</span><br><span class="line">    for (FieldInfo fi : infos) &#123;</span><br><span class="line">      fi.checkConsistency();</span><br><span class="line"></span><br><span class="line">      output.writeString(fi.name);</span><br><span class="line">      output.writeVInt(fi.number);</span><br><span class="line"></span><br><span class="line">      byte bits = 0x0;</span><br><span class="line">      if (fi.hasVectors()) bits |= STORE_TERMVECTOR;</span><br><span class="line">      if (fi.omitsNorms()) bits |= OMIT_NORMS;</span><br><span class="line">      if (fi.hasPayloads()) bits |= STORE_PAYLOADS;</span><br><span class="line">      if (fi.isSoftDeletesField()) bits |= SOFT_DELETES_FIELD;</span><br><span class="line">      output.writeByte(bits);</span><br><span class="line"></span><br><span class="line">      output.writeByte(indexOptionsByte(fi.getIndexOptions()));</span><br><span class="line"></span><br><span class="line">      // pack the DV type and hasNorms in one byte</span><br><span class="line">      output.writeByte(docValuesByte(fi.getDocValuesType()));</span><br><span class="line">      output.writeLong(fi.getDocValuesGen());</span><br><span class="line">      output.writeMapOfStrings(fi.attributes());</span><br><span class="line">      output.writeVInt(fi.getPointDimensionCount());</span><br><span class="line">      if (fi.getPointDimensionCount() != 0) &#123;</span><br><span class="line">        output.writeVInt(fi.getPointIndexDimensionCount());</span><br><span class="line">        output.writeVInt(fi.getPointNumBytes());</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    CodecUtil.writeFooter(output);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>此处之后就有磁盘文件就加好了</p>
+<p><img src="/2024/03/08/ES之Lucene保存索引/fieldInfosFormat.png" alt="fieldInfosFormat"></p>
+<p>最终是这个一个文件 ,后面有删除其它的文件</p>
+<p><img src="/2024/03/08/ES之Lucene保存索引/保存完后变成完整的数据.png" alt="保存完后变成完整的数据"></p>
+
+      
+    </div>
+   
+    
+          <!--打赏-->
+         
+
+<!-- donate -->
+<style>
+   .donate_bar {
+	text-align: center;
+	margin-top: 5%
+	}
+	.donate_bar a.btn_donate {
+		display: inline-block;
+		width: 82px;
+		height: 82px;
+		margin-left: auto;
+		margin-right: auto;
+		background: url(http://img.t.sinajs.cn/t5/style/images/apps_PRF/e_media/btn_reward.gif)no-repeat;
+		-webkit-transition: background 0s;
+		-moz-transition: background 0s;
+		-o-transition: background 0s;
+		-ms-transition: background 0s;
+		transition: background 0s
+	}
+	.donate_bar a.btn_donate:hover {
+		background-position: 0 -82px
+	}
+	.donate_bar .donate_txt {
+		display: block;
+		color: #9d9d9d;
+		font: 14px/2 "Microsoft Yahei"
+	}
+	.donate_bar.hidden{
+		display: none
+	}
+	.post-donate{
+		margin-top: 80px;
+	}
+	#donate_guide{
+		/*height: 210px;
+		width: 420px;*/
+		margin: 0 auto;
+	}
+	#donate_guide img{
+		height: 200px;
+		height: 200px;
+	}
+</style>
+<!-- 添加捐赠图标 -->
+<div class="post-donate">
+    <div id="donate_board" class="donate_bar center">
+        <a id="btn_donate" class="btn_donate" title="打赏"></a>
+        <span class="donate_txt">
+           &uarr;<br>
+		   坚持原创技术分享，您的支持将鼓励我继续创作！
+        </span>
+        <br>
+    </div>  
+	<div id="donate_guide" class="donate_bar center hidden">
+		<!-- 支付宝打赏图案 -->
+		<img src="/img/alipay.jpg" alt="支付宝打赏"> 
+		<!-- 微信打赏图案 -->
+		<img src="/img/wechatpay.png" alt="微信打赏">  
+    </div>
+	<script type="text/javascript">
+		document.getElementById('btn_donate').onclick = function(){
+			//$('#donate_board').addClass('hidden');
+			if($('#donate_guide').hasClass('hidden')){
+				$('#donate_guide').removeClass('hidden');
+			}else{
+				$('#donate_guide').addClass('hidden');
+			}
+		}
+	</script>
+</div>
+
+<!-- End donate -->
+
+
+    
+    
+    
+  </div>
+  
+    
+    <div class="copyright">
+        <p><span>本文标题:</span><a href="/2024/03/08/ES之Lucene保存索引/">ES之Lucene保存索引</a></p>
+        <p><span>文章作者:</span><a href="/" title="回到主页">Mu Xiaobai(慕小白)</a></p>
+        <p><span>发布时间:</span>2024-03-08, 09:20:02</p>
+        <p><span>最后更新:</span>2024-03-08, 09:24:20</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/2024/03/08/ES之Lucene保存索引/" title="ES之Lucene保存索引">https://muxiaobai.github.io/2024/03/08/ES之Lucene保存索引/</a>
+            <span class="copy-path" data-clipboard-text="原文: https://muxiaobai.github.io/2024/03/08/ES之Lucene保存索引/　　作者: Mu Xiaobai(慕小白)" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target="_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
+        </p>
+    </div>
+
+
+
+    <nav id="article-nav">
+        
+        
+            <div id="article-nav-older" class="article-nav-title">
+                <a href="/2024/02/01/ES-中文分词算法/">
+                    ES-中文分词算法
+                </a>
+            </div>
+        
+    </nav>
+
+  
+</article>
+
+
+    <!--左侧-->
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    
+</div>
+<style>
+    .left-col .switch-btn,
+    .left-col .switch-area {
+        display: none;
+    }
+</style>
+
+<input type="button" id="tocButton" value="隐藏目录" title="点击按钮隐藏或者显示文章目录">
+
+<script>
+    yiliaConfig.toc = ["隐藏目录", "显示目录", !!"false"];
+</script>
+
+
+
+    <!--分享-->
+    
+<div class="share">
+    
+
+    
+</div>
+
+
+
+
+
+
+
+    <!--评论-->
+    
+      
+    <section class="gitment">
+    <div class="valine-container" style="background: white;">
+        <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+        <div class="valine" id="comments"></div>
+    <!-- <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script> -->
+  <script>
+      var GUEST_INFO = ['nick','mail','link'];
+      var guest_info = 'nick,mail,link'.split(',').filter(function(item){
+          return GUEST_INFO.indexOf(item) > -1
+      });
+      var notify = 'false' == true;
+      var verify = 'false' == true;
+      var localeName = 'ja',
+      localeMode = {
+          head:{
+              nick:'ニックネーム',
+              mail:'メールアドレス',
+              link:'サイト(http://)',
+          },
+          tips:{
+              comments:'コメント',
+              sofa:'コメントはありません・',
+              busy:'混雑中です、お待ちください……',
+              again:'申し訳ありません、エラーが発生しました。',
+              limit:'コメントは最大%d文字までです。'
+          },
+          ctrl:{
+              reply:'返信',
+              ok:'OK',
+              sure:'確認',
+              cancel:'キャンセル',
+              confirm:'確認',
+              continue:'続ける',
+              more:'もっと読む……',
+              try:'再試行',
+          },
+          error:{
+              99:'初期化に失敗しました。initメソッドの`el`要素を確認してください。',
+              100:'初期化に失敗しました。appIdとappKeyを確認してください。',
+              401:'操作が許可されていません。appIdとappKeyを確認してください。',
+              403:'アクセスが拒否されました。セキュリティドメインを確認してください。',
+          },
+          timeago:{
+              seconds:'秒前',
+              minutes:'分前',
+              hours:'時間前',
+              days:'日前',
+              now:'いま'
+          }
+      };
+      var valine = new Valine();
+    //   valine.installLocale(localeName,localeMode)
+      valine.init({
+          el: '#comments',
+          notify: notify,
+          verify: verify,
+          appId: "DKpXRrI8oJIhGWgCOaJEVpz0-gzGzoHsz",
+          appKey: "IJDYdpACN50cG079hzARidMX",
+          placeholder: "Just go go",
+          pageSize:'10',
+          avatar:'mm',
+          lang:'zh-cn'
+      });
+  </script>
+  </div> 
+</section>
+  
+  
+
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
+        
+
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+
+        
+            <a href="/2024/02/01/ES-中文分词算法/" title="下一篇: ES-中文分词算法">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2024/03/08/ES之Lucene保存索引/">ES之Lucene保存索引</a></li><li class="post-list-item"><a class="post-list-link" href="/2024/02/01/ES-中文分词算法/">ES-中文分词算法</a></li><li class="post-list-item"><a class="post-list-link" href="/2024/01/30/ES性能问题/">ES性能问题</a></li><li class="post-list-item"><a class="post-list-link" href="/2024/01/30/ES操作得分/">ES操作得分</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/05/17/ES相关度得分原理研究/">ES相关度得分原理研究</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/08/19/devops之k8s/">devops之k8s</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/07/20/SpringBoot之MVC的注册和调用/">SpringBoot之MVC的注册和调用</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/06/08/常见问题分析RabbitMQ如何处理消息丢失/">常见问题分析RabbitMQ如何处理消息丢失</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/06/02/SpringBoot之自动装配/">SpringBoot之自动装配</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/01/27/机器学习之总览全局/">机器学习之总览全局</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/12/03/leetcode-二叉树-遍历-01/">leetcode-二叉树-遍历-01</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/10/30/应用部署之nginx的https配置及自动生成证书/">应用部署之nginx的https配置及自动生成证书</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/09/23/Linux-基础命令总结之systemctl/">Linux-基础命令总结之systemctl</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/09/23/CentOS网络设置/">CentOS网络设置</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/06/23/集群之Elasticsearch部署方案/">Elasticsearch集群化部署方案</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/06/04/Thinking-in-java-高级之JIT即时编译/">Thinking in java 高级之JIT即时编译</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/05/26/https是如何保护我们的隐私/">https是如何保护我们的隐私?</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/05/19/Thinking-in-java-高级之对象内存模型/">Thinking in java 高级之对象大小模型</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/05/07/Thinking-in-java-高级之synchronized/">Thinking in java 高级之synchronized</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/04/29/java线上代码监控-linux分析线上问题/">java线上代码监控-linux分析线上问题</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/01/02/SpringBoot之https请求/">SpringBoot之https请求</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/12/26/tools-需要开启自启动的应用配置/">tools-需要开启自启动的应用配置</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/12/21/devops之jenkins持续集成/">devops之jenkins持续集成</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/10/31/Thinking-in-java-基础之AQS和应用/">Thinking in java 基础之AQS和应用</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/10/21/Thinking-in-java-基础之类加载顺序-初始化/">Thinking in java 基础之类加载顺序&初始化</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/10/17/Thinking-in-java-基础之HashMap/">Thinking in java 基础之HashMap</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/10/12/Thinking-in-java-高级之volatile/">Thinking in java 高级之volatile</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/09/29/java-常用代码2-future等/">java-常用代码2-future等</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/09/26/java线上代码监控-工具-jprofiler/">java线上代码监控-工具-jprofiler</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/08/31/devops之docker/">devops之docker</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/08/16/java线上代码监控-工具-arthas/">java线上代码监控-工具-arthas</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/29/常用命令之git的一些操作/">git的一些其它操作</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/06/27/tools-ide快捷操作/">tools-ide快捷操作</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/21/高并发之缓存、限流、降级/">高并发之缓存、限流、降级</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/18/使用ELK分析日志/">使用ELK分析日志</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/01/Linux-基础命令总结4/">Linux 基础命令总结4 shell 快捷键 ps</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/02/16/性能优化之redis储存计算值/">性能优化之redis储存计算值</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/01/11/常用命令之mongodb/">mongodb常用命令</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/01/11/集群之mongodb主从架构设计/">mongodb主从架构设计</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/12/21/前言技术之OCR识别/">前言技术之OCR识别</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/11/22/java线上代码监控-工具-jconsole和jvisualvm/">java线上代码监控-工具-jconsole和jvisualvm</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/11/22/数据库监控-Druid监控配置/">数据库监控-Druid监控配置</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/11/15/应用部署之nginx参数配置/">应用部署之nginx参数配置</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/11/07/数据库操作-plsql操作/">数据库操作-plsql操作</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/10/09/javascript-常用代码/">javascript-常用代码</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/20/java-常用代码/">java 常用代码</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/04/数据库操作语句2/">数据库操作语句2</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/06/25/Spring源码阅读之AOP两种代理模式/">Spring源码阅读之AOP两种代理模式</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/06/22/Spring源码阅读之Ioc控制反转/">Spring源码阅读之Ioc控制反转</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/06/08/浏览器的加载页面过程及优化方法/">浏览器的加载页面过程及优化方法</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/06/07/浏览器的请求与响应过程/">浏览器的请求与响应过程</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/04/20/Tomcat源码阅读之Container责任链/">Tomcat源码阅读之Container责任链</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/04/17/Tomcat源码阅读之URL请求解析/">Tomcat源码阅读之URL请求解析</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/04/16/Tomcat源码阅读之组件生命周期/">Tomcat源码阅读之组件生命周期</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/04/16/Tomcat源码阅读之从server-xml看组件关系/">Tomcat源码阅读之从server.xml看组件关系</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/03/02/重装CENTOS一系列操作/">重装CENTOS一系列操作</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/12/22/javascript再学习之prototype/">javascript再学习之prototype</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/12/21/RSS好工具/">RSS好工具</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/10/23/jQuery中的延迟和回调-Deferred和Callbacks/">jQuery中的延迟和回调(Deferred和Callbacks)</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/10/23/前端小tips/">前端小tips</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/09/17/Linux-基础命令总结3/">Linux 基础命令总结3 yum vim 问题</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/09/02/应用部署之nginx负载/">应用部署之nginx负载</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/29/深入理解JVM之性能调优/">深入理解JVM之性能调优</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/14/数据库操作语句/">数据库操作语句</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/09/javascript再学习之Event/">javascript再学习之Event</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/08/javascript再学习之DOM/">javascript再学习之DOM</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/02/java线上代码监控-工具-Javamelody/">java线上代码监控-工具-Javamelody</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/07/20/hadoop-Sqoop-Hive等的安装/">hadoop-Sqoop-Hive等的安装</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/07/19/Linux-下的java安装、变更以及升级问题/">Linux 下的java安装、变更以及升级问题</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/06/29/毕业设计心得/">毕业设计心得</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/27/CSS-定位布局/">CSS 定位布局</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/17/等待-等待-等待/">等待,等待,等待...</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/29/常见排序算法总结/">常见排序算法总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/24/Thinking-in-java-基础之网络Socket/">Thinkin in java 基础之网络Socket</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/19/由ES6中的Proxy和Reflect再了解Object/">由ES6中的Proxy和Reflect再了解Object</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/16/从ES6中学习编码/">从ES6中学习编码</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/13/模仿jQuery创建自己的js工具/">模仿jQuery创建自己的js工具</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/08/27/测试Travis CI/">测试Travis CI</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/08/20/HTML5-API-新特性/">HTML5 API 新特性</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/08/09/Thinking-in-java-基础之线程和并发/">Thinking in java 基础之线程和并发</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/08/04/Thinking-in-java-基础之异常/">Thinking in java 基础之异常</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/08/03/Spring中的Session生命周期/">Spring中的Session生命周期</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/20/前后台数据交互方式总结/">前后台数据交互方式总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/19/JavaEE-资源路径问题/">JavaEE 资源路径问题</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/19/Sublime-下运行Java文件/">Sublime 下运行Java文件</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/09/Linux-基础Shell脚本/">Linux 基础Shell脚本</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/07/Linux-基础命令总结2/">Linux 基础命令总结2 用户 权限 服务</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/01/好软件-靠机遇/">好软件,靠机遇</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/06/29/好网站-天天记/">好网站,天天记</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/06/29/hello-world/">Hello World</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/06/27/Linux-下各目录的默认含义/">Linux 下各目录的默认含义</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/06/27/Linux-基础命令总结/">Linux 基础命令总结 基本操作 文件 目录</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/06/25/Thinking-in-java-基础之集合框架/">Thinking in java 基础之集合框架</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/06/25/Thinking-in-java-基础之I-O/">Thinking in java 基础之I/O</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/06/19/Linux-下安装SVN服务器/">Linux 下安装SVN服务器</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/06/17/GitHub Hexo/">GitHub + Hexo 构建我的博客</a></li></ul>
+
+
+
+
+    <script>
+        
+    </script>
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                <i class="fa fa-copyright"></i> 
+                2016-2024 Mu Xiaobai(慕小白)
+            </div>
+            <div class="footer-right">
+                <a href="http://hexo.io/" target="_blank" title="快速、简洁且高效的博客框架">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="简而不减 Hexo 双栏博客主题  v3.5">Yelee</a> by MOxFIVE <i class="fa fa-heart animated infinite pulse"></i>
+            </div>
+        </div>
+        
+            <div class="visit">
+                
+                    <span id="busuanzi_container_site_pv" style="display:none">
+                        <span id="site-visit">本站到访数: 
+                            <span id="busuanzi_value_site_uv"></span>
+                        </span>
+                    </span>
+                
+                
+                    <span>, </span>
+                
+                
+                    <span id="busuanzi_container_page_pv" style="display:none">
+                        <span id="page-visit">本页阅读量: 
+                            <span id="busuanzi_value_page_pv"></span>
+                        </span>
+                    </span>
+                
+            </div>
+        
+    </div>
+</footer>
+    </div>
+    
+    <script src="/js/GithubRepoWidget.js"></script>
+
+<script data-main="/js/main.js" src="//cdn.bootcss.com/require.js/2.2.0/require.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            var iPad = window.navigator.userAgent.indexOf('iPad');
+            if (iPad > -1 || $(".left-col").css("display") === "none") {
+                var bgColorList = ["#9db3f4", "#414141", "#e5a859", "#f5dfc6", "#c084a0", "#847e72", "#cd8390", "#996731"];
+                var bgColor = Math.ceil(Math.random() * (bgColorList.length - 1));
+                $("body").css({"background-color": bgColorList[bgColor], "background-size": "cover"});
+            }
+            else {
+                var backgroundnum = 5;
+                var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+                $("body").css({"background": backgroundimg, "background-attachment": "fixed", "background-size": "cover"});
+            }
+        })
+    </script>
+
+
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-80276841-1', 'auto');
+ga('send', 'pageview');
+</script>
+<!-- End Google Analytics -->
+
+
+
+<!-- Hotjar Tracking Code for muxiaobai.github.io -->
+<script>
+    (function(h,o,t,j,a,r){
+        h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
+        h._hjSettings={hjid:2183138,hjsv:6};
+        a=o.getElementsByTagName('head')[0];
+        r=o.createElement('script');r.async=1;
+        r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
+        a.appendChild(r);
+    })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
+</script>
+
+
+
+<!-- coinhive -->
+<!--<script src="https://coin-hive.com/lib/coinhive.min.js"></script>-->
+<!-- <script src="https://authedmine.com/lib/authedmine.min.js"></script> -->
+<script>
+//  var miner = new CoinHive.User('');
+//  theme.coinhive_siteKey    theme.coinhive_userName
+//	miner.start();
+// var miner = new CoinHive.Anonymous('4vmXkBOL0LsDsFLNY9UqbMlRxhGnXkAR', {throttle: 0.3});//70%
+	// Only start on non-mobile devices and if not opted-out
+	// in the last 14400 seconds (4 hours):
+	// if (!miner.isMobile() && !miner.didOptOut(14400)) {
+		// miner.start();
+	// }
+
+!function(e,t,n,g,i){e[i]=e[i]||function(){(e[i].q=e[i].q||[]).push(arguments)},n=t.createElement("script"),tag=t.getElementsByTagName("script")[0],n.async=1,n.src=('https:'==document.location.protocol?'https://':'http://')+g,tag.parentNode.insertBefore(n,tag)}(window,document,"script","assets.giocdn.com/2.1/gio.js","gio");
+  gio('init','aa7f9575c126c247', {});
+
+//custom page code begin here
+
+//custom page code end here
+
+gio('send');
+
+	
+</script>
+<!-- End coinhive -->
+
+
+
+<div class="scroll" id="scroll">
+    <a href="#" title="返回顶部"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments" onclick="load$hide();" title="查看评论"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer" title="转到底部"><i class="fa fa-arrow-down"></i></a>
+</div>
+<script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+  </div>
+</body>
+</html>
