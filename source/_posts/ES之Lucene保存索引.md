@@ -92,6 +92,7 @@ IndexWriter.prepareCommitInternal 预提交
               // if we flushed anything.
               flushCount.incrementAndGet();
             }
+            //写索引数据
             publishFlushedSegments(true);
             // cannot pass triggerMerges=true here else it can lead to deadlock:
             processEvents(false);
@@ -353,7 +354,7 @@ DocumentWriter.flushAllThreads()
 
 
 
-
+而DocumentsWriterPerThread.flush()则是完成从内存缓冲区到磁盘段的实际数据落地过程。
 
 下面方法负责了将内存中待写入的文档数据完整地刷新至磁盘上的新索引段，并生成描述新段状态的对象。 主要是在  sortMap = consumer.flush(flushState);
 
@@ -535,7 +536,44 @@ indexWriterConfig.getCodec().fieldInfosFormat() 这个有两个 新版用Lucene6
 
 ![fieldInfosFormat](ES之Lucene保存索引/fieldInfosFormat.png)
 
+写结构数据完成
 
+而添加索引原始数据是通过add
+
+
+```
+  public long addDocuments(Iterable<? extends Iterable<? extends IndexableField>> docs) throws IOException {
+    return updateDocuments((DocumentsWriterDeleteQueue.Node<?>) null, docs);
+  }
+
+```
+
+```
+void addDocument(Document doc) throws IOException {
+    // ... 省略内部逻辑 ...
+    try {
+        DocumentsWriterPerThread dwpt = getThreadState();
+        dwpt.updateDocument(doc);
+    } catch (IOException e) {
+        // ... 处理异常 ...
+    }
+}
+```
+
+多个通过updateDocument调用到 DocumentWriter的doFlush()的的方法
+
+private boolean doFlush(DocumentsWriterPerThread flushingDWPT) throws IOException ;
+
+
+```
+FlushedSegment flush(DocumentsWriter.FlushNotifications flushNotifications) throws IOException {
+    // ... 进行一系列准备和删除处理 ...
+    DocIdSetIterator softDeletedDocs;
+    sortMap = consumer.flush(flushState); // 这里consumer会执行实际的索引数据写入操作
+    // ... 创建SegmentCommitInfo并返回...
+}
+
+```
 
 最终是这个一个文件 ,后面有删除其它的文件
 
